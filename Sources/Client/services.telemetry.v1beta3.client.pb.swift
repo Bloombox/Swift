@@ -25,17 +25,16 @@ import Foundation
 import Dispatch
 import gRPC
 import SwiftProtobuf
-import Schema
 
 /// Type for errors thrown from generated client code.
-internal enum Services_Telemetry_V1Beta3_EventTelemetryClientError : Error {
+public enum Services_Telemetry_V1Beta3_EventTelemetryClientError : Error {
   case endOfStream
   case invalidMessageReceived
   case error(c: CallResult)
 }
 
 /// Ping (Unary)
-internal class Services_Telemetry_V1Beta3_EventTelemetryPingCall {
+public class Services_Telemetry_V1Beta3_EventTelemetryPingCall {
   private var call : Call
 
   /// Create a call.
@@ -84,13 +83,13 @@ internal class Services_Telemetry_V1Beta3_EventTelemetryPingCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// Event (Unary)
-internal class Services_Telemetry_V1Beta3_EventTelemetryEventCall {
+public class Services_Telemetry_V1Beta3_EventTelemetryEventCall {
   private var call : Call
 
   /// Create a call.
@@ -139,13 +138,13 @@ internal class Services_Telemetry_V1Beta3_EventTelemetryEventCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// Batch (Unary)
-internal class Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
+public class Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
   private var call : Call
 
   /// Create a call.
@@ -194,13 +193,13 @@ internal class Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// Error (Unary)
-internal class Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
+public class Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
   private var call : Call
 
   /// Create a call.
@@ -249,22 +248,22 @@ internal class Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// Call methods of this class to make API calls.
-internal class Services_Telemetry_V1Beta3_EventTelemetryService {
+public class Services_Telemetry_V1Beta3_EventTelemetryService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
-  internal var metadata : Metadata
+  public var metadata : Metadata
 
   /// This property allows the service host name to be overridden.
   /// For example, it can be used to make calls to "localhost:8080"
   /// appear to be to "example.com".
-  internal var host : String {
+  public var host : String {
     get {
       return self.channel.host
     }
@@ -274,27 +273,27 @@ internal class Services_Telemetry_V1Beta3_EventTelemetryService {
   }
 
   /// Create a client that makes insecure connections.
-  internal init(address: String) {
+  public init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  internal init(address: String, certificates: String?, host: String?) {
+  public init(address: String, certificates: String?, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()
   }
 
   /// Synchronous. Unary.
-  internal func ping(_ request: Services_Telemetry_V1beta3_TelemetryPing_Request)
+  public func ping(_ request: Services_Telemetry_V1beta3_TelemetryPing_Request)
     throws
     -> Services_Telemetry_V1beta3_TelemetryPing_Response {
       return try Services_Telemetry_V1Beta3_EventTelemetryPingCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func ping(_ request: Services_Telemetry_V1beta3_TelemetryPing_Request,
+  public func ping(_ request: Services_Telemetry_V1beta3_TelemetryPing_Request,
                   completion: @escaping (Services_Telemetry_V1beta3_TelemetryPing_Response?, CallResult)->())
     throws
     -> Services_Telemetry_V1Beta3_EventTelemetryPingCall {
@@ -303,13 +302,13 @@ internal class Services_Telemetry_V1Beta3_EventTelemetryService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  internal func event(_ request: Services_Telemetry_V1beta3_Event_Request)
+  public func event(_ request: Services_Telemetry_V1beta3_Event_Request)
     throws
     -> Google_Protobuf_Empty {
       return try Services_Telemetry_V1Beta3_EventTelemetryEventCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func event(_ request: Services_Telemetry_V1beta3_Event_Request,
+  public func event(_ request: Services_Telemetry_V1beta3_Event_Request,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
     -> Services_Telemetry_V1Beta3_EventTelemetryEventCall {
@@ -318,13 +317,13 @@ internal class Services_Telemetry_V1Beta3_EventTelemetryService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  internal func batch(_ request: Services_Telemetry_V1beta3_Event_BatchRequest)
+  public func batch(_ request: Services_Telemetry_V1beta3_Event_BatchRequest)
     throws
     -> Services_Telemetry_V1beta3_TelemetryResponse {
       return try Services_Telemetry_V1Beta3_EventTelemetryBatchCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func batch(_ request: Services_Telemetry_V1beta3_Event_BatchRequest,
+  public func batch(_ request: Services_Telemetry_V1beta3_Event_BatchRequest,
                   completion: @escaping (Services_Telemetry_V1beta3_TelemetryResponse?, CallResult)->())
     throws
     -> Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
@@ -333,13 +332,13 @@ internal class Services_Telemetry_V1Beta3_EventTelemetryService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  internal func error(_ request: Services_Telemetry_V1beta3_Exception)
+  public func error(_ request: Services_Telemetry_V1beta3_Exception)
     throws
     -> Google_Protobuf_Empty {
       return try Services_Telemetry_V1Beta3_EventTelemetryErrorCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func error(_ request: Services_Telemetry_V1beta3_Exception,
+  public func error(_ request: Services_Telemetry_V1beta3_Exception,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
     -> Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
@@ -350,14 +349,14 @@ internal class Services_Telemetry_V1Beta3_EventTelemetryService {
 }
 
 /// Type for errors thrown from generated client code.
-internal enum Services_Telemetry_V1Beta3_CommercialTelemetryClientError : Error {
+public enum Services_Telemetry_V1Beta3_CommercialTelemetryClientError : Error {
   case endOfStream
   case invalidMessageReceived
   case error(c: CallResult)
 }
 
 /// Impression (Unary)
-internal class Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
+public class Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
   private var call : Call
 
   /// Create a call.
@@ -406,13 +405,13 @@ internal class Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// View (Unary)
-internal class Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
+public class Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
   private var call : Call
 
   /// Create a call.
@@ -461,13 +460,13 @@ internal class Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// Action (Unary)
-internal class Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
+public class Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
   private var call : Call
 
   /// Create a call.
@@ -516,22 +515,22 @@ internal class Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// Call methods of this class to make API calls.
-internal class Services_Telemetry_V1Beta3_CommercialTelemetryService {
+public class Services_Telemetry_V1Beta3_CommercialTelemetryService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
-  internal var metadata : Metadata
+  public var metadata : Metadata
 
   /// This property allows the service host name to be overridden.
   /// For example, it can be used to make calls to "localhost:8080"
   /// appear to be to "example.com".
-  internal var host : String {
+  public var host : String {
     get {
       return self.channel.host
     }
@@ -541,27 +540,27 @@ internal class Services_Telemetry_V1Beta3_CommercialTelemetryService {
   }
 
   /// Create a client that makes insecure connections.
-  internal init(address: String) {
+  public init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  internal init(address: String, certificates: String?, host: String?) {
+  public init(address: String, certificates: String?, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()
   }
 
   /// Synchronous. Unary.
-  internal func impression(_ request: Services_Telemetry_V1beta3_CommercialEvent_Impression)
+  public func impression(_ request: Services_Telemetry_V1beta3_CommercialEvent_Impression)
     throws
     -> Google_Protobuf_Empty {
       return try Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func impression(_ request: Services_Telemetry_V1beta3_CommercialEvent_Impression,
+  public func impression(_ request: Services_Telemetry_V1beta3_CommercialEvent_Impression,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
     -> Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
@@ -570,13 +569,13 @@ internal class Services_Telemetry_V1Beta3_CommercialTelemetryService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  internal func view(_ request: Services_Telemetry_V1beta3_CommercialEvent_View)
+  public func view(_ request: Services_Telemetry_V1beta3_CommercialEvent_View)
     throws
     -> Google_Protobuf_Empty {
       return try Services_Telemetry_V1Beta3_CommercialTelemetryViewCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func view(_ request: Services_Telemetry_V1beta3_CommercialEvent_View,
+  public func view(_ request: Services_Telemetry_V1beta3_CommercialEvent_View,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
     -> Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
@@ -585,13 +584,13 @@ internal class Services_Telemetry_V1Beta3_CommercialTelemetryService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  internal func action(_ request: Services_Telemetry_V1beta3_CommercialEvent_Action)
+  public func action(_ request: Services_Telemetry_V1beta3_CommercialEvent_Action)
     throws
     -> Google_Protobuf_Empty {
       return try Services_Telemetry_V1Beta3_CommercialTelemetryActionCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func action(_ request: Services_Telemetry_V1beta3_CommercialEvent_Action,
+  public func action(_ request: Services_Telemetry_V1beta3_CommercialEvent_Action,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
     -> Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
@@ -602,14 +601,14 @@ internal class Services_Telemetry_V1Beta3_CommercialTelemetryService {
 }
 
 /// Type for errors thrown from generated client code.
-internal enum Services_Telemetry_V1Beta3_IdentityTelemetryClientError : Error {
+public enum Services_Telemetry_V1Beta3_IdentityTelemetryClientError : Error {
   case endOfStream
   case invalidMessageReceived
   case error(c: CallResult)
 }
 
 /// Action (Unary)
-internal class Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {
+public class Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {
   private var call : Call
 
   /// Create a call.
@@ -658,22 +657,22 @@ internal class Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// Call methods of this class to make API calls.
-internal class Services_Telemetry_V1Beta3_IdentityTelemetryService {
+public class Services_Telemetry_V1Beta3_IdentityTelemetryService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
-  internal var metadata : Metadata
+  public var metadata : Metadata
 
   /// This property allows the service host name to be overridden.
   /// For example, it can be used to make calls to "localhost:8080"
   /// appear to be to "example.com".
-  internal var host : String {
+  public var host : String {
     get {
       return self.channel.host
     }
@@ -683,27 +682,27 @@ internal class Services_Telemetry_V1Beta3_IdentityTelemetryService {
   }
 
   /// Create a client that makes insecure connections.
-  internal init(address: String) {
+  public init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  internal init(address: String, certificates: String?, host: String?) {
+  public init(address: String, certificates: String?, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()
   }
 
   /// Synchronous. Unary.
-  internal func action(_ request: Services_Telemetry_V1beta3_IdentityEvent_Action)
+  public func action(_ request: Services_Telemetry_V1beta3_IdentityEvent_Action)
     throws
     -> Google_Protobuf_Empty {
       return try Services_Telemetry_V1Beta3_IdentityTelemetryActionCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func action(_ request: Services_Telemetry_V1beta3_IdentityEvent_Action,
+  public func action(_ request: Services_Telemetry_V1beta3_IdentityEvent_Action,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
     -> Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {

@@ -25,17 +25,16 @@ import Foundation
 import Dispatch
 import gRPC
 import SwiftProtobuf
-import Schema
 
 /// Type for errors thrown from generated client code.
-internal enum Services_Shop_V1_ShopClientError : Error {
+public enum Services_Shop_V1_ShopClientError : Error {
   case endOfStream
   case invalidMessageReceived
   case error(c: CallResult)
 }
 
 /// Ping (Unary)
-internal class Services_Shop_V1_ShopPingCall {
+public class Services_Shop_V1_ShopPingCall {
   private var call : Call
 
   /// Create a call.
@@ -84,13 +83,13 @@ internal class Services_Shop_V1_ShopPingCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// ShopInfo (Unary)
-internal class Services_Shop_V1_ShopShopInfoCall {
+public class Services_Shop_V1_ShopShopInfoCall {
   private var call : Call
 
   /// Create a call.
@@ -139,13 +138,13 @@ internal class Services_Shop_V1_ShopShopInfoCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// EnrollMember (Unary)
-internal class Services_Shop_V1_ShopEnrollMemberCall {
+public class Services_Shop_V1_ShopEnrollMemberCall {
   private var call : Call
 
   /// Create a call.
@@ -194,13 +193,13 @@ internal class Services_Shop_V1_ShopEnrollMemberCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// CheckZipcode (Unary)
-internal class Services_Shop_V1_ShopCheckZipcodeCall {
+public class Services_Shop_V1_ShopCheckZipcodeCall {
   private var call : Call
 
   /// Create a call.
@@ -249,13 +248,13 @@ internal class Services_Shop_V1_ShopCheckZipcodeCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// VerifyMember (Unary)
-internal class Services_Shop_V1_ShopVerifyMemberCall {
+public class Services_Shop_V1_ShopVerifyMemberCall {
   private var call : Call
 
   /// Create a call.
@@ -304,13 +303,13 @@ internal class Services_Shop_V1_ShopVerifyMemberCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// SubmitOrder (Unary)
-internal class Services_Shop_V1_ShopSubmitOrderCall {
+public class Services_Shop_V1_ShopSubmitOrderCall {
   private var call : Call
 
   /// Create a call.
@@ -359,13 +358,13 @@ internal class Services_Shop_V1_ShopSubmitOrderCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// GetOrder (Unary)
-internal class Services_Shop_V1_ShopGetOrderCall {
+public class Services_Shop_V1_ShopGetOrderCall {
   private var call : Call
 
   /// Create a call.
@@ -414,22 +413,22 @@ internal class Services_Shop_V1_ShopGetOrderCall {
   }
 
   /// Cancel the call.
-  internal func cancel() {
+  public func cancel() {
     call.cancel()
   }
 }
 
 /// Call methods of this class to make API calls.
-internal class Services_Shop_V1_ShopService {
+public class Services_Shop_V1_ShopService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
-  internal var metadata : Metadata
+  public var metadata : Metadata
 
   /// This property allows the service host name to be overridden.
   /// For example, it can be used to make calls to "localhost:8080"
   /// appear to be to "example.com".
-  internal var host : String {
+  public var host : String {
     get {
       return self.channel.host
     }
@@ -439,27 +438,27 @@ internal class Services_Shop_V1_ShopService {
   }
 
   /// Create a client that makes insecure connections.
-  internal init(address: String) {
+  public init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  internal init(address: String, certificates: String?, host: String?) {
+  public init(address: String, certificates: String?, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()
   }
 
   /// Synchronous. Unary.
-  internal func ping(_ request: Services_Shop_V1_Ping_Request)
+  public func ping(_ request: Services_Shop_V1_Ping_Request)
     throws
     -> Services_Shop_V1_Ping_Response {
       return try Services_Shop_V1_ShopPingCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func ping(_ request: Services_Shop_V1_Ping_Request,
+  public func ping(_ request: Services_Shop_V1_Ping_Request,
                   completion: @escaping (Services_Shop_V1_Ping_Response?, CallResult)->())
     throws
     -> Services_Shop_V1_ShopPingCall {
@@ -468,13 +467,13 @@ internal class Services_Shop_V1_ShopService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  internal func shopinfo(_ request: Services_Shop_V1_ShopInfo_Request)
+  public func shopinfo(_ request: Services_Shop_V1_ShopInfo_Request)
     throws
     -> Services_Shop_V1_ShopInfo_Response {
       return try Services_Shop_V1_ShopShopInfoCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func shopinfo(_ request: Services_Shop_V1_ShopInfo_Request,
+  public func shopinfo(_ request: Services_Shop_V1_ShopInfo_Request,
                   completion: @escaping (Services_Shop_V1_ShopInfo_Response?, CallResult)->())
     throws
     -> Services_Shop_V1_ShopShopInfoCall {
@@ -483,13 +482,13 @@ internal class Services_Shop_V1_ShopService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  internal func enrollmember(_ request: Services_Shop_V1_EnrollMember_Request)
+  public func enrollmember(_ request: Services_Shop_V1_EnrollMember_Request)
     throws
     -> Services_Shop_V1_EnrollMember_Response {
       return try Services_Shop_V1_ShopEnrollMemberCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func enrollmember(_ request: Services_Shop_V1_EnrollMember_Request,
+  public func enrollmember(_ request: Services_Shop_V1_EnrollMember_Request,
                   completion: @escaping (Services_Shop_V1_EnrollMember_Response?, CallResult)->())
     throws
     -> Services_Shop_V1_ShopEnrollMemberCall {
@@ -498,13 +497,13 @@ internal class Services_Shop_V1_ShopService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  internal func checkzipcode(_ request: Services_Shop_V1_CheckZipcode_Request)
+  public func checkzipcode(_ request: Services_Shop_V1_CheckZipcode_Request)
     throws
     -> Services_Shop_V1_CheckZipcode_Response {
       return try Services_Shop_V1_ShopCheckZipcodeCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func checkzipcode(_ request: Services_Shop_V1_CheckZipcode_Request,
+  public func checkzipcode(_ request: Services_Shop_V1_CheckZipcode_Request,
                   completion: @escaping (Services_Shop_V1_CheckZipcode_Response?, CallResult)->())
     throws
     -> Services_Shop_V1_ShopCheckZipcodeCall {
@@ -513,13 +512,13 @@ internal class Services_Shop_V1_ShopService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  internal func verifymember(_ request: Services_Shop_V1_VerifyMember_Request)
+  public func verifymember(_ request: Services_Shop_V1_VerifyMember_Request)
     throws
     -> Services_Shop_V1_VerifyMember_Response {
       return try Services_Shop_V1_ShopVerifyMemberCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func verifymember(_ request: Services_Shop_V1_VerifyMember_Request,
+  public func verifymember(_ request: Services_Shop_V1_VerifyMember_Request,
                   completion: @escaping (Services_Shop_V1_VerifyMember_Response?, CallResult)->())
     throws
     -> Services_Shop_V1_ShopVerifyMemberCall {
@@ -528,13 +527,13 @@ internal class Services_Shop_V1_ShopService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  internal func submitorder(_ request: Services_Shop_V1_SubmitOrder_Request)
+  public func submitorder(_ request: Services_Shop_V1_SubmitOrder_Request)
     throws
     -> Services_Shop_V1_SubmitOrder_Response {
       return try Services_Shop_V1_ShopSubmitOrderCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func submitorder(_ request: Services_Shop_V1_SubmitOrder_Request,
+  public func submitorder(_ request: Services_Shop_V1_SubmitOrder_Request,
                   completion: @escaping (Services_Shop_V1_SubmitOrder_Response?, CallResult)->())
     throws
     -> Services_Shop_V1_ShopSubmitOrderCall {
@@ -543,13 +542,13 @@ internal class Services_Shop_V1_ShopService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  internal func getorder(_ request: Services_Shop_V1_GetOrder_Request)
+  public func getorder(_ request: Services_Shop_V1_GetOrder_Request)
     throws
     -> Services_Shop_V1_GetOrder_Response {
       return try Services_Shop_V1_ShopGetOrderCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  internal func getorder(_ request: Services_Shop_V1_GetOrder_Request,
+  public func getorder(_ request: Services_Shop_V1_GetOrder_Request,
                   completion: @escaping (Services_Shop_V1_GetOrder_Response?, CallResult)->())
     throws
     -> Services_Shop_V1_ShopGetOrderCall {
