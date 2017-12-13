@@ -8,7 +8,7 @@ SCHEMA_BRANCH ?= master
 SWIFT_PROTOBUF ?= SwiftProtobuf
 SWIFT_GRPC ?= SwiftGRPC
 
-SWIFT_PROTOC_OPTIONS ?= --swift_opt=FileNaming=PathToUnderscores --swift_opt=Visibility=Public
+SWIFT_PROTOC_OPTIONS ?= --swift_opt=FileNaming=PathToUnderscores --swift_opt=Visibility=Public --swiftgrpc_opt=Visibility=Public
 
 all: submodules schema build test
 	@echo "Swift API client ready."
@@ -40,7 +40,10 @@ sync-schema: swift-protobuf swift-grpc $(SCHEMA)/languages/swift
 	@echo "Syncing Swift schemas..."
 	@rm -fr Sources/Schema/*.pb.swift
 	@cp -fr $(SCHEMA)languages/swift/* Sources/Schema/
-	@cp -fr $(SCHEMA)languages/swiftgrpc/* Sources/Schema/
+	@cp -fr $(SCHEMA)languages/swiftgrpc/* Sources/Client/
+	@rm -f Sources/Client/*.server.pb.swift
+	@rm -f Sources/Client/*v1beta2*
+	@rm -f Sources/Client/*pos*pb.swift
 	@rm -f Sources/Schema/bq*
 
 $(SCHEMA)/languages/swift:
