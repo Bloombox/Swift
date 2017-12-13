@@ -1,9 +1,12 @@
 [submodule "schema"]
 	path = Schema
 	url = git@github.com:bloombox/Schema.git
+	branch = master
 [submodule "SwiftProtobuf"]
 	path = SwiftProtobuf
 	url = git@github.com:apple/swift-protobuf.git
+	branch = master
 [submodule "SwiftGRPC"]
 	path = SwiftGRPC
 	url = git@github.com:grpc/grpc-swift.git
+	branch = master
