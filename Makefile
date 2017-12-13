@@ -36,8 +36,9 @@ $(SCHEMA):
 
 sync-schema: swift-protobuf swift-grpc $(SCHEMA)/languages/swift
 	@echo "Syncing Swift schemas..."
-	@rm -fr Sources/Schema/*.swift
-	@cp -fr $(SCHEMA)/languages/swift/* Sources/Schema/
+	@rm -fr Sources/Schema/*.swift Sources/Schema/gRPC/*.swift
+	@cp -fr $(SCHEMA)languages/swift/* Sources/Schema/
+	@cp -fr $(SCHEMA)languages/swiftgrpc/* Sources/Schema/gRPC/
 	@rm -f Sources/Schema/bq*
 
 $(SCHEMA)/languages/swift:
