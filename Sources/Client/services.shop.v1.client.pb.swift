@@ -25,6 +25,7 @@ import Foundation
 import Dispatch
 import gRPC
 import SwiftProtobuf
+import Schema
 
 /// Type for errors thrown from generated client code.
 internal enum Services_Shop_V1_ShopClientError : Error {
