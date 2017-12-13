@@ -1,0 +1,21 @@
+//
+//  Bindings.swift
+//  Schema
+//
+//  Created by James Clark on 12/12/17.
+//
+
+import Foundation
+
+
+typealias Services_Telemetry_V1beta3_TelemetryPing_Request = Services_Telemetry_V1beta3_TelemetryPing.Request
+typealias Services_Telemetry_V1beta3_TelemetryPing_Response = Services_Telemetry_V1beta3_TelemetryPing.Response
+typealias Services_Telemetry_V1beta3_Event_Request = Services_Telemetry_V1beta3_Event.Request
+typealias Services_Telemetry_V1beta3_Event_Batch = Services_Telemetry_V1beta3_Event.Batch
+typealias Services_Telemetry_V1beta3_Event_BatchRequest = Services_Telemetry_V1beta3_Event.BatchRequest
+
+typealias Services_Telemetry_V1beta3_CommercialEvent_Impression = Services_Telemetry_V1beta3_CommercialEvent.Impression
+typealias Services_Telemetry_V1beta3_CommercialEvent_View = Services_Telemetry_V1beta3_CommercialEvent.View
+typealias Services_Telemetry_V1beta3_CommercialEvent_Action = Services_Telemetry_V1beta3_CommercialEvent.Action
+
+typealias Services_Telemetry_V1beta3_IdentityEvent_Action = Services_Telemetry_V1beta3_IdentityEvent.Action
