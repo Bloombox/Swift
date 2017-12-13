@@ -34,3 +34,4 @@ Carthage
 .build/
 BloomboxClient.xcodeproj/
 Sources/Client/swiftgrpc.log
+Sources/Schema/swiftgrpc.log
