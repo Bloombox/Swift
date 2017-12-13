@@ -33,3 +33,4 @@ Carthage
 # Pods/
 .build/
 BloomboxClient.xcodeproj/
+Sources/Client/swiftgrpc.log
