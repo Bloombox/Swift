@@ -41,6 +41,7 @@ sync-schema: swift-protobuf swift-grpc $(SCHEMA)/languages/swift
 	@rm -fr Sources/Schema/*.pb.swift
 	@cp -fr $(SCHEMA)languages/swift/* Sources/Schema/
 	@cp -fr $(SCHEMA)languages/swiftgrpc/* Sources/Client/
+	@rm -f Sources/Schema/*v1beta2*
 	@rm -f Sources/Client/*.server.pb.swift
 	@rm -f Sources/Client/*v1beta2*
 	@rm -f Sources/Client/*pos*pb.swift
