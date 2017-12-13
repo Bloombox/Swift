@@ -35,4 +35,9 @@ internal protocol RemoteService: ClientLogic {
    * Specifies the named version of this service with which we intend to communicate.
    */
   var version: String { get }
+
+  /**
+   * Specifies a mount point for client-wide settings.
+   */
+  var settings: BloomboxClient.Settings { get }
 }

@@ -15,6 +15,26 @@ import Foundation
 public final class Services: ClientLogic {
   // MARK: - Internals
   /**
+   * Client-level settings.
+   */
+  public let settings: BloomboxClient.Settings
+
+  /**
+   * Low-level RPC dispatch logic.
+   */
+  fileprivate let rpc: RPCLogic
+
+  /**
+   * Main initializer, used by the library.
+   */
+  internal init(settings: BloomboxClient.Settings) {
+    self.settings = settings
+    self.rpc = RPCLogic(settings: self.settings)
+    self.shop = ShopClient(settings: settings)
+    self.telemetry = TelemetryClient(settings: settings)
+  }
+
+  /**
    * Holds a reference to each supported remote service.
    */
   fileprivate var all: [RemoteService] {
@@ -23,11 +43,6 @@ public final class Services: ClientLogic {
       telemetry
     ]
   }
-
-  /**
-   * Low-level RPC dispatch logic.
-   */
-  fileprivate let rpc = RPCLogic()
 
   /**
    * Prep function for remote services. Dispatched early in the client initialization flow, so
@@ -45,11 +60,11 @@ public final class Services: ClientLogic {
    * Shop service. Provides information about a dispensary, and the ability to verify/enroll
    * members. Also provides order submission and status methods.
    */
-  public let shop = ShopService()
+  public let shop: ShopClient
 
   /**
    * Telemetry service. Provides the ability to submit event analytics data as it happens, and
    * have it attributed and placed in the larger flow.
    */
-  public let telemetry = TelemetryService()
+  public let telemetry: TelemetryClient
 }

@@ -16,7 +16,14 @@ import gRPC
  * exposed for access over the public internet.
  */
 internal protocol RPCEndpoint {
+  /**
+   * Hostname or IP address to connect to.
+   */
   var host: String { get }
+
+  /**
+   * Port to connect to.
+   */
   var port: Int { get }
 }
 
@@ -25,9 +32,24 @@ internal protocol RPCEndpoint {
  * Security (i.e. TLS/HTTPS).
  */
 internal protocol SecureRPCEndpoint: RPCEndpoint {
+  /**
+   * Client-side identity certificate.
+   */
   var cert: String { get }
+
+  /**
+   * Client-side identity private key.
+   */
   var key: String { get }
+
+  /**
+   * Client-side trust chain.
+   */
   var chain: String { get }
+
+  /**
+   * SNI hostname, if applicable.
+   */
   var hostname: String? { get }
 }
 
@@ -58,8 +80,8 @@ internal struct TLSEndpoint: SecureRPCEndpoint {
  * Main protocol for a remotely-supported RPC service.
  */
 internal protocol RPCService {
-  init(endpoint: RPCEndpoint)
-  init(endpoint: SecureRPCEndpoint)
+  init(endpoint: RPCEndpoint, settings: BloomboxClient.Settings)
+  init(endpoint: SecureRPCEndpoint, settings: BloomboxClient.Settings)
 
   var metadata : Metadata { get }
   var host: String { get set }
@@ -81,7 +103,7 @@ internal struct RPCServiceFactory<Service: RPCService> {
   /**
    * Produce an RPC endpoint spec from a set of RPC service settings.
    */
-  static func endpoint(settings: RPCServiceSettings) -> RPCEndpoint {
+  static func endpoint(forService settings: RPCServiceSettings) -> RPCEndpoint {
     if settings.secure {
       guard let cert = settings.cert, let key = settings.key, let chain = settings.chain else {
         fatalError("missing SSL settings for service")
@@ -104,13 +126,14 @@ internal struct RPCServiceFactory<Service: RPCService> {
    * Factory a new instance of the service this factory is specialized to. Given an endpoint
    * spec, initialize the new service and prepare it for use.
    */
-  static func factory(endpoint: RPCEndpoint) -> Service {
+  static func factory(endpoint: RPCEndpoint,
+                      settings: BloomboxClient.Settings) -> Service {
     if let secure = endpoint as? SecureRPCEndpoint {
       // connect over plaintext
-      return Service.init(endpoint: secure)
+      return Service.init(endpoint: secure, settings: settings)
     } else {
       // connect over TLS
-      return Service.init(endpoint: endpoint)
+      return Service.init(endpoint: endpoint, settings: settings)
     }
   }
 
@@ -119,8 +142,11 @@ internal struct RPCServiceFactory<Service: RPCService> {
    * service settings, build an endpoint spec, and then initialize the new service and prepare
    * it for use.
    */
-  static func factory(settings: RPCServiceSettings) -> Service {
-    return factory(endpoint: endpoint(settings: settings))
+  static func factory(forService service: RPCServiceSettings,
+                      settings: BloomboxClient.Settings) -> Service {
+    return factory(
+      endpoint: endpoint(forService: service),
+      settings: settings)
   }
 }
 
@@ -133,6 +159,19 @@ internal struct RPCServiceFactory<Service: RPCService> {
  * classes to apply stronger typing.
  */
 internal final class RPCLogic: ClientLogic {
+  /**
+   * Main API client settings.
+   */
+  let settings: BloomboxClient.Settings
+
+
+  /**
+   * Initialize this RPC logic with client settings.
+   */
+  init(settings: BloomboxClient.Settings) {
+    self.settings = settings
+  }
+
   /**
    * Prepare low-level RPC logic for use.
    */
