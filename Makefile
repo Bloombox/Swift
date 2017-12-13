@@ -8,6 +8,8 @@ SCHEMA_BRANCH ?= master
 SWIFT_PROTOBUF ?= SwiftProtobuf
 SWIFT_GRPC ?= SwiftGRPC
 
+SWIFT_PROTOC_OPTIONS ?= --swift_opt=FileNaming=PathToUnderscores --swift_opt=Visibility=Public
+
 all: submodules schema build test
 	@echo "Swift API client ready."
 
@@ -36,14 +38,14 @@ $(SCHEMA):
 
 sync-schema: swift-protobuf swift-grpc $(SCHEMA)/languages/swift
 	@echo "Syncing Swift schemas..."
-	@rm -fr Sources/Schema/*.swift Sources/Schema/gRPC/*.swift
+	@rm -fr Sources/Schema/*.swift
 	@cp -fr $(SCHEMA)languages/swift/* Sources/Schema/
-	@cp -fr $(SCHEMA)languages/swiftgrpc/* Sources/Schema/gRPC/
+	@cp -fr $(SCHEMA)languages/swiftgrpc/* Sources/Schema/
 	@rm -f Sources/Schema/bq*
 
 $(SCHEMA)/languages/swift:
 	@echo "Building Schema..."
-	@$(MAKE) -C $(SCHEMA) LANGUAGES="swift swiftgrpc" PROTO_FLAGS="--plugin=$(PWD)/SwiftGRPC/Plugin/.build/x86_64-apple-macosx10.10/debug/protoc-gen-swiftgrpc --swiftgrpc_out=languages/swiftgrpc" SERVICES=yes TABLES=no
+	@$(MAKE) -C $(SCHEMA) LANGUAGES="swift swiftgrpc" PROTO_FLAGS="--plugin=$(PWD)/SwiftGRPC/Plugin/.build/x86_64-apple-macosx10.10/debug/protoc-gen-swiftgrpc --swiftgrpc_out=languages/swiftgrpc $(SWIFT_PROTOC_OPTIONS)" SERVICES=yes TABLES=no
 
 swift-protobuf: $(SWIFT_PROTOBUF)/.build
 $(SWIFT_PROTOBUF)/.build:
