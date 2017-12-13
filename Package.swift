@@ -10,8 +10,8 @@ let package = Package(
             targets: ["Client"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-protobuf.git", from: "master"),
-        .package(url: "https://github.com/grpc/grpc-swift.git", branch: "master")
+        .package(url: "https://github.com/apple/swift-protobuf.git", .branch("master")),
+        .package(url: "https://github.com/grpc/grpc-swift.git", .branch("master"))
     ],
     targets: [
         .target(
