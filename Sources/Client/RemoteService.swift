@@ -13,6 +13,6 @@ internal protocol ClientLogic {
 }
 
 
-internal protocol RemoteService {
+internal protocol RemoteService: ClientLogic {
   var name: String { get }
 }

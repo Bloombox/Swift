@@ -9,18 +9,6 @@ import Foundation
 import gRPC
 
 
-// MARK: Settings
-internal protocol RPCServiceSettings {
-  var secure: Bool { get }
-  var host: String { get }
-  var port: Int { get }
-  var cert: String? { get }
-  var key: String? { get }
-  var hostname: String? { get }
-  var chain: String? { get }
-}
-
-
 // MARK: - RPC Endpoints
 internal protocol RPCEndpoint {
   var host: String { get }
