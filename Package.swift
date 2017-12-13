@@ -4,15 +4,16 @@ import PackageDescription
 
 let package = Package(
     name: "BloomboxClient",
+
     products: [
         .library(
             name: "BloomboxClient",
-            targets: ["Client"]),
-    ],
+            targets: ["Client"])],
+
     dependencies: [
         .package(url: "https://github.com/apple/swift-protobuf.git", .branch("master")),
-        .package(url: "https://github.com/grpc/grpc-swift.git", .branch("master"))
-    ],
+        .package(url: "https://github.com/grpc/grpc-swift.git", .branch("master"))],
+
     targets: [
         .target(
             name: "Client",
@@ -22,6 +23,4 @@ let package = Package(
             dependencies: ["SwiftProtobuf", "SwiftGRPC"]),
         .testTarget(
             name: "ClientTests",
-            dependencies: ["Client"])
-    ]
-)
+            dependencies: ["Client"])])
