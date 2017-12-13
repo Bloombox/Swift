@@ -9,38 +9,14 @@ import Foundation
 
 
 // Callback Types
-typealias ShopInfoCallback = (ShopInfo.Response?) -> ()
-typealias CheckZipcodeCallback = (CheckZipcode.Response?) -> ()
+public typealias ShopInfoCallback = (ShopInfo.Response?) -> ()
+public typealias CheckZipcodeCallback = (CheckZipcode.Response?) -> ()
 
 
-internal final class ShopImpl: Shop, RPCService {
-  /**
-   * Client-wide settings.
-   */
-  internal let settings: BloomboxClient.Settings
-
-  /**
-   * Initialize the Shop service with a plaintext endpoint.
-   */
-  required init(endpoint: RPCEndpoint,
-                settings: BloomboxClient.Settings) {
-    self.settings = settings
-    super.init(
-      address: "\(endpoint.host):\(endpoint.port)")
-  }
-
-  /**
-   * Initialize the Shop service with a secure endpoint.
-   */
-  required init(endpoint: SecureRPCEndpoint,
-                settings: BloomboxClient.Settings) {
-    self.settings = settings
-    super.init(
-      address: "\(endpoint.host):\(endpoint.port)",
-      certificates: endpoint.chain,
-      host: endpoint.hostname ?? endpoint.host)
-  }
-}
+/**
+ * Apply RPC Service compliance to Shop.
+ */
+extension Shop: RPCService {}
 
 
 /**
@@ -75,9 +51,7 @@ public final class ShopClient: RemoteService {
    */
   internal init(settings: BloomboxClient.Settings) {
     self.settings = settings
-    service = RPCServiceFactory<ShopImpl>.factory(
-      forService: Transport.config.services.shop,
-      settings: settings)
+    service = RPCServiceFactory<Shop>.factory(forService: Transport.config.services.shop)
   }
 
   /**

@@ -79,12 +79,9 @@ internal struct TLSEndpoint: SecureRPCEndpoint {
 /**
  * Main protocol for a remotely-supported RPC service.
  */
-internal protocol RPCService {
-  init(endpoint: RPCEndpoint, settings: BloomboxClient.Settings)
-  init(endpoint: SecureRPCEndpoint, settings: BloomboxClient.Settings)
-
-  var metadata : Metadata { get }
-  var host: String { get set }
+public protocol RPCService {
+  init(address: String)
+  init(address: String, certificates: String?, host: String?)
 }
 
 
@@ -126,14 +123,17 @@ internal struct RPCServiceFactory<Service: RPCService> {
    * Factory a new instance of the service this factory is specialized to. Given an endpoint
    * spec, initialize the new service and prepare it for use.
    */
-  static func factory(endpoint: RPCEndpoint,
-                      settings: BloomboxClient.Settings) -> Service {
+  static func factory(endpoint: RPCEndpoint) -> Service {
     if let secure = endpoint as? SecureRPCEndpoint {
-      // connect over plaintext
-      return Service.init(endpoint: secure, settings: settings)
-    } else {
       // connect over TLS
-      return Service.init(endpoint: endpoint, settings: settings)
+      return Service.init(
+        address: "\(secure.hostname ?? secure.host):\(secure.port)",
+        certificates: secure.chain,
+        host: secure.hostname)
+    } else {
+      // connect over plaintext
+      return Service.init(
+        address: "\(endpoint.host):\(endpoint.port)")
     }
   }
 
@@ -142,11 +142,8 @@ internal struct RPCServiceFactory<Service: RPCService> {
    * service settings, build an endpoint spec, and then initialize the new service and prepare
    * it for use.
    */
-  static func factory(forService service: RPCServiceSettings,
-                      settings: BloomboxClient.Settings) -> Service {
-    return factory(
-      endpoint: endpoint(forService: service),
-      settings: settings)
+  static func factory(forService service: RPCServiceSettings) -> Service {
+    return factory(endpoint: endpoint(forService: service))
   }
 }
 

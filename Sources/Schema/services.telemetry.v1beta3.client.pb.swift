@@ -273,14 +273,14 @@ public class Services_Telemetry_V1Beta3_EventTelemetryService {
   }
 
   /// Create a client that makes insecure connections.
-  public init(address: String) {
+  public required init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  public init(address: String, certificates: String?, host: String?) {
+  public required init(address: String, certificates: String?, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()

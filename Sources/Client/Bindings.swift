@@ -14,37 +14,42 @@ import Schema
 /**
  * Binding to the active ShopService.
  */
-typealias Shop = Services_Shop_V1_ShopService
+public typealias Shop = Services_Shop_V1_ShopService
+
+/**
+ * Method `ping`.
+ */
+public typealias Ping = Services_Shop_V1_Ping
 
 /**
  * Method: `shopInfo`.
  */
-typealias ShopInfo = Services_Shop_V1_ShopInfo
+public typealias ShopInfo = Services_Shop_V1_ShopInfo
 
 /**
  * Method: `checkZipcode`.
  */
-typealias CheckZipcode = Services_Shop_V1_CheckZipcode
+public typealias CheckZipcode = Services_Shop_V1_CheckZipcode
 
 /**
  * Method: `verifyMember`.
  */
-typealias VerifyMember = Services_Shop_V1_VerifyMember
+public typealias VerifyMember = Services_Shop_V1_VerifyMember
 
 /**
  * Method: `enrollMember`.
  */
-typealias EnrollMember = Services_Shop_V1_EnrollMember
+public typealias EnrollMember = Services_Shop_V1_EnrollMember
 
 /**
  * Method: `getOrder`.
  */
-typealias GetOrder = Services_Shop_V1_GetOrder
+public typealias GetOrder = Services_Shop_V1_GetOrder
 
 /**
  * Method: `submitOrder`.
  */
-typealias SubmitOrder = Services_Shop_V1_SubmitOrder
+public typealias SubmitOrder = Services_Shop_V1_SubmitOrder
 
 
 //// Telemetry Service
@@ -52,24 +57,30 @@ typealias SubmitOrder = Services_Shop_V1_SubmitOrder
 /**
  * Binding to the active EventTelemetryService.
  */
-typealias EventTelemetry = Services_Telemetry_V1Beta3_EventTelemetryService
+public typealias EventTelemetry = Services_Telemetry_V1Beta3_EventTelemetryService
 
 /**
  * Method: `ping`.
  */
-typealias TelemetryPing = Services_Telemetry_V1beta3_TelemetryPing
+public typealias TelemetryPing = Services_Telemetry_V1beta3_TelemetryPing
 
 /**
  * Method: `event`.
  */
-typealias TelemetryEvent = Services_Telemetry_V1beta3_Event
+public typealias TelemetryEvent = Services_Telemetry_V1beta3_Event
+
+/**
+ * Method: `batch`.
+ */
+public typealias TelemetryEventBatch = Services_Telemetry_V1beta3_Event_Batch
+public typealias TelemetryEventBatchRequest = Services_Telemetry_V1beta3_Event_BatchRequest
 
 /**
  * Method: `error`.
  */
-typealias TelemetryException = Services_Telemetry_V1beta3_Exception
+public typealias TelemetryException = Services_Telemetry_V1beta3_Exception
 
 /**
  * Enumerated errors from EventTelemetryService.
  */
-typealias EventTelemetryClientError =  Services_Telemetry_V1Beta3_EventTelemetryClientError
+public typealias EventTelemetryClientError = Services_Telemetry_V1Beta3_EventTelemetryClientError

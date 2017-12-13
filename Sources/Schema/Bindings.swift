@@ -55,3 +55,4 @@ public typealias Services_Telemetry_V1beta3_CommercialEvent_Action = Services_Te
 
 // Identity Telemetry
 public typealias Services_Telemetry_V1beta3_IdentityEvent_Action = Services_Telemetry_V1beta3_IdentityEvent.Action
+

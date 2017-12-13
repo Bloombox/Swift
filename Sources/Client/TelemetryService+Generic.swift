@@ -12,33 +12,7 @@ import Foundation
  * Implementation of the Event Telemetry service client. Supports standard endpoints for secure
  * and plaintext access.
  */
-internal final class EventTelemetryImpl: EventTelemetry, RPCService {
-  /**
-   * Client-wide settings.
-   */
-  internal let settings: BloomboxClient.Settings
-
-  /**
-   * Initialize the Event Telemetry service with a plaintext endpoint.
-   */
-  required init(endpoint: RPCEndpoint, settings: BloomboxClient.Settings) {
-    self.settings = settings
-    super.init(
-      address: "\(endpoint.host):\(endpoint.port)")
-  }
-
-  /**
-   * Initialize the Event Telemetry service with a secure endpoint.
-   */
-  required init(endpoint: SecureRPCEndpoint, settings: BloomboxClient.Settings) {
-    self.settings = settings
-    super.init(
-      address: "\(endpoint.host):\(endpoint.port)",
-      certificates: endpoint.chain,
-      host: endpoint.hostname ?? endpoint.host)
-  }
-}
-
+extension EventTelemetry: RPCService {}
 
 extension TelemetryClient {
   // MARK: Event Telemetry
