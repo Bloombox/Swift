@@ -185,16 +185,6 @@ public struct Services_Telemetry_V1beta3_TelemetryPing: SwiftProtobuf.Message {
   public struct Request: SwiftProtobuf.Message {
     public static let protoMessageName: String = Services_Telemetry_V1beta3_TelemetryPing.protoMessageName + ".Request"
 
-    /// Optional context to include in this ping.
-    public var context: Analytics_Context {
-      get {return _storage._context ?? Analytics_Context()}
-      set {_uniqueStorage()._context = newValue}
-    }
-    /// Returns true if `context` has been explicitly set.
-    public var hasContext: Bool {return _storage._context != nil}
-    /// Clears the value of `context`. Subsequent reads from it will return its default value.
-    public mutating func clearContext() {_storage._context = nil}
-
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
@@ -204,14 +194,7 @@ public struct Services_Telemetry_V1beta3_TelemetryPing: SwiftProtobuf.Message {
     /// initializers are defined in the SwiftProtobuf library. See the Message and
     /// Message+*Additions` files.
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._context)
-          default: break
-          }
-        }
+      while let _ = try decoder.nextFieldNumber() {
       }
     }
 
@@ -220,15 +203,8 @@ public struct Services_Telemetry_V1beta3_TelemetryPing: SwiftProtobuf.Message {
     /// other serializer methods are defined in the SwiftProtobuf library. See the
     /// `Message` and `Message+*Additions` files.
     public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._context {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-      }
       try unknownFields.traverse(visitor: &visitor)
     }
-
-    fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies a response to a service ping.
@@ -988,39 +964,9 @@ extension Services_Telemetry_V1beta3_TelemetryPing: SwiftProtobuf._MessageImplem
 }
 
 extension Services_Telemetry_V1beta3_TelemetryPing.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "context"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _context: Analytics_Context? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _context = source._context
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   public func _protobuf_generated_isEqualTo(other: Services_Telemetry_V1beta3_TelemetryPing.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._context != other_storage._context {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
     if unknownFields != other.unknownFields {return false}
     return true
   }

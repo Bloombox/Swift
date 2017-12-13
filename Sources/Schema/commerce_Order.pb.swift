@@ -384,6 +384,12 @@ public struct Commerce_Order: SwiftProtobuf.Message {
   /// Clears the value of `createdAt`. Subsequent reads from it will return its default value.
   public mutating func clearCreatedAt() {_storage._createdAt = nil}
 
+  /// Order subtotal.
+  public var subtotal: Double {
+    get {return _storage._subtotal}
+    set {_uniqueStorage()._subtotal = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -407,6 +413,7 @@ public struct Commerce_Order: SwiftProtobuf.Message {
         case 8: try decoder.decodeRepeatedMessageField(value: &_storage._item)
         case 9: try decoder.decodeRepeatedMessageField(value: &_storage._actionLog)
         case 10: try decoder.decodeSingularMessageField(value: &_storage._createdAt)
+        case 11: try decoder.decodeSingularDoubleField(value: &_storage._subtotal)
         default: break
         }
       }
@@ -448,6 +455,9 @@ public struct Commerce_Order: SwiftProtobuf.Message {
       }
       if let v = _storage._createdAt {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+      if _storage._subtotal != 0 {
+        try visitor.visitSingularDoubleField(value: _storage._subtotal, fieldNumber: 11)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -599,6 +609,7 @@ extension Commerce_Order: SwiftProtobuf._MessageImplementationBase, SwiftProtobu
     8: .same(proto: "item"),
     9: .standard(proto: "action_log"),
     10: .standard(proto: "created_at"),
+    11: .same(proto: "subtotal"),
   ]
 
   fileprivate class _StorageClass {
@@ -612,6 +623,7 @@ extension Commerce_Order: SwiftProtobuf._MessageImplementationBase, SwiftProtobu
     var _item: [Commerce_Item] = []
     var _actionLog: [Commerce_StatusCheckin] = []
     var _createdAt: Temporal_Instant? = nil
+    var _subtotal: Double = 0
 
     static let defaultInstance = _StorageClass()
 
@@ -628,6 +640,7 @@ extension Commerce_Order: SwiftProtobuf._MessageImplementationBase, SwiftProtobu
       _item = source._item
       _actionLog = source._actionLog
       _createdAt = source._createdAt
+      _subtotal = source._subtotal
     }
   }
 
@@ -653,6 +666,7 @@ extension Commerce_Order: SwiftProtobuf._MessageImplementationBase, SwiftProtobu
         if _storage._item != other_storage._item {return false}
         if _storage._actionLog != other_storage._actionLog {return false}
         if _storage._createdAt != other_storage._createdAt {return false}
+        if _storage._subtotal != other_storage._subtotal {return false}
         return true
       }
       if !storagesAreEqual {return false}

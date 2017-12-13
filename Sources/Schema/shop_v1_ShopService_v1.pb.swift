@@ -109,6 +109,9 @@ public enum Services_Shop_V1_OrderError: SwiftProtobuf.Enum {
 
   /// The user's membership could not be located for a given dispensary.
   case membershipNotFound // = 12
+
+  /// The order was found to be a duplicate of another order.
+  case duplicateOrder // = 13
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -130,6 +133,7 @@ public enum Services_Shop_V1_OrderError: SwiftProtobuf.Enum {
     case 10: self = .shopNotOpen
     case 11: self = .globalMinimumNotMet
     case 12: self = .membershipNotFound
+    case 13: self = .duplicateOrder
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -149,6 +153,7 @@ public enum Services_Shop_V1_OrderError: SwiftProtobuf.Enum {
     case .shopNotOpen: return 10
     case .globalMinimumNotMet: return 11
     case .membershipNotFound: return 12
+    case .duplicateOrder: return 13
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -1820,6 +1825,7 @@ extension Services_Shop_V1_OrderError: SwiftProtobuf._ProtoNameProviding {
     10: .same(proto: "SHOP_NOT_OPEN"),
     11: .same(proto: "GLOBAL_MINIMUM_NOT_MET"),
     12: .same(proto: "MEMBERSHIP_NOT_FOUND"),
+    13: .same(proto: "DUPLICATE_ORDER"),
   ]
 }
 

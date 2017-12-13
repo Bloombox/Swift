@@ -248,6 +248,18 @@ public struct Commerce_Item: SwiftProtobuf.Message {
     set {_uniqueStorage()._count = newValue}
   }
 
+  /// Unit price of this item.
+  public var price: Double {
+    get {return _storage._price}
+    set {_uniqueStorage()._price = newValue}
+  }
+
+  /// Line-item cost calculated from count and price.
+  public var cost: Double {
+    get {return _storage._cost}
+    set {_uniqueStorage()._cost = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -264,6 +276,8 @@ public struct Commerce_Item: SwiftProtobuf.Message {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
         case 2: try decoder.decodeRepeatedMessageField(value: &_storage._variant)
         case 3: try decoder.decodeSingularUInt32Field(value: &_storage._count)
+        case 4: try decoder.decodeSingularDoubleField(value: &_storage._price)
+        case 5: try decoder.decodeSingularDoubleField(value: &_storage._cost)
         default: break
         }
       }
@@ -284,6 +298,12 @@ public struct Commerce_Item: SwiftProtobuf.Message {
       }
       if _storage._count != 0 {
         try visitor.visitSingularUInt32Field(value: _storage._count, fieldNumber: 3)
+      }
+      if _storage._price != 0 {
+        try visitor.visitSingularDoubleField(value: _storage._price, fieldNumber: 4)
+      }
+      if _storage._cost != 0 {
+        try visitor.visitSingularDoubleField(value: _storage._cost, fieldNumber: 5)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -337,12 +357,16 @@ extension Commerce_Item: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
     1: .same(proto: "key"),
     2: .same(proto: "variant"),
     3: .same(proto: "count"),
+    4: .same(proto: "price"),
+    5: .same(proto: "cost"),
   ]
 
   fileprivate class _StorageClass {
     var _key: Base_ProductKey? = nil
     var _variant: [Commerce_VariantSpec] = []
     var _count: UInt32 = 0
+    var _price: Double = 0
+    var _cost: Double = 0
 
     static let defaultInstance = _StorageClass()
 
@@ -352,6 +376,8 @@ extension Commerce_Item: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
       _key = source._key
       _variant = source._variant
       _count = source._count
+      _price = source._price
+      _cost = source._cost
     }
   }
 
@@ -370,6 +396,8 @@ extension Commerce_Item: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
         if _storage._key != other_storage._key {return false}
         if _storage._variant != other_storage._variant {return false}
         if _storage._count != other_storage._count {return false}
+        if _storage._price != other_storage._price {return false}
+        if _storage._cost != other_storage._cost {return false}
         return true
       }
       if !storagesAreEqual {return false}

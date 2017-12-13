@@ -49,6 +49,12 @@ public struct Services_Telemetry_V1beta3_Event: SwiftProtobuf.Message {
     /// Clears the value of `event`. Subsequent reads from it will return its default value.
     public mutating func clearEvent() {_storage._event = nil}
 
+    /// UUID generated for this event, or provided from invoking callers.
+    public var uuid: String {
+      get {return _storage._uuid}
+      set {_uniqueStorage()._uuid = newValue}
+    }
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
@@ -64,6 +70,7 @@ public struct Services_Telemetry_V1beta3_Event: SwiftProtobuf.Message {
           switch fieldNumber {
           case 1: try decoder.decodeSingularMessageField(value: &_storage._context)
           case 2: try decoder.decodeSingularMessageField(value: &_storage._event)
+          case 3: try decoder.decodeSingularStringField(value: &_storage._uuid)
           default: break
           }
         }
@@ -81,6 +88,9 @@ public struct Services_Telemetry_V1beta3_Event: SwiftProtobuf.Message {
         }
         if let v = _storage._event {
           try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        }
+        if !_storage._uuid.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 3)
         }
       }
       try unknownFields.traverse(visitor: &visitor)
@@ -229,6 +239,12 @@ public struct Services_Telemetry_V1beta3_Exception: SwiftProtobuf.Message {
   /// Clears the value of `error`. Subsequent reads from it will return its default value.
   public mutating func clearError() {_storage._error = nil}
 
+  /// UUID generated for this event, or provided from invoking callers.
+  public var uuid: String {
+    get {return _storage._uuid}
+    set {_uniqueStorage()._uuid = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -244,6 +260,7 @@ public struct Services_Telemetry_V1beta3_Exception: SwiftProtobuf.Message {
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._context)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._error)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._uuid)
         default: break
         }
       }
@@ -261,6 +278,9 @@ public struct Services_Telemetry_V1beta3_Exception: SwiftProtobuf.Message {
       }
       if let v = _storage._error {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 3)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -286,11 +306,13 @@ extension Services_Telemetry_V1beta3_Event.Request: SwiftProtobuf._MessageImplem
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "context"),
     2: .same(proto: "event"),
+    3: .same(proto: "uuid"),
   ]
 
   fileprivate class _StorageClass {
     var _context: Analytics_Context? = nil
     var _event: Analytics_Generic_Event? = nil
+    var _uuid: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -299,6 +321,7 @@ extension Services_Telemetry_V1beta3_Event.Request: SwiftProtobuf._MessageImplem
     init(copying source: _StorageClass) {
       _context = source._context
       _event = source._event
+      _uuid = source._uuid
     }
   }
 
@@ -316,6 +339,7 @@ extension Services_Telemetry_V1beta3_Event.Request: SwiftProtobuf._MessageImplem
         let other_storage = _args.1
         if _storage._context != other_storage._context {return false}
         if _storage._event != other_storage._event {return false}
+        if _storage._uuid != other_storage._uuid {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -384,11 +408,13 @@ extension Services_Telemetry_V1beta3_Exception: SwiftProtobuf._MessageImplementa
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "context"),
     2: .same(proto: "error"),
+    3: .same(proto: "uuid"),
   ]
 
   fileprivate class _StorageClass {
     var _context: Analytics_Context? = nil
     var _error: Analytics_Generic_Exception? = nil
+    var _uuid: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -397,6 +423,7 @@ extension Services_Telemetry_V1beta3_Exception: SwiftProtobuf._MessageImplementa
     init(copying source: _StorageClass) {
       _context = source._context
       _error = source._error
+      _uuid = source._uuid
     }
   }
 
@@ -414,6 +441,7 @@ extension Services_Telemetry_V1beta3_Exception: SwiftProtobuf._MessageImplementa
         let other_storage = _args.1
         if _storage._context != other_storage._context {return false}
         if _storage._error != other_storage._error {return false}
+        if _storage._uuid != other_storage._uuid {return false}
         return true
       }
       if !storagesAreEqual {return false}

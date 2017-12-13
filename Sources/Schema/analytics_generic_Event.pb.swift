@@ -19,8 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// Represents a generic event, which can carry an arbitrary
-/// payload and is bound to an unenumerated collection.
+/// Represents a generic event, which can carry an arbitrary payload and is bound to an unenumerated collection.
 public struct Analytics_Generic_Event: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Event"
 
