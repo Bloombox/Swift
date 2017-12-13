@@ -15,27 +15,27 @@ public typealias Services_Shop_V1_Ping_Request = Services_Shop_V1_Ping.Request
 public typealias Services_Shop_V1_Ping_Response = Services_Shop_V1_Ping.Response
 
 // ShopInfo
-public typealias Services_Shop_V1_ShopInfo_Request = Services_Shop_V1_ShopInfo.Response
+public typealias Services_Shop_V1_ShopInfo_Request = Services_Shop_V1_ShopInfo.Request
 public typealias Services_Shop_V1_ShopInfo_Response = Services_Shop_V1_ShopInfo.Response
 
 // Zipcheck
-public typealias Services_Shop_V1_CheckZipcode_Request = Services_Shop_V1_CheckZipcode.Response
+public typealias Services_Shop_V1_CheckZipcode_Request = Services_Shop_V1_CheckZipcode.Request
 public typealias Services_Shop_V1_CheckZipcode_Response = Services_Shop_V1_CheckZipcode.Response
 
 // VerifyMember
-public typealias Services_Shop_V1_VerifyMember_Request = Services_Shop_V1_VerifyMember.Response
+public typealias Services_Shop_V1_VerifyMember_Request = Services_Shop_V1_VerifyMember.Request
 public typealias Services_Shop_V1_VerifyMember_Response = Services_Shop_V1_VerifyMember.Response
 
 // EnrollMember
-public typealias Services_Shop_V1_EnrollMember_Request = Services_Shop_V1_EnrollMember.Response
+public typealias Services_Shop_V1_EnrollMember_Request = Services_Shop_V1_EnrollMember.Request
 public typealias Services_Shop_V1_EnrollMember_Response = Services_Shop_V1_EnrollMember.Response
 
 // GetOrder
-public typealias Services_Shop_V1_GetOrder_Request = Services_Shop_V1_GetOrder.Response
+public typealias Services_Shop_V1_GetOrder_Request = Services_Shop_V1_GetOrder.Request
 public typealias Services_Shop_V1_GetOrder_Response = Services_Shop_V1_GetOrder.Response
 
 // GetOrder
-public typealias Services_Shop_V1_SubmitOrder_Request = Services_Shop_V1_SubmitOrder.Response
+public typealias Services_Shop_V1_SubmitOrder_Request = Services_Shop_V1_SubmitOrder.Request
 public typealias Services_Shop_V1_SubmitOrder_Response = Services_Shop_V1_SubmitOrder.Response
 
 
