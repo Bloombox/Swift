@@ -15,7 +15,7 @@ all: submodules schema build test
 
 clean:
 	@echo "Cleaning Swift client for Bloombox..."
-	@rm -frv .build
+	@rm -frv .build $(SCHEMA)/languages
 
 build: dependencies
 	@echo "Building Swift client for Bloombox..."
