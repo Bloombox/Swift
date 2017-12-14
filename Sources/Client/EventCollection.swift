@@ -27,6 +27,14 @@ public enum CommercialEvent {
   case impression
   case view
   case action
+
+  var label: String {
+    switch self {
+    case .impression: return "IMPRESSION"
+    case .view: return "VIEW"
+    case .action: return "ACTION"
+    }
+  }
 }
 
 
@@ -36,4 +44,10 @@ public enum CommercialEvent {
  */
 public enum IdentityEvent {
   case action
+
+  var label: String {
+    switch self {
+    case .action: return "ACTION"
+    }
+  }
 }

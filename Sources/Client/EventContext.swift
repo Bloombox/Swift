@@ -9,6 +9,21 @@ import Foundation
 import Schema
 
 
+// Typealiases
+public typealias PartnerCode = String
+public typealias LocationCode = String
+public typealias DeviceUUID = String
+public typealias OrderID = String
+public typealias UserID = String
+public typealias ItemID = String
+public typealias GroupID = String
+
+
+// Constants
+internal let internalCollectionPrefix = "_bloom_"
+internal let deviceFingerprint = UUID.init().uuidString.uppercased()
+
+
 /**
  * Specifies context for a specific telemetry event of some kind. "Event context" is defined as
  * the state of various actors and elements during transmission of an event. This would include,
@@ -28,22 +43,52 @@ public protocol EventContextData {
   /**
    * Specifies the active partner code for a given event.
    */
-  var partner: String? { get }
+  var partner: PartnerCode? { get }
 
   /**
    * Specifies the active partner location code for a given event.
    */
-  var location: String? { get }
+  var location: LocationCode? { get }
 
   /**
    * Specifies a persistent device UUID, if known, for a given event.
    */
-  var deviceUUID: String? { get }
+  var deviceUUID: DeviceUUID? { get }
 
   /**
    * Specifies an event collection for a particular event.
    */
   var collection: EventCollection? { get }
+
+  /**
+   * Specifies an active order ID.
+   */
+  var order: OrderID? { get }
+
+  /**
+   * Specifies an active user ID.
+   */
+  var user: UserID? { get }
+
+  /**
+   * Specifies an active commercial menu section.
+   */
+  var section: MenuSection? { get }
+
+  /**
+   * Specifies a related or otherwise active commercial item.
+   */
+  var item: ItemID? { get }
+
+  /**
+   * Specifies a related or otherwise active commercial item.
+   */
+  var group: GroupID? { get }
+
+  /**
+   * Specifies the iOS application sending events.
+   */
+  var bundleId: String? { get }
 }
 
 
@@ -79,12 +124,86 @@ extension EventContextProto {
   /**
    * Export an `EventContext` object to its proto counterpart.
    */
-  public func export() -> Analytics_Context {
-    var context = Analytics_Context()
+  public func export() -> AnalyticsContext {
+    return AnalyticsContext.with { context in
+      // handle device fingerprint
+      context.fingerprint = deviceFingerprint
 
-    // @TODO: export context
+      // handle group/session ID
+      if let groupId = self.group {
+        context.group = groupId
+      }
 
-    return context
+      // library context
+      context.library = LibraryContext.with { library in
+        library.client = .swift
+        library.variant = __BLOOMBOX_VARIANT__
+        library.version = VersionSpec.with { version in
+          version.name = __BLOOMBOX_VERSION__
+        }
+      }
+
+      if let bundleId = self.bundleId {
+        context.app = ApplicationContext.with { builder in
+          builder.bundleID = bundleId
+        }
+      }
+
+      // handle collection
+      if let eventCollection = self.collection {
+        context.collection = AnalyticsCollection.with { collection in
+          switch (eventCollection) {
+          case .named(let name):
+            collection.name = name
+            collection.type = .generic
+            collection.internal = name.starts(with: internalCollectionPrefix)
+            break
+
+          case .commercial(let commercialEvent):
+            collection.name = commercialEvent.label
+            collection.type = .commercial
+            break
+
+          case .identity(let identityEvent):
+            collection.name = identityEvent.label
+            collection.type = .identity
+          }
+        }
+      }
+
+      // handle scope
+      context.scope = AnalyticsScope.with { scope in
+        // first: partner scope
+        if let partnerCode = self.partner {
+          if let locationCode = self.location {
+            if let deviceID = self.deviceUUID {
+              scope.partner = "partner/\(partnerCode)/location/\(locationCode)/device/\(deviceID)"
+            } else {
+              // partner + location but no device
+              scope.partner = "partner/\(partnerCode)/location/\(locationCode)"
+            }
+          } else {
+            // partner but no location or device
+            scope.partner = "partner/\(partnerCode)"
+          }
+        }
+
+        // second: order key
+        if let orderId = self.order {
+          scope.order = orderId
+        }
+
+        // third: commercial scope
+        if let section = self.section {
+          if let item = self.item {
+            scope.commercial = "section/\(section)/item/\(item)"
+          } else {
+            // no item, but we have a section
+            scope.commercial = "section/\(section)"
+          }
+        }
+      }
+    }
   }
 }
 
@@ -98,20 +217,50 @@ public struct EventContext: EventContextData {
   /**
    * Partner code for this individual event context object.
    */
-  public let partner: String? = nil
+  public let partner: PartnerCode? = nil
 
   /**
    * Location code for this individual event context object.
    */
-  public let location: String? = nil
+  public let location: LocationCode? = nil
 
   /**
    * Device UUID, if known, for this individual event context object.
    */
-  public let deviceUUID: String? = nil
+  public let deviceUUID: DeviceUUID? = nil
 
   /**
    * Collection specified for this individual event context object.
    */
   public let collection: EventCollection? = nil
+
+  /**
+   * Specifies an active order ID.
+   */
+  public let order: OrderID? = nil
+
+  /**
+   * Specifies an active user ID.
+   */
+  public let user: UserID? = nil
+
+  /**
+   * Specifies an active commercial menu section.
+   */
+  public let section: MenuSection? = nil
+
+  /**
+   * Specifies a related or otherwise active commercial item.
+   */
+  public let item: ItemID? = nil
+
+  /**
+   * Specifies a related or otherwise active commercial item.
+   */
+  public let group: GroupID? = nil
+
+  /**
+   * Specifies the iOS application sending events.
+   */
+  public let bundleId: String? = nil
 }
