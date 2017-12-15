@@ -6,13 +6,21 @@
 //
 
 import Foundation
+import gRPC
 
 
+// Callback Types
 /**
- * Specifies a callback for `ping` operation. It is passed one parameter, which is the observed
+ * Specifies a callback for a `ping` operation. It is passed one parameter, which is the observed
  * latency of PING to PONG.
  */
-typealias PingCallback = (Double) -> ()
+public typealias PingCallback = (Double) -> ()
+
+/**
+ * Specifies a callback for an `event` submission operation. It is passed two parameters - the
+ * call result object, and the telemetry response.
+ */
+public typealias GenericEventCallback = (CallResult, TelemetryResponse?) -> ()
 
 
 // MARK: Telemetry Service

@@ -7,6 +7,7 @@
 
 import Foundation
 import Schema
+import SwiftProtobuf
 
 
 //// Shop Service
@@ -102,9 +103,12 @@ public typealias OrderKey = Commerce_OrderKey
 public typealias PartnerKey = Partner_PartnerKey
 public typealias PartnerDeviceKey = Partner_PartnerDeviceKey
 public typealias PartnerLocationKey = Partner_PartnerLocationKey
+public typealias Event = Services_Telemetry_V1beta3_Event
+public typealias GenericEvent = Analytics_Generic_Event
 public typealias AnalyticsContext = Analytics_Context
 public typealias AnalyticsScope = Analytics_Scope
 public typealias AnalyticsCollection = Analytics_Context_Collection
+public typealias TelemetryResponse = Services_Telemetry_V1beta3_TelemetryResponse
 public typealias LibraryContext = Analytics_Context_DeviceLibrary
 public typealias ApplicationContext = Analytics_Context_DeviceApplication
 public typealias NativeDeviceContext = Analytics_Context_NativeDeviceContext
@@ -112,3 +116,8 @@ public typealias APIClient = Analytics_Context_APIClient
 public typealias EventType = Analytics_Context_EventType
 public typealias MenuSection = Products_Menu_Section_Section
 public typealias VersionSpec = Structs_VersionSpec
+public typealias TemporalInstant = Temporal_Instant
+
+//// Protobuf Types
+public typealias ProtobufValue = Google_Protobuf_Value
+public typealias ProtobufStruct = Google_Protobuf_Struct

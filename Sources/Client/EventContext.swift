@@ -10,13 +10,13 @@ import Schema
 
 
 // Typealiases
-public typealias PartnerCode = String
-public typealias LocationCode = String
-public typealias DeviceUUID = String
-public typealias OrderID = String
 public typealias UserID = String
 public typealias ItemID = String
 public typealias GroupID = String
+public typealias OrderID = String
+public typealias DeviceUUID = String
+public typealias PartnerCode = String
+public typealias LocationCode = String
 
 
 // Constants
@@ -127,7 +127,7 @@ extension EventContextData {
       }
 
       // handle collection
-      if let eventCollection = self.collection {
+      if let eventCollection: EventCollection = self.collection {
         context.collection = eventCollection.export()
       }
 

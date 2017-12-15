@@ -6,6 +6,106 @@
 //
 
 import Foundation
+import SwiftProtobuf
+
+
+//// Protobuf Types
+typealias BoolValue = Google_Protobuf_BoolValue
+typealias NullValue = Google_Protobuf_NullValue
+typealias StringValue = Google_Protobuf_StringValue
+typealias ListValue = Google_Protobuf_ListValue
+
+
+/**
+ * Enumerates errors that may be thrown during operations related to serializing and
+ * transmitting generic telemetry events.
+ */
+public enum GenericEventError: Error {
+  /**
+   * An error occurred serializing a generic telemetry event's payload. This can only
+   * happen because an unrecognized type of some kind was found an event's payload.
+   */
+  case serializationError
+}
+
+
+/**
+ * Convert an arbitrary Swift value into a Protobuf value of some kind.
+ */
+fileprivate func convertToValue(value: Any) throws -> ProtobufValue {
+  // number types first...
+  if let valueAsDouble = value as? Double {
+    return ProtobufValue.with { valueBuilder in
+      valueBuilder.numberValue = valueAsDouble
+    }
+  } else if let valueAsInt = value as? Int {
+    return ProtobufValue.with { valueBuilder in
+      valueBuilder.numberValue = Double(valueAsInt)
+    }
+  } else if let valueAsUint = value as? UInt {
+    return ProtobufValue.with { valueBuilder in
+      valueBuilder.numberValue = Double(valueAsUint)
+    }
+  } else if let valueAsBool = value as? Bool {
+
+    // bools next...
+    return ProtobufValue.with { valueBuilder in
+      valueBuilder.boolValue = valueAsBool
+    }
+  } else if let valueAsString = value as? String {
+
+    // then strings...
+    return ProtobufValue.with { valueBuilder in
+      valueBuilder.stringValue = valueAsString
+    }
+
+    // then arrays...
+  } else if let valueAsList = value as? Array<Any> {
+    // it's an array of some kind
+    var innerValues: [ProtobufValue] = []
+    for anyValue in valueAsList {
+      innerValues.append(try convertToValue(value: anyValue))
+    }
+
+    // serialize as list
+    return ProtobufValue.with { valueBuilder in
+      valueBuilder.listValue = ListValue.init(values: innerValues)
+    }
+
+    // then maps...
+  } else if let valueAsMap = value as? Dictionary<String, Any> {
+    // it's a substruct of some kind
+    var innerMap: [String: ProtobufValue] = [:]
+    for innerKey in valueAsMap.keys {
+      let innerValue = valueAsMap[innerKey]
+      if innerValue != nil {
+        innerMap[innerKey] = try convertToValue(value: innerValue!)
+      }
+    }
+    return ProtobufValue.with { valueBuilder in
+      valueBuilder.structValue = ProtobufStruct.init(fields: innerMap)
+    }
+  }
+  throw GenericEventError.serializationError
+}
+
+
+/**
+ * Convert a dictionary or dictionary literal into a Protobuf struct, filled
+ * with Protobuf values.
+ */
+fileprivate func convertToStruct(dict: [String: Any]) throws -> ProtobufStruct {
+  var properties: [String: ProtobufValue] = [:]
+
+  for key in dict.keys {
+    let anyValue = dict[key]
+
+    if anyValue != nil {
+      properties[key] = try convertToValue(value: anyValue!)
+    }
+  }
+  return ProtobufStruct.init(fields: properties)
+}
 
 
 /**
@@ -13,6 +113,7 @@ import Foundation
  * and plaintext access.
  */
 extension EventTelemetry: RPCService {}
+
 
 extension TelemetryClient {
   // MARK: Event Telemetry
@@ -35,7 +136,9 @@ extension TelemetryClient {
    * visibility instrumentation desired and supports arbitrary JSON payloads.
    */
   func event(collection: EventCollection? = nil,
+             uuid: String? = nil,
              payload: [String: Any]? = nil,
+             occurred: Double? = nil,
              context: EventContext? = nil) throws {
     // merge/resolve event context
     var merged: AnalyticsContext
@@ -53,5 +156,37 @@ extension TelemetryClient {
     if let localCollection = collection {
       merged.collection = localCollection.export()
     }
+
+    // serialize payload, if any
+    let eventPayload: ProtobufStruct? = (
+      payload != nil ? try convertToStruct(dict: payload!) : nil)
+
+    let _ = try events.event(Event.Request.with { event in
+      event.uuid = uuid ?? UUID.init().uuidString.uppercased()
+      event.context = merged
+      event.event = GenericEvent.with { genericEvent in
+        genericEvent.occurred = TemporalInstant.with { instant in
+          let ts: Double = occurred ?? (Date().timeIntervalSince1970 * 1000.0)
+          instant.timestamp = UInt64(ts)
+        }
+
+        if let innerPayload = eventPayload {
+          genericEvent.payload = innerPayload
+        }
+      }
+    })
+  }
+
+  /**
+   * Method `event`. Submit a generic event to the Telemetry service asynchronously. Can be
+   * used for any visibility instrumentation desired and supports arbitrary JSON payloads.
+   */
+  func event(collection: EventCollection? = nil,
+             uuid: String? = nil,
+             payload: [String: Any]? = nil,
+             occurred: Int? = nil,
+             context: EventContext? = nil,
+             callback: GenericEventCallback? = nil) throws {
+
   }
 }
