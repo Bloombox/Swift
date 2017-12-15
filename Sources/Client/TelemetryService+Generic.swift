@@ -34,9 +34,24 @@ extension TelemetryClient {
    * Method `event`. Submit a generic event to the Telemetry service. Can be used for any
    * visibility instrumentation desired and supports arbitrary JSON payloads.
    */
-  func event(collection: String,
-             payload: [String: Any],
+  func event(collection: EventCollection? = nil,
+             payload: [String: Any]? = nil,
              context: EventContext? = nil) throws {
-//    let resolved = context ??
+    // merge/resolve event context
+    var merged: AnalyticsContext
+    if let c = context {
+      var exported = c.export()
+      let globalContext = settings.export()
+      let serialized = try globalContext.serializedData()
+      try exported.merge(serializedData: serialized)
+      merged = exported
+    } else {
+      merged = settings.export()
+    }
+
+    // override collection, if so directed
+    if let localCollection = collection {
+      merged.collection = localCollection.export()
+    }
   }
 }

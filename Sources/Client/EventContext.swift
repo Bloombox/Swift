@@ -89,38 +89,15 @@ public protocol EventContextData {
    * Specifies the iOS application sending events.
    */
   var bundleId: String? { get }
-}
-
-
-/**
- * Internal protocol for protobuf-related tools.
- */
-internal protocol EventContextProto: EventContextData {
-  /**
-   * Merge two objects specifying event context.
-   */
-  func merge(other: EventContextProto) -> Analytics_Context
 
   /**
    * Merge two objects specifying event context.
    */
-  func export() -> Analytics_Context
+  func export() -> AnalyticsContext
 }
 
 
-extension EventContextProto {
-  /**
-   * Merge `other` event context and this one, with properties from `other` overriding in the
-   * newly-created event context (it is copied, not merged in-place).
-   */
-  public func merge(other: EventContextProto) throws -> Analytics_Context {
-    var exported = self.export()
-
-    // @TODO: better merging here (i.e. without serializing)
-    try exported.merge(serializedData: try other.export().serializedData())
-    return exported
-  }
-
+extension EventContextData {
   /**
    * Export an `EventContext` object to its proto counterpart.
    */
@@ -151,24 +128,7 @@ extension EventContextProto {
 
       // handle collection
       if let eventCollection = self.collection {
-        context.collection = AnalyticsCollection.with { collection in
-          switch (eventCollection) {
-          case .named(let name):
-            collection.name = name
-            collection.type = .generic
-            collection.internal = name.starts(with: internalCollectionPrefix)
-            break
-
-          case .commercial(let commercialEvent):
-            collection.name = commercialEvent.label
-            collection.type = .commercial
-            break
-
-          case .identity(let identityEvent):
-            collection.name = identityEvent.label
-            collection.type = .identity
-          }
-        }
+        context.collection = eventCollection.export()
       }
 
       // handle scope
@@ -204,6 +164,32 @@ extension EventContextProto {
         }
       }
     }
+  }
+}
+
+
+/**
+ * Internal protocol for protobuf-related tools.
+ */
+internal protocol EventContextProto: EventContextData {
+  /**
+   * Merge two objects specifying event context.
+   */
+  func merge(other: EventContextProto) -> Analytics_Context
+}
+
+
+extension EventContextProto {
+  /**
+   * Merge `other` event context and this one, with properties from `other` overriding in the
+   * newly-created event context (it is copied, not merged in-place).
+   */
+  public func merge(other: EventContextProto) throws -> Analytics_Context {
+    var exported = self.export()
+
+    // @TODO: better merging here (i.e. without serializing)
+    try exported.merge(serializedData: try other.export().serializedData())
+    return exported
   }
 }
 

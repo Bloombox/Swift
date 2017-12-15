@@ -16,6 +16,27 @@ public enum EventCollection {
   case named(String)
   case commercial(CommercialEvent)
   case identity(IdentityEvent)
+
+  func export() -> AnalyticsCollection {
+    return AnalyticsCollection.with { collection in
+      switch self {
+      case .named(let name):
+        collection.name = name
+        collection.type = .generic
+        collection.internal = name.starts(with: internalCollectionPrefix)
+        break
+
+      case .commercial(let commercialEvent):
+        collection.name = commercialEvent.label
+        collection.type = .commercial
+        break
+
+      case .identity(let identityEvent):
+        collection.name = identityEvent.label
+        collection.type = .identity
+      }
+    }
+  }
 }
 
 
