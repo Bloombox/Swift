@@ -184,9 +184,46 @@ extension TelemetryClient {
   func event(collection: EventCollection? = nil,
              uuid: String? = nil,
              payload: [String: Any]? = nil,
-             occurred: Int? = nil,
+             occurred: Double? = nil,
              context: EventContext? = nil,
-             callback: GenericEventCallback? = nil) throws {
+             callback: GenericEventCallback? = nil) throws -> TelemetryEventCall {
+    // merge/resolve event context
+    var merged: AnalyticsContext
+    if let c = context {
+      var exported = c.export()
+      let globalContext = settings.export()
+      let serialized = try globalContext.serializedData()
+      try exported.merge(serializedData: serialized)
+      merged = exported
+    } else {
+      merged = settings.export()
+    }
 
+    // override collection, if so directed
+    if let localCollection = collection {
+      merged.collection = localCollection.export()
+    }
+
+    // serialize payload, if any
+    let eventPayload: ProtobufStruct? = (
+      payload != nil ? try convertToStruct(dict: payload!) : nil)
+
+    return try events.event(Event.Request.with { event in
+      event.uuid = uuid ?? UUID.init().uuidString.uppercased()
+      event.context = merged
+      event.event = GenericEvent.with { genericEvent in
+        genericEvent.occurred = TemporalInstant.with { instant in
+          let ts: Double = occurred ?? (Date().timeIntervalSince1970 * 1000.0)
+          instant.timestamp = UInt64(ts)
+        }
+
+        if let innerPayload = eventPayload {
+          genericEvent.payload = innerPayload
+        }
+      }
+      }) { (_, callResult) in
+        // dispatch callback, if any
+        callback?(callResult)
+    }
   }
 }

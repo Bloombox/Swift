@@ -76,6 +76,7 @@ public typealias TelemetryPing = Services_Telemetry_V1beta3_TelemetryPing
  * Method: `event`.
  */
 public typealias TelemetryEvent = Services_Telemetry_V1beta3_Event
+public typealias TelemetryEventCall = Services_Telemetry_V1Beta3_EventTelemetryEventCall
 
 /**
  * Method: `batch`.
