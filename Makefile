@@ -17,7 +17,7 @@ clean:
 	@echo "Cleaning Swift client for Bloombox..."
 	@rm -frv .build $(SCHEMA)/languages
 
-build: dependencies
+build: submodules dependencies
 	@echo "Building Swift client for Bloombox..."
 	@swift build
 
@@ -27,14 +27,16 @@ test:
 	@echo "Running tests..."
 	@swift test
 
-submodules: $(SCHEMA) $(SWIFT_PROTOBUF) $(SWIFT_GRPC)
-	@git submodule update --init --remote
+submodules: $(SWIFT_PROTOBUF) $(SWIFT_GRPC)
+	@git submodule update --init --remote SwiftGRPC
+	@git submodule update --init --remote SwiftProtobuf
 
 schema: $(SCHEMA) $(SCHEMA)/languages/swift
 
 $(SCHEMA):
 	@echo "Initializing Schema..."
 	@git submodule add --force --name schema git@github.com:bloombox/Schema.git $(SCHEMA)
+	@git submodule update --init --remote schema
 
 sync-schema: swift-protobuf swift-grpc $(SCHEMA)/languages/swift
 	@echo "Syncing Swift schemas..."
