@@ -10,7 +10,7 @@ SWIFT_GRPC ?= SwiftGRPC
 
 SWIFT_PROTOC_OPTIONS ?= --swift_opt=FileNaming=PathToUnderscores --swift_opt=Visibility=Public --swiftgrpc_opt=Visibility=Public
 
-all: submodules schema build test
+all: build test
 	@echo "Swift API client ready."
 
 clean:
