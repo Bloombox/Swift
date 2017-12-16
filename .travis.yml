@@ -3,8 +3,6 @@ osx_image: xcode9.2
 env:
   global:
     - CC_TEST_REPORTER_ID=a6aef1a4ab6ca369c8f1845a8ee3697f0841a42a81db527b3948a595fb2b9c22
-git:
-  submodules: false
 language: swift
 xcode_project: BloomboxClient.xcodeproj
 xcode_scheme: BloomboxClient
