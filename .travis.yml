@@ -1,14 +1,22 @@
-# references:
-# * http://www.objc.io/issue-6/travis-ci.html
-# * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode7.3
-language: objective-c
-# cache: cocoapods
-# podfile: Example/Podfile
-# before_install:
-# - gem install cocoapods # Since Travis is not always on latest version
-# - pod install --project-directory=Example
-script:
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/Bloombox.xcworkspace -scheme Bloombox-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
-- pod lib lint
+os: osx
+osx_image: xcode9.2
+env:
+  global:
+    - CC_TEST_REPORTER_ID=a6aef1a4ab6ca369c8f1845a8ee3697f0841a42a81db527b3948a595fb2b9c22
+git:
+  submodules: false
+language: swift
+xcode_project: BloomboxClient.xcodeproj
+xcode_scheme: BloomboxClient
+cache:
+  directories:
+    - ./.build
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+  - make
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
