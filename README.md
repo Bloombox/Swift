@@ -1,5 +1,7 @@
 # Bloombox Client for Swift
 
+Latest Version: `0.0.1`
+
 This Swift package provides an API client for [Bloombox](https://bloombox.io) Cloud APIs. Bloombox APIs are built and served using [gRPC](https://grpc.io) and exposed in client libraries like this one with a more fluid interface to work with.
 
 That being said, you can always opt to use the lower level gRPC APIs, either via gRPC+protobuf (docs coming soon) or via JSON REST, using transcoding (docs coming soon on this too).
