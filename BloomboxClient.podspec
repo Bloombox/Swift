@@ -10,7 +10,6 @@ Native Swift client for accessing Bloombox Cloud APIs
                    DESC
   s.homepage     = "https://github.com/Bloombox/Swift"
   s.documentation_url = "https://bloombox.github.io/Swift/"
-  s.prepare_command = "make"
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.license      = { :type => "Apache License, Version 2.0", :file => "LICENSE.txt" }
