@@ -24,42 +24,10 @@ public struct Identity_Ids_Passport: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Passport"
 
   /// Barcode from the passport, if any.
-  public var barcode: Data {
-    get {return _storage._barcode}
-    set {_uniqueStorage()._barcode = newValue}
-  }
-
-  /// Unique document ID for this passport.
-  public var id: String {
-    get {return _storage._id}
-    set {_uniqueStorage()._id = newValue}
-  }
+  public var barcode: Data = SwiftProtobuf.Internal.emptyData
 
   /// Nation that issued this passport, as an abbreviated string code, like "US" or "UK".
-  public var nation: String {
-    get {return _storage._nation}
-    set {_uniqueStorage()._nation = newValue}
-  }
-
-  /// Expiration date for this document.
-  public var expireDate: Temporal_Date {
-    get {return _storage._expireDate ?? Temporal_Date()}
-    set {_uniqueStorage()._expireDate = newValue}
-  }
-  /// Returns true if `expireDate` has been explicitly set.
-  public var hasExpireDate: Bool {return _storage._expireDate != nil}
-  /// Clears the value of `expireDate`. Subsequent reads from it will return its default value.
-  public mutating func clearExpireDate() {_storage._expireDate = nil}
-
-  /// Birth date listed on this document.
-  public var birthDate: Temporal_Date {
-    get {return _storage._birthDate ?? Temporal_Date()}
-    set {_uniqueStorage()._birthDate = newValue}
-  }
-  /// Returns true if `birthDate` has been explicitly set.
-  public var hasBirthDate: Bool {return _storage._birthDate != nil}
-  /// Clears the value of `birthDate`. Subsequent reads from it will return its default value.
-  public mutating func clearBirthDate() {_storage._birthDate = nil}
+  public var nation: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -70,17 +38,11 @@ public struct Identity_Ids_Passport: SwiftProtobuf.Message {
   /// initializers are defined in the SwiftProtobuf library. See the Message and
   /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularBytesField(value: &_storage._barcode)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._nation)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._expireDate)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._birthDate)
-        default: break
-        }
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.barcode)
+      case 2: try decoder.decodeSingularStringField(value: &self.nation)
+      default: break
       }
     }
   }
@@ -90,27 +52,14 @@ public struct Identity_Ids_Passport: SwiftProtobuf.Message {
   /// other serializer methods are defined in the SwiftProtobuf library. See the
   /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._barcode.isEmpty {
-        try visitor.visitSingularBytesField(value: _storage._barcode, fieldNumber: 1)
-      }
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 2)
-      }
-      if !_storage._nation.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._nation, fieldNumber: 3)
-      }
-      if let v = _storage._expireDate {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._birthDate {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
+    if !self.barcode.isEmpty {
+      try visitor.visitSingularBytesField(value: self.barcode, fieldNumber: 1)
+    }
+    if !self.nation.isEmpty {
+      try visitor.visitSingularStringField(value: self.nation, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -120,53 +69,12 @@ fileprivate let _protobuf_package = "identity.ids"
 extension Identity_Ids_Passport: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "barcode"),
-    2: .same(proto: "id"),
-    3: .same(proto: "nation"),
-    4: .standard(proto: "expire_date"),
-    5: .standard(proto: "birth_date"),
+    2: .same(proto: "nation"),
   ]
 
-  fileprivate class _StorageClass {
-    var _barcode: Data = SwiftProtobuf.Internal.emptyData
-    var _id: String = String()
-    var _nation: String = String()
-    var _expireDate: Temporal_Date? = nil
-    var _birthDate: Temporal_Date? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _barcode = source._barcode
-      _id = source._id
-      _nation = source._nation
-      _expireDate = source._expireDate
-      _birthDate = source._birthDate
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
   public func _protobuf_generated_isEqualTo(other: Identity_Ids_Passport) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._barcode != other_storage._barcode {return false}
-        if _storage._id != other_storage._id {return false}
-        if _storage._nation != other_storage._nation {return false}
-        if _storage._expireDate != other_storage._expireDate {return false}
-        if _storage._birthDate != other_storage._birthDate {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
+    if self.barcode != other.barcode {return false}
+    if self.nation != other.nation {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

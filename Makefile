@@ -42,7 +42,6 @@ sync-schema: swift-protobuf swift-grpc $(SCHEMA)/languages/swift
 	@echo "Syncing Swift schemas..."
 	@rm -fr Sources/Schema/*.pb.swift
 	@cp -fr $(SCHEMA)languages/swift/* Sources/Schema/
-	@cp -fr $(SCHEMA)languages/swiftgrpc/* Sources/Schema/
 	@rm -f Sources/Schema/*v1beta2*
 	@rm -f Sources/Schema/*.server.pb.swift
 	@rm -f Sources/Schema/*pos*v1beta1*pb.swift
@@ -50,7 +49,7 @@ sync-schema: swift-protobuf swift-grpc $(SCHEMA)/languages/swift
 
 $(SCHEMA)/languages/swift:
 	@echo "Building Schema..."
-	@$(MAKE) -C $(SCHEMA) LANGUAGES="swift swiftgrpc" PROTO_FLAGS="$(SWIFT_PROTOC_OPTIONS) --plugin=$(PWD)/SwiftGRPC/Plugin/.build/x86_64-apple-macosx10.10/debug/protoc-gen-swiftgrpc --swiftgrpc_out=languages/swiftgrpc" SERVICES=yes TABLES=no
+	@$(MAKE) -C $(SCHEMA) LANGUAGES="swift" PROTO_FLAGS="$(SWIFT_PROTOC_OPTIONS) --plugin=$(PWD)/SwiftGRPC/Plugin/.build/x86_64-apple-macosx10.10/debug/protoc-gen-swiftgrpc --swiftgrpc_out=languages/swiftgrpc" SERVICES=yes TABLES=no
 
 swift-protobuf: $(SWIFT_PROTOBUF)/.build
 $(SWIFT_PROTOBUF)/.build:

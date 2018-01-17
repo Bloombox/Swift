@@ -24,36 +24,24 @@ public struct Temporal_Instant: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Instant"
 
   /// Instant specification option.
-  public var spec: OneOf_Spec? {
-    get {return _storage._spec}
-    set {_uniqueStorage()._spec = newValue}
-  }
+  public var spec: Temporal_Instant.OneOf_Spec? = nil
 
   /// ISO8601-formatted timestamp.
   public var iso8601: String {
     get {
-      if case .iso8601(let v)? = _storage._spec {return v}
+      if case .iso8601(let v)? = spec {return v}
       return String()
     }
-    set {_uniqueStorage()._spec = .iso8601(newValue)}
+    set {spec = .iso8601(newValue)}
   }
 
   /// Unix epoch timestamp, at millisecond resolution.
   public var timestamp: UInt64 {
     get {
-      if case .timestamp(let v)? = _storage._spec {return v}
+      if case .timestamp(let v)? = spec {return v}
       return 0
     }
-    set {_uniqueStorage()._spec = .timestamp(newValue)}
-  }
-
-  /// Protobuf timestamp.
-  public var instant: SwiftProtobuf.Google_Protobuf_Timestamp {
-    get {
-      if case .instant(let v)? = _storage._spec {return v}
-      return SwiftProtobuf.Google_Protobuf_Timestamp()
-    }
-    set {_uniqueStorage()._spec = .instant(newValue)}
+    set {spec = .timestamp(newValue)}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -64,14 +52,11 @@ public struct Temporal_Instant: SwiftProtobuf.Message {
     case iso8601(String)
     /// Unix epoch timestamp, at millisecond resolution.
     case timestamp(UInt64)
-    /// Protobuf timestamp.
-    case instant(SwiftProtobuf.Google_Protobuf_Timestamp)
 
     public static func ==(lhs: Temporal_Instant.OneOf_Spec, rhs: Temporal_Instant.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.iso8601(let l), .iso8601(let r)): return l == r
       case (.timestamp(let l), .timestamp(let r)): return l == r
-      case (.instant(let l), .instant(let r)): return l == r
       default: return false
       }
     }
@@ -84,30 +69,19 @@ public struct Temporal_Instant: SwiftProtobuf.Message {
   /// initializers are defined in the SwiftProtobuf library. See the Message and
   /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1:
-          if _storage._spec != nil {try decoder.handleConflictingOneOf()}
-          var v: String?
-          try decoder.decodeSingularStringField(value: &v)
-          if let v = v {_storage._spec = .iso8601(v)}
-        case 2:
-          if _storage._spec != nil {try decoder.handleConflictingOneOf()}
-          var v: UInt64?
-          try decoder.decodeSingularUInt64Field(value: &v)
-          if let v = v {_storage._spec = .timestamp(v)}
-        case 3:
-          var v: SwiftProtobuf.Google_Protobuf_Timestamp?
-          if let current = _storage._spec {
-            try decoder.handleConflictingOneOf()
-            if case .instant(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._spec = .instant(v)}
-        default: break
-        }
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1:
+        if self.spec != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.spec = .iso8601(v)}
+      case 2:
+        if self.spec != nil {try decoder.handleConflictingOneOf()}
+        var v: UInt64?
+        try decoder.decodeSingularUInt64Field(value: &v)
+        if let v = v {self.spec = .timestamp(v)}
+      default: break
       }
     }
   }
@@ -117,21 +91,15 @@ public struct Temporal_Instant: SwiftProtobuf.Message {
   /// other serializer methods are defined in the SwiftProtobuf library. See the
   /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      switch _storage._spec {
-      case .iso8601(let v)?:
-        try visitor.visitSingularStringField(value: v, fieldNumber: 1)
-      case .timestamp(let v)?:
-        try visitor.visitSingularUInt64Field(value: v, fieldNumber: 2)
-      case .instant(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      case nil: break
-      }
+    switch self.spec {
+    case .iso8601(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 1)
+    case .timestamp(let v)?:
+      try visitor.visitSingularUInt64Field(value: v, fieldNumber: 2)
+    case nil: break
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -142,38 +110,10 @@ extension Temporal_Instant: SwiftProtobuf._MessageImplementationBase, SwiftProto
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "iso8601"),
     2: .same(proto: "timestamp"),
-    3: .same(proto: "instant"),
   ]
 
-  fileprivate class _StorageClass {
-    var _spec: Temporal_Instant.OneOf_Spec?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _spec = source._spec
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
   public func _protobuf_generated_isEqualTo(other: Temporal_Instant) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._spec != other_storage._spec {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
+    if self.spec != other.spec {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

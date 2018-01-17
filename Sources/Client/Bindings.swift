@@ -95,6 +95,19 @@ public typealias TelemetryException = Services_Telemetry_V1beta3_Exception
 public typealias EventTelemetryClientError = Services_Telemetry_V1Beta3_EventTelemetryClientError
 
 
+//// Menu Service
+
+/**
+ * Binding to the active MenuService.
+ */
+public typealias MenuService = Services_Menu_V1Beta1_MenuService
+
+/**
+ * Method: `ping`.
+ */
+public typealias MenuPing = Services_Menu_V1beta1_Ping
+
+
 //// Objects
 
 public typealias User = Identity_User

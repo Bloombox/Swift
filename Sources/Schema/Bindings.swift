@@ -73,3 +73,28 @@ public typealias Services_Telemetry_V1beta2_CommercialEvent_Impression = Service
 
 // Commercial Analytics
 public typealias Services_Telemetry_V1beta2_IdentityEvent_Action = Services_Telemetry_V1beta3_IdentityEvent.Action
+
+
+// -- Checkin Service (v1beta1) -- //
+
+public typealias Services_Checkin_V1beta1_Ping_Request = Services_Checkin_V1beta1_Ping.Request
+public typealias Services_Checkin_V1beta1_Ping_Response = Services_Checkin_V1beta1_Ping.Response
+public typealias Services_Checkin_V1beta1_IDCheckin_Request = Services_Checkin_V1beta1_IDCheckin.Request
+public typealias Services_Checkin_V1beta1_CardCheckin_Request = Services_Checkin_V1beta1_CardCheckin.Request
+
+
+// -- Devices Service (v1beta1) -- //
+
+public typealias Services_Devices_V1beta1_Ping_Request = Services_Devices_V1beta1_Ping.Request
+public typealias Services_Devices_V1beta1_Ping_Response = Services_Devices_V1beta1_Ping.Response
+public typealias Services_Devices_V1beta1_Activation_Request = Services_Devices_V1beta1_Activation.Request
+public typealias Services_Devices_V1beta1_Activation_Response = Services_Devices_V1beta1_Activation.Response
+
+
+// -- Devices Service (v1beta1) -- //
+
+public typealias Services_Menu_V1beta1_Ping_Request = Services_Menu_V1beta1_Ping.Request
+public typealias Services_Menu_V1beta1_Ping_Response = Services_Menu_V1beta1_Ping.Response
+public typealias Services_Menu_V1beta1_GetMenu_Request = Services_Menu_V1beta1_GetMenu.Request
+public typealias Services_Menu_V1beta1_GetMenu_Response = Services_Menu_V1beta1_GetMenu.Response
+

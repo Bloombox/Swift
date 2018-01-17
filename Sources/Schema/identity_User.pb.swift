@@ -153,12 +153,53 @@ public enum Identity_EnrollmentSource: SwiftProtobuf.Enum {
 
 }
 
+/// Specifies the type of consumer profile in use for an account.
+public enum Identity_ConsumerType: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// The consumer type is not yet determined.
+  case unvalidated // = 0
+
+  /// The consumer is a recreational user.
+  case recreational // = 1
+
+  /// The consumer is a validated medical user. Considered a superset of 'RECREATIONAL'.
+  case medical // = 2
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .unvalidated
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .unvalidated
+    case 1: self = .recreational
+    case 2: self = .medical
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .unvalidated: return 0
+    case .recreational: return 1
+    case .medical: return 2
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
 /// Represents a key that refers to a user account.
 public struct Identity_UserKey: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".UserKey"
 
   /// Unique ID for the user.
   public var uid: String = String()
+
+  /// Specific user identity in use.
+  public var identity: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -172,6 +213,7 @@ public struct Identity_UserKey: SwiftProtobuf.Message {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.uid)
+      case 2: try decoder.decodeSingularStringField(value: &self.identity)
       default: break
       }
     }
@@ -184,6 +226,9 @@ public struct Identity_UserKey: SwiftProtobuf.Message {
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.uid.isEmpty {
       try visitor.visitSingularStringField(value: self.uid, fieldNumber: 1)
+    }
+    if !self.identity.isEmpty {
+      try visitor.visitSingularStringField(value: self.identity, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -531,6 +576,12 @@ public struct Identity_ConsumerProfile: SwiftProtobuf.Message {
   /// Clears the value of `preferences`. Subsequent reads from it will return its default value.
   public mutating func clearPreferences() {_storage._preferences = nil}
 
+  /// Specifies the primary consumer type for this account.
+  public var type: Identity_ConsumerType {
+    get {return _storage._type}
+    set {_uniqueStorage()._type = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -549,6 +600,7 @@ public struct Identity_ConsumerProfile: SwiftProtobuf.Message {
         case 3: try decoder.decodeSingularEnumField(value: &_storage._enrollmentSource)
         case 4: try decoder.decodeSingularStringField(value: &_storage._enrollmentChannel)
         case 5: try decoder.decodeSingularMessageField(value: &_storage._preferences)
+        case 6: try decoder.decodeSingularEnumField(value: &_storage._type)
         default: break
         }
       }
@@ -575,6 +627,9 @@ public struct Identity_ConsumerProfile: SwiftProtobuf.Message {
       }
       if let v = _storage._preferences {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if _storage._type != .unvalidated {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 6)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -880,13 +935,23 @@ extension Identity_EnrollmentSource: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
+extension Identity_ConsumerType: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNVALIDATED"),
+    1: .same(proto: "RECREATIONAL"),
+    2: .same(proto: "MEDICAL"),
+  ]
+}
+
 extension Identity_UserKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
+    2: .same(proto: "identity"),
   ]
 
   public func _protobuf_generated_isEqualTo(other: Identity_UserKey) -> Bool {
     if self.uid != other.uid {return false}
+    if self.identity != other.identity {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1045,6 +1110,7 @@ extension Identity_ConsumerProfile: SwiftProtobuf._MessageImplementationBase, Sw
     3: .standard(proto: "enrollment_source"),
     4: .standard(proto: "enrollment_channel"),
     5: .same(proto: "preferences"),
+    6: .same(proto: "type"),
   ]
 
   fileprivate class _StorageClass {
@@ -1053,6 +1119,7 @@ extension Identity_ConsumerProfile: SwiftProtobuf._MessageImplementationBase, Sw
     var _enrollmentSource: Identity_EnrollmentSource = .unspecified
     var _enrollmentChannel: String = String()
     var _preferences: Identity_ConsumerPreferences? = nil
+    var _type: Identity_ConsumerType = .unvalidated
 
     static let defaultInstance = _StorageClass()
 
@@ -1064,6 +1131,7 @@ extension Identity_ConsumerProfile: SwiftProtobuf._MessageImplementationBase, Sw
       _enrollmentSource = source._enrollmentSource
       _enrollmentChannel = source._enrollmentChannel
       _preferences = source._preferences
+      _type = source._type
     }
   }
 
@@ -1084,6 +1152,7 @@ extension Identity_ConsumerProfile: SwiftProtobuf._MessageImplementationBase, Sw
         if _storage._enrollmentSource != other_storage._enrollmentSource {return false}
         if _storage._enrollmentChannel != other_storage._enrollmentChannel {return false}
         if _storage._preferences != other_storage._preferences {return false}
+        if _storage._type != other_storage._type {return false}
         return true
       }
       if !storagesAreEqual {return false}
