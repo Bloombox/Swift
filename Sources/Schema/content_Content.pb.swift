@@ -36,7 +36,7 @@ public struct Content_Content: SwiftProtobuf.Message {
   }
 
   /// Raw bytes of underlying content data.
-  public var content: Data {
+  public var content: String {
     get {return _storage._content}
     set {_uniqueStorage()._content = newValue}
   }
@@ -103,6 +103,12 @@ public struct Content_Content: SwiftProtobuf.Message {
 
     /// UTF-8 standard encoding.
     case utf8 // = 0
+
+    /// Base-64 encoded UTF-8.
+    case b64 // = 1
+
+    /// Base-64 encoded ASCII.
+    case b64Ascii // = 2
     case UNRECOGNIZED(Int)
 
     public init() {
@@ -112,6 +118,8 @@ public struct Content_Content: SwiftProtobuf.Message {
     public init?(rawValue: Int) {
       switch rawValue {
       case 0: self = .utf8
+      case 1: self = .b64
+      case 2: self = .b64Ascii
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
@@ -119,6 +127,8 @@ public struct Content_Content: SwiftProtobuf.Message {
     public var rawValue: Int {
       switch self {
       case .utf8: return 0
+      case .b64: return 1
+      case .b64Ascii: return 2
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -138,7 +148,7 @@ public struct Content_Content: SwiftProtobuf.Message {
         switch fieldNumber {
         case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
         case 2: try decoder.decodeSingularEnumField(value: &_storage._encoding)
-        case 3: try decoder.decodeSingularBytesField(value: &_storage._content)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._content)
         case 4: try decoder.decodeSingularEnumField(value: &_storage._language)
         case 5: try decoder.decodeSingularMessageField(value: &_storage._compression)
         default: break
@@ -160,7 +170,7 @@ public struct Content_Content: SwiftProtobuf.Message {
         try visitor.visitSingularEnumField(value: _storage._encoding, fieldNumber: 2)
       }
       if !_storage._content.isEmpty {
-        try visitor.visitSingularBytesField(value: _storage._content, fieldNumber: 3)
+        try visitor.visitSingularStringField(value: _storage._content, fieldNumber: 3)
       }
       if _storage._language != .english {
         try visitor.visitSingularEnumField(value: _storage._language, fieldNumber: 4)
@@ -191,7 +201,7 @@ extension Content_Content: SwiftProtobuf._MessageImplementationBase, SwiftProtob
   fileprivate class _StorageClass {
     var _type: Content_Content.TypeEnum = .text
     var _encoding: Content_Content.Encoding = .utf8
-    var _content: Data = SwiftProtobuf.Internal.emptyData
+    var _content: String = String()
     var _language: Base_Language = .english
     var _compression: Base_Compression? = nil
 
@@ -245,5 +255,7 @@ extension Content_Content.TypeEnum: SwiftProtobuf._ProtoNameProviding {
 extension Content_Content.Encoding: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UTF8"),
+    1: .same(proto: "B64"),
+    2: .same(proto: "B64_ASCII"),
   ]
 }

@@ -23,14 +23,15 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 public enum Structs_ProductFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case visible // = 0
-  case premium // = 1
-  case featured // = 2
-  case organic // = 3
-  case exclusive // = 4
-  case inHouse // = 5
-  case lastChance // = 6
-  case limitedTime // = 7
-  case onSale // = 8
+  case hidden // = 1
+  case premium // = 2
+  case featured // = 3
+  case organic // = 4
+  case exclusive // = 5
+  case inHouse // = 6
+  case lastChance // = 7
+  case limitedTime // = 8
+  case onSale // = 9
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -40,14 +41,15 @@ public enum Structs_ProductFlag: SwiftProtobuf.Enum {
   public init?(rawValue: Int) {
     switch rawValue {
     case 0: self = .visible
-    case 1: self = .premium
-    case 2: self = .featured
-    case 3: self = .organic
-    case 4: self = .exclusive
-    case 5: self = .inHouse
-    case 6: self = .lastChance
-    case 7: self = .limitedTime
-    case 8: self = .onSale
+    case 1: self = .hidden
+    case 2: self = .premium
+    case 3: self = .featured
+    case 4: self = .organic
+    case 5: self = .exclusive
+    case 6: self = .inHouse
+    case 7: self = .lastChance
+    case 8: self = .limitedTime
+    case 9: self = .onSale
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -55,14 +57,15 @@ public enum Structs_ProductFlag: SwiftProtobuf.Enum {
   public var rawValue: Int {
     switch self {
     case .visible: return 0
-    case .premium: return 1
-    case .featured: return 2
-    case .organic: return 3
-    case .exclusive: return 4
-    case .inHouse: return 5
-    case .lastChance: return 6
-    case .limitedTime: return 7
-    case .onSale: return 8
+    case .hidden: return 1
+    case .premium: return 2
+    case .featured: return 3
+    case .organic: return 4
+    case .exclusive: return 5
+    case .inHouse: return 6
+    case .lastChance: return 7
+    case .limitedTime: return 8
+    case .onSale: return 9
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -74,13 +77,14 @@ public enum Structs_ProductFlag: SwiftProtobuf.Enum {
 extension Structs_ProductFlag: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "VISIBLE"),
-    1: .same(proto: "PREMIUM"),
-    2: .same(proto: "FEATURED"),
-    3: .same(proto: "ORGANIC"),
-    4: .same(proto: "EXCLUSIVE"),
-    5: .same(proto: "IN_HOUSE"),
-    6: .same(proto: "LAST_CHANCE"),
-    7: .same(proto: "LIMITED_TIME"),
-    8: .same(proto: "ON_SALE"),
+    1: .same(proto: "HIDDEN"),
+    2: .same(proto: "PREMIUM"),
+    3: .same(proto: "FEATURED"),
+    4: .same(proto: "ORGANIC"),
+    5: .same(proto: "EXCLUSIVE"),
+    6: .same(proto: "IN_HOUSE"),
+    7: .same(proto: "LAST_CHANCE"),
+    8: .same(proto: "LIMITED_TIME"),
+    9: .same(proto: "ON_SALE"),
   ]
 }

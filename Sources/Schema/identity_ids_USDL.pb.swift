@@ -322,10 +322,16 @@ public struct Identity_Ids_USDL: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".USDL"
 
   /// Raw barcode data for this Driver's License.
-  public var barcode: Data = SwiftProtobuf.Internal.emptyData
+  public var barcode: String = String()
+
+  /// Raw barcode data for this Driver's License.
+  public var magstripe: String = String()
 
   /// State that issued this Driver's License.
   public var jurisdiction: Geo_Usa_USState = .unspecified
+
+  /// Flag that indicates this is an identification card, not a Driver's License.
+  public var identificationCard: Bool = false
 
   /// Raw field data for this license.
   public var fields: [Identity_Ids_USDLFieldValue] = []
@@ -341,8 +347,10 @@ public struct Identity_Ids_USDL: SwiftProtobuf.Message {
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularBytesField(value: &self.barcode)
-      case 5: try decoder.decodeSingularEnumField(value: &self.jurisdiction)
+      case 1: try decoder.decodeSingularStringField(value: &self.barcode)
+      case 2: try decoder.decodeSingularStringField(value: &self.magstripe)
+      case 3: try decoder.decodeSingularEnumField(value: &self.jurisdiction)
+      case 4: try decoder.decodeSingularBoolField(value: &self.identificationCard)
       case 100: try decoder.decodeRepeatedMessageField(value: &self.fields)
       default: break
       }
@@ -355,10 +363,16 @@ public struct Identity_Ids_USDL: SwiftProtobuf.Message {
   /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.barcode.isEmpty {
-      try visitor.visitSingularBytesField(value: self.barcode, fieldNumber: 1)
+      try visitor.visitSingularStringField(value: self.barcode, fieldNumber: 1)
+    }
+    if !self.magstripe.isEmpty {
+      try visitor.visitSingularStringField(value: self.magstripe, fieldNumber: 2)
     }
     if self.jurisdiction != .unspecified {
-      try visitor.visitSingularEnumField(value: self.jurisdiction, fieldNumber: 5)
+      try visitor.visitSingularEnumField(value: self.jurisdiction, fieldNumber: 3)
+    }
+    if self.identificationCard != false {
+      try visitor.visitSingularBoolField(value: self.identificationCard, fieldNumber: 4)
     }
     if !self.fields.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.fields, fieldNumber: 100)
@@ -431,13 +445,17 @@ extension Identity_Ids_USDLFieldValue: SwiftProtobuf._MessageImplementationBase,
 extension Identity_Ids_USDL: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "barcode"),
-    5: .same(proto: "jurisdiction"),
+    2: .same(proto: "magstripe"),
+    3: .same(proto: "jurisdiction"),
+    4: .standard(proto: "identification_card"),
     100: .same(proto: "fields"),
   ]
 
   public func _protobuf_generated_isEqualTo(other: Identity_Ids_USDL) -> Bool {
     if self.barcode != other.barcode {return false}
+    if self.magstripe != other.magstripe {return false}
     if self.jurisdiction != other.jurisdiction {return false}
+    if self.identificationCard != other.identificationCard {return false}
     if self.fields != other.fields {return false}
     if unknownFields != other.unknownFields {return false}
     return true

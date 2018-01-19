@@ -95,14 +95,10 @@ public struct Products_Menu_Metadata: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Metadata"
 
   /// Partner location that owns this menu data.
-  public var location: Partner_PartnerLocation {
-    get {return _storage._location ?? Partner_PartnerLocation()}
-    set {_uniqueStorage()._location = newValue}
+  public var scope: String {
+    get {return _storage._scope}
+    set {_uniqueStorage()._scope = newValue}
   }
-  /// Returns true if `location` has been explicitly set.
-  public var hasLocation: Bool {return _storage._location != nil}
-  /// Clears the value of `location`. Subsequent reads from it will return its default value.
-  public mutating func clearLocation() {_storage._location = nil}
 
   /// Version number, or publish timestamp, of this data.
   public var version: UInt64 {
@@ -145,7 +141,7 @@ public struct Products_Menu_Metadata: SwiftProtobuf.Message {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._location)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._scope)
         case 2: try decoder.decodeSingularUInt64Field(value: &_storage._version)
         case 3: try decoder.decodeSingularEnumField(value: &_storage._status)
         case 4: try decoder.decodeRepeatedEnumField(value: &_storage._flags)
@@ -162,8 +158,8 @@ public struct Products_Menu_Metadata: SwiftProtobuf.Message {
   /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._location {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      if !_storage._scope.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._scope, fieldNumber: 1)
       }
       if _storage._version != 0 {
         try visitor.visitSingularUInt64Field(value: _storage._version, fieldNumber: 2)
@@ -568,7 +564,7 @@ extension Products_Menu_Flag: SwiftProtobuf._ProtoNameProviding {
 
 extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "location"),
+    1: .same(proto: "scope"),
     2: .same(proto: "version"),
     3: .same(proto: "status"),
     4: .same(proto: "flags"),
@@ -576,7 +572,7 @@ extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, Swif
   ]
 
   fileprivate class _StorageClass {
-    var _location: Partner_PartnerLocation? = nil
+    var _scope: String = String()
     var _version: UInt64 = 0
     var _status: Products_Menu_Status = .unpublished
     var _flags: [Products_Menu_Flag] = []
@@ -587,7 +583,7 @@ extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, Swif
     private init() {}
 
     init(copying source: _StorageClass) {
-      _location = source._location
+      _scope = source._scope
       _version = source._version
       _status = source._status
       _flags = source._flags
@@ -607,7 +603,7 @@ extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, Swif
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let other_storage = _args.1
-        if _storage._location != other_storage._location {return false}
+        if _storage._scope != other_storage._scope {return false}
         if _storage._version != other_storage._version {return false}
         if _storage._status != other_storage._status {return false}
         if _storage._flags != other_storage._flags {return false}
