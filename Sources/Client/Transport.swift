@@ -33,7 +33,8 @@ internal struct Transport {
     let data: DataEnvironment = .sandbox
     let services: ServiceSettings = RPCServicesConfig(
       shop: ProductionShop(),
-      telemetry: ProductionTelemetry())
+      telemetry: ProductionTelemetry(),
+      menu: ProductionMenu())
   }
 
   /**
@@ -43,7 +44,8 @@ internal struct Transport {
     let data: DataEnvironment = .v1
     let services: ServiceSettings = RPCServicesConfig(
       shop: ProductionShop(),
-      telemetry: ProductionTelemetry())
+      telemetry: ProductionTelemetry(),
+      menu: ProductionMenu())
   }
   #endif
 
@@ -54,7 +56,8 @@ internal struct Transport {
     let data: DataEnvironment = .v1
     let services: ServiceSettings = RPCServicesConfig(
       shop: ProductionShop(),
-      telemetry: ProductionTelemetry())
+      telemetry: ProductionTelemetry(),
+      menu: ProductionMenu())
   }
 }
 
@@ -121,6 +124,15 @@ internal struct ProductionTelemetry: RPCServiceSettings {
   let port = 443
 }
 
+/**
+ * Production menu settings.
+ */
+internal struct ProductionMenu: RPCServiceSettings {
+  let secure = false
+  let host = "menu.api.bloombox.cloud"
+  let port = 443
+}
+
 #if DEBUG
   /**
    * Local shop settings.
@@ -138,6 +150,15 @@ internal struct ProductionTelemetry: RPCServiceSettings {
     let secure = false
     let host = "127.0.0.1"
     let port = 1090
+  }
+
+  /**
+   * Local menu settings.
+   */
+  internal struct LocalTelemetry: RPCServiceSettings {
+    let secure = false
+    let host = "127.0.0.1"
+    let port = 1094
   }
 #endif
 
@@ -160,6 +181,7 @@ internal protocol TransportSettings {
 internal struct RPCServicesConfig: ServiceSettings {
   let shop: RPCServiceSettings
   let telemetry: RPCServiceSettings
+  let menu: RPCServiceSettings
 }
 
 /**
@@ -193,6 +215,7 @@ extension RPCServiceSettings {
 internal protocol ServiceSettings {
   var shop: RPCServiceSettings { get }
   var telemetry: RPCServiceSettings { get }
+  var menu: RPCServiceSettings { get }
 }
 
 // MARK: Data Services

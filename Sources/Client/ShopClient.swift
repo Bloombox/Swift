@@ -51,7 +51,7 @@ public final class ShopClient: RemoteService {
   // MARK: Internals
 
   /**
-   * Generic event telemetry service.
+   * Shop service.
    */
   internal let service: Shop
 
