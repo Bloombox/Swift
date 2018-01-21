@@ -419,7 +419,7 @@ public class Services_Shop_V1_ShopGetOrderCall {
 }
 
 /// Call methods of this class to make API calls.
-public class Services_Shop_V1_ShopService {
+public final class Services_Shop_V1_ShopService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
@@ -438,14 +438,14 @@ public class Services_Shop_V1_ShopService {
   }
 
   /// Create a client that makes insecure connections.
-  public required init(address: String) {
+  public init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  public required init(address: String, certificates: String?, host: String?) {
+  public init(address: String, certificates: String?, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()

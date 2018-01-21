@@ -32,6 +32,7 @@ public enum Structs_ProductFlag: SwiftProtobuf.Enum {
   case lastChance // = 7
   case limitedTime // = 8
   case onSale // = 9
+  case local // = 10
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -50,6 +51,7 @@ public enum Structs_ProductFlag: SwiftProtobuf.Enum {
     case 7: self = .lastChance
     case 8: self = .limitedTime
     case 9: self = .onSale
+    case 10: self = .local
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -66,6 +68,7 @@ public enum Structs_ProductFlag: SwiftProtobuf.Enum {
     case .lastChance: return 7
     case .limitedTime: return 8
     case .onSale: return 9
+    case .local: return 10
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -86,5 +89,6 @@ extension Structs_ProductFlag: SwiftProtobuf._ProtoNameProviding {
     7: .same(proto: "LAST_CHANCE"),
     8: .same(proto: "LIMITED_TIME"),
     9: .same(proto: "ON_SALE"),
+    10: .same(proto: "LOCAL"),
   ]
 }

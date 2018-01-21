@@ -90,6 +90,100 @@ public enum Products_Menu_Flag: SwiftProtobuf.Enum {
 
 }
 
+/// Specifies settings used to generate a menu, or used as input when generating menus.
+public struct Products_Menu_MenuSettings: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".MenuSettings"
+
+  /// Flag indicating a full menu, including hidden/out-of-stock items.
+  public var full: Bool {
+    get {return _storage._full}
+    set {_uniqueStorage()._full = newValue}
+  }
+
+  /// Only include menu keys, no detail data.
+  public var keysOnly: Bool {
+    get {return _storage._keysOnly}
+    set {_uniqueStorage()._keysOnly = newValue}
+  }
+
+  /// Don't return the menu if it's identical to this fingerprint.
+  public var snapshot: Crypto_Primitives_Integrity_Hash {
+    get {return _storage._snapshot ?? Crypto_Primitives_Integrity_Hash()}
+    set {_uniqueStorage()._snapshot = newValue}
+  }
+  /// Returns true if `snapshot` has been explicitly set.
+  public var hasSnapshot: Bool {return _storage._snapshot != nil}
+  /// Clears the value of `snapshot`. Subsequent reads from it will return its default value.
+  public mutating func clearSnapshot() {_storage._snapshot = nil}
+
+  /// Bloom filter to consider when returning or processing menu items.
+  public var fingerprint: Crypto_Primitives_Integrity_Hash {
+    get {return _storage._fingerprint ?? Crypto_Primitives_Integrity_Hash()}
+    set {_uniqueStorage()._fingerprint = newValue}
+  }
+  /// Returns true if `fingerprint` has been explicitly set.
+  public var hasFingerprint: Bool {return _storage._fingerprint != nil}
+  /// Clears the value of `fingerprint`. Subsequent reads from it will return its default value.
+  public mutating func clearFingerprint() {_storage._fingerprint = nil}
+
+  /// Sections to include in the menu. If unspecified, include all sections.
+  public var section: [Products_Menu_Section_Section] {
+    get {return _storage._section}
+    set {_uniqueStorage()._section = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularBoolField(value: &_storage._full)
+        case 2: try decoder.decodeSingularBoolField(value: &_storage._keysOnly)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._snapshot)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._fingerprint)
+        case 5: try decoder.decodeRepeatedEnumField(value: &_storage._section)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._full != false {
+        try visitor.visitSingularBoolField(value: _storage._full, fieldNumber: 1)
+      }
+      if _storage._keysOnly != false {
+        try visitor.visitSingularBoolField(value: _storage._keysOnly, fieldNumber: 2)
+      }
+      if let v = _storage._snapshot {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._fingerprint {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if !_storage._section.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._section, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 /// Specifies metadata for a package of menu data.
 public struct Products_Menu_Metadata: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Metadata"
@@ -128,6 +222,16 @@ public struct Products_Menu_Metadata: SwiftProtobuf.Message {
   /// Clears the value of `published`. Subsequent reads from it will return its default value.
   public mutating func clearPublished() {_storage._published = nil}
 
+  /// Settings that produced this menu data.
+  public var settings: Products_Menu_MenuSettings {
+    get {return _storage._settings ?? Products_Menu_MenuSettings()}
+    set {_uniqueStorage()._settings = newValue}
+  }
+  /// Returns true if `settings` has been explicitly set.
+  public var hasSettings: Bool {return _storage._settings != nil}
+  /// Clears the value of `settings`. Subsequent reads from it will return its default value.
+  public mutating func clearSettings() {_storage._settings = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -146,6 +250,7 @@ public struct Products_Menu_Metadata: SwiftProtobuf.Message {
         case 3: try decoder.decodeSingularEnumField(value: &_storage._status)
         case 4: try decoder.decodeRepeatedEnumField(value: &_storage._flags)
         case 5: try decoder.decodeSingularMessageField(value: &_storage._published)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._settings)
         default: break
         }
       }
@@ -172,6 +277,9 @@ public struct Products_Menu_Metadata: SwiftProtobuf.Message {
       }
       if let v = _storage._published {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._settings {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -562,6 +670,61 @@ extension Products_Menu_Flag: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
+extension Products_Menu_MenuSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "full"),
+    2: .standard(proto: "keys_only"),
+    3: .same(proto: "snapshot"),
+    4: .same(proto: "fingerprint"),
+    5: .same(proto: "section"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _full: Bool = false
+    var _keysOnly: Bool = false
+    var _snapshot: Crypto_Primitives_Integrity_Hash? = nil
+    var _fingerprint: Crypto_Primitives_Integrity_Hash? = nil
+    var _section: [Products_Menu_Section_Section] = []
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _full = source._full
+      _keysOnly = source._keysOnly
+      _snapshot = source._snapshot
+      _fingerprint = source._fingerprint
+      _section = source._section
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Products_Menu_MenuSettings) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._full != other_storage._full {return false}
+        if _storage._keysOnly != other_storage._keysOnly {return false}
+        if _storage._snapshot != other_storage._snapshot {return false}
+        if _storage._fingerprint != other_storage._fingerprint {return false}
+        if _storage._section != other_storage._section {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
 extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
@@ -569,6 +732,7 @@ extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, Swif
     3: .same(proto: "status"),
     4: .same(proto: "flags"),
     5: .same(proto: "published"),
+    6: .same(proto: "settings"),
   ]
 
   fileprivate class _StorageClass {
@@ -577,6 +741,7 @@ extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, Swif
     var _status: Products_Menu_Status = .unpublished
     var _flags: [Products_Menu_Flag] = []
     var _published: Temporal_Instant? = nil
+    var _settings: Products_Menu_MenuSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -588,6 +753,7 @@ extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, Swif
       _status = source._status
       _flags = source._flags
       _published = source._published
+      _settings = source._settings
     }
   }
 
@@ -608,6 +774,7 @@ extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, Swif
         if _storage._status != other_storage._status {return false}
         if _storage._flags != other_storage._flags {return false}
         if _storage._published != other_storage._published {return false}
+        if _storage._settings != other_storage._settings {return false}
         return true
       }
       if !storagesAreEqual {return false}

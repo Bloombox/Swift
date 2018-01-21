@@ -144,7 +144,7 @@ public class Services_Menu_V1Beta1_MenuRetrieveCall {
 }
 
 /// Call methods of this class to make API calls.
-public class Services_Menu_V1Beta1_MenuService {
+public final class Services_Menu_V1Beta1_MenuService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
