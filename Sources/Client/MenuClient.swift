@@ -58,7 +58,7 @@ public final class MenuClient: RemoteService {
   /**
    * Library-internal initializer.
    */
-  internal init(settings: BloomboxClient.Settings) {
+  public init(settings: BloomboxClient.Settings) {
     self.settings = settings
     service = RPCServiceFactory<MenuService>.factory(forService: Transport.config.services.menu)
   }

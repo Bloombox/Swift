@@ -55,7 +55,7 @@ public class TelemetryClient: RemoteService {
   /**
    * Library-internal initializer.
    */
-  internal init(settings: BloomboxClient.Settings) {
+  public init(settings: BloomboxClient.Settings) {
     self.settings = settings
 
     // initialize events service

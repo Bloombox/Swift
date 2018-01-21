@@ -63,7 +63,7 @@ public final class ShopClient: RemoteService {
   /**
    * Library-internal initializer.
    */
-  internal init(settings: BloomboxClient.Settings) {
+  public init(settings: BloomboxClient.Settings) {
     self.settings = settings
     service = RPCServiceFactory<Shop>.factory(forService: Transport.config.services.shop)
   }
