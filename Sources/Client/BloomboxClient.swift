@@ -29,6 +29,11 @@ public final class BloomboxClient {
    */
   public struct Settings: EventContextData {
     /**
+     * Default partner location code to use.
+     */
+    public let apiKey: APIKey?
+
+    /**
      * Default partner code to use.
      */
     public let partner: PartnerCode?
@@ -88,7 +93,8 @@ public final class BloomboxClient {
     /**
      * Initialize a new settings object.
      */
-    public init(partner: PartnerCode? = nil,
+    public init(apiKey: APIKey? = nil,
+                partner: PartnerCode? = nil,
                 location: LocationCode? = nil,
                 deviceUUID: DeviceUUID? = nil,
                 collection: EventCollection? = nil,
@@ -98,6 +104,7 @@ public final class BloomboxClient {
                 item: ItemID? = nil,
                 group: GroupID? = nil,
                 bundleId: String? = nil) {
+      self.apiKey = apiKey
       self.partner = partner
       self.location = location
       self.deviceUUID = deviceUUID

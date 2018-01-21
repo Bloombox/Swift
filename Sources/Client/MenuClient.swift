@@ -25,6 +25,7 @@ extension MenuService: RPCService {}
 public enum MenuClientError: Error {
   case invalidPartnerCode
   case invalidLocationCode
+  case invalidApiKey
 }
 
 
@@ -48,7 +49,11 @@ public final class MenuClient: RemoteService {
   /**
    * Menu service.
    */
-  internal let service: MenuService
+  internal func service(apiKey: APIKey) -> MenuService {
+    let svc = RPCServiceFactory<MenuService>.factory(forService: Transport.config.services.menu)
+    svc.metadata.add(key: "x-api-key", value: apiKey)
+    return svc
+  }
 
   /**
    * Client-wide settings.
@@ -60,16 +65,21 @@ public final class MenuClient: RemoteService {
    */
   public init(settings: BloomboxClient.Settings) {
     self.settings = settings
-    service = RPCServiceFactory<MenuService>.factory(forService: Transport.config.services.menu)
   }
 
   /**
    * Resolve partner and location context, throwing an error if it cannot be figured out.
    */
   private func resolveContext(_ partner: PartnerCode? = nil,
-                              _ location: LocationCode? = nil) throws -> (partner: PartnerCode, location: LocationCode) {
+                              _ location: LocationCode? = nil,
+                              _ apiKey: APIKey? = nil) throws -> (partner: PartnerCode, location: LocationCode, apiKey: APIKey) {
     let partnerCode: PartnerCode? = partner ?? settings.partner
     let locationCode: LocationCode? = location ?? settings.location
+    let apiKey: APIKey? = apiKey ?? settings.apiKey
+
+    guard apiKey != nil else {
+      throw MenuClientError.invalidApiKey
+    }
 
     // validate partner and location codes
     guard partnerCode != nil, locationCode != nil else {
@@ -79,7 +89,7 @@ public final class MenuClient: RemoteService {
       }
       throw MenuClientError.invalidPartnerCode
     }
-    return (partner: partnerCode!, location: locationCode!)
+    return (partner: partnerCode!, location: locationCode!, apiKey: apiKey!)
   }
 
   /**
@@ -95,9 +105,12 @@ public final class MenuClient: RemoteService {
    * Retrieve the active product catalog (menu) for a given partner/location.
    */
   public func retrieve(partner: PartnerCode? = nil,
-                       location: LocationCode? = nil) throws -> GetMenu.Response {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
-    return try self.service.retrieve(GetMenu.Request.with { builder in
+                       location: LocationCode? = nil,
+                       apiKey: APIKey? = nil) throws -> GetMenu.Response {
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
+    let service = self.service(apiKey: apiKey)
+
+    return try service.retrieve(GetMenu.Request.with { builder in
       builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
     })
   }
@@ -108,10 +121,12 @@ public final class MenuClient: RemoteService {
    */
   public func retrieve(partner: PartnerCode? = nil,
                        location: LocationCode? = nil,
+                       apiKey: APIKey? = nil,
                        callback: @escaping MenuRetrieveCallback) throws -> GetMenuCall {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
+    let service = self.service(apiKey: apiKey)
 
-    return try self.service.retrieve(GetMenu.Request.with { builder in
+    return try service.retrieve(GetMenu.Request.with { builder in
       builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
     }) { (response, callResult) in
       callback(callResult, response)

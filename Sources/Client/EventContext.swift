@@ -12,6 +12,7 @@ import Schema
 // Typealiases
 public typealias UserID = String
 public typealias ItemID = String
+public typealias APIKey = String
 public typealias GroupID = String
 public typealias OrderID = String
 public typealias DeviceUUID = String
