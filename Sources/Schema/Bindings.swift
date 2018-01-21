@@ -91,7 +91,7 @@ public typealias Services_Devices_V1beta1_Activation_Request = Services_Devices_
 public typealias Services_Devices_V1beta1_Activation_Response = Services_Devices_V1beta1_Activation.Response
 
 
-// -- Devices Service (v1beta1) -- //
+// -- Menu Service (v1beta1) -- //
 
 public typealias Services_Menu_V1beta1_Ping_Request = Services_Menu_V1beta1_Ping.Request
 public typealias Services_Menu_V1beta1_Ping_Response = Services_Menu_V1beta1_Ping.Response

@@ -85,6 +85,12 @@ public enum Products_EdibleFlag: SwiftProtobuf.Enum {
 
   /// Flag indicating this edible product is compliant with fair trade practices.
   case fairTrade // = 4
+
+  /// Flag indicating this edible product is considered organic.
+  case organic // = 5
+
+  /// Flag indicating this edible product was grown or cultivated or prepared locally.
+  case local // = 6
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -98,6 +104,8 @@ public enum Products_EdibleFlag: SwiftProtobuf.Enum {
     case 2: self = .glutenFree
     case 3: self = .sugarFree
     case 4: self = .fairTrade
+    case 5: self = .organic
+    case 6: self = .local
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -109,6 +117,8 @@ public enum Products_EdibleFlag: SwiftProtobuf.Enum {
     case .glutenFree: return 2
     case .sugarFree: return 3
     case .fairTrade: return 4
+    case .organic: return 5
+    case .local: return 6
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -288,6 +298,8 @@ extension Products_EdibleFlag: SwiftProtobuf._ProtoNameProviding {
     2: .same(proto: "GLUTEN_FREE"),
     3: .same(proto: "SUGAR_FREE"),
     4: .same(proto: "FAIR_TRADE"),
+    5: .same(proto: "ORGANIC"),
+    6: .same(proto: "LOCAL"),
   ]
 }
 

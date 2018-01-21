@@ -106,6 +106,13 @@ public typealias MenuService = Services_Menu_V1Beta1_MenuService
  * Method: `ping`.
  */
 public typealias MenuPing = Services_Menu_V1beta1_Ping
+public typealias MenuPingCall = Services_Menu_V1Beta1_MenuPingCall
+
+/**
+ * Method: `retrieve`.
+ */
+public typealias GetMenu = Services_Menu_V1beta1_GetMenu
+public typealias GetMenuCall = Services_Menu_V1Beta1_MenuRetrieveCall
 
 
 //// Objects

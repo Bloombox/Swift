@@ -241,65 +241,24 @@ public struct Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message {
     public static let protoMessageName: String = Services_Menu_V1beta1_GetMenu.protoMessageName + ".Request"
 
     /// Partnership scope for the request.
-    public var scope: String {
-      get {return _storage._scope}
-      set {_uniqueStorage()._scope = newValue}
-    }
+    public var scope: String = String()
 
-    /// Specifies the scope for this menu request - either 'full', meaning the entire menu is being requested, or a
-    /// specification of sections to retrieve.
-    public var menuScope: OneOf_MenuScope? {
-      get {return _storage._menuScope}
-      set {_uniqueStorage()._menuScope = newValue}
-    }
+    /// Flag indicating a full menu, including hidden/out-of-stock items.
+    public var full: Bool = false
 
-    /// Retrieve the full menu.
-    public var full: Bool {
-      get {
-        if case .full(let v)? = _storage._menuScope {return v}
-        return false
-      }
-      set {_uniqueStorage()._menuScope = .full(newValue)}
-    }
+    /// Only include menu keys, no detail data.
+    public var keysOnly: Bool = false
 
-    /// Retrieve partial menu data specified by section specs.
-    public var spec: Products_Menu_Section_SectionSpec {
-      get {
-        if case .spec(let v)? = _storage._menuScope {return v}
-        return Products_Menu_Section_SectionSpec()
-      }
-      set {_uniqueStorage()._menuScope = .spec(newValue)}
-    }
+    /// Don't return the menu if it's identical to this fingerprint.
+    public var snapshot: String = String()
 
-    /// Specifies the current snapshot of menu data being requested, if applicable to the requesting entity, with a
-    /// digest of active menu data, including the algorithm in use and hash.
-    public var snapshot: Crypto_Primitives_Integrity_Hash {
-      get {return _storage._snapshot ?? Crypto_Primitives_Integrity_Hash()}
-      set {_uniqueStorage()._snapshot = newValue}
-    }
-    /// Returns true if `snapshot` has been explicitly set.
-    public var hasSnapshot: Bool {return _storage._snapshot != nil}
-    /// Clears the value of `snapshot`. Subsequent reads from it will return its default value.
-    public mutating func clearSnapshot() {_storage._snapshot = nil}
+    /// Bloom filter to consider when returning or processing menu items.
+    public var fingerprint: String = String()
+
+    /// Sections to include in the menu. If unspecified, include all sections.
+    public var section: Products_Menu_Section_Section = .unspecified
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    /// Specifies the scope for this menu request - either 'full', meaning the entire menu is being requested, or a
-    /// specification of sections to retrieve.
-    public enum OneOf_MenuScope: Equatable {
-      /// Retrieve the full menu.
-      case full(Bool)
-      /// Retrieve partial menu data specified by section specs.
-      case spec(Products_Menu_Section_SectionSpec)
-
-      public static func ==(lhs: Services_Menu_V1beta1_GetMenu.Request.OneOf_MenuScope, rhs: Services_Menu_V1beta1_GetMenu.Request.OneOf_MenuScope) -> Bool {
-        switch (lhs, rhs) {
-        case (.full(let l), .full(let r)): return l == r
-        case (.spec(let l), .spec(let r)): return l == r
-        default: return false
-        }
-      }
-    }
 
     public init() {}
 
@@ -308,27 +267,15 @@ public struct Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message {
     /// initializers are defined in the SwiftProtobuf library. See the Message and
     /// Message+*Additions` files.
     public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularStringField(value: &_storage._scope)
-          case 2:
-            if _storage._menuScope != nil {try decoder.handleConflictingOneOf()}
-            var v: Bool?
-            try decoder.decodeSingularBoolField(value: &v)
-            if let v = v {_storage._menuScope = .full(v)}
-          case 3:
-            var v: Products_Menu_Section_SectionSpec?
-            if let current = _storage._menuScope {
-              try decoder.handleConflictingOneOf()
-              if case .spec(let m) = current {v = m}
-            }
-            try decoder.decodeSingularMessageField(value: &v)
-            if let v = v {_storage._menuScope = .spec(v)}
-          case 4: try decoder.decodeSingularMessageField(value: &_storage._snapshot)
-          default: break
-          }
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &self.scope)
+        case 2: try decoder.decodeSingularBoolField(value: &self.full)
+        case 3: try decoder.decodeSingularBoolField(value: &self.keysOnly)
+        case 4: try decoder.decodeSingularStringField(value: &self.snapshot)
+        case 5: try decoder.decodeSingularStringField(value: &self.fingerprint)
+        case 6: try decoder.decodeSingularEnumField(value: &self.section)
+        default: break
         }
       }
     }
@@ -338,41 +285,31 @@ public struct Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message {
     /// other serializer methods are defined in the SwiftProtobuf library. See the
     /// `Message` and `Message+*Additions` files.
     public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if !_storage._scope.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._scope, fieldNumber: 1)
-        }
-        switch _storage._menuScope {
-        case .full(let v)?:
-          try visitor.visitSingularBoolField(value: v, fieldNumber: 2)
-        case .spec(let v)?:
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-        case nil: break
-        }
-        if let v = _storage._snapshot {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-        }
+      if !self.scope.isEmpty {
+        try visitor.visitSingularStringField(value: self.scope, fieldNumber: 1)
+      }
+      if self.full != false {
+        try visitor.visitSingularBoolField(value: self.full, fieldNumber: 2)
+      }
+      if self.keysOnly != false {
+        try visitor.visitSingularBoolField(value: self.keysOnly, fieldNumber: 3)
+      }
+      if !self.snapshot.isEmpty {
+        try visitor.visitSingularStringField(value: self.snapshot, fieldNumber: 4)
+      }
+      if !self.fingerprint.isEmpty {
+        try visitor.visitSingularStringField(value: self.fingerprint, fieldNumber: 5)
+      }
+      if self.section != .unspecified {
+        try visitor.visitSingularEnumField(value: self.section, fieldNumber: 6)
       }
       try unknownFields.traverse(visitor: &visitor)
     }
-
-    fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies the response to a request to retrieve menu data.
   public struct Response: SwiftProtobuf.Message {
     public static let protoMessageName: String = Services_Menu_V1beta1_GetMenu.protoMessageName + ".Response"
-
-    /// Unique hashed fingerprint for this batch of menu data. Calculated by sorting all menu keys lexicographically, and
-    /// applying them through a hash function (usually specified as MD5).
-    public var fingerprint: Crypto_Primitives_Integrity_Hash {
-      get {return _storage._fingerprint ?? Crypto_Primitives_Integrity_Hash()}
-      set {_uniqueStorage()._fingerprint = newValue}
-    }
-    /// Returns true if `fingerprint` has been explicitly set.
-    public var hasFingerprint: Bool {return _storage._fingerprint != nil}
-    /// Clears the value of `fingerprint`. Subsequent reads from it will return its default value.
-    public mutating func clearFingerprint() {_storage._fingerprint = nil}
 
     /// Specifies the actual menu data payload returned in this response. The menu payload is independently usable, and
     /// includes any raw data or metadata needed to process the menu.
@@ -385,6 +322,12 @@ public struct Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message {
     /// Clears the value of `catalog`. Subsequent reads from it will return its default value.
     public mutating func clearCatalog() {_storage._catalog = nil}
 
+    /// Total count of products included in this response, across all menu sections.
+    public var count: Int32 {
+      get {return _storage._count}
+      set {_uniqueStorage()._count = newValue}
+    }
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
@@ -398,8 +341,8 @@ public struct Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message {
       try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
         while let fieldNumber = try decoder.nextFieldNumber() {
           switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._fingerprint)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._catalog)
+          case 1: try decoder.decodeSingularMessageField(value: &_storage._catalog)
+          case 2: try decoder.decodeSingularInt32Field(value: &_storage._count)
           default: break
           }
         }
@@ -412,11 +355,11 @@ public struct Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message {
     /// `Message` and `Message+*Additions` files.
     public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
       try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._fingerprint {
+        if let v = _storage._catalog {
           try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
         }
-        if let v = _storage._catalog {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        if _storage._count != 0 {
+          try visitor.visitSingularInt32Field(value: _storage._count, fieldNumber: 2)
         }
       }
       try unknownFields.traverse(visitor: &visitor)
@@ -547,45 +490,19 @@ extension Services_Menu_V1beta1_GetMenu.Request: SwiftProtobuf._MessageImplement
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "full"),
-    3: .same(proto: "spec"),
+    3: .standard(proto: "keys_only"),
     4: .same(proto: "snapshot"),
+    5: .same(proto: "fingerprint"),
+    6: .same(proto: "section"),
   ]
 
-  fileprivate class _StorageClass {
-    var _scope: String = String()
-    var _menuScope: Services_Menu_V1beta1_GetMenu.Request.OneOf_MenuScope?
-    var _snapshot: Crypto_Primitives_Integrity_Hash? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _scope = source._scope
-      _menuScope = source._menuScope
-      _snapshot = source._snapshot
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
   public func _protobuf_generated_isEqualTo(other: Services_Menu_V1beta1_GetMenu.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._scope != other_storage._scope {return false}
-        if _storage._menuScope != other_storage._menuScope {return false}
-        if _storage._snapshot != other_storage._snapshot {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
+    if self.scope != other.scope {return false}
+    if self.full != other.full {return false}
+    if self.keysOnly != other.keysOnly {return false}
+    if self.snapshot != other.snapshot {return false}
+    if self.fingerprint != other.fingerprint {return false}
+    if self.section != other.section {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -593,21 +510,21 @@ extension Services_Menu_V1beta1_GetMenu.Request: SwiftProtobuf._MessageImplement
 
 extension Services_Menu_V1beta1_GetMenu.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "fingerprint"),
-    2: .same(proto: "catalog"),
+    1: .same(proto: "catalog"),
+    2: .same(proto: "count"),
   ]
 
   fileprivate class _StorageClass {
-    var _fingerprint: Crypto_Primitives_Integrity_Hash? = nil
     var _catalog: Products_Menu_Menu? = nil
+    var _count: Int32 = 0
 
     static let defaultInstance = _StorageClass()
 
     private init() {}
 
     init(copying source: _StorageClass) {
-      _fingerprint = source._fingerprint
       _catalog = source._catalog
+      _count = source._count
     }
   }
 
@@ -623,8 +540,8 @@ extension Services_Menu_V1beta1_GetMenu.Response: SwiftProtobuf._MessageImplemen
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let other_storage = _args.1
-        if _storage._fingerprint != other_storage._fingerprint {return false}
         if _storage._catalog != other_storage._catalog {return false}
+        if _storage._count != other_storage._count {return false}
         return true
       }
       if !storagesAreEqual {return false}
