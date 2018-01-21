@@ -31,58 +31,83 @@ public final class BloomboxClient {
     /**
      * Default partner code to use.
      */
-    public let partner: PartnerCode? = nil
+    public let partner: PartnerCode?
 
     /**
      * Default partner location code to use.
      */
-    public let location: LocationCode? = nil
+    public let location: LocationCode?
 
     /**
      * Default device UUID to use, if known.
      */
-    public let deviceUUID: DeviceUUID? = nil
+    public let deviceUUID: DeviceUUID?
 
     /**
      * Default collection to send events to.
      */
-    public let collection: EventCollection? = nil
+    public let collection: EventCollection?
 
     /**
      * Active order ID, if any.
      */
-    public let order: OrderID? = nil
+    public let order: OrderID?
 
     /**
      * Active user ID, if any.
      */
-    public let user: UserID? = nil
+    public let user: UserID?
 
     /**
      * Menu section to specify, if any.
      */
-    public let section: MenuSection? = nil
+    public let section: MenuSection?
 
     /**
      * Commercial item related to this event, if any.
      */
-    public let item: ItemID? = nil
+    public let item: ItemID?
 
     /**
      * Session or group ID, if applicable, and set.
      */
-    public let group: GroupID? = nil
+    public let group: GroupID?
 
     /**
      * Specifies the iOS application sending events.
      */
-    public let bundleId: String? = nil
+    public let bundleId: String?
 
     /**
      * Produce a default set of settings.
      */
     static func defaultSettings() -> Settings {
       return Settings()
+    }
+
+    /**
+     * Initialize a new settings object.
+     */
+    public init(partner: PartnerCode? = nil,
+                location: LocationCode? = nil,
+                deviceUUID: DeviceUUID? = nil,
+                collection: EventCollection? = nil,
+                order: OrderID? = nil,
+                user: UserID? = nil,
+                section: MenuSection? = nil,
+                item: ItemID? = nil,
+                group: GroupID? = nil,
+                bundleId: String? = nil) {
+      self.partner = partner
+      self.location = location
+      self.deviceUUID = deviceUUID
+      self.collection = collection
+      self.order = order
+      self.user = user
+      self.section = section
+      self.item = item
+      self.group = group
+      self.bundleId = bundleId
     }
   }
 
