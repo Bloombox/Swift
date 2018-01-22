@@ -17,7 +17,7 @@ public final class Services: ClientLogic {
   /**
    * Client-level settings.
    */
-  public let settings: BloomboxClient.Settings
+  public let settings: Bloombox.Settings
 
   /**
    * Low-level RPC dispatch logic.
@@ -27,11 +27,12 @@ public final class Services: ClientLogic {
   /**
    * Main initializer, used by the library.
    */
-  internal init(settings: BloomboxClient.Settings) {
+  internal init(settings: Bloombox.Settings) {
     self.settings = settings
     self.rpc = RPCLogic(settings: self.settings)
     self.shop = ShopClient(settings: settings)
     self.telemetry = TelemetryClient(settings: settings)
+    self.menu = MenuClient(settings: settings)
   }
 
   /**
@@ -40,7 +41,8 @@ public final class Services: ClientLogic {
   fileprivate var all: [RemoteService] {
     return [
       shop,
-      telemetry
+      telemetry,
+      menu
     ]
   }
 
@@ -67,4 +69,10 @@ public final class Services: ClientLogic {
    * have it attributed and placed in the larger flow.
    */
   public let telemetry: TelemetryClient
+
+  /**
+   * Menu service. Provides the ability to download menu data, update product inventory or
+   * content, and filter and sort items.
+   */
+  public let menu: MenuClient
 }

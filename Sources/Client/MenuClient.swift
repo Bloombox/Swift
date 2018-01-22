@@ -58,12 +58,12 @@ public final class MenuClient: RemoteService {
   /**
    * Client-wide settings.
    */
-  internal let settings: BloomboxClient.Settings
+  internal let settings: Bloombox.Settings
 
   /**
    * Library-internal initializer.
    */
-  public init(settings: BloomboxClient.Settings) {
+  public init(settings: Bloombox.Settings) {
     self.settings = settings
   }
 

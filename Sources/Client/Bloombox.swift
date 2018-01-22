@@ -1,6 +1,6 @@
 //
-//  BloomboxClient.swift
-//  BloomboxClient
+//  Bloombox.swift
+//  Bloombox
 //
 //  Created by James Clark on 12/13/17.
 //
@@ -23,9 +23,9 @@ public let __BLOOMBOX_VERSION__ = "0.0.1"
  * Main client class. Provides access to service-specific clients, and initializes basic settings
  * or context required for communication with servers.
  */
-public final class BloomboxClient {
+public final class Bloombox {
   /**
-   * Specifies settings for an instance of BloomboxClient.
+   * Specifies settings for an instance of Bloombox.
    */
   public struct Settings: EventContextData {
     /**
@@ -155,6 +155,13 @@ public final class BloomboxClient {
    */
   public var shop: ShopClient {
     return _services.shop
+  }
+
+  /**
+   * Public access to the Menu service client.
+   */
+  public var menu: MenuClient {
+    return _services.menu
   }
 
   /**

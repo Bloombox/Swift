@@ -39,5 +39,5 @@ internal protocol RemoteService: ClientLogic {
   /**
    * Specifies a mount point for client-wide settings.
    */
-  var settings: BloomboxClient.Settings { get }
+  var settings: Bloombox.Settings { get }
 }

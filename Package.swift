@@ -3,11 +3,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "BloomboxClient",
+    name: "Bloombox",
 
     products: [
         .library(
-            name: "BloomboxClient",
+            name: "Bloombox",
             targets: ["Client"])],
 
     dependencies: [

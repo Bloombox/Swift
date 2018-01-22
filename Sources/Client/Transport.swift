@@ -112,7 +112,7 @@ internal enum TransportEnvironment {
 internal struct ProductionShop: RPCServiceSettings {
   let secure = false
   let host = "shop.api.bloombox.cloud"
-  let port = 443
+  let port = 465
 }
 
 /**
@@ -121,7 +121,7 @@ internal struct ProductionShop: RPCServiceSettings {
 internal struct ProductionTelemetry: RPCServiceSettings {
   let secure = false
   let host = "telemetry.api.bloombox.cloud"
-  let port = 443
+  let port = 465
 }
 
 /**
@@ -130,7 +130,7 @@ internal struct ProductionTelemetry: RPCServiceSettings {
 internal struct ProductionMenu: RPCServiceSettings {
   let secure = false
   let host = "menu.api.bloombox.cloud"
-  let port = 443
+  let port = 465
 }
 
 #if DEBUG

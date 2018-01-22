@@ -159,13 +159,13 @@ internal final class RPCLogic: ClientLogic {
   /**
    * Main API client settings.
    */
-  let settings: BloomboxClient.Settings
+  let settings: Bloombox.Settings
 
 
   /**
    * Initialize this RPC logic with client settings.
    */
-  init(settings: BloomboxClient.Settings) {
+  init(settings: Bloombox.Settings) {
     self.settings = settings
   }
 

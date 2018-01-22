@@ -198,7 +198,7 @@ extension EventContextProto {
 /**
  * Context for an individual event. This struct can be passed in when invoking an event
  * transmission method, and overrides any default context set on the main API client via client
- * settings, specified in `BloomboxClient.settings`.
+ * settings, specified in `Bloombox.settings`.
  */
 public struct EventContext: EventContextData {
   /**
