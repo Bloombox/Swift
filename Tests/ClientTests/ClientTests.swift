@@ -58,7 +58,7 @@ class ClientTests: XCTestCase {
     }
   }
 
-  /*func testMemberVerify() throws {
+  func testMemberVerify() throws {
     let client: Bloombox = Bloombox(settings: Bloombox.Settings(apiKey: "AIzaSyA17mIw4tWGe-GsqRhdpUDfLAn_KZ_zbcM", partner: "caliva", location: "sjc"))
     do {
       try client.shop.verifyMember(email: "sam@bloombox.io")
@@ -81,11 +81,11 @@ class ClientTests: XCTestCase {
       print("error: got result \(result)")
       throw Services_Shop_V1_ShopClientError.error(c: result)
     }
-  }*/
+  }
 
   static var allTests = [
     ("testMenuDownload", testMenuDownload),
     ("testShopInfo", testShopInfo)
-    //("testMemberVerify", testMemberVerify),
+    ("testMemberVerify", testMemberVerify)
   ]
 }
