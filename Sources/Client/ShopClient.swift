@@ -7,6 +7,7 @@
 
 import Foundation
 import gRPC
+import Schema
 
 
 // Callback Types
@@ -16,6 +17,11 @@ public typealias VerifyMemberCallback = (CallResult, VerifyMember.Response?) -> 
 public typealias EnrollMemberCallback = (CallResult, EnrollMember.Response?) -> ()
 public typealias GetOrderCallback = (CallResult, GetOrder.Response?) -> ()
 public typealias SubmitOrderCallback = (CallResult, SubmitOrder.Response?) -> ()
+
+// Error Types
+public typealias ShopRPCError = Services_Shop_V1_ShopClientError
+public typealias VerifyError = Services_Shop_V1_VerifyError
+public typealias EnrollmentError = Services_Shop_V1_EnrollmentError
 
 
 /**
@@ -28,8 +34,10 @@ extension Shop: RPCService {}
  * Enumerates code-level errors in the Shop client.
  */
 public enum ShopClientError: Error {
+  case invalidApiKey
   case invalidPartnerCode
   case invalidLocationCode
+  case internalError
 }
 
 
@@ -51,11 +59,6 @@ public final class ShopClient: RemoteService {
   // MARK: Internals
 
   /**
-   * Shop service.
-   */
-  internal let service: Shop
-
-  /**
    * Client-wide settings.
    */
   internal let settings: Bloombox.Settings
@@ -65,16 +68,31 @@ public final class ShopClient: RemoteService {
    */
   public init(settings: Bloombox.Settings) {
     self.settings = settings
-    service = RPCServiceFactory<Shop>.factory(forService: Transport.config.services.shop)
+  }
+
+  /**
+   * Shop service.
+   */
+  internal func service(_ apiKey: APIKey) -> Shop {
+    let svc = RPCServiceFactory<Shop>.factory(forService: Transport.config.services.shop)
+    svc.metadata.add(key: "x-api-key", value: apiKey)
+    return svc
   }
 
   /**
    * Resolve partner and location context, throwing an error if it cannot be figured out.
    */
   private func resolveContext(_ partner: PartnerCode? = nil,
-                              _ location: LocationCode? = nil) throws -> (partner: PartnerCode, location: LocationCode) {
+                              _ location: LocationCode? = nil,
+                              _ apiKey: APIKey? = nil) throws -> (partner: PartnerCode, location: LocationCode, apiKey: APIKey) {
     let partnerCode: PartnerCode? = partner ?? settings.partner
     let locationCode: LocationCode? = location ?? settings.location
+    let apiKey: APIKey? = apiKey ?? settings.apiKey
+
+    // must have an API key
+    guard apiKey != nil else {
+      throw ShopClientError.invalidApiKey
+    }
 
     // validate partner and location codes
     guard partnerCode != nil, locationCode != nil else {
@@ -84,7 +102,7 @@ public final class ShopClient: RemoteService {
       }
       throw ShopClientError.invalidPartnerCode
     }
-    return (partner: partnerCode!, location: locationCode!)
+    return (partner: partnerCode!, location: locationCode!, apiKey: apiKey!)
   }
 
   /**
@@ -100,11 +118,12 @@ public final class ShopClient: RemoteService {
    * Retrieve info about a particular storefront, specifically, its open/closed status,
    * hours, and metadata.
    */
-  public func shopInfo(partner: PartnerCode? = nil,
-                       location: LocationCode? = nil) throws -> ShopInfo.Response {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
+  public func info(partner: PartnerCode? = nil,
+                   location: LocationCode? = nil,
+                   apiKey: APIKey? = nil) throws -> ShopInfo.Response {
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
 
-    return try self.service.shopinfo(ShopInfo.Request.with { builder in
+    return try self.service(apiKey).shopinfo(ShopInfo.Request.with { builder in
       builder.location = PartnerLocationKey.with { builder in
         builder.code = locationCode
         builder.partner = PartnerKey.with { builder in
@@ -118,12 +137,13 @@ public final class ShopClient: RemoteService {
    * Retrieve info, asynchronously, about a particular storefront, specifically, its
    * open/closed status, hours, and metadata.
    */
-  public func shopInfo(partner: PartnerCode? = nil,
-                       location: LocationCode? = nil,
-                       callback: @escaping ShopInfoCallback) throws -> ShopInfoCall {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
+  public func info(partner: PartnerCode? = nil,
+                   location: LocationCode? = nil,
+                   apiKey: APIKey? = nil,
+                   callback: @escaping ShopInfoCallback) throws -> ShopInfoCall {
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
 
-    return try self.service.shopinfo(ShopInfo.Request.with { builder in
+    return try self.service(apiKey).shopinfo(ShopInfo.Request.with { builder in
       builder.location = PartnerLocationKey.with { builder in
         builder.code = locationCode
         builder.partner = PartnerKey.with { builder in
@@ -142,10 +162,11 @@ public final class ShopClient: RemoteService {
    */
   public func checkZipcode(zipcode: String,
                            partner: PartnerCode? = nil,
+                           apiKey: APIKey? = nil,
                            location: LocationCode? = nil) throws -> CheckZipcode.Response {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
 
-    return try self.service.checkzipcode(CheckZipcode.Request.with { builder in
+    return try self.service(apiKey).checkzipcode(CheckZipcode.Request.with { builder in
       builder.zipcode = zipcode
       builder.location = PartnerLocationKey.with { builder in
         builder.code = locationCode
@@ -163,10 +184,11 @@ public final class ShopClient: RemoteService {
   public func checkZipcode(zipcode: String,
                            partner: PartnerCode? = nil,
                            location: LocationCode? = nil,
+                           apiKey: APIKey? = nil,
                            callback: @escaping CheckZipcodeCallback) throws -> CheckZipcodeCall {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
 
-    return try self.service.checkzipcode(CheckZipcode.Request.with { builder in
+    return try self.service(apiKey).checkzipcode(CheckZipcode.Request.with { builder in
       builder.zipcode = zipcode
       builder.location = PartnerLocationKey.with { builder in
         builder.code = locationCode
@@ -187,11 +209,16 @@ public final class ShopClient: RemoteService {
    */
   public func verifyMember(email: String,
                            partner: PartnerCode? = nil,
-                           location: LocationCode? = nil) throws -> VerifyMember.Response {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
+                           location: LocationCode? = nil,
+                           apiKey: APIKey? = nil) throws -> VerifyMember.Response {
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
 
-    return try self.service.verifymember(VerifyMember.Request.with { builder in
-      builder.emailAddress = email
+    guard let base64EncodedEmail = email.data(using: .utf8)?.base64EncodedString() else {
+      throw ShopClientError.internalError
+    }
+
+    return try self.service(apiKey).verifymember(VerifyMember.Request.with { builder in
+      builder.emailAddress = base64EncodedEmail
       builder.location = PartnerLocationKey.with { builder in
         builder.code = locationCode
         builder.partner = PartnerKey.with { builder in
@@ -209,10 +236,11 @@ public final class ShopClient: RemoteService {
   public func verifyMember(email: String,
                            partner: PartnerCode? = nil,
                            location: LocationCode? = nil,
+                           apiKey: APIKey? = nil,
                            callback: @escaping VerifyMemberCallback) throws -> VerifyMemberCall {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
 
-    return try self.service.verifymember(VerifyMember.Request.with { builder in
+    return try self.service(apiKey).verifymember(VerifyMember.Request.with { builder in
       builder.emailAddress = email
       builder.location = PartnerLocationKey.with { builder in
         builder.code = locationCode
@@ -231,8 +259,13 @@ public final class ShopClient: RemoteService {
    * location. Under the hood, this creates an account, writes it to the partner systems,
    * and then auto-creates a membership.
    */
-  public func enrollMember(enrollment: EnrollMember.Request) throws -> EnrollMember.Response {
-    return try self.service.enrollmember(enrollment)
+  public func enrollMember(enrollment: EnrollMember.Request,
+                           apiKey: APIKey? = nil) throws -> EnrollMember.Response {
+    let apiKey = apiKey ?? settings.apiKey
+    guard apiKey != nil else {
+      throw ShopClientError.invalidApiKey
+    }
+    return try self.service(apiKey!).enrollmember(enrollment)
   }
 
   /**
@@ -241,8 +274,13 @@ public final class ShopClient: RemoteService {
    * systems, and then auto-creates a membership.
    */
   public func enrollMember(enrollment: EnrollMember.Request,
+                           apiKey: APIKey? = nil,
                            callback: @escaping EnrollMemberCallback) throws -> EnrollMemberCall {
-    return try self.service.enrollmember(enrollment) { (response, callResult) in
+    let apiKey = apiKey ?? settings.apiKey
+    guard apiKey != nil else {
+      throw ShopClientError.invalidApiKey
+    }
+    return try self.service(apiKey!).enrollmember(enrollment) { (response, callResult) in
       callback(callResult, response)
     }
   }
@@ -254,10 +292,11 @@ public final class ShopClient: RemoteService {
    */
   public func getOrder(id: OrderID,
                        partner: PartnerCode? = nil,
-                       location: LocationCode? = nil) throws -> GetOrder.Response {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
+                       location: LocationCode? = nil,
+                       apiKey: APIKey? = nil) throws -> GetOrder.Response {
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
 
-    return try self.service.getorder(GetOrder.Request.with { builder in
+    return try self.service(apiKey).getorder(GetOrder.Request.with { builder in
       builder.orderID = id
       builder.location = PartnerLocationKey.with { builder in
         builder.code = locationCode
@@ -275,10 +314,11 @@ public final class ShopClient: RemoteService {
   public func getOrder(id: OrderID,
                        partner: PartnerCode? = nil,
                        location: LocationCode? = nil,
+                       apiKey: APIKey? = nil,
                        callback: @escaping GetOrderCallback) throws -> GetOrderCall {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
 
-    return try self.service.getorder(GetOrder.Request.with { builder in
+    return try self.service(apiKey).getorder(GetOrder.Request.with { builder in
       builder.orderID = id
       builder.location = PartnerLocationKey.with { builder in
         builder.code = locationCode
@@ -300,10 +340,11 @@ public final class ShopClient: RemoteService {
   public func submitOrder(order: Order,
                           orderID id: OrderID? = nil,
                           partner: PartnerCode? = nil,
-                          location: LocationCode? = nil) throws -> SubmitOrder.Response {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
+                          location: LocationCode? = nil,
+                          apiKey: APIKey? = nil) throws -> SubmitOrder.Response {
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
 
-    return try self.service.submitorder(SubmitOrder.Request.with { builder in
+    return try self.service(apiKey).submitorder(SubmitOrder.Request.with { builder in
       builder.order = order
       builder.location = PartnerLocationKey.with { builder in
         builder.code = locationCode
@@ -323,10 +364,11 @@ public final class ShopClient: RemoteService {
                           orderID id: OrderID? = nil,
                           partner: PartnerCode? = nil,
                           location: LocationCode? = nil,
+                          apiKey: APIKey? = nil,
                           callback: @escaping SubmitOrderCallback) throws -> SubmitOrderCall {
-    let (locationCode, partnerCode) = try resolveContext(partner, location)
+    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
 
-    return try self.service.submitorder(SubmitOrder.Request.with { builder in
+    return try self.service(apiKey).submitorder(SubmitOrder.Request.with { builder in
       builder.order = order
       builder.location = PartnerLocationKey.with { builder in
         builder.code = locationCode

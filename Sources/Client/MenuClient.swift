@@ -47,15 +47,6 @@ public final class MenuClient: RemoteService {
   // MARK: Internals
 
   /**
-   * Menu service.
-   */
-  internal func service(apiKey: APIKey) -> MenuService {
-    let svc = RPCServiceFactory<MenuService>.factory(forService: Transport.config.services.menu)
-    svc.metadata.add(key: "x-api-key", value: apiKey)
-    return svc
-  }
-
-  /**
    * Client-wide settings.
    */
   internal let settings: Bloombox.Settings
@@ -65,6 +56,15 @@ public final class MenuClient: RemoteService {
    */
   public init(settings: Bloombox.Settings) {
     self.settings = settings
+  }
+
+  /**
+   * Menu service.
+   */
+  internal func service(_ apiKey: APIKey) -> MenuService {
+    let svc = RPCServiceFactory<MenuService>.factory(forService: Transport.config.services.menu)
+    svc.metadata.add(key: "x-api-key", value: apiKey)
+    return svc
   }
 
   /**
@@ -108,7 +108,7 @@ public final class MenuClient: RemoteService {
                        location: LocationCode? = nil,
                        apiKey: APIKey? = nil) throws -> GetMenu.Response {
     let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
-    let service = self.service(apiKey: apiKey)
+    let service = self.service(apiKey)
 
     return try service.retrieve(GetMenu.Request.with { builder in
       builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
@@ -124,7 +124,7 @@ public final class MenuClient: RemoteService {
                        apiKey: APIKey? = nil,
                        callback: @escaping MenuRetrieveCallback) throws -> GetMenuCall {
     let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
-    let service = self.service(apiKey: apiKey)
+    let service = self.service(apiKey)
 
     return try service.retrieve(GetMenu.Request.with { builder in
       builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
