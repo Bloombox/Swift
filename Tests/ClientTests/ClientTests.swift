@@ -20,15 +20,15 @@ class ClientTests: XCTestCase {
     } catch (MenuClientError.invalidLocationCode) {
       print("error: invalid location")
       throw MenuClientError.invalidLocationCode
-    } catch (Services_Menu_V1Beta1_MenuClientError.invalidMessageReceived) {
+    } catch (ShopRPCError.invalidMessageReceived) {
       print("error: invalid message")
-      throw Services_Menu_V1Beta1_MenuClientError.invalidMessageReceived
-    } catch (Services_Menu_V1Beta1_MenuClientError.endOfStream) {
+      throw ShopRPCError.invalidMessageReceived
+    } catch (ShopRPCError.endOfStream) {
       print("error: unexpected end of stream")
-      throw Services_Menu_V1Beta1_MenuClientError.endOfStream
-    } catch (Services_Menu_V1Beta1_MenuClientError.error(let result)) {
+      throw ShopRPCError.endOfStream
+    } catch (ShopRPCError.error(let result)) {
       print("error: got result \(result)")
-      throw Services_Menu_V1Beta1_MenuClientError.error(c: result)
+      throw ShopRPCError.error(c: result)
     }
   }
 
@@ -46,22 +46,22 @@ class ClientTests: XCTestCase {
     } catch (ShopClientError.invalidLocationCode) {
       print("error: invalid location")
       throw ShopClientError.invalidLocationCode
-    } catch (Services_Shop_V1_ShopClientError.invalidMessageReceived) {
+    } catch (ShopRPCError.invalidMessageReceived) {
       print("error: invalid message")
-      throw Services_Shop_V1_ShopClientError.invalidMessageReceived
-    } catch (Services_Shop_V1_ShopClientError.endOfStream) {
+      throw ShopRPCError.invalidMessageReceived
+    } catch (ShopRPCError.endOfStream) {
       print("error: unexpected end of stream")
-      throw Services_Shop_V1_ShopClientError.endOfStream
-    } catch (Services_Shop_V1_ShopClientError.error(let result)) {
+      throw ShopRPCError.endOfStream
+    } catch (ShopRPCError.error(let result)) {
       print("error: got result \(result)")
-      throw Services_Shop_V1_ShopClientError.error(c: result)
+      throw ShopRPCError.error(c: result)
     }
   }
 
   func testMemberVerify() throws {
     let client: Bloombox = Bloombox(settings: Bloombox.Settings(apiKey: "AIzaSyA17mIw4tWGe-GsqRhdpUDfLAn_KZ_zbcM", partner: "caliva", location: "sjc"))
     do {
-      try client.shop.verifyMember(email: "sam@bloombox.io")
+      let _ = try client.shop.verifyMember(email: "sam@bloombox.io")
     } catch (ShopClientError.invalidApiKey) {
       print("error: invalid API key")
       throw ShopClientError.invalidApiKey
@@ -71,21 +71,21 @@ class ClientTests: XCTestCase {
     } catch (ShopClientError.invalidLocationCode) {
       print("error: invalid location")
       throw ShopClientError.invalidLocationCode
-    } catch (Services_Shop_V1_ShopClientError.invalidMessageReceived) {
+    } catch (ShopRPCError.invalidMessageReceived) {
       print("error: invalid message")
-      throw Services_Shop_V1_ShopClientError.invalidMessageReceived
-    } catch (Services_Shop_V1_ShopClientError.endOfStream) {
+      throw ShopRPCError.invalidMessageReceived
+    } catch (ShopRPCError.endOfStream) {
       print("error: unexpected end of stream")
-      throw Services_Shop_V1_ShopClientError.endOfStream
-    } catch (Services_Shop_V1_ShopClientError.error(let result)) {
+      throw ShopRPCError.endOfStream
+    } catch (ShopRPCError.error(let result)) {
       print("error: got result \(result)")
-      throw Services_Shop_V1_ShopClientError.error(c: result)
+      throw ShopRPCError.error(c: result)
     }
   }
 
   static var allTests = [
     ("testMenuDownload", testMenuDownload),
-    ("testShopInfo", testShopInfo)
+    ("testShopInfo", testShopInfo),
     ("testMemberVerify", testMemberVerify)
   ]
 }
