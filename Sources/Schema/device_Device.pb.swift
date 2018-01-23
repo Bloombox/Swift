@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates major types of devices that might be encountered, including desktops, phones, tablets, TVs, and browsers.
-public enum Device_DeviceType: SwiftProtobuf.Enum {
+public enum Opencannabis_Device_DeviceType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The end-device type is not known.
@@ -68,7 +68,7 @@ public enum Device_DeviceType: SwiftProtobuf.Enum {
 }
 
 /// Specifies a structure that describes a known device.
-public struct Device_Device: SwiftProtobuf.Message {
+public struct Opencannabis_Device_Device: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Device"
 
   /// Universally unique identifier for this device.
@@ -78,14 +78,14 @@ public struct Device_Device: SwiftProtobuf.Message {
   }
 
   /// Type of this device.
-  public var type: Device_DeviceType {
+  public var type: Opencannabis_Device_DeviceType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Flags for this device.
-  public var flags: Device_DeviceFlags {
-    get {return _storage._flags ?? Device_DeviceFlags()}
+  public var flags: Opencannabis_Device_DeviceFlags {
+    get {return _storage._flags ?? Opencannabis_Device_DeviceFlags()}
     set {_uniqueStorage()._flags = newValue}
   }
   /// Returns true if `flags` has been explicitly set.
@@ -94,8 +94,8 @@ public struct Device_Device: SwiftProtobuf.Message {
   public mutating func clearFlags() {_storage._flags = nil}
 
   /// Credentials for this device.
-  public var key: Device_DeviceCredentials {
-    get {return _storage._key ?? Device_DeviceCredentials()}
+  public var key: Opencannabis_Device_DeviceCredentials {
+    get {return _storage._key ?? Opencannabis_Device_DeviceCredentials()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -152,7 +152,7 @@ public struct Device_Device: SwiftProtobuf.Message {
 }
 
 /// Stateful flags that may be set on a device.
-public struct Device_DeviceFlags: SwiftProtobuf.Message {
+public struct Opencannabis_Device_DeviceFlags: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".DeviceFlags"
 
   /// Flag to mark a device as ephemeral, i.e. attached to a disposable identity.
@@ -195,7 +195,7 @@ public struct Device_DeviceFlags: SwiftProtobuf.Message {
 }
 
 /// Credentials that assert a device's identity or authorization.
-public struct Device_DeviceCredentials: SwiftProtobuf.Message {
+public struct Opencannabis_Device_DeviceCredentials: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".DeviceCredentials"
 
   /// Raw bytes for a device's public key.
@@ -260,9 +260,9 @@ public struct Device_DeviceCredentials: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "device"
+fileprivate let _protobuf_package = "opencannabis.device"
 
-extension Device_DeviceType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Device_DeviceType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNKNOWN_DEVICE_TYPE"),
     1: .same(proto: "DESKTOP"),
@@ -272,7 +272,7 @@ extension Device_DeviceType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Device_Device: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Device_Device: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
     2: .same(proto: "type"),
@@ -282,9 +282,9 @@ extension Device_Device: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
 
   fileprivate class _StorageClass {
     var _uuid: String = String()
-    var _type: Device_DeviceType = .unknownDeviceType
-    var _flags: Device_DeviceFlags? = nil
-    var _key: Device_DeviceCredentials? = nil
+    var _type: Opencannabis_Device_DeviceType = .unknownDeviceType
+    var _flags: Opencannabis_Device_DeviceFlags? = nil
+    var _key: Opencannabis_Device_DeviceCredentials? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -305,7 +305,7 @@ extension Device_Device: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Device_Device) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Device_Device) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -323,13 +323,13 @@ extension Device_Device: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
   }
 }
 
-extension Device_DeviceFlags: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Device_DeviceFlags: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "ephemeral"),
     2: .same(proto: "managed"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Device_DeviceFlags) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Device_DeviceFlags) -> Bool {
     if self.ephemeral != other.ephemeral {return false}
     if self.managed != other.managed {return false}
     if unknownFields != other.unknownFields {return false}
@@ -337,7 +337,7 @@ extension Device_DeviceFlags: SwiftProtobuf._MessageImplementationBase, SwiftPro
   }
 }
 
-extension Device_DeviceCredentials: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Device_DeviceCredentials: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "public_key"),
     2: .standard(proto: "private_key"),
@@ -346,7 +346,7 @@ extension Device_DeviceCredentials: SwiftProtobuf._MessageImplementationBase, Sw
     5: .same(proto: "authorities"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Device_DeviceCredentials) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Device_DeviceCredentials) -> Bool {
     if self.publicKey != other.publicKey {return false}
     if self.privateKey != other.privateKey {return false}
     if self.sha256 != other.sha256 {return false}

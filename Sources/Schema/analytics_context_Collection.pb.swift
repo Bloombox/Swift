@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates categories of events supported by the telemetry system.
-public enum Analytics_Context_EventType: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Analytics_Context_EventType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Generic event or error report with arbitrary payload.
@@ -68,7 +68,7 @@ public enum Analytics_Context_EventType: SwiftProtobuf.Enum {
 }
 
 /// Represents a specification for an analytics event collection.
-public struct Analytics_Context_Collection: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Context_Collection: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Collection"
 
   /// Specifies an unenumerated collection by name.
@@ -78,7 +78,7 @@ public struct Analytics_Context_Collection: SwiftProtobuf.Message {
   public var `internal`: Bool = false
 
   /// Specifies the type of event. Usually added by the telemetry backend.
-  public var type: Analytics_Context_EventType = .generic
+  public var type: Bloombox_Schema_Analytics_Context_EventType = .generic
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -119,9 +119,9 @@ public struct Analytics_Context_Collection: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.context"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
 
-extension Analytics_Context_EventType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_EventType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "GENERIC"),
     1: .same(proto: "COMMERCIAL"),
@@ -131,14 +131,14 @@ extension Analytics_Context_EventType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Analytics_Context_Collection: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_Collection: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "internal"),
     3: .same(proto: "type"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Context_Collection) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_Collection) -> Bool {
     if self.name != other.name {return false}
     if self.`internal` != other.`internal` {return false}
     if self.type != other.type {return false}

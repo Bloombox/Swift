@@ -21,7 +21,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Specifies a device context where code is running natively. This is most applicable to native mobile applications and
 /// server applications.
-public enum Analytics_Context_OSType: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Analytics_Context_OSType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies that the OS is unknown or not applicable in this circumstance.
@@ -94,18 +94,18 @@ public enum Analytics_Context_OSType: SwiftProtobuf.Enum {
 }
 
 /// Structure describing a device's operating system, including type and version.
-public struct Analytics_Context_DeviceOS: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Context_DeviceOS: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".DeviceOS"
 
   /// Type of Operating System being expressed or specified.
-  public var type: Analytics_Context_OSType {
+  public var type: Bloombox_Schema_Analytics_Context_OSType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Version of the OS running on the device.
-  public var version: Structs_VersionSpec {
-    get {return _storage._version ?? Structs_VersionSpec()}
+  public var version: Opencannabis_Structs_VersionSpec {
+    get {return _storage._version ?? Opencannabis_Structs_VersionSpec()}
     set {_uniqueStorage()._version = newValue}
   }
   /// Returns true if `version` has been explicitly set.
@@ -155,9 +155,9 @@ public struct Analytics_Context_DeviceOS: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.context"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
 
-extension Analytics_Context_OSType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_OSType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "OS_UNKNOWN"),
     4: .same(proto: "WINDOWS"),
@@ -172,15 +172,15 @@ extension Analytics_Context_OSType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Analytics_Context_DeviceOS: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_DeviceOS: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "version"),
   ]
 
   fileprivate class _StorageClass {
-    var _type: Analytics_Context_OSType = .osUnknown
-    var _version: Structs_VersionSpec? = nil
+    var _type: Bloombox_Schema_Analytics_Context_OSType = .osUnknown
+    var _version: Opencannabis_Structs_VersionSpec? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -199,7 +199,7 @@ extension Analytics_Context_DeviceOS: SwiftProtobuf._MessageImplementationBase, 
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Context_DeviceOS) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_DeviceOS) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

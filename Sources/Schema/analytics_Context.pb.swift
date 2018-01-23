@@ -20,12 +20,12 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Indicates temporal positioning - or, the "when" - for a telemetry event, post-ingest.
-public struct Analytics_EventPosition: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".EventPosition"
 
   /// Timestamp describing when this event was ingested by the backend telemetry pipeline.
-  public var ingest: Temporal_Instant {
-    get {return _storage._ingest ?? Temporal_Instant()}
+  public var ingest: Opencannabis_Temporal_Instant {
+    get {return _storage._ingest ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._ingest = newValue}
   }
   /// Returns true if `ingest` has been explicitly set.
@@ -34,8 +34,8 @@ public struct Analytics_EventPosition: SwiftProtobuf.Message {
   public mutating func clearIngest() {_storage._ingest = nil}
 
   /// Timestamp describing when this event occurred, as reported by the submitting device or endpoint.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -104,12 +104,12 @@ public struct Analytics_EventPosition: SwiftProtobuf.Message {
 }
 
 /// Specifies full, inflated data records for contextually-related objects, w.r.t. the current event.
-public struct Analytics_EventActors: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_EventActors: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".EventActors"
 
   /// User account that was logged in when the event was submitted.
-  public var user: Identity_User {
-    get {return _storage._user ?? Identity_User()}
+  public var user: Bloombox_Schema_Identity_User {
+    get {return _storage._user ?? Bloombox_Schema_Identity_User()}
     set {_uniqueStorage()._user = newValue}
   }
   /// Returns true if `user` has been explicitly set.
@@ -118,8 +118,8 @@ public struct Analytics_EventActors: SwiftProtobuf.Message {
   public mutating func clearUser() {_storage._user = nil}
 
   /// Partner account under which the event was submitted.
-  public var partner: Partner_Partner {
-    get {return _storage._partner ?? Partner_Partner()}
+  public var partner: Bloombox_Schema_Partner_Partner {
+    get {return _storage._partner ?? Bloombox_Schema_Partner_Partner()}
     set {_uniqueStorage()._partner = newValue}
   }
   /// Returns true if `partner` has been explicitly set.
@@ -128,8 +128,8 @@ public struct Analytics_EventActors: SwiftProtobuf.Message {
   public mutating func clearPartner() {_storage._partner = nil}
 
   /// Location account under which this event was submitted.
-  public var location: Partner_PartnerLocation {
-    get {return _storage._location ?? Partner_PartnerLocation()}
+  public var location: Bloombox_Schema_Partner_PartnerLocation {
+    get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocation()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -182,12 +182,12 @@ public struct Analytics_EventActors: SwiftProtobuf.Message {
 }
 
 /// Specifies contextual metadata to include with events or exceptions recorded via analytics/telemetry ingest.
-public struct Analytics_Context: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Context"
 
   /// Collection information, specifies event type or category.
-  public var collection: Analytics_Context_Collection {
-    get {return _storage._collection ?? Analytics_Context_Collection()}
+  public var collection: Bloombox_Schema_Analytics_Context_Collection {
+    get {return _storage._collection ?? Bloombox_Schema_Analytics_Context_Collection()}
     set {_uniqueStorage()._collection = newValue}
   }
   /// Returns true if `collection` has been explicitly set.
@@ -196,8 +196,8 @@ public struct Analytics_Context: SwiftProtobuf.Message {
   public mutating func clearCollection() {_storage._collection = nil}
 
   /// Specifies the user associated with this event, if known.
-  public var userKey: Identity_UserKey {
-    get {return _storage._userKey ?? Identity_UserKey()}
+  public var userKey: Bloombox_Schema_Identity_UserKey {
+    get {return _storage._userKey ?? Bloombox_Schema_Identity_UserKey()}
     set {_uniqueStorage()._userKey = newValue}
   }
   /// Returns true if `userKey` has been explicitly set.
@@ -231,8 +231,8 @@ public struct Analytics_Context: SwiftProtobuf.Message {
   }
 
   /// Partner and commercial scope of this event.
-  public var scope: Analytics_Scope {
-    get {return _storage._scope ?? Analytics_Scope()}
+  public var scope: Bloombox_Schema_Analytics_Scope {
+    get {return _storage._scope ?? Bloombox_Schema_Analytics_Scope()}
     set {_uniqueStorage()._scope = newValue}
   }
   /// Returns true if `scope` has been explicitly set.
@@ -241,8 +241,8 @@ public struct Analytics_Context: SwiftProtobuf.Message {
   public mutating func clearScope() {_storage._scope = nil}
 
   /// Application version information.
-  public var app: Analytics_Context_DeviceApplication {
-    get {return _storage._app ?? Analytics_Context_DeviceApplication()}
+  public var app: Bloombox_Schema_Analytics_Context_DeviceApplication {
+    get {return _storage._app ?? Bloombox_Schema_Analytics_Context_DeviceApplication()}
     set {_uniqueStorage()._app = newValue}
   }
   /// Returns true if `app` has been explicitly set.
@@ -251,8 +251,8 @@ public struct Analytics_Context: SwiftProtobuf.Message {
   public mutating func clearApp() {_storage._app = nil}
 
   /// Library version information.
-  public var library: Analytics_Context_DeviceLibrary {
-    get {return _storage._library ?? Analytics_Context_DeviceLibrary()}
+  public var library: Bloombox_Schema_Analytics_Context_DeviceLibrary {
+    get {return _storage._library ?? Bloombox_Schema_Analytics_Context_DeviceLibrary()}
     set {_uniqueStorage()._library = newValue}
   }
   /// Returns true if `library` has been explicitly set.
@@ -262,8 +262,8 @@ public struct Analytics_Context: SwiftProtobuf.Message {
 
   /// Specifies information about a native device, when the event is being sent from a native context of some kind,
   /// such as a mobile phone application or embedded device running partner code.
-  public var native: Analytics_Context_NativeDeviceContext {
-    get {return _storage._native ?? Analytics_Context_NativeDeviceContext()}
+  public var native: Bloombox_Schema_Analytics_Context_NativeDeviceContext {
+    get {return _storage._native ?? Bloombox_Schema_Analytics_Context_NativeDeviceContext()}
     set {_uniqueStorage()._native = newValue}
   }
   /// Returns true if `native` has been explicitly set.
@@ -272,8 +272,8 @@ public struct Analytics_Context: SwiftProtobuf.Message {
   public mutating func clearNative() {_storage._native = nil}
 
   /// Specifies information about a web browser, when the event is being sent from some kind of web browsing context.
-  public var browser: Analytics_Context_BrowserDeviceContext {
-    get {return _storage._browser ?? Analytics_Context_BrowserDeviceContext()}
+  public var browser: Bloombox_Schema_Analytics_Context_BrowserDeviceContext {
+    get {return _storage._browser ?? Bloombox_Schema_Analytics_Context_BrowserDeviceContext()}
     set {_uniqueStorage()._browser = newValue}
   }
   /// Returns true if `browser` has been explicitly set.
@@ -282,8 +282,8 @@ public struct Analytics_Context: SwiftProtobuf.Message {
   public mutating func clearBrowser() {_storage._browser = nil}
 
   /// Origin location for this event, as determined by geolocation or explicit inclusion in the event payload.
-  public var location: Geo_Location {
-    get {return _storage._location ?? Geo_Location()}
+  public var location: Opencannabis_Geo_Location {
+    get {return _storage._location ?? Opencannabis_Geo_Location()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -373,9 +373,9 @@ public struct Analytics_Context: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics"
+fileprivate let _protobuf_package = "bloombox.schema.analytics"
 
-extension Analytics_EventPosition: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .same(proto: "ingest"),
     3: .same(proto: "occurred"),
@@ -384,8 +384,8 @@ extension Analytics_EventPosition: SwiftProtobuf._MessageImplementationBase, Swi
   ]
 
   fileprivate class _StorageClass {
-    var _ingest: Temporal_Instant? = nil
-    var _occurred: Temporal_Instant? = nil
+    var _ingest: Opencannabis_Temporal_Instant? = nil
+    var _occurred: Opencannabis_Temporal_Instant? = nil
     var _processed: UInt64 = 0
     var _enriched: UInt64 = 0
 
@@ -408,7 +408,7 @@ extension Analytics_EventPosition: SwiftProtobuf._MessageImplementationBase, Swi
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_EventPosition) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_EventPosition) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -426,7 +426,7 @@ extension Analytics_EventPosition: SwiftProtobuf._MessageImplementationBase, Swi
   }
 }
 
-extension Analytics_EventActors: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_EventActors: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "user"),
     2: .same(proto: "partner"),
@@ -434,9 +434,9 @@ extension Analytics_EventActors: SwiftProtobuf._MessageImplementationBase, Swift
   ]
 
   fileprivate class _StorageClass {
-    var _user: Identity_User? = nil
-    var _partner: Partner_Partner? = nil
-    var _location: Partner_PartnerLocation? = nil
+    var _user: Bloombox_Schema_Identity_User? = nil
+    var _partner: Bloombox_Schema_Partner_Partner? = nil
+    var _location: Bloombox_Schema_Partner_PartnerLocation? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -456,7 +456,7 @@ extension Analytics_EventActors: SwiftProtobuf._MessageImplementationBase, Swift
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_EventActors) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_EventActors) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -473,7 +473,7 @@ extension Analytics_EventActors: SwiftProtobuf._MessageImplementationBase, Swift
   }
 }
 
-extension Analytics_Context: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "collection"),
     2: .standard(proto: "user_key"),
@@ -490,18 +490,18 @@ extension Analytics_Context: SwiftProtobuf._MessageImplementationBase, SwiftProt
   ]
 
   fileprivate class _StorageClass {
-    var _collection: Analytics_Context_Collection? = nil
-    var _userKey: Identity_UserKey? = nil
+    var _collection: Bloombox_Schema_Analytics_Context_Collection? = nil
+    var _userKey: Bloombox_Schema_Identity_UserKey? = nil
     var _fingerprint: String = String()
     var _group: String = String()
     var _hostname: String = String()
     var _ipAddress: String = String()
-    var _scope: Analytics_Scope? = nil
-    var _app: Analytics_Context_DeviceApplication? = nil
-    var _library: Analytics_Context_DeviceLibrary? = nil
-    var _native: Analytics_Context_NativeDeviceContext? = nil
-    var _browser: Analytics_Context_BrowserDeviceContext? = nil
-    var _location: Geo_Location? = nil
+    var _scope: Bloombox_Schema_Analytics_Scope? = nil
+    var _app: Bloombox_Schema_Analytics_Context_DeviceApplication? = nil
+    var _library: Bloombox_Schema_Analytics_Context_DeviceLibrary? = nil
+    var _native: Bloombox_Schema_Analytics_Context_NativeDeviceContext? = nil
+    var _browser: Bloombox_Schema_Analytics_Context_BrowserDeviceContext? = nil
+    var _location: Opencannabis_Geo_Location? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -530,7 +530,7 @@ extension Analytics_Context: SwiftProtobuf._MessageImplementationBase, SwiftProt
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Context) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

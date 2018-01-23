@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Oauth_AuthorizationScope: SwiftProtobuf.Message {
+public struct Opencannabis_Oauth_AuthorizationScope: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".AuthorizationScope"
 
   public var label: String = String()
@@ -61,15 +61,15 @@ public struct Oauth_AuthorizationScope: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "oauth"
+fileprivate let _protobuf_package = "opencannabis.oauth"
 
-extension Oauth_AuthorizationScope: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Oauth_AuthorizationScope: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "label"),
     2: .same(proto: "uri"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Oauth_AuthorizationScope) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Oauth_AuthorizationScope) -> Bool {
     if self.label != other.label {return false}
     if self.uri != other.uri {return false}
     if unknownFields != other.unknownFields {return false}

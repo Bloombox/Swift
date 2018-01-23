@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a model for a nation-state-issued passport.
-public struct Identity_Ids_Passport: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_Ids_Passport: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Passport"
 
   /// Barcode from the passport, if any.
@@ -64,15 +64,15 @@ public struct Identity_Ids_Passport: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "identity.ids"
+fileprivate let _protobuf_package = "bloombox.schema.identity.ids"
 
-extension Identity_Ids_Passport: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Ids_Passport: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "barcode"),
     2: .same(proto: "nation"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Identity_Ids_Passport) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_Passport) -> Bool {
     if self.barcode != other.barcode {return false}
     if self.nation != other.nation {return false}
     if unknownFields != other.unknownFields {return false}

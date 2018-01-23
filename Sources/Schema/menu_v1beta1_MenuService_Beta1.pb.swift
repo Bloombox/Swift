@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates known errors that may be thrown by menu operations.
-public enum Services_Menu_V1beta1_MenuError: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Services_Menu_V1beta1_MenuError: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// No error was encountered.
@@ -78,14 +78,14 @@ public enum Services_Menu_V1beta1_MenuError: SwiftProtobuf.Enum {
 }
 
 /// Specifies an RPC operation to retrieve status information for the Menu API.
-public struct Services_Menu_V1beta1_Ping: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Services_Menu_V1beta1_Ping: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Ping"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies a menu ping request.
   public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Menu_V1beta1_Ping.protoMessageName + ".Request"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_Ping.protoMessageName + ".Request"
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -111,10 +111,10 @@ public struct Services_Menu_V1beta1_Ping: SwiftProtobuf.Message {
 
   /// Specifies a menu ping response.
   public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Menu_V1beta1_Ping.protoMessageName + ".Response"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_Ping.protoMessageName + ".Response"
 
     /// Current service status.
-    public var status: Services_ServiceStatus = .unknown
+    public var status: Bloombox_Schema_Services_ServiceStatus = .unknown
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -147,11 +147,11 @@ public struct Services_Menu_V1beta1_Ping: SwiftProtobuf.Message {
 
   /// Specifies a menu ping operation, consisting of one request and one response.
   public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Menu_V1beta1_Ping.protoMessageName + ".Operation"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_Ping.protoMessageName + ".Operation"
 
     /// Request to ping.
-    public var request: Services_Menu_V1beta1_Ping.Request {
-      get {return _storage._request ?? Services_Menu_V1beta1_Ping.Request()}
+    public var request: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request {
+      get {return _storage._request ?? Bloombox_Schema_Services_Menu_V1beta1_Ping.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -160,8 +160,8 @@ public struct Services_Menu_V1beta1_Ping: SwiftProtobuf.Message {
     public mutating func clearRequest() {_storage._request = nil}
 
     /// Response to the requested ping.
-    public var response: Services_Menu_V1beta1_Ping.Response {
-      get {return _storage._response ?? Services_Menu_V1beta1_Ping.Response()}
+    public var response: Bloombox_Schema_Services_Menu_V1beta1_Ping.Response {
+      get {return _storage._response ?? Bloombox_Schema_Services_Menu_V1beta1_Ping.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -231,14 +231,14 @@ public struct Services_Menu_V1beta1_Ping: SwiftProtobuf.Message {
 
 /// Specifies an RPC operation to retrieve menu data, either in full (i.e. the entire menu, compose of all sections), or
 /// for a given set of specified sections.
-public struct Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".GetMenu"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request payload to retrieve a menu.
   public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Menu_V1beta1_GetMenu.protoMessageName + ".Request"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_GetMenu.protoMessageName + ".Request"
 
     /// Partnership scope for the request.
     public var scope: String = String()
@@ -256,7 +256,7 @@ public struct Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message {
     public var fingerprint: String = String()
 
     /// Sections to include in the menu. If unspecified, include all sections.
-    public var section: Products_Menu_Section_Section = .unspecified
+    public var section: Opencannabis_Products_Menu_Section_Section = .unspecified
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -309,12 +309,12 @@ public struct Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message {
 
   /// Specifies the response to a request to retrieve menu data.
   public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Menu_V1beta1_GetMenu.protoMessageName + ".Response"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_GetMenu.protoMessageName + ".Response"
 
     /// Specifies the actual menu data payload returned in this response. The menu payload is independently usable, and
     /// includes any raw data or metadata needed to process the menu.
-    public var catalog: Products_Menu_Menu {
-      get {return _storage._catalog ?? Products_Menu_Menu()}
+    public var catalog: Opencannabis_Products_Menu_Menu {
+      get {return _storage._catalog ?? Opencannabis_Products_Menu_Menu()}
       set {_uniqueStorage()._catalog = newValue}
     }
     /// Returns true if `catalog` has been explicitly set.
@@ -390,9 +390,9 @@ public struct Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "services.menu.v1beta1"
+fileprivate let _protobuf_package = "bloombox.schema.services.menu.v1beta1"
 
-extension Services_Menu_V1beta1_MenuError: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Menu_V1beta1_MenuError: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_ERROR"),
     1: .same(proto: "PARTNER_INVALID"),
@@ -404,45 +404,45 @@ extension Services_Menu_V1beta1_MenuError: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Services_Menu_V1beta1_Ping: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Menu_V1beta1_Ping: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Services_Menu_V1beta1_Ping) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_Ping) -> Bool {
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Menu_V1beta1_Ping.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Menu_V1beta1_Ping.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Services_Menu_V1beta1_Ping.Request) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request) -> Bool {
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Menu_V1beta1_Ping.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Menu_V1beta1_Ping.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Services_Menu_V1beta1_Ping.Response) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_Ping.Response) -> Bool {
     if self.status != other.status {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Menu_V1beta1_Ping.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Menu_V1beta1_Ping.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Services_Menu_V1beta1_Ping.Request? = nil
-    var _response: Services_Menu_V1beta1_Ping.Response? = nil
+    var _request: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request? = nil
+    var _response: Bloombox_Schema_Services_Menu_V1beta1_Ping.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -461,7 +461,7 @@ extension Services_Menu_V1beta1_Ping.Operation: SwiftProtobuf._MessageImplementa
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Services_Menu_V1beta1_Ping.Operation) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_Ping.Operation) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -477,16 +477,16 @@ extension Services_Menu_V1beta1_Ping.Operation: SwiftProtobuf._MessageImplementa
   }
 }
 
-extension Services_Menu_V1beta1_GetMenu: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Services_Menu_V1beta1_GetMenu) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetMenu) -> Bool {
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Menu_V1beta1_GetMenu.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "full"),
@@ -496,7 +496,7 @@ extension Services_Menu_V1beta1_GetMenu.Request: SwiftProtobuf._MessageImplement
     6: .same(proto: "section"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Services_Menu_V1beta1_GetMenu.Request) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request) -> Bool {
     if self.scope != other.scope {return false}
     if self.full != other.full {return false}
     if self.keysOnly != other.keysOnly {return false}
@@ -508,14 +508,14 @@ extension Services_Menu_V1beta1_GetMenu.Request: SwiftProtobuf._MessageImplement
   }
 }
 
-extension Services_Menu_V1beta1_GetMenu.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "catalog"),
     2: .same(proto: "count"),
   ]
 
   fileprivate class _StorageClass {
-    var _catalog: Products_Menu_Menu? = nil
+    var _catalog: Opencannabis_Products_Menu_Menu? = nil
     var _count: Int32 = 0
 
     static let defaultInstance = _StorageClass()
@@ -535,7 +535,7 @@ extension Services_Menu_V1beta1_GetMenu.Response: SwiftProtobuf._MessageImplemen
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Services_Menu_V1beta1_GetMenu.Response) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

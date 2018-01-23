@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Partner_PartnerDeviceType: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Partner_PartnerDeviceType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case unspecifiedDeviceType // = 0
   case `internal` // = 1
@@ -68,11 +68,11 @@ public enum Partner_PartnerDeviceType: SwiftProtobuf.Enum {
 
 }
 
-public struct Partner_PartnerDeviceKey: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PartnerDeviceKey"
 
-  public var location: Partner_PartnerLocationKey {
-    get {return _storage._location ?? Partner_PartnerLocationKey()}
+  public var location: Bloombox_Schema_Partner_PartnerLocationKey {
+    get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocationKey()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -125,7 +125,7 @@ public struct Partner_PartnerDeviceKey: SwiftProtobuf.Message {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Partner_PartnerDevice: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PartnerDevice"
 
   public var uuid: String {
@@ -133,8 +133,8 @@ public struct Partner_PartnerDevice: SwiftProtobuf.Message {
     set {_uniqueStorage()._uuid = newValue}
   }
 
-  public var partner: Partner_Partner {
-    get {return _storage._partner ?? Partner_Partner()}
+  public var partner: Bloombox_Schema_Partner_Partner {
+    get {return _storage._partner ?? Bloombox_Schema_Partner_Partner()}
     set {_uniqueStorage()._partner = newValue}
   }
   /// Returns true if `partner` has been explicitly set.
@@ -142,8 +142,8 @@ public struct Partner_PartnerDevice: SwiftProtobuf.Message {
   /// Clears the value of `partner`. Subsequent reads from it will return its default value.
   public mutating func clearPartner() {_storage._partner = nil}
 
-  public var location: Partner_PartnerLocation {
-    get {return _storage._location ?? Partner_PartnerLocation()}
+  public var location: Bloombox_Schema_Partner_PartnerLocation {
+    get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocation()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -151,13 +151,13 @@ public struct Partner_PartnerDevice: SwiftProtobuf.Message {
   /// Clears the value of `location`. Subsequent reads from it will return its default value.
   public mutating func clearLocation() {_storage._location = nil}
 
-  public var type: Partner_PartnerDeviceType {
+  public var type: Bloombox_Schema_Partner_PartnerDeviceType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
-  public var flags: Partner_PartnerDeviceFlags {
-    get {return _storage._flags ?? Partner_PartnerDeviceFlags()}
+  public var flags: Bloombox_Schema_Partner_PartnerDeviceFlags {
+    get {return _storage._flags ?? Bloombox_Schema_Partner_PartnerDeviceFlags()}
     set {_uniqueStorage()._flags = newValue}
   }
   /// Returns true if `flags` has been explicitly set.
@@ -165,8 +165,8 @@ public struct Partner_PartnerDevice: SwiftProtobuf.Message {
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
   public mutating func clearFlags() {_storage._flags = nil}
 
-  public var device: Device_Device {
-    get {return _storage._device ?? Device_Device()}
+  public var device: Opencannabis_Device_Device {
+    get {return _storage._device ?? Opencannabis_Device_Device()}
     set {_uniqueStorage()._device = newValue}
   }
   /// Returns true if `device` has been explicitly set.
@@ -174,8 +174,8 @@ public struct Partner_PartnerDevice: SwiftProtobuf.Message {
   /// Clears the value of `device`. Subsequent reads from it will return its default value.
   public mutating func clearDevice() {_storage._device = nil}
 
-  public var seen: Temporal_Instant {
-    get {return _storage._seen ?? Temporal_Instant()}
+  public var seen: Opencannabis_Temporal_Instant {
+    get {return _storage._seen ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._seen = newValue}
   }
   /// Returns true if `seen` has been explicitly set.
@@ -183,8 +183,8 @@ public struct Partner_PartnerDevice: SwiftProtobuf.Message {
   /// Clears the value of `seen`. Subsequent reads from it will return its default value.
   public mutating func clearSeen() {_storage._seen = nil}
 
-  public var registered: Temporal_Instant {
-    get {return _storage._registered ?? Temporal_Instant()}
+  public var registered: Opencannabis_Temporal_Instant {
+    get {return _storage._registered ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._registered = newValue}
   }
   /// Returns true if `registered` has been explicitly set.
@@ -256,7 +256,7 @@ public struct Partner_PartnerDevice: SwiftProtobuf.Message {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Partner_PartnerDeviceFlags: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Partner_PartnerDeviceFlags: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PartnerDeviceFlags"
 
   public var active: Bool = false
@@ -310,9 +310,9 @@ public struct Partner_PartnerDeviceFlags: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "partner"
+fileprivate let _protobuf_package = "bloombox.schema.partner"
 
-extension Partner_PartnerDeviceType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerDeviceType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED_DEVICE_TYPE"),
     1: .same(proto: "INTERNAL"),
@@ -324,14 +324,14 @@ extension Partner_PartnerDeviceType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Partner_PartnerDeviceKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "location"),
     2: .same(proto: "uuid"),
   ]
 
   fileprivate class _StorageClass {
-    var _location: Partner_PartnerLocationKey? = nil
+    var _location: Bloombox_Schema_Partner_PartnerLocationKey? = nil
     var _uuid: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -351,7 +351,7 @@ extension Partner_PartnerDeviceKey: SwiftProtobuf._MessageImplementationBase, Sw
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Partner_PartnerDeviceKey) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerDeviceKey) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -367,7 +367,7 @@ extension Partner_PartnerDeviceKey: SwiftProtobuf._MessageImplementationBase, Sw
   }
 }
 
-extension Partner_PartnerDevice: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
     2: .same(proto: "partner"),
@@ -381,13 +381,13 @@ extension Partner_PartnerDevice: SwiftProtobuf._MessageImplementationBase, Swift
 
   fileprivate class _StorageClass {
     var _uuid: String = String()
-    var _partner: Partner_Partner? = nil
-    var _location: Partner_PartnerLocation? = nil
-    var _type: Partner_PartnerDeviceType = .unspecifiedDeviceType
-    var _flags: Partner_PartnerDeviceFlags? = nil
-    var _device: Device_Device? = nil
-    var _seen: Temporal_Instant? = nil
-    var _registered: Temporal_Instant? = nil
+    var _partner: Bloombox_Schema_Partner_Partner? = nil
+    var _location: Bloombox_Schema_Partner_PartnerLocation? = nil
+    var _type: Bloombox_Schema_Partner_PartnerDeviceType = .unspecifiedDeviceType
+    var _flags: Bloombox_Schema_Partner_PartnerDeviceFlags? = nil
+    var _device: Opencannabis_Device_Device? = nil
+    var _seen: Opencannabis_Temporal_Instant? = nil
+    var _registered: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -412,7 +412,7 @@ extension Partner_PartnerDevice: SwiftProtobuf._MessageImplementationBase, Swift
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Partner_PartnerDevice) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerDevice) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -434,7 +434,7 @@ extension Partner_PartnerDevice: SwiftProtobuf._MessageImplementationBase, Swift
   }
 }
 
-extension Partner_PartnerDeviceFlags: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerDeviceFlags: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "active"),
     2: .same(proto: "suspended"),
@@ -442,7 +442,7 @@ extension Partner_PartnerDeviceFlags: SwiftProtobuf._MessageImplementationBase, 
     4: .same(proto: "sandbox"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Partner_PartnerDeviceFlags) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerDeviceFlags) -> Bool {
     if self.active != other.active {return false}
     if self.suspended != other.suspended {return false}
     if self.beta != other.beta {return false}

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// -- Testing: Base (Shared) Protocol
-public enum Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case milligrams // = 0
   case percentage // = 1
@@ -51,7 +51,7 @@ public enum Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
 
 }
 
-public enum Structs_Labtesting_TestMediaType: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Labtesting_TestMediaType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case certificate // = 0
   case results // = 1
@@ -82,12 +82,12 @@ public enum Structs_Labtesting_TestMediaType: SwiftProtobuf.Enum {
 
 }
 
-public struct Structs_Labtesting_TestValue: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".TestValue"
 
-  public var type: Structs_Labtesting_TestValueType = .milligrams
+  public var type: Opencannabis_Structs_Labtesting_TestValueType = .milligrams
 
-  public var value: Structs_Labtesting_TestValue.OneOf_Value? = nil
+  public var value: Opencannabis_Structs_Labtesting_TestValue.OneOf_Value? = nil
 
   public var measurement: Double {
     get {
@@ -111,7 +111,7 @@ public struct Structs_Labtesting_TestValue: SwiftProtobuf.Message {
     case measurement(Double)
     case present(Bool)
 
-    public static func ==(lhs: Structs_Labtesting_TestValue.OneOf_Value, rhs: Structs_Labtesting_TestValue.OneOf_Value) -> Bool {
+    public static func ==(lhs: Opencannabis_Structs_Labtesting_TestValue.OneOf_Value, rhs: Opencannabis_Structs_Labtesting_TestValue.OneOf_Value) -> Bool {
       switch (lhs, rhs) {
       case (.measurement(let l), .measurement(let r)): return l == r
       case (.present(let l), .present(let r)): return l == r
@@ -164,16 +164,16 @@ public struct Structs_Labtesting_TestValue: SwiftProtobuf.Message {
   }
 }
 
-public struct Structs_Labtesting_TestMedia: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Labtesting_TestMedia: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".TestMedia"
 
-  public var type: Structs_Labtesting_TestMediaType {
+  public var type: Opencannabis_Structs_Labtesting_TestMediaType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
-  public var mediaItem: Media_MediaItem {
-    get {return _storage._mediaItem ?? Media_MediaItem()}
+  public var mediaItem: Opencannabis_Media_MediaItem {
+    get {return _storage._mediaItem ?? Opencannabis_Media_MediaItem()}
     set {_uniqueStorage()._mediaItem = newValue}
   }
   /// Returns true if `mediaItem` has been explicitly set.
@@ -223,9 +223,9 @@ public struct Structs_Labtesting_TestMedia: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "structs.labtesting"
+fileprivate let _protobuf_package = "opencannabis.structs.labtesting"
 
-extension Structs_Labtesting_TestValueType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "MILLIGRAMS"),
     1: .same(proto: "PERCENTAGE"),
@@ -233,7 +233,7 @@ extension Structs_Labtesting_TestValueType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Structs_Labtesting_TestMediaType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_TestMediaType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "CERTIFICATE"),
     1: .same(proto: "RESULTS"),
@@ -241,14 +241,14 @@ extension Structs_Labtesting_TestMediaType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Structs_Labtesting_TestValue: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     10: .same(proto: "measurement"),
     20: .same(proto: "present"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Labtesting_TestValue) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestValue) -> Bool {
     if self.type != other.type {return false}
     if self.value != other.value {return false}
     if unknownFields != other.unknownFields {return false}
@@ -256,15 +256,15 @@ extension Structs_Labtesting_TestValue: SwiftProtobuf._MessageImplementationBase
   }
 }
 
-extension Structs_Labtesting_TestMedia: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_TestMedia: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .standard(proto: "media_item"),
   ]
 
   fileprivate class _StorageClass {
-    var _type: Structs_Labtesting_TestMediaType = .certificate
-    var _mediaItem: Media_MediaItem? = nil
+    var _type: Opencannabis_Structs_Labtesting_TestMediaType = .certificate
+    var _mediaItem: Opencannabis_Media_MediaItem? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -283,7 +283,7 @@ extension Structs_Labtesting_TestMedia: SwiftProtobuf._MessageImplementationBase
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Labtesting_TestMedia) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestMedia) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Partner_PartnerScope: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Partner_PartnerScope: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// - Basic
@@ -73,7 +73,7 @@ public enum Partner_PartnerScope: SwiftProtobuf.Enum {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Partner_PartnerScope: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerScope: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "AUTH"),
     1: .same(proto: "CONTACT"),

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates USA member states and territories by their full name.
-public enum Geo_Usa_USState: SwiftProtobuf.Enum {
+public enum Opencannabis_Geo_Usa_USState: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Default: Unspecified.
@@ -253,7 +253,7 @@ public enum Geo_Usa_USState: SwiftProtobuf.Enum {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Geo_Usa_USState: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Geo_Usa_USState: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED"),
     1: .aliased(proto: "AL", aliases: ["ALABAMA"]),

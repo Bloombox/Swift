@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case `internal` // = 0
   case firebase // = 1
@@ -50,14 +50,14 @@ public enum Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
 
 }
 
-public struct Security_IdentityToken: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Security_IdentityToken: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".IdentityToken"
 
   public var uid: String = String()
 
   public var encoded: String = String()
 
-  public var issuer: Security_IdentityTokenIssuer = .internal
+  public var issuer: Bloombox_Schema_Security_IdentityTokenIssuer = .internal
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -98,9 +98,9 @@ public struct Security_IdentityToken: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "security"
+fileprivate let _protobuf_package = "bloombox.schema.security"
 
-extension Security_IdentityTokenIssuer: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "INTERNAL"),
     1: .same(proto: "FIREBASE"),
@@ -108,14 +108,14 @@ extension Security_IdentityTokenIssuer: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Security_IdentityToken: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Security_IdentityToken: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
     2: .same(proto: "encoded"),
     3: .same(proto: "issuer"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Security_IdentityToken) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_IdentityToken) -> Bool {
     if self.uid != other.uid {return false}
     if self.encoded != other.encoded {return false}
     if self.issuer != other.issuer {return false}

@@ -20,12 +20,12 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies genetics for a particular plant or flower item.
-public struct Structs_Genetics: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Genetics: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Genetics"
 
   /// Specifies the male side of an item's genetics.
-  public var male: Base_ProductReference {
-    get {return _storage._male ?? Base_ProductReference()}
+  public var male: Opencannabis_Base_ProductReference {
+    get {return _storage._male ?? Opencannabis_Base_ProductReference()}
     set {_uniqueStorage()._male = newValue}
   }
   /// Returns true if `male` has been explicitly set.
@@ -34,8 +34,8 @@ public struct Structs_Genetics: SwiftProtobuf.Message {
   public mutating func clearMale() {_storage._male = nil}
 
   /// Specifies the female side of an item's genetics.
-  public var female: Base_ProductReference {
-    get {return _storage._female ?? Base_ProductReference()}
+  public var female: Opencannabis_Base_ProductReference {
+    get {return _storage._female ?? Opencannabis_Base_ProductReference()}
     set {_uniqueStorage()._female = newValue}
   }
   /// Returns true if `female` has been explicitly set.
@@ -85,17 +85,17 @@ public struct Structs_Genetics: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "structs"
+fileprivate let _protobuf_package = "opencannabis.structs"
 
-extension Structs_Genetics: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Genetics: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "male"),
     2: .same(proto: "female"),
   ]
 
   fileprivate class _StorageClass {
-    var _male: Base_ProductReference? = nil
-    var _female: Base_ProductReference? = nil
+    var _male: Opencannabis_Base_ProductReference? = nil
+    var _female: Opencannabis_Base_ProductReference? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -114,7 +114,7 @@ extension Structs_Genetics: SwiftProtobuf._MessageImplementationBase, SwiftProto
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Genetics) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Genetics) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

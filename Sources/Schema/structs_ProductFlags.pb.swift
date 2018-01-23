@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// top-level flags
-public enum Structs_ProductFlag: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_ProductFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case visible // = 0
   case hidden // = 1
@@ -77,7 +77,7 @@ public enum Structs_ProductFlag: SwiftProtobuf.Enum {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Structs_ProductFlag: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_ProductFlag: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "VISIBLE"),
     1: .same(proto: "HIDDEN"),

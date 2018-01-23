@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates supported types of user-provided, government-issued ID.
-public enum Identity_IDType: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Identity_IDType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// United States Driver's License, issued by a U.S. state government.
@@ -53,11 +53,11 @@ public enum Identity_IDType: SwiftProtobuf.Enum {
 }
 
 /// Specifies an object for expressing a user's government ID information.
-public struct Identity_ID: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_ID: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ID"
 
   /// Type of ID we're specifying.
-  public var type: Identity_IDType {
+  public var type: Bloombox_Schema_Identity_IDType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
@@ -69,8 +69,8 @@ public struct Identity_ID: SwiftProtobuf.Message {
   }
 
   /// Expiration date for this document.
-  public var expireDate: Temporal_Date {
-    get {return _storage._expireDate ?? Temporal_Date()}
+  public var expireDate: Opencannabis_Temporal_Date {
+    get {return _storage._expireDate ?? Opencannabis_Temporal_Date()}
     set {_uniqueStorage()._expireDate = newValue}
   }
   /// Returns true if `expireDate` has been explicitly set.
@@ -79,8 +79,8 @@ public struct Identity_ID: SwiftProtobuf.Message {
   public mutating func clearExpireDate() {_storage._expireDate = nil}
 
   /// Birth date listed on this document.
-  public var birthDate: Temporal_Date {
-    get {return _storage._birthDate ?? Temporal_Date()}
+  public var birthDate: Opencannabis_Temporal_Date {
+    get {return _storage._birthDate ?? Opencannabis_Temporal_Date()}
     set {_uniqueStorage()._birthDate = newValue}
   }
   /// Returns true if `birthDate` has been explicitly set.
@@ -94,19 +94,19 @@ public struct Identity_ID: SwiftProtobuf.Message {
   }
 
   /// United States Driver's License.
-  public var license: Identity_Ids_USDL {
+  public var license: Bloombox_Schema_Identity_Ids_USDL {
     get {
       if case .license(let v)? = _storage._document {return v}
-      return Identity_Ids_USDL()
+      return Bloombox_Schema_Identity_Ids_USDL()
     }
     set {_uniqueStorage()._document = .license(newValue)}
   }
 
   /// National passport.
-  public var passport: Identity_Ids_Passport {
+  public var passport: Bloombox_Schema_Identity_Ids_Passport {
     get {
       if case .passport(let v)? = _storage._document {return v}
-      return Identity_Ids_Passport()
+      return Bloombox_Schema_Identity_Ids_Passport()
     }
     set {_uniqueStorage()._document = .passport(newValue)}
   }
@@ -115,11 +115,11 @@ public struct Identity_ID: SwiftProtobuf.Message {
 
   public enum OneOf_Document: Equatable {
     /// United States Driver's License.
-    case license(Identity_Ids_USDL)
+    case license(Bloombox_Schema_Identity_Ids_USDL)
     /// National passport.
-    case passport(Identity_Ids_Passport)
+    case passport(Bloombox_Schema_Identity_Ids_Passport)
 
-    public static func ==(lhs: Identity_ID.OneOf_Document, rhs: Identity_ID.OneOf_Document) -> Bool {
+    public static func ==(lhs: Bloombox_Schema_Identity_ID.OneOf_Document, rhs: Bloombox_Schema_Identity_ID.OneOf_Document) -> Bool {
       switch (lhs, rhs) {
       case (.license(let l), .license(let r)): return l == r
       case (.passport(let l), .passport(let r)): return l == r
@@ -144,7 +144,7 @@ public struct Identity_ID: SwiftProtobuf.Message {
         case 3: try decoder.decodeSingularMessageField(value: &_storage._expireDate)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._birthDate)
         case 20:
-          var v: Identity_Ids_USDL?
+          var v: Bloombox_Schema_Identity_Ids_USDL?
           if let current = _storage._document {
             try decoder.handleConflictingOneOf()
             if case .license(let m) = current {v = m}
@@ -152,7 +152,7 @@ public struct Identity_ID: SwiftProtobuf.Message {
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._document = .license(v)}
         case 21:
-          var v: Identity_Ids_Passport?
+          var v: Bloombox_Schema_Identity_Ids_Passport?
           if let current = _storage._document {
             try decoder.handleConflictingOneOf()
             if case .passport(let m) = current {v = m}
@@ -199,16 +199,16 @@ public struct Identity_ID: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "identity"
+fileprivate let _protobuf_package = "bloombox.schema.identity"
 
-extension Identity_IDType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_IDType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "USDL"),
     1: .same(proto: "PASSPORT"),
   ]
 }
 
-extension Identity_ID: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_ID: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "id"),
@@ -219,11 +219,11 @@ extension Identity_ID: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._
   ]
 
   fileprivate class _StorageClass {
-    var _type: Identity_IDType = .usdl
+    var _type: Bloombox_Schema_Identity_IDType = .usdl
     var _id: String = String()
-    var _expireDate: Temporal_Date? = nil
-    var _birthDate: Temporal_Date? = nil
-    var _document: Identity_ID.OneOf_Document?
+    var _expireDate: Opencannabis_Temporal_Date? = nil
+    var _birthDate: Opencannabis_Temporal_Date? = nil
+    var _document: Bloombox_Schema_Identity_ID.OneOf_Document?
 
     static let defaultInstance = _StorageClass()
 
@@ -245,7 +245,7 @@ extension Identity_ID: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Identity_ID) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_ID) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// -- Testing: Basic Protocol
-public struct Structs_Labtesting_BasicTestResults: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Labtesting_BasicTestResults: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".BasicTestResults"
 
   public var available: Bool {
@@ -28,13 +28,13 @@ public struct Structs_Labtesting_BasicTestResults: SwiftProtobuf.Message {
     set {_uniqueStorage()._available = newValue}
   }
 
-  public var media: [Structs_Labtesting_TestMedia] {
+  public var media: [Opencannabis_Structs_Labtesting_TestMedia] {
     get {return _storage._media}
     set {_uniqueStorage()._media = newValue}
   }
 
-  public var lastUpdated: Temporal_Instant {
-    get {return _storage._lastUpdated ?? Temporal_Instant()}
+  public var lastUpdated: Opencannabis_Temporal_Instant {
+    get {return _storage._lastUpdated ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._lastUpdated = newValue}
   }
   /// Returns true if `lastUpdated` has been explicitly set.
@@ -43,8 +43,8 @@ public struct Structs_Labtesting_BasicTestResults: SwiftProtobuf.Message {
   public mutating func clearLastUpdated() {_storage._lastUpdated = nil}
 
   /// --- Cannabinoids + Subjective
-  public var cannabinoids: Structs_Labtesting_Cannabinoids {
-    get {return _storage._cannabinoids ?? Structs_Labtesting_Cannabinoids()}
+  public var cannabinoids: Opencannabis_Structs_Labtesting_Cannabinoids {
+    get {return _storage._cannabinoids ?? Opencannabis_Structs_Labtesting_Cannabinoids()}
     set {_uniqueStorage()._cannabinoids = newValue}
   }
   /// Returns true if `cannabinoids` has been explicitly set.
@@ -52,8 +52,8 @@ public struct Structs_Labtesting_BasicTestResults: SwiftProtobuf.Message {
   /// Clears the value of `cannabinoids`. Subsequent reads from it will return its default value.
   public mutating func clearCannabinoids() {_storage._cannabinoids = nil}
 
-  public var subjective: Structs_Labtesting_Subjective {
-    get {return _storage._subjective ?? Structs_Labtesting_Subjective()}
+  public var subjective: Opencannabis_Structs_Labtesting_Subjective {
+    get {return _storage._subjective ?? Opencannabis_Structs_Labtesting_Subjective()}
     set {_uniqueStorage()._subjective = newValue}
   }
   /// Returns true if `subjective` has been explicitly set.
@@ -115,9 +115,9 @@ public struct Structs_Labtesting_BasicTestResults: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "structs.labtesting"
+fileprivate let _protobuf_package = "opencannabis.structs.labtesting"
 
-extension Structs_Labtesting_BasicTestResults: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_BasicTestResults: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "available"),
     2: .same(proto: "media"),
@@ -128,10 +128,10 @@ extension Structs_Labtesting_BasicTestResults: SwiftProtobuf._MessageImplementat
 
   fileprivate class _StorageClass {
     var _available: Bool = false
-    var _media: [Structs_Labtesting_TestMedia] = []
-    var _lastUpdated: Temporal_Instant? = nil
-    var _cannabinoids: Structs_Labtesting_Cannabinoids? = nil
-    var _subjective: Structs_Labtesting_Subjective? = nil
+    var _media: [Opencannabis_Structs_Labtesting_TestMedia] = []
+    var _lastUpdated: Opencannabis_Temporal_Instant? = nil
+    var _cannabinoids: Opencannabis_Structs_Labtesting_Cannabinoids? = nil
+    var _subjective: Opencannabis_Structs_Labtesting_Subjective? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -153,7 +153,7 @@ extension Structs_Labtesting_BasicTestResults: SwiftProtobuf._MessageImplementat
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Labtesting_BasicTestResults) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_BasicTestResults) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

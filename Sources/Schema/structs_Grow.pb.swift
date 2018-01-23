@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Structs_Grow: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Grow: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case generic // = 0
   case indoor // = 1
@@ -55,7 +55,7 @@ public enum Structs_Grow: SwiftProtobuf.Enum {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Structs_Grow: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Grow: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "GENERIC"),
     1: .same(proto: "INDOOR"),

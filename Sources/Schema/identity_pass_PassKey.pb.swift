@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Identity_Pass_PassKey: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_Pass_PassKey: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PassKey"
 
   public var encoded: String = String()
@@ -67,16 +67,16 @@ public struct Identity_Pass_PassKey: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "identity.pass"
+fileprivate let _protobuf_package = "bloombox.schema.identity.pass"
 
-extension Identity_Pass_PassKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Pass_PassKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "encoded"),
     2: .same(proto: "serial"),
     3: .same(proto: "uid"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Identity_Pass_PassKey) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Pass_PassKey) -> Bool {
     if self.encoded != other.encoded {return false}
     if self.serial != other.serial {return false}
     if self.uid != other.uid {return false}

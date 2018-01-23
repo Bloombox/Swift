@@ -27,27 +27,27 @@ import gRPC
 import SwiftProtobuf
 
 /// Type for errors thrown from generated client code.
-public enum Services_Telemetry_V1Beta3_EventTelemetryClientError : Error {
+public enum Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryClientError : Error {
   case endOfStream
   case invalidMessageReceived
   case error(c: CallResult)
 }
 
 /// Ping (Unary)
-public class Services_Telemetry_V1Beta3_EventTelemetryPingCall {
+public class Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryPingCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.telemetry.v1beta3.EventTelemetry/Ping")
+    self.call = channel.makeCall("/bloombox.schema.services.telemetry.v1beta3.EventTelemetry/Ping")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Telemetry_V1beta3_TelemetryPing_Request,
-                       metadata: Metadata) throws -> Services_Telemetry_V1beta3_TelemetryPing_Response {
+  fileprivate func run(request: Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryPing_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryPing_Response {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Telemetry_V1beta3_TelemetryPing_Response?
+    var returnResponse : Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryPing_Response?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -57,15 +57,15 @@ public class Services_Telemetry_V1Beta3_EventTelemetryPingCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Telemetry_V1Beta3_EventTelemetryClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Telemetry_V1beta3_TelemetryPing_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryPing_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Telemetry_V1beta3_TelemetryPing_Response?, CallResult)->())
-    throws -> Services_Telemetry_V1Beta3_EventTelemetryPingCall {
+                         completion: @escaping (Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryPing_Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryPingCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -73,7 +73,7 @@ public class Services_Telemetry_V1Beta3_EventTelemetryPingCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Telemetry_V1beta3_TelemetryPing_Response(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryPing_Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -89,16 +89,16 @@ public class Services_Telemetry_V1Beta3_EventTelemetryPingCall {
 }
 
 /// Event (Unary)
-public class Services_Telemetry_V1Beta3_EventTelemetryEventCall {
+public class Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryEventCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.telemetry.v1beta3.EventTelemetry/Event")
+    self.call = channel.makeCall("/bloombox.schema.services.telemetry.v1beta3.EventTelemetry/Event")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Telemetry_V1beta3_Event_Request,
+  fileprivate func run(request: Bloombox_Schema_Services_Telemetry_V1beta3_Event_Request,
                        metadata: Metadata) throws -> Google_Protobuf_Empty {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
@@ -112,15 +112,15 @@ public class Services_Telemetry_V1Beta3_EventTelemetryEventCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Telemetry_V1Beta3_EventTelemetryClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Telemetry_V1beta3_Event_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Telemetry_V1beta3_Event_Request,
                          metadata: Metadata,
                          completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
-    throws -> Services_Telemetry_V1Beta3_EventTelemetryEventCall {
+    throws -> Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryEventCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -144,20 +144,20 @@ public class Services_Telemetry_V1Beta3_EventTelemetryEventCall {
 }
 
 /// Batch (Unary)
-public class Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
+public class Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.telemetry.v1beta3.EventTelemetry/Batch")
+    self.call = channel.makeCall("/bloombox.schema.services.telemetry.v1beta3.EventTelemetry/Batch")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Telemetry_V1beta3_Event_BatchRequest,
-                       metadata: Metadata) throws -> Services_Telemetry_V1beta3_TelemetryResponse {
+  fileprivate func run(request: Bloombox_Schema_Services_Telemetry_V1beta3_Event_BatchRequest,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryResponse {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Telemetry_V1beta3_TelemetryResponse?
+    var returnResponse : Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryResponse?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -167,15 +167,15 @@ public class Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Telemetry_V1Beta3_EventTelemetryClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Telemetry_V1beta3_Event_BatchRequest,
+  fileprivate func start(request: Bloombox_Schema_Services_Telemetry_V1beta3_Event_BatchRequest,
                          metadata: Metadata,
-                         completion: @escaping (Services_Telemetry_V1beta3_TelemetryResponse?, CallResult)->())
-    throws -> Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
+                         completion: @escaping (Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryResponse?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -183,7 +183,7 @@ public class Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Telemetry_V1beta3_TelemetryResponse(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryResponse(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -199,16 +199,16 @@ public class Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
 }
 
 /// Error (Unary)
-public class Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
+public class Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.telemetry.v1beta3.EventTelemetry/Error")
+    self.call = channel.makeCall("/bloombox.schema.services.telemetry.v1beta3.EventTelemetry/Error")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Telemetry_V1beta3_Exception,
+  fileprivate func run(request: Bloombox_Schema_Services_Telemetry_V1beta3_Exception,
                        metadata: Metadata) throws -> Google_Protobuf_Empty {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
@@ -222,15 +222,15 @@ public class Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Telemetry_V1Beta3_EventTelemetryClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Telemetry_V1beta3_Exception,
+  fileprivate func start(request: Bloombox_Schema_Services_Telemetry_V1beta3_Exception,
                          metadata: Metadata,
                          completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
-    throws -> Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
+    throws -> Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -254,7 +254,7 @@ public class Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
 }
 
 /// Call methods of this class to make API calls.
-public final class Services_Telemetry_V1Beta3_EventTelemetryService {
+public final class Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
@@ -273,99 +273,99 @@ public final class Services_Telemetry_V1Beta3_EventTelemetryService {
   }
 
   /// Create a client that makes insecure connections.
-  public init(address: String) {
+  public required init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  public init(address: String, certificates: String?, host: String?) {
+  public required init(address: String, certificates: String?, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()
   }
 
   /// Synchronous. Unary.
-  public func ping(_ request: Services_Telemetry_V1beta3_TelemetryPing_Request)
+  public func ping(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryPing_Request)
     throws
-    -> Services_Telemetry_V1beta3_TelemetryPing_Response {
-      return try Services_Telemetry_V1Beta3_EventTelemetryPingCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryPing_Response {
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryPingCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func ping(_ request: Services_Telemetry_V1beta3_TelemetryPing_Request,
-                  completion: @escaping (Services_Telemetry_V1beta3_TelemetryPing_Response?, CallResult)->())
+  public func ping(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryPing_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryPing_Response?, CallResult)->())
     throws
-    -> Services_Telemetry_V1Beta3_EventTelemetryPingCall {
-      return try Services_Telemetry_V1Beta3_EventTelemetryPingCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryPingCall {
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryPingCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func event(_ request: Services_Telemetry_V1beta3_Event_Request)
+  public func event(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_Event_Request)
     throws
     -> Google_Protobuf_Empty {
-      return try Services_Telemetry_V1Beta3_EventTelemetryEventCall(channel).run(request:request, metadata:metadata)
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryEventCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func event(_ request: Services_Telemetry_V1beta3_Event_Request,
+  public func event(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_Event_Request,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
-    -> Services_Telemetry_V1Beta3_EventTelemetryEventCall {
-      return try Services_Telemetry_V1Beta3_EventTelemetryEventCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryEventCall {
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryEventCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func batch(_ request: Services_Telemetry_V1beta3_Event_BatchRequest)
+  public func batch(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_Event_BatchRequest)
     throws
-    -> Services_Telemetry_V1beta3_TelemetryResponse {
-      return try Services_Telemetry_V1Beta3_EventTelemetryBatchCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryResponse {
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryBatchCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func batch(_ request: Services_Telemetry_V1beta3_Event_BatchRequest,
-                  completion: @escaping (Services_Telemetry_V1beta3_TelemetryResponse?, CallResult)->())
+  public func batch(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_Event_BatchRequest,
+                  completion: @escaping (Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryResponse?, CallResult)->())
     throws
-    -> Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
-      return try Services_Telemetry_V1Beta3_EventTelemetryBatchCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryBatchCall {
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryBatchCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func error(_ request: Services_Telemetry_V1beta3_Exception)
+  public func error(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_Exception)
     throws
     -> Google_Protobuf_Empty {
-      return try Services_Telemetry_V1Beta3_EventTelemetryErrorCall(channel).run(request:request, metadata:metadata)
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryErrorCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func error(_ request: Services_Telemetry_V1beta3_Exception,
+  public func error(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_Exception,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
-    -> Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
-      return try Services_Telemetry_V1Beta3_EventTelemetryErrorCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryErrorCall {
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryErrorCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
 }
 
 /// Type for errors thrown from generated client code.
-public enum Services_Telemetry_V1Beta3_CommercialTelemetryClientError : Error {
+public enum Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryClientError : Error {
   case endOfStream
   case invalidMessageReceived
   case error(c: CallResult)
 }
 
 /// Impression (Unary)
-public class Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
+public class Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.telemetry.v1beta3.CommercialTelemetry/Impression")
+    self.call = channel.makeCall("/bloombox.schema.services.telemetry.v1beta3.CommercialTelemetry/Impression")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Telemetry_V1beta3_CommercialEvent_Impression,
+  fileprivate func run(request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_Impression,
                        metadata: Metadata) throws -> Google_Protobuf_Empty {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
@@ -379,15 +379,15 @@ public class Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Telemetry_V1Beta3_CommercialTelemetryClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Telemetry_V1beta3_CommercialEvent_Impression,
+  fileprivate func start(request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_Impression,
                          metadata: Metadata,
                          completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
-    throws -> Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
+    throws -> Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -411,16 +411,16 @@ public class Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
 }
 
 /// View (Unary)
-public class Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
+public class Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.telemetry.v1beta3.CommercialTelemetry/View")
+    self.call = channel.makeCall("/bloombox.schema.services.telemetry.v1beta3.CommercialTelemetry/View")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Telemetry_V1beta3_CommercialEvent_View,
+  fileprivate func run(request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_View,
                        metadata: Metadata) throws -> Google_Protobuf_Empty {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
@@ -434,15 +434,15 @@ public class Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Telemetry_V1Beta3_CommercialTelemetryClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Telemetry_V1beta3_CommercialEvent_View,
+  fileprivate func start(request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_View,
                          metadata: Metadata,
                          completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
-    throws -> Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
+    throws -> Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -466,16 +466,16 @@ public class Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
 }
 
 /// Action (Unary)
-public class Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
+public class Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.telemetry.v1beta3.CommercialTelemetry/Action")
+    self.call = channel.makeCall("/bloombox.schema.services.telemetry.v1beta3.CommercialTelemetry/Action")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Telemetry_V1beta3_CommercialEvent_Action,
+  fileprivate func run(request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_Action,
                        metadata: Metadata) throws -> Google_Protobuf_Empty {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
@@ -489,15 +489,15 @@ public class Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Telemetry_V1Beta3_CommercialTelemetryClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Telemetry_V1beta3_CommercialEvent_Action,
+  fileprivate func start(request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_Action,
                          metadata: Metadata,
                          completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
-    throws -> Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
+    throws -> Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -521,7 +521,7 @@ public class Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
 }
 
 /// Call methods of this class to make API calls.
-public class Services_Telemetry_V1Beta3_CommercialTelemetryService {
+public class Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
@@ -554,70 +554,70 @@ public class Services_Telemetry_V1Beta3_CommercialTelemetryService {
   }
 
   /// Synchronous. Unary.
-  public func impression(_ request: Services_Telemetry_V1beta3_CommercialEvent_Impression)
+  public func impression(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_Impression)
     throws
     -> Google_Protobuf_Empty {
-      return try Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall(channel).run(request:request, metadata:metadata)
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func impression(_ request: Services_Telemetry_V1beta3_CommercialEvent_Impression,
+  public func impression(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_Impression,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
-    -> Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
-      return try Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall {
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryImpressionCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func view(_ request: Services_Telemetry_V1beta3_CommercialEvent_View)
+  public func view(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_View)
     throws
     -> Google_Protobuf_Empty {
-      return try Services_Telemetry_V1Beta3_CommercialTelemetryViewCall(channel).run(request:request, metadata:metadata)
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryViewCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func view(_ request: Services_Telemetry_V1beta3_CommercialEvent_View,
+  public func view(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_View,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
-    -> Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
-      return try Services_Telemetry_V1Beta3_CommercialTelemetryViewCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryViewCall {
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryViewCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func action(_ request: Services_Telemetry_V1beta3_CommercialEvent_Action)
+  public func action(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_Action)
     throws
     -> Google_Protobuf_Empty {
-      return try Services_Telemetry_V1Beta3_CommercialTelemetryActionCall(channel).run(request:request, metadata:metadata)
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryActionCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func action(_ request: Services_Telemetry_V1beta3_CommercialEvent_Action,
+  public func action(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_CommercialEvent_Action,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
-    -> Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
-      return try Services_Telemetry_V1Beta3_CommercialTelemetryActionCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryActionCall {
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryActionCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
 }
 
 /// Type for errors thrown from generated client code.
-public enum Services_Telemetry_V1Beta3_IdentityTelemetryClientError : Error {
+public enum Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryClientError : Error {
   case endOfStream
   case invalidMessageReceived
   case error(c: CallResult)
 }
 
 /// Action (Unary)
-public class Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {
+public class Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.telemetry.v1beta3.IdentityTelemetry/Action")
+    self.call = channel.makeCall("/bloombox.schema.services.telemetry.v1beta3.IdentityTelemetry/Action")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Telemetry_V1beta3_IdentityEvent_Action,
+  fileprivate func run(request: Bloombox_Schema_Services_Telemetry_V1beta3_IdentityEvent_Action,
                        metadata: Metadata) throws -> Google_Protobuf_Empty {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
@@ -631,15 +631,15 @@ public class Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Telemetry_V1Beta3_IdentityTelemetryClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Telemetry_V1beta3_IdentityEvent_Action,
+  fileprivate func start(request: Bloombox_Schema_Services_Telemetry_V1beta3_IdentityEvent_Action,
                          metadata: Metadata,
                          completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
-    throws -> Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {
+    throws -> Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -663,7 +663,7 @@ public class Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {
 }
 
 /// Call methods of this class to make API calls.
-public class Services_Telemetry_V1Beta3_IdentityTelemetryService {
+public class Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
@@ -696,17 +696,17 @@ public class Services_Telemetry_V1Beta3_IdentityTelemetryService {
   }
 
   /// Synchronous. Unary.
-  public func action(_ request: Services_Telemetry_V1beta3_IdentityEvent_Action)
+  public func action(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_IdentityEvent_Action)
     throws
     -> Google_Protobuf_Empty {
-      return try Services_Telemetry_V1Beta3_IdentityTelemetryActionCall(channel).run(request:request, metadata:metadata)
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryActionCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func action(_ request: Services_Telemetry_V1beta3_IdentityEvent_Action,
+  public func action(_ request: Bloombox_Schema_Services_Telemetry_V1beta3_IdentityEvent_Action,
                   completion: @escaping (Google_Protobuf_Empty?, CallResult)->())
     throws
-    -> Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {
-      return try Services_Telemetry_V1Beta3_IdentityTelemetryActionCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryActionCall {
+      return try Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryActionCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }

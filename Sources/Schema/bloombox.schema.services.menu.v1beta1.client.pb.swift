@@ -27,27 +27,27 @@ import gRPC
 import SwiftProtobuf
 
 /// Type for errors thrown from generated client code.
-public enum Services_Menu_V1Beta1_MenuClientError : Error {
+public enum Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError : Error {
   case endOfStream
   case invalidMessageReceived
   case error(c: CallResult)
 }
 
 /// Ping (Unary)
-public class Services_Menu_V1Beta1_MenuPingCall {
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuPingCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.menu.v1beta1.Menu/Ping")
+    self.call = channel.makeCall("/bloombox.schema.services.menu.v1beta1.Menu/Ping")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Menu_V1beta1_Ping_Request,
-                       metadata: Metadata) throws -> Services_Menu_V1beta1_Ping_Response {
+  fileprivate func run(request: Bloombox_Schema_Services_Menu_V1beta1_Ping_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Menu_V1beta1_Ping_Response {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Menu_V1beta1_Ping_Response?
+    var returnResponse : Bloombox_Schema_Services_Menu_V1beta1_Ping_Response?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -57,15 +57,15 @@ public class Services_Menu_V1Beta1_MenuPingCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Menu_V1beta1_Ping_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Menu_V1beta1_Ping_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Menu_V1beta1_Ping_Response?, CallResult)->())
-    throws -> Services_Menu_V1Beta1_MenuPingCall {
+                         completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_Ping_Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Menu_V1Beta1_MenuPingCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -73,7 +73,7 @@ public class Services_Menu_V1Beta1_MenuPingCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Menu_V1beta1_Ping_Response(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Menu_V1beta1_Ping_Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -89,20 +89,20 @@ public class Services_Menu_V1Beta1_MenuPingCall {
 }
 
 /// Retrieve (Unary)
-public class Services_Menu_V1Beta1_MenuRetrieveCall {
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.menu.v1beta1.Menu/Retrieve")
+    self.call = channel.makeCall("/bloombox.schema.services.menu.v1beta1.Menu/Retrieve")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Menu_V1beta1_GetMenu_Request,
-                       metadata: Metadata) throws -> Services_Menu_V1beta1_GetMenu_Response {
+  fileprivate func run(request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu_Response {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Menu_V1beta1_GetMenu_Response?
+    var returnResponse : Bloombox_Schema_Services_Menu_V1beta1_GetMenu_Response?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -112,15 +112,15 @@ public class Services_Menu_V1Beta1_MenuRetrieveCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Menu_V1beta1_GetMenu_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Menu_V1beta1_GetMenu_Response?, CallResult)->())
-    throws -> Services_Menu_V1Beta1_MenuRetrieveCall {
+                         completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetMenu_Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -128,7 +128,7 @@ public class Services_Menu_V1Beta1_MenuRetrieveCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Menu_V1beta1_GetMenu_Response(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Menu_V1beta1_GetMenu_Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -144,7 +144,7 @@ public class Services_Menu_V1Beta1_MenuRetrieveCall {
 }
 
 /// Call methods of this class to make API calls.
-public final class Services_Menu_V1Beta1_MenuService {
+public final class Bloombox_Schema_Services_Menu_V1Beta1_MenuService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
@@ -163,46 +163,46 @@ public final class Services_Menu_V1Beta1_MenuService {
   }
 
   /// Create a client that makes insecure connections.
-  public init(address: String) {
+  public required init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  public init(address: String, certificates: String?, host: String?) {
+  public required init(address: String, certificates: String?, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()
   }
 
   /// Synchronous. Unary.
-  public func ping(_ request: Services_Menu_V1beta1_Ping_Request)
+  public func ping(_ request: Bloombox_Schema_Services_Menu_V1beta1_Ping_Request)
     throws
-    -> Services_Menu_V1beta1_Ping_Response {
-      return try Services_Menu_V1Beta1_MenuPingCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Menu_V1beta1_Ping_Response {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuPingCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func ping(_ request: Services_Menu_V1beta1_Ping_Request,
-                  completion: @escaping (Services_Menu_V1beta1_Ping_Response?, CallResult)->())
+  public func ping(_ request: Bloombox_Schema_Services_Menu_V1beta1_Ping_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_Ping_Response?, CallResult)->())
     throws
-    -> Services_Menu_V1Beta1_MenuPingCall {
-      return try Services_Menu_V1Beta1_MenuPingCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Menu_V1Beta1_MenuPingCall {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuPingCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func retrieve(_ request: Services_Menu_V1beta1_GetMenu_Request)
+  public func retrieve(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu_Request)
     throws
-    -> Services_Menu_V1beta1_GetMenu_Response {
-      return try Services_Menu_V1Beta1_MenuRetrieveCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu_Response {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func retrieve(_ request: Services_Menu_V1beta1_GetMenu_Request,
-                  completion: @escaping (Services_Menu_V1beta1_GetMenu_Response?, CallResult)->())
+  public func retrieve(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetMenu_Response?, CallResult)->())
     throws
-    -> Services_Menu_V1Beta1_MenuRetrieveCall {
-      return try Services_Menu_V1Beta1_MenuRetrieveCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveCall {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }

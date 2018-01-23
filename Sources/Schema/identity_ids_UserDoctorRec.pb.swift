@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Doctor recommendation to allow a consumer to purchase cannabis in a restricted market.
-public struct Identity_Ids_UserDoctorRec: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".UserDoctorRec"
 
   /// ID number/unique code.
@@ -30,8 +30,8 @@ public struct Identity_Ids_UserDoctorRec: SwiftProtobuf.Message {
   }
 
   /// Expiration date for the recommendation.
-  public var expirationDate: Temporal_Date {
-    get {return _storage._expirationDate ?? Temporal_Date()}
+  public var expirationDate: Opencannabis_Temporal_Date {
+    get {return _storage._expirationDate ?? Opencannabis_Temporal_Date()}
     set {_uniqueStorage()._expirationDate = newValue}
   }
   /// Returns true if `expirationDate` has been explicitly set.
@@ -46,7 +46,7 @@ public struct Identity_Ids_UserDoctorRec: SwiftProtobuf.Message {
   }
 
   /// US state where the recommendation is valid.
-  public var state: Geo_Usa_USState {
+  public var state: Opencannabis_Geo_Usa_USState {
     get {return _storage._state}
     set {_uniqueStorage()._state = newValue}
   }
@@ -64,8 +64,8 @@ public struct Identity_Ids_UserDoctorRec: SwiftProtobuf.Message {
   }
 
   /// Personal information about the physician.
-  public var doctor: Person_Person {
-    get {return _storage._doctor ?? Person_Person()}
+  public var doctor: Opencannabis_Person_Person {
+    get {return _storage._doctor ?? Opencannabis_Person_Person()}
     set {_uniqueStorage()._doctor = newValue}
   }
   /// Returns true if `doctor` has been explicitly set.
@@ -135,9 +135,9 @@ public struct Identity_Ids_UserDoctorRec: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "identity.ids"
+fileprivate let _protobuf_package = "bloombox.schema.identity.ids"
 
-extension Identity_Ids_UserDoctorRec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .standard(proto: "expiration_date"),
@@ -150,12 +150,12 @@ extension Identity_Ids_UserDoctorRec: SwiftProtobuf._MessageImplementationBase, 
 
   fileprivate class _StorageClass {
     var _id: String = String()
-    var _expirationDate: Temporal_Date? = nil
+    var _expirationDate: Opencannabis_Temporal_Date? = nil
     var _barcode: String = String()
-    var _state: Geo_Usa_USState = .unspecified
+    var _state: Opencannabis_Geo_Usa_USState = .unspecified
     var _country: String = String()
     var _doctorID: String = String()
-    var _doctor: Person_Person? = nil
+    var _doctor: Opencannabis_Person_Person? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -179,7 +179,7 @@ extension Identity_Ids_UserDoctorRec: SwiftProtobuf._MessageImplementationBase, 
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Identity_Ids_UserDoctorRec) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_UserDoctorRec) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

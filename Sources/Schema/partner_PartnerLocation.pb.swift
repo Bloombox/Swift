@@ -20,12 +20,12 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a key that references a location owned by a partner organization that has an active account with Bloombox.
-public struct Partner_PartnerLocationKey: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Partner_PartnerLocationKey: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PartnerLocationKey"
 
   /// Specifies the partner that owns this location.
-  public var partner: Partner_PartnerKey {
-    get {return _storage._partner ?? Partner_PartnerKey()}
+  public var partner: Bloombox_Schema_Partner_PartnerKey {
+    get {return _storage._partner ?? Bloombox_Schema_Partner_PartnerKey()}
     set {_uniqueStorage()._partner = newValue}
   }
   /// Returns true if `partner` has been explicitly set.
@@ -81,7 +81,7 @@ public struct Partner_PartnerLocationKey: SwiftProtobuf.Message {
 
 /// Specifies information about a brick-and-mortar location owned by a partner organization that has an active account
 /// with Bloombox.
-public struct Partner_PartnerLocation: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PartnerLocation"
 
   /// Short, unique string that identifies this location, scoped to the parent organization.
@@ -91,8 +91,8 @@ public struct Partner_PartnerLocation: SwiftProtobuf.Message {
   }
 
   /// Partner record that owns this location.
-  public var partner: Partner_Partner {
-    get {return _storage._partner ?? Partner_Partner()}
+  public var partner: Bloombox_Schema_Partner_Partner {
+    get {return _storage._partner ?? Bloombox_Schema_Partner_Partner()}
     set {_uniqueStorage()._partner = newValue}
   }
   /// Returns true if `partner` has been explicitly set.
@@ -113,8 +113,8 @@ public struct Partner_PartnerLocation: SwiftProtobuf.Message {
   }
 
   /// Flags that specify conditions applied to this partner location.
-  public var flags: Partner_PartnerFlags {
-    get {return _storage._flags ?? Partner_PartnerFlags()}
+  public var flags: Bloombox_Schema_Partner_PartnerFlags {
+    get {return _storage._flags ?? Bloombox_Schema_Partner_PartnerFlags()}
     set {_uniqueStorage()._flags = newValue}
   }
   /// Returns true if `flags` has been explicitly set.
@@ -123,8 +123,8 @@ public struct Partner_PartnerLocation: SwiftProtobuf.Message {
   public mutating func clearFlags() {_storage._flags = nil}
 
   /// Contact information for this location.
-  public var contact: Contact_ContactInfo {
-    get {return _storage._contact ?? Contact_ContactInfo()}
+  public var contact: Opencannabis_Contact_ContactInfo {
+    get {return _storage._contact ?? Opencannabis_Contact_ContactInfo()}
     set {_uniqueStorage()._contact = newValue}
   }
   /// Returns true if `contact` has been explicitly set.
@@ -133,8 +133,8 @@ public struct Partner_PartnerLocation: SwiftProtobuf.Message {
   public mutating func clearContact() {_storage._contact = nil}
 
   /// Branding specific to this location. Partner-level branding is used if this is left unspecified.
-  public var branding: Media_MediaItem {
-    get {return _storage._branding ?? Media_MediaItem()}
+  public var branding: Opencannabis_Media_MediaItem {
+    get {return _storage._branding ?? Opencannabis_Media_MediaItem()}
     set {_uniqueStorage()._branding = newValue}
   }
   /// Returns true if `branding` has been explicitly set.
@@ -143,8 +143,8 @@ public struct Partner_PartnerLocation: SwiftProtobuf.Message {
   public mutating func clearBranding() {_storage._branding = nil}
 
   /// Timestamp for when this record was created.
-  public var created: Temporal_Instant {
-    get {return _storage._created ?? Temporal_Instant()}
+  public var created: Opencannabis_Temporal_Instant {
+    get {return _storage._created ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._created = newValue}
   }
   /// Returns true if `created` has been explicitly set.
@@ -153,8 +153,8 @@ public struct Partner_PartnerLocation: SwiftProtobuf.Message {
   public mutating func clearCreated() {_storage._created = nil}
 
   /// Timestamp for when this record was last modified.
-  public var modified: Temporal_Instant {
-    get {return _storage._modified ?? Temporal_Instant()}
+  public var modified: Opencannabis_Temporal_Instant {
+    get {return _storage._modified ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._modified = newValue}
   }
   /// Returns true if `modified` has been explicitly set.
@@ -232,16 +232,16 @@ public struct Partner_PartnerLocation: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "partner"
+fileprivate let _protobuf_package = "bloombox.schema.partner"
 
-extension Partner_PartnerLocationKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerLocationKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "code"),
   ]
 
   fileprivate class _StorageClass {
-    var _partner: Partner_PartnerKey? = nil
+    var _partner: Bloombox_Schema_Partner_PartnerKey? = nil
     var _code: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -261,7 +261,7 @@ extension Partner_PartnerLocationKey: SwiftProtobuf._MessageImplementationBase, 
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Partner_PartnerLocationKey) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerLocationKey) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -277,7 +277,7 @@ extension Partner_PartnerLocationKey: SwiftProtobuf._MessageImplementationBase, 
   }
 }
 
-extension Partner_PartnerLocation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "code"),
     2: .same(proto: "partner"),
@@ -292,14 +292,14 @@ extension Partner_PartnerLocation: SwiftProtobuf._MessageImplementationBase, Swi
 
   fileprivate class _StorageClass {
     var _code: String = String()
-    var _partner: Partner_Partner? = nil
+    var _partner: Bloombox_Schema_Partner_Partner? = nil
     var _name: String = String()
     var _label: String = String()
-    var _flags: Partner_PartnerFlags? = nil
-    var _contact: Contact_ContactInfo? = nil
-    var _branding: Media_MediaItem? = nil
-    var _created: Temporal_Instant? = nil
-    var _modified: Temporal_Instant? = nil
+    var _flags: Bloombox_Schema_Partner_PartnerFlags? = nil
+    var _contact: Opencannabis_Contact_ContactInfo? = nil
+    var _branding: Opencannabis_Media_MediaItem? = nil
+    var _created: Opencannabis_Temporal_Instant? = nil
+    var _modified: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -325,7 +325,7 @@ extension Partner_PartnerLocation: SwiftProtobuf._MessageImplementationBase, Swi
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Partner_PartnerLocation) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerLocation) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

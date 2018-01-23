@@ -27,27 +27,27 @@ import gRPC
 import SwiftProtobuf
 
 /// Type for errors thrown from generated client code.
-public enum Services_Shop_V1_ShopClientError : Error {
+public enum Bloombox_Schema_Services_Shop_V1_ShopClientError : Error {
   case endOfStream
   case invalidMessageReceived
   case error(c: CallResult)
 }
 
 /// Ping (Unary)
-public class Services_Shop_V1_ShopPingCall {
+public class Bloombox_Schema_Services_Shop_V1_ShopPingCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.shop.v1.Shop/Ping")
+    self.call = channel.makeCall("/bloombox.schema.services.shop.v1.Shop/Ping")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Shop_V1_Ping_Request,
-                       metadata: Metadata) throws -> Services_Shop_V1_Ping_Response {
+  fileprivate func run(request: Bloombox_Schema_Services_Shop_V1_Ping_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Shop_V1_Ping_Response {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Shop_V1_Ping_Response?
+    var returnResponse : Bloombox_Schema_Services_Shop_V1_Ping_Response?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -57,15 +57,15 @@ public class Services_Shop_V1_ShopPingCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Shop_V1_ShopClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Shop_V1_ShopClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Shop_V1_Ping_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Shop_V1_Ping_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Shop_V1_Ping_Response?, CallResult)->())
-    throws -> Services_Shop_V1_ShopPingCall {
+                         completion: @escaping (Bloombox_Schema_Services_Shop_V1_Ping_Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Shop_V1_ShopPingCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -73,7 +73,7 @@ public class Services_Shop_V1_ShopPingCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Shop_V1_Ping_Response(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Shop_V1_Ping_Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -89,20 +89,20 @@ public class Services_Shop_V1_ShopPingCall {
 }
 
 /// ShopInfo (Unary)
-public class Services_Shop_V1_ShopShopInfoCall {
+public class Bloombox_Schema_Services_Shop_V1_ShopShopInfoCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.shop.v1.Shop/ShopInfo")
+    self.call = channel.makeCall("/bloombox.schema.services.shop.v1.Shop/ShopInfo")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Shop_V1_ShopInfo_Request,
-                       metadata: Metadata) throws -> Services_Shop_V1_ShopInfo_Response {
+  fileprivate func run(request: Bloombox_Schema_Services_Shop_V1_ShopInfo_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Shop_V1_ShopInfo_Response {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Shop_V1_ShopInfo_Response?
+    var returnResponse : Bloombox_Schema_Services_Shop_V1_ShopInfo_Response?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -112,15 +112,15 @@ public class Services_Shop_V1_ShopShopInfoCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Shop_V1_ShopClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Shop_V1_ShopClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Shop_V1_ShopInfo_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Shop_V1_ShopInfo_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Shop_V1_ShopInfo_Response?, CallResult)->())
-    throws -> Services_Shop_V1_ShopShopInfoCall {
+                         completion: @escaping (Bloombox_Schema_Services_Shop_V1_ShopInfo_Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Shop_V1_ShopShopInfoCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -128,7 +128,7 @@ public class Services_Shop_V1_ShopShopInfoCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Shop_V1_ShopInfo_Response(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Shop_V1_ShopInfo_Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -144,20 +144,20 @@ public class Services_Shop_V1_ShopShopInfoCall {
 }
 
 /// EnrollMember (Unary)
-public class Services_Shop_V1_ShopEnrollMemberCall {
+public class Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.shop.v1.Shop/EnrollMember")
+    self.call = channel.makeCall("/bloombox.schema.services.shop.v1.Shop/EnrollMember")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Shop_V1_EnrollMember_Request,
-                       metadata: Metadata) throws -> Services_Shop_V1_EnrollMember_Response {
+  fileprivate func run(request: Bloombox_Schema_Services_Shop_V1_EnrollMember_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Shop_V1_EnrollMember_Response {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Shop_V1_EnrollMember_Response?
+    var returnResponse : Bloombox_Schema_Services_Shop_V1_EnrollMember_Response?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -167,15 +167,15 @@ public class Services_Shop_V1_ShopEnrollMemberCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Shop_V1_ShopClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Shop_V1_ShopClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Shop_V1_EnrollMember_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Shop_V1_EnrollMember_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Shop_V1_EnrollMember_Response?, CallResult)->())
-    throws -> Services_Shop_V1_ShopEnrollMemberCall {
+                         completion: @escaping (Bloombox_Schema_Services_Shop_V1_EnrollMember_Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -183,7 +183,7 @@ public class Services_Shop_V1_ShopEnrollMemberCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Shop_V1_EnrollMember_Response(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Shop_V1_EnrollMember_Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -199,20 +199,20 @@ public class Services_Shop_V1_ShopEnrollMemberCall {
 }
 
 /// CheckZipcode (Unary)
-public class Services_Shop_V1_ShopCheckZipcodeCall {
+public class Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.shop.v1.Shop/CheckZipcode")
+    self.call = channel.makeCall("/bloombox.schema.services.shop.v1.Shop/CheckZipcode")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Shop_V1_CheckZipcode_Request,
-                       metadata: Metadata) throws -> Services_Shop_V1_CheckZipcode_Response {
+  fileprivate func run(request: Bloombox_Schema_Services_Shop_V1_CheckZipcode_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Shop_V1_CheckZipcode_Response {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Shop_V1_CheckZipcode_Response?
+    var returnResponse : Bloombox_Schema_Services_Shop_V1_CheckZipcode_Response?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -222,15 +222,15 @@ public class Services_Shop_V1_ShopCheckZipcodeCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Shop_V1_ShopClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Shop_V1_ShopClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Shop_V1_CheckZipcode_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Shop_V1_CheckZipcode_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Shop_V1_CheckZipcode_Response?, CallResult)->())
-    throws -> Services_Shop_V1_ShopCheckZipcodeCall {
+                         completion: @escaping (Bloombox_Schema_Services_Shop_V1_CheckZipcode_Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -238,7 +238,7 @@ public class Services_Shop_V1_ShopCheckZipcodeCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Shop_V1_CheckZipcode_Response(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Shop_V1_CheckZipcode_Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -254,20 +254,20 @@ public class Services_Shop_V1_ShopCheckZipcodeCall {
 }
 
 /// VerifyMember (Unary)
-public class Services_Shop_V1_ShopVerifyMemberCall {
+public class Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.shop.v1.Shop/VerifyMember")
+    self.call = channel.makeCall("/bloombox.schema.services.shop.v1.Shop/VerifyMember")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Shop_V1_VerifyMember_Request,
-                       metadata: Metadata) throws -> Services_Shop_V1_VerifyMember_Response {
+  fileprivate func run(request: Bloombox_Schema_Services_Shop_V1_VerifyMember_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Shop_V1_VerifyMember_Response {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Shop_V1_VerifyMember_Response?
+    var returnResponse : Bloombox_Schema_Services_Shop_V1_VerifyMember_Response?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -277,15 +277,15 @@ public class Services_Shop_V1_ShopVerifyMemberCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Shop_V1_ShopClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Shop_V1_ShopClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Shop_V1_VerifyMember_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Shop_V1_VerifyMember_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Shop_V1_VerifyMember_Response?, CallResult)->())
-    throws -> Services_Shop_V1_ShopVerifyMemberCall {
+                         completion: @escaping (Bloombox_Schema_Services_Shop_V1_VerifyMember_Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -293,7 +293,7 @@ public class Services_Shop_V1_ShopVerifyMemberCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Shop_V1_VerifyMember_Response(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Shop_V1_VerifyMember_Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -309,20 +309,20 @@ public class Services_Shop_V1_ShopVerifyMemberCall {
 }
 
 /// SubmitOrder (Unary)
-public class Services_Shop_V1_ShopSubmitOrderCall {
+public class Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.shop.v1.Shop/SubmitOrder")
+    self.call = channel.makeCall("/bloombox.schema.services.shop.v1.Shop/SubmitOrder")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Shop_V1_SubmitOrder_Request,
-                       metadata: Metadata) throws -> Services_Shop_V1_SubmitOrder_Response {
+  fileprivate func run(request: Bloombox_Schema_Services_Shop_V1_SubmitOrder_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Shop_V1_SubmitOrder_Response {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Shop_V1_SubmitOrder_Response?
+    var returnResponse : Bloombox_Schema_Services_Shop_V1_SubmitOrder_Response?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -332,15 +332,15 @@ public class Services_Shop_V1_ShopSubmitOrderCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Shop_V1_ShopClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Shop_V1_ShopClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Shop_V1_SubmitOrder_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Shop_V1_SubmitOrder_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Shop_V1_SubmitOrder_Response?, CallResult)->())
-    throws -> Services_Shop_V1_ShopSubmitOrderCall {
+                         completion: @escaping (Bloombox_Schema_Services_Shop_V1_SubmitOrder_Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -348,7 +348,7 @@ public class Services_Shop_V1_ShopSubmitOrderCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Shop_V1_SubmitOrder_Response(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Shop_V1_SubmitOrder_Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -364,20 +364,20 @@ public class Services_Shop_V1_ShopSubmitOrderCall {
 }
 
 /// GetOrder (Unary)
-public class Services_Shop_V1_ShopGetOrderCall {
+public class Bloombox_Schema_Services_Shop_V1_ShopGetOrderCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.shop.v1.Shop/GetOrder")
+    self.call = channel.makeCall("/bloombox.schema.services.shop.v1.Shop/GetOrder")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Shop_V1_GetOrder_Request,
-                       metadata: Metadata) throws -> Services_Shop_V1_GetOrder_Response {
+  fileprivate func run(request: Bloombox_Schema_Services_Shop_V1_GetOrder_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Shop_V1_GetOrder_Response {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Shop_V1_GetOrder_Response?
+    var returnResponse : Bloombox_Schema_Services_Shop_V1_GetOrder_Response?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -387,15 +387,15 @@ public class Services_Shop_V1_ShopGetOrderCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Shop_V1_ShopClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Shop_V1_ShopClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Shop_V1_GetOrder_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Shop_V1_GetOrder_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Shop_V1_GetOrder_Response?, CallResult)->())
-    throws -> Services_Shop_V1_ShopGetOrderCall {
+                         completion: @escaping (Bloombox_Schema_Services_Shop_V1_GetOrder_Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Shop_V1_ShopGetOrderCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -403,7 +403,7 @@ public class Services_Shop_V1_ShopGetOrderCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Shop_V1_GetOrder_Response(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Shop_V1_GetOrder_Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -419,7 +419,7 @@ public class Services_Shop_V1_ShopGetOrderCall {
 }
 
 /// Call methods of this class to make API calls.
-public final class Services_Shop_V1_ShopService {
+public final class Bloombox_Schema_Services_Shop_V1_ShopService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
@@ -438,121 +438,121 @@ public final class Services_Shop_V1_ShopService {
   }
 
   /// Create a client that makes insecure connections.
-  public init(address: String) {
+  public required init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  public init(address: String, certificates: String?, host: String?) {
+  public required init(address: String, certificates: String?, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()
   }
 
   /// Synchronous. Unary.
-  public func ping(_ request: Services_Shop_V1_Ping_Request)
+  public func ping(_ request: Bloombox_Schema_Services_Shop_V1_Ping_Request)
     throws
-    -> Services_Shop_V1_Ping_Response {
-      return try Services_Shop_V1_ShopPingCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Shop_V1_Ping_Response {
+      return try Bloombox_Schema_Services_Shop_V1_ShopPingCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func ping(_ request: Services_Shop_V1_Ping_Request,
-                  completion: @escaping (Services_Shop_V1_Ping_Response?, CallResult)->())
+  public func ping(_ request: Bloombox_Schema_Services_Shop_V1_Ping_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Shop_V1_Ping_Response?, CallResult)->())
     throws
-    -> Services_Shop_V1_ShopPingCall {
-      return try Services_Shop_V1_ShopPingCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Shop_V1_ShopPingCall {
+      return try Bloombox_Schema_Services_Shop_V1_ShopPingCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func shopinfo(_ request: Services_Shop_V1_ShopInfo_Request)
+  public func shopinfo(_ request: Bloombox_Schema_Services_Shop_V1_ShopInfo_Request)
     throws
-    -> Services_Shop_V1_ShopInfo_Response {
-      return try Services_Shop_V1_ShopShopInfoCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Shop_V1_ShopInfo_Response {
+      return try Bloombox_Schema_Services_Shop_V1_ShopShopInfoCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func shopinfo(_ request: Services_Shop_V1_ShopInfo_Request,
-                  completion: @escaping (Services_Shop_V1_ShopInfo_Response?, CallResult)->())
+  public func shopinfo(_ request: Bloombox_Schema_Services_Shop_V1_ShopInfo_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Shop_V1_ShopInfo_Response?, CallResult)->())
     throws
-    -> Services_Shop_V1_ShopShopInfoCall {
-      return try Services_Shop_V1_ShopShopInfoCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Shop_V1_ShopShopInfoCall {
+      return try Bloombox_Schema_Services_Shop_V1_ShopShopInfoCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func enrollmember(_ request: Services_Shop_V1_EnrollMember_Request)
+  public func enrollmember(_ request: Bloombox_Schema_Services_Shop_V1_EnrollMember_Request)
     throws
-    -> Services_Shop_V1_EnrollMember_Response {
-      return try Services_Shop_V1_ShopEnrollMemberCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Shop_V1_EnrollMember_Response {
+      return try Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func enrollmember(_ request: Services_Shop_V1_EnrollMember_Request,
-                  completion: @escaping (Services_Shop_V1_EnrollMember_Response?, CallResult)->())
+  public func enrollmember(_ request: Bloombox_Schema_Services_Shop_V1_EnrollMember_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Shop_V1_EnrollMember_Response?, CallResult)->())
     throws
-    -> Services_Shop_V1_ShopEnrollMemberCall {
-      return try Services_Shop_V1_ShopEnrollMemberCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCall {
+      return try Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func checkzipcode(_ request: Services_Shop_V1_CheckZipcode_Request)
+  public func checkzipcode(_ request: Bloombox_Schema_Services_Shop_V1_CheckZipcode_Request)
     throws
-    -> Services_Shop_V1_CheckZipcode_Response {
-      return try Services_Shop_V1_ShopCheckZipcodeCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Shop_V1_CheckZipcode_Response {
+      return try Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func checkzipcode(_ request: Services_Shop_V1_CheckZipcode_Request,
-                  completion: @escaping (Services_Shop_V1_CheckZipcode_Response?, CallResult)->())
+  public func checkzipcode(_ request: Bloombox_Schema_Services_Shop_V1_CheckZipcode_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Shop_V1_CheckZipcode_Response?, CallResult)->())
     throws
-    -> Services_Shop_V1_ShopCheckZipcodeCall {
-      return try Services_Shop_V1_ShopCheckZipcodeCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCall {
+      return try Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func verifymember(_ request: Services_Shop_V1_VerifyMember_Request)
+  public func verifymember(_ request: Bloombox_Schema_Services_Shop_V1_VerifyMember_Request)
     throws
-    -> Services_Shop_V1_VerifyMember_Response {
-      return try Services_Shop_V1_ShopVerifyMemberCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Shop_V1_VerifyMember_Response {
+      return try Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func verifymember(_ request: Services_Shop_V1_VerifyMember_Request,
-                  completion: @escaping (Services_Shop_V1_VerifyMember_Response?, CallResult)->())
+  public func verifymember(_ request: Bloombox_Schema_Services_Shop_V1_VerifyMember_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Shop_V1_VerifyMember_Response?, CallResult)->())
     throws
-    -> Services_Shop_V1_ShopVerifyMemberCall {
-      return try Services_Shop_V1_ShopVerifyMemberCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCall {
+      return try Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func submitorder(_ request: Services_Shop_V1_SubmitOrder_Request)
+  public func submitorder(_ request: Bloombox_Schema_Services_Shop_V1_SubmitOrder_Request)
     throws
-    -> Services_Shop_V1_SubmitOrder_Response {
-      return try Services_Shop_V1_ShopSubmitOrderCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Shop_V1_SubmitOrder_Response {
+      return try Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func submitorder(_ request: Services_Shop_V1_SubmitOrder_Request,
-                  completion: @escaping (Services_Shop_V1_SubmitOrder_Response?, CallResult)->())
+  public func submitorder(_ request: Bloombox_Schema_Services_Shop_V1_SubmitOrder_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Shop_V1_SubmitOrder_Response?, CallResult)->())
     throws
-    -> Services_Shop_V1_ShopSubmitOrderCall {
-      return try Services_Shop_V1_ShopSubmitOrderCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCall {
+      return try Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func getorder(_ request: Services_Shop_V1_GetOrder_Request)
+  public func getorder(_ request: Bloombox_Schema_Services_Shop_V1_GetOrder_Request)
     throws
-    -> Services_Shop_V1_GetOrder_Response {
-      return try Services_Shop_V1_ShopGetOrderCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Shop_V1_GetOrder_Response {
+      return try Bloombox_Schema_Services_Shop_V1_ShopGetOrderCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func getorder(_ request: Services_Shop_V1_GetOrder_Request,
-                  completion: @escaping (Services_Shop_V1_GetOrder_Response?, CallResult)->())
+  public func getorder(_ request: Bloombox_Schema_Services_Shop_V1_GetOrder_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Shop_V1_GetOrder_Response?, CallResult)->())
     throws
-    -> Services_Shop_V1_ShopGetOrderCall {
-      return try Services_Shop_V1_ShopGetOrderCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Shop_V1_ShopGetOrderCall {
+      return try Bloombox_Schema_Services_Shop_V1_ShopGetOrderCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }

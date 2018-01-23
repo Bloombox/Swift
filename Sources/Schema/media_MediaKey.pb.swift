@@ -21,7 +21,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Key uniquely describing an item of media known to the system. An "item of media" can be anything from an image or a
 /// video, to a PDF document, or larger data.
-public struct Media_MediaKey: SwiftProtobuf.Message {
+public struct Opencannabis_Media_MediaKey: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".MediaKey"
 
   /// Unique ID for this media item.
@@ -58,14 +58,14 @@ public struct Media_MediaKey: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "media"
+fileprivate let _protobuf_package = "opencannabis.media"
 
-extension Media_MediaKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_MediaKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Media_MediaKey) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_MediaKey) -> Bool {
     if self.id != other.id {return false}
     if unknownFields != other.unknownFields {return false}
     return true

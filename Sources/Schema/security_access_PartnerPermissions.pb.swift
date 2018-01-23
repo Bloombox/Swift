@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Security_Access_PartnerPermission: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Security_Access_PartnerPermission: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case owner // = 0
   case supervisor // = 1
@@ -56,7 +56,7 @@ public enum Security_Access_PartnerPermission: SwiftProtobuf.Enum {
 
 }
 
-public struct Security_Access_PartnerAccess: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Security_Access_PartnerAccess: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PartnerAccess"
 
   public var active: Bool {
@@ -69,8 +69,8 @@ public struct Security_Access_PartnerAccess: SwiftProtobuf.Message {
     set {_uniqueStorage()._grantedBy = newValue}
   }
 
-  public var grantedAt: Temporal_Instant {
-    get {return _storage._grantedAt ?? Temporal_Instant()}
+  public var grantedAt: Opencannabis_Temporal_Instant {
+    get {return _storage._grantedAt ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._grantedAt = newValue}
   }
   /// Returns true if `grantedAt` has been explicitly set.
@@ -78,12 +78,12 @@ public struct Security_Access_PartnerAccess: SwiftProtobuf.Message {
   /// Clears the value of `grantedAt`. Subsequent reads from it will return its default value.
   public mutating func clearGrantedAt() {_storage._grantedAt = nil}
 
-  public var privileges: [Security_Access_PartnerPermission] {
+  public var privileges: [Bloombox_Schema_Security_Access_PartnerPermission] {
     get {return _storage._privileges}
     set {_uniqueStorage()._privileges = newValue}
   }
 
-  public var locations: [Security_Access_LocationAccess] {
+  public var locations: [Bloombox_Schema_Security_Access_LocationAccess] {
     get {return _storage._locations}
     set {_uniqueStorage()._locations = newValue}
   }
@@ -158,7 +158,7 @@ public struct Security_Access_PartnerAccess: SwiftProtobuf.Message {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Security_Access_LocationAccess: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Security_Access_LocationAccess: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".LocationAccess"
 
   public var active: Bool {
@@ -171,8 +171,8 @@ public struct Security_Access_LocationAccess: SwiftProtobuf.Message {
     set {_uniqueStorage()._grantedBy = newValue}
   }
 
-  public var grantedAt: Temporal_Instant {
-    get {return _storage._grantedAt ?? Temporal_Instant()}
+  public var grantedAt: Opencannabis_Temporal_Instant {
+    get {return _storage._grantedAt ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._grantedAt = newValue}
   }
   /// Returns true if `grantedAt` has been explicitly set.
@@ -235,9 +235,9 @@ public struct Security_Access_LocationAccess: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "security.access"
+fileprivate let _protobuf_package = "bloombox.schema.security.access"
 
-extension Security_Access_PartnerPermission: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Security_Access_PartnerPermission: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "OWNER"),
     1: .same(proto: "SUPERVISOR"),
@@ -247,7 +247,7 @@ extension Security_Access_PartnerPermission: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Security_Access_PartnerAccess: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Security_Access_PartnerAccess: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "active"),
     2: .standard(proto: "granted_by"),
@@ -261,9 +261,9 @@ extension Security_Access_PartnerAccess: SwiftProtobuf._MessageImplementationBas
   fileprivate class _StorageClass {
     var _active: Bool = false
     var _grantedBy: String = String()
-    var _grantedAt: Temporal_Instant? = nil
-    var _privileges: [Security_Access_PartnerPermission] = []
-    var _locations: [Security_Access_LocationAccess] = []
+    var _grantedAt: Opencannabis_Temporal_Instant? = nil
+    var _privileges: [Bloombox_Schema_Security_Access_PartnerPermission] = []
+    var _locations: [Bloombox_Schema_Security_Access_LocationAccess] = []
     var _allLocations: Bool = false
     var _admin: Bool = false
 
@@ -289,7 +289,7 @@ extension Security_Access_PartnerAccess: SwiftProtobuf._MessageImplementationBas
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Security_Access_PartnerAccess) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_Access_PartnerAccess) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -310,7 +310,7 @@ extension Security_Access_PartnerAccess: SwiftProtobuf._MessageImplementationBas
   }
 }
 
-extension Security_Access_LocationAccess: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Security_Access_LocationAccess: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "active"),
     2: .standard(proto: "granted_by"),
@@ -321,7 +321,7 @@ extension Security_Access_LocationAccess: SwiftProtobuf._MessageImplementationBa
   fileprivate class _StorageClass {
     var _active: Bool = false
     var _grantedBy: String = String()
-    var _grantedAt: Temporal_Instant? = nil
+    var _grantedAt: Opencannabis_Temporal_Instant? = nil
     var _admin: Bool = false
 
     static let defaultInstance = _StorageClass()
@@ -343,7 +343,7 @@ extension Security_Access_LocationAccess: SwiftProtobuf._MessageImplementationBa
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Security_Access_LocationAccess) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_Access_LocationAccess) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

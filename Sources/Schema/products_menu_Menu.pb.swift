@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates statuses a menu may assume.
-public enum Products_Menu_Status: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_Menu_Status: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Indicates that a menu revision is not yet published.
@@ -53,7 +53,7 @@ public enum Products_Menu_Status: SwiftProtobuf.Enum {
 }
 
 /// Enumerates flags that can be set on a menu.
-public enum Products_Menu_Flag: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_Menu_Flag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Indicates that this entire menu is considered a draft.
@@ -91,7 +91,7 @@ public enum Products_Menu_Flag: SwiftProtobuf.Enum {
 }
 
 /// Specifies settings used to generate a menu, or used as input when generating menus.
-public struct Products_Menu_MenuSettings: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Menu_MenuSettings: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".MenuSettings"
 
   /// Flag indicating a full menu, including hidden/out-of-stock items.
@@ -107,8 +107,8 @@ public struct Products_Menu_MenuSettings: SwiftProtobuf.Message {
   }
 
   /// Don't return the menu if it's identical to this fingerprint.
-  public var snapshot: Crypto_Primitives_Integrity_Hash {
-    get {return _storage._snapshot ?? Crypto_Primitives_Integrity_Hash()}
+  public var snapshot: Opencannabis_Crypto_Primitives_Integrity_Hash {
+    get {return _storage._snapshot ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
     set {_uniqueStorage()._snapshot = newValue}
   }
   /// Returns true if `snapshot` has been explicitly set.
@@ -117,8 +117,8 @@ public struct Products_Menu_MenuSettings: SwiftProtobuf.Message {
   public mutating func clearSnapshot() {_storage._snapshot = nil}
 
   /// Bloom filter to consider when returning or processing menu items.
-  public var fingerprint: Crypto_Primitives_Integrity_Hash {
-    get {return _storage._fingerprint ?? Crypto_Primitives_Integrity_Hash()}
+  public var fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash {
+    get {return _storage._fingerprint ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
     set {_uniqueStorage()._fingerprint = newValue}
   }
   /// Returns true if `fingerprint` has been explicitly set.
@@ -127,7 +127,7 @@ public struct Products_Menu_MenuSettings: SwiftProtobuf.Message {
   public mutating func clearFingerprint() {_storage._fingerprint = nil}
 
   /// Sections to include in the menu. If unspecified, include all sections.
-  public var section: [Products_Menu_Section_Section] {
+  public var section: [Opencannabis_Products_Menu_Section_Section] {
     get {return _storage._section}
     set {_uniqueStorage()._section = newValue}
   }
@@ -185,7 +185,7 @@ public struct Products_Menu_MenuSettings: SwiftProtobuf.Message {
 }
 
 /// Specifies metadata for a package of menu data.
-public struct Products_Menu_Metadata: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Menu_Metadata: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Metadata"
 
   /// Partner location that owns this menu data.
@@ -201,20 +201,20 @@ public struct Products_Menu_Metadata: SwiftProtobuf.Message {
   }
 
   /// Status of this menu data.
-  public var status: Products_Menu_Status {
+  public var status: Opencannabis_Products_Menu_Status {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
   }
 
   /// Flags attached to this menu data.
-  public var flags: [Products_Menu_Flag] {
+  public var flags: [Opencannabis_Products_Menu_Flag] {
     get {return _storage._flags}
     set {_uniqueStorage()._flags = newValue}
   }
 
   /// When this menu data was published.
-  public var published: Temporal_Instant {
-    get {return _storage._published ?? Temporal_Instant()}
+  public var published: Opencannabis_Temporal_Instant {
+    get {return _storage._published ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._published = newValue}
   }
   /// Returns true if `published` has been explicitly set.
@@ -223,8 +223,8 @@ public struct Products_Menu_Metadata: SwiftProtobuf.Message {
   public mutating func clearPublished() {_storage._published = nil}
 
   /// Settings that produced this menu data.
-  public var settings: Products_Menu_MenuSettings {
-    get {return _storage._settings ?? Products_Menu_MenuSettings()}
+  public var settings: Opencannabis_Products_Menu_MenuSettings {
+    get {return _storage._settings ?? Opencannabis_Products_Menu_MenuSettings()}
     set {_uniqueStorage()._settings = newValue}
   }
   /// Returns true if `settings` has been explicitly set.
@@ -289,12 +289,12 @@ public struct Products_Menu_Metadata: SwiftProtobuf.Message {
 }
 
 /// Menu product payload stanza. Specifies a single product as a member of a menu section.
-public struct Products_Menu_MenuProduct: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".MenuProduct"
 
   /// Section that this data is attached to.
-  public var key: Base_ProductKey {
-    get {return _storage._key ?? Base_ProductKey()}
+  public var key: Opencannabis_Base_ProductKey {
+    get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -339,7 +339,7 @@ public struct Products_Menu_MenuProduct: SwiftProtobuf.Message {
 }
 
 /// Specifies an inner menu payload which contains menu data for a given menu section.
-public struct Products_Menu_SectionData: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Menu_SectionData: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".SectionData"
 
   /// Count of products included in this menu section data.
@@ -349,8 +349,8 @@ public struct Products_Menu_SectionData: SwiftProtobuf.Message {
   }
 
   /// Section that this data is attached to.
-  public var section: Products_Menu_Section_SectionSpec {
-    get {return _storage._section ?? Products_Menu_Section_SectionSpec()}
+  public var section: Opencannabis_Products_Menu_Section_SectionSpec {
+    get {return _storage._section ?? Opencannabis_Products_Menu_Section_SectionSpec()}
     set {_uniqueStorage()._section = newValue}
   }
   /// Returns true if `section` has been explicitly set.
@@ -359,7 +359,7 @@ public struct Products_Menu_SectionData: SwiftProtobuf.Message {
   public mutating func clearSection() {_storage._section = nil}
 
   /// Menu products attached to this section.
-  public var product: [Products_Menu_MenuProduct] {
+  public var product: [Opencannabis_Products_Menu_MenuProduct] {
     get {return _storage._product}
     set {_uniqueStorage()._product = newValue}
   }
@@ -409,14 +409,14 @@ public struct Products_Menu_SectionData: SwiftProtobuf.Message {
 }
 
 /// Specifies a menu split into section-level chunks.
-public struct Products_Menu_SectionedMenu: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Menu_SectionedMenu: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".SectionedMenu"
 
   /// Count of all products included in this menu, all sections considered.
   public var count: Int32 = 0
 
   /// Specifies a payload of sectioned menu data.
-  public var payload: [Products_Menu_SectionData] = []
+  public var payload: [Opencannabis_Products_Menu_SectionData] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -453,32 +453,32 @@ public struct Products_Menu_SectionedMenu: SwiftProtobuf.Message {
 
 /// Specifies an inner menu payload which contains mapped data, where each map key is a section name, lowercased, and
 /// each map value is itself a product, and each map is addressed at a typed property name.
-public struct Products_Menu_StaticMenu: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Menu_StaticMenu: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".StaticMenu"
 
   /// Specifies APOTHECARY products attached to this menu.
-  public var apothecary: Dictionary<String,Products_Apothecary> = [:]
+  public var apothecary: Dictionary<String,Opencannabis_Products_Apothecary> = [:]
 
   /// Specifies CARTRIDGE products attached to this menu.
-  public var cartridges: Dictionary<String,Products_Cartridge> = [:]
+  public var cartridges: Dictionary<String,Opencannabis_Products_Cartridge> = [:]
 
   /// Specifies EDIBLE products attached to this menu.
-  public var edibles: Dictionary<String,Products_Edible> = [:]
+  public var edibles: Dictionary<String,Opencannabis_Products_Edible> = [:]
 
   /// Specifies EXTRACT products attached to this menu.
-  public var extracts: Dictionary<String,Products_Extract> = [:]
+  public var extracts: Dictionary<String,Opencannabis_Products_Extract> = [:]
 
   /// Specifies FLOWER products attached to this menu.
-  public var flowers: Dictionary<String,Products_Flower> = [:]
+  public var flowers: Dictionary<String,Opencannabis_Products_Flower> = [:]
 
   /// Specifies MERCHANDISE products attached to this menu.
-  public var merchandise: Dictionary<String,Products_Merchandise> = [:]
+  public var merchandise: Dictionary<String,Opencannabis_Products_Merchandise> = [:]
 
   /// Specifies PLANT products attached to this menu.
-  public var plants: Dictionary<String,Products_Plant> = [:]
+  public var plants: Dictionary<String,Opencannabis_Products_Plant> = [:]
 
   /// Specifies PREROLL products attached to this menu.
-  public var prerolls: Dictionary<String,Products_Preroll> = [:]
+  public var prerolls: Dictionary<String,Opencannabis_Products_Preroll> = [:]
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -491,14 +491,14 @@ public struct Products_Menu_StaticMenu: SwiftProtobuf.Message {
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Apothecary>.self, value: &self.apothecary)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Cartridge>.self, value: &self.cartridges)
-      case 3: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Edible>.self, value: &self.edibles)
-      case 4: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Extract>.self, value: &self.extracts)
-      case 5: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Flower>.self, value: &self.flowers)
-      case 6: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Merchandise>.self, value: &self.merchandise)
-      case 7: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Plant>.self, value: &self.plants)
-      case 8: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Preroll>.self, value: &self.prerolls)
+      case 1: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Apothecary>.self, value: &self.apothecary)
+      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Cartridge>.self, value: &self.cartridges)
+      case 3: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Edible>.self, value: &self.edibles)
+      case 4: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Extract>.self, value: &self.extracts)
+      case 5: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Flower>.self, value: &self.flowers)
+      case 6: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Merchandise>.self, value: &self.merchandise)
+      case 7: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Plant>.self, value: &self.plants)
+      case 8: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Preroll>.self, value: &self.prerolls)
       default: break
       }
     }
@@ -510,28 +510,28 @@ public struct Products_Menu_StaticMenu: SwiftProtobuf.Message {
   /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.apothecary.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Apothecary>.self, value: self.apothecary, fieldNumber: 1)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Apothecary>.self, value: self.apothecary, fieldNumber: 1)
     }
     if !self.cartridges.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Cartridge>.self, value: self.cartridges, fieldNumber: 2)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Cartridge>.self, value: self.cartridges, fieldNumber: 2)
     }
     if !self.edibles.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Edible>.self, value: self.edibles, fieldNumber: 3)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Edible>.self, value: self.edibles, fieldNumber: 3)
     }
     if !self.extracts.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Extract>.self, value: self.extracts, fieldNumber: 4)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Extract>.self, value: self.extracts, fieldNumber: 4)
     }
     if !self.flowers.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Flower>.self, value: self.flowers, fieldNumber: 5)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Flower>.self, value: self.flowers, fieldNumber: 5)
     }
     if !self.merchandise.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Merchandise>.self, value: self.merchandise, fieldNumber: 6)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Merchandise>.self, value: self.merchandise, fieldNumber: 6)
     }
     if !self.plants.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Plant>.self, value: self.plants, fieldNumber: 7)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Plant>.self, value: self.plants, fieldNumber: 7)
     }
     if !self.prerolls.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Products_Preroll>.self, value: self.prerolls, fieldNumber: 8)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Products_Preroll>.self, value: self.prerolls, fieldNumber: 8)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -539,12 +539,12 @@ public struct Products_Menu_StaticMenu: SwiftProtobuf.Message {
 
 /// Holds a full specification for a revision of menu data, segmented into sections, by the categories member products
 /// are filed in. Categories are enumerated in `menu.Section`.
-public struct Products_Menu_Menu: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Menu_Menu: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Menu"
 
   /// Metadata for the menu.
-  public var metadata: Products_Menu_Metadata {
-    get {return _storage._metadata ?? Products_Menu_Metadata()}
+  public var metadata: Opencannabis_Products_Menu_Metadata {
+    get {return _storage._metadata ?? Opencannabis_Products_Menu_Metadata()}
     set {_uniqueStorage()._metadata = newValue}
   }
   /// Returns true if `metadata` has been explicitly set.
@@ -559,19 +559,19 @@ public struct Products_Menu_Menu: SwiftProtobuf.Message {
   }
 
   /// Data payloads attached to this menu.
-  public var payload: Products_Menu_SectionedMenu {
+  public var payload: Opencannabis_Products_Menu_SectionedMenu {
     get {
       if case .payload(let v)? = _storage._content {return v}
-      return Products_Menu_SectionedMenu()
+      return Opencannabis_Products_Menu_SectionedMenu()
     }
     set {_uniqueStorage()._content = .payload(newValue)}
   }
 
   /// Specifies a static menu, where each section is specified as a typed map, with keys mapped to products.
-  public var menu: Products_Menu_StaticMenu {
+  public var menu: Opencannabis_Products_Menu_StaticMenu {
     get {
       if case .menu(let v)? = _storage._content {return v}
-      return Products_Menu_StaticMenu()
+      return Opencannabis_Products_Menu_StaticMenu()
     }
     set {_uniqueStorage()._content = .menu(newValue)}
   }
@@ -581,11 +581,11 @@ public struct Products_Menu_Menu: SwiftProtobuf.Message {
   /// Specifies menu content, either in repeated section data, or with a static map.
   public enum OneOf_Content: Equatable {
     /// Data payloads attached to this menu.
-    case payload(Products_Menu_SectionedMenu)
+    case payload(Opencannabis_Products_Menu_SectionedMenu)
     /// Specifies a static menu, where each section is specified as a typed map, with keys mapped to products.
-    case menu(Products_Menu_StaticMenu)
+    case menu(Opencannabis_Products_Menu_StaticMenu)
 
-    public static func ==(lhs: Products_Menu_Menu.OneOf_Content, rhs: Products_Menu_Menu.OneOf_Content) -> Bool {
+    public static func ==(lhs: Opencannabis_Products_Menu_Menu.OneOf_Content, rhs: Opencannabis_Products_Menu_Menu.OneOf_Content) -> Bool {
       switch (lhs, rhs) {
       case (.payload(let l), .payload(let r)): return l == r
       case (.menu(let l), .menu(let r)): return l == r
@@ -607,7 +607,7 @@ public struct Products_Menu_Menu: SwiftProtobuf.Message {
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._metadata)
         case 3:
-          var v: Products_Menu_SectionedMenu?
+          var v: Opencannabis_Products_Menu_SectionedMenu?
           if let current = _storage._content {
             try decoder.handleConflictingOneOf()
             if case .payload(let m) = current {v = m}
@@ -615,7 +615,7 @@ public struct Products_Menu_Menu: SwiftProtobuf.Message {
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._content = .payload(v)}
         case 4:
-          var v: Products_Menu_StaticMenu?
+          var v: Opencannabis_Products_Menu_StaticMenu?
           if let current = _storage._content {
             try decoder.handleConflictingOneOf()
             if case .menu(let m) = current {v = m}
@@ -653,16 +653,16 @@ public struct Products_Menu_Menu: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "products.menu"
+fileprivate let _protobuf_package = "opencannabis.products.menu"
 
-extension Products_Menu_Status: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Status: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNPUBLISHED"),
     1: .same(proto: "LIVE"),
   ]
 }
 
-extension Products_Menu_Flag: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Flag: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "DRAFT"),
     1: .same(proto: "PRIVATE"),
@@ -670,7 +670,7 @@ extension Products_Menu_Flag: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_Menu_MenuSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_MenuSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "full"),
     2: .standard(proto: "keys_only"),
@@ -682,9 +682,9 @@ extension Products_Menu_MenuSettings: SwiftProtobuf._MessageImplementationBase, 
   fileprivate class _StorageClass {
     var _full: Bool = false
     var _keysOnly: Bool = false
-    var _snapshot: Crypto_Primitives_Integrity_Hash? = nil
-    var _fingerprint: Crypto_Primitives_Integrity_Hash? = nil
-    var _section: [Products_Menu_Section_Section] = []
+    var _snapshot: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
+    var _fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
+    var _section: [Opencannabis_Products_Menu_Section_Section] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -706,7 +706,7 @@ extension Products_Menu_MenuSettings: SwiftProtobuf._MessageImplementationBase, 
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Menu_MenuSettings) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_MenuSettings) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -725,7 +725,7 @@ extension Products_Menu_MenuSettings: SwiftProtobuf._MessageImplementationBase, 
   }
 }
 
-extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "version"),
@@ -738,10 +738,10 @@ extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, Swif
   fileprivate class _StorageClass {
     var _scope: String = String()
     var _version: UInt64 = 0
-    var _status: Products_Menu_Status = .unpublished
-    var _flags: [Products_Menu_Flag] = []
-    var _published: Temporal_Instant? = nil
-    var _settings: Products_Menu_MenuSettings? = nil
+    var _status: Opencannabis_Products_Menu_Status = .unpublished
+    var _flags: [Opencannabis_Products_Menu_Flag] = []
+    var _published: Opencannabis_Temporal_Instant? = nil
+    var _settings: Opencannabis_Products_Menu_MenuSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -764,7 +764,7 @@ extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, Swif
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Menu_Metadata) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Metadata) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -784,13 +784,13 @@ extension Products_Menu_Metadata: SwiftProtobuf._MessageImplementationBase, Swif
   }
 }
 
-extension Products_Menu_MenuProduct: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
   ]
 
   fileprivate class _StorageClass {
-    var _key: Base_ProductKey? = nil
+    var _key: Opencannabis_Base_ProductKey? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -808,7 +808,7 @@ extension Products_Menu_MenuProduct: SwiftProtobuf._MessageImplementationBase, S
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Menu_MenuProduct) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_MenuProduct) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -823,7 +823,7 @@ extension Products_Menu_MenuProduct: SwiftProtobuf._MessageImplementationBase, S
   }
 }
 
-extension Products_Menu_SectionData: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_SectionData: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "count"),
     2: .same(proto: "section"),
@@ -832,8 +832,8 @@ extension Products_Menu_SectionData: SwiftProtobuf._MessageImplementationBase, S
 
   fileprivate class _StorageClass {
     var _count: Int32 = 0
-    var _section: Products_Menu_Section_SectionSpec? = nil
-    var _product: [Products_Menu_MenuProduct] = []
+    var _section: Opencannabis_Products_Menu_Section_SectionSpec? = nil
+    var _product: [Opencannabis_Products_Menu_MenuProduct] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -853,7 +853,7 @@ extension Products_Menu_SectionData: SwiftProtobuf._MessageImplementationBase, S
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Menu_SectionData) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_SectionData) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -870,13 +870,13 @@ extension Products_Menu_SectionData: SwiftProtobuf._MessageImplementationBase, S
   }
 }
 
-extension Products_Menu_SectionedMenu: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_SectionedMenu: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "count"),
     2: .same(proto: "payload"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Products_Menu_SectionedMenu) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_SectionedMenu) -> Bool {
     if self.count != other.count {return false}
     if self.payload != other.payload {return false}
     if unknownFields != other.unknownFields {return false}
@@ -884,7 +884,7 @@ extension Products_Menu_SectionedMenu: SwiftProtobuf._MessageImplementationBase,
   }
 }
 
-extension Products_Menu_StaticMenu: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_StaticMenu: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "apothecary"),
     2: .same(proto: "cartridges"),
@@ -896,7 +896,7 @@ extension Products_Menu_StaticMenu: SwiftProtobuf._MessageImplementationBase, Sw
     8: .same(proto: "prerolls"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Products_Menu_StaticMenu) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_StaticMenu) -> Bool {
     if self.apothecary != other.apothecary {return false}
     if self.cartridges != other.cartridges {return false}
     if self.edibles != other.edibles {return false}
@@ -910,7 +910,7 @@ extension Products_Menu_StaticMenu: SwiftProtobuf._MessageImplementationBase, Sw
   }
 }
 
-extension Products_Menu_Menu: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Menu: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "metadata"),
     3: .same(proto: "payload"),
@@ -918,8 +918,8 @@ extension Products_Menu_Menu: SwiftProtobuf._MessageImplementationBase, SwiftPro
   ]
 
   fileprivate class _StorageClass {
-    var _metadata: Products_Menu_Metadata? = nil
-    var _content: Products_Menu_Menu.OneOf_Content?
+    var _metadata: Opencannabis_Products_Menu_Metadata? = nil
+    var _content: Opencannabis_Products_Menu_Menu.OneOf_Content?
 
     static let defaultInstance = _StorageClass()
 
@@ -938,7 +938,7 @@ extension Products_Menu_Menu: SwiftProtobuf._MessageImplementationBase, SwiftPro
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Menu_Menu) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Menu) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

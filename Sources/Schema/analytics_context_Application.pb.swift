@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates types of applications that may run on a device and report telemetry information.
-public enum Analytics_Context_ApplicationType: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Analytics_Context_ApplicationType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The application is internally produced and managed.
@@ -53,7 +53,7 @@ public enum Analytics_Context_ApplicationType: SwiftProtobuf.Enum {
 }
 
 /// Specifies information about a web application reporting information to the telemetry service.
-public struct Analytics_Context_WebApplication: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Context_WebApplication: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".WebApplication"
 
   /// Specifies an origin for a web application.
@@ -124,18 +124,18 @@ public struct Analytics_Context_WebApplication: SwiftProtobuf.Message {
 }
 
 /// Specifies information about the application reporting information to the telemetry service.
-public struct Analytics_Context_DeviceApplication: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Context_DeviceApplication: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".DeviceApplication"
 
   /// Type of application.
-  public var type: Analytics_Context_ApplicationType {
+  public var type: Bloombox_Schema_Analytics_Context_ApplicationType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Version for the reporting application.
-  public var version: Structs_VersionSpec {
-    get {return _storage._version ?? Structs_VersionSpec()}
+  public var version: Opencannabis_Structs_VersionSpec {
+    get {return _storage._version ?? Opencannabis_Structs_VersionSpec()}
     set {_uniqueStorage()._version = newValue}
   }
   /// Returns true if `version` has been explicitly set.
@@ -150,10 +150,10 @@ public struct Analytics_Context_DeviceApplication: SwiftProtobuf.Message {
   }
 
   /// Specifies information about an event that was sent from a web application.
-  public var web: Analytics_Context_WebApplication {
+  public var web: Bloombox_Schema_Analytics_Context_WebApplication {
     get {
       if case .web(let v)? = _storage._spec {return v}
-      return Analytics_Context_WebApplication()
+      return Bloombox_Schema_Analytics_Context_WebApplication()
     }
     set {_uniqueStorage()._spec = .web(newValue)}
   }
@@ -181,13 +181,13 @@ public struct Analytics_Context_DeviceApplication: SwiftProtobuf.Message {
   /// Specifies which application is running. How that is specified depends on the architecture behind the application.
   public enum OneOf_Spec: Equatable {
     /// Specifies information about an event that was sent from a web application.
-    case web(Analytics_Context_WebApplication)
+    case web(Bloombox_Schema_Analytics_Context_WebApplication)
     /// Specifies a bundle ID for an iOS application.
     case bundleID(String)
     /// Specifies an application ID for an Android application.
     case androidPackageID(String)
 
-    public static func ==(lhs: Analytics_Context_DeviceApplication.OneOf_Spec, rhs: Analytics_Context_DeviceApplication.OneOf_Spec) -> Bool {
+    public static func ==(lhs: Bloombox_Schema_Analytics_Context_DeviceApplication.OneOf_Spec, rhs: Bloombox_Schema_Analytics_Context_DeviceApplication.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.web(let l), .web(let r)): return l == r
       case (.bundleID(let l), .bundleID(let r)): return l == r
@@ -211,7 +211,7 @@ public struct Analytics_Context_DeviceApplication: SwiftProtobuf.Message {
         case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._version)
         case 10:
-          var v: Analytics_Context_WebApplication?
+          var v: Bloombox_Schema_Analytics_Context_WebApplication?
           if let current = _storage._spec {
             try decoder.handleConflictingOneOf()
             if case .web(let m) = current {v = m}
@@ -264,16 +264,16 @@ public struct Analytics_Context_DeviceApplication: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.context"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
 
-extension Analytics_Context_ApplicationType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_ApplicationType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "INTERNAL"),
     1: .same(proto: "PARTNER"),
   ]
 }
 
-extension Analytics_Context_WebApplication: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_WebApplication: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "origin"),
     2: .same(proto: "location"),
@@ -283,7 +283,7 @@ extension Analytics_Context_WebApplication: SwiftProtobuf._MessageImplementation
     6: .same(proto: "protocol"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Context_WebApplication) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_WebApplication) -> Bool {
     if self.origin != other.origin {return false}
     if self.location != other.location {return false}
     if self.anchor != other.anchor {return false}
@@ -295,7 +295,7 @@ extension Analytics_Context_WebApplication: SwiftProtobuf._MessageImplementation
   }
 }
 
-extension Analytics_Context_DeviceApplication: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_DeviceApplication: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "version"),
@@ -305,9 +305,9 @@ extension Analytics_Context_DeviceApplication: SwiftProtobuf._MessageImplementat
   ]
 
   fileprivate class _StorageClass {
-    var _type: Analytics_Context_ApplicationType = .internal
-    var _version: Structs_VersionSpec? = nil
-    var _spec: Analytics_Context_DeviceApplication.OneOf_Spec?
+    var _type: Bloombox_Schema_Analytics_Context_ApplicationType = .internal
+    var _version: Opencannabis_Structs_VersionSpec? = nil
+    var _spec: Bloombox_Schema_Analytics_Context_DeviceApplication.OneOf_Spec?
 
     static let defaultInstance = _StorageClass()
 
@@ -327,7 +327,7 @@ extension Analytics_Context_DeviceApplication: SwiftProtobuf._MessageImplementat
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Context_DeviceApplication) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_DeviceApplication) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

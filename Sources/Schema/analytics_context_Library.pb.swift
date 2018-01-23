@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies known API client libraries, produced internally by Bloombox.
-public enum Analytics_Context_APIClient: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Analytics_Context_APIClient: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The underlying library specified no known API client library.
@@ -63,7 +63,7 @@ public enum Analytics_Context_APIClient: SwiftProtobuf.Enum {
 }
 
 /// Specifies information about the library being used to transmit data.
-public struct Analytics_Context_DeviceLibrary: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Context_DeviceLibrary: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".DeviceLibrary"
 
   /// Variant name of the library being used to transmit data.
@@ -73,8 +73,8 @@ public struct Analytics_Context_DeviceLibrary: SwiftProtobuf.Message {
   }
 
   /// Version specification for the library being used to transmit data.
-  public var version: Structs_VersionSpec {
-    get {return _storage._version ?? Structs_VersionSpec()}
+  public var version: Opencannabis_Structs_VersionSpec {
+    get {return _storage._version ?? Opencannabis_Structs_VersionSpec()}
     set {_uniqueStorage()._version = newValue}
   }
   /// Returns true if `version` has been explicitly set.
@@ -83,7 +83,7 @@ public struct Analytics_Context_DeviceLibrary: SwiftProtobuf.Message {
   public mutating func clearVersion() {_storage._version = nil}
 
   /// Specifies, if applicable, the internally-produced client library in use.
-  public var client: Analytics_Context_APIClient {
+  public var client: Bloombox_Schema_Analytics_Context_APIClient {
     get {return _storage._client}
     set {_uniqueStorage()._client = newValue}
   }
@@ -134,9 +134,9 @@ public struct Analytics_Context_DeviceLibrary: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.context"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
 
-extension Analytics_Context_APIClient: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_APIClient: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNIDENTIFIED"),
     1: .same(proto: "JAVA_SCRIPT"),
@@ -145,7 +145,7 @@ extension Analytics_Context_APIClient: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Analytics_Context_DeviceLibrary: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_DeviceLibrary: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "variant"),
     2: .same(proto: "version"),
@@ -154,8 +154,8 @@ extension Analytics_Context_DeviceLibrary: SwiftProtobuf._MessageImplementationB
 
   fileprivate class _StorageClass {
     var _variant: String = String()
-    var _version: Structs_VersionSpec? = nil
-    var _client: Analytics_Context_APIClient = .unidentified
+    var _version: Opencannabis_Structs_VersionSpec? = nil
+    var _client: Bloombox_Schema_Analytics_Context_APIClient = .unidentified
 
     static let defaultInstance = _StorageClass()
 
@@ -175,7 +175,7 @@ extension Analytics_Context_DeviceLibrary: SwiftProtobuf._MessageImplementationB
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Context_DeviceLibrary) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_DeviceLibrary) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

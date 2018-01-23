@@ -176,7 +176,7 @@ internal protocol EventContextProto: EventContextData {
   /**
    * Merge two objects specifying event context.
    */
-  func merge(other: EventContextProto) -> Analytics_Context
+  func merge(other: EventContextProto) -> AnalyticsContext
 }
 
 
@@ -185,7 +185,7 @@ extension EventContextProto {
    * Merge `other` event context and this one, with properties from `other` overriding in the
    * newly-created event context (it is copied, not merged in-place).
    */
-  public func merge(other: EventContextProto) throws -> Analytics_Context {
+  public func merge(other: EventContextProto) throws -> AnalyticsContext {
     var exported = self.export()
 
     // @TODO: better merging here (i.e. without serializing)

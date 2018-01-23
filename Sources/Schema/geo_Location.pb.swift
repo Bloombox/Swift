@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumeration of recognized units of distance.
-public enum Geo_DistanceUnit: SwiftProtobuf.Enum {
+public enum Opencannabis_Geo_DistanceUnit: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Distance in meters.
@@ -78,11 +78,11 @@ public enum Geo_DistanceUnit: SwiftProtobuf.Enum {
 }
 
 /// Specifies a single distance value.
-public struct Geo_DistanceValue: SwiftProtobuf.Message {
+public struct Opencannabis_Geo_DistanceValue: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".DistanceValue"
 
   /// Specifies the unit of measurement employed for this distance.
-  public var unit: Geo_DistanceUnit = .meters
+  public var unit: Opencannabis_Geo_DistanceUnit = .meters
 
   /// Actual value.
   public var value: Double = 0
@@ -121,7 +121,7 @@ public struct Geo_DistanceValue: SwiftProtobuf.Message {
 }
 
 /// Represents an estimate of location accuracy.
-public struct Geo_LocationAccuracy: SwiftProtobuf.Message {
+public struct Opencannabis_Geo_LocationAccuracy: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".LocationAccuracy"
 
   /// Specifies whether this accuracy rating is an estimate.
@@ -131,8 +131,8 @@ public struct Geo_LocationAccuracy: SwiftProtobuf.Message {
   }
 
   /// Distance value for the accuracy specified.
-  public var value: Geo_DistanceValue {
-    get {return _storage._value ?? Geo_DistanceValue()}
+  public var value: Opencannabis_Geo_DistanceValue {
+    get {return _storage._value ?? Opencannabis_Geo_DistanceValue()}
     set {_uniqueStorage()._value = newValue}
   }
   /// Returns true if `value` has been explicitly set.
@@ -181,12 +181,12 @@ public struct Geo_LocationAccuracy: SwiftProtobuf.Message {
 }
 
 /// Represents a physically addressable location in the real world.
-public struct Geo_Location: SwiftProtobuf.Message {
+public struct Opencannabis_Geo_Location: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Location"
 
   /// Name for this location, if applicable.
-  public var name: Content_Name {
-    get {return _storage._name ?? Content_Name()}
+  public var name: Opencannabis_Content_Name {
+    get {return _storage._name ?? Opencannabis_Content_Name()}
     set {_uniqueStorage()._name = newValue}
   }
   /// Returns true if `name` has been explicitly set.
@@ -195,8 +195,8 @@ public struct Geo_Location: SwiftProtobuf.Message {
   public mutating func clearName() {_storage._name = nil}
 
   /// Address for this location, if applicable.
-  public var address: Geo_Address {
-    get {return _storage._address ?? Geo_Address()}
+  public var address: Opencannabis_Geo_Address {
+    get {return _storage._address ?? Opencannabis_Geo_Address()}
     set {_uniqueStorage()._address = newValue}
   }
   /// Returns true if `address` has been explicitly set.
@@ -205,8 +205,8 @@ public struct Geo_Location: SwiftProtobuf.Message {
   public mutating func clearAddress() {_storage._address = nil}
 
   /// Geopoint (latitude/longitude) for this location.
-  public var point: Geo_Point {
-    get {return _storage._point ?? Geo_Point()}
+  public var point: Opencannabis_Geo_Point {
+    get {return _storage._point ?? Opencannabis_Geo_Point()}
     set {_uniqueStorage()._point = newValue}
   }
   /// Returns true if `point` has been explicitly set.
@@ -215,8 +215,8 @@ public struct Geo_Location: SwiftProtobuf.Message {
   public mutating func clearPoint() {_storage._point = nil}
 
   /// Specifies the accuracy estimate, if known.
-  public var accuracy: Geo_LocationAccuracy {
-    get {return _storage._accuracy ?? Geo_LocationAccuracy()}
+  public var accuracy: Opencannabis_Geo_LocationAccuracy {
+    get {return _storage._accuracy ?? Opencannabis_Geo_LocationAccuracy()}
     set {_uniqueStorage()._accuracy = newValue}
   }
   /// Returns true if `accuracy` has been explicitly set.
@@ -273,7 +273,7 @@ public struct Geo_Location: SwiftProtobuf.Message {
 }
 
 /// Specifies a distance between two locations.
-public struct Geo_Distance: SwiftProtobuf.Message {
+public struct Opencannabis_Geo_Distance: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Distance"
 
   /// Specifies whether this distance is an estimate.
@@ -283,8 +283,8 @@ public struct Geo_Distance: SwiftProtobuf.Message {
   }
 
   /// Specifies the accuracy estimate for the distance values, if known.
-  public var accuracy: Geo_LocationAccuracy {
-    get {return _storage._accuracy ?? Geo_LocationAccuracy()}
+  public var accuracy: Opencannabis_Geo_LocationAccuracy {
+    get {return _storage._accuracy ?? Opencannabis_Geo_LocationAccuracy()}
     set {_uniqueStorage()._accuracy = newValue}
   }
   /// Returns true if `accuracy` has been explicitly set.
@@ -293,14 +293,14 @@ public struct Geo_Distance: SwiftProtobuf.Message {
   public mutating func clearAccuracy() {_storage._accuracy = nil}
 
   /// Specifies the unit of measurement for a location accuracy estimate.
-  public var unit: Geo_DistanceUnit {
+  public var unit: Opencannabis_Geo_DistanceUnit {
     get {return _storage._unit}
     set {_uniqueStorage()._unit = newValue}
   }
 
   /// Specifies the starting location for a distance span.
-  public var start: Geo_Location {
-    get {return _storage._start ?? Geo_Location()}
+  public var start: Opencannabis_Geo_Location {
+    get {return _storage._start ?? Opencannabis_Geo_Location()}
     set {_uniqueStorage()._start = newValue}
   }
   /// Returns true if `start` has been explicitly set.
@@ -309,8 +309,8 @@ public struct Geo_Distance: SwiftProtobuf.Message {
   public mutating func clearStart() {_storage._start = nil}
 
   /// Specifies the terminating location for a distance span.
-  public var end: Geo_Location {
-    get {return _storage._end ?? Geo_Location()}
+  public var end: Opencannabis_Geo_Location {
+    get {return _storage._end ?? Opencannabis_Geo_Location()}
     set {_uniqueStorage()._end = newValue}
   }
   /// Returns true if `end` has been explicitly set.
@@ -372,9 +372,9 @@ public struct Geo_Distance: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "geo"
+fileprivate let _protobuf_package = "opencannabis.geo"
 
-extension Geo_DistanceUnit: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Geo_DistanceUnit: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "METERS"),
     1: .same(proto: "INCHES"),
@@ -386,13 +386,13 @@ extension Geo_DistanceUnit: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Geo_DistanceValue: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Geo_DistanceValue: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "unit"),
     3: .same(proto: "value"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Geo_DistanceValue) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_DistanceValue) -> Bool {
     if self.unit != other.unit {return false}
     if self.value != other.value {return false}
     if unknownFields != other.unknownFields {return false}
@@ -400,7 +400,7 @@ extension Geo_DistanceValue: SwiftProtobuf._MessageImplementationBase, SwiftProt
   }
 }
 
-extension Geo_LocationAccuracy: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Geo_LocationAccuracy: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "estimate"),
     2: .same(proto: "value"),
@@ -408,7 +408,7 @@ extension Geo_LocationAccuracy: SwiftProtobuf._MessageImplementationBase, SwiftP
 
   fileprivate class _StorageClass {
     var _estimate: Bool = false
-    var _value: Geo_DistanceValue? = nil
+    var _value: Opencannabis_Geo_DistanceValue? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -427,7 +427,7 @@ extension Geo_LocationAccuracy: SwiftProtobuf._MessageImplementationBase, SwiftP
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Geo_LocationAccuracy) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_LocationAccuracy) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -443,7 +443,7 @@ extension Geo_LocationAccuracy: SwiftProtobuf._MessageImplementationBase, SwiftP
   }
 }
 
-extension Geo_Location: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Geo_Location: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "address"),
@@ -452,10 +452,10 @@ extension Geo_Location: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf.
   ]
 
   fileprivate class _StorageClass {
-    var _name: Content_Name? = nil
-    var _address: Geo_Address? = nil
-    var _point: Geo_Point? = nil
-    var _accuracy: Geo_LocationAccuracy? = nil
+    var _name: Opencannabis_Content_Name? = nil
+    var _address: Opencannabis_Geo_Address? = nil
+    var _point: Opencannabis_Geo_Point? = nil
+    var _accuracy: Opencannabis_Geo_LocationAccuracy? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -476,7 +476,7 @@ extension Geo_Location: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf.
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Geo_Location) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Location) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -494,7 +494,7 @@ extension Geo_Location: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf.
   }
 }
 
-extension Geo_Distance: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Geo_Distance: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "estimate"),
     2: .same(proto: "accuracy"),
@@ -505,10 +505,10 @@ extension Geo_Distance: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf.
 
   fileprivate class _StorageClass {
     var _estimate: Bool = false
-    var _accuracy: Geo_LocationAccuracy? = nil
-    var _unit: Geo_DistanceUnit = .meters
-    var _start: Geo_Location? = nil
-    var _end: Geo_Location? = nil
+    var _accuracy: Opencannabis_Geo_LocationAccuracy? = nil
+    var _unit: Opencannabis_Geo_DistanceUnit = .meters
+    var _start: Opencannabis_Geo_Location? = nil
+    var _end: Opencannabis_Geo_Location? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -530,7 +530,7 @@ extension Geo_Distance: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf.
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Geo_Distance) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Distance) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

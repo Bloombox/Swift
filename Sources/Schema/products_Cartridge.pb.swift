@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies types of cartridge products that may be expressed.
-public enum Products_CartridgeType: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_CartridgeType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unknown, unrecognized, or otherwise unspecified cartridge type.
@@ -65,12 +65,12 @@ public enum Products_CartridgeType: SwiftProtobuf.Enum {
 /// Specifies a vaporizor or cartridge-style product, for instance, vaporizor pens and table units. Vaporizors are
 /// composed of two elements: a battery, or the bottom power unit, and a cartridge, or the top fuel unit, that contains
 /// cannabinoids and is disposable or refillable.
-public struct Products_Cartridge: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Cartridge: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Cartridge"
 
   /// Product key uniquely identifying this cartridge-style product.
-  public var key: Base_ProductKey {
-    get {return _storage._key ?? Base_ProductKey()}
+  public var key: Opencannabis_Base_ProductKey {
+    get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -79,14 +79,14 @@ public struct Products_Cartridge: SwiftProtobuf.Message {
   public mutating func clearKey() {_storage._key = nil}
 
   /// Type of cartridge product being described.
-  public var type: Products_CartridgeType {
+  public var type: Opencannabis_Products_CartridgeType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Product content about this cartridge item.
-  public var product: Content_ProductContent {
-    get {return _storage._product ?? Content_ProductContent()}
+  public var product: Opencannabis_Content_ProductContent {
+    get {return _storage._product ?? Opencannabis_Content_ProductContent()}
     set {_uniqueStorage()._product = newValue}
   }
   /// Returns true if `product` has been explicitly set.
@@ -95,8 +95,8 @@ public struct Products_Cartridge: SwiftProtobuf.Message {
   public mutating func clearProduct() {_storage._product = nil}
 
   /// Materials and handling information about this cartridge product.
-  public var material: Content_MaterialsData {
-    get {return _storage._material ?? Content_MaterialsData()}
+  public var material: Opencannabis_Content_MaterialsData {
+    get {return _storage._material ?? Opencannabis_Content_MaterialsData()}
     set {_uniqueStorage()._material = newValue}
   }
   /// Returns true if `material` has been explicitly set.
@@ -154,9 +154,9 @@ public struct Products_Cartridge: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "products"
+fileprivate let _protobuf_package = "opencannabis.products"
 
-extension Products_CartridgeType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_CartridgeType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED_CARTRIDGE"),
     1: .same(proto: "CARTRIDGE"),
@@ -165,7 +165,7 @@ extension Products_CartridgeType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_Cartridge: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Cartridge: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "type"),
@@ -174,10 +174,10 @@ extension Products_Cartridge: SwiftProtobuf._MessageImplementationBase, SwiftPro
   ]
 
   fileprivate class _StorageClass {
-    var _key: Base_ProductKey? = nil
-    var _type: Products_CartridgeType = .unspecifiedCartridge
-    var _product: Content_ProductContent? = nil
-    var _material: Content_MaterialsData? = nil
+    var _key: Opencannabis_Base_ProductKey? = nil
+    var _type: Opencannabis_Products_CartridgeType = .unspecifiedCartridge
+    var _product: Opencannabis_Content_ProductContent? = nil
+    var _material: Opencannabis_Content_MaterialsData? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -198,7 +198,7 @@ extension Products_Cartridge: SwiftProtobuf._MessageImplementationBase, SwiftPro
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Cartridge) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Cartridge) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

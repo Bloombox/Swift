@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies actions that may be taken within a menu section.
-public enum Analytics_Section_SectionAction: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Analytics_Section_SectionAction: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The section was viewed. Section views are implemented under-the-hood as actions of type VIEW.
@@ -58,12 +58,12 @@ public enum Analytics_Section_SectionAction: SwiftProtobuf.Enum {
 }
 
 /// Specifies a section impression event, wherein a user has been presented a particular menu section.
-public struct Analytics_Section_Impression: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Section_Impression: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Impression"
 
   /// Section that was presented.
-  public var spec: Products_Menu_Section_SectionSpec {
-    get {return _storage._spec ?? Products_Menu_Section_SectionSpec()}
+  public var spec: Opencannabis_Products_Menu_Section_SectionSpec {
+    get {return _storage._spec ?? Opencannabis_Products_Menu_Section_SectionSpec()}
     set {_uniqueStorage()._spec = newValue}
   }
   /// Returns true if `spec` has been explicitly set.
@@ -72,8 +72,8 @@ public struct Analytics_Section_Impression: SwiftProtobuf.Message {
   public mutating func clearSpec() {_storage._spec = nil}
 
   /// Specifies when this impression event occurred.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -122,12 +122,12 @@ public struct Analytics_Section_Impression: SwiftProtobuf.Message {
 }
 
 /// Specifies a section view event, wherein a user has navigated to a particular menu section.
-public struct Analytics_Section_View: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Section_View: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".View"
 
   /// Section that was viewed.
-  public var spec: Products_Menu_Section_SectionSpec {
-    get {return _storage._spec ?? Products_Menu_Section_SectionSpec()}
+  public var spec: Opencannabis_Products_Menu_Section_SectionSpec {
+    get {return _storage._spec ?? Opencannabis_Products_Menu_Section_SectionSpec()}
     set {_uniqueStorage()._spec = newValue}
   }
   /// Returns true if `spec` has been explicitly set.
@@ -142,8 +142,8 @@ public struct Analytics_Section_View: SwiftProtobuf.Message {
   }
 
   /// Specifies when this view event occurred.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -197,12 +197,12 @@ public struct Analytics_Section_View: SwiftProtobuf.Message {
 
 /// Specifies a section action event, wherein a user has affirmatively elected to take some action while within a master
 /// view of a particular menu section.
-public struct Analytics_Section_Action: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Section_Action: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Action"
 
   /// Section that was viewed.
-  public var spec: Products_Menu_Section_SectionSpec {
-    get {return _storage._spec ?? Products_Menu_Section_SectionSpec()}
+  public var spec: Opencannabis_Products_Menu_Section_SectionSpec {
+    get {return _storage._spec ?? Opencannabis_Products_Menu_Section_SectionSpec()}
     set {_uniqueStorage()._spec = newValue}
   }
   /// Returns true if `spec` has been explicitly set.
@@ -211,14 +211,14 @@ public struct Analytics_Section_Action: SwiftProtobuf.Message {
   public mutating func clearSpec() {_storage._spec = nil}
 
   /// Action that was taken within the section.
-  public var verb: Analytics_Section_SectionAction {
+  public var verb: Bloombox_Schema_Analytics_Section_SectionAction {
     get {return _storage._verb}
     set {_uniqueStorage()._verb = newValue}
   }
 
   /// Specifies when this action event occurred.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -272,9 +272,9 @@ public struct Analytics_Section_Action: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.section"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.section"
 
-extension Analytics_Section_SectionAction: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Section_SectionAction: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "VIEW"),
     1: .same(proto: "SORT"),
@@ -282,15 +282,15 @@ extension Analytics_Section_SectionAction: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Analytics_Section_Impression: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Section_Impression: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "spec"),
     2: .same(proto: "occurred"),
   ]
 
   fileprivate class _StorageClass {
-    var _spec: Products_Menu_Section_SectionSpec? = nil
-    var _occurred: Temporal_Instant? = nil
+    var _spec: Opencannabis_Products_Menu_Section_SectionSpec? = nil
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -309,7 +309,7 @@ extension Analytics_Section_Impression: SwiftProtobuf._MessageImplementationBase
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Section_Impression) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Section_Impression) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -325,7 +325,7 @@ extension Analytics_Section_Impression: SwiftProtobuf._MessageImplementationBase
   }
 }
 
-extension Analytics_Section_View: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Section_View: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "spec"),
     2: .same(proto: "interactive"),
@@ -333,9 +333,9 @@ extension Analytics_Section_View: SwiftProtobuf._MessageImplementationBase, Swif
   ]
 
   fileprivate class _StorageClass {
-    var _spec: Products_Menu_Section_SectionSpec? = nil
+    var _spec: Opencannabis_Products_Menu_Section_SectionSpec? = nil
     var _interactive: Bool = false
-    var _occurred: Temporal_Instant? = nil
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -355,7 +355,7 @@ extension Analytics_Section_View: SwiftProtobuf._MessageImplementationBase, Swif
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Section_View) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Section_View) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -372,7 +372,7 @@ extension Analytics_Section_View: SwiftProtobuf._MessageImplementationBase, Swif
   }
 }
 
-extension Analytics_Section_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Section_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "spec"),
     2: .same(proto: "verb"),
@@ -380,9 +380,9 @@ extension Analytics_Section_Action: SwiftProtobuf._MessageImplementationBase, Sw
   ]
 
   fileprivate class _StorageClass {
-    var _spec: Products_Menu_Section_SectionSpec? = nil
-    var _verb: Analytics_Section_SectionAction = .view
-    var _occurred: Temporal_Instant? = nil
+    var _spec: Opencannabis_Products_Menu_Section_SectionSpec? = nil
+    var _verb: Bloombox_Schema_Analytics_Section_SectionAction = .view
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -402,7 +402,7 @@ extension Analytics_Section_Action: SwiftProtobuf._MessageImplementationBase, Sw
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Section_Action) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Section_Action) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

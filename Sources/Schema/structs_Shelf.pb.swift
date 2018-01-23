@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Structs_Shelf: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Shelf: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case economy // = 0
   case midshelf // = 1
@@ -52,7 +52,7 @@ public enum Structs_Shelf: SwiftProtobuf.Enum {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Structs_Shelf: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Shelf: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ECONOMY"),
     1: .same(proto: "MIDSHELF"),

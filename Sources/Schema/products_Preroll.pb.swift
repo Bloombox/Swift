@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies flags that may be specifically applied to pre-rolled cannabis products.
-public enum Products_PrerollFlag: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_PrerollFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies that no flags are set.
@@ -75,12 +75,12 @@ public enum Products_PrerollFlag: SwiftProtobuf.Enum {
 
 /// Specifies a pre-rolled cannabis product, where a production process consumes cannabis plant material and produces
 /// end-products that are already rolled into joints, marijuana cigarettes, blunts, and so on.
-public struct Products_Preroll: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Preroll: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Preroll"
 
   /// Product key that uniquely identifies this pre-rolled cannabis product.
-  public var key: Base_ProductKey {
-    get {return _storage._key ?? Base_ProductKey()}
+  public var key: Opencannabis_Base_ProductKey {
+    get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -89,8 +89,8 @@ public struct Products_Preroll: SwiftProtobuf.Message {
   public mutating func clearKey() {_storage._key = nil}
 
   /// Specifies the flowers used to produce this product, if known.
-  public var flower: Base_ProductReference {
-    get {return _storage._flower ?? Base_ProductReference()}
+  public var flower: Opencannabis_Base_ProductReference {
+    get {return _storage._flower ?? Opencannabis_Base_ProductReference()}
     set {_uniqueStorage()._flower = newValue}
   }
   /// Returns true if `flower` has been explicitly set.
@@ -111,14 +111,14 @@ public struct Products_Preroll: SwiftProtobuf.Message {
   }
 
   /// Specifies flags that may be applied specifically to this prerolled item.
-  public var flags: [Products_PrerollFlag] {
+  public var flags: [Opencannabis_Products_PrerollFlag] {
     get {return _storage._flags}
     set {_uniqueStorage()._flags = newValue}
   }
 
   /// Specifies product content attached to this prerolled item.
-  public var product: Content_ProductContent {
-    get {return _storage._product ?? Content_ProductContent()}
+  public var product: Opencannabis_Content_ProductContent {
+    get {return _storage._product ?? Opencannabis_Content_ProductContent()}
     set {_uniqueStorage()._product = newValue}
   }
   /// Returns true if `product` has been explicitly set.
@@ -127,8 +127,8 @@ public struct Products_Preroll: SwiftProtobuf.Message {
   public mutating func clearProduct() {_storage._product = nil}
 
   /// Specifies handling and materials data associated with this prerolled item.
-  public var material: Content_MaterialsData {
-    get {return _storage._material ?? Content_MaterialsData()}
+  public var material: Opencannabis_Content_MaterialsData {
+    get {return _storage._material ?? Opencannabis_Content_MaterialsData()}
     set {_uniqueStorage()._material = newValue}
   }
   /// Returns true if `material` has been explicitly set.
@@ -198,9 +198,9 @@ public struct Products_Preroll: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "products"
+fileprivate let _protobuf_package = "opencannabis.products"
 
-extension Products_PrerollFlag: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_PrerollFlag: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_PREROLL_FLAGS"),
     1: .same(proto: "HASH_INFUSED"),
@@ -211,7 +211,7 @@ extension Products_PrerollFlag: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_Preroll: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Preroll: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "flower"),
@@ -223,13 +223,13 @@ extension Products_Preroll: SwiftProtobuf._MessageImplementationBase, SwiftProto
   ]
 
   fileprivate class _StorageClass {
-    var _key: Base_ProductKey? = nil
-    var _flower: Base_ProductReference? = nil
+    var _key: Opencannabis_Base_ProductKey? = nil
+    var _flower: Opencannabis_Base_ProductReference? = nil
     var _length: Double = 0
     var _thickness: Double = 0
-    var _flags: [Products_PrerollFlag] = []
-    var _product: Content_ProductContent? = nil
-    var _material: Content_MaterialsData? = nil
+    var _flags: [Opencannabis_Products_PrerollFlag] = []
+    var _product: Opencannabis_Content_ProductContent? = nil
+    var _material: Opencannabis_Content_MaterialsData? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -253,7 +253,7 @@ extension Products_Preroll: SwiftProtobuf._MessageImplementationBase, SwiftProto
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Preroll) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Preroll) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -19,11 +19,11 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Identity_Pass_Pass: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Pass"
 
-  public var key: Identity_Pass_PassKey {
-    get {return _storage._key ?? Identity_Pass_PassKey()}
+  public var key: Bloombox_Schema_Identity_Pass_PassKey {
+    get {return _storage._key ?? Bloombox_Schema_Identity_Pass_PassKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -46,8 +46,8 @@ public struct Identity_Pass_Pass: SwiftProtobuf.Message {
     set {_uniqueStorage()._active = newValue}
   }
 
-  public var issued: Temporal_Instant {
-    get {return _storage._issued ?? Temporal_Instant()}
+  public var issued: Opencannabis_Temporal_Instant {
+    get {return _storage._issued ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._issued = newValue}
   }
   /// Returns true if `issued` has been explicitly set.
@@ -55,8 +55,8 @@ public struct Identity_Pass_Pass: SwiftProtobuf.Message {
   /// Clears the value of `issued`. Subsequent reads from it will return its default value.
   public mutating func clearIssued() {_storage._issued = nil}
 
-  public var suspended: Temporal_Instant {
-    get {return _storage._suspended ?? Temporal_Instant()}
+  public var suspended: Opencannabis_Temporal_Instant {
+    get {return _storage._suspended ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._suspended = newValue}
   }
   /// Returns true if `suspended` has been explicitly set.
@@ -122,9 +122,9 @@ public struct Identity_Pass_Pass: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "identity.pass"
+fileprivate let _protobuf_package = "bloombox.schema.identity.pass"
 
-extension Identity_Pass_Pass: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "token"),
@@ -135,12 +135,12 @@ extension Identity_Pass_Pass: SwiftProtobuf._MessageImplementationBase, SwiftPro
   ]
 
   fileprivate class _StorageClass {
-    var _key: Identity_Pass_PassKey? = nil
+    var _key: Bloombox_Schema_Identity_Pass_PassKey? = nil
     var _token: String = String()
     var _uri: String = String()
     var _active: Bool = false
-    var _issued: Temporal_Instant? = nil
-    var _suspended: Temporal_Instant? = nil
+    var _issued: Opencannabis_Temporal_Instant? = nil
+    var _suspended: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -163,7 +163,7 @@ extension Identity_Pass_Pass: SwiftProtobuf._MessageImplementationBase, SwiftPro
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Identity_Pass_Pass) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Pass_Pass) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies actions that may be taken w.r.t. a physical or digital storefront. Stays in sync with `UserAction`.
-public enum Analytics_Shop_ShopAction: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Analytics_Shop_ShopAction: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The storefront was viewed, or entered physically by a patron.
@@ -107,7 +107,7 @@ public enum Analytics_Shop_ShopAction: SwiftProtobuf.Enum {
 
 /// Specifies a shop impression event, wherein a user, known or unknown, has witnessed a shop's existence or brand, and
 /// was offered the decision to engage.
-public struct Analytics_Shop_Impression: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Shop_Impression: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Impression"
 
   /// Whether this was an event that occurred at a physical store location, or not. Defaults to no.
@@ -117,8 +117,8 @@ public struct Analytics_Shop_Impression: SwiftProtobuf.Message {
   }
 
   /// Specifies when this impression event occurred.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -168,7 +168,7 @@ public struct Analytics_Shop_Impression: SwiftProtobuf.Message {
 
 /// Specifies a shop view event, wherein a user has navigated to a page on a digital web store, entered a physical
 /// brick-and-mortar location, or otherwise chosen to engage in a non-commercial way.
-public struct Analytics_Shop_View: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Shop_View: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".View"
 
   /// Whether this was an event that occurred at a physical store location, or not. Defaults to no.
@@ -184,8 +184,8 @@ public struct Analytics_Shop_View: SwiftProtobuf.Message {
   }
 
   /// Specifies when this view event occurred.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -239,7 +239,7 @@ public struct Analytics_Shop_View: SwiftProtobuf.Message {
 
 /// Specifies a shop action event, wherein a user has affirmatively elected to take some action while engaged in an
 /// interactive session with a digital or physical commercial storefront.
-public struct Analytics_Shop_Action: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Shop_Action: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Action"
 
   /// Whether this was an event that occurred at a physical store location, or not. Defaults to no.
@@ -249,14 +249,14 @@ public struct Analytics_Shop_Action: SwiftProtobuf.Message {
   }
 
   /// Action that was taken at or within the digital or physical shop.
-  public var verb: Analytics_Shop_ShopAction {
+  public var verb: Bloombox_Schema_Analytics_Shop_ShopAction {
     get {return _storage._verb}
     set {_uniqueStorage()._verb = newValue}
   }
 
   /// Specifies when this action event occurred.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -310,9 +310,9 @@ public struct Analytics_Shop_Action: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.shop"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.shop"
 
-extension Analytics_Shop_ShopAction: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Shop_ShopAction: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ENGAGE"),
     10: .same(proto: "ENROLL"),
@@ -328,7 +328,7 @@ extension Analytics_Shop_ShopAction: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Analytics_Shop_Impression: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Shop_Impression: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "physical"),
     2: .same(proto: "occurred"),
@@ -336,7 +336,7 @@ extension Analytics_Shop_Impression: SwiftProtobuf._MessageImplementationBase, S
 
   fileprivate class _StorageClass {
     var _physical: Bool = false
-    var _occurred: Temporal_Instant? = nil
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -355,7 +355,7 @@ extension Analytics_Shop_Impression: SwiftProtobuf._MessageImplementationBase, S
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Shop_Impression) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Shop_Impression) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -371,7 +371,7 @@ extension Analytics_Shop_Impression: SwiftProtobuf._MessageImplementationBase, S
   }
 }
 
-extension Analytics_Shop_View: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Shop_View: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "physical"),
     2: .same(proto: "interactive"),
@@ -381,7 +381,7 @@ extension Analytics_Shop_View: SwiftProtobuf._MessageImplementationBase, SwiftPr
   fileprivate class _StorageClass {
     var _physical: Bool = false
     var _interactive: Bool = false
-    var _occurred: Temporal_Instant? = nil
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -401,7 +401,7 @@ extension Analytics_Shop_View: SwiftProtobuf._MessageImplementationBase, SwiftPr
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Shop_View) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Shop_View) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -418,7 +418,7 @@ extension Analytics_Shop_View: SwiftProtobuf._MessageImplementationBase, SwiftPr
   }
 }
 
-extension Analytics_Shop_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Shop_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "physical"),
     2: .same(proto: "verb"),
@@ -427,8 +427,8 @@ extension Analytics_Shop_Action: SwiftProtobuf._MessageImplementationBase, Swift
 
   fileprivate class _StorageClass {
     var _physical: Bool = false
-    var _verb: Analytics_Shop_ShopAction = .engage
-    var _occurred: Temporal_Instant? = nil
+    var _verb: Bloombox_Schema_Analytics_Shop_ShopAction = .engage
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -448,7 +448,7 @@ extension Analytics_Shop_Action: SwiftProtobuf._MessageImplementationBase, Swift
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Shop_Action) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Shop_Action) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

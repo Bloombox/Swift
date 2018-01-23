@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// -- Testing: Cannabinoids
-public enum Structs_Labtesting_Cannabinoid: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Labtesting_Cannabinoid: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case thc // = 0
   case thcA // = 1
@@ -81,7 +81,7 @@ public enum Structs_Labtesting_Cannabinoid: SwiftProtobuf.Enum {
 
 }
 
-public enum Structs_Labtesting_CannabinoidRatio: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Labtesting_CannabinoidRatio: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case noCannabinoidPreference // = 0
   case thcOnly // = 1
@@ -122,7 +122,7 @@ public enum Structs_Labtesting_CannabinoidRatio: SwiftProtobuf.Enum {
 }
 
 /// -- Testing: Subjective
-public enum Structs_Labtesting_Feeling: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Labtesting_Feeling: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case noFeelingPreference // = 0
   case grounding // = 1
@@ -168,7 +168,7 @@ public enum Structs_Labtesting_Feeling: SwiftProtobuf.Enum {
 
 }
 
-public enum Structs_Labtesting_TasteNote: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Labtesting_TasteNote: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case noTastePreference // = 0
   case sweet // = 1
@@ -226,7 +226,7 @@ public enum Structs_Labtesting_TasteNote: SwiftProtobuf.Enum {
 
 }
 
-public enum Structs_Labtesting_PotencyEstimate: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Labtesting_PotencyEstimate: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case light // = 0
   case medium // = 1
@@ -261,7 +261,7 @@ public enum Structs_Labtesting_PotencyEstimate: SwiftProtobuf.Enum {
 }
 
 /// -- Testing: Terpenes
-public enum Structs_Labtesting_Terpene: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Labtesting_Terpene: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case camphene // = 0
   case carene // = 1
@@ -341,7 +341,7 @@ public enum Structs_Labtesting_Terpene: SwiftProtobuf.Enum {
 }
 
 /// -- Testing: Full Protocol
-public struct Structs_Labtesting_TestResults: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".TestResults"
 
   public var available: Bool {
@@ -349,13 +349,13 @@ public struct Structs_Labtesting_TestResults: SwiftProtobuf.Message {
     set {_uniqueStorage()._available = newValue}
   }
 
-  public var media: [Structs_Labtesting_TestMedia] {
+  public var media: [Opencannabis_Structs_Labtesting_TestMedia] {
     get {return _storage._media}
     set {_uniqueStorage()._media = newValue}
   }
 
-  public var lastUpdated: Temporal_Instant {
-    get {return _storage._lastUpdated ?? Temporal_Instant()}
+  public var lastUpdated: Opencannabis_Temporal_Instant {
+    get {return _storage._lastUpdated ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._lastUpdated = newValue}
   }
   /// Returns true if `lastUpdated` has been explicitly set.
@@ -364,8 +364,8 @@ public struct Structs_Labtesting_TestResults: SwiftProtobuf.Message {
   public mutating func clearLastUpdated() {_storage._lastUpdated = nil}
 
   /// --- Testing Extensions
-  public var cannabinoids: Structs_Labtesting_Cannabinoids {
-    get {return _storage._cannabinoids ?? Structs_Labtesting_Cannabinoids()}
+  public var cannabinoids: Opencannabis_Structs_Labtesting_Cannabinoids {
+    get {return _storage._cannabinoids ?? Opencannabis_Structs_Labtesting_Cannabinoids()}
     set {_uniqueStorage()._cannabinoids = newValue}
   }
   /// Returns true if `cannabinoids` has been explicitly set.
@@ -373,8 +373,8 @@ public struct Structs_Labtesting_TestResults: SwiftProtobuf.Message {
   /// Clears the value of `cannabinoids`. Subsequent reads from it will return its default value.
   public mutating func clearCannabinoids() {_storage._cannabinoids = nil}
 
-  public var terpenes: Structs_Labtesting_Terpenes {
-    get {return _storage._terpenes ?? Structs_Labtesting_Terpenes()}
+  public var terpenes: Opencannabis_Structs_Labtesting_Terpenes {
+    get {return _storage._terpenes ?? Opencannabis_Structs_Labtesting_Terpenes()}
     set {_uniqueStorage()._terpenes = newValue}
   }
   /// Returns true if `terpenes` has been explicitly set.
@@ -382,8 +382,8 @@ public struct Structs_Labtesting_TestResults: SwiftProtobuf.Message {
   /// Clears the value of `terpenes`. Subsequent reads from it will return its default value.
   public mutating func clearTerpenes() {_storage._terpenes = nil}
 
-  public var pesticides: Structs_Labtesting_Pesticides {
-    get {return _storage._pesticides ?? Structs_Labtesting_Pesticides()}
+  public var pesticides: Opencannabis_Structs_Labtesting_Pesticides {
+    get {return _storage._pesticides ?? Opencannabis_Structs_Labtesting_Pesticides()}
     set {_uniqueStorage()._pesticides = newValue}
   }
   /// Returns true if `pesticides` has been explicitly set.
@@ -391,8 +391,8 @@ public struct Structs_Labtesting_TestResults: SwiftProtobuf.Message {
   /// Clears the value of `pesticides`. Subsequent reads from it will return its default value.
   public mutating func clearPesticides() {_storage._pesticides = nil}
 
-  public var moisture: Structs_Labtesting_Moisture {
-    get {return _storage._moisture ?? Structs_Labtesting_Moisture()}
+  public var moisture: Opencannabis_Structs_Labtesting_Moisture {
+    get {return _storage._moisture ?? Opencannabis_Structs_Labtesting_Moisture()}
     set {_uniqueStorage()._moisture = newValue}
   }
   /// Returns true if `moisture` has been explicitly set.
@@ -400,13 +400,13 @@ public struct Structs_Labtesting_TestResults: SwiftProtobuf.Message {
   /// Clears the value of `moisture`. Subsequent reads from it will return its default value.
   public mutating func clearMoisture() {_storage._moisture = nil}
 
-  public var aroma: [Structs_Labtesting_TasteNote] {
+  public var aroma: [Opencannabis_Structs_Labtesting_TasteNote] {
     get {return _storage._aroma}
     set {_uniqueStorage()._aroma = newValue}
   }
 
-  public var subjective: Structs_Labtesting_Subjective {
-    get {return _storage._subjective ?? Structs_Labtesting_Subjective()}
+  public var subjective: Opencannabis_Structs_Labtesting_Subjective {
+    get {return _storage._subjective ?? Opencannabis_Structs_Labtesting_Subjective()}
     set {_uniqueStorage()._subjective = newValue}
   }
   /// Returns true if `subjective` has been explicitly set.
@@ -482,11 +482,11 @@ public struct Structs_Labtesting_TestResults: SwiftProtobuf.Message {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Structs_Labtesting_Cannabinoids: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Labtesting_Cannabinoids: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Cannabinoids"
 
-  public var thc: Structs_Labtesting_TestValue {
-    get {return _storage._thc ?? Structs_Labtesting_TestValue()}
+  public var thc: Opencannabis_Structs_Labtesting_TestValue {
+    get {return _storage._thc ?? Opencannabis_Structs_Labtesting_TestValue()}
     set {_uniqueStorage()._thc = newValue}
   }
   /// Returns true if `thc` has been explicitly set.
@@ -494,8 +494,8 @@ public struct Structs_Labtesting_Cannabinoids: SwiftProtobuf.Message {
   /// Clears the value of `thc`. Subsequent reads from it will return its default value.
   public mutating func clearThc() {_storage._thc = nil}
 
-  public var cbd: Structs_Labtesting_TestValue {
-    get {return _storage._cbd ?? Structs_Labtesting_TestValue()}
+  public var cbd: Opencannabis_Structs_Labtesting_TestValue {
+    get {return _storage._cbd ?? Opencannabis_Structs_Labtesting_TestValue()}
     set {_uniqueStorage()._cbd = newValue}
   }
   /// Returns true if `cbd` has been explicitly set.
@@ -503,7 +503,7 @@ public struct Structs_Labtesting_Cannabinoids: SwiftProtobuf.Message {
   /// Clears the value of `cbd`. Subsequent reads from it will return its default value.
   public mutating func clearCbd() {_storage._cbd = nil}
 
-  public var results: [Structs_Labtesting_Cannabinoids.Result] {
+  public var results: [Opencannabis_Structs_Labtesting_Cannabinoids.Result] {
     get {return _storage._results}
     set {_uniqueStorage()._results = newValue}
   }
@@ -511,20 +511,20 @@ public struct Structs_Labtesting_Cannabinoids: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public struct Result: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Structs_Labtesting_Cannabinoids.protoMessageName + ".Result"
+    public static let protoMessageName: String = Opencannabis_Structs_Labtesting_Cannabinoids.protoMessageName + ".Result"
 
-    public var cannabinoid: Structs_Labtesting_Cannabinoid {
+    public var cannabinoid: Opencannabis_Structs_Labtesting_Cannabinoid {
       get {return _storage._cannabinoid}
       set {_uniqueStorage()._cannabinoid = newValue}
     }
 
-    public var ratio: Structs_Labtesting_CannabinoidRatio {
+    public var ratio: Opencannabis_Structs_Labtesting_CannabinoidRatio {
       get {return _storage._ratio}
       set {_uniqueStorage()._ratio = newValue}
     }
 
-    public var measurement: Structs_Labtesting_TestValue {
-      get {return _storage._measurement ?? Structs_Labtesting_TestValue()}
+    public var measurement: Opencannabis_Structs_Labtesting_TestValue {
+      get {return _storage._measurement ?? Opencannabis_Structs_Labtesting_TestValue()}
       set {_uniqueStorage()._measurement = newValue}
     }
     /// Returns true if `measurement` has been explicitly set.
@@ -618,11 +618,11 @@ public struct Structs_Labtesting_Cannabinoids: SwiftProtobuf.Message {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Structs_Labtesting_Subjective: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Labtesting_Subjective: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Subjective"
 
-  public var description_p: Content_Content {
-    get {return _storage._description_p ?? Content_Content()}
+  public var description_p: Opencannabis_Content_Content {
+    get {return _storage._description_p ?? Opencannabis_Content_Content()}
     set {_uniqueStorage()._description_p = newValue}
   }
   /// Returns true if `description_p` has been explicitly set.
@@ -630,8 +630,8 @@ public struct Structs_Labtesting_Subjective: SwiftProtobuf.Message {
   /// Clears the value of `description_p`. Subsequent reads from it will return its default value.
   public mutating func clearDescription_p() {_storage._description_p = nil}
 
-  public var taste: Content_Content {
-    get {return _storage._taste ?? Content_Content()}
+  public var taste: Opencannabis_Content_Content {
+    get {return _storage._taste ?? Opencannabis_Content_Content()}
     set {_uniqueStorage()._taste = newValue}
   }
   /// Returns true if `taste` has been explicitly set.
@@ -639,17 +639,17 @@ public struct Structs_Labtesting_Subjective: SwiftProtobuf.Message {
   /// Clears the value of `taste`. Subsequent reads from it will return its default value.
   public mutating func clearTaste() {_storage._taste = nil}
 
-  public var potency: Structs_Labtesting_PotencyEstimate {
+  public var potency: Opencannabis_Structs_Labtesting_PotencyEstimate {
     get {return _storage._potency}
     set {_uniqueStorage()._potency = newValue}
   }
 
-  public var feelingTags: [Structs_Labtesting_Feeling] {
+  public var feelingTags: [Opencannabis_Structs_Labtesting_Feeling] {
     get {return _storage._feelingTags}
     set {_uniqueStorage()._feelingTags = newValue}
   }
 
-  public var tastingNotes: [Structs_Labtesting_TasteNote] {
+  public var tastingNotes: [Opencannabis_Structs_Labtesting_TasteNote] {
     get {return _storage._tastingNotes}
     set {_uniqueStorage()._tastingNotes = newValue}
   }
@@ -706,25 +706,25 @@ public struct Structs_Labtesting_Subjective: SwiftProtobuf.Message {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Structs_Labtesting_Terpenes: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Labtesting_Terpenes: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Terpenes"
 
   public var available: Bool = false
 
-  public var terpenes: [Structs_Labtesting_Terpenes.Result] = []
+  public var terpenes: [Opencannabis_Structs_Labtesting_Terpenes.Result] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public struct Result: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Structs_Labtesting_Terpenes.protoMessageName + ".Result"
+    public static let protoMessageName: String = Opencannabis_Structs_Labtesting_Terpenes.protoMessageName + ".Result"
 
-    public var terpene: Structs_Labtesting_Terpene {
+    public var terpene: Opencannabis_Structs_Labtesting_Terpene {
       get {return _storage._terpene}
       set {_uniqueStorage()._terpene = newValue}
     }
 
-    public var measurement: Structs_Labtesting_TestValue {
-      get {return _storage._measurement ?? Structs_Labtesting_TestValue()}
+    public var measurement: Opencannabis_Structs_Labtesting_TestValue {
+      get {return _storage._measurement ?? Opencannabis_Structs_Labtesting_TestValue()}
       set {_uniqueStorage()._measurement = newValue}
     }
     /// Returns true if `measurement` has been explicitly set.
@@ -804,12 +804,12 @@ public struct Structs_Labtesting_Terpenes: SwiftProtobuf.Message {
 }
 
 /// -- Testing: Pesticides
-public struct Structs_Labtesting_Pesticides: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Labtesting_Pesticides: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Pesticides"
 
   public var pesticideFree: Bool = false
 
-  public var measurements: Dictionary<String,Structs_Labtesting_TestValue> = [:]
+  public var measurements: Dictionary<String,Opencannabis_Structs_Labtesting_TestValue> = [:]
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -823,7 +823,7 @@ public struct Structs_Labtesting_Pesticides: SwiftProtobuf.Message {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularBoolField(value: &self.pesticideFree)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Structs_Labtesting_TestValue>.self, value: &self.measurements)
+      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Structs_Labtesting_TestValue>.self, value: &self.measurements)
       default: break
       }
     }
@@ -838,18 +838,18 @@ public struct Structs_Labtesting_Pesticides: SwiftProtobuf.Message {
       try visitor.visitSingularBoolField(value: self.pesticideFree, fieldNumber: 1)
     }
     if !self.measurements.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Structs_Labtesting_TestValue>.self, value: self.measurements, fieldNumber: 2)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Structs_Labtesting_TestValue>.self, value: self.measurements, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 }
 
 /// -- Testing: Moisture
-public struct Structs_Labtesting_Moisture: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Labtesting_Moisture: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Moisture"
 
-  public var measurement: Structs_Labtesting_TestValue {
-    get {return _storage._measurement ?? Structs_Labtesting_TestValue()}
+  public var measurement: Opencannabis_Structs_Labtesting_TestValue {
+    get {return _storage._measurement ?? Opencannabis_Structs_Labtesting_TestValue()}
     set {_uniqueStorage()._measurement = newValue}
   }
   /// Returns true if `measurement` has been explicitly set.
@@ -895,9 +895,9 @@ public struct Structs_Labtesting_Moisture: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "structs.labtesting"
+fileprivate let _protobuf_package = "opencannabis.structs.labtesting"
 
-extension Structs_Labtesting_Cannabinoid: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Cannabinoid: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "THC"),
     1: .same(proto: "THC_A"),
@@ -915,7 +915,7 @@ extension Structs_Labtesting_Cannabinoid: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Structs_Labtesting_CannabinoidRatio: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_CannabinoidRatio: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_CANNABINOID_PREFERENCE"),
     1: .same(proto: "THC_ONLY"),
@@ -926,7 +926,7 @@ extension Structs_Labtesting_CannabinoidRatio: SwiftProtobuf._ProtoNameProviding
   ]
 }
 
-extension Structs_Labtesting_Feeling: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Feeling: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_FEELING_PREFERENCE"),
     1: .same(proto: "GROUNDING"),
@@ -939,7 +939,7 @@ extension Structs_Labtesting_Feeling: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Structs_Labtesting_TasteNote: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_TasteNote: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_TASTE_PREFERENCE"),
     1: .same(proto: "SWEET"),
@@ -956,7 +956,7 @@ extension Structs_Labtesting_TasteNote: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Structs_Labtesting_PotencyEstimate: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_PotencyEstimate: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "LIGHT"),
     1: .same(proto: "MEDIUM"),
@@ -965,7 +965,7 @@ extension Structs_Labtesting_PotencyEstimate: SwiftProtobuf._ProtoNameProviding 
   ]
 }
 
-extension Structs_Labtesting_Terpene: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Terpene: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "CAMPHENE"),
     1: .same(proto: "CARENE"),
@@ -989,7 +989,7 @@ extension Structs_Labtesting_Terpene: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Structs_Labtesting_TestResults: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "available"),
     2: .same(proto: "media"),
@@ -1004,14 +1004,14 @@ extension Structs_Labtesting_TestResults: SwiftProtobuf._MessageImplementationBa
 
   fileprivate class _StorageClass {
     var _available: Bool = false
-    var _media: [Structs_Labtesting_TestMedia] = []
-    var _lastUpdated: Temporal_Instant? = nil
-    var _cannabinoids: Structs_Labtesting_Cannabinoids? = nil
-    var _terpenes: Structs_Labtesting_Terpenes? = nil
-    var _pesticides: Structs_Labtesting_Pesticides? = nil
-    var _moisture: Structs_Labtesting_Moisture? = nil
-    var _aroma: [Structs_Labtesting_TasteNote] = []
-    var _subjective: Structs_Labtesting_Subjective? = nil
+    var _media: [Opencannabis_Structs_Labtesting_TestMedia] = []
+    var _lastUpdated: Opencannabis_Temporal_Instant? = nil
+    var _cannabinoids: Opencannabis_Structs_Labtesting_Cannabinoids? = nil
+    var _terpenes: Opencannabis_Structs_Labtesting_Terpenes? = nil
+    var _pesticides: Opencannabis_Structs_Labtesting_Pesticides? = nil
+    var _moisture: Opencannabis_Structs_Labtesting_Moisture? = nil
+    var _aroma: [Opencannabis_Structs_Labtesting_TasteNote] = []
+    var _subjective: Opencannabis_Structs_Labtesting_Subjective? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1037,7 +1037,7 @@ extension Structs_Labtesting_TestResults: SwiftProtobuf._MessageImplementationBa
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Labtesting_TestResults) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestResults) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1060,7 +1060,7 @@ extension Structs_Labtesting_TestResults: SwiftProtobuf._MessageImplementationBa
   }
 }
 
-extension Structs_Labtesting_Cannabinoids: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Cannabinoids: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "thc"),
     2: .same(proto: "cbd"),
@@ -1068,9 +1068,9 @@ extension Structs_Labtesting_Cannabinoids: SwiftProtobuf._MessageImplementationB
   ]
 
   fileprivate class _StorageClass {
-    var _thc: Structs_Labtesting_TestValue? = nil
-    var _cbd: Structs_Labtesting_TestValue? = nil
-    var _results: [Structs_Labtesting_Cannabinoids.Result] = []
+    var _thc: Opencannabis_Structs_Labtesting_TestValue? = nil
+    var _cbd: Opencannabis_Structs_Labtesting_TestValue? = nil
+    var _results: [Opencannabis_Structs_Labtesting_Cannabinoids.Result] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -1090,7 +1090,7 @@ extension Structs_Labtesting_Cannabinoids: SwiftProtobuf._MessageImplementationB
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Labtesting_Cannabinoids) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Cannabinoids) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1107,7 +1107,7 @@ extension Structs_Labtesting_Cannabinoids: SwiftProtobuf._MessageImplementationB
   }
 }
 
-extension Structs_Labtesting_Cannabinoids.Result: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Cannabinoids.Result: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "cannabinoid"),
     2: .same(proto: "ratio"),
@@ -1115,9 +1115,9 @@ extension Structs_Labtesting_Cannabinoids.Result: SwiftProtobuf._MessageImplemen
   ]
 
   fileprivate class _StorageClass {
-    var _cannabinoid: Structs_Labtesting_Cannabinoid = .thc
-    var _ratio: Structs_Labtesting_CannabinoidRatio = .noCannabinoidPreference
-    var _measurement: Structs_Labtesting_TestValue? = nil
+    var _cannabinoid: Opencannabis_Structs_Labtesting_Cannabinoid = .thc
+    var _ratio: Opencannabis_Structs_Labtesting_CannabinoidRatio = .noCannabinoidPreference
+    var _measurement: Opencannabis_Structs_Labtesting_TestValue? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1137,7 +1137,7 @@ extension Structs_Labtesting_Cannabinoids.Result: SwiftProtobuf._MessageImplemen
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Labtesting_Cannabinoids.Result) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Cannabinoids.Result) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1154,7 +1154,7 @@ extension Structs_Labtesting_Cannabinoids.Result: SwiftProtobuf._MessageImplemen
   }
 }
 
-extension Structs_Labtesting_Subjective: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Subjective: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "description"),
     2: .same(proto: "taste"),
@@ -1164,11 +1164,11 @@ extension Structs_Labtesting_Subjective: SwiftProtobuf._MessageImplementationBas
   ]
 
   fileprivate class _StorageClass {
-    var _description_p: Content_Content? = nil
-    var _taste: Content_Content? = nil
-    var _potency: Structs_Labtesting_PotencyEstimate = .light
-    var _feelingTags: [Structs_Labtesting_Feeling] = []
-    var _tastingNotes: [Structs_Labtesting_TasteNote] = []
+    var _description_p: Opencannabis_Content_Content? = nil
+    var _taste: Opencannabis_Content_Content? = nil
+    var _potency: Opencannabis_Structs_Labtesting_PotencyEstimate = .light
+    var _feelingTags: [Opencannabis_Structs_Labtesting_Feeling] = []
+    var _tastingNotes: [Opencannabis_Structs_Labtesting_TasteNote] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -1190,7 +1190,7 @@ extension Structs_Labtesting_Subjective: SwiftProtobuf._MessageImplementationBas
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Labtesting_Subjective) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Subjective) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1209,13 +1209,13 @@ extension Structs_Labtesting_Subjective: SwiftProtobuf._MessageImplementationBas
   }
 }
 
-extension Structs_Labtesting_Terpenes: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Terpenes: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "available"),
     10: .same(proto: "terpenes"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Labtesting_Terpenes) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Terpenes) -> Bool {
     if self.available != other.available {return false}
     if self.terpenes != other.terpenes {return false}
     if unknownFields != other.unknownFields {return false}
@@ -1223,15 +1223,15 @@ extension Structs_Labtesting_Terpenes: SwiftProtobuf._MessageImplementationBase,
   }
 }
 
-extension Structs_Labtesting_Terpenes.Result: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Terpenes.Result: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "terpene"),
     2: .same(proto: "measurement"),
   ]
 
   fileprivate class _StorageClass {
-    var _terpene: Structs_Labtesting_Terpene = .camphene
-    var _measurement: Structs_Labtesting_TestValue? = nil
+    var _terpene: Opencannabis_Structs_Labtesting_Terpene = .camphene
+    var _measurement: Opencannabis_Structs_Labtesting_TestValue? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1250,7 +1250,7 @@ extension Structs_Labtesting_Terpenes.Result: SwiftProtobuf._MessageImplementati
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Labtesting_Terpenes.Result) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Terpenes.Result) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1266,13 +1266,13 @@ extension Structs_Labtesting_Terpenes.Result: SwiftProtobuf._MessageImplementati
   }
 }
 
-extension Structs_Labtesting_Pesticides: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Pesticides: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "pesticide_free"),
     2: .same(proto: "measurements"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Labtesting_Pesticides) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Pesticides) -> Bool {
     if self.pesticideFree != other.pesticideFree {return false}
     if self.measurements != other.measurements {return false}
     if unknownFields != other.unknownFields {return false}
@@ -1280,13 +1280,13 @@ extension Structs_Labtesting_Pesticides: SwiftProtobuf._MessageImplementationBas
   }
 }
 
-extension Structs_Labtesting_Moisture: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Moisture: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "measurement"),
   ]
 
   fileprivate class _StorageClass {
-    var _measurement: Structs_Labtesting_TestValue? = nil
+    var _measurement: Opencannabis_Structs_Labtesting_TestValue? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1304,7 +1304,7 @@ extension Structs_Labtesting_Moisture: SwiftProtobuf._MessageImplementationBase,
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Labtesting_Moisture) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Moisture) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

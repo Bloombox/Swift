@@ -20,12 +20,12 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies an auth token issued to a device, or some other machine-based actor.
-public struct Security_DeviceToken: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Security_DeviceToken: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".DeviceToken"
 
   /// Authentication token, usable by this device to authenticate to the API, etc.
-  public var token: Security_AuthToken {
-    get {return _storage._token ?? Security_AuthToken()}
+  public var token: Bloombox_Schema_Security_AuthToken {
+    get {return _storage._token ?? Bloombox_Schema_Security_AuthToken()}
     set {_uniqueStorage()._token = newValue}
   }
   /// Returns true if `token` has been explicitly set.
@@ -34,8 +34,8 @@ public struct Security_DeviceToken: SwiftProtobuf.Message {
   public mutating func clearToken() {_storage._token = nil}
 
   /// Information passed from the server to this device, including credentials, stateful flags, and so on.
-  public var device: Device_Device {
-    get {return _storage._device ?? Device_Device()}
+  public var device: Opencannabis_Device_Device {
+    get {return _storage._device ?? Opencannabis_Device_Device()}
     set {_uniqueStorage()._device = newValue}
   }
   /// Returns true if `device` has been explicitly set.
@@ -44,8 +44,8 @@ public struct Security_DeviceToken: SwiftProtobuf.Message {
   public mutating func clearDevice() {_storage._device = nil}
 
   /// Issuance timestamp for this device token.
-  public var issued: Temporal_Instant {
-    get {return _storage._issued ?? Temporal_Instant()}
+  public var issued: Opencannabis_Temporal_Instant {
+    get {return _storage._issued ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._issued = newValue}
   }
   /// Returns true if `issued` has been explicitly set.
@@ -54,8 +54,8 @@ public struct Security_DeviceToken: SwiftProtobuf.Message {
   public mutating func clearIssued() {_storage._issued = nil}
 
   /// Expiry timestamp for this device token.
-  public var expires: Temporal_Instant {
-    get {return _storage._expires ?? Temporal_Instant()}
+  public var expires: Opencannabis_Temporal_Instant {
+    get {return _storage._expires ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._expires = newValue}
   }
   /// Returns true if `expires` has been explicitly set.
@@ -113,9 +113,9 @@ public struct Security_DeviceToken: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "security"
+fileprivate let _protobuf_package = "bloombox.schema.security"
 
-extension Security_DeviceToken: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Security_DeviceToken: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "token"),
     2: .same(proto: "device"),
@@ -124,10 +124,10 @@ extension Security_DeviceToken: SwiftProtobuf._MessageImplementationBase, SwiftP
   ]
 
   fileprivate class _StorageClass {
-    var _token: Security_AuthToken? = nil
-    var _device: Device_Device? = nil
-    var _issued: Temporal_Instant? = nil
-    var _expires: Temporal_Instant? = nil
+    var _token: Bloombox_Schema_Security_AuthToken? = nil
+    var _device: Opencannabis_Device_Device? = nil
+    var _issued: Opencannabis_Temporal_Instant? = nil
+    var _expires: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -148,7 +148,7 @@ extension Security_DeviceToken: SwiftProtobuf._MessageImplementationBase, SwiftP
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Security_DeviceToken) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_DeviceToken) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

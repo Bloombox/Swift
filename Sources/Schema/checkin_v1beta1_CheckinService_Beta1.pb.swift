@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates known errors that may be thrown by checkin operations.
-public enum Services_Checkin_V1beta1_CheckinError: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Services_Checkin_V1beta1_CheckinError: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// No error was encountered.
@@ -119,14 +119,14 @@ public enum Services_Checkin_V1beta1_CheckinError: SwiftProtobuf.Enum {
 }
 
 /// Specifies an RPC operation to retrieve status information for the Checkin API.
-public struct Services_Checkin_V1beta1_Ping: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Services_Checkin_V1beta1_Ping: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Ping"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies a checkin ping request.
   public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Checkin_V1beta1_Ping.protoMessageName + ".Request"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Checkin_V1beta1_Ping.protoMessageName + ".Request"
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -152,10 +152,10 @@ public struct Services_Checkin_V1beta1_Ping: SwiftProtobuf.Message {
 
   /// Specifies a checkin ping response.
   public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Checkin_V1beta1_Ping.protoMessageName + ".Response"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Checkin_V1beta1_Ping.protoMessageName + ".Response"
 
     /// Current service status.
-    public var status: Services_ServiceStatus = .unknown
+    public var status: Bloombox_Schema_Services_ServiceStatus = .unknown
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -188,11 +188,11 @@ public struct Services_Checkin_V1beta1_Ping: SwiftProtobuf.Message {
 
   /// Specifies a checkin ping operation, consisting of one request and one response.
   public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Checkin_V1beta1_Ping.protoMessageName + ".Operation"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Checkin_V1beta1_Ping.protoMessageName + ".Operation"
 
     /// Request to ping.
-    public var request: Services_Checkin_V1beta1_Ping.Request {
-      get {return _storage._request ?? Services_Checkin_V1beta1_Ping.Request()}
+    public var request: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Request {
+      get {return _storage._request ?? Bloombox_Schema_Services_Checkin_V1beta1_Ping.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -201,8 +201,8 @@ public struct Services_Checkin_V1beta1_Ping: SwiftProtobuf.Message {
     public mutating func clearRequest() {_storage._request = nil}
 
     /// Response to ping.
-    public var response: Services_Checkin_V1beta1_Ping.Response {
-      get {return _storage._response ?? Services_Checkin_V1beta1_Ping.Response()}
+    public var response: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Response {
+      get {return _storage._response ?? Bloombox_Schema_Services_Checkin_V1beta1_Ping.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -272,12 +272,12 @@ public struct Services_Checkin_V1beta1_Ping: SwiftProtobuf.Message {
 
 /// Specifies information about the user account resolved during a checkin operation. Account flags are expressed, along
 /// with enough information for a salutation.
-public struct Services_Checkin_V1beta1_CheckinUser: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".CheckinUser"
 
   /// Key and identity ID for the user who was checked in.
-  public var key: Identity_UserKey {
-    get {return _storage._key ?? Identity_UserKey()}
+  public var key: Bloombox_Schema_Identity_UserKey {
+    get {return _storage._key ?? Bloombox_Schema_Identity_UserKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -286,8 +286,8 @@ public struct Services_Checkin_V1beta1_CheckinUser: SwiftProtobuf.Message {
   public mutating func clearKey() {_storage._key = nil}
 
   /// Active account flags.
-  public var flags: Identity_UserFlags {
-    get {return _storage._flags ?? Identity_UserFlags()}
+  public var flags: Bloombox_Schema_Identity_UserFlags {
+    get {return _storage._flags ?? Bloombox_Schema_Identity_UserFlags()}
     set {_uniqueStorage()._flags = newValue}
   }
   /// Returns true if `flags` has been explicitly set.
@@ -296,8 +296,8 @@ public struct Services_Checkin_V1beta1_CheckinUser: SwiftProtobuf.Message {
   public mutating func clearFlags() {_storage._flags = nil}
 
   /// Person's name information, for display purposes.
-  public var name: Person_Name {
-    get {return _storage._name ?? Person_Name()}
+  public var name: Opencannabis_Person_Name {
+    get {return _storage._name ?? Opencannabis_Person_Name()}
     set {_uniqueStorage()._name = newValue}
   }
   /// Returns true if `name` has been explicitly set.
@@ -350,7 +350,7 @@ public struct Services_Checkin_V1beta1_CheckinUser: SwiftProtobuf.Message {
 }
 
 /// Specifies information to prompt a user to enroll via SMS.
-public struct Services_Checkin_V1beta1_CheckinEnrollment: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Services_Checkin_V1beta1_CheckinEnrollment: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".CheckinEnrollment"
 
   /// Provisioned enrollment code.
@@ -387,7 +387,7 @@ public struct Services_Checkin_V1beta1_CheckinEnrollment: SwiftProtobuf.Message 
 
 /// Specifies a response to a request to check a user in, regardless of whether they checked in via their government ID,
 /// a physical card, or an authenticated digital card.
-public struct Services_Checkin_V1beta1_CheckinResponse: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".CheckinResponse"
 
   /// Specifies whether the operation was successful. If not, there should be an error listed.
@@ -403,14 +403,14 @@ public struct Services_Checkin_V1beta1_CheckinResponse: SwiftProtobuf.Message {
   }
 
   /// Specifies a known checkin error that occurred, if applicable.
-  public var error: Services_Checkin_V1beta1_CheckinError {
+  public var error: Bloombox_Schema_Services_Checkin_V1beta1_CheckinError {
     get {return _storage._error}
     set {_uniqueStorage()._error = newValue}
   }
 
   /// Information about the resulting user account.
-  public var user: Services_Checkin_V1beta1_CheckinUser {
-    get {return _storage._user ?? Services_Checkin_V1beta1_CheckinUser()}
+  public var user: Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser {
+    get {return _storage._user ?? Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser()}
     set {_uniqueStorage()._user = newValue}
   }
   /// Returns true if `user` has been explicitly set.
@@ -419,8 +419,8 @@ public struct Services_Checkin_V1beta1_CheckinResponse: SwiftProtobuf.Message {
   public mutating func clearUser() {_storage._user = nil}
 
   /// Information related to the user's next enrollment action, if required.
-  public var enrollment: Services_Checkin_V1beta1_CheckinEnrollment {
-    get {return _storage._enrollment ?? Services_Checkin_V1beta1_CheckinEnrollment()}
+  public var enrollment: Bloombox_Schema_Services_Checkin_V1beta1_CheckinEnrollment {
+    get {return _storage._enrollment ?? Bloombox_Schema_Services_Checkin_V1beta1_CheckinEnrollment()}
     set {_uniqueStorage()._enrollment = newValue}
   }
   /// Returns true if `enrollment` has been explicitly set.
@@ -482,14 +482,14 @@ public struct Services_Checkin_V1beta1_CheckinResponse: SwiftProtobuf.Message {
 
 /// Specifies an RPC operation to check a user via their government ID, most notably, a United States Driver's License or
 /// Identification Card, issued by a US State.
-public struct Services_Checkin_V1beta1_IDCheckin: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".IDCheckin"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to checkin via a user's government ID.
   public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Checkin_V1beta1_IDCheckin.protoMessageName + ".Request"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.protoMessageName + ".Request"
 
     /// Raw string, produced from a barcode scan or magstripe read.
     public var raw: String = String()
@@ -546,11 +546,11 @@ public struct Services_Checkin_V1beta1_IDCheckin: SwiftProtobuf.Message {
 
   /// Specifies an ID-based checkin operation, consisting of one request and one generic checkin response.
   public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Checkin_V1beta1_IDCheckin.protoMessageName + ".Operation"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.protoMessageName + ".Operation"
 
     /// Request to check a user in via their government ID.
-    public var request: Services_Checkin_V1beta1_IDCheckin.Request {
-      get {return _storage._request ?? Services_Checkin_V1beta1_IDCheckin.Request()}
+    public var request: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Request {
+      get {return _storage._request ?? Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -559,8 +559,8 @@ public struct Services_Checkin_V1beta1_IDCheckin: SwiftProtobuf.Message {
     public mutating func clearRequest() {_storage._request = nil}
 
     /// Generic checkin response.
-    public var response: Services_Checkin_V1beta1_CheckinResponse {
-      get {return _storage._response ?? Services_Checkin_V1beta1_CheckinResponse()}
+    public var response: Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse {
+      get {return _storage._response ?? Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -630,14 +630,14 @@ public struct Services_Checkin_V1beta1_IDCheckin: SwiftProtobuf.Message {
 
 /// Specifies an RPC operation to check a user via an authenticated digital representation of their identity, usually in
 /// the form of an Apple Wallet based, Bloombox-issued pass.
-public struct Services_Checkin_V1beta1_CardCheckin: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".CardCheckin"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to checkin via a user's digital card.
   public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Checkin_V1beta1_CardCheckin.protoMessageName + ".Request"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.protoMessageName + ".Request"
 
     /// Type ID of the subject digital card.
     public var cardType: String = String()
@@ -701,11 +701,11 @@ public struct Services_Checkin_V1beta1_CardCheckin: SwiftProtobuf.Message {
 
   /// Specifies a digital checkin operation, consisting of one request and one generic checkin response.
   public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Checkin_V1beta1_CardCheckin.protoMessageName + ".Operation"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.protoMessageName + ".Operation"
 
     /// Request to check a user in via their government ID.
-    public var request: Services_Checkin_V1beta1_CardCheckin.Request {
-      get {return _storage._request ?? Services_Checkin_V1beta1_CardCheckin.Request()}
+    public var request: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Request {
+      get {return _storage._request ?? Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -714,8 +714,8 @@ public struct Services_Checkin_V1beta1_CardCheckin: SwiftProtobuf.Message {
     public mutating func clearRequest() {_storage._request = nil}
 
     /// Generic checkin response.
-    public var response: Services_Checkin_V1beta1_CheckinResponse {
-      get {return _storage._response ?? Services_Checkin_V1beta1_CheckinResponse()}
+    public var response: Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse {
+      get {return _storage._response ?? Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -785,9 +785,9 @@ public struct Services_Checkin_V1beta1_CardCheckin: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "services.checkin.v1beta1"
+fileprivate let _protobuf_package = "bloombox.schema.services.checkin.v1beta1"
 
-extension Services_Checkin_V1beta1_CheckinError: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_CheckinError: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_ERROR"),
     1: .same(proto: "ID_NOT_FOUND"),
@@ -807,45 +807,45 @@ extension Services_Checkin_V1beta1_CheckinError: SwiftProtobuf._ProtoNameProvidi
   ]
 }
 
-extension Services_Checkin_V1beta1_Ping: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_Ping: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_Ping) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_Ping) -> Bool {
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Checkin_V1beta1_Ping.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_Ping.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_Ping.Request) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Request) -> Bool {
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Checkin_V1beta1_Ping.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_Ping.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_Ping.Response) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Response) -> Bool {
     if self.status != other.status {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Checkin_V1beta1_Ping.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_Ping.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Services_Checkin_V1beta1_Ping.Request? = nil
-    var _response: Services_Checkin_V1beta1_Ping.Response? = nil
+    var _request: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Request? = nil
+    var _response: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -864,7 +864,7 @@ extension Services_Checkin_V1beta1_Ping.Operation: SwiftProtobuf._MessageImpleme
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_Ping.Operation) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Operation) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -880,7 +880,7 @@ extension Services_Checkin_V1beta1_Ping.Operation: SwiftProtobuf._MessageImpleme
   }
 }
 
-extension Services_Checkin_V1beta1_CheckinUser: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "flags"),
@@ -888,9 +888,9 @@ extension Services_Checkin_V1beta1_CheckinUser: SwiftProtobuf._MessageImplementa
   ]
 
   fileprivate class _StorageClass {
-    var _key: Identity_UserKey? = nil
-    var _flags: Identity_UserFlags? = nil
-    var _name: Person_Name? = nil
+    var _key: Bloombox_Schema_Identity_UserKey? = nil
+    var _flags: Bloombox_Schema_Identity_UserFlags? = nil
+    var _name: Opencannabis_Person_Name? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -910,7 +910,7 @@ extension Services_Checkin_V1beta1_CheckinUser: SwiftProtobuf._MessageImplementa
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_CheckinUser) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -927,19 +927,19 @@ extension Services_Checkin_V1beta1_CheckinUser: SwiftProtobuf._MessageImplementa
   }
 }
 
-extension Services_Checkin_V1beta1_CheckinEnrollment: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_CheckinEnrollment: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "code"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_CheckinEnrollment) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CheckinEnrollment) -> Bool {
     if self.code != other.code {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Checkin_V1beta1_CheckinResponse: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "success"),
     2: .standard(proto: "must_enroll"),
@@ -951,9 +951,9 @@ extension Services_Checkin_V1beta1_CheckinResponse: SwiftProtobuf._MessageImplem
   fileprivate class _StorageClass {
     var _success: Bool = false
     var _mustEnroll: Bool = false
-    var _error: Services_Checkin_V1beta1_CheckinError = .noError
-    var _user: Services_Checkin_V1beta1_CheckinUser? = nil
-    var _enrollment: Services_Checkin_V1beta1_CheckinEnrollment? = nil
+    var _error: Bloombox_Schema_Services_Checkin_V1beta1_CheckinError = .noError
+    var _user: Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser? = nil
+    var _enrollment: Bloombox_Schema_Services_Checkin_V1beta1_CheckinEnrollment? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -975,7 +975,7 @@ extension Services_Checkin_V1beta1_CheckinResponse: SwiftProtobuf._MessageImplem
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_CheckinResponse) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -994,16 +994,16 @@ extension Services_Checkin_V1beta1_CheckinResponse: SwiftProtobuf._MessageImplem
   }
 }
 
-extension Services_Checkin_V1beta1_IDCheckin: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_IDCheckin) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin) -> Bool {
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Checkin_V1beta1_IDCheckin.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "raw"),
     2: .same(proto: "scope"),
@@ -1011,7 +1011,7 @@ extension Services_Checkin_V1beta1_IDCheckin.Request: SwiftProtobuf._MessageImpl
     4: .same(proto: "fingerprint"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_IDCheckin.Request) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Request) -> Bool {
     if self.raw != other.raw {return false}
     if self.scope != other.scope {return false}
     if self.serialNumber != other.serialNumber {return false}
@@ -1021,15 +1021,15 @@ extension Services_Checkin_V1beta1_IDCheckin.Request: SwiftProtobuf._MessageImpl
   }
 }
 
-extension Services_Checkin_V1beta1_IDCheckin.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Services_Checkin_V1beta1_IDCheckin.Request? = nil
-    var _response: Services_Checkin_V1beta1_CheckinResponse? = nil
+    var _request: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Request? = nil
+    var _response: Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1048,7 +1048,7 @@ extension Services_Checkin_V1beta1_IDCheckin.Operation: SwiftProtobuf._MessageIm
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_IDCheckin.Operation) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Operation) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1064,25 +1064,25 @@ extension Services_Checkin_V1beta1_IDCheckin.Operation: SwiftProtobuf._MessageIm
   }
 }
 
-extension Services_Checkin_V1beta1_CardCheckin: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_CardCheckin) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin) -> Bool {
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Checkin_V1beta1_CardCheckin.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "cardType"),
+    1: .standard(proto: "card_type"),
     2: .same(proto: "payload"),
     3: .same(proto: "signature"),
     4: .same(proto: "agent"),
     5: .same(proto: "scope"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_CardCheckin.Request) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Request) -> Bool {
     if self.cardType != other.cardType {return false}
     if self.payload != other.payload {return false}
     if self.signature != other.signature {return false}
@@ -1093,15 +1093,15 @@ extension Services_Checkin_V1beta1_CardCheckin.Request: SwiftProtobuf._MessageIm
   }
 }
 
-extension Services_Checkin_V1beta1_CardCheckin.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Services_Checkin_V1beta1_CardCheckin.Request? = nil
-    var _response: Services_Checkin_V1beta1_CheckinResponse? = nil
+    var _request: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Request? = nil
+    var _response: Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1120,7 +1120,7 @@ extension Services_Checkin_V1beta1_CardCheckin.Operation: SwiftProtobuf._Message
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Services_Checkin_V1beta1_CardCheckin.Operation) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Operation) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

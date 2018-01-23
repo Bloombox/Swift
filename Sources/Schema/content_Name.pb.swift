@@ -19,13 +19,14 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Content_Name: SwiftProtobuf.Message {
+/// Displayable content name.
+public struct Opencannabis_Content_Name: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Name"
 
-  /// basic name
+  /// Primary name.
   public var primary: String = String()
 
-  /// display name 
+  /// Display name.
   public var display: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -63,15 +64,15 @@ public struct Content_Name: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "content"
+fileprivate let _protobuf_package = "opencannabis.content"
 
-extension Content_Name: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_Name: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "primary"),
     2: .same(proto: "display"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Content_Name) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_Name) -> Bool {
     if self.primary != other.primary {return false}
     if self.display != other.display {return false}
     if unknownFields != other.unknownFields {return false}

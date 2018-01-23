@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Contact_PhoneNumber: SwiftProtobuf.Message {
+public struct Opencannabis_Contact_PhoneNumber: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PhoneNumber"
 
   public var e164: String = String()
@@ -61,15 +61,15 @@ public struct Contact_PhoneNumber: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "contact"
+fileprivate let _protobuf_package = "opencannabis.contact"
 
-extension Contact_PhoneNumber: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Contact_PhoneNumber: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "e164"),
     2: .same(proto: "validated"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Contact_PhoneNumber) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Contact_PhoneNumber) -> Bool {
     if self.e164 != other.e164 {return false}
     if self.validated != other.validated {return false}
     if unknownFields != other.unknownFields {return false}

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Represents a generic event, which can carry an arbitrary payload and is bound to an unenumerated collection.
-public struct Analytics_Generic_Event: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Event"
 
   /// Payload data for this event.
@@ -34,8 +34,8 @@ public struct Analytics_Generic_Event: SwiftProtobuf.Message {
   public mutating func clearPayload() {_storage._payload = nil}
 
   /// Occurrence timestamp.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -85,9 +85,9 @@ public struct Analytics_Generic_Event: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.generic"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.generic"
 
-extension Analytics_Generic_Event: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "payload"),
     2: .same(proto: "occurred"),
@@ -95,7 +95,7 @@ extension Analytics_Generic_Event: SwiftProtobuf._MessageImplementationBase, Swi
 
   fileprivate class _StorageClass {
     var _payload: SwiftProtobuf.Google_Protobuf_Struct? = nil
-    var _occurred: Temporal_Instant? = nil
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -114,7 +114,7 @@ extension Analytics_Generic_Event: SwiftProtobuf._MessageImplementationBase, Swi
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Generic_Event) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_Event) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

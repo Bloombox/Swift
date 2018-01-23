@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a Blutooth beacon signal, detected or emitted by a BLE device.
-public struct Proximity_BluetoothBeacon: SwiftProtobuf.Message {
+public struct Opencannabis_Proximity_BluetoothBeacon: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".BluetoothBeacon"
 
   /// UUID for the device, as observed or broadcasted.
@@ -42,8 +42,8 @@ public struct Proximity_BluetoothBeacon: SwiftProtobuf.Message {
   }
 
   /// Timestamp for when this beacon was witnessed.
-  public var seen: Temporal_Instant {
-    get {return _storage._seen ?? Temporal_Instant()}
+  public var seen: Opencannabis_Temporal_Instant {
+    get {return _storage._seen ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._seen = newValue}
   }
   /// Returns true if `seen` has been explicitly set.
@@ -52,8 +52,8 @@ public struct Proximity_BluetoothBeacon: SwiftProtobuf.Message {
   public mutating func clearSeen() {_storage._seen = nil}
 
   /// Location of the emitting or reporting (receiving) beacon.
-  public var location: Geo_Location {
-    get {return _storage._location ?? Geo_Location()}
+  public var location: Opencannabis_Geo_Location {
+    get {return _storage._location ?? Opencannabis_Geo_Location()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -62,8 +62,8 @@ public struct Proximity_BluetoothBeacon: SwiftProtobuf.Message {
   public mutating func clearLocation() {_storage._location = nil}
 
   /// Estimate as to the distance accuracy of this beacon.
-  public var accuracy: Geo_LocationAccuracy {
-    get {return _storage._accuracy ?? Geo_LocationAccuracy()}
+  public var accuracy: Opencannabis_Geo_LocationAccuracy {
+    get {return _storage._accuracy ?? Opencannabis_Geo_LocationAccuracy()}
     set {_uniqueStorage()._accuracy = newValue}
   }
   /// Returns true if `accuracy` has been explicitly set.
@@ -129,9 +129,9 @@ public struct Proximity_BluetoothBeacon: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "proximity"
+fileprivate let _protobuf_package = "opencannabis.proximity"
 
-extension Proximity_BluetoothBeacon: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Proximity_BluetoothBeacon: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
     2: .same(proto: "major"),
@@ -145,9 +145,9 @@ extension Proximity_BluetoothBeacon: SwiftProtobuf._MessageImplementationBase, S
     var _uuid: String = String()
     var _major: UInt32 = 0
     var _minor: UInt32 = 0
-    var _seen: Temporal_Instant? = nil
-    var _location: Geo_Location? = nil
-    var _accuracy: Geo_LocationAccuracy? = nil
+    var _seen: Opencannabis_Temporal_Instant? = nil
+    var _location: Opencannabis_Geo_Location? = nil
+    var _accuracy: Opencannabis_Geo_LocationAccuracy? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -170,7 +170,7 @@ extension Proximity_BluetoothBeacon: SwiftProtobuf._MessageImplementationBase, S
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Proximity_BluetoothBeacon) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Proximity_BluetoothBeacon) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

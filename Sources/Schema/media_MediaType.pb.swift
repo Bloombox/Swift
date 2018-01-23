@@ -20,11 +20,11 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the type of media being attached or described.
-public struct Media_MediaType: SwiftProtobuf.Message {
+public struct Opencannabis_Media_MediaType: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".MediaType"
 
   /// Specifies the generic kind of media being described or attached.
-  public var kind: Media_MediaType.Kind {
+  public var kind: Opencannabis_Media_MediaType.Kind {
     get {return _storage._kind}
     set {_uniqueStorage()._kind = newValue}
   }
@@ -36,28 +36,28 @@ public struct Media_MediaType: SwiftProtobuf.Message {
   }
 
   /// Specifies content for an image-based media item.
-  public var imageType: Media_ImageType {
+  public var imageType: Opencannabis_Media_ImageType {
     get {
       if case .imageType(let v)? = _storage._content {return v}
-      return Media_ImageType()
+      return Opencannabis_Media_ImageType()
     }
     set {_uniqueStorage()._content = .imageType(newValue)}
   }
 
   /// Specifies content for a document-based media item.
-  public var documentType: Media_DocumentType {
+  public var documentType: Opencannabis_Media_DocumentType {
     get {
       if case .documentType(let v)? = _storage._content {return v}
-      return Media_DocumentType()
+      return Opencannabis_Media_DocumentType()
     }
     set {_uniqueStorage()._content = .documentType(newValue)}
   }
 
   /// Specifies content for a video-based media item.
-  public var videoType: Media_VideoType {
+  public var videoType: Opencannabis_Media_VideoType {
     get {
       if case .videoType(let v)? = _storage._content {return v}
-      return Media_VideoType()
+      return Opencannabis_Media_VideoType()
     }
     set {_uniqueStorage()._content = .videoType(newValue)}
   }
@@ -67,13 +67,13 @@ public struct Media_MediaType: SwiftProtobuf.Message {
   /// Specifies the content for the media item.
   public enum OneOf_Content: Equatable {
     /// Specifies content for an image-based media item.
-    case imageType(Media_ImageType)
+    case imageType(Opencannabis_Media_ImageType)
     /// Specifies content for a document-based media item.
-    case documentType(Media_DocumentType)
+    case documentType(Opencannabis_Media_DocumentType)
     /// Specifies content for a video-based media item.
-    case videoType(Media_VideoType)
+    case videoType(Opencannabis_Media_VideoType)
 
-    public static func ==(lhs: Media_MediaType.OneOf_Content, rhs: Media_MediaType.OneOf_Content) -> Bool {
+    public static func ==(lhs: Opencannabis_Media_MediaType.OneOf_Content, rhs: Opencannabis_Media_MediaType.OneOf_Content) -> Bool {
       switch (lhs, rhs) {
       case (.imageType(let l), .imageType(let r)): return l == r
       case (.documentType(let l), .documentType(let r)): return l == r
@@ -139,7 +139,7 @@ public struct Media_MediaType: SwiftProtobuf.Message {
         switch fieldNumber {
         case 1: try decoder.decodeSingularEnumField(value: &_storage._kind)
         case 101:
-          var v: Media_ImageType?
+          var v: Opencannabis_Media_ImageType?
           if let current = _storage._content {
             try decoder.handleConflictingOneOf()
             if case .imageType(let m) = current {v = m}
@@ -147,7 +147,7 @@ public struct Media_MediaType: SwiftProtobuf.Message {
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._content = .imageType(v)}
         case 201:
-          var v: Media_DocumentType?
+          var v: Opencannabis_Media_DocumentType?
           if let current = _storage._content {
             try decoder.handleConflictingOneOf()
             if case .documentType(let m) = current {v = m}
@@ -155,7 +155,7 @@ public struct Media_MediaType: SwiftProtobuf.Message {
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._content = .documentType(v)}
         case 301:
-          var v: Media_VideoType?
+          var v: Opencannabis_Media_VideoType?
           if let current = _storage._content {
             try decoder.handleConflictingOneOf()
             if case .videoType(let m) = current {v = m}
@@ -194,11 +194,11 @@ public struct Media_MediaType: SwiftProtobuf.Message {
 }
 
 /// Specifies image type information.
-public struct Media_ImageType: SwiftProtobuf.Message {
+public struct Opencannabis_Media_ImageType: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ImageType"
 
   /// Specifies the format of the attached or described image.
-  public var kind: Media_ImageType.ImageKind = .png
+  public var kind: Opencannabis_Media_ImageType.ImageKind = .png
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -278,11 +278,11 @@ public struct Media_ImageType: SwiftProtobuf.Message {
 }
 
 /// Specifies document type information.
-public struct Media_DocumentType: SwiftProtobuf.Message {
+public struct Opencannabis_Media_DocumentType: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".DocumentType"
 
   /// Specifies the kind of document being attached or described.
-  public var kind: Media_DocumentType.DocumentKind = .txt
+  public var kind: Opencannabis_Media_DocumentType.DocumentKind = .txt
 
   /// Specifies whether the attached document is compressed or not.
   public var compressed: Bool = false
@@ -364,11 +364,11 @@ public struct Media_DocumentType: SwiftProtobuf.Message {
 }
 
 /// Specifies video type information.
-public struct Media_VideoType: SwiftProtobuf.Message {
+public struct Opencannabis_Media_VideoType: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".VideoType"
 
   /// Specifies the kind of video being attached or described.
-  public var kind: Media_VideoType.VideoKind = .mp4
+  public var kind: Opencannabis_Media_VideoType.VideoKind = .mp4
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -439,9 +439,9 @@ public struct Media_VideoType: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "media"
+fileprivate let _protobuf_package = "opencannabis.media"
 
-extension Media_MediaType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_MediaType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "kind"),
     101: .standard(proto: "image_type"),
@@ -450,8 +450,8 @@ extension Media_MediaType: SwiftProtobuf._MessageImplementationBase, SwiftProtob
   ]
 
   fileprivate class _StorageClass {
-    var _kind: Media_MediaType.Kind = .link
-    var _content: Media_MediaType.OneOf_Content?
+    var _kind: Opencannabis_Media_MediaType.Kind = .link
+    var _content: Opencannabis_Media_MediaType.OneOf_Content?
 
     static let defaultInstance = _StorageClass()
 
@@ -470,7 +470,7 @@ extension Media_MediaType: SwiftProtobuf._MessageImplementationBase, SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Media_MediaType) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_MediaType) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -486,7 +486,7 @@ extension Media_MediaType: SwiftProtobuf._MessageImplementationBase, SwiftProtob
   }
 }
 
-extension Media_MediaType.Kind: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_MediaType.Kind: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "LINK"),
     1: .same(proto: "IMAGE"),
@@ -495,19 +495,19 @@ extension Media_MediaType.Kind: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Media_ImageType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_ImageType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "kind"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Media_ImageType) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_ImageType) -> Bool {
     if self.kind != other.kind {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Media_ImageType.ImageKind: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_ImageType.ImageKind: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PNG"),
     1: .same(proto: "JPG"),
@@ -517,13 +517,13 @@ extension Media_ImageType.ImageKind: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Media_DocumentType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_DocumentType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "kind"),
     2: .same(proto: "compressed"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Media_DocumentType) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_DocumentType) -> Bool {
     if self.kind != other.kind {return false}
     if self.compressed != other.compressed {return false}
     if unknownFields != other.unknownFields {return false}
@@ -531,7 +531,7 @@ extension Media_DocumentType: SwiftProtobuf._MessageImplementationBase, SwiftPro
   }
 }
 
-extension Media_DocumentType.DocumentKind: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_DocumentType.DocumentKind: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "TXT"),
     1: .same(proto: "HTML"),
@@ -540,19 +540,19 @@ extension Media_DocumentType.DocumentKind: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Media_VideoType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_VideoType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "kind"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Media_VideoType) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_VideoType) -> Bool {
     if self.kind != other.kind {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Media_VideoType.VideoKind: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_VideoType.VideoKind: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "MP4"),
     1: .same(proto: "FLV"),
