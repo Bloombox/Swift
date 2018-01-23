@@ -445,7 +445,7 @@ public final class Bloombox_Schema_Services_Shop_V1_ShopService {
   }
 
   /// Create a client that makes secure connections.
-  public required init(address: String, certificates: String?, host: String?) {
+  public required init(address: String, certificates: String, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()

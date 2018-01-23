@@ -280,7 +280,7 @@ public final class Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryServ
   }
 
   /// Create a client that makes secure connections.
-  public required init(address: String, certificates: String?, host: String?) {
+  public required init(address: String, certificates: String, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()
@@ -521,7 +521,7 @@ public class Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryActio
 }
 
 /// Call methods of this class to make API calls.
-public class Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryService {
+public final class Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
@@ -540,14 +540,14 @@ public class Bloombox_Schema_Services_Telemetry_V1Beta3_CommercialTelemetryServi
   }
 
   /// Create a client that makes insecure connections.
-  public init(address: String) {
+  public required init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  public init(address: String, certificates: String?, host: String?) {
+  public required init(address: String, certificates: String, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()
@@ -663,7 +663,7 @@ public class Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryActionC
 }
 
 /// Call methods of this class to make API calls.
-public class Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryService {
+public final class Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
@@ -682,14 +682,14 @@ public class Bloombox_Schema_Services_Telemetry_V1Beta3_IdentityTelemetryService
   }
 
   /// Create a client that makes insecure connections.
-  public init(address: String) {
+  public required init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  public init(address: String, certificates: String?, host: String?) {
+  public required init(address: String, certificates: String, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()

@@ -81,7 +81,7 @@ internal struct TLSEndpoint: SecureRPCEndpoint {
  */
 public protocol RPCService {
   init(address: String)
-  init(address: String, certificates: String?, host: String?)
+  init(address: String, certificates: String, host: String?)
 }
 
 

@@ -225,7 +225,7 @@ public class Bloombox_Schema_Services_Checkin_V1Beta1_CheckinService {
   }
 
   /// Create a client that makes secure connections.
-  public init(address: String, certificates: String?, host: String?) {
+  public init(address: String, certificates: String, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()

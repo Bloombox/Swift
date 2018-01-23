@@ -144,7 +144,7 @@ public class Bloombox_Schema_Services_Devices_V1Beta1_DevicesActivateCall {
 }
 
 /// Call methods of this class to make API calls.
-public class Bloombox_Schema_Services_Devices_V1Beta1_DevicesService {
+public final class Bloombox_Schema_Services_Devices_V1Beta1_DevicesService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
@@ -163,14 +163,14 @@ public class Bloombox_Schema_Services_Devices_V1Beta1_DevicesService {
   }
 
   /// Create a client that makes insecure connections.
-  public init(address: String) {
+  public required init(address: String) {
     gRPC.initialize()
     channel = Channel(address:address)
     metadata = Metadata()
   }
 
   /// Create a client that makes secure connections.
-  public init(address: String, certificates: String?, host: String?) {
+  public required init(address: String, certificates: String, host: String) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()
