@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Channel through which a partner interacts with Bloombox.
-public enum Partner_PartnerChannel: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Partner_PartnerChannel: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Direct customers of Bloombox.
@@ -48,7 +48,7 @@ public enum Partner_PartnerChannel: SwiftProtobuf.Enum {
 }
 
 /// Specifies a key that references a partner organization, with an account opened at Bloombox.
-public struct Partner_PartnerKey: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Partner_PartnerKey: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PartnerKey"
 
   /// Short string that uniquely identifies a partner organization.
@@ -86,7 +86,7 @@ public struct Partner_PartnerKey: SwiftProtobuf.Message {
 /// Specifies information about a partner organization that has an account opened with Bloombox. A partner can own/manage
 /// multiple `Location`s, and is identified uniquely by a short `code`, which is a lowercase string suitable for use in
 /// a URL as a slug.
-public struct Partner_Partner: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Partner"
 
   /// Short string that uniquely identifies this partner organization.
@@ -102,8 +102,8 @@ public struct Partner_Partner: SwiftProtobuf.Message {
   }
 
   /// Flags for various things about this partner account.
-  public var flags: Partner_PartnerFlags {
-    get {return _storage._flags ?? Partner_PartnerFlags()}
+  public var flags: Bloombox_Schema_Partner_PartnerFlags {
+    get {return _storage._flags ?? Bloombox_Schema_Partner_PartnerFlags()}
     set {_uniqueStorage()._flags = newValue}
   }
   /// Returns true if `flags` has been explicitly set.
@@ -118,8 +118,8 @@ public struct Partner_Partner: SwiftProtobuf.Message {
   }
 
   /// Contact information for this organization.
-  public var contact: Contact_ContactInfo {
-    get {return _storage._contact ?? Contact_ContactInfo()}
+  public var contact: Opencannabis_Contact_ContactInfo {
+    get {return _storage._contact ?? Opencannabis_Contact_ContactInfo()}
     set {_uniqueStorage()._contact = newValue}
   }
   /// Returns true if `contact` has been explicitly set.
@@ -128,8 +128,8 @@ public struct Partner_Partner: SwiftProtobuf.Message {
   public mutating func clearContact() {_storage._contact = nil}
 
   /// Branding information for this organization.
-  public var branding: Media_MediaItem {
-    get {return _storage._branding ?? Media_MediaItem()}
+  public var branding: Opencannabis_Media_MediaItem {
+    get {return _storage._branding ?? Opencannabis_Media_MediaItem()}
     set {_uniqueStorage()._branding = newValue}
   }
   /// Returns true if `branding` has been explicitly set.
@@ -138,14 +138,14 @@ public struct Partner_Partner: SwiftProtobuf.Message {
   public mutating func clearBranding() {_storage._branding = nil}
 
   /// Channel through which this partner organization interacts with Bloombox.
-  public var channel: Partner_PartnerChannel {
+  public var channel: Bloombox_Schema_Partner_PartnerChannel {
     get {return _storage._channel}
     set {_uniqueStorage()._channel = newValue}
   }
 
   /// Timestamp for when this record was created.
-  public var created: Temporal_Instant {
-    get {return _storage._created ?? Temporal_Instant()}
+  public var created: Opencannabis_Temporal_Instant {
+    get {return _storage._created ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._created = newValue}
   }
   /// Returns true if `created` has been explicitly set.
@@ -154,8 +154,8 @@ public struct Partner_Partner: SwiftProtobuf.Message {
   public mutating func clearCreated() {_storage._created = nil}
 
   /// Timestamp for when this record was last modified.
-  public var modified: Temporal_Instant {
-    get {return _storage._modified ?? Temporal_Instant()}
+  public var modified: Opencannabis_Temporal_Instant {
+    get {return _storage._modified ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._modified = newValue}
   }
   /// Returns true if `modified` has been explicitly set.
@@ -232,7 +232,7 @@ public struct Partner_Partner: SwiftProtobuf.Message {
 }
 
 /// Specifies flags that may be set on a partner organization account.
-public struct Partner_PartnerFlags: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Partner_PartnerFlags: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PartnerFlags"
 
   /// Specifies that the subject partner organization is currently suspended, organization wide, and has had access
@@ -300,27 +300,27 @@ public struct Partner_PartnerFlags: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "partner"
+fileprivate let _protobuf_package = "bloombox.schema.partner"
 
-extension Partner_PartnerChannel: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerChannel: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "DIRECT"),
   ]
 }
 
-extension Partner_PartnerKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "code"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Partner_PartnerKey) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerKey) -> Bool {
     if self.code != other.code {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Partner_Partner: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Partner: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "code"),
     2: .same(proto: "name"),
@@ -336,13 +336,13 @@ extension Partner_Partner: SwiftProtobuf._MessageImplementationBase, SwiftProtob
   fileprivate class _StorageClass {
     var _code: String = String()
     var _name: String = String()
-    var _flags: Partner_PartnerFlags? = nil
+    var _flags: Bloombox_Schema_Partner_PartnerFlags? = nil
     var _legalName: String = String()
-    var _contact: Contact_ContactInfo? = nil
-    var _branding: Media_MediaItem? = nil
-    var _channel: Partner_PartnerChannel = .direct
-    var _created: Temporal_Instant? = nil
-    var _modified: Temporal_Instant? = nil
+    var _contact: Opencannabis_Contact_ContactInfo? = nil
+    var _branding: Opencannabis_Media_MediaItem? = nil
+    var _channel: Bloombox_Schema_Partner_PartnerChannel = .direct
+    var _created: Opencannabis_Temporal_Instant? = nil
+    var _modified: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -368,7 +368,7 @@ extension Partner_Partner: SwiftProtobuf._MessageImplementationBase, SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Partner_Partner) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Partner) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -391,7 +391,7 @@ extension Partner_Partner: SwiftProtobuf._MessageImplementationBase, SwiftProtob
   }
 }
 
-extension Partner_PartnerFlags: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerFlags: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "suspended"),
     2: .same(proto: "pastdue"),
@@ -400,7 +400,7 @@ extension Partner_PartnerFlags: SwiftProtobuf._MessageImplementationBase, SwiftP
     5: .same(proto: "internal"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Partner_PartnerFlags) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerFlags) -> Bool {
     if self.suspended != other.suspended {return false}
     if self.pastdue != other.pastdue {return false}
     if self.beta != other.beta {return false}

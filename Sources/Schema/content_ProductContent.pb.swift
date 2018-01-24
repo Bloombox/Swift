@@ -21,12 +21,12 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Specifies timestamps applied to a product, so that it may be tracked or sorted according to publish date, creation
 /// date, or last modification date.
-public struct Content_ProductTimestamps: SwiftProtobuf.Message {
+public struct Opencannabis_Content_ProductTimestamps: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ProductTimestamps"
 
   /// When the subject product was created.
-  public var created: Temporal_Instant {
-    get {return _storage._created ?? Temporal_Instant()}
+  public var created: Opencannabis_Temporal_Instant {
+    get {return _storage._created ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._created = newValue}
   }
   /// Returns true if `created` has been explicitly set.
@@ -35,8 +35,8 @@ public struct Content_ProductTimestamps: SwiftProtobuf.Message {
   public mutating func clearCreated() {_storage._created = nil}
 
   /// When the subject product was last modified.
-  public var modified: Temporal_Instant {
-    get {return _storage._modified ?? Temporal_Instant()}
+  public var modified: Opencannabis_Temporal_Instant {
+    get {return _storage._modified ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._modified = newValue}
   }
   /// Returns true if `modified` has been explicitly set.
@@ -45,8 +45,8 @@ public struct Content_ProductTimestamps: SwiftProtobuf.Message {
   public mutating func clearModified() {_storage._modified = nil}
 
   /// When the subject product was last or first published.
-  public var published: Temporal_Instant {
-    get {return _storage._published ?? Temporal_Instant()}
+  public var published: Opencannabis_Temporal_Instant {
+    get {return _storage._published ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._published = newValue}
   }
   /// Returns true if `published` has been explicitly set.
@@ -100,12 +100,12 @@ public struct Content_ProductTimestamps: SwiftProtobuf.Message {
 
 /// Specifies a common model for product content, mostly user-visible, and shared by all concrete models. Most of the
 /// information you see when a product is displayed or listed comes from this model.
-public struct Content_ProductContent: SwiftProtobuf.Message {
+public struct Opencannabis_Content_ProductContent: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ProductContent"
 
   /// Main product name.
-  public var name: Content_Name {
-    get {return _storage._name ?? Content_Name()}
+  public var name: Opencannabis_Content_Name {
+    get {return _storage._name ?? Opencannabis_Content_Name()}
     set {_uniqueStorage()._name = newValue}
   }
   /// Returns true if `name` has been explicitly set.
@@ -114,8 +114,8 @@ public struct Content_ProductContent: SwiftProtobuf.Message {
   public mutating func clearName() {_storage._name = nil}
 
   /// Brand information for this product.
-  public var brand: Content_Brand {
-    get {return _storage._brand ?? Content_Brand()}
+  public var brand: Opencannabis_Content_Brand {
+    get {return _storage._brand ?? Opencannabis_Content_Brand()}
     set {_uniqueStorage()._brand = newValue}
   }
   /// Returns true if `brand` has been explicitly set.
@@ -124,8 +124,8 @@ public struct Content_ProductContent: SwiftProtobuf.Message {
   public mutating func clearBrand() {_storage._brand = nil}
 
   /// Description or narrative-style content about this product.
-  public var summary: Content_Content {
-    get {return _storage._summary ?? Content_Content()}
+  public var summary: Opencannabis_Content_Content {
+    get {return _storage._summary ?? Opencannabis_Content_Content()}
     set {_uniqueStorage()._summary = newValue}
   }
   /// Returns true if `summary` has been explicitly set.
@@ -134,8 +134,8 @@ public struct Content_ProductContent: SwiftProtobuf.Message {
   public mutating func clearSummary() {_storage._summary = nil}
 
   /// Content about how this product is best used, or recommended to be used, either from the manufacturer or retailer.
-  public var usage: Content_Content {
-    get {return _storage._usage ?? Content_Content()}
+  public var usage: Opencannabis_Content_Content {
+    get {return _storage._usage ?? Opencannabis_Content_Content()}
     set {_uniqueStorage()._usage = newValue}
   }
   /// Returns true if `usage` has been explicitly set.
@@ -144,8 +144,8 @@ public struct Content_ProductContent: SwiftProtobuf.Message {
   public mutating func clearUsage() {_storage._usage = nil}
 
   /// Dosage advice about this product, either from the manufacturer or retailer.
-  public var dosage: Content_Content {
-    get {return _storage._dosage ?? Content_Content()}
+  public var dosage: Opencannabis_Content_Content {
+    get {return _storage._dosage ?? Opencannabis_Content_Content()}
     set {_uniqueStorage()._dosage = newValue}
   }
   /// Returns true if `dosage` has been explicitly set.
@@ -154,14 +154,14 @@ public struct Content_ProductContent: SwiftProtobuf.Message {
   public mutating func clearDosage() {_storage._dosage = nil}
 
   /// Product media, including images, videos, and so on.
-  public var media: [Media_MediaItem] {
+  public var media: [Opencannabis_Media_MediaItem] {
     get {return _storage._media}
     set {_uniqueStorage()._media = newValue}
   }
 
   /// Pricing specification for this product, regardless of pricing type (i.e. weighted or unit-style pricing).
-  public var pricing: Structs_Pricing_ProductPricing {
-    get {return _storage._pricing ?? Structs_Pricing_ProductPricing()}
+  public var pricing: Opencannabis_Structs_Pricing_ProductPricing {
+    get {return _storage._pricing ?? Opencannabis_Structs_Pricing_ProductPricing()}
     set {_uniqueStorage()._pricing = newValue}
   }
   /// Returns true if `pricing` has been explicitly set.
@@ -170,8 +170,8 @@ public struct Content_ProductContent: SwiftProtobuf.Message {
   public mutating func clearPricing() {_storage._pricing = nil}
 
   /// Lab testing information concerning this product.
-  public var testing: Structs_Labtesting_TestResults {
-    get {return _storage._testing ?? Structs_Labtesting_TestResults()}
+  public var testing: Opencannabis_Structs_Labtesting_TestResults {
+    get {return _storage._testing ?? Opencannabis_Structs_Labtesting_TestResults()}
     set {_uniqueStorage()._testing = newValue}
   }
   /// Returns true if `testing` has been explicitly set.
@@ -180,14 +180,14 @@ public struct Content_ProductContent: SwiftProtobuf.Message {
   public mutating func clearTesting() {_storage._testing = nil}
 
   /// Product flags attached to this content.
-  public var flags: [Structs_ProductFlag] {
+  public var flags: [Opencannabis_Structs_ProductFlag] {
     get {return _storage._flags}
     set {_uniqueStorage()._flags = newValue}
   }
 
   /// Timestamps for this product.
-  public var ts: Content_ProductTimestamps {
-    get {return _storage._ts ?? Content_ProductTimestamps()}
+  public var ts: Opencannabis_Content_ProductTimestamps {
+    get {return _storage._ts ?? Opencannabis_Content_ProductTimestamps()}
     set {_uniqueStorage()._ts = newValue}
   }
   /// Returns true if `ts` has been explicitly set.
@@ -269,9 +269,9 @@ public struct Content_ProductContent: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "content"
+fileprivate let _protobuf_package = "opencannabis.content"
 
-extension Content_ProductTimestamps: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_ProductTimestamps: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "created"),
     2: .same(proto: "modified"),
@@ -279,9 +279,9 @@ extension Content_ProductTimestamps: SwiftProtobuf._MessageImplementationBase, S
   ]
 
   fileprivate class _StorageClass {
-    var _created: Temporal_Instant? = nil
-    var _modified: Temporal_Instant? = nil
-    var _published: Temporal_Instant? = nil
+    var _created: Opencannabis_Temporal_Instant? = nil
+    var _modified: Opencannabis_Temporal_Instant? = nil
+    var _published: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -301,7 +301,7 @@ extension Content_ProductTimestamps: SwiftProtobuf._MessageImplementationBase, S
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Content_ProductTimestamps) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_ProductTimestamps) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -318,7 +318,7 @@ extension Content_ProductTimestamps: SwiftProtobuf._MessageImplementationBase, S
   }
 }
 
-extension Content_ProductContent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_ProductContent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "brand"),
@@ -333,16 +333,16 @@ extension Content_ProductContent: SwiftProtobuf._MessageImplementationBase, Swif
   ]
 
   fileprivate class _StorageClass {
-    var _name: Content_Name? = nil
-    var _brand: Content_Brand? = nil
-    var _summary: Content_Content? = nil
-    var _usage: Content_Content? = nil
-    var _dosage: Content_Content? = nil
-    var _media: [Media_MediaItem] = []
-    var _pricing: Structs_Pricing_ProductPricing? = nil
-    var _testing: Structs_Labtesting_TestResults? = nil
-    var _flags: [Structs_ProductFlag] = []
-    var _ts: Content_ProductTimestamps? = nil
+    var _name: Opencannabis_Content_Name? = nil
+    var _brand: Opencannabis_Content_Brand? = nil
+    var _summary: Opencannabis_Content_Content? = nil
+    var _usage: Opencannabis_Content_Content? = nil
+    var _dosage: Opencannabis_Content_Content? = nil
+    var _media: [Opencannabis_Media_MediaItem] = []
+    var _pricing: Opencannabis_Structs_Pricing_ProductPricing? = nil
+    var _testing: Opencannabis_Structs_Labtesting_TestResults? = nil
+    var _flags: [Opencannabis_Structs_ProductFlag] = []
+    var _ts: Opencannabis_Content_ProductTimestamps? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -369,7 +369,7 @@ extension Content_ProductContent: SwiftProtobuf._MessageImplementationBase, Swif
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Content_ProductContent) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_ProductContent) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

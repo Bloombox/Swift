@@ -20,14 +20,14 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies enabled/disabled state and compression type, and is usually attached to arbitrary data or metadata.
-public struct Base_Compression: SwiftProtobuf.Message {
+public struct Opencannabis_Base_Compression: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Compression"
 
   /// Enabled/disabled flag for compression. Defaults to not being set, so, falsy.
   public var enabled: Bool = false
 
   /// Type of compression in use, if any. Enumerated herein via `Compression.Type`.
-  public var type: Base_Compression.TypeEnum = .gzip
+  public var type: Opencannabis_Base_Compression.TypeEnum = .gzip
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -91,15 +91,15 @@ public struct Base_Compression: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "base"
+fileprivate let _protobuf_package = "opencannabis.base"
 
-extension Base_Compression: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Base_Compression: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "enabled"),
     2: .same(proto: "type"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Base_Compression) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Base_Compression) -> Bool {
     if self.enabled != other.enabled {return false}
     if self.type != other.type {return false}
     if unknownFields != other.unknownFields {return false}
@@ -107,7 +107,7 @@ extension Base_Compression: SwiftProtobuf._MessageImplementationBase, SwiftProto
   }
 }
 
-extension Base_Compression.TypeEnum: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Base_Compression.TypeEnum: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "GZIP"),
   ]

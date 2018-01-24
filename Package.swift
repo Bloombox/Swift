@@ -12,7 +12,7 @@ let package = Package(
 
     dependencies: [
         .package(url: "https://github.com/apple/swift-protobuf.git", .branch("master")),
-        .package(url: "https://github.com/grpc/grpc-swift.git", .branch("master"))],
+        .package(url: "https://github.com/bloombox/grpc-swift.git", .branch("master"))],
 
     targets: [
         .target(

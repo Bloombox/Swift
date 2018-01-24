@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies types of edible products that are known and considered sub-categories of the full 'edibles' menu section.
-public enum Products_EdibleType: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_EdibleType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unknown, unrecognized, or otherwise unspecified edible type.
@@ -68,7 +68,7 @@ public enum Products_EdibleType: SwiftProtobuf.Enum {
 }
 
 /// Flags that may be applied specifically to an edible product.
-public enum Products_EdibleFlag: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_EdibleFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Special default flag indicating no flags.
@@ -126,7 +126,7 @@ public enum Products_EdibleFlag: SwiftProtobuf.Enum {
 }
 
 /// Specifies an ingredient included in an edible.
-public struct Products_EdibleIngredient: SwiftProtobuf.Message {
+public struct Opencannabis_Products_EdibleIngredient: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".EdibleIngredient"
 
   /// Human-friendly label for the ingredient.
@@ -170,12 +170,12 @@ public struct Products_EdibleIngredient: SwiftProtobuf.Message {
 
 /// Specifies an edible product that may be consumed as a food or beverage, that contains cannabis or cannabinoids in
 /// some quantity.
-public struct Products_Edible: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Edible: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Edible"
 
   /// Product key that uniquely identifies this edible item.
-  public var key: Base_ProductKey {
-    get {return _storage._key ?? Base_ProductKey()}
+  public var key: Opencannabis_Base_ProductKey {
+    get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -184,20 +184,20 @@ public struct Products_Edible: SwiftProtobuf.Message {
   public mutating func clearKey() {_storage._key = nil}
 
   /// Specifies the subcategory of this edible product, if known and applicable.
-  public var type: Products_EdibleType {
+  public var type: Opencannabis_Products_EdibleType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Specifies flags attached to this edible product.
-  public var flags: [Products_EdibleFlag] {
+  public var flags: [Opencannabis_Products_EdibleFlag] {
     get {return _storage._flags}
     set {_uniqueStorage()._flags = newValue}
   }
 
   /// Product content related to/about this edible item.
-  public var product: Content_ProductContent {
-    get {return _storage._product ?? Content_ProductContent()}
+  public var product: Opencannabis_Content_ProductContent {
+    get {return _storage._product ?? Opencannabis_Content_ProductContent()}
     set {_uniqueStorage()._product = newValue}
   }
   /// Returns true if `product` has been explicitly set.
@@ -206,8 +206,8 @@ public struct Products_Edible: SwiftProtobuf.Message {
   public mutating func clearProduct() {_storage._product = nil}
 
   /// Materials and handling information about this cartridge product.
-  public var material: Content_MaterialsData {
-    get {return _storage._material ?? Content_MaterialsData()}
+  public var material: Opencannabis_Content_MaterialsData {
+    get {return _storage._material ?? Opencannabis_Content_MaterialsData()}
     set {_uniqueStorage()._material = newValue}
   }
   /// Returns true if `material` has been explicitly set.
@@ -216,7 +216,7 @@ public struct Products_Edible: SwiftProtobuf.Message {
   public mutating func clearMaterial() {_storage._material = nil}
 
   /// Specifies the ingredients for a product, when/if it is composed of ingredients (i.e. edibles).
-  public var ingredients: [Products_EdibleIngredient] {
+  public var ingredients: [Opencannabis_Products_EdibleIngredient] {
     get {return _storage._ingredients}
     set {_uniqueStorage()._ingredients = newValue}
   }
@@ -279,9 +279,9 @@ public struct Products_Edible: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "products"
+fileprivate let _protobuf_package = "opencannabis.products"
 
-extension Products_EdibleType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_EdibleType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED_EDIBLE"),
     1: .same(proto: "CHOCOLATE"),
@@ -291,7 +291,7 @@ extension Products_EdibleType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_EdibleFlag: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_EdibleFlag: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_EDIBLE_FLAG"),
     1: .same(proto: "VEGAN"),
@@ -303,13 +303,13 @@ extension Products_EdibleFlag: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_EdibleIngredient: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_EdibleIngredient: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "label"),
     2: .same(proto: "amount"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Products_EdibleIngredient) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_EdibleIngredient) -> Bool {
     if self.label != other.label {return false}
     if self.amount != other.amount {return false}
     if unknownFields != other.unknownFields {return false}
@@ -317,7 +317,7 @@ extension Products_EdibleIngredient: SwiftProtobuf._MessageImplementationBase, S
   }
 }
 
-extension Products_Edible: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Edible: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "type"),
@@ -328,12 +328,12 @@ extension Products_Edible: SwiftProtobuf._MessageImplementationBase, SwiftProtob
   ]
 
   fileprivate class _StorageClass {
-    var _key: Base_ProductKey? = nil
-    var _type: Products_EdibleType = .unspecifiedEdible
-    var _flags: [Products_EdibleFlag] = []
-    var _product: Content_ProductContent? = nil
-    var _material: Content_MaterialsData? = nil
-    var _ingredients: [Products_EdibleIngredient] = []
+    var _key: Opencannabis_Base_ProductKey? = nil
+    var _type: Opencannabis_Products_EdibleType = .unspecifiedEdible
+    var _flags: [Opencannabis_Products_EdibleFlag] = []
+    var _product: Opencannabis_Content_ProductContent? = nil
+    var _material: Opencannabis_Content_MaterialsData? = nil
+    var _ingredients: [Opencannabis_Products_EdibleIngredient] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -356,7 +356,7 @@ extension Products_Edible: SwiftProtobuf._MessageImplementationBase, SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Edible) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Edible) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// References a line and column number in a source file that is mentioned in an error report.
-public struct Analytics_Generic_SourceLineReference: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Generic_SourceLineReference: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".SourceLineReference"
 
   /// Line number in a source code file.
@@ -63,7 +63,7 @@ public struct Analytics_Generic_SourceLineReference: SwiftProtobuf.Message {
 }
 
 /// References a location for source code that is mentioned in an error report.
-public struct Analytics_Generic_SourceLocation: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".SourceLocation"
 
   /// Arbitrary 'module' name for this source code. Usually the containing codebase.
@@ -85,10 +85,10 @@ public struct Analytics_Generic_SourceLocation: SwiftProtobuf.Message {
   }
 
   /// Reference to a line/column in that file.
-  public var lineref: Analytics_Generic_SourceLineReference {
+  public var lineref: Bloombox_Schema_Analytics_Generic_SourceLineReference {
     get {
       if case .lineref(let v)? = _storage._pinpoint {return v}
-      return Analytics_Generic_SourceLineReference()
+      return Bloombox_Schema_Analytics_Generic_SourceLineReference()
     }
     set {_uniqueStorage()._pinpoint = .lineref(newValue)}
   }
@@ -107,11 +107,11 @@ public struct Analytics_Generic_SourceLocation: SwiftProtobuf.Message {
   /// Exact location within that file, either by raw byte offset or a line/column pair.
   public enum OneOf_Pinpoint: Equatable {
     /// Reference to a line/column in that file.
-    case lineref(Analytics_Generic_SourceLineReference)
+    case lineref(Bloombox_Schema_Analytics_Generic_SourceLineReference)
     /// Raw byte offset in a source code file.
     case offset(Int64)
 
-    public static func ==(lhs: Analytics_Generic_SourceLocation.OneOf_Pinpoint, rhs: Analytics_Generic_SourceLocation.OneOf_Pinpoint) -> Bool {
+    public static func ==(lhs: Bloombox_Schema_Analytics_Generic_SourceLocation.OneOf_Pinpoint, rhs: Bloombox_Schema_Analytics_Generic_SourceLocation.OneOf_Pinpoint) -> Bool {
       switch (lhs, rhs) {
       case (.lineref(let l), .lineref(let r)): return l == r
       case (.offset(let l), .offset(let r)): return l == r
@@ -134,7 +134,7 @@ public struct Analytics_Generic_SourceLocation: SwiftProtobuf.Message {
         case 1: try decoder.decodeSingularStringField(value: &_storage._module)
         case 2: try decoder.decodeSingularStringField(value: &_storage._filepath)
         case 3:
-          var v: Analytics_Generic_SourceLineReference?
+          var v: Bloombox_Schema_Analytics_Generic_SourceLineReference?
           if let current = _storage._pinpoint {
             try decoder.handleConflictingOneOf()
             if case .lineref(let m) = current {v = m}
@@ -179,7 +179,7 @@ public struct Analytics_Generic_SourceLocation: SwiftProtobuf.Message {
 }
 
 /// Represents an error event.
-public struct Analytics_Generic_Exception: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Exception"
 
   /// String domain value for this error, if any.
@@ -195,8 +195,8 @@ public struct Analytics_Generic_Exception: SwiftProtobuf.Message {
   }
 
   /// Source location context for this failure.
-  public var location: Analytics_Generic_SourceLocation {
-    get {return _storage._location ?? Analytics_Generic_SourceLocation()}
+  public var location: Bloombox_Schema_Analytics_Generic_SourceLocation {
+    get {return _storage._location ?? Bloombox_Schema_Analytics_Generic_SourceLocation()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -205,8 +205,8 @@ public struct Analytics_Generic_Exception: SwiftProtobuf.Message {
   public mutating func clearLocation() {_storage._location = nil}
 
   /// Occurrence timestamp.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -264,15 +264,15 @@ public struct Analytics_Generic_Exception: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.generic"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.generic"
 
-extension Analytics_Generic_SourceLineReference: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Generic_SourceLineReference: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     3: .same(proto: "line"),
     4: .same(proto: "column"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Generic_SourceLineReference) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_SourceLineReference) -> Bool {
     if self.line != other.line {return false}
     if self.column != other.column {return false}
     if unknownFields != other.unknownFields {return false}
@@ -280,7 +280,7 @@ extension Analytics_Generic_SourceLineReference: SwiftProtobuf._MessageImplement
   }
 }
 
-extension Analytics_Generic_SourceLocation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "module"),
     2: .same(proto: "filepath"),
@@ -291,7 +291,7 @@ extension Analytics_Generic_SourceLocation: SwiftProtobuf._MessageImplementation
   fileprivate class _StorageClass {
     var _module: String = String()
     var _filepath: String = String()
-    var _pinpoint: Analytics_Generic_SourceLocation.OneOf_Pinpoint?
+    var _pinpoint: Bloombox_Schema_Analytics_Generic_SourceLocation.OneOf_Pinpoint?
 
     static let defaultInstance = _StorageClass()
 
@@ -311,7 +311,7 @@ extension Analytics_Generic_SourceLocation: SwiftProtobuf._MessageImplementation
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Generic_SourceLocation) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_SourceLocation) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -328,7 +328,7 @@ extension Analytics_Generic_SourceLocation: SwiftProtobuf._MessageImplementation
   }
 }
 
-extension Analytics_Generic_Exception: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "domain"),
     2: .same(proto: "code"),
@@ -339,8 +339,8 @@ extension Analytics_Generic_Exception: SwiftProtobuf._MessageImplementationBase,
   fileprivate class _StorageClass {
     var _domain: String = String()
     var _code: Int32 = 0
-    var _location: Analytics_Generic_SourceLocation? = nil
-    var _occurred: Temporal_Instant? = nil
+    var _location: Bloombox_Schema_Analytics_Generic_SourceLocation? = nil
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -361,7 +361,7 @@ extension Analytics_Generic_Exception: SwiftProtobuf._MessageImplementationBase,
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Generic_Exception) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_Exception) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

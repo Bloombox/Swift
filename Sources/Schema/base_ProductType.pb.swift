@@ -21,11 +21,11 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Specifies the enumeration of a product's type or categorical
 /// identity, along with any additional metadata.
-public struct Base_ProductType: SwiftProtobuf.Message {
+public struct Opencannabis_Base_ProductType: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ProductType"
 
   /// Kind of product, enumerated in this same package as `ProductKind`.
-  public var kind: Base_ProductKind = .flowers
+  public var kind: Opencannabis_Base_ProductKind = .flowers
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -58,14 +58,14 @@ public struct Base_ProductType: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "base"
+fileprivate let _protobuf_package = "opencannabis.base"
 
-extension Base_ProductType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Base_ProductType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "kind"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Base_ProductType) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Base_ProductType) -> Bool {
     if self.kind != other.kind {return false}
     if unknownFields != other.unknownFields {return false}
     return true

@@ -20,18 +20,18 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies materials-related data about a product that contains cannabis.
-public struct Content_MaterialsData: SwiftProtobuf.Message {
+public struct Opencannabis_Content_MaterialsData: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".MaterialsData"
 
   /// Species of an item, if known.
-  public var species: Structs_Species {
+  public var species: Opencannabis_Structs_Species {
     get {return _storage._species}
     set {_uniqueStorage()._species = newValue}
   }
 
   /// Specifies the genetics of an item, if known.
-  public var genetics: Structs_Genetics {
-    get {return _storage._genetics ?? Structs_Genetics()}
+  public var genetics: Opencannabis_Structs_Genetics {
+    get {return _storage._genetics ?? Opencannabis_Structs_Genetics()}
     set {_uniqueStorage()._genetics = newValue}
   }
   /// Returns true if `genetics` has been explicitly set.
@@ -40,19 +40,19 @@ public struct Content_MaterialsData: SwiftProtobuf.Message {
   public mutating func clearGenetics() {_storage._genetics = nil}
 
   /// Specifies how this item was grown.
-  public var grow: Structs_Grow {
+  public var grow: Opencannabis_Structs_Grow {
     get {return _storage._grow}
     set {_uniqueStorage()._grow = newValue}
   }
 
   /// Shelf status of this pre-rolled product.
-  public var shelf: Structs_Shelf {
+  public var shelf: Opencannabis_Structs_Shelf {
     get {return _storage._shelf}
     set {_uniqueStorage()._shelf = newValue}
   }
 
   /// Specifies distribution policy for this material.
-  public var channels: [Products_Distribution_DistributionPolicy] {
+  public var channels: [Opencannabis_Products_Distribution_DistributionPolicy] {
     get {return _storage._channels}
     set {_uniqueStorage()._channels = newValue}
   }
@@ -111,9 +111,9 @@ public struct Content_MaterialsData: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "content"
+fileprivate let _protobuf_package = "opencannabis.content"
 
-extension Content_MaterialsData: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_MaterialsData: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "species"),
     2: .same(proto: "genetics"),
@@ -123,11 +123,11 @@ extension Content_MaterialsData: SwiftProtobuf._MessageImplementationBase, Swift
   ]
 
   fileprivate class _StorageClass {
-    var _species: Structs_Species = .unspecified
-    var _genetics: Structs_Genetics? = nil
-    var _grow: Structs_Grow = .generic
-    var _shelf: Structs_Shelf = .economy
-    var _channels: [Products_Distribution_DistributionPolicy] = []
+    var _species: Opencannabis_Structs_Species = .unspecified
+    var _genetics: Opencannabis_Structs_Genetics? = nil
+    var _grow: Opencannabis_Structs_Grow = .generic
+    var _shelf: Opencannabis_Structs_Shelf = .economy
+    var _channels: [Opencannabis_Products_Distribution_DistributionPolicy] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -149,7 +149,7 @@ extension Content_MaterialsData: SwiftProtobuf._MessageImplementationBase, Swift
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Content_MaterialsData) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_MaterialsData) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

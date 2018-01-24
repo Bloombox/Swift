@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a structure that describes a URI/website, and related information.
-public struct Contact_Website: SwiftProtobuf.Message {
+public struct Opencannabis_Contact_Website: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Website"
 
   /// URI for the website.
@@ -71,16 +71,16 @@ public struct Contact_Website: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "contact"
+fileprivate let _protobuf_package = "opencannabis.contact"
 
-extension Contact_Website: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Contact_Website: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uri"),
     2: .same(proto: "title"),
     3: .same(proto: "icon"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Contact_Website) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Contact_Website) -> Bool {
     if self.uri != other.uri {return false}
     if self.title != other.title {return false}
     if self.icon != other.icon {return false}

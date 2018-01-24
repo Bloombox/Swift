@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates types or subcategories of plants that may be sold.
-public enum Products_PlantType: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_PlantType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unknown, unrecognized, or otherwise unspecified plant type.
@@ -58,12 +58,12 @@ public enum Products_PlantType: SwiftProtobuf.Enum {
 }
 
 /// Specifies a plant product, such as seeds, or clones, that are designed to be cultivated by the end user.
-public struct Products_Plant: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Plant: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Plant"
 
   /// Product key uniquely identifying this cannabis plant item.
-  public var key: Base_ProductKey {
-    get {return _storage._key ?? Base_ProductKey()}
+  public var key: Opencannabis_Base_ProductKey {
+    get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -72,20 +72,20 @@ public struct Products_Plant: SwiftProtobuf.Message {
   public mutating func clearKey() {_storage._key = nil}
 
   /// Specific subcategory for this plant item.
-  public var type: Products_PlantType {
+  public var type: Opencannabis_Products_PlantType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Menu products made from this raw plant product.
-  public var origin: [Base_ProductReference] {
+  public var origin: [Opencannabis_Base_ProductReference] {
     get {return _storage._origin}
     set {_uniqueStorage()._origin = newValue}
   }
 
   /// Product content attached to this cannabis plant item.
-  public var product: Content_ProductContent {
-    get {return _storage._product ?? Content_ProductContent()}
+  public var product: Opencannabis_Content_ProductContent {
+    get {return _storage._product ?? Opencannabis_Content_ProductContent()}
     set {_uniqueStorage()._product = newValue}
   }
   /// Returns true if `product` has been explicitly set.
@@ -94,8 +94,8 @@ public struct Products_Plant: SwiftProtobuf.Message {
   public mutating func clearProduct() {_storage._product = nil}
 
   /// Handling and materials data regarding this cannabis plant item.
-  public var material: Content_MaterialsData {
-    get {return _storage._material ?? Content_MaterialsData()}
+  public var material: Opencannabis_Content_MaterialsData {
+    get {return _storage._material ?? Opencannabis_Content_MaterialsData()}
     set {_uniqueStorage()._material = newValue}
   }
   /// Returns true if `material` has been explicitly set.
@@ -157,9 +157,9 @@ public struct Products_Plant: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "products"
+fileprivate let _protobuf_package = "opencannabis.products"
 
-extension Products_PlantType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_PlantType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED_PLANT"),
     1: .same(proto: "SEED"),
@@ -167,7 +167,7 @@ extension Products_PlantType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_Plant: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Plant: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "type"),
@@ -177,11 +177,11 @@ extension Products_Plant: SwiftProtobuf._MessageImplementationBase, SwiftProtobu
   ]
 
   fileprivate class _StorageClass {
-    var _key: Base_ProductKey? = nil
-    var _type: Products_PlantType = .unspecifiedPlant
-    var _origin: [Base_ProductReference] = []
-    var _product: Content_ProductContent? = nil
-    var _material: Content_MaterialsData? = nil
+    var _key: Opencannabis_Base_ProductKey? = nil
+    var _type: Opencannabis_Products_PlantType = .unspecifiedPlant
+    var _origin: [Opencannabis_Base_ProductReference] = []
+    var _product: Opencannabis_Content_ProductContent? = nil
+    var _material: Opencannabis_Content_MaterialsData? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -203,7 +203,7 @@ extension Products_Plant: SwiftProtobuf._MessageImplementationBase, SwiftProtobu
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Plant) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Plant) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

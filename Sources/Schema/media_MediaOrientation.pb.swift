@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Media_MediaOrientation: SwiftProtobuf.Enum {
+public enum Opencannabis_Media_MediaOrientation: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case up // = 0
   case down // = 1
@@ -67,7 +67,7 @@ public enum Media_MediaOrientation: SwiftProtobuf.Enum {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Media_MediaOrientation: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_MediaOrientation: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UP"),
     1: .same(proto: "DOWN"),

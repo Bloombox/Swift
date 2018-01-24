@@ -20,12 +20,12 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Contact information for a person, organization, or other entity.
-public struct Contact_ContactInfo: SwiftProtobuf.Message {
+public struct Opencannabis_Contact_ContactInfo: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ContactInfo"
 
   /// Geographic location and physical mail contact information.
-  public var location: Geo_Location {
-    get {return _storage._location ?? Geo_Location()}
+  public var location: Opencannabis_Geo_Location {
+    get {return _storage._location ?? Opencannabis_Geo_Location()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -34,8 +34,8 @@ public struct Contact_ContactInfo: SwiftProtobuf.Message {
   public mutating func clearLocation() {_storage._location = nil}
 
   /// Telephone contact information.
-  public var phone: Contact_PhoneNumber {
-    get {return _storage._phone ?? Contact_PhoneNumber()}
+  public var phone: Opencannabis_Contact_PhoneNumber {
+    get {return _storage._phone ?? Opencannabis_Contact_PhoneNumber()}
     set {_uniqueStorage()._phone = newValue}
   }
   /// Returns true if `phone` has been explicitly set.
@@ -44,8 +44,8 @@ public struct Contact_ContactInfo: SwiftProtobuf.Message {
   public mutating func clearPhone() {_storage._phone = nil}
 
   /// Electronic mail contact information.
-  public var email: Contact_EmailAddress {
-    get {return _storage._email ?? Contact_EmailAddress()}
+  public var email: Opencannabis_Contact_EmailAddress {
+    get {return _storage._email ?? Opencannabis_Contact_EmailAddress()}
     set {_uniqueStorage()._email = newValue}
   }
   /// Returns true if `email` has been explicitly set.
@@ -54,8 +54,8 @@ public struct Contact_ContactInfo: SwiftProtobuf.Message {
   public mutating func clearEmail() {_storage._email = nil}
 
   /// Website contact information.
-  public var website: Contact_Website {
-    get {return _storage._website ?? Contact_Website()}
+  public var website: Opencannabis_Contact_Website {
+    get {return _storage._website ?? Opencannabis_Contact_Website()}
     set {_uniqueStorage()._website = newValue}
   }
   /// Returns true if `website` has been explicitly set.
@@ -113,9 +113,9 @@ public struct Contact_ContactInfo: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "contact"
+fileprivate let _protobuf_package = "opencannabis.contact"
 
-extension Contact_ContactInfo: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Contact_ContactInfo: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "location"),
     2: .same(proto: "phone"),
@@ -124,10 +124,10 @@ extension Contact_ContactInfo: SwiftProtobuf._MessageImplementationBase, SwiftPr
   ]
 
   fileprivate class _StorageClass {
-    var _location: Geo_Location? = nil
-    var _phone: Contact_PhoneNumber? = nil
-    var _email: Contact_EmailAddress? = nil
-    var _website: Contact_Website? = nil
+    var _location: Opencannabis_Geo_Location? = nil
+    var _phone: Opencannabis_Contact_PhoneNumber? = nil
+    var _email: Opencannabis_Contact_EmailAddress? = nil
+    var _website: Opencannabis_Contact_Website? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -148,7 +148,7 @@ extension Contact_ContactInfo: SwiftProtobuf._MessageImplementationBase, SwiftPr
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Contact_ContactInfo) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Contact_ContactInfo) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

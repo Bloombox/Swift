@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies types of apothecary items that may be expressed.
-public enum Products_ApothecaryType: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_ApothecaryType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies an unidentified, or unspecified, apothecary item.
@@ -74,12 +74,12 @@ public enum Products_ApothecaryType: SwiftProtobuf.Enum {
 
 /// Specifies an apothecary item for sale. Apothecary items are described as drugstore-style items, like capsules, oils,
 /// injectors, and other edge-case applications.
-public struct Products_Apothecary: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Apothecary: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Apothecary"
 
   /// Product key uniquely identifying this apothecary item.
-  public var key: Base_ProductKey {
-    get {return _storage._key ?? Base_ProductKey()}
+  public var key: Opencannabis_Base_ProductKey {
+    get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -88,14 +88,14 @@ public struct Products_Apothecary: SwiftProtobuf.Message {
   public mutating func clearKey() {_storage._key = nil}
 
   /// Specific type of apothecary item being described.
-  public var type: Products_ApothecaryType {
+  public var type: Opencannabis_Products_ApothecaryType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Product content about this apothecary item.
-  public var product: Content_ProductContent {
-    get {return _storage._product ?? Content_ProductContent()}
+  public var product: Opencannabis_Content_ProductContent {
+    get {return _storage._product ?? Opencannabis_Content_ProductContent()}
     set {_uniqueStorage()._product = newValue}
   }
   /// Returns true if `product` has been explicitly set.
@@ -104,8 +104,8 @@ public struct Products_Apothecary: SwiftProtobuf.Message {
   public mutating func clearProduct() {_storage._product = nil}
 
   /// Materials and handling information about this apothecary item.
-  public var material: Content_MaterialsData {
-    get {return _storage._material ?? Content_MaterialsData()}
+  public var material: Opencannabis_Content_MaterialsData {
+    get {return _storage._material ?? Opencannabis_Content_MaterialsData()}
     set {_uniqueStorage()._material = newValue}
   }
   /// Returns true if `material` has been explicitly set.
@@ -163,9 +163,9 @@ public struct Products_Apothecary: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "products"
+fileprivate let _protobuf_package = "opencannabis.products"
 
-extension Products_ApothecaryType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_ApothecaryType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED_APOTHECARY"),
     1: .same(proto: "TOPICAL"),
@@ -176,7 +176,7 @@ extension Products_ApothecaryType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_Apothecary: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Apothecary: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "type"),
@@ -185,10 +185,10 @@ extension Products_Apothecary: SwiftProtobuf._MessageImplementationBase, SwiftPr
   ]
 
   fileprivate class _StorageClass {
-    var _key: Base_ProductKey? = nil
-    var _type: Products_ApothecaryType = .unspecifiedApothecary
-    var _product: Content_ProductContent? = nil
-    var _material: Content_MaterialsData? = nil
+    var _key: Opencannabis_Base_ProductKey? = nil
+    var _type: Opencannabis_Products_ApothecaryType = .unspecifiedApothecary
+    var _product: Opencannabis_Content_ProductContent? = nil
+    var _material: Opencannabis_Content_MaterialsData? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -209,7 +209,7 @@ extension Products_Apothecary: SwiftProtobuf._MessageImplementationBase, SwiftPr
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Apothecary) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Apothecary) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

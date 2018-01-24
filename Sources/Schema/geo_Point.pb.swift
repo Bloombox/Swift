@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Geo_Point: SwiftProtobuf.Message {
+public struct Opencannabis_Geo_Point: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Point"
 
   public var latitude: Double = 0
@@ -73,9 +73,9 @@ public struct Geo_Point: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "geo"
+fileprivate let _protobuf_package = "opencannabis.geo"
 
-extension Geo_Point: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Geo_Point: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "latitude"),
     2: .same(proto: "longitude"),
@@ -83,7 +83,7 @@ extension Geo_Point: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._Pr
     4: .same(proto: "accuracy"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Geo_Point) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Point) -> Bool {
     if self.latitude != other.latitude {return false}
     if self.longitude != other.longitude {return false}
     if self.elevation != other.elevation {return false}

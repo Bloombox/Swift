@@ -20,18 +20,18 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies an RPC operation to submit one or more generic events to an unenumerated collection.
-public struct Services_Telemetry_V1beta3_Event: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Services_Telemetry_V1beta3_Event: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Event"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies a request to submit a generic telemetry event record.
   public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Telemetry_V1beta3_Event.protoMessageName + ".Request"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta3_Event.protoMessageName + ".Request"
 
     /// Context to submit for these events.
-    public var context: Analytics_Context {
-      get {return _storage._context ?? Analytics_Context()}
+    public var context: Bloombox_Schema_Analytics_Context {
+      get {return _storage._context ?? Bloombox_Schema_Analytics_Context()}
       set {_uniqueStorage()._context = newValue}
     }
     /// Returns true if `context` has been explicitly set.
@@ -40,8 +40,8 @@ public struct Services_Telemetry_V1beta3_Event: SwiftProtobuf.Message {
     public mutating func clearContext() {_storage._context = nil}
 
     /// Generic event to submit.
-    public var event: Analytics_Generic_Event {
-      get {return _storage._event ?? Analytics_Generic_Event()}
+    public var event: Bloombox_Schema_Analytics_Generic_Event {
+      get {return _storage._event ?? Bloombox_Schema_Analytics_Generic_Event()}
       set {_uniqueStorage()._event = newValue}
     }
     /// Returns true if `event` has been explicitly set.
@@ -101,10 +101,10 @@ public struct Services_Telemetry_V1beta3_Event: SwiftProtobuf.Message {
 
   /// Specifies a request one or more generic telemetry event records.
   public struct Batch: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Telemetry_V1beta3_Event.protoMessageName + ".Batch"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta3_Event.protoMessageName + ".Batch"
 
     /// Events to submit.
-    public var event: [Analytics_Generic_Event] = []
+    public var event: [Bloombox_Schema_Analytics_Generic_Event] = []
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -137,11 +137,11 @@ public struct Services_Telemetry_V1beta3_Event: SwiftProtobuf.Message {
 
   /// Wraps an event batch in a request.
   public struct BatchRequest: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Services_Telemetry_V1beta3_Event.protoMessageName + ".BatchRequest"
+    public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta3_Event.protoMessageName + ".BatchRequest"
 
     /// Context to submit for these events.
-    public var context: Analytics_Context {
-      get {return _storage._context ?? Analytics_Context()}
+    public var context: Bloombox_Schema_Analytics_Context {
+      get {return _storage._context ?? Bloombox_Schema_Analytics_Context()}
       set {_uniqueStorage()._context = newValue}
     }
     /// Returns true if `context` has been explicitly set.
@@ -150,7 +150,7 @@ public struct Services_Telemetry_V1beta3_Event: SwiftProtobuf.Message {
     public mutating func clearContext() {_storage._context = nil}
 
     /// Event batch.
-    public var batch: [Services_Telemetry_V1beta3_Event.Batch] {
+    public var batch: [Bloombox_Schema_Services_Telemetry_V1beta3_Event.Batch] {
       get {return _storage._batch}
       set {_uniqueStorage()._batch = newValue}
     }
@@ -216,12 +216,12 @@ public struct Services_Telemetry_V1beta3_Event: SwiftProtobuf.Message {
 }
 
 /// Specifies an RPC operation to submit one or more error report payloads to an unenumerated collection.
-public struct Services_Telemetry_V1beta3_Exception: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Services_Telemetry_V1beta3_Exception: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Exception"
 
   /// Context to submit for these events.
-  public var context: Analytics_Context {
-    get {return _storage._context ?? Analytics_Context()}
+  public var context: Bloombox_Schema_Analytics_Context {
+    get {return _storage._context ?? Bloombox_Schema_Analytics_Context()}
     set {_uniqueStorage()._context = newValue}
   }
   /// Returns true if `context` has been explicitly set.
@@ -230,8 +230,8 @@ public struct Services_Telemetry_V1beta3_Exception: SwiftProtobuf.Message {
   public mutating func clearContext() {_storage._context = nil}
 
   /// Error to submit.
-  public var error: Analytics_Generic_Exception {
-    get {return _storage._error ?? Analytics_Generic_Exception()}
+  public var error: Bloombox_Schema_Analytics_Generic_Exception {
+    get {return _storage._error ?? Bloombox_Schema_Analytics_Generic_Exception()}
     set {_uniqueStorage()._error = newValue}
   }
   /// Returns true if `error` has been explicitly set.
@@ -291,18 +291,18 @@ public struct Services_Telemetry_V1beta3_Exception: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "services.telemetry.v1beta3"
+fileprivate let _protobuf_package = "bloombox.schema.services.telemetry.v1beta3"
 
-extension Services_Telemetry_V1beta3_Event: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Telemetry_V1beta3_Event: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Services_Telemetry_V1beta3_Event) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta3_Event) -> Bool {
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Telemetry_V1beta3_Event.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Telemetry_V1beta3_Event.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "context"),
     2: .same(proto: "event"),
@@ -310,8 +310,8 @@ extension Services_Telemetry_V1beta3_Event.Request: SwiftProtobuf._MessageImplem
   ]
 
   fileprivate class _StorageClass {
-    var _context: Analytics_Context? = nil
-    var _event: Analytics_Generic_Event? = nil
+    var _context: Bloombox_Schema_Analytics_Context? = nil
+    var _event: Bloombox_Schema_Analytics_Generic_Event? = nil
     var _uuid: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -332,7 +332,7 @@ extension Services_Telemetry_V1beta3_Event.Request: SwiftProtobuf._MessageImplem
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Services_Telemetry_V1beta3_Event.Request) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta3_Event.Request) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -349,27 +349,27 @@ extension Services_Telemetry_V1beta3_Event.Request: SwiftProtobuf._MessageImplem
   }
 }
 
-extension Services_Telemetry_V1beta3_Event.Batch: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Telemetry_V1beta3_Event.Batch: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .same(proto: "event"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Services_Telemetry_V1beta3_Event.Batch) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta3_Event.Batch) -> Bool {
     if self.event != other.event {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Services_Telemetry_V1beta3_Event.BatchRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Telemetry_V1beta3_Event.BatchRequest: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "context"),
     2: .same(proto: "batch"),
   ]
 
   fileprivate class _StorageClass {
-    var _context: Analytics_Context? = nil
-    var _batch: [Services_Telemetry_V1beta3_Event.Batch] = []
+    var _context: Bloombox_Schema_Analytics_Context? = nil
+    var _batch: [Bloombox_Schema_Services_Telemetry_V1beta3_Event.Batch] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -388,7 +388,7 @@ extension Services_Telemetry_V1beta3_Event.BatchRequest: SwiftProtobuf._MessageI
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Services_Telemetry_V1beta3_Event.BatchRequest) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta3_Event.BatchRequest) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -404,7 +404,7 @@ extension Services_Telemetry_V1beta3_Event.BatchRequest: SwiftProtobuf._MessageI
   }
 }
 
-extension Services_Telemetry_V1beta3_Exception: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Telemetry_V1beta3_Exception: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "context"),
     2: .same(proto: "error"),
@@ -412,8 +412,8 @@ extension Services_Telemetry_V1beta3_Exception: SwiftProtobuf._MessageImplementa
   ]
 
   fileprivate class _StorageClass {
-    var _context: Analytics_Context? = nil
-    var _error: Analytics_Generic_Exception? = nil
+    var _context: Bloombox_Schema_Analytics_Context? = nil
+    var _error: Bloombox_Schema_Analytics_Generic_Exception? = nil
     var _uuid: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -434,7 +434,7 @@ extension Services_Telemetry_V1beta3_Exception: SwiftProtobuf._MessageImplementa
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Services_Telemetry_V1beta3_Exception) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta3_Exception) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -20,12 +20,12 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Describes an individual media item, which can be an image, video, etc.
-public struct Media_MediaItem: SwiftProtobuf.Message {
+public struct Opencannabis_Media_MediaItem: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".MediaItem"
 
   /// Key uniquely identifying this media item.
-  public var key: Media_MediaKey {
-    get {return _storage._key ?? Media_MediaKey()}
+  public var key: Opencannabis_Media_MediaKey {
+    get {return _storage._key ?? Opencannabis_Media_MediaKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -34,8 +34,8 @@ public struct Media_MediaItem: SwiftProtobuf.Message {
   public mutating func clearKey() {_storage._key = nil}
 
   /// Type of media this is describing.
-  public var type: Media_MediaType {
-    get {return _storage._type ?? Media_MediaType()}
+  public var type: Opencannabis_Media_MediaType {
+    get {return _storage._type ?? Opencannabis_Media_MediaType()}
     set {_uniqueStorage()._type = newValue}
   }
   /// Returns true if `type` has been explicitly set.
@@ -105,9 +105,9 @@ public struct Media_MediaItem: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "media"
+fileprivate let _protobuf_package = "opencannabis.media"
 
-extension Media_MediaItem: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_MediaItem: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "type"),
@@ -116,8 +116,8 @@ extension Media_MediaItem: SwiftProtobuf._MessageImplementationBase, SwiftProtob
   ]
 
   fileprivate class _StorageClass {
-    var _key: Media_MediaKey? = nil
-    var _type: Media_MediaType? = nil
+    var _key: Opencannabis_Media_MediaKey? = nil
+    var _type: Opencannabis_Media_MediaType? = nil
     var _name: String = String()
     var _uri: String = String()
 
@@ -140,7 +140,7 @@ extension Media_MediaItem: SwiftProtobuf._MessageImplementationBase, SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Media_MediaItem) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_MediaItem) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

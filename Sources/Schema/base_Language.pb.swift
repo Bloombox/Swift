@@ -21,7 +21,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Specifies languages available for specification, usually
 /// used as an attachment to content or media.
-public enum Base_Language: SwiftProtobuf.Enum {
+public enum Opencannabis_Base_Language: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// English.
@@ -60,7 +60,7 @@ public enum Base_Language: SwiftProtobuf.Enum {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Base_Language: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Base_Language: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ENGLISH"),
     1: .same(proto: "SPANISH"),

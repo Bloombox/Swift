@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Security_AuthToken: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Security_AuthToken: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".AuthToken"
 
   public var encoded: String = String()
@@ -55,14 +55,14 @@ public struct Security_AuthToken: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "security"
+fileprivate let _protobuf_package = "bloombox.schema.security"
 
-extension Security_AuthToken: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Security_AuthToken: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "encoded"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Security_AuthToken) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_AuthToken) -> Bool {
     if self.encoded != other.encoded {return false}
     if unknownFields != other.unknownFields {return false}
     return true

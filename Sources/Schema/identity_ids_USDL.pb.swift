@@ -21,7 +21,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Enumerates known fields on a US Driver's License, that may be expressed or extracted via data entry/scanning of the
 /// document with OCR or reading the document's barcodes.
-public enum Identity_Ids_USDLField: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Identity_Ids_USDLField: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Raw barcode data for the back USDL barcode, which usually carries most of the data and is generally encoded using
@@ -230,13 +230,13 @@ public enum Identity_Ids_USDLField: SwiftProtobuf.Enum {
 }
 
 /// Specifies an individual raw field value read or scanned from a United States Driver's License.
-public struct Identity_Ids_USDLFieldValue: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_Ids_USDLFieldValue: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".USDLFieldValue"
 
   /// Field that we are storing data for.
-  public var field: Identity_Ids_USDLField = .backBarcode
+  public var field: Bloombox_Schema_Identity_Ids_USDLField = .backBarcode
 
-  public var data: Identity_Ids_USDLFieldValue.OneOf_Data? = nil
+  public var data: Bloombox_Schema_Identity_Ids_USDLFieldValue.OneOf_Data? = nil
 
   /// String data for this field.
   public var value: String {
@@ -264,7 +264,7 @@ public struct Identity_Ids_USDLFieldValue: SwiftProtobuf.Message {
     /// Byte data for this field.
     case rawValue(Data)
 
-    public static func ==(lhs: Identity_Ids_USDLFieldValue.OneOf_Data, rhs: Identity_Ids_USDLFieldValue.OneOf_Data) -> Bool {
+    public static func ==(lhs: Bloombox_Schema_Identity_Ids_USDLFieldValue.OneOf_Data, rhs: Bloombox_Schema_Identity_Ids_USDLFieldValue.OneOf_Data) -> Bool {
       switch (lhs, rhs) {
       case (.value(let l), .value(let r)): return l == r
       case (.rawValue(let l), .rawValue(let r)): return l == r
@@ -318,7 +318,7 @@ public struct Identity_Ids_USDLFieldValue: SwiftProtobuf.Message {
 }
 
 /// Specifies a United States Driver's License.
-public struct Identity_Ids_USDL: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_Ids_USDL: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".USDL"
 
   /// Raw barcode data for this Driver's License.
@@ -328,13 +328,13 @@ public struct Identity_Ids_USDL: SwiftProtobuf.Message {
   public var magstripe: String = String()
 
   /// State that issued this Driver's License.
-  public var jurisdiction: Geo_Usa_USState = .unspecified
+  public var jurisdiction: Opencannabis_Geo_Usa_USState = .unspecified
 
   /// Flag that indicates this is an identification card, not a Driver's License.
   public var identificationCard: Bool = false
 
   /// Raw field data for this license.
-  public var fields: [Identity_Ids_USDLFieldValue] = []
+  public var fields: [Bloombox_Schema_Identity_Ids_USDLFieldValue] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -383,9 +383,9 @@ public struct Identity_Ids_USDL: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "identity.ids"
+fileprivate let _protobuf_package = "bloombox.schema.identity.ids"
 
-extension Identity_Ids_USDLField: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Ids_USDLField: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "BACK_BARCODE"),
     1: .same(proto: "FAMILY_NAME"),
@@ -427,14 +427,14 @@ extension Identity_Ids_USDLField: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Identity_Ids_USDLFieldValue: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Ids_USDLFieldValue: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "field"),
     2: .same(proto: "value"),
     3: .standard(proto: "raw_value"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Identity_Ids_USDLFieldValue) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_USDLFieldValue) -> Bool {
     if self.field != other.field {return false}
     if self.data != other.data {return false}
     if unknownFields != other.unknownFields {return false}
@@ -442,7 +442,7 @@ extension Identity_Ids_USDLFieldValue: SwiftProtobuf._MessageImplementationBase,
   }
 }
 
-extension Identity_Ids_USDL: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Ids_USDL: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "barcode"),
     2: .same(proto: "magstripe"),
@@ -451,7 +451,7 @@ extension Identity_Ids_USDL: SwiftProtobuf._MessageImplementationBase, SwiftProt
     100: .same(proto: "fields"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Identity_Ids_USDL) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_USDL) -> Bool {
     if self.barcode != other.barcode {return false}
     if self.magstripe != other.magstripe {return false}
     if self.jurisdiction != other.jurisdiction {return false}

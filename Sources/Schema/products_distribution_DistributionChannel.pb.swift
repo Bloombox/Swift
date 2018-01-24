@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies kinds of channels that may be used or specified for product distribution policies.
-public enum Products_Distribution_Channel: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_Distribution_Channel: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unknown, unrecognized, or otherwise unspecified distribution channel.
@@ -64,7 +64,7 @@ public enum Products_Distribution_Channel: SwiftProtobuf.Enum {
 
 /// Specifies the supertypes of channels that may be used to categorize channels applied to product distribution
 /// policies.
-public enum Products_Distribution_ChannelType: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_Distribution_ChannelType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unknown, unrecognized, or otherwise unspecified channel type.
@@ -104,17 +104,17 @@ public enum Products_Distribution_ChannelType: SwiftProtobuf.Enum {
 
 /// Specifies information required to note a channel and its settings for a given datapoint. Presence of this record
 /// indicates an affirmative setting to distribute it to the specified channel, unless `suppress` is set.
-public struct Products_Distribution_DistributionPolicy: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Distribution_DistributionPolicy: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".DistributionPolicy"
 
   /// Whether this policy is enabled.
   public var enabled: Bool = false
 
   /// Channel setting.
-  public var channel: Products_Distribution_Channel = .unspecifiedChannel
+  public var channel: Opencannabis_Products_Distribution_Channel = .unspecifiedChannel
 
   /// Channel distribution type.
-  public var type: Products_Distribution_ChannelType = .unspecifiedChannelType
+  public var type: Opencannabis_Products_Distribution_ChannelType = .unspecifiedChannelType
 
   /// The mere presence of a DistributionPolicy on a particular datapoint makes it eligible for distribution. This flag
   /// may be set to suppress distribution of the datapoint temporarily or explicitly.
@@ -163,9 +163,9 @@ public struct Products_Distribution_DistributionPolicy: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "products.distribution"
+fileprivate let _protobuf_package = "opencannabis.products.distribution"
 
-extension Products_Distribution_Channel: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Distribution_Channel: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED_CHANNEL"),
     1: .same(proto: "RETAIL"),
@@ -174,7 +174,7 @@ extension Products_Distribution_Channel: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_Distribution_ChannelType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Distribution_ChannelType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED_CHANNEL_TYPE"),
     1: .same(proto: "DIRECT"),
@@ -182,7 +182,7 @@ extension Products_Distribution_ChannelType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_Distribution_DistributionPolicy: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Distribution_DistributionPolicy: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "enabled"),
     2: .same(proto: "channel"),
@@ -190,7 +190,7 @@ extension Products_Distribution_DistributionPolicy: SwiftProtobuf._MessageImplem
     4: .same(proto: "suppress"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Products_Distribution_DistributionPolicy) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Distribution_DistributionPolicy) -> Bool {
     if self.enabled != other.enabled {return false}
     if self.channel != other.channel {return false}
     if self.type != other.type {return false}

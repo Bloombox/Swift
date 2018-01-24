@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates types of extracted oleoresin cannabis products that have known/specified subcategories.
-public enum Products_ExtractType: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_ExtractType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Uknown, unrecognized, or otherwise unspecified extract type.
@@ -83,7 +83,7 @@ public enum Products_ExtractType: SwiftProtobuf.Enum {
 }
 
 /// Specifies flags that may specifically be applied to an extracted cannabis product.
-public enum Products_ExtractFlag: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_ExtractFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies that no flags are set.
@@ -117,12 +117,12 @@ public enum Products_ExtractFlag: SwiftProtobuf.Enum {
 
 /// Specifies an extracted cannabis product, whereby cannabis plant material has been reduced to a more potent and
 /// concentrated form by some process.
-public struct Products_Extract: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Extract: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Extract"
 
   /// Product key that uniquely identifies this cannabis extract item.
-  public var key: Base_ProductKey {
-    get {return _storage._key ?? Base_ProductKey()}
+  public var key: Opencannabis_Base_ProductKey {
+    get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -131,20 +131,20 @@ public struct Products_Extract: SwiftProtobuf.Message {
   public mutating func clearKey() {_storage._key = nil}
 
   /// Specific type of extract being described.
-  public var type: Products_ExtractType {
+  public var type: Opencannabis_Products_ExtractType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Specifies flags that may specifically be applied to this extracted cannabis item.
-  public var flag: [Products_ExtractFlag] {
+  public var flag: [Opencannabis_Products_ExtractFlag] {
     get {return _storage._flag}
     set {_uniqueStorage()._flag = newValue}
   }
 
   /// Flower that was used to produce this extract.
-  public var flower: Base_ProductReference {
-    get {return _storage._flower ?? Base_ProductReference()}
+  public var flower: Opencannabis_Base_ProductReference {
+    get {return _storage._flower ?? Opencannabis_Base_ProductReference()}
     set {_uniqueStorage()._flower = newValue}
   }
   /// Returns true if `flower` has been explicitly set.
@@ -153,8 +153,8 @@ public struct Products_Extract: SwiftProtobuf.Message {
   public mutating func clearFlower() {_storage._flower = nil}
 
   /// Product content about this extracted cannabis item.
-  public var product: Content_ProductContent {
-    get {return _storage._product ?? Content_ProductContent()}
+  public var product: Opencannabis_Content_ProductContent {
+    get {return _storage._product ?? Opencannabis_Content_ProductContent()}
     set {_uniqueStorage()._product = newValue}
   }
   /// Returns true if `product` has been explicitly set.
@@ -163,8 +163,8 @@ public struct Products_Extract: SwiftProtobuf.Message {
   public mutating func clearProduct() {_storage._product = nil}
 
   /// Materials and handling data attached to this extracted cannabis item.
-  public var material: Content_MaterialsData {
-    get {return _storage._material ?? Content_MaterialsData()}
+  public var material: Opencannabis_Content_MaterialsData {
+    get {return _storage._material ?? Opencannabis_Content_MaterialsData()}
     set {_uniqueStorage()._material = newValue}
   }
   /// Returns true if `material` has been explicitly set.
@@ -230,9 +230,9 @@ public struct Products_Extract: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "products"
+fileprivate let _protobuf_package = "opencannabis.products"
 
-extension Products_ExtractType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_ExtractType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED_EXTRACT"),
     1: .same(proto: "OIL"),
@@ -245,14 +245,14 @@ extension Products_ExtractType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_ExtractFlag: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_ExtractFlag: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_EXTRACT_FLAGS"),
     1: .same(proto: "SOLVENTLESS"),
   ]
 }
 
-extension Products_Extract: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Extract: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "type"),
@@ -263,12 +263,12 @@ extension Products_Extract: SwiftProtobuf._MessageImplementationBase, SwiftProto
   ]
 
   fileprivate class _StorageClass {
-    var _key: Base_ProductKey? = nil
-    var _type: Products_ExtractType = .unspecifiedExtract
-    var _flag: [Products_ExtractFlag] = []
-    var _flower: Base_ProductReference? = nil
-    var _product: Content_ProductContent? = nil
-    var _material: Content_MaterialsData? = nil
+    var _key: Opencannabis_Base_ProductKey? = nil
+    var _type: Opencannabis_Products_ExtractType = .unspecifiedExtract
+    var _flag: [Opencannabis_Products_ExtractFlag] = []
+    var _flower: Opencannabis_Base_ProductReference? = nil
+    var _product: Opencannabis_Content_ProductContent? = nil
+    var _material: Opencannabis_Content_MaterialsData? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -291,7 +291,7 @@ extension Products_Extract: SwiftProtobuf._MessageImplementationBase, SwiftProto
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Extract) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Extract) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

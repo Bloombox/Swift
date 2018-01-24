@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the status of this service in PING responses.
-public enum Services_ServiceStatus: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Services_ServiceStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The state of the service is not known.
@@ -64,7 +64,7 @@ public enum Services_ServiceStatus: SwiftProtobuf.Enum {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Services_ServiceStatus: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_ServiceStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNKNOWN"),
     1: .same(proto: "UP"),

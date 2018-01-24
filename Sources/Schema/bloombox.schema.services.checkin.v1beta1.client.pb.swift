@@ -27,27 +27,27 @@ import gRPC
 import SwiftProtobuf
 
 /// Type for errors thrown from generated client code.
-public enum Services_Checkin_V1Beta1_CheckinClientError : Error {
+public enum Bloombox_Schema_Services_Checkin_V1Beta1_CheckinClientError : Error {
   case endOfStream
   case invalidMessageReceived
   case error(c: CallResult)
 }
 
 /// Ping (Unary)
-public class Services_Checkin_V1Beta1_CheckinPingCall {
+public class Bloombox_Schema_Services_Checkin_V1Beta1_CheckinPingCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.checkin.v1beta1.Checkin/Ping")
+    self.call = channel.makeCall("/bloombox.schema.services.checkin.v1beta1.Checkin/Ping")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Checkin_V1beta1_Ping_Request,
-                       metadata: Metadata) throws -> Services_Checkin_V1beta1_Ping_Response {
+  fileprivate func run(request: Bloombox_Schema_Services_Checkin_V1beta1_Ping_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Checkin_V1beta1_Ping_Response {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Checkin_V1beta1_Ping_Response?
+    var returnResponse : Bloombox_Schema_Services_Checkin_V1beta1_Ping_Response?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -57,15 +57,15 @@ public class Services_Checkin_V1Beta1_CheckinPingCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Checkin_V1Beta1_CheckinClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Checkin_V1Beta1_CheckinClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Checkin_V1beta1_Ping_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Checkin_V1beta1_Ping_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Checkin_V1beta1_Ping_Response?, CallResult)->())
-    throws -> Services_Checkin_V1Beta1_CheckinPingCall {
+                         completion: @escaping (Bloombox_Schema_Services_Checkin_V1beta1_Ping_Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Checkin_V1Beta1_CheckinPingCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -73,7 +73,7 @@ public class Services_Checkin_V1Beta1_CheckinPingCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Checkin_V1beta1_Ping_Response(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Checkin_V1beta1_Ping_Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -89,20 +89,20 @@ public class Services_Checkin_V1Beta1_CheckinPingCall {
 }
 
 /// Identification (Unary)
-public class Services_Checkin_V1Beta1_CheckinIdentificationCall {
+public class Bloombox_Schema_Services_Checkin_V1Beta1_CheckinIdentificationCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.checkin.v1beta1.Checkin/Identification")
+    self.call = channel.makeCall("/bloombox.schema.services.checkin.v1beta1.Checkin/Identification")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Checkin_V1beta1_IDCheckin_Request,
-                       metadata: Metadata) throws -> Services_Checkin_V1beta1_CheckinResponse {
+  fileprivate func run(request: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Checkin_V1beta1_CheckinResponse?
+    var returnResponse : Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -112,15 +112,15 @@ public class Services_Checkin_V1Beta1_CheckinIdentificationCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Checkin_V1Beta1_CheckinClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Checkin_V1Beta1_CheckinClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Checkin_V1beta1_IDCheckin_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Checkin_V1beta1_CheckinResponse?, CallResult)->())
-    throws -> Services_Checkin_V1Beta1_CheckinIdentificationCall {
+                         completion: @escaping (Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Checkin_V1Beta1_CheckinIdentificationCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -128,7 +128,7 @@ public class Services_Checkin_V1Beta1_CheckinIdentificationCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Checkin_V1beta1_CheckinResponse(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -144,20 +144,20 @@ public class Services_Checkin_V1Beta1_CheckinIdentificationCall {
 }
 
 /// Card (Unary)
-public class Services_Checkin_V1Beta1_CheckinCardCall {
+public class Bloombox_Schema_Services_Checkin_V1Beta1_CheckinCardCall {
   private var call : Call
 
   /// Create a call.
   fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/services.checkin.v1beta1.Checkin/Card")
+    self.call = channel.makeCall("/bloombox.schema.services.checkin.v1beta1.Checkin/Card")
   }
 
   /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Services_Checkin_V1beta1_CardCheckin_Request,
-                       metadata: Metadata) throws -> Services_Checkin_V1beta1_CheckinResponse {
+  fileprivate func run(request: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin_Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse {
     let sem = DispatchSemaphore(value: 0)
     var returnCallResult : CallResult!
-    var returnResponse : Services_Checkin_V1beta1_CheckinResponse?
+    var returnResponse : Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse?
     _ = try start(request:request, metadata:metadata) {response, callResult in
       returnResponse = response
       returnCallResult = callResult
@@ -167,15 +167,15 @@ public class Services_Checkin_V1Beta1_CheckinCardCall {
     if let returnResponse = returnResponse {
       return returnResponse
     } else {
-      throw Services_Checkin_V1Beta1_CheckinClientError.error(c: returnCallResult)
+      throw Bloombox_Schema_Services_Checkin_V1Beta1_CheckinClientError.error(c: returnCallResult)
     }
   }
 
   /// Start the call. Nonblocking.
-  fileprivate func start(request: Services_Checkin_V1beta1_CardCheckin_Request,
+  fileprivate func start(request: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin_Request,
                          metadata: Metadata,
-                         completion: @escaping (Services_Checkin_V1beta1_CheckinResponse?, CallResult)->())
-    throws -> Services_Checkin_V1Beta1_CheckinCardCall {
+                         completion: @escaping (Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Checkin_V1Beta1_CheckinCardCall {
 
       let requestData = try request.serializedData()
       try call.start(.unary,
@@ -183,7 +183,7 @@ public class Services_Checkin_V1Beta1_CheckinCardCall {
                      message:requestData)
       {(callResult) in
         if let responseData = callResult.resultData,
-          let response = try? Services_Checkin_V1beta1_CheckinResponse(serializedData:responseData) {
+          let response = try? Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -199,7 +199,7 @@ public class Services_Checkin_V1Beta1_CheckinCardCall {
 }
 
 /// Call methods of this class to make API calls.
-public class Services_Checkin_V1Beta1_CheckinService {
+public class Bloombox_Schema_Services_Checkin_V1Beta1_CheckinService {
   private var channel: Channel
 
   /// This metadata will be sent with all requests.
@@ -225,54 +225,54 @@ public class Services_Checkin_V1Beta1_CheckinService {
   }
 
   /// Create a client that makes secure connections.
-  public init(address: String, certificates: String?, host: String?) {
+  public init(address: String, certificates: String, host: String?) {
     gRPC.initialize()
     channel = Channel(address:address, certificates:certificates, host:host)
     metadata = Metadata()
   }
 
   /// Synchronous. Unary.
-  public func ping(_ request: Services_Checkin_V1beta1_Ping_Request)
+  public func ping(_ request: Bloombox_Schema_Services_Checkin_V1beta1_Ping_Request)
     throws
-    -> Services_Checkin_V1beta1_Ping_Response {
-      return try Services_Checkin_V1Beta1_CheckinPingCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Checkin_V1beta1_Ping_Response {
+      return try Bloombox_Schema_Services_Checkin_V1Beta1_CheckinPingCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func ping(_ request: Services_Checkin_V1beta1_Ping_Request,
-                  completion: @escaping (Services_Checkin_V1beta1_Ping_Response?, CallResult)->())
+  public func ping(_ request: Bloombox_Schema_Services_Checkin_V1beta1_Ping_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Checkin_V1beta1_Ping_Response?, CallResult)->())
     throws
-    -> Services_Checkin_V1Beta1_CheckinPingCall {
-      return try Services_Checkin_V1Beta1_CheckinPingCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Checkin_V1Beta1_CheckinPingCall {
+      return try Bloombox_Schema_Services_Checkin_V1Beta1_CheckinPingCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func identification(_ request: Services_Checkin_V1beta1_IDCheckin_Request)
+  public func identification(_ request: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin_Request)
     throws
-    -> Services_Checkin_V1beta1_CheckinResponse {
-      return try Services_Checkin_V1Beta1_CheckinIdentificationCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse {
+      return try Bloombox_Schema_Services_Checkin_V1Beta1_CheckinIdentificationCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func identification(_ request: Services_Checkin_V1beta1_IDCheckin_Request,
-                  completion: @escaping (Services_Checkin_V1beta1_CheckinResponse?, CallResult)->())
+  public func identification(_ request: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse?, CallResult)->())
     throws
-    -> Services_Checkin_V1Beta1_CheckinIdentificationCall {
-      return try Services_Checkin_V1Beta1_CheckinIdentificationCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Checkin_V1Beta1_CheckinIdentificationCall {
+      return try Bloombox_Schema_Services_Checkin_V1Beta1_CheckinIdentificationCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
   /// Synchronous. Unary.
-  public func card(_ request: Services_Checkin_V1beta1_CardCheckin_Request)
+  public func card(_ request: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin_Request)
     throws
-    -> Services_Checkin_V1beta1_CheckinResponse {
-      return try Services_Checkin_V1Beta1_CheckinCardCall(channel).run(request:request, metadata:metadata)
+    -> Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse {
+      return try Bloombox_Schema_Services_Checkin_V1Beta1_CheckinCardCall(channel).run(request:request, metadata:metadata)
   }
   /// Asynchronous. Unary.
-  public func card(_ request: Services_Checkin_V1beta1_CardCheckin_Request,
-                  completion: @escaping (Services_Checkin_V1beta1_CheckinResponse?, CallResult)->())
+  public func card(_ request: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin_Request,
+                  completion: @escaping (Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse?, CallResult)->())
     throws
-    -> Services_Checkin_V1Beta1_CheckinCardCall {
-      return try Services_Checkin_V1Beta1_CheckinCardCall(channel).start(request:request,
+    -> Bloombox_Schema_Services_Checkin_V1Beta1_CheckinCardCall {
+      return try Bloombox_Schema_Services_Checkin_V1Beta1_CheckinCardCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }

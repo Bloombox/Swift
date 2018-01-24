@@ -20,11 +20,11 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 ///Basic Properties
-public struct Content_Brand: SwiftProtobuf.Message {
+public struct Opencannabis_Content_Brand: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Brand"
 
-  public var name: Content_Name {
-    get {return _storage._name ?? Content_Name()}
+  public var name: Opencannabis_Content_Name {
+    get {return _storage._name ?? Opencannabis_Content_Name()}
     set {_uniqueStorage()._name = newValue}
   }
   /// Returns true if `name` has been explicitly set.
@@ -32,8 +32,8 @@ public struct Content_Brand: SwiftProtobuf.Message {
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
   public mutating func clearName() {_storage._name = nil}
 
-  public var parent: Content_Brand {
-    get {return _storage._parent ?? Content_Brand()}
+  public var parent: Opencannabis_Content_Brand {
+    get {return _storage._parent ?? Opencannabis_Content_Brand()}
     set {_uniqueStorage()._parent = newValue}
   }
   /// Returns true if `parent` has been explicitly set.
@@ -41,8 +41,8 @@ public struct Content_Brand: SwiftProtobuf.Message {
   /// Clears the value of `parent`. Subsequent reads from it will return its default value.
   public mutating func clearParent() {_storage._parent = nil}
 
-  public var summary: Content_Content {
-    get {return _storage._summary ?? Content_Content()}
+  public var summary: Opencannabis_Content_Content {
+    get {return _storage._summary ?? Opencannabis_Content_Content()}
     set {_uniqueStorage()._summary = newValue}
   }
   /// Returns true if `summary` has been explicitly set.
@@ -51,7 +51,7 @@ public struct Content_Brand: SwiftProtobuf.Message {
   public mutating func clearSummary() {_storage._summary = nil}
 
   ///Media
-  public var media: [Media_MediaItem] {
+  public var media: [Opencannabis_Media_MediaItem] {
     get {return _storage._media}
     set {_uniqueStorage()._media = newValue}
   }
@@ -106,9 +106,9 @@ public struct Content_Brand: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "content"
+fileprivate let _protobuf_package = "opencannabis.content"
 
-extension Content_Brand: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_Brand: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "parent"),
@@ -117,10 +117,10 @@ extension Content_Brand: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
   ]
 
   fileprivate class _StorageClass {
-    var _name: Content_Name? = nil
-    var _parent: Content_Brand? = nil
-    var _summary: Content_Content? = nil
-    var _media: [Media_MediaItem] = []
+    var _name: Opencannabis_Content_Name? = nil
+    var _parent: Opencannabis_Content_Brand? = nil
+    var _summary: Opencannabis_Content_Content? = nil
+    var _media: [Opencannabis_Media_MediaItem] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -141,7 +141,7 @@ extension Content_Brand: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Content_Brand) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_Brand) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

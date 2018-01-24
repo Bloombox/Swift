@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates statuses that a purchase transaction may take.
-public enum Commerce_Pos_PurchaseStatus: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Commerce_Pos_PurchaseStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The purchase has been allocated and has not yet begun filling with data.
@@ -63,18 +63,18 @@ public enum Commerce_Pos_PurchaseStatus: SwiftProtobuf.Enum {
 }
 
 /// Specifies an event that takes place against a Purchase.
-public struct Commerce_Pos_PurchaseEvent: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Commerce_Pos_PurchaseEvent: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PurchaseEvent"
 
   /// Status the order moved to.
-  public var status: Commerce_Pos_PurchaseStatus {
+  public var status: Bloombox_Schema_Commerce_Pos_PurchaseStatus {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
   }
 
   /// Instant the order was moved to this status.
-  public var instant: Temporal_Instant {
-    get {return _storage._instant ?? Temporal_Instant()}
+  public var instant: Opencannabis_Temporal_Instant {
+    get {return _storage._instant ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._instant = newValue}
   }
   /// Returns true if `instant` has been explicitly set.
@@ -133,17 +133,17 @@ public struct Commerce_Pos_PurchaseEvent: SwiftProtobuf.Message {
 }
 
 /// Receipt object describing each of a purchase's component taxes and charges.
-public struct Commerce_Pos_Receipt: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Commerce_Pos_Receipt: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Receipt"
 
   /// Calculated subtotal of all items, and their ordered quantities, summed of price.
   public var subtotal: Double = 0
 
   /// Tax entries applied to this receipt.
-  public var tax: [Accounting_Taxes_Tax] = []
+  public var tax: [Opencannabis_Taxes_Tax] = []
 
   /// Discount entries applied to this receipt.
-  public var discount: [Accounting_Discounts_Discount] = []
+  public var discount: [Opencannabis_Commerce_Discount] = []
 
   /// Calculated full total.
   public var total: Double = 0
@@ -191,7 +191,7 @@ public struct Commerce_Pos_Receipt: SwiftProtobuf.Message {
 
 /// Represents a commercial purchase, made at a point-of-sale station at a brick-and-mortar
 /// retail dispensary.
-public struct Commerce_Pos_Purchase: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Commerce_Pos_Purchase: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Purchase"
 
   /// ID assigned to the purchase by the server.
@@ -213,14 +213,14 @@ public struct Commerce_Pos_Purchase: SwiftProtobuf.Message {
   }
 
   /// Current status of this purchase.
-  public var status: Commerce_Pos_PurchaseStatus {
+  public var status: Bloombox_Schema_Commerce_Pos_PurchaseStatus {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
   }
 
   /// Customer that submitted this purchase.
-  public var customer: Commerce_Customer {
-    get {return _storage._customer ?? Commerce_Customer()}
+  public var customer: Opencannabis_Commerce_Customer {
+    get {return _storage._customer ?? Opencannabis_Commerce_Customer()}
     set {_uniqueStorage()._customer = newValue}
   }
   /// Returns true if `customer` has been explicitly set.
@@ -229,8 +229,8 @@ public struct Commerce_Pos_Purchase: SwiftProtobuf.Message {
   public mutating func clearCustomer() {_storage._customer = nil}
 
   /// Point-of-Sale device that submitted this purchase.
-  public var register: Partner_PartnerDeviceKey {
-    get {return _storage._register ?? Partner_PartnerDeviceKey()}
+  public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
+    get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
     set {_uniqueStorage()._register = newValue}
   }
   /// Returns true if `register` has been explicitly set.
@@ -239,14 +239,14 @@ public struct Commerce_Pos_Purchase: SwiftProtobuf.Message {
   public mutating func clearRegister() {_storage._register = nil}
 
   /// Items being ordered.
-  public var item: [Commerce_Item] {
+  public var item: [Opencannabis_Commerce_Item] {
     get {return _storage._item}
     set {_uniqueStorage()._item = newValue}
   }
 
   /// Calculated order values and components, like taxes, subtotal, and so on.
-  public var receipt: Commerce_Pos_Receipt {
-    get {return _storage._receipt ?? Commerce_Pos_Receipt()}
+  public var receipt: Bloombox_Schema_Commerce_Pos_Receipt {
+    get {return _storage._receipt ?? Bloombox_Schema_Commerce_Pos_Receipt()}
     set {_uniqueStorage()._receipt = newValue}
   }
   /// Returns true if `receipt` has been explicitly set.
@@ -255,14 +255,14 @@ public struct Commerce_Pos_Purchase: SwiftProtobuf.Message {
   public mutating func clearReceipt() {_storage._receipt = nil}
 
   /// Actions taken on this order.
-  public var actionLog: [Commerce_Pos_PurchaseEvent] {
+  public var actionLog: [Bloombox_Schema_Commerce_Pos_PurchaseEvent] {
     get {return _storage._actionLog}
     set {_uniqueStorage()._actionLog = newValue}
   }
 
   /// When this order was created.
-  public var createdAt: Temporal_Instant {
-    get {return _storage._createdAt ?? Temporal_Instant()}
+  public var createdAt: Opencannabis_Temporal_Instant {
+    get {return _storage._createdAt ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._createdAt = newValue}
   }
   /// Returns true if `createdAt` has been explicitly set.
@@ -344,9 +344,9 @@ public struct Commerce_Pos_Purchase: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "commerce.pos"
+fileprivate let _protobuf_package = "bloombox.schema.commerce.pos"
 
-extension Commerce_Pos_PurchaseStatus: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Commerce_Pos_PurchaseStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "DORMANT"),
     1: .same(proto: "OPEN"),
@@ -355,7 +355,7 @@ extension Commerce_Pos_PurchaseStatus: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Commerce_Pos_PurchaseEvent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Commerce_Pos_PurchaseEvent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "instant"),
@@ -363,8 +363,8 @@ extension Commerce_Pos_PurchaseEvent: SwiftProtobuf._MessageImplementationBase, 
   ]
 
   fileprivate class _StorageClass {
-    var _status: Commerce_Pos_PurchaseStatus = .dormant
-    var _instant: Temporal_Instant? = nil
+    var _status: Bloombox_Schema_Commerce_Pos_PurchaseStatus = .dormant
+    var _instant: Opencannabis_Temporal_Instant? = nil
     var _message: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -385,7 +385,7 @@ extension Commerce_Pos_PurchaseEvent: SwiftProtobuf._MessageImplementationBase, 
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Commerce_Pos_PurchaseEvent) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Commerce_Pos_PurchaseEvent) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -402,7 +402,7 @@ extension Commerce_Pos_PurchaseEvent: SwiftProtobuf._MessageImplementationBase, 
   }
 }
 
-extension Commerce_Pos_Receipt: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Commerce_Pos_Receipt: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "subtotal"),
     2: .same(proto: "tax"),
@@ -410,7 +410,7 @@ extension Commerce_Pos_Receipt: SwiftProtobuf._MessageImplementationBase, SwiftP
     4: .same(proto: "total"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Commerce_Pos_Receipt) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Commerce_Pos_Receipt) -> Bool {
     if self.subtotal != other.subtotal {return false}
     if self.tax != other.tax {return false}
     if self.discount != other.discount {return false}
@@ -420,7 +420,7 @@ extension Commerce_Pos_Receipt: SwiftProtobuf._MessageImplementationBase, SwiftP
   }
 }
 
-extension Commerce_Pos_Purchase: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Commerce_Pos_Purchase: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .standard(proto: "partner_code"),
@@ -438,13 +438,13 @@ extension Commerce_Pos_Purchase: SwiftProtobuf._MessageImplementationBase, Swift
     var _id: String = String()
     var _partnerCode: String = String()
     var _locationCode: String = String()
-    var _status: Commerce_Pos_PurchaseStatus = .dormant
-    var _customer: Commerce_Customer? = nil
-    var _register: Partner_PartnerDeviceKey? = nil
-    var _item: [Commerce_Item] = []
-    var _receipt: Commerce_Pos_Receipt? = nil
-    var _actionLog: [Commerce_Pos_PurchaseEvent] = []
-    var _createdAt: Temporal_Instant? = nil
+    var _status: Bloombox_Schema_Commerce_Pos_PurchaseStatus = .dormant
+    var _customer: Opencannabis_Commerce_Customer? = nil
+    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _item: [Opencannabis_Commerce_Item] = []
+    var _receipt: Bloombox_Schema_Commerce_Pos_Receipt? = nil
+    var _actionLog: [Bloombox_Schema_Commerce_Pos_PurchaseEvent] = []
+    var _createdAt: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -471,7 +471,7 @@ extension Commerce_Pos_Purchase: SwiftProtobuf._MessageImplementationBase, Swift
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Commerce_Pos_Purchase) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Commerce_Pos_Purchase) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the type of order requested.
-public enum Commerce_OrderType: SwiftProtobuf.Enum {
+public enum Opencannabis_Commerce_OrderType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Express pickup order.
@@ -53,7 +53,7 @@ public enum Commerce_OrderType: SwiftProtobuf.Enum {
 }
 
 /// Specifies the types of delivery timing.
-public enum Commerce_SchedulingType: SwiftProtobuf.Enum {
+public enum Opencannabis_Commerce_SchedulingType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// As soon as possible.
@@ -86,7 +86,7 @@ public enum Commerce_SchedulingType: SwiftProtobuf.Enum {
 }
 
 /// Enumeration for current status of order
-public enum Commerce_OrderStatus: SwiftProtobuf.Enum {
+public enum Opencannabis_Commerce_OrderStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Order has been submitted and is not yet approved.
@@ -139,18 +139,18 @@ public enum Commerce_OrderStatus: SwiftProtobuf.Enum {
 }
 
 /// Specifies the desired timing of the delivery order.
-public struct Commerce_OrderScheduling: SwiftProtobuf.Message {
+public struct Opencannabis_Commerce_OrderScheduling: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".OrderScheduling"
 
   /// Scheduling type, either 'ASAP' or a target time.
-  public var scheduling: Commerce_SchedulingType {
+  public var scheduling: Opencannabis_Commerce_SchedulingType {
     get {return _storage._scheduling}
     set {_uniqueStorage()._scheduling = newValue}
   }
 
   /// Desired delivery time.
-  public var desiredTime: Temporal_Instant {
-    get {return _storage._desiredTime ?? Temporal_Instant()}
+  public var desiredTime: Opencannabis_Temporal_Instant {
+    get {return _storage._desiredTime ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._desiredTime = newValue}
   }
   /// Returns true if `desiredTime` has been explicitly set.
@@ -199,18 +199,18 @@ public struct Commerce_OrderScheduling: SwiftProtobuf.Message {
 }
 
 /// Specifies a moment at which an order changed status, when it happened, and, optionally, why.
-public struct Commerce_StatusCheckin: SwiftProtobuf.Message {
+public struct Opencannabis_Commerce_StatusCheckin: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".StatusCheckin"
 
   /// Status the order moved to.
-  public var status: Commerce_OrderStatus {
+  public var status: Opencannabis_Commerce_OrderStatus {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
   }
 
   /// Instant the order was moved to this status.
-  public var instant: Temporal_Instant {
-    get {return _storage._instant ?? Temporal_Instant()}
+  public var instant: Opencannabis_Temporal_Instant {
+    get {return _storage._instant ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._instant = newValue}
   }
   /// Returns true if `instant` has been explicitly set.
@@ -269,7 +269,7 @@ public struct Commerce_StatusCheckin: SwiftProtobuf.Message {
 }
 
 /// Specifies a unique key for a commercial order.
-public struct Commerce_OrderKey: SwiftProtobuf.Message {
+public struct Opencannabis_Commerce_OrderKey: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".OrderKey"
 
   /// Order ID, assigned by the server upon creation.
@@ -305,7 +305,7 @@ public struct Commerce_OrderKey: SwiftProtobuf.Message {
 }
 
 /// Represents a full order submitted to the server for fulfillment, from an end-user, for delivery or express pickup.
-public struct Commerce_Order: SwiftProtobuf.Message {
+public struct Opencannabis_Commerce_Order: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Order"
 
   /// ID assigned to the order by the server.
@@ -315,20 +315,20 @@ public struct Commerce_Order: SwiftProtobuf.Message {
   }
 
   /// Type of order requested.
-  public var type: Commerce_OrderType {
+  public var type: Opencannabis_Commerce_OrderType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Current status of this order.
-  public var status: Commerce_OrderStatus {
+  public var status: Opencannabis_Commerce_OrderStatus {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
   }
 
   /// Customer that submitted this order.
-  public var customer: Commerce_Customer {
-    get {return _storage._customer ?? Commerce_Customer()}
+  public var customer: Opencannabis_Commerce_Customer {
+    get {return _storage._customer ?? Opencannabis_Commerce_Customer()}
     set {_uniqueStorage()._customer = newValue}
   }
   /// Returns true if `customer` has been explicitly set.
@@ -337,8 +337,8 @@ public struct Commerce_Order: SwiftProtobuf.Message {
   public mutating func clearCustomer() {_storage._customer = nil}
 
   /// Scheduling spec for this order.
-  public var scheduling: Commerce_OrderScheduling {
-    get {return _storage._scheduling ?? Commerce_OrderScheduling()}
+  public var scheduling: Opencannabis_Commerce_OrderScheduling {
+    get {return _storage._scheduling ?? Opencannabis_Commerce_OrderScheduling()}
     set {_uniqueStorage()._scheduling = newValue}
   }
   /// Returns true if `scheduling` has been explicitly set.
@@ -347,8 +347,8 @@ public struct Commerce_Order: SwiftProtobuf.Message {
   public mutating func clearScheduling() {_storage._scheduling = nil}
 
   /// Location for delivery, if applicable.
-  public var destination: Commerce_DeliveryDestination {
-    get {return _storage._destination ?? Commerce_DeliveryDestination()}
+  public var destination: Opencannabis_Commerce_DeliveryDestination {
+    get {return _storage._destination ?? Opencannabis_Commerce_DeliveryDestination()}
     set {_uniqueStorage()._destination = newValue}
   }
   /// Returns true if `destination` has been explicitly set.
@@ -363,20 +363,20 @@ public struct Commerce_Order: SwiftProtobuf.Message {
   }
 
   /// Items being ordered.
-  public var item: [Commerce_Item] {
+  public var item: [Opencannabis_Commerce_Item] {
     get {return _storage._item}
     set {_uniqueStorage()._item = newValue}
   }
 
   /// Actions taken on this order.
-  public var actionLog: [Commerce_StatusCheckin] {
+  public var actionLog: [Opencannabis_Commerce_StatusCheckin] {
     get {return _storage._actionLog}
     set {_uniqueStorage()._actionLog = newValue}
   }
 
   /// When this order was created.
-  public var createdAt: Temporal_Instant {
-    get {return _storage._createdAt ?? Temporal_Instant()}
+  public var createdAt: Opencannabis_Temporal_Instant {
+    get {return _storage._createdAt ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._createdAt = newValue}
   }
   /// Returns true if `createdAt` has been explicitly set.
@@ -468,23 +468,23 @@ public struct Commerce_Order: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "commerce"
+fileprivate let _protobuf_package = "opencannabis.commerce"
 
-extension Commerce_OrderType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_OrderType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PICKUP"),
     1: .same(proto: "DELIVERY"),
   ]
 }
 
-extension Commerce_SchedulingType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_SchedulingType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ASAP"),
     1: .same(proto: "TIMED"),
   ]
 }
 
-extension Commerce_OrderStatus: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_OrderStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PENDING"),
     1: .same(proto: "APPROVED"),
@@ -495,15 +495,15 @@ extension Commerce_OrderStatus: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Commerce_OrderScheduling: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_OrderScheduling: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scheduling"),
     2: .standard(proto: "desired_time"),
   ]
 
   fileprivate class _StorageClass {
-    var _scheduling: Commerce_SchedulingType = .asap
-    var _desiredTime: Temporal_Instant? = nil
+    var _scheduling: Opencannabis_Commerce_SchedulingType = .asap
+    var _desiredTime: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -522,7 +522,7 @@ extension Commerce_OrderScheduling: SwiftProtobuf._MessageImplementationBase, Sw
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Commerce_OrderScheduling) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_OrderScheduling) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -538,7 +538,7 @@ extension Commerce_OrderScheduling: SwiftProtobuf._MessageImplementationBase, Sw
   }
 }
 
-extension Commerce_StatusCheckin: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_StatusCheckin: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "instant"),
@@ -546,8 +546,8 @@ extension Commerce_StatusCheckin: SwiftProtobuf._MessageImplementationBase, Swif
   ]
 
   fileprivate class _StorageClass {
-    var _status: Commerce_OrderStatus = .pending
-    var _instant: Temporal_Instant? = nil
+    var _status: Opencannabis_Commerce_OrderStatus = .pending
+    var _instant: Opencannabis_Temporal_Instant? = nil
     var _message: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -568,7 +568,7 @@ extension Commerce_StatusCheckin: SwiftProtobuf._MessageImplementationBase, Swif
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Commerce_StatusCheckin) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_StatusCheckin) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -585,19 +585,19 @@ extension Commerce_StatusCheckin: SwiftProtobuf._MessageImplementationBase, Swif
   }
 }
 
-extension Commerce_OrderKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_OrderKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Commerce_OrderKey) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_OrderKey) -> Bool {
     if self.id != other.id {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Commerce_Order: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_Order: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "type"),
@@ -614,15 +614,15 @@ extension Commerce_Order: SwiftProtobuf._MessageImplementationBase, SwiftProtobu
 
   fileprivate class _StorageClass {
     var _id: String = String()
-    var _type: Commerce_OrderType = .pickup
-    var _status: Commerce_OrderStatus = .pending
-    var _customer: Commerce_Customer? = nil
-    var _scheduling: Commerce_OrderScheduling? = nil
-    var _destination: Commerce_DeliveryDestination? = nil
+    var _type: Opencannabis_Commerce_OrderType = .pickup
+    var _status: Opencannabis_Commerce_OrderStatus = .pending
+    var _customer: Opencannabis_Commerce_Customer? = nil
+    var _scheduling: Opencannabis_Commerce_OrderScheduling? = nil
+    var _destination: Opencannabis_Commerce_DeliveryDestination? = nil
     var _notes: String = String()
-    var _item: [Commerce_Item] = []
-    var _actionLog: [Commerce_StatusCheckin] = []
-    var _createdAt: Temporal_Instant? = nil
+    var _item: [Opencannabis_Commerce_Item] = []
+    var _actionLog: [Opencannabis_Commerce_StatusCheckin] = []
+    var _createdAt: Opencannabis_Temporal_Instant? = nil
     var _subtotal: Double = 0
 
     static let defaultInstance = _StorageClass()
@@ -651,7 +651,7 @@ extension Commerce_Order: SwiftProtobuf._MessageImplementationBase, SwiftProtobu
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Commerce_Order) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_Order) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

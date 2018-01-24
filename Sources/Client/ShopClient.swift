@@ -18,16 +18,11 @@ public typealias EnrollMemberCallback = (CallResult, EnrollMember.Response?) -> 
 public typealias GetOrderCallback = (CallResult, GetOrder.Response?) -> ()
 public typealias SubmitOrderCallback = (CallResult, SubmitOrder.Response?) -> ()
 
-// Error Types
-public typealias ShopRPCError = Services_Shop_V1_ShopClientError
-public typealias VerifyError = Services_Shop_V1_VerifyError
-public typealias EnrollmentError = Services_Shop_V1_EnrollmentError
-
 
 /**
  * Apply RPC Service compliance to Shop.
  */
-extension Shop: RPCService {}
+extension ShopService: RPCService {}
 
 
 /**
@@ -73,8 +68,8 @@ public final class ShopClient: RemoteService {
   /**
    * Shop service.
    */
-  internal func service(_ apiKey: APIKey) -> Shop {
-    let svc = RPCServiceFactory<Shop>.factory(forService: Transport.config.services.shop)
+  internal func service(_ apiKey: APIKey) -> ShopService {
+    let svc = RPCServiceFactory<ShopService>.factory(forService: Transport.config.services.shop)
     svc.metadata.add(key: "x-api-key", value: apiKey)
     return svc
   }

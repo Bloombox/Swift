@@ -20,12 +20,12 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Customer identity.
-public struct Commerce_Customer: SwiftProtobuf.Message {
+public struct Opencannabis_Commerce_Customer: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Customer"
 
   /// Person attached to this customer.
-  public var person: Person_Person {
-    get {return _storage._person ?? Person_Person()}
+  public var person: Opencannabis_Person_Person {
+    get {return _storage._person ?? Opencannabis_Person_Person()}
     set {_uniqueStorage()._person = newValue}
   }
   /// Returns true if `person` has been explicitly set.
@@ -40,14 +40,10 @@ public struct Commerce_Customer: SwiftProtobuf.Message {
   }
 
   /// Logged-in user, if any.
-  public var user: Identity_UserKey {
-    get {return _storage._user ?? Identity_UserKey()}
-    set {_uniqueStorage()._user = newValue}
+  public var userKey: String {
+    get {return _storage._userKey}
+    set {_uniqueStorage()._userKey = newValue}
   }
-  /// Returns true if `user` has been explicitly set.
-  public var hasUser: Bool {return _storage._user != nil}
-  /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  public mutating func clearUser() {_storage._user = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -64,7 +60,7 @@ public struct Commerce_Customer: SwiftProtobuf.Message {
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._person)
         case 2: try decoder.decodeSingularStringField(value: &_storage._foreignID)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._user)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._userKey)
         default: break
         }
       }
@@ -83,8 +79,8 @@ public struct Commerce_Customer: SwiftProtobuf.Message {
       if !_storage._foreignID.isEmpty {
         try visitor.visitSingularStringField(value: _storage._foreignID, fieldNumber: 2)
       }
-      if let v = _storage._user {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      if !_storage._userKey.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._userKey, fieldNumber: 3)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -95,19 +91,19 @@ public struct Commerce_Customer: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "commerce"
+fileprivate let _protobuf_package = "opencannabis.commerce"
 
-extension Commerce_Customer: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_Customer: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "person"),
     2: .standard(proto: "foreign_id"),
-    3: .same(proto: "user"),
+    3: .standard(proto: "user_key"),
   ]
 
   fileprivate class _StorageClass {
-    var _person: Person_Person? = nil
+    var _person: Opencannabis_Person_Person? = nil
     var _foreignID: String = String()
-    var _user: Identity_UserKey? = nil
+    var _userKey: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -116,7 +112,7 @@ extension Commerce_Customer: SwiftProtobuf._MessageImplementationBase, SwiftProt
     init(copying source: _StorageClass) {
       _person = source._person
       _foreignID = source._foreignID
-      _user = source._user
+      _userKey = source._userKey
     }
   }
 
@@ -127,14 +123,14 @@ extension Commerce_Customer: SwiftProtobuf._MessageImplementationBase, SwiftProt
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Commerce_Customer) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_Customer) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let other_storage = _args.1
         if _storage._person != other_storage._person {return false}
         if _storage._foreignID != other_storage._foreignID {return false}
-        if _storage._user != other_storage._user {return false}
+        if _storage._userKey != other_storage._userKey {return false}
         return true
       }
       if !storagesAreEqual {return false}

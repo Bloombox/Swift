@@ -20,12 +20,12 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the location to deliver the order.
-public struct Commerce_DeliveryDestination: SwiftProtobuf.Message {
+public struct Opencannabis_Commerce_DeliveryDestination: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".DeliveryDestination"
 
   /// Location/address.
-  public var address: Geo_Address {
-    get {return _storage._address ?? Geo_Address()}
+  public var address: Opencannabis_Geo_Address {
+    get {return _storage._address ?? Opencannabis_Geo_Address()}
     set {_uniqueStorage()._address = newValue}
   }
   /// Returns true if `address` has been explicitly set.
@@ -81,16 +81,16 @@ public struct Commerce_DeliveryDestination: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "commerce"
+fileprivate let _protobuf_package = "opencannabis.commerce"
 
-extension Commerce_DeliveryDestination: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_DeliveryDestination: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "address"),
     2: .same(proto: "instructions"),
   ]
 
   fileprivate class _StorageClass {
-    var _address: Geo_Address? = nil
+    var _address: Opencannabis_Geo_Address? = nil
     var _instructions: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -110,7 +110,7 @@ extension Commerce_DeliveryDestination: SwiftProtobuf._MessageImplementationBase
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Commerce_DeliveryDestination) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_DeliveryDestination) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

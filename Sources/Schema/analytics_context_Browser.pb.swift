@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies types of browsers or known browser engines.
-public enum Analytics_Context_BrowserType: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Analytics_Context_BrowserType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies an unknown or unrecognized browser.
@@ -73,18 +73,18 @@ public enum Analytics_Context_BrowserType: SwiftProtobuf.Enum {
 }
 
 /// Specifies a structure describing JavaScript code running in a web browser of some kind.
-public struct Analytics_Context_BrowserDeviceContext: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Context_BrowserDeviceContext: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".BrowserDeviceContext"
 
   /// Specifies the general browser type.
-  public var browserType: Analytics_Context_BrowserType {
+  public var browserType: Bloombox_Schema_Analytics_Context_BrowserType {
     get {return _storage._browserType}
     set {_uniqueStorage()._browserType = newValue}
   }
 
   /// Version info for the browser.
-  public var version: Structs_VersionSpec {
-    get {return _storage._version ?? Structs_VersionSpec()}
+  public var version: Opencannabis_Structs_VersionSpec {
+    get {return _storage._version ?? Opencannabis_Structs_VersionSpec()}
     set {_uniqueStorage()._version = newValue}
   }
   /// Returns true if `version` has been explicitly set.
@@ -184,9 +184,9 @@ public struct Analytics_Context_BrowserDeviceContext: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.context"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
 
-extension Analytics_Context_BrowserType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_BrowserType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "BROWSER_UNKNOWN"),
     1: .same(proto: "CHROME"),
@@ -197,7 +197,7 @@ extension Analytics_Context_BrowserType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Analytics_Context_BrowserDeviceContext: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_BrowserDeviceContext: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "browser_type"),
     2: .same(proto: "version"),
@@ -209,8 +209,8 @@ extension Analytics_Context_BrowserDeviceContext: SwiftProtobuf._MessageImplemen
   ]
 
   fileprivate class _StorageClass {
-    var _browserType: Analytics_Context_BrowserType = .browserUnknown
-    var _version: Structs_VersionSpec? = nil
+    var _browserType: Bloombox_Schema_Analytics_Context_BrowserType = .browserUnknown
+    var _version: Opencannabis_Structs_VersionSpec? = nil
     var _language: String = String()
     var _userAgent: String = String()
     var _touchpoints: UInt32 = 0
@@ -239,7 +239,7 @@ extension Analytics_Context_BrowserDeviceContext: SwiftProtobuf._MessageImplemen
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Context_BrowserDeviceContext) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_BrowserDeviceContext) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Types of media that may be attached to a user.
-public enum Identity_UserMediaType: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Identity_UserMediaType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// A portrait image of the person that this user represents.
@@ -58,7 +58,7 @@ public enum Identity_UserMediaType: SwiftProtobuf.Enum {
 }
 
 /// Enumerates providers through which users may authenticate.
-public enum Identity_IdentityProvider: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Identity_IdentityProvider: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Email/password-based authentication.
@@ -101,7 +101,7 @@ public enum Identity_IdentityProvider: SwiftProtobuf.Enum {
 }
 
 /// Enumerates sources for user enrollments.
-public enum Identity_EnrollmentSource: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Identity_EnrollmentSource: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unknown or unspecified enrollment source.
@@ -154,7 +154,7 @@ public enum Identity_EnrollmentSource: SwiftProtobuf.Enum {
 }
 
 /// Specifies the type of consumer profile in use for an account.
-public enum Identity_ConsumerType: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Identity_ConsumerType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The consumer type is not yet determined.
@@ -192,7 +192,7 @@ public enum Identity_ConsumerType: SwiftProtobuf.Enum {
 }
 
 /// Represents a key that refers to a user account.
-public struct Identity_UserKey: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_UserKey: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".UserKey"
 
   /// Unique ID for the user.
@@ -235,7 +235,7 @@ public struct Identity_UserKey: SwiftProtobuf.Message {
 }
 
 /// Represents an individual who uses software.
-public struct Identity_User: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_User: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".User"
 
   /// Unique ID for the user.
@@ -245,8 +245,8 @@ public struct Identity_User: SwiftProtobuf.Message {
   }
 
   /// Boolean flags for this user.
-  public var flags: Identity_UserFlags {
-    get {return _storage._flags ?? Identity_UserFlags()}
+  public var flags: Bloombox_Schema_Identity_UserFlags {
+    get {return _storage._flags ?? Bloombox_Schema_Identity_UserFlags()}
     set {_uniqueStorage()._flags = newValue}
   }
   /// Returns true if `flags` has been explicitly set.
@@ -255,8 +255,8 @@ public struct Identity_User: SwiftProtobuf.Message {
   public mutating func clearFlags() {_storage._flags = nil}
 
   /// Person's information that backs this user.
-  public var person: Person_Person {
-    get {return _storage._person ?? Person_Person()}
+  public var person: Opencannabis_Person_Person {
+    get {return _storage._person ?? Opencannabis_Person_Person()}
     set {_uniqueStorage()._person = newValue}
   }
   /// Returns true if `person` has been explicitly set.
@@ -265,20 +265,20 @@ public struct Identity_User: SwiftProtobuf.Message {
   public mutating func clearPerson() {_storage._person = nil}
 
   /// Government ID associated with this user.
-  public var identification: [Identity_ID] {
+  public var identification: [Bloombox_Schema_Identity_ID] {
     get {return _storage._identification}
     set {_uniqueStorage()._identification = newValue}
   }
 
   /// Doctor's recommendations associated with this user.
-  public var doctorRec: [Identity_Ids_UserDoctorRec] {
+  public var doctorRec: [Bloombox_Schema_Identity_Ids_UserDoctorRec] {
     get {return _storage._doctorRec}
     set {_uniqueStorage()._doctorRec = newValue}
   }
 
   /// Last time this user was seen, via auth/login/enrollment etc.
-  public var seen: Temporal_Instant {
-    get {return _storage._seen ?? Temporal_Instant()}
+  public var seen: Opencannabis_Temporal_Instant {
+    get {return _storage._seen ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._seen = newValue}
   }
   /// Returns true if `seen` has been explicitly set.
@@ -287,8 +287,8 @@ public struct Identity_User: SwiftProtobuf.Message {
   public mutating func clearSeen() {_storage._seen = nil}
 
   /// Timestamp for when this user was created.
-  public var signup: Temporal_Instant {
-    get {return _storage._signup ?? Temporal_Instant()}
+  public var signup: Opencannabis_Temporal_Instant {
+    get {return _storage._signup ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._signup = newValue}
   }
   /// Returns true if `signup` has been explicitly set.
@@ -297,20 +297,20 @@ public struct Identity_User: SwiftProtobuf.Message {
   public mutating func clearSignup() {_storage._signup = nil}
 
   /// Identities associated with this user.
-  public var identities: Dictionary<String,Identity_UserIdentity> {
+  public var identities: Dictionary<String,Bloombox_Schema_Identity_UserIdentity> {
     get {return _storage._identities}
     set {_uniqueStorage()._identities = newValue}
   }
 
   /// Media associated with this user.
-  public var media: Dictionary<String,Media_MediaItem> {
+  public var media: Dictionary<String,Opencannabis_Media_MediaItem> {
     get {return _storage._media}
     set {_uniqueStorage()._media = newValue}
   }
 
   /// Consumer profile for this user.
-  public var consumer: Identity_ConsumerProfile {
-    get {return _storage._consumer ?? Identity_ConsumerProfile()}
+  public var consumer: Bloombox_Schema_Identity_ConsumerProfile {
+    get {return _storage._consumer ?? Bloombox_Schema_Identity_ConsumerProfile()}
     set {_uniqueStorage()._consumer = newValue}
   }
   /// Returns true if `consumer` has been explicitly set.
@@ -319,8 +319,8 @@ public struct Identity_User: SwiftProtobuf.Message {
   public mutating func clearConsumer() {_storage._consumer = nil}
 
   /// Industry profile for this user.
-  public var industry: Identity_IndustryProfile {
-    get {return _storage._industry ?? Identity_IndustryProfile()}
+  public var industry: Bloombox_Schema_Identity_IndustryProfile {
+    get {return _storage._industry ?? Bloombox_Schema_Identity_IndustryProfile()}
     set {_uniqueStorage()._industry = newValue}
   }
   /// Returns true if `industry` has been explicitly set.
@@ -348,8 +348,8 @@ public struct Identity_User: SwiftProtobuf.Message {
         case 21: try decoder.decodeRepeatedMessageField(value: &_storage._doctorRec)
         case 30: try decoder.decodeSingularMessageField(value: &_storage._seen)
         case 31: try decoder.decodeSingularMessageField(value: &_storage._signup)
-        case 40: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Identity_UserIdentity>.self, value: &_storage._identities)
-        case 41: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Media_MediaItem>.self, value: &_storage._media)
+        case 40: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Identity_UserIdentity>.self, value: &_storage._identities)
+        case 41: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Media_MediaItem>.self, value: &_storage._media)
         case 100: try decoder.decodeSingularMessageField(value: &_storage._consumer)
         case 101: try decoder.decodeSingularMessageField(value: &_storage._industry)
         default: break
@@ -386,10 +386,10 @@ public struct Identity_User: SwiftProtobuf.Message {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 31)
       }
       if !_storage._identities.isEmpty {
-        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Identity_UserIdentity>.self, value: _storage._identities, fieldNumber: 40)
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Identity_UserIdentity>.self, value: _storage._identities, fieldNumber: 40)
       }
       if !_storage._media.isEmpty {
-        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Media_MediaItem>.self, value: _storage._media, fieldNumber: 41)
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Media_MediaItem>.self, value: _storage._media, fieldNumber: 41)
       }
       if let v = _storage._consumer {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 100)
@@ -405,7 +405,7 @@ public struct Identity_User: SwiftProtobuf.Message {
 }
 
 /// Boolean flags that may be set on a user account.
-public struct Identity_UserFlags: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_UserFlags: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".UserFlags"
 
   /// Indicates that the account has been validated.
@@ -469,11 +469,11 @@ public struct Identity_UserFlags: SwiftProtobuf.Message {
 }
 
 /// Represents an identity that may be associated with a user account.
-public struct Identity_UserIdentity: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_UserIdentity: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".UserIdentity"
 
   /// Provider for this external/foreign account.
-  public var provider: Identity_IdentityProvider {
+  public var provider: Bloombox_Schema_Identity_IdentityProvider {
     get {return _storage._provider}
     set {_uniqueStorage()._provider = newValue}
   }
@@ -485,8 +485,8 @@ public struct Identity_UserIdentity: SwiftProtobuf.Message {
   }
 
   /// Timestamp for when this identity was last user to authenticate the underlying user.
-  public var seen: Temporal_Instant {
-    get {return _storage._seen ?? Temporal_Instant()}
+  public var seen: Opencannabis_Temporal_Instant {
+    get {return _storage._seen ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._seen = newValue}
   }
   /// Returns true if `seen` has been explicitly set.
@@ -539,7 +539,7 @@ public struct Identity_UserIdentity: SwiftProtobuf.Message {
 }
 
 /// User profile information for a cannabis consumer.
-public struct Identity_ConsumerProfile: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_ConsumerProfile: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ConsumerProfile"
 
   /// Profile active/inactive flag.
@@ -555,7 +555,7 @@ public struct Identity_ConsumerProfile: SwiftProtobuf.Message {
   }
 
   /// Specifies enrollment source attribution information.
-  public var enrollmentSource: Identity_EnrollmentSource {
+  public var enrollmentSource: Bloombox_Schema_Identity_EnrollmentSource {
     get {return _storage._enrollmentSource}
     set {_uniqueStorage()._enrollmentSource = newValue}
   }
@@ -567,8 +567,8 @@ public struct Identity_ConsumerProfile: SwiftProtobuf.Message {
   }
 
   /// Preferences attached to a consumer account.
-  public var preferences: Identity_ConsumerPreferences {
-    get {return _storage._preferences ?? Identity_ConsumerPreferences()}
+  public var preferences: Bloombox_Schema_Identity_ConsumerPreferences {
+    get {return _storage._preferences ?? Bloombox_Schema_Identity_ConsumerPreferences()}
     set {_uniqueStorage()._preferences = newValue}
   }
   /// Returns true if `preferences` has been explicitly set.
@@ -577,7 +577,7 @@ public struct Identity_ConsumerProfile: SwiftProtobuf.Message {
   public mutating func clearPreferences() {_storage._preferences = nil}
 
   /// Specifies the primary consumer type for this account.
-  public var type: Identity_ConsumerType {
+  public var type: Bloombox_Schema_Identity_ConsumerType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
@@ -639,29 +639,29 @@ public struct Identity_ConsumerProfile: SwiftProtobuf.Message {
 }
 
 /// Consumer preferences related to menus and products.
-public struct Identity_MenuPreferences: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_MenuPreferences: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".MenuPreferences"
 
   /// Preferred menu sections or product types.
-  public var section: [Products_Menu_Section_Section] = []
+  public var section: [Opencannabis_Products_Menu_Section_Section] = []
 
   /// Preferred feelings or experiential states.
-  public var feeling: [Structs_Labtesting_Feeling] = []
+  public var feeling: [Opencannabis_Structs_Labtesting_Feeling] = []
 
   /// Preferred tasting notes.
-  public var tasteNote: [Structs_Labtesting_TasteNote] = []
+  public var tasteNote: [Opencannabis_Structs_Labtesting_TasteNote] = []
 
   /// Desired potency level.
-  public var desiredPotency: Structs_Labtesting_PotencyEstimate = .light
+  public var desiredPotency: Opencannabis_Structs_Labtesting_PotencyEstimate = .light
 
   /// Desired cannabinoid ratio.
-  public var cannabinoidRatio: Structs_Labtesting_CannabinoidRatio = .noCannabinoidPreference
+  public var cannabinoidRatio: Opencannabis_Structs_Labtesting_CannabinoidRatio = .noCannabinoidPreference
 
   /// Preferred species types.
-  public var species: [Structs_Species] = []
+  public var species: [Opencannabis_Structs_Species] = []
 
   /// Preferred grow types.
-  public var grow: [Structs_Grow] = []
+  public var grow: [Opencannabis_Structs_Grow] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -717,12 +717,12 @@ public struct Identity_MenuPreferences: SwiftProtobuf.Message {
 }
 
 /// Specifies preferences related to a user's profile as a cannabis consumer.
-public struct Identity_ConsumerPreferences: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_ConsumerPreferences: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ConsumerPreferences"
 
   /// Preferred menu sections/product types, and so on.
-  public var menu: Identity_MenuPreferences {
-    get {return _storage._menu ?? Identity_MenuPreferences()}
+  public var menu: Bloombox_Schema_Identity_MenuPreferences {
+    get {return _storage._menu ?? Bloombox_Schema_Identity_MenuPreferences()}
     set {_uniqueStorage()._menu = newValue}
   }
   /// Returns true if `menu` has been explicitly set.
@@ -767,11 +767,11 @@ public struct Identity_ConsumerPreferences: SwiftProtobuf.Message {
 }
 
 /// Represents a consumer's membership at a particular dispensary.
-public struct Identity_ConsumerMembership: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_ConsumerMembership: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ConsumerMembership"
 
   /// Referral source for this enrollment.
-  public var referralSource: Identity_EnrollmentSource {
+  public var referralSource: Bloombox_Schema_Identity_EnrollmentSource {
     get {return _storage._referralSource}
     set {_uniqueStorage()._referralSource = newValue}
   }
@@ -783,8 +783,8 @@ public struct Identity_ConsumerMembership: SwiftProtobuf.Message {
   }
 
   /// Timestamp for when this profile enrolled.
-  public var signedUpAt: Temporal_Instant {
-    get {return _storage._signedUpAt ?? Temporal_Instant()}
+  public var signedUpAt: Opencannabis_Temporal_Instant {
+    get {return _storage._signedUpAt ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._signedUpAt = newValue}
   }
   /// Returns true if `signedUpAt` has been explicitly set.
@@ -793,8 +793,8 @@ public struct Identity_ConsumerMembership: SwiftProtobuf.Message {
   public mutating func clearSignedUpAt() {_storage._signedUpAt = nil}
 
   /// Timestamp for when this profile was last seen.
-  public var seen: Temporal_Instant {
-    get {return _storage._seen ?? Temporal_Instant()}
+  public var seen: Opencannabis_Temporal_Instant {
+    get {return _storage._seen ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._seen = newValue}
   }
   /// Returns true if `seen` has been explicitly set.
@@ -861,14 +861,14 @@ public struct Identity_ConsumerMembership: SwiftProtobuf.Message {
 }
 
 /// Profile for a cannabis industry professional of some sort.
-public struct Identity_IndustryProfile: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_IndustryProfile: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".IndustryProfile"
 
   /// Profile inactive/active status.
   public var active: Bool = false
 
   /// Map of partner accesses levels to partner codes.
-  public var partners: Dictionary<String,Security_Access_PartnerAccess> = [:]
+  public var partners: Dictionary<String,Bloombox_Schema_Security_Access_PartnerAccess> = [:]
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -882,7 +882,7 @@ public struct Identity_IndustryProfile: SwiftProtobuf.Message {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularBoolField(value: &self.active)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Security_Access_PartnerAccess>.self, value: &self.partners)
+      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_PartnerAccess>.self, value: &self.partners)
       default: break
       }
     }
@@ -897,7 +897,7 @@ public struct Identity_IndustryProfile: SwiftProtobuf.Message {
       try visitor.visitSingularBoolField(value: self.active, fieldNumber: 1)
     }
     if !self.partners.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Security_Access_PartnerAccess>.self, value: self.partners, fieldNumber: 2)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_PartnerAccess>.self, value: self.partners, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -905,9 +905,9 @@ public struct Identity_IndustryProfile: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "identity"
+fileprivate let _protobuf_package = "bloombox.schema.identity"
 
-extension Identity_UserMediaType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_UserMediaType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PICTURE"),
     1: .same(proto: "DRIVERS_LICENSE"),
@@ -915,7 +915,7 @@ extension Identity_UserMediaType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Identity_IdentityProvider: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_IdentityProvider: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "EMAIL"),
     1: .same(proto: "GOOGLE"),
@@ -924,7 +924,7 @@ extension Identity_IdentityProvider: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Identity_EnrollmentSource: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_EnrollmentSource: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED"),
     1: .same(proto: "ONLINE"),
@@ -935,7 +935,7 @@ extension Identity_EnrollmentSource: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Identity_ConsumerType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_ConsumerType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNVALIDATED"),
     1: .same(proto: "RECREATIONAL"),
@@ -943,13 +943,13 @@ extension Identity_ConsumerType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Identity_UserKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_UserKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
     2: .same(proto: "identity"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Identity_UserKey) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_UserKey) -> Bool {
     if self.uid != other.uid {return false}
     if self.identity != other.identity {return false}
     if unknownFields != other.unknownFields {return false}
@@ -957,7 +957,7 @@ extension Identity_UserKey: SwiftProtobuf._MessageImplementationBase, SwiftProto
   }
 }
 
-extension Identity_User: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_User: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
     2: .same(proto: "flags"),
@@ -974,16 +974,16 @@ extension Identity_User: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
 
   fileprivate class _StorageClass {
     var _uid: String = String()
-    var _flags: Identity_UserFlags? = nil
-    var _person: Person_Person? = nil
-    var _identification: [Identity_ID] = []
-    var _doctorRec: [Identity_Ids_UserDoctorRec] = []
-    var _seen: Temporal_Instant? = nil
-    var _signup: Temporal_Instant? = nil
-    var _identities: Dictionary<String,Identity_UserIdentity> = [:]
-    var _media: Dictionary<String,Media_MediaItem> = [:]
-    var _consumer: Identity_ConsumerProfile? = nil
-    var _industry: Identity_IndustryProfile? = nil
+    var _flags: Bloombox_Schema_Identity_UserFlags? = nil
+    var _person: Opencannabis_Person_Person? = nil
+    var _identification: [Bloombox_Schema_Identity_ID] = []
+    var _doctorRec: [Bloombox_Schema_Identity_Ids_UserDoctorRec] = []
+    var _seen: Opencannabis_Temporal_Instant? = nil
+    var _signup: Opencannabis_Temporal_Instant? = nil
+    var _identities: Dictionary<String,Bloombox_Schema_Identity_UserIdentity> = [:]
+    var _media: Dictionary<String,Opencannabis_Media_MediaItem> = [:]
+    var _consumer: Bloombox_Schema_Identity_ConsumerProfile? = nil
+    var _industry: Bloombox_Schema_Identity_IndustryProfile? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1011,7 +1011,7 @@ extension Identity_User: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Identity_User) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_User) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1036,7 +1036,7 @@ extension Identity_User: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
   }
 }
 
-extension Identity_UserFlags: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_UserFlags: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "validated"),
     2: .same(proto: "suspended"),
@@ -1045,7 +1045,7 @@ extension Identity_UserFlags: SwiftProtobuf._MessageImplementationBase, SwiftPro
     5: .same(proto: "sandbox"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Identity_UserFlags) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_UserFlags) -> Bool {
     if self.validated != other.validated {return false}
     if self.suspended != other.suspended {return false}
     if self.admin != other.admin {return false}
@@ -1056,7 +1056,7 @@ extension Identity_UserFlags: SwiftProtobuf._MessageImplementationBase, SwiftPro
   }
 }
 
-extension Identity_UserIdentity: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_UserIdentity: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "provider"),
     2: .same(proto: "id"),
@@ -1064,9 +1064,9 @@ extension Identity_UserIdentity: SwiftProtobuf._MessageImplementationBase, Swift
   ]
 
   fileprivate class _StorageClass {
-    var _provider: Identity_IdentityProvider = .email
+    var _provider: Bloombox_Schema_Identity_IdentityProvider = .email
     var _id: String = String()
-    var _seen: Temporal_Instant? = nil
+    var _seen: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1086,7 +1086,7 @@ extension Identity_UserIdentity: SwiftProtobuf._MessageImplementationBase, Swift
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Identity_UserIdentity) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_UserIdentity) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1103,7 +1103,7 @@ extension Identity_UserIdentity: SwiftProtobuf._MessageImplementationBase, Swift
   }
 }
 
-extension Identity_ConsumerProfile: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_ConsumerProfile: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "active"),
     2: .standard(proto: "favorite_dispensaries"),
@@ -1116,10 +1116,10 @@ extension Identity_ConsumerProfile: SwiftProtobuf._MessageImplementationBase, Sw
   fileprivate class _StorageClass {
     var _active: Bool = false
     var _favoriteDispensaries: [String] = []
-    var _enrollmentSource: Identity_EnrollmentSource = .unspecified
+    var _enrollmentSource: Bloombox_Schema_Identity_EnrollmentSource = .unspecified
     var _enrollmentChannel: String = String()
-    var _preferences: Identity_ConsumerPreferences? = nil
-    var _type: Identity_ConsumerType = .unvalidated
+    var _preferences: Bloombox_Schema_Identity_ConsumerPreferences? = nil
+    var _type: Bloombox_Schema_Identity_ConsumerType = .unvalidated
 
     static let defaultInstance = _StorageClass()
 
@@ -1142,7 +1142,7 @@ extension Identity_ConsumerProfile: SwiftProtobuf._MessageImplementationBase, Sw
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Identity_ConsumerProfile) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_ConsumerProfile) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1162,7 +1162,7 @@ extension Identity_ConsumerProfile: SwiftProtobuf._MessageImplementationBase, Sw
   }
 }
 
-extension Identity_MenuPreferences: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_MenuPreferences: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "section"),
     2: .same(proto: "feeling"),
@@ -1173,7 +1173,7 @@ extension Identity_MenuPreferences: SwiftProtobuf._MessageImplementationBase, Sw
     7: .same(proto: "grow"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Identity_MenuPreferences) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_MenuPreferences) -> Bool {
     if self.section != other.section {return false}
     if self.feeling != other.feeling {return false}
     if self.tasteNote != other.tasteNote {return false}
@@ -1186,13 +1186,13 @@ extension Identity_MenuPreferences: SwiftProtobuf._MessageImplementationBase, Sw
   }
 }
 
-extension Identity_ConsumerPreferences: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_ConsumerPreferences: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     10: .same(proto: "menu"),
   ]
 
   fileprivate class _StorageClass {
-    var _menu: Identity_MenuPreferences? = nil
+    var _menu: Bloombox_Schema_Identity_MenuPreferences? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1210,7 +1210,7 @@ extension Identity_ConsumerPreferences: SwiftProtobuf._MessageImplementationBase
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Identity_ConsumerPreferences) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_ConsumerPreferences) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1225,7 +1225,7 @@ extension Identity_ConsumerPreferences: SwiftProtobuf._MessageImplementationBase
   }
 }
 
-extension Identity_ConsumerMembership: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_ConsumerMembership: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "referral_source"),
     2: .standard(proto: "referral_channel"),
@@ -1235,10 +1235,10 @@ extension Identity_ConsumerMembership: SwiftProtobuf._MessageImplementationBase,
   ]
 
   fileprivate class _StorageClass {
-    var _referralSource: Identity_EnrollmentSource = .unspecified
+    var _referralSource: Bloombox_Schema_Identity_EnrollmentSource = .unspecified
     var _referralChannel: String = String()
-    var _signedUpAt: Temporal_Instant? = nil
-    var _seen: Temporal_Instant? = nil
+    var _signedUpAt: Opencannabis_Temporal_Instant? = nil
+    var _seen: Opencannabis_Temporal_Instant? = nil
     var _foreignID: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -1261,7 +1261,7 @@ extension Identity_ConsumerMembership: SwiftProtobuf._MessageImplementationBase,
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Identity_ConsumerMembership) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_ConsumerMembership) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1280,13 +1280,13 @@ extension Identity_ConsumerMembership: SwiftProtobuf._MessageImplementationBase,
   }
 }
 
-extension Identity_IndustryProfile: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_IndustryProfile: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "active"),
     2: .same(proto: "partners"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Identity_IndustryProfile) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_IndustryProfile) -> Bool {
     if self.active != other.active {return false}
     if self.partners != other.partners {return false}
     if unknownFields != other.unknownFields {return false}

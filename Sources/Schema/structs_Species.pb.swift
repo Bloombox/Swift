@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Structs_Species: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Species: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case unspecified // = 0
   case sativa // = 1
@@ -61,7 +61,7 @@ public enum Structs_Species: SwiftProtobuf.Enum {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Structs_Species: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Species: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED"),
     1: .same(proto: "SATIVA"),

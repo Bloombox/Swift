@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the types of actions that a user may take on a product.
-public enum Analytics_Product_ProductAction: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Analytics_Product_ProductAction: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The user viewed a product. Product views are implemented under the hood as 'VIEW' actions.
@@ -94,12 +94,12 @@ public enum Analytics_Product_ProductAction: SwiftProtobuf.Enum {
 
 /// Specifies that a product was presented, alongside one or more other products in a master-style view, as a candidate
 /// for detail information to an end user.
-public struct Analytics_Product_Impression: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Product_Impression: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Impression"
 
   /// Key for the product that was viewed.
-  public var key: Base_ProductKey {
-    get {return _storage._key ?? Base_ProductKey()}
+  public var key: Opencannabis_Base_ProductKey {
+    get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -120,8 +120,8 @@ public struct Analytics_Product_Impression: SwiftProtobuf.Message {
   }
 
   /// Timestamp for when this impression occurred.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -178,12 +178,12 @@ public struct Analytics_Product_Impression: SwiftProtobuf.Message {
 }
 
 /// Specifies that an end-user viewed detail information about a product.
-public struct Analytics_Product_View: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Product_View: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".View"
 
   /// Key for the product that was viewed.
-  public var key: Base_ProductKey {
-    get {return _storage._key ?? Base_ProductKey()}
+  public var key: Opencannabis_Base_ProductKey {
+    get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -198,8 +198,8 @@ public struct Analytics_Product_View: SwiftProtobuf.Message {
   }
 
   /// Timestamp for when this view occurred.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -252,12 +252,12 @@ public struct Analytics_Product_View: SwiftProtobuf.Message {
 }
 
 /// An action that was taken affirmatively by a user on a particular product.
-public struct Analytics_Product_Action: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Product_Action: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Action"
 
   /// Key for the product that action was taken on.
-  public var key: Base_ProductKey {
-    get {return _storage._key ?? Base_ProductKey()}
+  public var key: Opencannabis_Base_ProductKey {
+    get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -266,14 +266,14 @@ public struct Analytics_Product_Action: SwiftProtobuf.Message {
   public mutating func clearKey() {_storage._key = nil}
 
   /// The action that was taken on the product.
-  public var verb: Analytics_Product_ProductAction {
+  public var verb: Bloombox_Schema_Analytics_Product_ProductAction {
     get {return _storage._verb}
     set {_uniqueStorage()._verb = newValue}
   }
 
   /// Timestamp for when this action occurred.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -327,9 +327,9 @@ public struct Analytics_Product_Action: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.product"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.product"
 
-extension Analytics_Product_ProductAction: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Product_ProductAction: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "VIEW"),
     1: .same(proto: "SHARE"),
@@ -344,7 +344,7 @@ extension Analytics_Product_ProductAction: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Analytics_Product_Impression: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Product_Impression: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "filtered"),
@@ -353,10 +353,10 @@ extension Analytics_Product_Impression: SwiftProtobuf._MessageImplementationBase
   ]
 
   fileprivate class _StorageClass {
-    var _key: Base_ProductKey? = nil
+    var _key: Opencannabis_Base_ProductKey? = nil
     var _filtered: Bool = false
     var _sorted: Bool = false
-    var _occurred: Temporal_Instant? = nil
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -377,7 +377,7 @@ extension Analytics_Product_Impression: SwiftProtobuf._MessageImplementationBase
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Product_Impression) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Product_Impression) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -395,7 +395,7 @@ extension Analytics_Product_Impression: SwiftProtobuf._MessageImplementationBase
   }
 }
 
-extension Analytics_Product_View: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Product_View: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "interactive"),
@@ -403,9 +403,9 @@ extension Analytics_Product_View: SwiftProtobuf._MessageImplementationBase, Swif
   ]
 
   fileprivate class _StorageClass {
-    var _key: Base_ProductKey? = nil
+    var _key: Opencannabis_Base_ProductKey? = nil
     var _interactive: Bool = false
-    var _occurred: Temporal_Instant? = nil
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -425,7 +425,7 @@ extension Analytics_Product_View: SwiftProtobuf._MessageImplementationBase, Swif
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Product_View) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Product_View) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -442,7 +442,7 @@ extension Analytics_Product_View: SwiftProtobuf._MessageImplementationBase, Swif
   }
 }
 
-extension Analytics_Product_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Product_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "verb"),
@@ -450,9 +450,9 @@ extension Analytics_Product_Action: SwiftProtobuf._MessageImplementationBase, Sw
   ]
 
   fileprivate class _StorageClass {
-    var _key: Base_ProductKey? = nil
-    var _verb: Analytics_Product_ProductAction = .view
-    var _occurred: Temporal_Instant? = nil
+    var _key: Opencannabis_Base_ProductKey? = nil
+    var _verb: Bloombox_Schema_Analytics_Product_ProductAction = .view
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -472,7 +472,7 @@ extension Analytics_Product_Action: SwiftProtobuf._MessageImplementationBase, Sw
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Product_Action) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Product_Action) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

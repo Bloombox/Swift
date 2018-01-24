@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// -- Pricing: Objects
-public enum Structs_Pricing_PricingType: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Pricing_PricingType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case unit // = 0
   case weighted // = 1
@@ -51,7 +51,7 @@ public enum Structs_Pricing_PricingType: SwiftProtobuf.Enum {
 
 }
 
-public enum Structs_Pricing_PricingWeightTier: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case other // = 0
   case gram // = 1
@@ -103,7 +103,7 @@ public enum Structs_Pricing_PricingWeightTier: SwiftProtobuf.Enum {
 
 }
 
-public struct Structs_Pricing_PricingTierAvailability: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Pricing_PricingTierAvailability: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PricingTierAvailability"
 
   public var offered: Bool = false
@@ -144,7 +144,7 @@ public struct Structs_Pricing_PricingTierAvailability: SwiftProtobuf.Message {
 }
 
 /// -- Pricing: Typed Descriptors
-public struct Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".UnitPricingDescriptor"
 
   public var priceValue: Float {
@@ -152,8 +152,8 @@ public struct Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf.Message {
     set {_uniqueStorage()._priceValue = newValue}
   }
 
-  public var status: Structs_Pricing_PricingTierAvailability {
-    get {return _storage._status ?? Structs_Pricing_PricingTierAvailability()}
+  public var status: Opencannabis_Structs_Pricing_PricingTierAvailability {
+    get {return _storage._status ?? Opencannabis_Structs_Pricing_PricingTierAvailability()}
     set {_uniqueStorage()._status = newValue}
   }
   /// Returns true if `status` has been explicitly set.
@@ -161,7 +161,7 @@ public struct Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf.Message {
   /// Clears the value of `status`. Subsequent reads from it will return its default value.
   public mutating func clearStatus() {_storage._status = nil}
 
-  public var discounts: [Structs_Pricing_SaleDescriptor] {
+  public var discounts: [Opencannabis_Structs_Pricing_SaleDescriptor] {
     get {return _storage._discounts}
     set {_uniqueStorage()._discounts = newValue}
   }
@@ -210,16 +210,16 @@ public struct Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf.Message {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".WeightedPricingDescriptor"
 
-  public var weight: Structs_Pricing_PricingWeightTier {
+  public var weight: Opencannabis_Structs_Pricing_PricingWeightTier {
     get {return _storage._weight}
     set {_uniqueStorage()._weight = newValue}
   }
 
-  public var tier: Structs_Pricing_UnitPricingDescriptor {
-    get {return _storage._tier ?? Structs_Pricing_UnitPricingDescriptor()}
+  public var tier: Opencannabis_Structs_Pricing_UnitPricingDescriptor {
+    get {return _storage._tier ?? Opencannabis_Structs_Pricing_UnitPricingDescriptor()}
     set {_uniqueStorage()._tier = newValue}
   }
   /// Returns true if `tier` has been explicitly set.
@@ -276,7 +276,7 @@ public struct Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf.Message {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Structs_Pricing_FreebiePricingDescriptor: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Pricing_FreebiePricingDescriptor: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".FreebiePricingDescriptor"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -302,10 +302,10 @@ public struct Structs_Pricing_FreebiePricingDescriptor: SwiftProtobuf.Message {
 }
 
 /// -- Pricing: Main Descriptor
-public struct Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PricingDescriptor"
 
-  public var type: Structs_Pricing_PricingType {
+  public var type: Opencannabis_Structs_Pricing_PricingType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
@@ -316,26 +316,26 @@ public struct Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message {
   }
 
   /// -- descriptors
-  public var unit: Structs_Pricing_UnitPricingDescriptor {
+  public var unit: Opencannabis_Structs_Pricing_UnitPricingDescriptor {
     get {
       if case .unit(let v)? = _storage._pricing {return v}
-      return Structs_Pricing_UnitPricingDescriptor()
+      return Opencannabis_Structs_Pricing_UnitPricingDescriptor()
     }
     set {_uniqueStorage()._pricing = .unit(newValue)}
   }
 
-  public var weighted: Structs_Pricing_WeightedPricingDescriptor {
+  public var weighted: Opencannabis_Structs_Pricing_WeightedPricingDescriptor {
     get {
       if case .weighted(let v)? = _storage._pricing {return v}
-      return Structs_Pricing_WeightedPricingDescriptor()
+      return Opencannabis_Structs_Pricing_WeightedPricingDescriptor()
     }
     set {_uniqueStorage()._pricing = .weighted(newValue)}
   }
 
-  public var freebie: Structs_Pricing_FreebiePricingDescriptor {
+  public var freebie: Opencannabis_Structs_Pricing_FreebiePricingDescriptor {
     get {
       if case .freebie(let v)? = _storage._pricing {return v}
-      return Structs_Pricing_FreebiePricingDescriptor()
+      return Opencannabis_Structs_Pricing_FreebiePricingDescriptor()
     }
     set {_uniqueStorage()._pricing = .freebie(newValue)}
   }
@@ -344,11 +344,11 @@ public struct Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message {
 
   public enum OneOf_Pricing: Equatable {
     /// -- descriptors
-    case unit(Structs_Pricing_UnitPricingDescriptor)
-    case weighted(Structs_Pricing_WeightedPricingDescriptor)
-    case freebie(Structs_Pricing_FreebiePricingDescriptor)
+    case unit(Opencannabis_Structs_Pricing_UnitPricingDescriptor)
+    case weighted(Opencannabis_Structs_Pricing_WeightedPricingDescriptor)
+    case freebie(Opencannabis_Structs_Pricing_FreebiePricingDescriptor)
 
-    public static func ==(lhs: Structs_Pricing_PricingDescriptor.OneOf_Pricing, rhs: Structs_Pricing_PricingDescriptor.OneOf_Pricing) -> Bool {
+    public static func ==(lhs: Opencannabis_Structs_Pricing_PricingDescriptor.OneOf_Pricing, rhs: Opencannabis_Structs_Pricing_PricingDescriptor.OneOf_Pricing) -> Bool {
       switch (lhs, rhs) {
       case (.unit(let l), .unit(let r)): return l == r
       case (.weighted(let l), .weighted(let r)): return l == r
@@ -371,7 +371,7 @@ public struct Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message {
         switch fieldNumber {
         case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
         case 20:
-          var v: Structs_Pricing_UnitPricingDescriptor?
+          var v: Opencannabis_Structs_Pricing_UnitPricingDescriptor?
           if let current = _storage._pricing {
             try decoder.handleConflictingOneOf()
             if case .unit(let m) = current {v = m}
@@ -379,7 +379,7 @@ public struct Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message {
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._pricing = .unit(v)}
         case 21:
-          var v: Structs_Pricing_WeightedPricingDescriptor?
+          var v: Opencannabis_Structs_Pricing_WeightedPricingDescriptor?
           if let current = _storage._pricing {
             try decoder.handleConflictingOneOf()
             if case .weighted(let m) = current {v = m}
@@ -387,7 +387,7 @@ public struct Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message {
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._pricing = .weighted(v)}
         case 22:
-          var v: Structs_Pricing_FreebiePricingDescriptor?
+          var v: Opencannabis_Structs_Pricing_FreebiePricingDescriptor?
           if let current = _storage._pricing {
             try decoder.handleConflictingOneOf()
             if case .freebie(let m) = current {v = m}
@@ -426,12 +426,12 @@ public struct Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message {
 }
 
 /// -- Pricing: Product-level Object
-public struct Structs_Pricing_ProductPricing: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Pricing_ProductPricing: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ProductPricing"
 
-  public var discounts: [Structs_Pricing_SaleDescriptor] = []
+  public var discounts: [Opencannabis_Structs_Pricing_SaleDescriptor] = []
 
-  public var manifest: [Structs_Pricing_PricingDescriptor] = []
+  public var manifest: [Opencannabis_Structs_Pricing_PricingDescriptor] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -468,9 +468,9 @@ public struct Structs_Pricing_ProductPricing: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "structs.pricing"
+fileprivate let _protobuf_package = "opencannabis.structs.pricing"
 
-extension Structs_Pricing_PricingType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_PricingType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNIT"),
     1: .same(proto: "WEIGHTED"),
@@ -478,7 +478,7 @@ extension Structs_Pricing_PricingType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Structs_Pricing_PricingWeightTier: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "OTHER"),
     1: .same(proto: "GRAM"),
@@ -493,13 +493,13 @@ extension Structs_Pricing_PricingWeightTier: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Structs_Pricing_PricingTierAvailability: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_PricingTierAvailability: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "offered"),
     2: .same(proto: "available"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Pricing_PricingTierAvailability) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_PricingTierAvailability) -> Bool {
     if self.offered != other.offered {return false}
     if self.available != other.available {return false}
     if unknownFields != other.unknownFields {return false}
@@ -507,7 +507,7 @@ extension Structs_Pricing_PricingTierAvailability: SwiftProtobuf._MessageImpleme
   }
 }
 
-extension Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "price_value"),
     2: .same(proto: "status"),
@@ -516,8 +516,8 @@ extension Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf._MessageImplement
 
   fileprivate class _StorageClass {
     var _priceValue: Float = 0
-    var _status: Structs_Pricing_PricingTierAvailability? = nil
-    var _discounts: [Structs_Pricing_SaleDescriptor] = []
+    var _status: Opencannabis_Structs_Pricing_PricingTierAvailability? = nil
+    var _discounts: [Opencannabis_Structs_Pricing_SaleDescriptor] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -537,7 +537,7 @@ extension Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf._MessageImplement
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Pricing_UnitPricingDescriptor) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_UnitPricingDescriptor) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -554,7 +554,7 @@ extension Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf._MessageImplement
   }
 }
 
-extension Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "weight"),
     2: .same(proto: "tier"),
@@ -562,8 +562,8 @@ extension Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf._MessageImple
   ]
 
   fileprivate class _StorageClass {
-    var _weight: Structs_Pricing_PricingWeightTier = .other
-    var _tier: Structs_Pricing_UnitPricingDescriptor? = nil
+    var _weight: Opencannabis_Structs_Pricing_PricingWeightTier = .other
+    var _tier: Opencannabis_Structs_Pricing_UnitPricingDescriptor? = nil
     var _weightInGrams: Float = 0
 
     static let defaultInstance = _StorageClass()
@@ -584,7 +584,7 @@ extension Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf._MessageImple
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Pricing_WeightedPricingDescriptor) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_WeightedPricingDescriptor) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -601,16 +601,16 @@ extension Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf._MessageImple
   }
 }
 
-extension Structs_Pricing_FreebiePricingDescriptor: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_FreebiePricingDescriptor: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Pricing_FreebiePricingDescriptor) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_FreebiePricingDescriptor) -> Bool {
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Structs_Pricing_PricingDescriptor: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_PricingDescriptor: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     20: .same(proto: "unit"),
@@ -619,8 +619,8 @@ extension Structs_Pricing_PricingDescriptor: SwiftProtobuf._MessageImplementatio
   ]
 
   fileprivate class _StorageClass {
-    var _type: Structs_Pricing_PricingType = .unit
-    var _pricing: Structs_Pricing_PricingDescriptor.OneOf_Pricing?
+    var _type: Opencannabis_Structs_Pricing_PricingType = .unit
+    var _pricing: Opencannabis_Structs_Pricing_PricingDescriptor.OneOf_Pricing?
 
     static let defaultInstance = _StorageClass()
 
@@ -639,7 +639,7 @@ extension Structs_Pricing_PricingDescriptor: SwiftProtobuf._MessageImplementatio
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Pricing_PricingDescriptor) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_PricingDescriptor) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -655,13 +655,13 @@ extension Structs_Pricing_PricingDescriptor: SwiftProtobuf._MessageImplementatio
   }
 }
 
-extension Structs_Pricing_ProductPricing: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_ProductPricing: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "discounts"),
     2: .same(proto: "manifest"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Pricing_ProductPricing) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_ProductPricing) -> Bool {
     if self.discounts != other.discounts {return false}
     if self.manifest != other.manifest {return false}
     if unknownFields != other.unknownFields {return false}

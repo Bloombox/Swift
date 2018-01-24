@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Known types of document media that can be attached to an ID.
-public enum Identity_IDMedia: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Identity_IDMedia: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Picture of the front of the document.
@@ -58,14 +58,14 @@ public enum Identity_IDMedia: SwiftProtobuf.Enum {
 }
 
 /// Media attachment that binds some document media to a particular driver's license.
-public struct Identity_IDMediaAttachment: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".IDMediaAttachment"
 
   /// Specifies the kind of media being attached.
-  public var type: Identity_IDMedia = .documentFront
+  public var type: Bloombox_Schema_Identity_IDMedia = .documentFront
 
   /// Specifies the orientation of the attached media.
-  public var orientation: Media_MediaOrientation = .up
+  public var orientation: Opencannabis_Media_MediaOrientation = .up
 
   /// Specifies raw data for the attached media.
   public var data: Data = SwiftProtobuf.Internal.emptyData
@@ -123,9 +123,9 @@ public struct Identity_IDMediaAttachment: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "identity"
+fileprivate let _protobuf_package = "bloombox.schema.identity"
 
-extension Identity_IDMedia: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_IDMedia: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "DOCUMENT_FRONT"),
     1: .same(proto: "DOCUMENT_REAR"),
@@ -133,7 +133,7 @@ extension Identity_IDMedia: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Identity_IDMediaAttachment: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "orientation"),
@@ -142,7 +142,7 @@ extension Identity_IDMediaAttachment: SwiftProtobuf._MessageImplementationBase, 
     5: .same(proto: "quality"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Identity_IDMediaAttachment) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_IDMediaAttachment) -> Bool {
     if self.type != other.type {return false}
     if self.orientation != other.orientation {return false}
     if self.data != other.data {return false}

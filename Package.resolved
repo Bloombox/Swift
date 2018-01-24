@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "SwiftGRPC",
-        "repositoryURL": "https://github.com/grpc/grpc-swift.git",
+        "repositoryURL": "https://github.com/bloombox/grpc-swift.git",
         "state": {
           "branch": "master",
-          "revision": "bc3ab540cb6ce1e923693ea7a730ababfffbdae7",
+          "revision": "5b23fe106db2a94c71cbdb963589e38e4299f837",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": "master",
-          "revision": "9dea0a4e64f9c3eb73db3308e7302f45cd8380b2",
+          "revision": "e779db5ee497627f33bcdfa684daf124273d6395",
           "version": null
         }
       },

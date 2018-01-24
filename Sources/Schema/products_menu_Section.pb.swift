@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Flags that may be applied to a section's configuration.
-public enum Products_Menu_Section_SectionFlag: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_Menu_Section_SectionFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// This section should not be displayed.
@@ -53,7 +53,7 @@ public enum Products_Menu_Section_SectionFlag: SwiftProtobuf.Enum {
 }
 
 /// Known sections, that are expected to be included with nearly every menu.
-public enum Products_Menu_Section_Section: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_Menu_Section_Section: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unspecified or unknown section.
@@ -121,7 +121,7 @@ public enum Products_Menu_Section_Section: SwiftProtobuf.Enum {
 }
 
 /// Special filtered sections - commonly used sections based on filters builtin to apps/sites.
-public enum Products_Menu_Section_FilteredSection: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_Menu_Section_FilteredSection: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Only presents products that are on sale.
@@ -159,14 +159,14 @@ public enum Products_Menu_Section_FilteredSection: SwiftProtobuf.Enum {
 }
 
 /// Custom configuration-based menu sections, usually via `FilteredSection`.
-public struct Products_Menu_Section_CustomSection: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Menu_Section_CustomSection: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".CustomSection"
 
   /// String ID for a custom section.
   public var id: String = String()
 
   /// Filtered section specification.
-  public var filter: Products_Menu_Section_FilteredSection = .onSale
+  public var filter: Opencannabis_Products_Menu_Section_FilteredSection = .onSale
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -202,12 +202,12 @@ public struct Products_Menu_Section_CustomSection: SwiftProtobuf.Message {
 }
 
 /// Specifies media for a section.
-public struct Products_Menu_Section_SectionMedia: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Menu_Section_SectionMedia: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".SectionMedia"
 
   /// Specifies a media item to use as a tablet homescreen tile for this section.
-  public var tabletHomescreenMedia: Media_MediaItem {
-    get {return _storage._tabletHomescreenMedia ?? Media_MediaItem()}
+  public var tabletHomescreenMedia: Opencannabis_Media_MediaItem {
+    get {return _storage._tabletHomescreenMedia ?? Opencannabis_Media_MediaItem()}
     set {_uniqueStorage()._tabletHomescreenMedia = newValue}
   }
   /// Returns true if `tabletHomescreenMedia` has been explicitly set.
@@ -252,12 +252,12 @@ public struct Products_Menu_Section_SectionMedia: SwiftProtobuf.Message {
 }
 
 /// Specifies settings that a menu section may consider.
-public struct Products_Menu_Section_SectionSettings: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Menu_Section_SectionSettings: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".SectionSettings"
 
   /// Presentable name for this section.
-  public var name: Content_Name {
-    get {return _storage._name ?? Content_Name()}
+  public var name: Opencannabis_Content_Name {
+    get {return _storage._name ?? Opencannabis_Content_Name()}
     set {_uniqueStorage()._name = newValue}
   }
   /// Returns true if `name` has been explicitly set.
@@ -266,8 +266,8 @@ public struct Products_Menu_Section_SectionSettings: SwiftProtobuf.Message {
   public mutating func clearName() {_storage._name = nil}
 
   /// Media to use when presenting this section.
-  public var media: Products_Menu_Section_SectionMedia {
-    get {return _storage._media ?? Products_Menu_Section_SectionMedia()}
+  public var media: Opencannabis_Products_Menu_Section_SectionMedia {
+    get {return _storage._media ?? Opencannabis_Products_Menu_Section_SectionMedia()}
     set {_uniqueStorage()._media = newValue}
   }
   /// Returns true if `media` has been explicitly set.
@@ -316,7 +316,7 @@ public struct Products_Menu_Section_SectionSettings: SwiftProtobuf.Message {
 }
 
 /// Specifies a menu section, along with section configuration (settings and flags).
-public struct Products_Menu_Section_SectionSpec: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Menu_Section_SectionSpec: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".SectionSpec"
 
   /// Specifies the subject menu section.
@@ -326,7 +326,7 @@ public struct Products_Menu_Section_SectionSpec: SwiftProtobuf.Message {
   }
 
   /// Known and enumerated menu section.
-  public var section: Products_Menu_Section_Section {
+  public var section: Opencannabis_Products_Menu_Section_Section {
     get {
       if case .section(let v)? = _storage._spec {return v}
       return .unspecified
@@ -335,10 +335,10 @@ public struct Products_Menu_Section_SectionSpec: SwiftProtobuf.Message {
   }
 
   /// Custom, filter-based menu section.
-  public var customSection: Products_Menu_Section_CustomSection {
+  public var customSection: Opencannabis_Products_Menu_Section_CustomSection {
     get {
       if case .customSection(let v)? = _storage._spec {return v}
-      return Products_Menu_Section_CustomSection()
+      return Opencannabis_Products_Menu_Section_CustomSection()
     }
     set {_uniqueStorage()._spec = .customSection(newValue)}
   }
@@ -353,8 +353,8 @@ public struct Products_Menu_Section_SectionSpec: SwiftProtobuf.Message {
   }
 
   /// Settings to apply to the subject section.
-  public var settings: Products_Menu_Section_SectionSettings {
-    get {return _storage._settings ?? Products_Menu_Section_SectionSettings()}
+  public var settings: Opencannabis_Products_Menu_Section_SectionSettings {
+    get {return _storage._settings ?? Opencannabis_Products_Menu_Section_SectionSettings()}
     set {_uniqueStorage()._settings = newValue}
   }
   /// Returns true if `settings` has been explicitly set.
@@ -363,7 +363,7 @@ public struct Products_Menu_Section_SectionSpec: SwiftProtobuf.Message {
   public mutating func clearSettings() {_storage._settings = nil}
 
   /// Current set of flags to apply to the subject section.
-  public var flags: [Products_Menu_Section_SectionFlag] {
+  public var flags: [Opencannabis_Products_Menu_Section_SectionFlag] {
     get {return _storage._flags}
     set {_uniqueStorage()._flags = newValue}
   }
@@ -373,13 +373,13 @@ public struct Products_Menu_Section_SectionSpec: SwiftProtobuf.Message {
   /// Specifies the subject menu section.
   public enum OneOf_Spec: Equatable {
     /// Known and enumerated menu section.
-    case section(Products_Menu_Section_Section)
+    case section(Opencannabis_Products_Menu_Section_Section)
     /// Custom, filter-based menu section.
-    case customSection(Products_Menu_Section_CustomSection)
+    case customSection(Opencannabis_Products_Menu_Section_CustomSection)
     /// Arbitrary name for other types of sections.
     case name(String)
 
-    public static func ==(lhs: Products_Menu_Section_SectionSpec.OneOf_Spec, rhs: Products_Menu_Section_SectionSpec.OneOf_Spec) -> Bool {
+    public static func ==(lhs: Opencannabis_Products_Menu_Section_SectionSpec.OneOf_Spec, rhs: Opencannabis_Products_Menu_Section_SectionSpec.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.section(let l), .section(let r)): return l == r
       case (.customSection(let l), .customSection(let r)): return l == r
@@ -402,11 +402,11 @@ public struct Products_Menu_Section_SectionSpec: SwiftProtobuf.Message {
         switch fieldNumber {
         case 1:
           if _storage._spec != nil {try decoder.handleConflictingOneOf()}
-          var v: Products_Menu_Section_Section?
+          var v: Opencannabis_Products_Menu_Section_Section?
           try decoder.decodeSingularEnumField(value: &v)
           if let v = v {_storage._spec = .section(v)}
         case 2:
-          var v: Products_Menu_Section_CustomSection?
+          var v: Opencannabis_Products_Menu_Section_CustomSection?
           if let current = _storage._spec {
             try decoder.handleConflictingOneOf()
             if case .customSection(let m) = current {v = m}
@@ -456,16 +456,16 @@ public struct Products_Menu_Section_SectionSpec: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "products.menu.section"
+fileprivate let _protobuf_package = "opencannabis.products.menu.section"
 
-extension Products_Menu_Section_SectionFlag: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Section_SectionFlag: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "HIDDEN"),
     1: .same(proto: "FEATURED"),
   ]
 }
 
-extension Products_Menu_Section_Section: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Section_Section: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED"),
     1: .same(proto: "FLOWERS"),
@@ -479,7 +479,7 @@ extension Products_Menu_Section_Section: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_Menu_Section_FilteredSection: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Section_FilteredSection: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ON_SALE"),
     1: .same(proto: "HOUSE"),
@@ -487,13 +487,13 @@ extension Products_Menu_Section_FilteredSection: SwiftProtobuf._ProtoNameProvidi
   ]
 }
 
-extension Products_Menu_Section_CustomSection: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Section_CustomSection: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "filter"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Products_Menu_Section_CustomSection) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_CustomSection) -> Bool {
     if self.id != other.id {return false}
     if self.filter != other.filter {return false}
     if unknownFields != other.unknownFields {return false}
@@ -501,13 +501,13 @@ extension Products_Menu_Section_CustomSection: SwiftProtobuf._MessageImplementat
   }
 }
 
-extension Products_Menu_Section_SectionMedia: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Section_SectionMedia: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .standard(proto: "tablet_homescreen_media"),
   ]
 
   fileprivate class _StorageClass {
-    var _tabletHomescreenMedia: Media_MediaItem? = nil
+    var _tabletHomescreenMedia: Opencannabis_Media_MediaItem? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -525,7 +525,7 @@ extension Products_Menu_Section_SectionMedia: SwiftProtobuf._MessageImplementati
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Menu_Section_SectionMedia) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_SectionMedia) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -540,15 +540,15 @@ extension Products_Menu_Section_SectionMedia: SwiftProtobuf._MessageImplementati
   }
 }
 
-extension Products_Menu_Section_SectionSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Section_SectionSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "media"),
   ]
 
   fileprivate class _StorageClass {
-    var _name: Content_Name? = nil
-    var _media: Products_Menu_Section_SectionMedia? = nil
+    var _name: Opencannabis_Content_Name? = nil
+    var _media: Opencannabis_Products_Menu_Section_SectionMedia? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -567,7 +567,7 @@ extension Products_Menu_Section_SectionSettings: SwiftProtobuf._MessageImplement
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Menu_Section_SectionSettings) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_SectionSettings) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -583,7 +583,7 @@ extension Products_Menu_Section_SectionSettings: SwiftProtobuf._MessageImplement
   }
 }
 
-extension Products_Menu_Section_SectionSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Section_SectionSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "section"),
     2: .standard(proto: "custom_section"),
@@ -593,9 +593,9 @@ extension Products_Menu_Section_SectionSpec: SwiftProtobuf._MessageImplementatio
   ]
 
   fileprivate class _StorageClass {
-    var _spec: Products_Menu_Section_SectionSpec.OneOf_Spec?
-    var _settings: Products_Menu_Section_SectionSettings? = nil
-    var _flags: [Products_Menu_Section_SectionFlag] = []
+    var _spec: Opencannabis_Products_Menu_Section_SectionSpec.OneOf_Spec?
+    var _settings: Opencannabis_Products_Menu_Section_SectionSettings? = nil
+    var _flags: [Opencannabis_Products_Menu_Section_SectionFlag] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -615,7 +615,7 @@ extension Products_Menu_Section_SectionSpec: SwiftProtobuf._MessageImplementatio
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Menu_Section_SectionSpec) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_SectionSpec) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

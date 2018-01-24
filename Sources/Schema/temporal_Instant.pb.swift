@@ -20,11 +20,11 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a particular moment in time.
-public struct Temporal_Instant: SwiftProtobuf.Message {
+public struct Opencannabis_Temporal_Instant: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Instant"
 
   /// Instant specification option.
-  public var spec: Temporal_Instant.OneOf_Spec? = nil
+  public var spec: Opencannabis_Temporal_Instant.OneOf_Spec? = nil
 
   /// ISO8601-formatted timestamp.
   public var iso8601: String {
@@ -53,7 +53,7 @@ public struct Temporal_Instant: SwiftProtobuf.Message {
     /// Unix epoch timestamp, at millisecond resolution.
     case timestamp(UInt64)
 
-    public static func ==(lhs: Temporal_Instant.OneOf_Spec, rhs: Temporal_Instant.OneOf_Spec) -> Bool {
+    public static func ==(lhs: Opencannabis_Temporal_Instant.OneOf_Spec, rhs: Opencannabis_Temporal_Instant.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.iso8601(let l), .iso8601(let r)): return l == r
       case (.timestamp(let l), .timestamp(let r)): return l == r
@@ -104,15 +104,15 @@ public struct Temporal_Instant: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "temporal"
+fileprivate let _protobuf_package = "opencannabis.temporal"
 
-extension Temporal_Instant: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Temporal_Instant: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "iso8601"),
     2: .same(proto: "timestamp"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Temporal_Instant) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Temporal_Instant) -> Bool {
     if self.spec != other.spec {return false}
     if unknownFields != other.unknownFields {return false}
     return true

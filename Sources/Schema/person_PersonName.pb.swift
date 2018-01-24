@@ -21,7 +21,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Represents a human being's name, in the style of "given" name (first) and "family" name (last) being concatenated to
 /// form a full person's name. Additional names, like middle names, etc, are also specified here.
-public struct Person_Name: SwiftProtobuf.Message {
+public struct Opencannabis_Person_Name: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Name"
 
   /// Person's full name, if a fulltext value should override.
@@ -93,9 +93,9 @@ public struct Person_Name: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "person"
+fileprivate let _protobuf_package = "opencannabis.person"
 
-extension Person_Name: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Person_Name: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "full_name"),
     2: .standard(proto: "first_name"),
@@ -105,7 +105,7 @@ extension Person_Name: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._
     6: .same(proto: "postfix"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Person_Name) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Person_Name) -> Bool {
     if self.fullName != other.fullName {return false}
     if self.firstName != other.firstName {return false}
     if self.lastName != other.lastName {return false}

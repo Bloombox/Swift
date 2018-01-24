@@ -20,11 +20,11 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a particular calendar date.
-public struct Temporal_Date: SwiftProtobuf.Message {
+public struct Opencannabis_Temporal_Date: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Date"
 
   /// Date specification option.
-  public var spec: Temporal_Date.OneOf_Spec? = nil
+  public var spec: Opencannabis_Temporal_Date.OneOf_Spec? = nil
 
   /// ISO8601-formatted calendar date value, like YYYY-MM-DD.
   public var iso8601: String {
@@ -42,7 +42,7 @@ public struct Temporal_Date: SwiftProtobuf.Message {
     /// ISO8601-formatted calendar date value, like YYYY-MM-DD.
     case iso8601(String)
 
-    public static func ==(lhs: Temporal_Date.OneOf_Spec, rhs: Temporal_Date.OneOf_Spec) -> Bool {
+    public static func ==(lhs: Opencannabis_Temporal_Date.OneOf_Spec, rhs: Opencannabis_Temporal_Date.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.iso8601(let l), .iso8601(let r)): return l == r
       }
@@ -82,14 +82,14 @@ public struct Temporal_Date: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "temporal"
+fileprivate let _protobuf_package = "opencannabis.temporal"
 
-extension Temporal_Date: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Temporal_Date: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "iso8601"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Temporal_Date) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Temporal_Date) -> Bool {
     if self.spec != other.spec {return false}
     if unknownFields != other.unknownFields {return false}
     return true

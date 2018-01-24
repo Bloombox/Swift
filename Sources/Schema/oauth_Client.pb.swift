@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Oauth_Client: SwiftProtobuf.Message {
+public struct Opencannabis_Oauth_Client: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Client"
 
   public var clientID: String = String()
@@ -59,7 +59,7 @@ public struct Oauth_Client: SwiftProtobuf.Message {
   }
 }
 
-public struct Oauth_ClientID: SwiftProtobuf.Message {
+public struct Opencannabis_Oauth_ClientID: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ClientID"
 
   public var id: String = String()
@@ -93,7 +93,7 @@ public struct Oauth_ClientID: SwiftProtobuf.Message {
   }
 }
 
-public struct Oauth_ClientSecret: SwiftProtobuf.Message {
+public struct Opencannabis_Oauth_ClientSecret: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".ClientSecret"
 
   public var secret: String = String()
@@ -129,15 +129,15 @@ public struct Oauth_ClientSecret: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "oauth"
+fileprivate let _protobuf_package = "opencannabis.oauth"
 
-extension Oauth_Client: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Oauth_Client: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "client_id"),
     2: .standard(proto: "client_secret"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Oauth_Client) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Oauth_Client) -> Bool {
     if self.clientID != other.clientID {return false}
     if self.clientSecret != other.clientSecret {return false}
     if unknownFields != other.unknownFields {return false}
@@ -145,24 +145,24 @@ extension Oauth_Client: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf.
   }
 }
 
-extension Oauth_ClientID: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Oauth_ClientID: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Oauth_ClientID) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Oauth_ClientID) -> Bool {
     if self.id != other.id {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Oauth_ClientSecret: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Oauth_ClientSecret: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "secret"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Oauth_ClientSecret) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Oauth_ClientSecret) -> Bool {
     if self.secret != other.secret {return false}
     if unknownFields != other.unknownFields {return false}
     return true

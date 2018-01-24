@@ -20,12 +20,12 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// A person/patint and their name, legal name, nickname, etc.
-public struct Person_Person: SwiftProtobuf.Message {
+public struct Opencannabis_Person_Person: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Person"
 
   /// Person's primary name information.
-  public var name: Person_Name {
-    get {return _storage._name ?? Person_Name()}
+  public var name: Opencannabis_Person_Name {
+    get {return _storage._name ?? Opencannabis_Person_Name()}
     set {_uniqueStorage()._name = newValue}
   }
   /// Returns true if `name` has been explicitly set.
@@ -34,8 +34,8 @@ public struct Person_Person: SwiftProtobuf.Message {
   public mutating func clearName() {_storage._name = nil}
 
   /// Person's legal name, if it differs from their primary name.
-  public var legalName: Person_Name {
-    get {return _storage._legalName ?? Person_Name()}
+  public var legalName: Opencannabis_Person_Name {
+    get {return _storage._legalName ?? Opencannabis_Person_Name()}
     set {_uniqueStorage()._legalName = newValue}
   }
   /// Returns true if `legalName` has been explicitly set.
@@ -44,8 +44,8 @@ public struct Person_Person: SwiftProtobuf.Message {
   public mutating func clearLegalName() {_storage._legalName = nil}
 
   /// Person's optional alternate name.
-  public var alternateName: Person_Name {
-    get {return _storage._alternateName ?? Person_Name()}
+  public var alternateName: Opencannabis_Person_Name {
+    get {return _storage._alternateName ?? Opencannabis_Person_Name()}
     set {_uniqueStorage()._alternateName = newValue}
   }
   /// Returns true if `alternateName` has been explicitly set.
@@ -54,8 +54,8 @@ public struct Person_Person: SwiftProtobuf.Message {
   public mutating func clearAlternateName() {_storage._alternateName = nil}
 
   /// Person's contact information.
-  public var contact: Contact_ContactInfo {
-    get {return _storage._contact ?? Contact_ContactInfo()}
+  public var contact: Opencannabis_Contact_ContactInfo {
+    get {return _storage._contact ?? Opencannabis_Contact_ContactInfo()}
     set {_uniqueStorage()._contact = newValue}
   }
   /// Returns true if `contact` has been explicitly set.
@@ -64,8 +64,8 @@ public struct Person_Person: SwiftProtobuf.Message {
   public mutating func clearContact() {_storage._contact = nil}
 
   /// Date of birth.
-  public var dateOfBirth: Temporal_Date {
-    get {return _storage._dateOfBirth ?? Temporal_Date()}
+  public var dateOfBirth: Opencannabis_Temporal_Date {
+    get {return _storage._dateOfBirth ?? Opencannabis_Temporal_Date()}
     set {_uniqueStorage()._dateOfBirth = newValue}
   }
   /// Returns true if `dateOfBirth` has been explicitly set.
@@ -127,9 +127,9 @@ public struct Person_Person: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "person"
+fileprivate let _protobuf_package = "opencannabis.person"
 
-extension Person_Person: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Person_Person: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .standard(proto: "legal_name"),
@@ -139,11 +139,11 @@ extension Person_Person: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
   ]
 
   fileprivate class _StorageClass {
-    var _name: Person_Name? = nil
-    var _legalName: Person_Name? = nil
-    var _alternateName: Person_Name? = nil
-    var _contact: Contact_ContactInfo? = nil
-    var _dateOfBirth: Temporal_Date? = nil
+    var _name: Opencannabis_Person_Name? = nil
+    var _legalName: Opencannabis_Person_Name? = nil
+    var _alternateName: Opencannabis_Person_Name? = nil
+    var _contact: Opencannabis_Contact_ContactInfo? = nil
+    var _dateOfBirth: Opencannabis_Temporal_Date? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -165,7 +165,7 @@ extension Person_Person: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Person_Person) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Person_Person) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

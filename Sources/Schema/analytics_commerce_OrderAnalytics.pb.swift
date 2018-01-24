@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies actions that may be taken on an order.
-public enum Analytics_Order_OrderAction: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Analytics_Order_OrderAction: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The user added to their cart.
@@ -104,12 +104,12 @@ public enum Analytics_Order_OrderAction: SwiftProtobuf.Enum {
 
 /// Specifies an order action event, wherein a user or backoffice admin has affirmatively taken some action upon or
 /// regarding a commercial order to be submitted or previously submitted by an end user.
-public struct Analytics_Order_Action: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Order_Action: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Action"
 
   /// Order being referenced for action, if any.
-  public var orderKey: Commerce_OrderKey {
-    get {return _storage._orderKey ?? Commerce_OrderKey()}
+  public var orderKey: Opencannabis_Commerce_OrderKey {
+    get {return _storage._orderKey ?? Opencannabis_Commerce_OrderKey()}
     set {_uniqueStorage()._orderKey = newValue}
   }
   /// Returns true if `orderKey` has been explicitly set.
@@ -118,14 +118,14 @@ public struct Analytics_Order_Action: SwiftProtobuf.Message {
   public mutating func clearOrderKey() {_storage._orderKey = nil}
 
   /// Action that was taken upon or regarding the order.
-  public var verb: Analytics_Order_OrderAction {
+  public var verb: Bloombox_Schema_Analytics_Order_OrderAction {
     get {return _storage._verb}
     set {_uniqueStorage()._verb = newValue}
   }
 
   /// Customer that took this action.
-  public var customer: Commerce_Customer {
-    get {return _storage._customer ?? Commerce_Customer()}
+  public var customer: Opencannabis_Commerce_Customer {
+    get {return _storage._customer ?? Opencannabis_Commerce_Customer()}
     set {_uniqueStorage()._customer = newValue}
   }
   /// Returns true if `customer` has been explicitly set.
@@ -134,8 +134,8 @@ public struct Analytics_Order_Action: SwiftProtobuf.Message {
   public mutating func clearCustomer() {_storage._customer = nil}
 
   /// Specifies when this view event occurred.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -193,9 +193,9 @@ public struct Analytics_Order_Action: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.order"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.order"
 
-extension Analytics_Order_OrderAction: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Order_OrderAction: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ADD_TO_CART"),
     1: .same(proto: "REMOVE_FROM_CART"),
@@ -212,7 +212,7 @@ extension Analytics_Order_OrderAction: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Analytics_Order_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Order_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "order_key"),
     2: .same(proto: "verb"),
@@ -221,10 +221,10 @@ extension Analytics_Order_Action: SwiftProtobuf._MessageImplementationBase, Swif
   ]
 
   fileprivate class _StorageClass {
-    var _orderKey: Commerce_OrderKey? = nil
-    var _verb: Analytics_Order_OrderAction = .addToCart
-    var _customer: Commerce_Customer? = nil
-    var _occurred: Temporal_Instant? = nil
+    var _orderKey: Opencannabis_Commerce_OrderKey? = nil
+    var _verb: Bloombox_Schema_Analytics_Order_OrderAction = .addToCart
+    var _customer: Opencannabis_Commerce_Customer? = nil
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -245,7 +245,7 @@ extension Analytics_Order_Action: SwiftProtobuf._MessageImplementationBase, Swif
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Order_Action) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Order_Action) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

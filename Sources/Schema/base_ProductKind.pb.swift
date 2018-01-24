@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates types of products known to the spec.
-public enum Base_ProductKind: SwiftProtobuf.Enum {
+public enum Opencannabis_Base_ProductKind: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Traditional buds or 'flower'-based products, essentially sold in bags or jars.
@@ -84,7 +84,7 @@ public enum Base_ProductKind: SwiftProtobuf.Enum {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Base_ProductKind: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Base_ProductKind: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "FLOWERS"),
     1: .same(proto: "EDIBLES"),

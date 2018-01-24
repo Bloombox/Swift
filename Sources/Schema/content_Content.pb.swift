@@ -20,17 +20,17 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a freeform content payload of some kind.
-public struct Content_Content: SwiftProtobuf.Message {
+public struct Opencannabis_Content_Content: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Content"
 
   /// Format/underlying type of content data.
-  public var type: Content_Content.TypeEnum {
+  public var type: Opencannabis_Content_Content.TypeEnum {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Encoding of underlying content data.
-  public var encoding: Content_Content.Encoding {
+  public var encoding: Opencannabis_Content_Content.Encoding {
     get {return _storage._encoding}
     set {_uniqueStorage()._encoding = newValue}
   }
@@ -42,14 +42,14 @@ public struct Content_Content: SwiftProtobuf.Message {
   }
 
   /// Language information for underlying content.
-  public var language: Base_Language {
+  public var language: Opencannabis_Base_Language {
     get {return _storage._language}
     set {_uniqueStorage()._language = newValue}
   }
 
   /// Compression settings for underlying content.
-  public var compression: Base_Compression {
-    get {return _storage._compression ?? Base_Compression()}
+  public var compression: Opencannabis_Base_Compression {
+    get {return _storage._compression ?? Opencannabis_Base_Compression()}
     set {_uniqueStorage()._compression = newValue}
   }
   /// Returns true if `compression` has been explicitly set.
@@ -187,9 +187,9 @@ public struct Content_Content: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "content"
+fileprivate let _protobuf_package = "opencannabis.content"
 
-extension Content_Content: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_Content: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "encoding"),
@@ -199,11 +199,11 @@ extension Content_Content: SwiftProtobuf._MessageImplementationBase, SwiftProtob
   ]
 
   fileprivate class _StorageClass {
-    var _type: Content_Content.TypeEnum = .text
-    var _encoding: Content_Content.Encoding = .utf8
+    var _type: Opencannabis_Content_Content.TypeEnum = .text
+    var _encoding: Opencannabis_Content_Content.Encoding = .utf8
     var _content: String = String()
-    var _language: Base_Language = .english
-    var _compression: Base_Compression? = nil
+    var _language: Opencannabis_Base_Language = .english
+    var _compression: Opencannabis_Base_Compression? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -225,7 +225,7 @@ extension Content_Content: SwiftProtobuf._MessageImplementationBase, SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Content_Content) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_Content) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -244,7 +244,7 @@ extension Content_Content: SwiftProtobuf._MessageImplementationBase, SwiftProtob
   }
 }
 
-extension Content_Content.TypeEnum: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_Content.TypeEnum: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "TEXT"),
     1: .same(proto: "MARKDOWN"),
@@ -252,7 +252,7 @@ extension Content_Content.TypeEnum: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Content_Content.Encoding: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_Content.Encoding: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UTF8"),
     1: .same(proto: "B64"),

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies actions that may be taken by a user. See also: `ShopAction`.
-public enum Analytics_Identity_UserAction: SwiftProtobuf.Enum {
+public enum Bloombox_Schema_Analytics_Identity_UserAction: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The user engaged in some manner, either anonymously, or with an identified user key.
@@ -101,7 +101,7 @@ public enum Analytics_Identity_UserAction: SwiftProtobuf.Enum {
 
 /// Specifies a user action event, wherein a user has taken some affirmative action related to themselves, their identity
 /// with regards to a particular system, or their account or preferences.
-public struct Analytics_Identity_Action: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Identity_Action: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Action"
 
   /// User identity being referenced.
@@ -111,14 +111,14 @@ public struct Analytics_Identity_Action: SwiftProtobuf.Message {
   }
 
   /// Action that was taken upon or regarding the order.
-  public var verb: Analytics_Identity_UserAction {
+  public var verb: Bloombox_Schema_Analytics_Identity_UserAction {
     get {return _storage._verb}
     set {_uniqueStorage()._verb = newValue}
   }
 
   /// Specifies when this view event occurred.
-  public var occurred: Temporal_Instant {
-    get {return _storage._occurred ?? Temporal_Instant()}
+  public var occurred: Opencannabis_Temporal_Instant {
+    get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._occurred = newValue}
   }
   /// Returns true if `occurred` has been explicitly set.
@@ -172,9 +172,9 @@ public struct Analytics_Identity_Action: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics.identity"
+fileprivate let _protobuf_package = "bloombox.schema.analytics.identity"
 
-extension Analytics_Identity_UserAction: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Identity_UserAction: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ENGAGE"),
     10: .same(proto: "ENROLL"),
@@ -190,7 +190,7 @@ extension Analytics_Identity_UserAction: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Analytics_Identity_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Identity_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "identity"),
     2: .same(proto: "verb"),
@@ -199,8 +199,8 @@ extension Analytics_Identity_Action: SwiftProtobuf._MessageImplementationBase, S
 
   fileprivate class _StorageClass {
     var _identity: String = String()
-    var _verb: Analytics_Identity_UserAction = .engage
-    var _occurred: Temporal_Instant? = nil
+    var _verb: Bloombox_Schema_Analytics_Identity_UserAction = .engage
+    var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -220,7 +220,7 @@ extension Analytics_Identity_Action: SwiftProtobuf._MessageImplementationBase, S
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Identity_Action) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Identity_Action) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

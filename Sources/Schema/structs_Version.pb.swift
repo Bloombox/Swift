@@ -20,11 +20,11 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Structure that allows universal specification of most common version patterns.
-public struct Structs_VersionSpec: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_VersionSpec: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".VersionSpec"
 
   /// Specifies one of a few eligible version specification structures.
-  public var spec: Structs_VersionSpec.OneOf_Spec? = nil
+  public var spec: Opencannabis_Structs_VersionSpec.OneOf_Spec? = nil
 
   /// Version specified by arbitrary name.
   public var name: String {
@@ -42,7 +42,7 @@ public struct Structs_VersionSpec: SwiftProtobuf.Message {
     /// Version specified by arbitrary name.
     case name(String)
 
-    public static func ==(lhs: Structs_VersionSpec.OneOf_Spec, rhs: Structs_VersionSpec.OneOf_Spec) -> Bool {
+    public static func ==(lhs: Opencannabis_Structs_VersionSpec.OneOf_Spec, rhs: Opencannabis_Structs_VersionSpec.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.name(let l), .name(let r)): return l == r
       }
@@ -82,14 +82,14 @@ public struct Structs_VersionSpec: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "structs"
+fileprivate let _protobuf_package = "opencannabis.structs"
 
-extension Structs_VersionSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_VersionSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Structs_VersionSpec) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_VersionSpec) -> Bool {
     if self.spec != other.spec {return false}
     if unknownFields != other.unknownFields {return false}
     return true

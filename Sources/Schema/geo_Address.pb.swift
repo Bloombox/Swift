@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Geo_Address: SwiftProtobuf.Message {
+public struct Opencannabis_Geo_Address: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Address"
 
   public var firstLine: String = String()
@@ -85,9 +85,9 @@ public struct Geo_Address: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "geo"
+fileprivate let _protobuf_package = "opencannabis.geo"
 
-extension Geo_Address: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Geo_Address: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "first_line"),
     2: .standard(proto: "second_line"),
@@ -97,7 +97,7 @@ extension Geo_Address: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._
     6: .same(proto: "country"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Geo_Address) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Address) -> Bool {
     if self.firstLine != other.firstLine {return false}
     if self.secondLine != other.secondLine {return false}
     if self.city != other.city {return false}

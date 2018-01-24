@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies types of generic merchandise that may be carried on a dispensary menu.
-public enum Products_MerchandiseType: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_MerchandiseType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unknown, unrecognized, or otherwise unspecified merchandise subcategory.
@@ -68,7 +68,7 @@ public enum Products_MerchandiseType: SwiftProtobuf.Enum {
 }
 
 /// Flags that may be applied specifically to merchandise items.
-public enum Products_MerchandiseFlag: SwiftProtobuf.Enum {
+public enum Opencannabis_Products_MerchandiseFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// No flags specified.
@@ -107,12 +107,12 @@ public enum Products_MerchandiseFlag: SwiftProtobuf.Enum {
 
 /// Specifies an item of merchandise, that does not contain cannabis, but is sold anyway by a dispensary, such as branded
 /// clothing, containers, lighters, and other random stuff.
-public struct Products_Merchandise: SwiftProtobuf.Message {
+public struct Opencannabis_Products_Merchandise: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Merchandise"
 
   /// Product key uniquely identifying this merchandise item.
-  public var key: Base_ProductKey {
-    get {return _storage._key ?? Base_ProductKey()}
+  public var key: Opencannabis_Base_ProductKey {
+    get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -121,20 +121,20 @@ public struct Products_Merchandise: SwiftProtobuf.Message {
   public mutating func clearKey() {_storage._key = nil}
 
   /// Sub-category for this merchandise item, if known.
-  public var type: Products_MerchandiseType {
+  public var type: Opencannabis_Products_MerchandiseType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Flags for this merchandise item.
-  public var flags: [Products_MerchandiseFlag] {
+  public var flags: [Opencannabis_Products_MerchandiseFlag] {
     get {return _storage._flags}
     set {_uniqueStorage()._flags = newValue}
   }
 
   /// Content about this merchandise item.
-  public var product: Content_ProductContent {
-    get {return _storage._product ?? Content_ProductContent()}
+  public var product: Opencannabis_Content_ProductContent {
+    get {return _storage._product ?? Opencannabis_Content_ProductContent()}
     set {_uniqueStorage()._product = newValue}
   }
   /// Returns true if `product` has been explicitly set.
@@ -192,9 +192,9 @@ public struct Products_Merchandise: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "products"
+fileprivate let _protobuf_package = "opencannabis.products"
 
-extension Products_MerchandiseType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_MerchandiseType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED_MERCHANDISE"),
     1: .same(proto: "CLOTHING"),
@@ -204,7 +204,7 @@ extension Products_MerchandiseType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_MerchandiseFlag: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_MerchandiseFlag: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_MERCHANDISE_FLAGS"),
     1: .same(proto: "MEDICAL_ONLY"),
@@ -212,7 +212,7 @@ extension Products_MerchandiseFlag: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Products_Merchandise: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Merchandise: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "type"),
@@ -221,10 +221,10 @@ extension Products_Merchandise: SwiftProtobuf._MessageImplementationBase, SwiftP
   ]
 
   fileprivate class _StorageClass {
-    var _key: Base_ProductKey? = nil
-    var _type: Products_MerchandiseType = .unspecifiedMerchandise
-    var _flags: [Products_MerchandiseFlag] = []
-    var _product: Content_ProductContent? = nil
+    var _key: Opencannabis_Base_ProductKey? = nil
+    var _type: Opencannabis_Products_MerchandiseType = .unspecifiedMerchandise
+    var _flags: [Opencannabis_Products_MerchandiseFlag] = []
+    var _product: Opencannabis_Content_ProductContent? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -245,7 +245,7 @@ extension Products_Merchandise: SwiftProtobuf._MessageImplementationBase, SwiftP
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Products_Merchandise) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Merchandise) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

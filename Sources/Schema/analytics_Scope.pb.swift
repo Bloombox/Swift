@@ -22,7 +22,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 /// Specifies scope options applied to an event, including its "partner scope," (or the partner/location/device under
 /// which the event was logged), and its "commercial scope," (indicating the section/item/order involved in an event
 /// transaction), among others.
-public struct Analytics_Scope: SwiftProtobuf.Message {
+public struct Bloombox_Schema_Analytics_Scope: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Scope"
 
   /// Partner scope. Specifies, each-if-applicable and only in the following order-of-scope, the partner code, location
@@ -75,16 +75,16 @@ public struct Analytics_Scope: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "analytics"
+fileprivate let _protobuf_package = "bloombox.schema.analytics"
 
-extension Analytics_Scope: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Scope: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "commercial"),
     3: .same(proto: "order"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Analytics_Scope) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Scope) -> Bool {
     if self.partner != other.partner {return false}
     if self.commercial != other.commercial {return false}
     if self.order != other.order {return false}

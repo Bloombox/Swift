@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public enum Structs_Pricing_SaleType: SwiftProtobuf.Enum {
+public enum Opencannabis_Structs_Pricing_SaleType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case percentageOff // = 0
   case bogo // = 1
@@ -50,7 +50,7 @@ public enum Structs_Pricing_SaleType: SwiftProtobuf.Enum {
 
 }
 
-public struct Structs_Pricing_PercentageDiscount: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Pricing_PercentageDiscount: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".PercentageDiscount"
 
   public var discount: UInt32 = 0
@@ -84,7 +84,7 @@ public struct Structs_Pricing_PercentageDiscount: SwiftProtobuf.Message {
   }
 }
 
-public struct Structs_Pricing_BOGODiscount: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Pricing_BOGODiscount: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".BOGODiscount"
 
   public var trigger: UInt32 = 0
@@ -124,7 +124,7 @@ public struct Structs_Pricing_BOGODiscount: SwiftProtobuf.Message {
   }
 }
 
-public struct Structs_Pricing_LoyaltyDiscount: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Pricing_LoyaltyDiscount: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".LoyaltyDiscount"
 
   public var trigger: UInt32 = 0
@@ -164,17 +164,17 @@ public struct Structs_Pricing_LoyaltyDiscount: SwiftProtobuf.Message {
   }
 }
 
-public struct Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message {
+public struct Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".SaleDescriptor"
 
   /// sale metadata
-  public var type: Structs_Pricing_SaleType {
+  public var type: Opencannabis_Structs_Pricing_SaleType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
-  public var effective: Temporal_Instant {
-    get {return _storage._effective ?? Temporal_Instant()}
+  public var effective: Opencannabis_Temporal_Instant {
+    get {return _storage._effective ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._effective = newValue}
   }
   /// Returns true if `effective` has been explicitly set.
@@ -182,8 +182,8 @@ public struct Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message {
   /// Clears the value of `effective`. Subsequent reads from it will return its default value.
   public mutating func clearEffective() {_storage._effective = nil}
 
-  public var expiration: Temporal_Instant {
-    get {return _storage._expiration ?? Temporal_Instant()}
+  public var expiration: Opencannabis_Temporal_Instant {
+    get {return _storage._expiration ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._expiration = newValue}
   }
   /// Returns true if `expiration` has been explicitly set.
@@ -197,26 +197,26 @@ public struct Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message {
     set {_uniqueStorage()._sale = newValue}
   }
 
-  public var percentageOff: Structs_Pricing_PercentageDiscount {
+  public var percentageOff: Opencannabis_Structs_Pricing_PercentageDiscount {
     get {
       if case .percentageOff(let v)? = _storage._sale {return v}
-      return Structs_Pricing_PercentageDiscount()
+      return Opencannabis_Structs_Pricing_PercentageDiscount()
     }
     set {_uniqueStorage()._sale = .percentageOff(newValue)}
   }
 
-  public var bogo: Structs_Pricing_BOGODiscount {
+  public var bogo: Opencannabis_Structs_Pricing_BOGODiscount {
     get {
       if case .bogo(let v)? = _storage._sale {return v}
-      return Structs_Pricing_BOGODiscount()
+      return Opencannabis_Structs_Pricing_BOGODiscount()
     }
     set {_uniqueStorage()._sale = .bogo(newValue)}
   }
 
-  public var loyalty: Structs_Pricing_LoyaltyDiscount {
+  public var loyalty: Opencannabis_Structs_Pricing_LoyaltyDiscount {
     get {
       if case .loyalty(let v)? = _storage._sale {return v}
-      return Structs_Pricing_LoyaltyDiscount()
+      return Opencannabis_Structs_Pricing_LoyaltyDiscount()
     }
     set {_uniqueStorage()._sale = .loyalty(newValue)}
   }
@@ -225,11 +225,11 @@ public struct Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message {
 
   /// sale amount and trigger properties
   public enum OneOf_Sale: Equatable {
-    case percentageOff(Structs_Pricing_PercentageDiscount)
-    case bogo(Structs_Pricing_BOGODiscount)
-    case loyalty(Structs_Pricing_LoyaltyDiscount)
+    case percentageOff(Opencannabis_Structs_Pricing_PercentageDiscount)
+    case bogo(Opencannabis_Structs_Pricing_BOGODiscount)
+    case loyalty(Opencannabis_Structs_Pricing_LoyaltyDiscount)
 
-    public static func ==(lhs: Structs_Pricing_SaleDescriptor.OneOf_Sale, rhs: Structs_Pricing_SaleDescriptor.OneOf_Sale) -> Bool {
+    public static func ==(lhs: Opencannabis_Structs_Pricing_SaleDescriptor.OneOf_Sale, rhs: Opencannabis_Structs_Pricing_SaleDescriptor.OneOf_Sale) -> Bool {
       switch (lhs, rhs) {
       case (.percentageOff(let l), .percentageOff(let r)): return l == r
       case (.bogo(let l), .bogo(let r)): return l == r
@@ -254,7 +254,7 @@ public struct Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message {
         case 2: try decoder.decodeSingularMessageField(value: &_storage._effective)
         case 3: try decoder.decodeSingularMessageField(value: &_storage._expiration)
         case 4:
-          var v: Structs_Pricing_PercentageDiscount?
+          var v: Opencannabis_Structs_Pricing_PercentageDiscount?
           if let current = _storage._sale {
             try decoder.handleConflictingOneOf()
             if case .percentageOff(let m) = current {v = m}
@@ -262,7 +262,7 @@ public struct Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message {
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._sale = .percentageOff(v)}
         case 5:
-          var v: Structs_Pricing_BOGODiscount?
+          var v: Opencannabis_Structs_Pricing_BOGODiscount?
           if let current = _storage._sale {
             try decoder.handleConflictingOneOf()
             if case .bogo(let m) = current {v = m}
@@ -270,7 +270,7 @@ public struct Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message {
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._sale = .bogo(v)}
         case 6:
-          var v: Structs_Pricing_LoyaltyDiscount?
+          var v: Opencannabis_Structs_Pricing_LoyaltyDiscount?
           if let current = _storage._sale {
             try decoder.handleConflictingOneOf()
             if case .loyalty(let m) = current {v = m}
@@ -316,9 +316,9 @@ public struct Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "structs.pricing"
+fileprivate let _protobuf_package = "opencannabis.structs.pricing"
 
-extension Structs_Pricing_SaleType: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_SaleType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PERCENTAGE_OFF"),
     1: .same(proto: "BOGO"),
@@ -326,25 +326,25 @@ extension Structs_Pricing_SaleType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Structs_Pricing_PercentageDiscount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_PercentageDiscount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     20: .same(proto: "discount"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Pricing_PercentageDiscount) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_PercentageDiscount) -> Bool {
     if self.discount != other.discount {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
 }
 
-extension Structs_Pricing_BOGODiscount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_BOGODiscount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     21: .same(proto: "trigger"),
     22: .same(proto: "reward"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Pricing_BOGODiscount) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_BOGODiscount) -> Bool {
     if self.trigger != other.trigger {return false}
     if self.reward != other.reward {return false}
     if unknownFields != other.unknownFields {return false}
@@ -352,13 +352,13 @@ extension Structs_Pricing_BOGODiscount: SwiftProtobuf._MessageImplementationBase
   }
 }
 
-extension Structs_Pricing_LoyaltyDiscount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_LoyaltyDiscount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     23: .same(proto: "trigger"),
     24: .same(proto: "reward"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Pricing_LoyaltyDiscount) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_LoyaltyDiscount) -> Bool {
     if self.trigger != other.trigger {return false}
     if self.reward != other.reward {return false}
     if unknownFields != other.unknownFields {return false}
@@ -366,7 +366,7 @@ extension Structs_Pricing_LoyaltyDiscount: SwiftProtobuf._MessageImplementationB
   }
 }
 
-extension Structs_Pricing_SaleDescriptor: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "effective"),
@@ -377,10 +377,10 @@ extension Structs_Pricing_SaleDescriptor: SwiftProtobuf._MessageImplementationBa
   ]
 
   fileprivate class _StorageClass {
-    var _type: Structs_Pricing_SaleType = .percentageOff
-    var _effective: Temporal_Instant? = nil
-    var _expiration: Temporal_Instant? = nil
-    var _sale: Structs_Pricing_SaleDescriptor.OneOf_Sale?
+    var _type: Opencannabis_Structs_Pricing_SaleType = .percentageOff
+    var _effective: Opencannabis_Temporal_Instant? = nil
+    var _expiration: Opencannabis_Temporal_Instant? = nil
+    var _sale: Opencannabis_Structs_Pricing_SaleDescriptor.OneOf_Sale?
 
     static let defaultInstance = _StorageClass()
 
@@ -401,7 +401,7 @@ extension Structs_Pricing_SaleDescriptor: SwiftProtobuf._MessageImplementationBa
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Structs_Pricing_SaleDescriptor) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_SaleDescriptor) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
