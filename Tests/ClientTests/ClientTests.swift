@@ -62,7 +62,7 @@ final class ClientTests: XCTestCase {
   func testMenuInvalidApiKey() throws {
     var caught = false
     do {
-      let _ try emptyClient().menu.retrieve(partner: "mm", location: "sacramento", apiKey: nil)
+      let _ = try emptyClient().menu.retrieve(partner: "mm", location: "sacramento", apiKey: nil)
     } catch (MenuClientError.invalidApiKey) {
       // it worked
       caught = true
