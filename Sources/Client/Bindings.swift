@@ -106,6 +106,7 @@ public typealias EventTelemetryClientError = Bloombox_Schema_Services_Telemetry_
  * Binding to the active MenuService.
  */
 public typealias MenuService = Bloombox_Schema_Services_Menu_V1Beta1_MenuService
+public typealias MenuRPCError = Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError
 
 /**
  * Method: `ping`.

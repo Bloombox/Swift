@@ -136,6 +136,14 @@
                BlueprintName = "ClientTests"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ClientTests/testMemberVerify()">
+               </Test>
+               <Test
+                  Identifier = "ClientTests/testMenuDownload()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <AdditionalOptions>
