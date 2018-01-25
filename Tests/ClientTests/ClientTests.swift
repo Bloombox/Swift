@@ -5,9 +5,10 @@ import XCTest
 
 final class ClientTests: XCTestCase {
   static var allTests = [
-    ("testMenuInvalidApiKey", testMenuInvalidApiKey),
-    ("testMenuInvalidPartner", testMenuInvalidPartner),
-    ("testMenuInvalidLocation", testMenuInvalidLocation)
+      ("testClientConstruct", testClientConstruct)
+//    ("testMenuInvalidApiKey", testMenuInvalidApiKey),
+//    ("testMenuInvalidPartner", testMenuInvalidPartner),
+//    ("testMenuInvalidLocation", testMenuInvalidLocation)
 //    ("testMenuDownload", testMenuDownload),
 //    ("testShopInfo", testShopInfo),
 //    ("testMemberVerify", testMemberVerify)
@@ -59,38 +60,38 @@ final class ClientTests: XCTestCase {
 //    }
 //  }
 
-  func testMenuInvalidApiKey() throws {
-    var caught = false
-    do {
-      let _ = try emptyClient().menu.retrieve(partner: "mm", location: "sacramento", apiKey: nil)
-    } catch (MenuClientError.invalidApiKey) {
-      // it worked
-      caught = true
-    }
-    assert(caught, "didn't error with 'invalid API key'")
-  }
+//  func testMenuInvalidApiKey() throws {
+//    var caught = false
+//    do {
+//      let _ = try emptyClient().menu.retrieve(partner: "mm", location: "sacramento", apiKey: nil)
+//    } catch (MenuClientError.invalidApiKey) {
+//      // it worked
+//      caught = true
+//    }
+//    assert(caught, "didn't error with 'invalid API key'")
+//  }
 
-  func testMenuInvalidPartner() throws {
-    var caught = false
-    do {
-      let _ = try emptyClient().menu.retrieve(partner: nil, location: "sacramento", apiKey: "abc123")
-    } catch (MenuClientError.invalidPartnerCode) {
-      // it worked
-      caught = true
-    }
-    assert(caught, "didn't error with 'invalid partner'")
-  }
+//  func testMenuInvalidPartner() throws {
+//    var caught = false
+//    do {
+//      let _ = try emptyClient().menu.retrieve(partner: nil, location: "sacramento", apiKey: "abc123")
+//    } catch (MenuClientError.invalidPartnerCode) {
+//      // it worked
+//      caught = true
+//    }
+//    assert(caught, "didn't error with 'invalid partner'")
+//  }
 
-  func testMenuInvalidLocation() throws {
-    var caught = false
-    do {
-      let _ = try emptyClient().menu.retrieve(partner: "abc123", location: nil, apiKey: "abc123")
-    } catch (MenuClientError.invalidLocationCode) {
-      // it worked
-      caught = true
-    }
-    assert(caught, "didn't error with 'invalid location'")
-  }
+//  func testMenuInvalidLocation() throws {
+//    var caught = false
+//    do {
+//      let _ = try emptyClient().menu.retrieve(partner: "abc123", location: nil, apiKey: "abc123")
+//    } catch (MenuClientError.invalidLocationCode) {
+//      // it worked
+//      caught = true
+//    }
+//    assert(caught, "didn't error with 'invalid location'")
+//  }
 
   // MARK: - Shop Tests
 //  func testShopInfo() throws {
