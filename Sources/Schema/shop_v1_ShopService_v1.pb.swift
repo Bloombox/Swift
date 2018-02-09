@@ -263,50 +263,6 @@ public enum Bloombox_Schema_Services_Shop_V1_EnrollmentError: SwiftProtobuf.Enum
 
 }
 
-/// Specifies statuses that an online shop itself may take, where it is either open/closed or only open for pickup or
-/// delivery.
-public enum Bloombox_Schema_Services_Shop_V1_ShopStatus: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// The shop is currently open for business, for both delivery and pickup.
-  case `open` // = 0
-
-  /// The shop is currently closed.
-  case closed // = 1
-
-  /// The shop is open, but for delivery only.
-  case deliveryOnly // = 2
-
-  /// The shop is open, but for pickup only.
-  case pickupOnly // = 3
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .open
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .open
-    case 1: self = .closed
-    case 2: self = .deliveryOnly
-    case 3: self = .pickupOnly
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .open: return 0
-    case .closed: return 1
-    case .deliveryOnly: return 2
-    case .pickupOnly: return 3
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
 /// Specifies an RPC operation to retrieve status information for the Shop API.
 public struct Bloombox_Schema_Services_Shop_V1_Ping: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".Ping"
@@ -515,7 +471,7 @@ public struct Bloombox_Schema_Services_Shop_V1_ShopInfo: SwiftProtobuf.Message {
     public static let protoMessageName: String = Bloombox_Schema_Services_Shop_V1_ShopInfo.protoMessageName + ".Response"
 
     /// Indicates the current status of the online shop in question.
-    public var shopStatus: Bloombox_Schema_Services_Shop_V1_ShopStatus = .open
+    public var shopStatus: Bloombox_Schema_Partner_Settings_ShopStatus = .open
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1673,6 +1629,12 @@ public struct Bloombox_Schema_Services_Shop_V1_GetOrder: SwiftProtobuf.Message {
     /// Clears the value of `order`. Subsequent reads from it will return its default value.
     public mutating func clearOrder() {_storage._order = nil}
 
+    /// Error, if any.
+    public var error: Bloombox_Schema_Services_Shop_V1_OrderError {
+      get {return _storage._error}
+      set {_uniqueStorage()._error = newValue}
+    }
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
@@ -1688,6 +1650,7 @@ public struct Bloombox_Schema_Services_Shop_V1_GetOrder: SwiftProtobuf.Message {
           switch fieldNumber {
           case 1: try decoder.decodeSingularBoolField(value: &_storage._success)
           case 2: try decoder.decodeSingularMessageField(value: &_storage._order)
+          case 3: try decoder.decodeSingularEnumField(value: &_storage._error)
           default: break
           }
         }
@@ -1705,6 +1668,9 @@ public struct Bloombox_Schema_Services_Shop_V1_GetOrder: SwiftProtobuf.Message {
         }
         if let v = _storage._order {
           try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        }
+        if _storage._error != .noError {
+          try visitor.visitSingularEnumField(value: _storage._error, fieldNumber: 3)
         }
       }
       try unknownFields.traverse(visitor: &visitor)
@@ -1847,15 +1813,6 @@ extension Bloombox_Schema_Services_Shop_V1_EnrollmentError: SwiftProtobuf._Proto
     14: .same(proto: "ACCOUNT_CONFLICT_EMAIL"),
     15: .same(proto: "ACCOUNT_CONFLICT_PHONE"),
     99: .same(proto: "INVALID_ENROLLMENT_PAYLOAD"),
-  ]
-}
-
-extension Bloombox_Schema_Services_Shop_V1_ShopStatus: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "OPEN"),
-    1: .same(proto: "CLOSED"),
-    2: .same(proto: "DELIVERY_ONLY"),
-    3: .same(proto: "PICKUP_ONLY"),
   ]
 }
 
@@ -2586,11 +2543,13 @@ extension Bloombox_Schema_Services_Shop_V1_GetOrder.Response: SwiftProtobuf._Mes
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "success"),
     2: .same(proto: "order"),
+    3: .same(proto: "error"),
   ]
 
   fileprivate class _StorageClass {
     var _success: Bool = false
     var _order: Opencannabis_Commerce_Order? = nil
+    var _error: Bloombox_Schema_Services_Shop_V1_OrderError = .noError
 
     static let defaultInstance = _StorageClass()
 
@@ -2599,6 +2558,7 @@ extension Bloombox_Schema_Services_Shop_V1_GetOrder.Response: SwiftProtobuf._Mes
     init(copying source: _StorageClass) {
       _success = source._success
       _order = source._order
+      _error = source._error
     }
   }
 
@@ -2616,6 +2576,7 @@ extension Bloombox_Schema_Services_Shop_V1_GetOrder.Response: SwiftProtobuf._Mes
         let other_storage = _args.1
         if _storage._success != other_storage._success {return false}
         if _storage._order != other_storage._order {return false}
+        if _storage._error != other_storage._error {return false}
         return true
       }
       if !storagesAreEqual {return false}

@@ -19,21 +19,32 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Specifies authentication scopes at the partner level.
 public enum Bloombox_Schema_Partner_PartnerScope: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
-  /// - Basic
+  /// Basic authentication as a member of a partner. This includes partner staff, managers, owners, and so on.
   case auth // = 0
+
+  /// Authorizes the sharing of contact information related to a partner account.
   case contact // = 1
+
+  /// Authorizes access to the Dashboard for a given partner account.
   case dashboard // = 2
 
-  /// - Menus
+  /// Authorizes access to read menu data for a given partner account.
   case menuDataRead // = 10
+
+  /// Authorizes access to write menu data for a given partner account.
   case menuDataWrite // = 20
 
-  /// - Special Scopes
-  case settings // = 50
-  case access // = 51
+  /// Authorizes access to read partner-level settings.
+  case settingsRead // = 50
+
+  /// Authorizes access to write to partner-level settings.
+  case settingsWrite // = 51
+
+  /// Specifies complete and total admin access to a given partner account.
   case admin // = 100
   case UNRECOGNIZED(Int)
 
@@ -48,8 +59,8 @@ public enum Bloombox_Schema_Partner_PartnerScope: SwiftProtobuf.Enum {
     case 2: self = .dashboard
     case 10: self = .menuDataRead
     case 20: self = .menuDataWrite
-    case 50: self = .settings
-    case 51: self = .access
+    case 50: self = .settingsRead
+    case 51: self = .settingsWrite
     case 100: self = .admin
     default: self = .UNRECOGNIZED(rawValue)
     }
@@ -62,8 +73,8 @@ public enum Bloombox_Schema_Partner_PartnerScope: SwiftProtobuf.Enum {
     case .dashboard: return 2
     case .menuDataRead: return 10
     case .menuDataWrite: return 20
-    case .settings: return 50
-    case .access: return 51
+    case .settingsRead: return 50
+    case .settingsWrite: return 51
     case .admin: return 100
     case .UNRECOGNIZED(let i): return i
     }
@@ -80,8 +91,8 @@ extension Bloombox_Schema_Partner_PartnerScope: SwiftProtobuf._ProtoNameProvidin
     2: .same(proto: "DASHBOARD"),
     10: .same(proto: "MENU_DATA_READ"),
     20: .same(proto: "MENU_DATA_WRITE"),
-    50: .same(proto: "SETTINGS"),
-    51: .same(proto: "ACCESS"),
+    50: .same(proto: "SETTINGS_READ"),
+    51: .same(proto: "SETTINGS_WRITE"),
     100: .same(proto: "ADMIN"),
   ]
 }

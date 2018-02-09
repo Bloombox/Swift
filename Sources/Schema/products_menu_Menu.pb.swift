@@ -302,7 +302,119 @@ public struct Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message {
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
   public mutating func clearKey() {_storage._key = nil}
 
+  /// Content and materials data for this menu product.
+  public var product: OneOf_Product? {
+    get {return _storage._product}
+    set {_uniqueStorage()._product = newValue}
+  }
+
+  /// Apothecary product.
+  public var apothecary: Opencannabis_Products_Apothecary {
+    get {
+      if case .apothecary(let v)? = _storage._product {return v}
+      return Opencannabis_Products_Apothecary()
+    }
+    set {_uniqueStorage()._product = .apothecary(newValue)}
+  }
+
+  /// Cartridge product.
+  public var cartridge: Opencannabis_Products_Cartridge {
+    get {
+      if case .cartridge(let v)? = _storage._product {return v}
+      return Opencannabis_Products_Cartridge()
+    }
+    set {_uniqueStorage()._product = .cartridge(newValue)}
+  }
+
+  /// Edible product.
+  public var edible: Opencannabis_Products_Edible {
+    get {
+      if case .edible(let v)? = _storage._product {return v}
+      return Opencannabis_Products_Edible()
+    }
+    set {_uniqueStorage()._product = .edible(newValue)}
+  }
+
+  /// Extract product.
+  public var extract: Opencannabis_Products_Extract {
+    get {
+      if case .extract(let v)? = _storage._product {return v}
+      return Opencannabis_Products_Extract()
+    }
+    set {_uniqueStorage()._product = .extract(newValue)}
+  }
+
+  /// Flower product.
+  public var flower: Opencannabis_Products_Flower {
+    get {
+      if case .flower(let v)? = _storage._product {return v}
+      return Opencannabis_Products_Flower()
+    }
+    set {_uniqueStorage()._product = .flower(newValue)}
+  }
+
+  /// Merchandise product.
+  public var merchandise: Opencannabis_Products_Merchandise {
+    get {
+      if case .merchandise(let v)? = _storage._product {return v}
+      return Opencannabis_Products_Merchandise()
+    }
+    set {_uniqueStorage()._product = .merchandise(newValue)}
+  }
+
+  /// Plant product.
+  public var plant: Opencannabis_Products_Plant {
+    get {
+      if case .plant(let v)? = _storage._product {return v}
+      return Opencannabis_Products_Plant()
+    }
+    set {_uniqueStorage()._product = .plant(newValue)}
+  }
+
+  /// Preroll product.
+  public var preroll: Opencannabis_Products_Preroll {
+    get {
+      if case .preroll(let v)? = _storage._product {return v}
+      return Opencannabis_Products_Preroll()
+    }
+    set {_uniqueStorage()._product = .preroll(newValue)}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Content and materials data for this menu product.
+  public enum OneOf_Product: Equatable {
+    /// Apothecary product.
+    case apothecary(Opencannabis_Products_Apothecary)
+    /// Cartridge product.
+    case cartridge(Opencannabis_Products_Cartridge)
+    /// Edible product.
+    case edible(Opencannabis_Products_Edible)
+    /// Extract product.
+    case extract(Opencannabis_Products_Extract)
+    /// Flower product.
+    case flower(Opencannabis_Products_Flower)
+    /// Merchandise product.
+    case merchandise(Opencannabis_Products_Merchandise)
+    /// Plant product.
+    case plant(Opencannabis_Products_Plant)
+    /// Preroll product.
+    case preroll(Opencannabis_Products_Preroll)
+
+    public static func ==(lhs: Opencannabis_Products_Menu_MenuProduct.OneOf_Product, rhs: Opencannabis_Products_Menu_MenuProduct.OneOf_Product) -> Bool {
+      switch (lhs, rhs) {
+      case (.apothecary(let l), .apothecary(let r)): return l == r
+      case (.cartridge(let l), .cartridge(let r)): return l == r
+      case (.edible(let l), .edible(let r)): return l == r
+      case (.extract(let l), .extract(let r)): return l == r
+      case (.flower(let l), .flower(let r)): return l == r
+      case (.merchandise(let l), .merchandise(let r)): return l == r
+      case (.plant(let l), .plant(let r)): return l == r
+      case (.preroll(let l), .preroll(let r)): return l == r
+      default: return false
+      }
+    }
+  }
 
   public init() {}
 
@@ -316,6 +428,70 @@ public struct Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message {
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 10:
+          var v: Opencannabis_Products_Apothecary?
+          if let current = _storage._product {
+            try decoder.handleConflictingOneOf()
+            if case .apothecary(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._product = .apothecary(v)}
+        case 11:
+          var v: Opencannabis_Products_Cartridge?
+          if let current = _storage._product {
+            try decoder.handleConflictingOneOf()
+            if case .cartridge(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._product = .cartridge(v)}
+        case 12:
+          var v: Opencannabis_Products_Edible?
+          if let current = _storage._product {
+            try decoder.handleConflictingOneOf()
+            if case .edible(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._product = .edible(v)}
+        case 13:
+          var v: Opencannabis_Products_Extract?
+          if let current = _storage._product {
+            try decoder.handleConflictingOneOf()
+            if case .extract(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._product = .extract(v)}
+        case 14:
+          var v: Opencannabis_Products_Flower?
+          if let current = _storage._product {
+            try decoder.handleConflictingOneOf()
+            if case .flower(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._product = .flower(v)}
+        case 15:
+          var v: Opencannabis_Products_Merchandise?
+          if let current = _storage._product {
+            try decoder.handleConflictingOneOf()
+            if case .merchandise(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._product = .merchandise(v)}
+        case 16:
+          var v: Opencannabis_Products_Plant?
+          if let current = _storage._product {
+            try decoder.handleConflictingOneOf()
+            if case .plant(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._product = .plant(v)}
+        case 17:
+          var v: Opencannabis_Products_Preroll?
+          if let current = _storage._product {
+            try decoder.handleConflictingOneOf()
+            if case .preroll(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._product = .preroll(v)}
         default: break
         }
       }
@@ -330,6 +506,25 @@ public struct Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       if let v = _storage._key {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      switch _storage._product {
+      case .apothecary(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      case .cartridge(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      case .edible(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+      case .extract(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 13)
+      case .flower(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
+      case .merchandise(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
+      case .plant(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+      case .preroll(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
+      case nil: break
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -787,10 +982,19 @@ extension Opencannabis_Products_Menu_Metadata: SwiftProtobuf._MessageImplementat
 extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
+    10: .same(proto: "apothecary"),
+    11: .same(proto: "cartridge"),
+    12: .same(proto: "edible"),
+    13: .same(proto: "extract"),
+    14: .same(proto: "flower"),
+    15: .same(proto: "merchandise"),
+    16: .same(proto: "plant"),
+    17: .same(proto: "preroll"),
   ]
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
+    var _product: Opencannabis_Products_Menu_MenuProduct.OneOf_Product?
 
     static let defaultInstance = _StorageClass()
 
@@ -798,6 +1002,7 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf._MessageImplemen
 
     init(copying source: _StorageClass) {
       _key = source._key
+      _product = source._product
     }
   }
 
@@ -814,6 +1019,7 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf._MessageImplemen
         let _storage = _args.0
         let other_storage = _args.1
         if _storage._key != other_storage._key {return false}
+        if _storage._product != other_storage._product {return false}
         return true
       }
       if !storagesAreEqual {return false}
