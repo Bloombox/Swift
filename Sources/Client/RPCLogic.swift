@@ -80,7 +80,7 @@ internal struct TLSEndpoint: SecureRPCEndpoint {
  * Main protocol for a remotely-supported RPC service.
  */
 public protocol RPCService {
-  init(address: String)
+  init(address: String, secure: Bool)
   init(address: String, certificates: String, host: String?)
 }
 
@@ -133,7 +133,7 @@ internal struct RPCServiceFactory<Service: RPCService> {
     } else {
       // connect over plaintext
       return Service.init(
-        address: "\(endpoint.host):\(endpoint.port)")
+        address: "\(endpoint.host):\(endpoint.port)", secure: false)
     }
   }
 
