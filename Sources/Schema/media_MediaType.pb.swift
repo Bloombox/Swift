@@ -20,8 +20,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the type of media being attached or described.
-public struct Opencannabis_Media_MediaType: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".MediaType"
+public struct Opencannabis_Media_MediaType {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the generic kind of media being described or attached.
   public var kind: Opencannabis_Media_MediaType.Kind {
@@ -128,74 +130,14 @@ public struct Opencannabis_Media_MediaType: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._kind)
-        case 101:
-          var v: Opencannabis_Media_ImageType?
-          if let current = _storage._content {
-            try decoder.handleConflictingOneOf()
-            if case .imageType(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._content = .imageType(v)}
-        case 201:
-          var v: Opencannabis_Media_DocumentType?
-          if let current = _storage._content {
-            try decoder.handleConflictingOneOf()
-            if case .documentType(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._content = .documentType(v)}
-        case 301:
-          var v: Opencannabis_Media_VideoType?
-          if let current = _storage._content {
-            try decoder.handleConflictingOneOf()
-            if case .videoType(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._content = .videoType(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._kind != .link {
-        try visitor.visitSingularEnumField(value: _storage._kind, fieldNumber: 1)
-      }
-      switch _storage._content {
-      case .imageType(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 101)
-      case .documentType(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 201)
-      case .videoType(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 301)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies image type information.
-public struct Opencannabis_Media_ImageType: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".ImageType"
+public struct Opencannabis_Media_ImageType {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the format of the attached or described image.
   public var kind: Opencannabis_Media_ImageType.ImageKind = .png
@@ -251,35 +193,13 @@ public struct Opencannabis_Media_ImageType: SwiftProtobuf.Message {
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.kind)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.kind != .png {
-      try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies document type information.
-public struct Opencannabis_Media_DocumentType: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".DocumentType"
+public struct Opencannabis_Media_DocumentType {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the kind of document being attached or described.
   public var kind: Opencannabis_Media_DocumentType.DocumentKind = .txt
@@ -333,39 +253,13 @@ public struct Opencannabis_Media_DocumentType: SwiftProtobuf.Message {
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.kind)
-      case 2: try decoder.decodeSingularBoolField(value: &self.compressed)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.kind != .txt {
-      try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
-    }
-    if self.compressed != false {
-      try visitor.visitSingularBoolField(value: self.compressed, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies video type information.
-public struct Opencannabis_Media_VideoType: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".VideoType"
+public struct Opencannabis_Media_VideoType {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the kind of video being attached or described.
   public var kind: Opencannabis_Media_VideoType.VideoKind = .mp4
@@ -411,37 +305,14 @@ public struct Opencannabis_Media_VideoType: SwiftProtobuf.Message {
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.kind)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.kind != .mp4 {
-      try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.media"
 
-extension Opencannabis_Media_MediaType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_MediaType: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MediaType"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "kind"),
     101: .standard(proto: "image_type"),
@@ -470,6 +341,60 @@ extension Opencannabis_Media_MediaType: SwiftProtobuf._MessageImplementationBase
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._kind)
+        case 101:
+          var v: Opencannabis_Media_ImageType?
+          if let current = _storage._content {
+            try decoder.handleConflictingOneOf()
+            if case .imageType(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._content = .imageType(v)}
+        case 201:
+          var v: Opencannabis_Media_DocumentType?
+          if let current = _storage._content {
+            try decoder.handleConflictingOneOf()
+            if case .documentType(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._content = .documentType(v)}
+        case 301:
+          var v: Opencannabis_Media_VideoType?
+          if let current = _storage._content {
+            try decoder.handleConflictingOneOf()
+            if case .videoType(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._content = .videoType(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._kind != .link {
+        try visitor.visitSingularEnumField(value: _storage._kind, fieldNumber: 1)
+      }
+      switch _storage._content {
+      case .imageType(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 101)
+      case .documentType(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 201)
+      case .videoType(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 301)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_MediaType) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -495,10 +420,27 @@ extension Opencannabis_Media_MediaType.Kind: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Opencannabis_Media_ImageType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_ImageType: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ImageType"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "kind"),
   ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.kind)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.kind != .png {
+      try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_ImageType) -> Bool {
     if self.kind != other.kind {return false}
@@ -517,11 +459,32 @@ extension Opencannabis_Media_ImageType.ImageKind: SwiftProtobuf._ProtoNameProvid
   ]
 }
 
-extension Opencannabis_Media_DocumentType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_DocumentType: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DocumentType"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "kind"),
     2: .same(proto: "compressed"),
   ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.kind)
+      case 2: try decoder.decodeSingularBoolField(value: &self.compressed)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.kind != .txt {
+      try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
+    }
+    if self.compressed != false {
+      try visitor.visitSingularBoolField(value: self.compressed, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_DocumentType) -> Bool {
     if self.kind != other.kind {return false}
@@ -540,10 +503,27 @@ extension Opencannabis_Media_DocumentType.DocumentKind: SwiftProtobuf._ProtoName
   ]
 }
 
-extension Opencannabis_Media_VideoType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_VideoType: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".VideoType"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "kind"),
   ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.kind)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.kind != .mp4 {
+      try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_VideoType) -> Bool {
     if self.kind != other.kind {return false}

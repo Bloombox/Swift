@@ -20,8 +20,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a key that references a location owned by a partner organization that has an active account with Bloombox.
-public struct Bloombox_Schema_Partner_PartnerLocationKey: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PartnerLocationKey"
+public struct Bloombox_Schema_Partner_PartnerLocationKey {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the partner that owns this location.
   public var partner: Bloombox_Schema_Partner_PartnerKey {
@@ -43,46 +45,15 @@ public struct Bloombox_Schema_Partner_PartnerLocationKey: SwiftProtobuf.Message 
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._partner)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._code)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._partner {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if !_storage._code.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._code, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies information about a brick-and-mortar location owned by a partner organization that has an active account
 /// with Bloombox.
-public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PartnerLocation"
+public struct Bloombox_Schema_Partner_PartnerLocation {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Short, unique string that identifies this location, scoped to the parent organization.
   public var code: String {
@@ -166,67 +137,6 @@ public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._code)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._partner)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._name)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._label)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._flags)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._branding)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._contact)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._created)
-        case 9: try decoder.decodeSingularMessageField(value: &_storage._modified)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._code.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._code, fieldNumber: 1)
-      }
-      if let v = _storage._partner {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._name.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 3)
-      }
-      if !_storage._label.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._label, fieldNumber: 4)
-      }
-      if let v = _storage._flags {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._branding {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if let v = _storage._contact {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-      if let v = _storage._created {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-      }
-      if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -234,7 +144,8 @@ public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "bloombox.schema.partner"
 
-extension Bloombox_Schema_Partner_PartnerLocationKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerLocationKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PartnerLocationKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "code"),
@@ -261,6 +172,31 @@ extension Bloombox_Schema_Partner_PartnerLocationKey: SwiftProtobuf._MessageImpl
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._partner)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._code)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._partner {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._code.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._code, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerLocationKey) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -277,7 +213,8 @@ extension Bloombox_Schema_Partner_PartnerLocationKey: SwiftProtobuf._MessageImpl
   }
 }
 
-extension Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PartnerLocation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "code"),
     2: .same(proto: "partner"),
@@ -323,6 +260,59 @@ extension Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf._MessageImpleme
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._code)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._partner)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._label)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._flags)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._branding)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._contact)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._created)
+        case 9: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._code.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._code, fieldNumber: 1)
+      }
+      if let v = _storage._partner {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 3)
+      }
+      if !_storage._label.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._label, fieldNumber: 4)
+      }
+      if let v = _storage._flags {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._branding {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._contact {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerLocation) -> Bool {

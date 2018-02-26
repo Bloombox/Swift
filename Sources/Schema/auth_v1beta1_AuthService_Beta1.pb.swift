@@ -23,8 +23,23 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
-  /// No error was encountered.
+  /// There was no error.
   case noError // = 0
+
+  /// Access was denied: the user's account is suspended.
+  case accountSuspended // = 1
+
+  /// Profile could not be located.
+  case profileNotFound // = 2
+
+  /// The provided user key was found to be invalid.
+  case invalidUserKey // = 3
+
+  /// The provided auth assertion was deemed to be invalid.
+  case invalidAssertion // = 4
+
+  /// The specified authentication type is not currently supported.
+  case unsupportedLoginType // = 5
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -34,6 +49,11 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
   public init?(rawValue: Int) {
     switch rawValue {
     case 0: self = .noError
+    case 1: self = .accountSuspended
+    case 2: self = .profileNotFound
+    case 3: self = .invalidUserKey
+    case 4: self = .invalidAssertion
+    case 5: self = .unsupportedLoginType
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -41,49 +61,49 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
   public var rawValue: Int {
     switch self {
     case .noError: return 0
+    case .accountSuspended: return 1
+    case .profileNotFound: return 2
+    case .invalidUserKey: return 3
+    case .invalidAssertion: return 4
+    case .unsupportedLoginType: return 5
     case .UNRECOGNIZED(let i): return i
     }
   }
 
 }
 
-/// Enumerates statuses for a user's authorization after an authentication or authorization routine has been performed.
+/// Enumerates statuses for a given user auth context.
 public enum Bloombox_Schema_Services_Auth_V1beta1_AuthStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
-  /// The user's auth status is currently unknown.
-  case unknown // = 0
+  /// The user's auth status is not currently known.
+  case statusUnknown // = 0
 
   /// Access is/was granted to the user.
   case accessGranted // = 1
 
   /// Access is/was denied to the user.
   case accessDenied // = 2
-
-  /// Access was denied: the user's account is suspended.
-  case accountSuspended // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
-    self = .unknown
+    self = .statusUnknown
   }
 
   public init?(rawValue: Int) {
     switch rawValue {
-    case 0: self = .unknown
+    case 0: self = .statusUnknown
     case 1: self = .accessGranted
     case 2: self = .accessDenied
-    case 3: self = .accountSuspended
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
 
   public var rawValue: Int {
     switch self {
-    case .unknown: return 0
+    case .statusUnknown: return 0
     case .accessGranted: return 1
     case .accessDenied: return 2
-    case .accountSuspended: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -91,40 +111,29 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthStatus: SwiftProtobuf.Enum
 }
 
 /// Specifies an RPC operation to retrieve status information for the Auth API.
-public struct Bloombox_Schema_Services_Auth_V1beta1_Ping: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Ping"
+public struct Bloombox_Schema_Services_Auth_V1beta1_Ping {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies an auth ping request.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_Ping.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let _ = try decoder.nextFieldNumber() {
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Specifies an auth ping response.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_Ping.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Current service status.
     public var status: Bloombox_Schema_Services_ServiceStatus = .unknown
@@ -132,35 +141,13 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_Ping: SwiftProtobuf.Message 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &self.status)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if self.status != .unknown {
-        try visitor.visitSingularEnumField(value: self.status, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Specifies an auth ping operation, consisting of one request and one response.
-  public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_Ping.protoMessageName + ".Operation"
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Request to ping.
     public var request: Bloombox_Schema_Services_Auth_V1beta1_Ping.Request {
@@ -186,66 +173,18 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_Ping: SwiftProtobuf.Message 
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._request {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._response {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies a message payload wherein a user is asserting their identity via an email-based username and a regular
 /// string password, encoded and potentially encrypted by the frontend agent.
-public struct Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".EmailPasswordAssertion"
+public struct Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Email address the user is logging in with.
   public var email: String = String()
@@ -257,39 +196,13 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion: Swif
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.email)
-      case 2: try decoder.decodeSingularStringField(value: &self.password)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.email.isEmpty {
-      try visitor.visitSingularStringField(value: self.email, fieldNumber: 1)
-    }
-    if !self.password.isEmpty {
-      try visitor.visitSingularStringField(value: self.password, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies a message payload containing a Firebase ID token provided during an auth flow on the frontend.
-public struct Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".FirebaseTokenAssertion"
+public struct Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Firebase identity token.
   public var token: String = String()
@@ -300,39 +213,13 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion: Swif
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.token)
-      case 2: try decoder.decodeSingularStringField(value: &self.uid)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.token.isEmpty {
-      try visitor.visitSingularStringField(value: self.token, fieldNumber: 1)
-    }
-    if !self.uid.isEmpty {
-      try visitor.visitSingularStringField(value: self.uid, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies a generic assertion for account access privileges.
-public struct Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".AccountAssertion"
+public struct Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Assertion provided by the user, based on their chosen login method.
   public var assertion: OneOf_Assertion? {
@@ -378,10 +265,445 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProto
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Specifies an RPC operation wherein a user has requested an assertion of their identity be validated by the server.
+public struct Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Request to authenticate a user.
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Provider the user would like to login with.
+    public var provider: Bloombox_Schema_Identity_IdentityProvider {
+      get {return _storage._provider}
+      set {_uniqueStorage()._provider = newValue}
+    }
+
+    /// Login credentials provided by the user or Firebase.
+    public var assertion: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion {
+      get {return _storage._assertion ?? Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion()}
+      set {_uniqueStorage()._assertion = newValue}
+    }
+    /// Returns true if `assertion` has been explicitly set.
+    public var hasAssertion: Bool {return _storage._assertion != nil}
+    /// Clears the value of `assertion`. Subsequent reads from it will return its default value.
+    public mutating func clearAssertion() {_storage._assertion = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  /// Response to a request to authenticate a user.
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Resulting status from the user's authentication request.
+    public var error: Bloombox_Schema_Services_Auth_V1beta1_AuthError = .noError
+
+    /// Indicates the user's identity ID.
+    public var uid: String = String()
+
+    /// Indicates the user's account key.
+    public var key: String = String()
+
+    /// Authorized token resulting from the authentication operation.
+    public var token: String = String()
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  /// Operation to authenticate a user, composed of one request and one response.
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Request to authenticate a user.
+    public var request: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request {
+      get {return _storage._request ?? Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request()}
+      set {_uniqueStorage()._request = newValue}
+    }
+    /// Returns true if `request` has been explicitly set.
+    public var hasRequest: Bool {return _storage._request != nil}
+    /// Clears the value of `request`. Subsequent reads from it will return its default value.
+    public mutating func clearRequest() {_storage._request = nil}
+
+    /// Response to a request to authenticate a user.
+    public var response: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response {
+      get {return _storage._response ?? Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response()}
+      set {_uniqueStorage()._response = newValue}
+    }
+    /// Returns true if `response` has been explicitly set.
+    public var hasResponse: Bool {return _storage._response != nil}
+    /// Clears the value of `response`. Subsequent reads from it will return its default value.
+    public mutating func clearResponse() {_storage._response = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  public init() {}
+}
+
+public struct Bloombox_Schema_Services_Auth_V1beta1_GetProfile {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Request to get a user's profile object from the database.
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// key to reference the profile user's object from the database.
+    public var key: String = String()
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  /// Response to a request to get a user's profile object.
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Error status (if any) of the response to the request of a user's profile..
+    public var error: Bloombox_Schema_Services_Auth_V1beta1_AuthError {
+      get {return _storage._error}
+      set {_uniqueStorage()._error = newValue}
+    }
+
+    /// User's profile object.
+    public var profile: Bloombox_Schema_Identity_User {
+      get {return _storage._profile ?? Bloombox_Schema_Identity_User()}
+      set {_uniqueStorage()._profile = newValue}
+    }
+    /// Returns true if `profile` has been explicitly set.
+    public var hasProfile: Bool {return _storage._profile != nil}
+    /// Clears the value of `profile`. Subsequent reads from it will return its default value.
+    public mutating func clearProfile() {_storage._profile = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Request to get a user's profile information.
+    public var request: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request {
+      get {return _storage._request ?? Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request()}
+      set {_uniqueStorage()._request = newValue}
+    }
+    /// Returns true if `request` has been explicitly set.
+    public var hasRequest: Bool {return _storage._request != nil}
+    /// Clears the value of `request`. Subsequent reads from it will return its default value.
+    public mutating func clearRequest() {_storage._request = nil}
+
+    /// Response to a request to get a user's profile information.
+    public var response: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response {
+      get {return _storage._response ?? Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response()}
+      set {_uniqueStorage()._response = newValue}
+    }
+    /// Returns true if `response` has been explicitly set.
+    public var hasResponse: Bool {return _storage._response != nil}
+    /// Clears the value of `response`. Subsequent reads from it will return its default value.
+    public mutating func clearResponse() {_storage._response = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  public init() {}
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.services.auth.v1beta1"
+
+extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "NO_ERROR"),
+    1: .same(proto: "ACCOUNT_SUSPENDED"),
+    2: .same(proto: "PROFILE_NOT_FOUND"),
+    3: .same(proto: "INVALID_USER_KEY"),
+    4: .same(proto: "INVALID_ASSERTION"),
+    5: .same(proto: "UNSUPPORTED_LOGIN_TYPE"),
+  ]
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_AuthStatus: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "STATUS_UNKNOWN"),
+    1: .same(proto: "ACCESS_GRANTED"),
+    2: .same(proto: "ACCESS_DENIED"),
+  ]
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_Ping: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Ping"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_Ping) -> Bool {
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_Ping.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_Ping.protoMessageName + ".Request"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_Ping.Request) -> Bool {
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_Ping.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_Ping.protoMessageName + ".Response"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.status)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != .unknown {
+      try visitor.visitSingularEnumField(value: self.status, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_Ping.Response) -> Bool {
+    if self.status != other.status {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_Ping.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_Ping.protoMessageName + ".Operation"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "request"),
+    2: .same(proto: "response"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _request: Bloombox_Schema_Services_Auth_V1beta1_Ping.Request? = nil
+    var _response: Bloombox_Schema_Services_Auth_V1beta1_Ping.Response? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _request = source._request
+      _response = source._response
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_Ping.Operation) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._request != other_storage._request {return false}
+        if _storage._response != other_storage._response {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".EmailPasswordAssertion"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "email"),
+    2: .same(proto: "password"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.email)
+      case 2: try decoder.decodeSingularStringField(value: &self.password)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.email.isEmpty {
+      try visitor.visitSingularStringField(value: self.email, fieldNumber: 1)
+    }
+    if !self.password.isEmpty {
+      try visitor.visitSingularStringField(value: self.password, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion) -> Bool {
+    if self.email != other.email {return false}
+    if self.password != other.password {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".FirebaseTokenAssertion"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "token"),
+    2: .same(proto: "uid"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.token)
+      case 2: try decoder.decodeSingularStringField(value: &self.uid)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.token.isEmpty {
+      try visitor.visitSingularStringField(value: self.token, fieldNumber: 1)
+    }
+    if !self.uid.isEmpty {
+      try visitor.visitSingularStringField(value: self.uid, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion) -> Bool {
+    if self.token != other.token {return false}
+    if self.uid != other.uid {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AccountAssertion"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "email_password"),
+    2: .same(proto: "firebase"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _assertion: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion.OneOf_Assertion?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _assertion = source._assertion
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
@@ -409,10 +731,6 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProto
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       switch _storage._assertion {
@@ -424,361 +742,6 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProto
       }
     }
     try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Specifies an RPC operation wherein a user has requested an assertion of their identity be validated by the server.
-public struct Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".AuthenticateUser"
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  /// Request to authenticate a user.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.protoMessageName + ".Request"
-
-    /// Provider the user would like to login with.
-    public var provider: Bloombox_Schema_Identity_IdentityProvider {
-      get {return _storage._provider}
-      set {_uniqueStorage()._provider = newValue}
-    }
-
-    /// Login credentials provided by the user or Firebase.
-    public var assertion: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion {
-      get {return _storage._assertion ?? Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion()}
-      set {_uniqueStorage()._assertion = newValue}
-    }
-    /// Returns true if `assertion` has been explicitly set.
-    public var hasAssertion: Bool {return _storage._assertion != nil}
-    /// Clears the value of `assertion`. Subsequent reads from it will return its default value.
-    public mutating func clearAssertion() {_storage._assertion = nil}
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularEnumField(value: &_storage._provider)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._assertion)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if _storage._provider != .email {
-          try visitor.visitSingularEnumField(value: _storage._provider, fieldNumber: 1)
-        }
-        if let v = _storage._assertion {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
-    fileprivate var _storage = _StorageClass.defaultInstance
-  }
-
-  /// Response to a request to authenticate a user.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.protoMessageName + ".Response"
-
-    /// Resulting status from the user's authentication request.
-    public var status: Bloombox_Schema_Services_Auth_V1beta1_AuthStatus = .unknown
-
-    /// Indicates the user's identity ID.
-    public var uid: String = String()
-
-    /// Indicates the user's account key.
-    public var key: String = String()
-
-    /// Authorized token resulting from the authentication operation.
-    public var token: String = String()
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &self.status)
-        case 2: try decoder.decodeSingularStringField(value: &self.uid)
-        case 3: try decoder.decodeSingularStringField(value: &self.key)
-        case 4: try decoder.decodeSingularStringField(value: &self.token)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if self.status != .unknown {
-        try visitor.visitSingularEnumField(value: self.status, fieldNumber: 1)
-      }
-      if !self.uid.isEmpty {
-        try visitor.visitSingularStringField(value: self.uid, fieldNumber: 2)
-      }
-      if !self.key.isEmpty {
-        try visitor.visitSingularStringField(value: self.key, fieldNumber: 3)
-      }
-      if !self.token.isEmpty {
-        try visitor.visitSingularStringField(value: self.token, fieldNumber: 4)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-  }
-
-  /// Operation to authenticate a user, composed of one request and one response.
-  public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.protoMessageName + ".Operation"
-
-    /// Request to authenticate a user.
-    public var request: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request()}
-      set {_uniqueStorage()._request = newValue}
-    }
-    /// Returns true if `request` has been explicitly set.
-    public var hasRequest: Bool {return _storage._request != nil}
-    /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
-
-    /// Response to a request to authenticate a user.
-    public var response: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response()}
-      set {_uniqueStorage()._response = newValue}
-    }
-    /// Returns true if `response` has been explicitly set.
-    public var hasResponse: Bool {return _storage._response != nil}
-    /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._request {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._response {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
-    fileprivate var _storage = _StorageClass.defaultInstance
-  }
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.services.auth.v1beta1"
-
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "NO_ERROR"),
-  ]
-}
-
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthStatus: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "UNKNOWN"),
-    1: .same(proto: "ACCESS_GRANTED"),
-    2: .same(proto: "ACCESS_DENIED"),
-    3: .same(proto: "ACCOUNT_SUSPENDED"),
-  ]
-}
-
-extension Bloombox_Schema_Services_Auth_V1beta1_Ping: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_Ping) -> Bool {
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Services_Auth_V1beta1_Ping.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_Ping.Request) -> Bool {
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Services_Auth_V1beta1_Ping.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "status"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_Ping.Response) -> Bool {
-    if self.status != other.status {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Services_Auth_V1beta1_Ping.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "request"),
-    2: .same(proto: "response"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Auth_V1beta1_Ping.Request? = nil
-    var _response: Bloombox_Schema_Services_Auth_V1beta1_Ping.Response? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _request = source._request
-      _response = source._response
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_Ping.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "email"),
-    2: .same(proto: "password"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion) -> Bool {
-    if self.email != other.email {return false}
-    if self.password != other.password {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "token"),
-    2: .same(proto: "uid"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion) -> Bool {
-    if self.token != other.token {return false}
-    if self.uid != other.uid {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "email_password"),
-    2: .same(proto: "firebase"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _assertion: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion.OneOf_Assertion?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _assertion = source._assertion
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion) -> Bool {
@@ -796,8 +759,18 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf.
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AuthenticateUser"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -805,7 +778,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser: SwiftProtobuf.
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "provider"),
     2: .same(proto: "assertion"),
@@ -832,6 +806,31 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftP
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._provider)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._assertion)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._provider != .email {
+        try visitor.visitSingularEnumField(value: _storage._provider, fieldNumber: 1)
+      }
+      if let v = _storage._assertion {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -848,16 +847,45 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftP
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "status"),
+    1: .same(proto: "error"),
     2: .same(proto: "uid"),
     3: .same(proto: "key"),
     4: .same(proto: "token"),
   ]
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.error)
+      case 2: try decoder.decodeSingularStringField(value: &self.uid)
+      case 3: try decoder.decodeSingularStringField(value: &self.key)
+      case 4: try decoder.decodeSingularStringField(value: &self.token)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.error != .noError {
+      try visitor.visitSingularEnumField(value: self.error, fieldNumber: 1)
+    }
+    if !self.uid.isEmpty {
+      try visitor.visitSingularStringField(value: self.uid, fieldNumber: 2)
+    }
+    if !self.key.isEmpty {
+      try visitor.visitSingularStringField(value: self.key, fieldNumber: 3)
+    }
+    if !self.token.isEmpty {
+      try visitor.visitSingularStringField(value: self.token, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response) -> Bool {
-    if self.status != other.status {return false}
+    if self.error != other.error {return false}
     if self.uid != other.uid {return false}
     if self.key != other.key {return false}
     if self.token != other.token {return false}
@@ -866,7 +894,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response: Swift
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
@@ -893,7 +922,218 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Operation: Swif
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Operation) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._request != other_storage._request {return false}
+        if _storage._response != other_storage._response {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".GetProfile"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_GetProfile) -> Bool {
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_GetProfile.protoMessageName + ".Request"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "key"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.key)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.key.isEmpty {
+      try visitor.visitSingularStringField(value: self.key, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request) -> Bool {
+    if self.key != other.key {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_GetProfile.protoMessageName + ".Response"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "error"),
+    2: .same(proto: "profile"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _error: Bloombox_Schema_Services_Auth_V1beta1_AuthError = .noError
+    var _profile: Bloombox_Schema_Identity_User? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _error = source._error
+      _profile = source._profile
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._error)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._profile)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._error != .noError {
+        try visitor.visitSingularEnumField(value: _storage._error, fieldNumber: 1)
+      }
+      if let v = _storage._profile {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._error != other_storage._error {return false}
+        if _storage._profile != other_storage._profile {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_GetProfile.protoMessageName + ".Operation"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "request"),
+    2: .same(proto: "response"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _request: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request? = nil
+    var _response: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _request = source._request
+      _response = source._response
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Operation) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

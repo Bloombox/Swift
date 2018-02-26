@@ -53,8 +53,10 @@ public enum Bloombox_Schema_Identity_IDType: SwiftProtobuf.Enum {
 }
 
 /// Specifies an object for expressing a user's government ID information.
-public struct Bloombox_Schema_Identity_ID: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".ID"
+public struct Bloombox_Schema_Identity_ID {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Type of ID we're specifying.
   public var type: Bloombox_Schema_Identity_IDType {
@@ -130,70 +132,6 @@ public struct Bloombox_Schema_Identity_ID: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._expireDate)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._birthDate)
-        case 20:
-          var v: Bloombox_Schema_Identity_Ids_USDL?
-          if let current = _storage._document {
-            try decoder.handleConflictingOneOf()
-            if case .license(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._document = .license(v)}
-        case 21:
-          var v: Bloombox_Schema_Identity_Ids_Passport?
-          if let current = _storage._document {
-            try decoder.handleConflictingOneOf()
-            if case .passport(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._document = .passport(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._type != .usdl {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
-      }
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 2)
-      }
-      if let v = _storage._expireDate {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._birthDate {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      switch _storage._document {
-      case .license(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
-      case .passport(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -208,7 +146,8 @@ extension Bloombox_Schema_Identity_IDType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Bloombox_Schema_Identity_ID: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_ID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ID"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "id"),
@@ -243,6 +182,62 @@ extension Bloombox_Schema_Identity_ID: SwiftProtobuf._MessageImplementationBase,
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._expireDate)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._birthDate)
+        case 20:
+          var v: Bloombox_Schema_Identity_Ids_USDL?
+          if let current = _storage._document {
+            try decoder.handleConflictingOneOf()
+            if case .license(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._document = .license(v)}
+        case 21:
+          var v: Bloombox_Schema_Identity_Ids_Passport?
+          if let current = _storage._document {
+            try decoder.handleConflictingOneOf()
+            if case .passport(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._document = .passport(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._type != .usdl {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
+      }
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 2)
+      }
+      if let v = _storage._expireDate {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._birthDate {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      switch _storage._document {
+      case .license(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
+      case .passport(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_ID) -> Bool {

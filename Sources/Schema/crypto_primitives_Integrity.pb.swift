@@ -74,8 +74,10 @@ public enum Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm: SwiftProtobu
 
 /// Specifies the hash portion of hashed data, along with the algorithm used to calculate the digest enclosed. This
 /// particular container does not specify or otherwise contain the original referenced data.
-public struct Opencannabis_Crypto_Primitives_Integrity_Hash: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Hash"
+public struct Opencannabis_Crypto_Primitives_Integrity_Hash {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the algorithm in use.
   public var algorithm: Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm = .sha1
@@ -132,11 +134,62 @@ public struct Opencannabis_Crypto_Primitives_Integrity_Hash: SwiftProtobuf.Messa
   }
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+/// Specifies a set of raw data, of some kind, and an attached digest/hash value, along with the algorithm used to
+/// calculate the digest.
+public struct Opencannabis_Crypto_Primitives_Integrity_HashedData {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Raw data that we are transmitting.
+  public var data: Data {
+    get {return _storage._data}
+    set {_uniqueStorage()._data = newValue}
+  }
+
+  /// Hash for the raw data in this payload.
+  public var hash: Opencannabis_Crypto_Primitives_Integrity_Hash {
+    get {return _storage._hash ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+    set {_uniqueStorage()._hash = newValue}
+  }
+  /// Returns true if `hash` has been explicitly set.
+  public var hasHash: Bool {return _storage._hash != nil}
+  /// Clears the value of `hash`. Subsequent reads from it will return its default value.
+  public mutating func clearHash() {_storage._hash = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.crypto.primitives.integrity"
+
+extension Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "SHA1"),
+    1: .same(proto: "MD5"),
+    2: .same(proto: "SHA256"),
+    3: .same(proto: "SHA384"),
+    4: .same(proto: "SHA512"),
+    6: .same(proto: "MURMUR"),
+  ]
+}
+
+extension Opencannabis_Crypto_Primitives_Integrity_Hash: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Hash"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "algorithm"),
+    2: .same(proto: "raw"),
+    3: .same(proto: "hex"),
+    4: .same(proto: "b64"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -161,10 +214,6 @@ public struct Opencannabis_Crypto_Primitives_Integrity_Hash: SwiftProtobuf.Messa
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.algorithm != .sha1 {
       try visitor.visitSingularEnumField(value: self.algorithm, fieldNumber: 1)
@@ -180,91 +229,6 @@ public struct Opencannabis_Crypto_Primitives_Integrity_Hash: SwiftProtobuf.Messa
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
-
-/// Specifies a set of raw data, of some kind, and an attached digest/hash value, along with the algorithm used to
-/// calculate the digest.
-public struct Opencannabis_Crypto_Primitives_Integrity_HashedData: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".HashedData"
-
-  /// Raw data that we are transmitting.
-  public var data: Data {
-    get {return _storage._data}
-    set {_uniqueStorage()._data = newValue}
-  }
-
-  /// Hash for the raw data in this payload.
-  public var hash: Opencannabis_Crypto_Primitives_Integrity_Hash {
-    get {return _storage._hash ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
-    set {_uniqueStorage()._hash = newValue}
-  }
-  /// Returns true if `hash` has been explicitly set.
-  public var hasHash: Bool {return _storage._hash != nil}
-  /// Clears the value of `hash`. Subsequent reads from it will return its default value.
-  public mutating func clearHash() {_storage._hash = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularBytesField(value: &_storage._data)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._hash)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._data.isEmpty {
-        try visitor.visitSingularBytesField(value: _storage._data, fieldNumber: 1)
-      }
-      if let v = _storage._hash {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.crypto.primitives.integrity"
-
-extension Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "SHA1"),
-    1: .same(proto: "MD5"),
-    2: .same(proto: "SHA256"),
-    3: .same(proto: "SHA384"),
-    4: .same(proto: "SHA512"),
-    6: .same(proto: "MURMUR"),
-  ]
-}
-
-extension Opencannabis_Crypto_Primitives_Integrity_Hash: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "algorithm"),
-    2: .same(proto: "raw"),
-    3: .same(proto: "hex"),
-    4: .same(proto: "b64"),
-  ]
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Crypto_Primitives_Integrity_Hash) -> Bool {
     if self.algorithm != other.algorithm {return false}
@@ -274,7 +238,8 @@ extension Opencannabis_Crypto_Primitives_Integrity_Hash: SwiftProtobuf._MessageI
   }
 }
 
-extension Opencannabis_Crypto_Primitives_Integrity_HashedData: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Crypto_Primitives_Integrity_HashedData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".HashedData"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "data"),
     2: .same(proto: "hash"),
@@ -299,6 +264,31 @@ extension Opencannabis_Crypto_Primitives_Integrity_HashedData: SwiftProtobuf._Me
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularBytesField(value: &_storage._data)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._hash)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._data.isEmpty {
+        try visitor.visitSingularBytesField(value: _storage._data, fieldNumber: 1)
+      }
+      if let v = _storage._hash {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Crypto_Primitives_Integrity_HashedData) -> Bool {

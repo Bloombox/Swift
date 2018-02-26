@@ -96,8 +96,10 @@ public enum Opencannabis_Taxes_TaxBasis: SwiftProtobuf.Enum {
 }
 
 /// Specifies information about a municipally- or locally-imposed tax.
-public struct Opencannabis_Taxes_LocalTax: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".LocalTax"
+public struct Opencannabis_Taxes_LocalTax {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Municipality imposing the tax.
   public var municipality: String {
@@ -129,49 +131,14 @@ public struct Opencannabis_Taxes_LocalTax: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._municipality)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._province)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._country)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._municipality.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._municipality, fieldNumber: 1)
-      }
-      if let v = _storage._province {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._country {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies information about a provincially-imposed tax.
-public struct Opencannabis_Taxes_ProvincialTax: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".ProvincialTax"
+public struct Opencannabis_Taxes_ProvincialTax {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Province the municipality is in.
   public var province: Opencannabis_Geo_Province {
@@ -197,45 +164,14 @@ public struct Opencannabis_Taxes_ProvincialTax: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._province)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._country)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._province {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._country {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies information about a federally-imposed tax.
-public struct Opencannabis_Taxes_FederalTax: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".FederalTax"
+public struct Opencannabis_Taxes_FederalTax {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Province the municipality is in.
   public var country: Opencannabis_Geo_Country {
@@ -251,41 +187,14 @@ public struct Opencannabis_Taxes_FederalTax: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._country)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._country {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies information about a particular tax jurisdiction.
-public struct Opencannabis_Taxes_TaxJurisdiction: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".TaxJurisdiction"
+public struct Opencannabis_Taxes_TaxJurisdiction {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Operating mode of this tax jurisdiction.
   public var mode: Opencannabis_Taxes_TaxJurisdictionMode {
@@ -349,74 +258,14 @@ public struct Opencannabis_Taxes_TaxJurisdiction: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._mode)
-        case 2:
-          var v: Opencannabis_Taxes_LocalTax?
-          if let current = _storage._jurisdiction {
-            try decoder.handleConflictingOneOf()
-            if case .local(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._jurisdiction = .local(v)}
-        case 3:
-          var v: Opencannabis_Taxes_ProvincialTax?
-          if let current = _storage._jurisdiction {
-            try decoder.handleConflictingOneOf()
-            if case .provincial(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._jurisdiction = .provincial(v)}
-        case 4:
-          var v: Opencannabis_Taxes_FederalTax?
-          if let current = _storage._jurisdiction {
-            try decoder.handleConflictingOneOf()
-            if case .federal(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._jurisdiction = .federal(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._mode != .local {
-        try visitor.visitSingularEnumField(value: _storage._mode, fieldNumber: 1)
-      }
-      switch _storage._jurisdiction {
-      case .local(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      case .provincial(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      case .federal(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specification record for a type of taxes to apply.
-public struct Opencannabis_Taxes_TaxSpec: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".TaxSpec"
+public struct Opencannabis_Taxes_TaxSpec {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// The basis to calculate the tax value from.
   public var basis: Opencannabis_Taxes_TaxBasis {
@@ -484,66 +333,14 @@ public struct Opencannabis_Taxes_TaxSpec: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._basis)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._jurisdiction)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._transactionLabel)
-        case 4:
-          if _storage._rate != nil {try decoder.handleConflictingOneOf()}
-          var v: Double?
-          try decoder.decodeSingularDoubleField(value: &v)
-          if let v = v {_storage._rate = .percentage(v)}
-        case 5:
-          if _storage._rate != nil {try decoder.handleConflictingOneOf()}
-          var v: Double?
-          try decoder.decodeSingularDoubleField(value: &v)
-          if let v = v {_storage._rate = .staticValue(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._basis != .item {
-        try visitor.visitSingularEnumField(value: _storage._basis, fieldNumber: 1)
-      }
-      if let v = _storage._jurisdiction {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._transactionLabel.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._transactionLabel, fieldNumber: 3)
-      }
-      switch _storage._rate {
-      case .percentage(let v)?:
-        try visitor.visitSingularDoubleField(value: v, fieldNumber: 4)
-      case .staticValue(let v)?:
-        try visitor.visitSingularDoubleField(value: v, fieldNumber: 5)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies a tax to be applied during a purchase.
-public struct Opencannabis_Taxes_Tax: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Tax"
+public struct Opencannabis_Taxes_Tax {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// ID code for this tax entry.
   public var id: String {
@@ -584,51 +381,6 @@ public struct Opencannabis_Taxes_Tax: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._spec)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._name)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._label)
-        case 5: try decoder.decodeSingularStringField(value: &_storage._description_p)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if let v = _storage._spec {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._name.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 3)
-      }
-      if !_storage._label.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._label, fieldNumber: 4)
-      }
-      if !_storage._description_p.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 5)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -652,7 +404,8 @@ extension Opencannabis_Taxes_TaxBasis: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Opencannabis_Taxes_LocalTax: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Taxes_LocalTax: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LocalTax"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "municipality"),
     2: .same(proto: "province"),
@@ -682,6 +435,35 @@ extension Opencannabis_Taxes_LocalTax: SwiftProtobuf._MessageImplementationBase,
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._municipality)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._province)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._country)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._municipality.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._municipality, fieldNumber: 1)
+      }
+      if let v = _storage._province {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._country {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Taxes_LocalTax) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -699,7 +481,8 @@ extension Opencannabis_Taxes_LocalTax: SwiftProtobuf._MessageImplementationBase,
   }
 }
 
-extension Opencannabis_Taxes_ProvincialTax: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Taxes_ProvincialTax: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ProvincialTax"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "province"),
     2: .same(proto: "country"),
@@ -726,6 +509,31 @@ extension Opencannabis_Taxes_ProvincialTax: SwiftProtobuf._MessageImplementation
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._province)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._country)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._province {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._country {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Taxes_ProvincialTax) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -742,7 +550,8 @@ extension Opencannabis_Taxes_ProvincialTax: SwiftProtobuf._MessageImplementation
   }
 }
 
-extension Opencannabis_Taxes_FederalTax: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Taxes_FederalTax: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".FederalTax"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "country"),
   ]
@@ -766,6 +575,27 @@ extension Opencannabis_Taxes_FederalTax: SwiftProtobuf._MessageImplementationBas
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._country)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._country {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Taxes_FederalTax) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -781,7 +611,8 @@ extension Opencannabis_Taxes_FederalTax: SwiftProtobuf._MessageImplementationBas
   }
 }
 
-extension Opencannabis_Taxes_TaxJurisdiction: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Taxes_TaxJurisdiction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TaxJurisdiction"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "mode"),
     2: .same(proto: "local"),
@@ -810,6 +641,60 @@ extension Opencannabis_Taxes_TaxJurisdiction: SwiftProtobuf._MessageImplementati
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._mode)
+        case 2:
+          var v: Opencannabis_Taxes_LocalTax?
+          if let current = _storage._jurisdiction {
+            try decoder.handleConflictingOneOf()
+            if case .local(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._jurisdiction = .local(v)}
+        case 3:
+          var v: Opencannabis_Taxes_ProvincialTax?
+          if let current = _storage._jurisdiction {
+            try decoder.handleConflictingOneOf()
+            if case .provincial(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._jurisdiction = .provincial(v)}
+        case 4:
+          var v: Opencannabis_Taxes_FederalTax?
+          if let current = _storage._jurisdiction {
+            try decoder.handleConflictingOneOf()
+            if case .federal(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._jurisdiction = .federal(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._mode != .local {
+        try visitor.visitSingularEnumField(value: _storage._mode, fieldNumber: 1)
+      }
+      switch _storage._jurisdiction {
+      case .local(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case .provincial(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      case .federal(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Taxes_TaxJurisdiction) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -826,7 +711,8 @@ extension Opencannabis_Taxes_TaxJurisdiction: SwiftProtobuf._MessageImplementati
   }
 }
 
-extension Opencannabis_Taxes_TaxSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Taxes_TaxSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TaxSpec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "basis"),
     2: .same(proto: "jurisdiction"),
@@ -860,6 +746,52 @@ extension Opencannabis_Taxes_TaxSpec: SwiftProtobuf._MessageImplementationBase, 
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._basis)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._jurisdiction)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._transactionLabel)
+        case 4:
+          if _storage._rate != nil {try decoder.handleConflictingOneOf()}
+          var v: Double?
+          try decoder.decodeSingularDoubleField(value: &v)
+          if let v = v {_storage._rate = .percentage(v)}
+        case 5:
+          if _storage._rate != nil {try decoder.handleConflictingOneOf()}
+          var v: Double?
+          try decoder.decodeSingularDoubleField(value: &v)
+          if let v = v {_storage._rate = .staticValue(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._basis != .item {
+        try visitor.visitSingularEnumField(value: _storage._basis, fieldNumber: 1)
+      }
+      if let v = _storage._jurisdiction {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._transactionLabel.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._transactionLabel, fieldNumber: 3)
+      }
+      switch _storage._rate {
+      case .percentage(let v)?:
+        try visitor.visitSingularDoubleField(value: v, fieldNumber: 4)
+      case .staticValue(let v)?:
+        try visitor.visitSingularDoubleField(value: v, fieldNumber: 5)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Taxes_TaxSpec) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -878,7 +810,8 @@ extension Opencannabis_Taxes_TaxSpec: SwiftProtobuf._MessageImplementationBase, 
   }
 }
 
-extension Opencannabis_Taxes_Tax: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Taxes_Tax: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Tax"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "spec"),
@@ -912,6 +845,43 @@ extension Opencannabis_Taxes_Tax: SwiftProtobuf._MessageImplementationBase, Swif
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._spec)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._label)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._description_p)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if let v = _storage._spec {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 3)
+      }
+      if !_storage._label.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._label, fieldNumber: 4)
+      }
+      if !_storage._description_p.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Taxes_Tax) -> Bool {

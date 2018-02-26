@@ -143,6 +143,61 @@ public class Bloombox_Schema_Services_Auth_V1Beta1_AuthAuthenticateCall {
   }
 }
 
+/// Profile (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthProfileCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.auth.v1beta1.Auth/Profile")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Auth_V1Beta1_AuthClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Auth_V1Beta1_AuthProfileCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
 /// Call methods of this class to make API calls.
 public final class Bloombox_Schema_Services_Auth_V1Beta1_AuthService {
   public var channel: Channel
@@ -206,6 +261,21 @@ public final class Bloombox_Schema_Services_Auth_V1Beta1_AuthService {
                                                  metadata:metadata,
                                                  completion:completion)
   }
+  /// Synchronous. Unary.
+  public func profile(_ request: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request)
+    throws
+    -> Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthProfileCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func profile(_ request: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Auth_V1Beta1_AuthProfileCall {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthProfileCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
 }
 
 
@@ -218,6 +288,7 @@ public enum Bloombox_Schema_Services_Auth_V1Beta1_AuthServerError : Error {
 public protocol Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider {
   func ping(request : Bloombox_Schema_Services_Auth_V1beta1_Ping.Request, session : Bloombox_Schema_Services_Auth_V1Beta1_AuthPingSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_Ping.Response
   func authenticate(request : Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request, session : Bloombox_Schema_Services_Auth_V1Beta1_AuthAuthenticateSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response
+  func profile(request : Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request, session : Bloombox_Schema_Services_Auth_V1Beta1_AuthProfileSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response
 }
 
 /// Common properties available in each service session.
@@ -285,6 +356,31 @@ public class Bloombox_Schema_Services_Auth_V1Beta1_AuthAuthenticateSession : Blo
   }
 }
 
+// Profile (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthProfileSession : Bloombox_Schema_Services_Auth_V1Beta1_AuthSession {
+  private var provider : Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request(serializedData:requestData)
+        let replyMessage = try self.provider.profile(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
 
 /// Main server for generated service
 public class Bloombox_Schema_Services_Auth_V1Beta1_AuthServer {
@@ -335,6 +431,8 @@ public class Bloombox_Schema_Services_Auth_V1Beta1_AuthServer {
           try Bloombox_Schema_Services_Auth_V1Beta1_AuthPingSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.auth.v1beta1.Auth/Authenticate":
           try Bloombox_Schema_Services_Auth_V1Beta1_AuthAuthenticateSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.auth.v1beta1.Auth/Profile":
+          try Bloombox_Schema_Services_Auth_V1Beta1_AuthProfileSession(handler:handler, provider:provider).run(queue:queue)
         default:
           break // handle unknown requests
         }

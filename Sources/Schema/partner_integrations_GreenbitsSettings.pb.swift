@@ -19,71 +19,183 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Specifies Greenbits features that may be enabled or disabled.
+public struct Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Enable or disable customer data sync.
+  public var customers: Bool = false
+
+  /// Enable or disable checkin integration.
+  public var checkin: Bool = false
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 /// Specifies settings related to Greenbits integration with Bloombox.
-public struct Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".GreenbitsSettings"
+public struct Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Organization account ID in Greenbits.
-  public var organization: String = String()
+  public var organization: String {
+    get {return _storage._organization}
+    set {_uniqueStorage()._organization = newValue}
+  }
 
   /// Greenbits API key, available in the Greenbits dashboard.
-  public var apiKey: String = String()
+  public var apiKey: String {
+    get {return _storage._apiKey}
+    set {_uniqueStorage()._apiKey = newValue}
+  }
 
   /// Greenbits Auth token to use, available in the Greenbits dashboard.
-  public var authToken: String = String()
+  public var authToken: String {
+    get {return _storage._authToken}
+    set {_uniqueStorage()._authToken = newValue}
+  }
+
+  /// Flags indicating features that should be enabled or disabled.
+  public var features: Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures {
+    get {return _storage._features ?? Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures()}
+    set {_uniqueStorage()._features = newValue}
+  }
+  /// Returns true if `features` has been explicitly set.
+  public var hasFeatures: Bool {return _storage._features != nil}
+  /// Clears the value of `features`. Subsequent reads from it will return its default value.
+  public mutating func clearFeatures() {_storage._features = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.organization)
-      case 2: try decoder.decodeSingularStringField(value: &self.apiKey)
-      case 3: try decoder.decodeSingularStringField(value: &self.authToken)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.organization.isEmpty {
-      try visitor.visitSingularStringField(value: self.organization, fieldNumber: 1)
-    }
-    if !self.apiKey.isEmpty {
-      try visitor.visitSingularStringField(value: self.apiKey, fieldNumber: 2)
-    }
-    if !self.authToken.isEmpty {
-      try visitor.visitSingularStringField(value: self.authToken, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bloombox.schema.partner.integrations.greenbits"
 
-extension Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".GreenbitsIntegrationFeatures"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "customers"),
+    2: .same(proto: "checkin"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.customers)
+      case 2: try decoder.decodeSingularBoolField(value: &self.checkin)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.customers != false {
+      try visitor.visitSingularBoolField(value: self.customers, fieldNumber: 1)
+    }
+    if self.checkin != false {
+      try visitor.visitSingularBoolField(value: self.checkin, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures) -> Bool {
+    if self.customers != other.customers {return false}
+    if self.checkin != other.checkin {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".GreenbitsSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "organization"),
     2: .standard(proto: "api_key"),
     3: .standard(proto: "auth_token"),
+    10: .same(proto: "features"),
   ]
 
+  fileprivate class _StorageClass {
+    var _organization: String = String()
+    var _apiKey: String = String()
+    var _authToken: String = String()
+    var _features: Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _organization = source._organization
+      _apiKey = source._apiKey
+      _authToken = source._authToken
+      _features = source._features
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._organization)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._apiKey)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._authToken)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._features)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._organization.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._organization, fieldNumber: 1)
+      }
+      if !_storage._apiKey.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._apiKey, fieldNumber: 2)
+      }
+      if !_storage._authToken.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._authToken, fieldNumber: 3)
+      }
+      if let v = _storage._features {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings) -> Bool {
-    if self.organization != other.organization {return false}
-    if self.apiKey != other.apiKey {return false}
-    if self.authToken != other.authToken {return false}
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._organization != other_storage._organization {return false}
+        if _storage._apiKey != other_storage._apiKey {return false}
+        if _storage._authToken != other_storage._authToken {return false}
+        if _storage._features != other_storage._features {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if unknownFields != other.unknownFields {return false}
     return true
   }

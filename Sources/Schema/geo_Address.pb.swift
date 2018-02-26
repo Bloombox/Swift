@@ -19,29 +19,51 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Opencannabis_Geo_Address: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Address"
+/// Specifies a standard postal address, with two address lines, and space for a municipality ('city'), provincial
+/// authority ('state'), and national authority ('country').
+public struct Opencannabis_Geo_Address {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
+  /// First line of the address.
   public var firstLine: String = String()
 
+  /// Second line of the address, if applicable.
   public var secondLine: String = String()
 
+  /// City or municipality name for the address.
   public var city: String = String()
 
+  /// State that contains the city or municipality for this address.
   public var state: String = String()
 
+  /// USPS zipcode associated with this address.
   public var zipcode: String = String()
 
+  /// Country code associated with this address ('US' or 'USA' for United States, for instance).
   public var country: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.geo"
+
+extension Opencannabis_Geo_Address: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Address"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "first_line"),
+    2: .standard(proto: "second_line"),
+    3: .same(proto: "city"),
+    4: .same(proto: "state"),
+    5: .same(proto: "zipcode"),
+    6: .same(proto: "country"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -56,10 +78,6 @@ public struct Opencannabis_Geo_Address: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.firstLine.isEmpty {
       try visitor.visitSingularStringField(value: self.firstLine, fieldNumber: 1)
@@ -81,21 +99,6 @@ public struct Opencannabis_Geo_Address: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.geo"
-
-extension Opencannabis_Geo_Address: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "first_line"),
-    2: .standard(proto: "second_line"),
-    3: .same(proto: "city"),
-    4: .same(proto: "state"),
-    5: .same(proto: "zipcode"),
-    6: .same(proto: "country"),
-  ]
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Address) -> Bool {
     if self.firstLine != other.firstLine {return false}

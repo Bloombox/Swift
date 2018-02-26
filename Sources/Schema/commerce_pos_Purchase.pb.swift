@@ -63,8 +63,10 @@ public enum Bloombox_Schema_Commerce_Pos_PurchaseStatus: SwiftProtobuf.Enum {
 }
 
 /// Specifies an event that takes place against a Purchase.
-public struct Bloombox_Schema_Commerce_Pos_PurchaseEvent: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PurchaseEvent"
+public struct Bloombox_Schema_Commerce_Pos_PurchaseEvent {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Status the order moved to.
   public var status: Bloombox_Schema_Commerce_Pos_PurchaseStatus {
@@ -92,49 +94,14 @@ public struct Bloombox_Schema_Commerce_Pos_PurchaseEvent: SwiftProtobuf.Message 
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._instant)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._message)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._status != .dormant {
-        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 1)
-      }
-      if let v = _storage._instant {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._message.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._message, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Receipt object describing each of a purchase's component taxes and charges.
-public struct Bloombox_Schema_Commerce_Pos_Receipt: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Receipt"
+public struct Bloombox_Schema_Commerce_Pos_Receipt {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Calculated subtotal of all items, and their ordered quantities, summed of price.
   public var subtotal: Double = 0
@@ -151,48 +118,14 @@ public struct Bloombox_Schema_Commerce_Pos_Receipt: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularDoubleField(value: &self.subtotal)
-      case 2: try decoder.decodeRepeatedMessageField(value: &self.tax)
-      case 3: try decoder.decodeRepeatedMessageField(value: &self.discount)
-      case 4: try decoder.decodeSingularDoubleField(value: &self.total)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.subtotal != 0 {
-      try visitor.visitSingularDoubleField(value: self.subtotal, fieldNumber: 1)
-    }
-    if !self.tax.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.tax, fieldNumber: 2)
-    }
-    if !self.discount.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.discount, fieldNumber: 3)
-    }
-    if self.total != 0 {
-      try visitor.visitSingularDoubleField(value: self.total, fieldNumber: 4)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Represents a commercial purchase, made at a point-of-sale station at a brick-and-mortar
 /// retail dispensary.
-public struct Bloombox_Schema_Commerce_Pos_Purchase: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Purchase"
+public struct Bloombox_Schema_Commerce_Pos_Purchase {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// ID assigned to the purchase by the server.
   public var id: String {
@@ -274,71 +207,6 @@ public struct Bloombox_Schema_Commerce_Pos_Purchase: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._partnerCode)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._locationCode)
-        case 4: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._customer)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._register)
-        case 7: try decoder.decodeRepeatedMessageField(value: &_storage._item)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._receipt)
-        case 9: try decoder.decodeRepeatedMessageField(value: &_storage._actionLog)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._createdAt)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if !_storage._partnerCode.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._partnerCode, fieldNumber: 2)
-      }
-      if !_storage._locationCode.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._locationCode, fieldNumber: 3)
-      }
-      if _storage._status != .dormant {
-        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 4)
-      }
-      if let v = _storage._customer {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._register {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if !_storage._item.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._item, fieldNumber: 7)
-      }
-      if let v = _storage._receipt {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-      }
-      if !_storage._actionLog.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._actionLog, fieldNumber: 9)
-      }
-      if let v = _storage._createdAt {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -355,7 +223,8 @@ extension Bloombox_Schema_Commerce_Pos_PurchaseStatus: SwiftProtobuf._ProtoNameP
   ]
 }
 
-extension Bloombox_Schema_Commerce_Pos_PurchaseEvent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Commerce_Pos_PurchaseEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PurchaseEvent"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "instant"),
@@ -385,6 +254,35 @@ extension Bloombox_Schema_Commerce_Pos_PurchaseEvent: SwiftProtobuf._MessageImpl
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._instant)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._message)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._status != .dormant {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 1)
+      }
+      if let v = _storage._instant {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._message.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._message, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Commerce_Pos_PurchaseEvent) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -402,13 +300,42 @@ extension Bloombox_Schema_Commerce_Pos_PurchaseEvent: SwiftProtobuf._MessageImpl
   }
 }
 
-extension Bloombox_Schema_Commerce_Pos_Receipt: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Commerce_Pos_Receipt: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Receipt"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "subtotal"),
     2: .same(proto: "tax"),
     3: .same(proto: "discount"),
     4: .same(proto: "total"),
   ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularDoubleField(value: &self.subtotal)
+      case 2: try decoder.decodeRepeatedMessageField(value: &self.tax)
+      case 3: try decoder.decodeRepeatedMessageField(value: &self.discount)
+      case 4: try decoder.decodeSingularDoubleField(value: &self.total)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.subtotal != 0 {
+      try visitor.visitSingularDoubleField(value: self.subtotal, fieldNumber: 1)
+    }
+    if !self.tax.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.tax, fieldNumber: 2)
+    }
+    if !self.discount.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.discount, fieldNumber: 3)
+    }
+    if self.total != 0 {
+      try visitor.visitSingularDoubleField(value: self.total, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Commerce_Pos_Receipt) -> Bool {
     if self.subtotal != other.subtotal {return false}
@@ -420,7 +347,8 @@ extension Bloombox_Schema_Commerce_Pos_Receipt: SwiftProtobuf._MessageImplementa
   }
 }
 
-extension Bloombox_Schema_Commerce_Pos_Purchase: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Commerce_Pos_Purchase: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Purchase"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .standard(proto: "partner_code"),
@@ -469,6 +397,63 @@ extension Bloombox_Schema_Commerce_Pos_Purchase: SwiftProtobuf._MessageImplement
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._partnerCode)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._locationCode)
+        case 4: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._customer)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 7: try decoder.decodeRepeatedMessageField(value: &_storage._item)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._receipt)
+        case 9: try decoder.decodeRepeatedMessageField(value: &_storage._actionLog)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._createdAt)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if !_storage._partnerCode.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._partnerCode, fieldNumber: 2)
+      }
+      if !_storage._locationCode.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._locationCode, fieldNumber: 3)
+      }
+      if _storage._status != .dormant {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 4)
+      }
+      if let v = _storage._customer {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if !_storage._item.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._item, fieldNumber: 7)
+      }
+      if let v = _storage._receipt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if !_storage._actionLog.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._actionLog, fieldNumber: 9)
+      }
+      if let v = _storage._createdAt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Commerce_Pos_Purchase) -> Bool {

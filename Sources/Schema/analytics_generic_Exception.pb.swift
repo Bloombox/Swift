@@ -20,8 +20,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// References a line and column number in a source file that is mentioned in an error report.
-public struct Bloombox_Schema_Analytics_Generic_SourceLineReference: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SourceLineReference"
+public struct Bloombox_Schema_Analytics_Generic_SourceLineReference {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Line number in a source code file.
   public var line: Int32 = 0
@@ -32,39 +34,13 @@ public struct Bloombox_Schema_Analytics_Generic_SourceLineReference: SwiftProtob
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 3: try decoder.decodeSingularInt32Field(value: &self.line)
-      case 4: try decoder.decodeSingularInt32Field(value: &self.column)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.line != 0 {
-      try visitor.visitSingularInt32Field(value: self.line, fieldNumber: 3)
-    }
-    if self.column != 0 {
-      try visitor.visitSingularInt32Field(value: self.column, fieldNumber: 4)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// References a location for source code that is mentioned in an error report.
-public struct Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SourceLocation"
+public struct Bloombox_Schema_Analytics_Generic_SourceLocation {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Arbitrary 'module' name for this source code. Usually the containing codebase.
   public var module: String {
@@ -122,65 +98,14 @@ public struct Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf.Me
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._module)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._filepath)
-        case 3:
-          var v: Bloombox_Schema_Analytics_Generic_SourceLineReference?
-          if let current = _storage._pinpoint {
-            try decoder.handleConflictingOneOf()
-            if case .lineref(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._pinpoint = .lineref(v)}
-        case 4:
-          if _storage._pinpoint != nil {try decoder.handleConflictingOneOf()}
-          var v: Int64?
-          try decoder.decodeSingularInt64Field(value: &v)
-          if let v = v {_storage._pinpoint = .offset(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._module.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._module, fieldNumber: 1)
-      }
-      if !_storage._filepath.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._filepath, fieldNumber: 2)
-      }
-      switch _storage._pinpoint {
-      case .lineref(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      case .offset(let v)?:
-        try visitor.visitSingularInt64Field(value: v, fieldNumber: 4)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Represents an error event.
-public struct Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Exception"
+public struct Bloombox_Schema_Analytics_Generic_Exception {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// String domain value for this error, if any.
   public var domain: String {
@@ -218,47 +143,6 @@ public struct Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf.Message
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._domain)
-        case 2: try decoder.decodeSingularInt32Field(value: &_storage._code)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._location)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._occurred)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._domain.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._domain, fieldNumber: 1)
-      }
-      if _storage._code != 0 {
-        try visitor.visitSingularInt32Field(value: _storage._code, fieldNumber: 2)
-      }
-      if let v = _storage._location {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._occurred {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -266,11 +150,32 @@ public struct Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf.Message
 
 fileprivate let _protobuf_package = "bloombox.schema.analytics.generic"
 
-extension Bloombox_Schema_Analytics_Generic_SourceLineReference: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Generic_SourceLineReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SourceLineReference"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     3: .same(proto: "line"),
     4: .same(proto: "column"),
   ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 3: try decoder.decodeSingularInt32Field(value: &self.line)
+      case 4: try decoder.decodeSingularInt32Field(value: &self.column)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.line != 0 {
+      try visitor.visitSingularInt32Field(value: self.line, fieldNumber: 3)
+    }
+    if self.column != 0 {
+      try visitor.visitSingularInt32Field(value: self.column, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_SourceLineReference) -> Bool {
     if self.line != other.line {return false}
@@ -280,7 +185,8 @@ extension Bloombox_Schema_Analytics_Generic_SourceLineReference: SwiftProtobuf._
   }
 }
 
-extension Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SourceLocation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "module"),
     2: .same(proto: "filepath"),
@@ -311,6 +217,51 @@ extension Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf._Messa
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._module)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._filepath)
+        case 3:
+          var v: Bloombox_Schema_Analytics_Generic_SourceLineReference?
+          if let current = _storage._pinpoint {
+            try decoder.handleConflictingOneOf()
+            if case .lineref(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._pinpoint = .lineref(v)}
+        case 4:
+          if _storage._pinpoint != nil {try decoder.handleConflictingOneOf()}
+          var v: Int64?
+          try decoder.decodeSingularInt64Field(value: &v)
+          if let v = v {_storage._pinpoint = .offset(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._module.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._module, fieldNumber: 1)
+      }
+      if !_storage._filepath.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._filepath, fieldNumber: 2)
+      }
+      switch _storage._pinpoint {
+      case .lineref(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      case .offset(let v)?:
+        try visitor.visitSingularInt64Field(value: v, fieldNumber: 4)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_SourceLocation) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -328,7 +279,8 @@ extension Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf._Messa
   }
 }
 
-extension Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Exception"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "domain"),
     2: .same(proto: "code"),
@@ -359,6 +311,39 @@ extension Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf._MessageImp
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._domain)
+        case 2: try decoder.decodeSingularInt32Field(value: &_storage._code)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._location)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._occurred)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._domain.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._domain, fieldNumber: 1)
+      }
+      if _storage._code != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._code, fieldNumber: 2)
+      }
+      if let v = _storage._location {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._occurred {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_Exception) -> Bool {

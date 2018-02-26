@@ -68,8 +68,10 @@ public enum Bloombox_Schema_Analytics_Context_EventType: SwiftProtobuf.Enum {
 }
 
 /// Represents a specification for an analytics event collection.
-public struct Bloombox_Schema_Analytics_Context_Collection: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Collection"
+public struct Bloombox_Schema_Analytics_Context_Collection {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies an unenumerated collection by name.
   public var name: String = String()
@@ -83,38 +85,6 @@ public struct Bloombox_Schema_Analytics_Context_Collection: SwiftProtobuf.Messag
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.name)
-      case 2: try decoder.decodeSingularBoolField(value: &self.`internal`)
-      case 3: try decoder.decodeSingularEnumField(value: &self.type)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.name.isEmpty {
-      try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
-    }
-    if self.`internal` != false {
-      try visitor.visitSingularBoolField(value: self.`internal`, fieldNumber: 2)
-    }
-    if self.type != .generic {
-      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -131,12 +101,37 @@ extension Bloombox_Schema_Analytics_Context_EventType: SwiftProtobuf._ProtoNameP
   ]
 }
 
-extension Bloombox_Schema_Analytics_Context_Collection: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context_Collection: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Collection"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "internal"),
     3: .same(proto: "type"),
   ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.name)
+      case 2: try decoder.decodeSingularBoolField(value: &self.`internal`)
+      case 3: try decoder.decodeSingularEnumField(value: &self.type)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
+    }
+    if self.`internal` != false {
+      try visitor.visitSingularBoolField(value: self.`internal`, fieldNumber: 2)
+    }
+    if self.type != .generic {
+      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_Collection) -> Bool {
     if self.name != other.name {return false}

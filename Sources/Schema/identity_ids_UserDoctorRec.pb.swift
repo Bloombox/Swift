@@ -20,8 +20,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Doctor recommendation to allow a consumer to purchase cannabis in a restricted market.
-public struct Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".UserDoctorRec"
+public struct Bloombox_Schema_Identity_Ids_UserDoctorRec {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// ID number/unique code.
   public var id: String {
@@ -77,59 +79,6 @@ public struct Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message 
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._expirationDate)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._barcode)
-        case 4: try decoder.decodeSingularEnumField(value: &_storage._state)
-        case 5: try decoder.decodeSingularStringField(value: &_storage._country)
-        case 6: try decoder.decodeSingularStringField(value: &_storage._doctorID)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._doctor)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if let v = _storage._expirationDate {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._barcode.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._barcode, fieldNumber: 3)
-      }
-      if _storage._state != .unspecified {
-        try visitor.visitSingularEnumField(value: _storage._state, fieldNumber: 4)
-      }
-      if !_storage._country.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._country, fieldNumber: 5)
-      }
-      if !_storage._doctorID.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._doctorID, fieldNumber: 6)
-      }
-      if let v = _storage._doctor {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -137,7 +86,8 @@ public struct Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message 
 
 fileprivate let _protobuf_package = "bloombox.schema.identity.ids"
 
-extension Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".UserDoctorRec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .standard(proto: "expiration_date"),
@@ -177,6 +127,51 @@ extension Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf._MessageImpl
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._expirationDate)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._barcode)
+        case 4: try decoder.decodeSingularEnumField(value: &_storage._state)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._country)
+        case 6: try decoder.decodeSingularStringField(value: &_storage._doctorID)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._doctor)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if let v = _storage._expirationDate {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._barcode.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._barcode, fieldNumber: 3)
+      }
+      if _storage._state != .unspecified {
+        try visitor.visitSingularEnumField(value: _storage._state, fieldNumber: 4)
+      }
+      if !_storage._country.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._country, fieldNumber: 5)
+      }
+      if !_storage._doctorID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._doctorID, fieldNumber: 6)
+      }
+      if let v = _storage._doctor {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_UserDoctorRec) -> Bool {

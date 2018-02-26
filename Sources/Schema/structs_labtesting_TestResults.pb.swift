@@ -341,8 +341,10 @@ public enum Opencannabis_Structs_Labtesting_Terpene: SwiftProtobuf.Enum {
 }
 
 /// -- Testing: Full Protocol
-public struct Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".TestResults"
+public struct Opencannabis_Structs_Labtesting_TestResults {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var available: Bool {
     get {return _storage._available}
@@ -418,72 +420,13 @@ public struct Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf.Message
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularBoolField(value: &_storage._available)
-        case 2: try decoder.decodeRepeatedMessageField(value: &_storage._media)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._lastUpdated)
-        case 30: try decoder.decodeSingularMessageField(value: &_storage._cannabinoids)
-        case 31: try decoder.decodeSingularMessageField(value: &_storage._terpenes)
-        case 32: try decoder.decodeSingularMessageField(value: &_storage._pesticides)
-        case 33: try decoder.decodeSingularMessageField(value: &_storage._moisture)
-        case 34: try decoder.decodeRepeatedEnumField(value: &_storage._aroma)
-        case 35: try decoder.decodeSingularMessageField(value: &_storage._subjective)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._available != false {
-        try visitor.visitSingularBoolField(value: _storage._available, fieldNumber: 1)
-      }
-      if !_storage._media.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._media, fieldNumber: 2)
-      }
-      if let v = _storage._lastUpdated {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._cannabinoids {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 30)
-      }
-      if let v = _storage._terpenes {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 31)
-      }
-      if let v = _storage._pesticides {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 32)
-      }
-      if let v = _storage._moisture {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 33)
-      }
-      if !_storage._aroma.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._aroma, fieldNumber: 34)
-      }
-      if let v = _storage._subjective {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 35)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Opencannabis_Structs_Labtesting_Cannabinoids: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Cannabinoids"
+public struct Opencannabis_Structs_Labtesting_Cannabinoids {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var thc: Opencannabis_Structs_Labtesting_TestValue {
     get {return _storage._thc ?? Opencannabis_Structs_Labtesting_TestValue()}
@@ -510,8 +453,10 @@ public struct Opencannabis_Structs_Labtesting_Cannabinoids: SwiftProtobuf.Messag
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  public struct Result: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Opencannabis_Structs_Labtesting_Cannabinoids.protoMessageName + ".Result"
+  public struct Result {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     public var cannabinoid: Opencannabis_Structs_Labtesting_Cannabinoid {
       get {return _storage._cannabinoid}
@@ -536,90 +481,18 @@ public struct Opencannabis_Structs_Labtesting_Cannabinoids: SwiftProtobuf.Messag
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularEnumField(value: &_storage._cannabinoid)
-          case 2: try decoder.decodeSingularEnumField(value: &_storage._ratio)
-          case 3: try decoder.decodeSingularMessageField(value: &_storage._measurement)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if _storage._cannabinoid != .thc {
-          try visitor.visitSingularEnumField(value: _storage._cannabinoid, fieldNumber: 1)
-        }
-        if _storage._ratio != .noCannabinoidPreference {
-          try visitor.visitSingularEnumField(value: _storage._ratio, fieldNumber: 2)
-        }
-        if let v = _storage._measurement {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._thc)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._cbd)
-        case 3: try decoder.decodeRepeatedMessageField(value: &_storage._results)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._thc {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._cbd {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._results.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._results, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Opencannabis_Structs_Labtesting_Subjective: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Subjective"
+public struct Opencannabis_Structs_Labtesting_Subjective {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var description_p: Opencannabis_Content_Content {
     get {return _storage._description_p ?? Opencannabis_Content_Content()}
@@ -658,56 +531,13 @@ public struct Opencannabis_Structs_Labtesting_Subjective: SwiftProtobuf.Message 
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._description_p)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._taste)
-        case 3: try decoder.decodeSingularEnumField(value: &_storage._potency)
-        case 4: try decoder.decodeRepeatedEnumField(value: &_storage._feelingTags)
-        case 5: try decoder.decodeRepeatedEnumField(value: &_storage._tastingNotes)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._description_p {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._taste {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if _storage._potency != .light {
-        try visitor.visitSingularEnumField(value: _storage._potency, fieldNumber: 3)
-      }
-      if !_storage._feelingTags.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._feelingTags, fieldNumber: 4)
-      }
-      if !_storage._tastingNotes.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._tastingNotes, fieldNumber: 5)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Opencannabis_Structs_Labtesting_Terpenes: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Terpenes"
+public struct Opencannabis_Structs_Labtesting_Terpenes {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var available: Bool = false
 
@@ -715,8 +545,10 @@ public struct Opencannabis_Structs_Labtesting_Terpenes: SwiftProtobuf.Message {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  public struct Result: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Opencannabis_Structs_Labtesting_Terpenes.protoMessageName + ".Result"
+  public struct Result {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     public var terpene: Opencannabis_Structs_Labtesting_Terpene {
       get {return _storage._terpene}
@@ -736,76 +568,17 @@ public struct Opencannabis_Structs_Labtesting_Terpenes: SwiftProtobuf.Message {
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularEnumField(value: &_storage._terpene)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._measurement)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if _storage._terpene != .camphene {
-          try visitor.visitSingularEnumField(value: _storage._terpene, fieldNumber: 1)
-        }
-        if let v = _storage._measurement {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.available)
-      case 10: try decoder.decodeRepeatedMessageField(value: &self.terpenes)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.available != false {
-      try visitor.visitSingularBoolField(value: self.available, fieldNumber: 1)
-    }
-    if !self.terpenes.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.terpenes, fieldNumber: 10)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// -- Testing: Pesticides
-public struct Opencannabis_Structs_Labtesting_Pesticides: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Pesticides"
+public struct Opencannabis_Structs_Labtesting_Pesticides {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var pesticideFree: Bool = false
 
@@ -814,39 +587,13 @@ public struct Opencannabis_Structs_Labtesting_Pesticides: SwiftProtobuf.Message 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.pesticideFree)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Structs_Labtesting_TestValue>.self, value: &self.measurements)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.pesticideFree != false {
-      try visitor.visitSingularBoolField(value: self.pesticideFree, fieldNumber: 1)
-    }
-    if !self.measurements.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Structs_Labtesting_TestValue>.self, value: self.measurements, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// -- Testing: Moisture
-public struct Opencannabis_Structs_Labtesting_Moisture: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Moisture"
+public struct Opencannabis_Structs_Labtesting_Moisture {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var measurement: Opencannabis_Structs_Labtesting_TestValue {
     get {return _storage._measurement ?? Opencannabis_Structs_Labtesting_TestValue()}
@@ -860,35 +607,6 @@ public struct Opencannabis_Structs_Labtesting_Moisture: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._measurement)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._measurement {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -989,7 +707,8 @@ extension Opencannabis_Structs_Labtesting_Terpene: SwiftProtobuf._ProtoNameProvi
   ]
 }
 
-extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TestResults"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "available"),
     2: .same(proto: "media"),
@@ -1037,6 +756,59 @@ extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf._MessageImp
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularBoolField(value: &_storage._available)
+        case 2: try decoder.decodeRepeatedMessageField(value: &_storage._media)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._lastUpdated)
+        case 30: try decoder.decodeSingularMessageField(value: &_storage._cannabinoids)
+        case 31: try decoder.decodeSingularMessageField(value: &_storage._terpenes)
+        case 32: try decoder.decodeSingularMessageField(value: &_storage._pesticides)
+        case 33: try decoder.decodeSingularMessageField(value: &_storage._moisture)
+        case 34: try decoder.decodeRepeatedEnumField(value: &_storage._aroma)
+        case 35: try decoder.decodeSingularMessageField(value: &_storage._subjective)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._available != false {
+        try visitor.visitSingularBoolField(value: _storage._available, fieldNumber: 1)
+      }
+      if !_storage._media.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._media, fieldNumber: 2)
+      }
+      if let v = _storage._lastUpdated {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._cannabinoids {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 30)
+      }
+      if let v = _storage._terpenes {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 31)
+      }
+      if let v = _storage._pesticides {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 32)
+      }
+      if let v = _storage._moisture {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 33)
+      }
+      if !_storage._aroma.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._aroma, fieldNumber: 34)
+      }
+      if let v = _storage._subjective {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 35)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestResults) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -1060,7 +832,8 @@ extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf._MessageImp
   }
 }
 
-extension Opencannabis_Structs_Labtesting_Cannabinoids: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Cannabinoids: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Cannabinoids"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "thc"),
     2: .same(proto: "cbd"),
@@ -1090,6 +863,35 @@ extension Opencannabis_Structs_Labtesting_Cannabinoids: SwiftProtobuf._MessageIm
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._thc)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._cbd)
+        case 3: try decoder.decodeRepeatedMessageField(value: &_storage._results)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._thc {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._cbd {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._results.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._results, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Cannabinoids) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -1107,7 +909,8 @@ extension Opencannabis_Structs_Labtesting_Cannabinoids: SwiftProtobuf._MessageIm
   }
 }
 
-extension Opencannabis_Structs_Labtesting_Cannabinoids.Result: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Cannabinoids.Result: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Opencannabis_Structs_Labtesting_Cannabinoids.protoMessageName + ".Result"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "cannabinoid"),
     2: .same(proto: "ratio"),
@@ -1137,6 +940,35 @@ extension Opencannabis_Structs_Labtesting_Cannabinoids.Result: SwiftProtobuf._Me
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._cannabinoid)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._ratio)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._measurement)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._cannabinoid != .thc {
+        try visitor.visitSingularEnumField(value: _storage._cannabinoid, fieldNumber: 1)
+      }
+      if _storage._ratio != .noCannabinoidPreference {
+        try visitor.visitSingularEnumField(value: _storage._ratio, fieldNumber: 2)
+      }
+      if let v = _storage._measurement {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Cannabinoids.Result) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -1154,7 +986,8 @@ extension Opencannabis_Structs_Labtesting_Cannabinoids.Result: SwiftProtobuf._Me
   }
 }
 
-extension Opencannabis_Structs_Labtesting_Subjective: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Subjective: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Subjective"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "description"),
     2: .same(proto: "taste"),
@@ -1190,6 +1023,43 @@ extension Opencannabis_Structs_Labtesting_Subjective: SwiftProtobuf._MessageImpl
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._description_p)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._taste)
+        case 3: try decoder.decodeSingularEnumField(value: &_storage._potency)
+        case 4: try decoder.decodeRepeatedEnumField(value: &_storage._feelingTags)
+        case 5: try decoder.decodeRepeatedEnumField(value: &_storage._tastingNotes)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._description_p {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._taste {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if _storage._potency != .light {
+        try visitor.visitSingularEnumField(value: _storage._potency, fieldNumber: 3)
+      }
+      if !_storage._feelingTags.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._feelingTags, fieldNumber: 4)
+      }
+      if !_storage._tastingNotes.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._tastingNotes, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Subjective) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -1209,11 +1079,32 @@ extension Opencannabis_Structs_Labtesting_Subjective: SwiftProtobuf._MessageImpl
   }
 }
 
-extension Opencannabis_Structs_Labtesting_Terpenes: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Terpenes: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Terpenes"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "available"),
     10: .same(proto: "terpenes"),
   ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.available)
+      case 10: try decoder.decodeRepeatedMessageField(value: &self.terpenes)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.available != false {
+      try visitor.visitSingularBoolField(value: self.available, fieldNumber: 1)
+    }
+    if !self.terpenes.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.terpenes, fieldNumber: 10)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Terpenes) -> Bool {
     if self.available != other.available {return false}
@@ -1223,7 +1114,8 @@ extension Opencannabis_Structs_Labtesting_Terpenes: SwiftProtobuf._MessageImplem
   }
 }
 
-extension Opencannabis_Structs_Labtesting_Terpenes.Result: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Terpenes.Result: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Opencannabis_Structs_Labtesting_Terpenes.protoMessageName + ".Result"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "terpene"),
     2: .same(proto: "measurement"),
@@ -1250,6 +1142,31 @@ extension Opencannabis_Structs_Labtesting_Terpenes.Result: SwiftProtobuf._Messag
     return _storage
   }
 
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._terpene)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._measurement)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._terpene != .camphene {
+        try visitor.visitSingularEnumField(value: _storage._terpene, fieldNumber: 1)
+      }
+      if let v = _storage._measurement {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Terpenes.Result) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -1266,11 +1183,32 @@ extension Opencannabis_Structs_Labtesting_Terpenes.Result: SwiftProtobuf._Messag
   }
 }
 
-extension Opencannabis_Structs_Labtesting_Pesticides: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Pesticides: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Pesticides"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "pesticide_free"),
     2: .same(proto: "measurements"),
   ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.pesticideFree)
+      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Structs_Labtesting_TestValue>.self, value: &self.measurements)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.pesticideFree != false {
+      try visitor.visitSingularBoolField(value: self.pesticideFree, fieldNumber: 1)
+    }
+    if !self.measurements.isEmpty {
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Structs_Labtesting_TestValue>.self, value: self.measurements, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Pesticides) -> Bool {
     if self.pesticideFree != other.pesticideFree {return false}
@@ -1280,7 +1218,8 @@ extension Opencannabis_Structs_Labtesting_Pesticides: SwiftProtobuf._MessageImpl
   }
 }
 
-extension Opencannabis_Structs_Labtesting_Moisture: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_Moisture: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Moisture"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "measurement"),
   ]
@@ -1302,6 +1241,27 @@ extension Opencannabis_Structs_Labtesting_Moisture: SwiftProtobuf._MessageImplem
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._measurement)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._measurement {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Moisture) -> Bool {
