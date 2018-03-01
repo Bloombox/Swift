@@ -133,55 +133,67 @@ extension TelemetryClient {
 
   /**
    * Method `event`. Submit a generic event to the Telemetry service. Can be used for any
+   * visibility instrumentation desired and supports arbitrary JSON payloads. This variant
+   * offers a simpler interface for simpler events.
+   */
+  func event(collection: EventCollection,
+             payload: [String: Any]) throws -> TelemetryEventCall {
+    return try self.event(
+      collection: collection,
+      uuid: nil,
+      payload: payload,
+      occurred: nil,
+      context: nil) { (result) in
+        // do nothing, we don't care
+    }
+  }
+
+  /**
+   * Method `event`. Submit a generic event to the Telemetry service. Can be used for any
+   * visibility instrumentation desired and supports arbitrary JSON payloads. This variant
+   * offers a simpler interface for simpler events, along with a callback.
+   */
+  func event(collection: EventCollection,
+             payload: [String: Any],
+             context: EventContext,
+             callback: GenericEventCallback? = nil) throws -> TelemetryEventCall {
+    return try self.event(
+      collection: collection,
+      uuid: nil,
+      payload: payload,
+      occurred: nil,
+      context: context) { (result) in
+        // do nothing, we don't care
+        callback?(result)
+    }
+  }
+
+
+  /**
+   * Method `event`. Submit a generic event to the Telemetry service. Can be used for any
    * visibility instrumentation desired and supports arbitrary JSON payloads.
    */
-  func event(collection: EventCollection? = nil,
-             uuid: String? = nil,
-             payload: [String: Any]? = nil,
+  func event(collection: EventCollection,
+             uuid: String,
+             payload: [String: Any],
              occurred: Double? = nil,
-             context: EventContext? = nil) throws {
-    // merge/resolve event context
-    var merged: AnalyticsContext
-    if let c = context {
-      var exported = c.export()
-      let globalContext = settings.export()
-      let serialized = try globalContext.serializedData()
-      try exported.merge(serializedData: serialized)
-      merged = exported
-    } else {
-      merged = settings.export()
+             context: EventContext? = nil) throws -> TelemetryEventCall {
+    return try self.event(
+      collection: collection,
+      uuid: uuid,
+      payload: payload,
+      occurred: occurred,
+      context: context) { (result) in
+        // do nothing, we don't care
     }
-
-    // override collection, if so directed
-    if let localCollection = collection {
-      merged.collection = localCollection.export()
-    }
-
-    // serialize payload, if any
-    let eventPayload: ProtobufStruct? = (
-      payload != nil ? try convertToStruct(dict: payload!) : nil)
-
-    let _ = try events.event(Event.Request.with { event in
-      event.uuid = uuid ?? UUID.init().uuidString.uppercased()
-      event.context = merged
-      event.event = GenericEvent.with { genericEvent in
-        genericEvent.occurred = TemporalInstant.with { instant in
-          let ts: Double = occurred ?? (Date().timeIntervalSince1970 * 1000.0)
-          instant.timestamp = UInt64(ts)
-        }
-
-        if let innerPayload = eventPayload {
-          genericEvent.payload = innerPayload
-        }
-      }
-    })
   }
 
   /**
    * Method `event`. Submit a generic event to the Telemetry service asynchronously. Can be
    * used for any visibility instrumentation desired and supports arbitrary JSON payloads.
+   * This method variant supports a callback.
    */
-  func event(collection: EventCollection? = nil,
+  func event(collection: EventCollection,
              uuid: String? = nil,
              payload: [String: Any]? = nil,
              occurred: Double? = nil,
@@ -200,9 +212,7 @@ extension TelemetryClient {
     }
 
     // override collection, if so directed
-    if let localCollection = collection {
-      merged.collection = localCollection.export()
-    }
+    merged.collection = collection.export()
 
     // serialize payload, if any
     let eventPayload: ProtobufStruct? = (

@@ -16,7 +16,7 @@ public let __BLOOMBOX_VARIANT__ = "full"
 /**
  * Version of this library.
  */
-public let __BLOOMBOX_VERSION__ = "0.0.1"
+public let __BLOOMBOX_VERSION__ = "0.0.7"
 
 
 /**

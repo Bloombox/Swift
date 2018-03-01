@@ -35,17 +35,17 @@ internal protocol SecureRPCEndpoint: RPCEndpoint {
   /**
    * Client-side identity certificate.
    */
-  var cert: String { get }
+  var cert: String? { get }
 
   /**
    * Client-side identity private key.
    */
-  var key: String { get }
+  var key: String? { get }
 
   /**
    * Client-side trust chain.
    */
-  var chain: String { get }
+  var chain: String? { get }
 
   /**
    * SNI hostname, if applicable.
@@ -67,9 +67,9 @@ internal struct PlaintextEndpoint: RPCEndpoint {
 internal struct TLSEndpoint: SecureRPCEndpoint {
   let host: String
   let port: Int
-  let cert: String
-  let key: String
-  let chain: String
+  let chain: String?
+  let cert: String?
+  let key: String?
   let hostname: String?
 }
 
@@ -102,15 +102,12 @@ internal struct RPCServiceFactory<Service: RPCService> {
    */
   static func endpoint(forService settings: RPCServiceSettings) -> RPCEndpoint {
     if settings.secure {
-      guard let cert = settings.cert, let key = settings.key, let chain = settings.chain else {
-        fatalError("missing SSL settings for service")
-      }
       return TLSEndpoint(
         host: settings.host,
         port: settings.port,
-        cert: cert,
-        key: key,
-        chain: chain,
+        chain: settings.chain,
+        cert: settings.cert,
+        key: settings.key,
         hostname: settings.hostname ?? settings.host)
     } else {
       return PlaintextEndpoint(
@@ -126,10 +123,15 @@ internal struct RPCServiceFactory<Service: RPCService> {
   static func factory(endpoint: RPCEndpoint) -> Service {
     if let secure = endpoint as? SecureRPCEndpoint {
       // connect over TLS
-      return Service.init(
-        address: "\(secure.hostname ?? secure.host):\(secure.port)",
-        certificates: secure.chain,
-        host: secure.hostname)
+      if let chain = secure.chain {
+        return Service.init(
+          address: "\(secure.host):\(secure.port)",
+          certificates: chain,
+          host: secure.hostname)
+      } else {
+        return Service.init(
+          address: "\(endpoint.host):\(endpoint.port)", secure: true)
+      }
     } else {
       // connect over plaintext
       return Service.init(

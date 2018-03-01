@@ -17,22 +17,30 @@ public enum EventCollection {
   case commercial(CommercialEvent)
   case identity(IdentityEvent)
 
+  static func encodeCollectionName(_ name: String) -> String? {
+    guard let data = Data(base64Encoded: name) else {
+      // failed to encode collection name
+      return nil
+    }
+    return String(data: data, encoding: .utf8)
+  }
+
   func export() -> AnalyticsCollection {
     return AnalyticsCollection.with { collection in
       switch self {
       case .named(let name):
-        collection.name = name
+        collection.name = EventCollection.encodeCollectionName(name) ?? name
         collection.type = .generic
         collection.internal = name.starts(with: internalCollectionPrefix)
         break
 
       case .commercial(let commercialEvent):
-        collection.name = commercialEvent.label
+        collection.name = EventCollection.encodeCollectionName(commercialEvent.label) ?? commercialEvent.label
         collection.type = .commercial
         break
 
       case .identity(let identityEvent):
-        collection.name = identityEvent.label
+        collection.name = EventCollection.encodeCollectionName(identityEvent.label) ?? identityEvent.label
         collection.type = .identity
       }
     }

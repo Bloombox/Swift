@@ -104,6 +104,7 @@ public final class ShopClient: RemoteService {
    * Prepare the shop service for use.
    */
   func prepare() {
+    // no-op
   }
 
   // MARK: - Public API -
