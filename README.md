@@ -2,7 +2,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/726f360df7dbf653931f/maintainability)](https://codeclimate.com/github/Bloombox/Swift/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/726f360df7dbf653931f/test_coverage)](https://codeclimate.com/github/Bloombox/Swift/test_coverage)
 
-Latest Version: `0.0.4`
+Latest Version: `0.0.7`
 
 This Swift package provides an API client for [Bloombox](https://bloombox.io) Cloud APIs. Bloombox APIs are built and served using [gRPC](https://grpc.io) and exposed in client libraries like this one with a more fluid interface to work with.
 

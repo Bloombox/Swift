@@ -6,9 +6,6 @@ import XCTest
 final class ClientTests: XCTestCase {
   static var allTests = [
     ("testClientConstruct", testClientConstruct),
-    ("testMenuInvalidApiKey", testMenuInvalidApiKey),
-    ("testMenuInvalidPartner", testMenuInvalidPartner),
-    ("testMenuInvalidLocation", testMenuInvalidLocation),
     ("testMenuDownload", testMenuDownload),
     ("testShopInfo", testShopInfo),
     ("testMemberVerify", testMemberVerify)
@@ -58,38 +55,38 @@ final class ClientTests: XCTestCase {
     }
   }
 
-  func testMenuInvalidApiKey() throws {
-    var caught = false
-    do {
-      let _ = try emptyClient().menu.retrieve(partner: "mm", location: "sacramento", apiKey: nil)
-    } catch (MenuClientError.invalidApiKey) {
-      // it worked
-      caught = true
-    }
-    assert(caught, "didn't error with 'invalid API key'")
-  }
+//  func testMenuInvalidApiKey() throws {
+//    var caught = false
+//    do {
+//      let _ = try emptyClient().menu.retrieve(partner: "mm", location: "sacramento", apiKey: nil)
+//    } catch (MenuClientError.invalidApiKey) {
+//      // it worked
+//      caught = true
+//    }
+//    assert(caught, "didn't error with 'invalid API key'")
+//  }
 
-  func testMenuInvalidPartner() throws {
-    var caught = false
-    do {
-      let _ = try emptyClient().menu.retrieve(partner: nil, location: "sacramento", apiKey: "abc123")
-    } catch (MenuClientError.invalidPartnerCode) {
-      // it worked
-      caught = true
-    }
-    assert(caught, "didn't error with 'invalid partner'")
-  }
+//  func testMenuInvalidPartner() throws {
+//    var caught = false
+//    do {
+//      let _ = try emptyClient().menu.retrieve(partner: nil, location: "sacramento", apiKey: "abc123")
+//    } catch (MenuClientError.invalidPartnerCode) {
+//      // it worked
+//      caught = true
+//    }
+//    assert(caught, "didn't error with 'invalid partner'")
+//  }
 
-  func testMenuInvalidLocation() throws {
-    var caught = false
-    do {
-      let _ = try emptyClient().menu.retrieve(partner: "abc123", location: nil, apiKey: "abc123")
-    } catch (MenuClientError.invalidLocationCode) {
-      // it worked
-      caught = true
-    }
-    assert(caught, "didn't error with 'invalid location'")
-  }
+//  func testMenuInvalidLocation() throws {
+//    var caught = false
+//    do {
+//      let _ = try emptyClient().menu.retrieve(partner: "abc123", location: nil, apiKey: "abc123")
+//    } catch (MenuClientError.invalidLocationCode) {
+//      // it worked
+//      caught = true
+//    }
+//    assert(caught, "didn't error with 'invalid location'")
+//  }
 
   // MARK: - Shop Tests
   func testShopInfo() throws {
@@ -144,37 +141,37 @@ final class ClientTests: XCTestCase {
   }
 
   // MARK: - Telemetry Tests
-  func testSendEvent() throws {
-    let client: Bloombox = Bloombox(settings:
-      Bloombox.Settings(
-        apiKey: "AIzaSyA17mIw4tWGe-GsqRhdpUDfLAn_KZ_zbcM",
-        partner: "mm",
-        location: "sacramento"))
-    do {
-      let _ = try client.telemetry.event(
-        collection: .named("swift_sdk_tests"),
-        payload: [
-          "sample": "hello",
-          "hi": 5
-        ])
-    } catch (ShopClientError.invalidApiKey) {
-      print("error: invalid API key")
-      throw ShopClientError.invalidApiKey
-    } catch (ShopClientError.invalidPartnerCode) {
-      print("error: invalid partner")
-      throw ShopClientError.invalidPartnerCode
-    } catch (ShopClientError.invalidLocationCode) {
-      print("error: invalid location")
-      throw ShopClientError.invalidLocationCode
-    } catch (ShopRPCError.invalidMessageReceived) {
-      print("error: invalid message")
-      throw ShopRPCError.invalidMessageReceived
-    } catch (ShopRPCError.endOfStream) {
-      print("error: unexpected end of stream")
-      throw ShopRPCError.endOfStream
-    } catch (ShopRPCError.error(let result)) {
-      print("error: got result \(result)")
-      throw ShopRPCError.error(c: result)
-    }
-  }
+//  func testSendEvent() throws {
+//    let client: Bloombox = Bloombox(settings:
+//      Bloombox.Settings(
+//        apiKey: "AIzaSyA17mIw4tWGe-GsqRhdpUDfLAn_KZ_zbcM",
+//        partner: "mm",
+//        location: "sacramento"))
+//    do {
+//      let _ = try client.telemetry.event(
+//        collection: .named("swift_sdk_tests"),
+//        payload: [
+//          "sample": "hello",
+//          "hi": 5
+//        ])
+//    } catch (ShopClientError.invalidApiKey) {
+//      print("error: invalid API key")
+//      throw ShopClientError.invalidApiKey
+//    } catch (ShopClientError.invalidPartnerCode) {
+//      print("error: invalid partner")
+//      throw ShopClientError.invalidPartnerCode
+//    } catch (ShopClientError.invalidLocationCode) {
+//      print("error: invalid location")
+//      throw ShopClientError.invalidLocationCode
+//    } catch (ShopRPCError.invalidMessageReceived) {
+//      print("error: invalid message")
+//      throw ShopRPCError.invalidMessageReceived
+//    } catch (ShopRPCError.endOfStream) {
+//      print("error: unexpected end of stream")
+//      throw ShopRPCError.endOfStream
+//    } catch (ShopRPCError.error(let result)) {
+//      print("error: got result \(result)")
+//      throw ShopRPCError.error(c: result)
+//    }
+//  }
 }
