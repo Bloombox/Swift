@@ -26,6 +26,7 @@ public enum MenuClientError: Error {
   case invalidPartnerCode
   case invalidLocationCode
   case invalidApiKey
+  case unknown
 }
 
 
@@ -87,7 +88,7 @@ public final class MenuClient: RemoteService {
       if (partnerCode == nil) {
         throw MenuClientError.invalidPartnerCode
       }
-      throw MenuClientError.invalidPartnerCode
+      throw MenuClientError.invalidLocationCode
     }
     return (partner: partnerCode!, location: locationCode!, apiKey: apiKey!)
   }
@@ -110,9 +111,24 @@ public final class MenuClient: RemoteService {
     let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
     let service = self.service(apiKey)
 
-    return try service.retrieve(GetMenu.Request.with { builder in
-      builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
-    })
+    do {
+      return try service.retrieve(GetMenu.Request.with { builder in
+        builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
+      })
+    } catch (MenuRPCError.invalidMessageReceived) {
+      print("error: invalid message")
+      throw MenuRPCError.invalidMessageReceived
+    } catch (MenuRPCError.endOfStream) {
+      print("error: unexpected end of stream")
+      throw MenuRPCError.endOfStream
+    } catch (MenuRPCError.error(let result)) {
+      print("error: got result \(result)")
+      throw MenuRPCError.error(c: result)
+    } catch {
+      // some other error occurred
+      print("error: unknown error occurred")
+      throw MenuClientError.unknown
+    }
   }
 
   /**
