@@ -28,6 +28,12 @@ public enum Bloombox_Schema_Services_Platform_V1_PlatformError: SwiftProtobuf.En
 
   /// Search services are not currently available.
   case searchNotAvailable // = 1
+
+  /// The domain origin value was missing or invalid.
+  case originInvalid // = 2
+
+  /// The specified domain or origin could not be resolved.
+  case originNotFound // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -38,6 +44,8 @@ public enum Bloombox_Schema_Services_Platform_V1_PlatformError: SwiftProtobuf.En
     switch rawValue {
     case 0: self = .noError
     case 1: self = .searchNotAvailable
+    case 2: self = .originInvalid
+    case 3: self = .originNotFound
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -46,6 +54,8 @@ public enum Bloombox_Schema_Services_Platform_V1_PlatformError: SwiftProtobuf.En
     switch self {
     case .noError: return 0
     case .searchNotAvailable: return 1
+    case .originInvalid: return 2
+    case .originNotFound: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -176,6 +186,84 @@ public struct Bloombox_Schema_Services_Platform_V1_Healthcheck {
     /// Response to ping.
     public var response: Bloombox_Schema_Services_Platform_V1_Healthcheck.Response {
       get {return _storage._response ?? Bloombox_Schema_Services_Platform_V1_Healthcheck.Response()}
+      set {_uniqueStorage()._response = newValue}
+    }
+    /// Returns true if `response` has been explicitly set.
+    public var hasResponse: Bool {return _storage._response != nil}
+    /// Clears the value of `response`. Subsequent reads from it will return its default value.
+    public mutating func clearResponse() {_storage._response = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  public init() {}
+}
+
+/// Specifies an RPC operation to retrieve information for a given partner domain.
+public struct Bloombox_Schema_Services_Platform_V1_DomainResolve {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Request to retrieve information about a partner domain.
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Base64-encoded domain origin to resolve.
+    public var origin: String = String()
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  /// Response to a request to retrieve information about a partner domain.
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Partner ID to apply for the given domain.
+    public var partner: String = String()
+
+    /// Location ID to apply for the given domain.
+    public var location: String = String()
+
+    /// API key to use with the JS SDK.
+    public var apikey: String = String()
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  /// Represents an individual operation to resolve partner domain information.
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Request to resolve partner domain information.
+    public var request: Bloombox_Schema_Services_Platform_V1_DomainResolve.Request {
+      get {return _storage._request ?? Bloombox_Schema_Services_Platform_V1_DomainResolve.Request()}
+      set {_uniqueStorage()._request = newValue}
+    }
+    /// Returns true if `request` has been explicitly set.
+    public var hasRequest: Bool {return _storage._request != nil}
+    /// Clears the value of `request`. Subsequent reads from it will return its default value.
+    public mutating func clearRequest() {_storage._request = nil}
+
+    /// Response to a request to resolve partner domain information.
+    public var response: Bloombox_Schema_Services_Platform_V1_DomainResolve.Response {
+      get {return _storage._response ?? Bloombox_Schema_Services_Platform_V1_DomainResolve.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -395,6 +483,8 @@ extension Bloombox_Schema_Services_Platform_V1_PlatformError: SwiftProtobuf._Pro
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_ERROR"),
     1: .same(proto: "SEARCH_NOT_AVAILABLE"),
+    2: .same(proto: "ORIGIN_INVALID"),
+    3: .same(proto: "ORIGIN_NOT_FOUND"),
   ]
 }
 
@@ -665,6 +755,164 @@ extension Bloombox_Schema_Services_Platform_V1_Healthcheck.Operation: SwiftProto
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_Healthcheck.Operation) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._request != other_storage._request {return false}
+        if _storage._response != other_storage._response {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_DomainResolve: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DomainResolve"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainResolve) -> Bool {
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_DomainResolve.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Platform_V1_DomainResolve.protoMessageName + ".Request"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "origin"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.origin)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.origin.isEmpty {
+      try visitor.visitSingularStringField(value: self.origin, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainResolve.Request) -> Bool {
+    if self.origin != other.origin {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_DomainResolve.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Platform_V1_DomainResolve.protoMessageName + ".Response"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "partner"),
+    2: .same(proto: "location"),
+    3: .same(proto: "apikey"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.partner)
+      case 2: try decoder.decodeSingularStringField(value: &self.location)
+      case 3: try decoder.decodeSingularStringField(value: &self.apikey)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.partner.isEmpty {
+      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+    }
+    if !self.location.isEmpty {
+      try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
+    }
+    if !self.apikey.isEmpty {
+      try visitor.visitSingularStringField(value: self.apikey, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainResolve.Response) -> Bool {
+    if self.partner != other.partner {return false}
+    if self.location != other.location {return false}
+    if self.apikey != other.apikey {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_DomainResolve.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Platform_V1_DomainResolve.protoMessageName + ".Operation"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "request"),
+    2: .same(proto: "response"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _request: Bloombox_Schema_Services_Platform_V1_DomainResolve.Request? = nil
+    var _response: Bloombox_Schema_Services_Platform_V1_DomainResolve.Response? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _request = source._request
+      _response = source._response
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainResolve.Operation) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

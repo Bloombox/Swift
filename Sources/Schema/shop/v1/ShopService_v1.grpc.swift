@@ -418,6 +418,61 @@ public class Bloombox_Schema_Services_Shop_V1_ShopGetOrderCall {
   }
 }
 
+/// ShareOrder (Unary)
+public class Bloombox_Schema_Services_Shop_V1_ShopShareOrderCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.shop.v1.Shop/ShareOrder")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Shop_V1_ShareOrder.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Shop_V1_ShareOrder.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Shop_V1_ShopClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Shop_V1_ShareOrder.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Shop_V1_ShopShareOrderCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Shop_V1_ShareOrder.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
 /// Call methods of this class to make API calls.
 public final class Bloombox_Schema_Services_Shop_V1_ShopService {
   public var channel: Channel
@@ -556,6 +611,21 @@ public final class Bloombox_Schema_Services_Shop_V1_ShopService {
                                                  metadata:metadata,
                                                  completion:completion)
   }
+  /// Synchronous. Unary.
+  public func shareorder(_ request: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request)
+    throws
+    -> Bloombox_Schema_Services_Shop_V1_ShareOrder.Response {
+      return try Bloombox_Schema_Services_Shop_V1_ShopShareOrderCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func shareorder(_ request: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Shop_V1_ShareOrder.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Shop_V1_ShopShareOrderCall {
+      return try Bloombox_Schema_Services_Shop_V1_ShopShareOrderCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
 }
 
 
@@ -573,6 +643,7 @@ public protocol Bloombox_Schema_Services_Shop_V1_ShopProvider {
   func verifymember(request : Bloombox_Schema_Services_Shop_V1_VerifyMember.Request, session : Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberSession) throws -> Bloombox_Schema_Services_Shop_V1_VerifyMember.Response
   func submitorder(request : Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request, session : Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderSession) throws -> Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response
   func getorder(request : Bloombox_Schema_Services_Shop_V1_GetOrder.Request, session : Bloombox_Schema_Services_Shop_V1_ShopGetOrderSession) throws -> Bloombox_Schema_Services_Shop_V1_GetOrder.Response
+  func shareorder(request : Bloombox_Schema_Services_Shop_V1_ShareOrder.Request, session : Bloombox_Schema_Services_Shop_V1_ShopShareOrderSession) throws -> Bloombox_Schema_Services_Shop_V1_ShareOrder.Response
 }
 
 /// Common properties available in each service session.
@@ -765,6 +836,31 @@ public class Bloombox_Schema_Services_Shop_V1_ShopGetOrderSession : Bloombox_Sch
   }
 }
 
+// ShareOrder (Unary)
+public class Bloombox_Schema_Services_Shop_V1_ShopShareOrderSession : Bloombox_Schema_Services_Shop_V1_ShopSession {
+  private var provider : Bloombox_Schema_Services_Shop_V1_ShopProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Shop_V1_ShopProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Shop_V1_ShareOrder.Request(serializedData:requestData)
+        let replyMessage = try self.provider.shareorder(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
 
 /// Main server for generated service
 public class Bloombox_Schema_Services_Shop_V1_ShopServer {
@@ -825,6 +921,8 @@ public class Bloombox_Schema_Services_Shop_V1_ShopServer {
           try Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.shop.v1.Shop/GetOrder":
           try Bloombox_Schema_Services_Shop_V1_ShopGetOrderSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.shop.v1.Shop/ShareOrder":
+          try Bloombox_Schema_Services_Shop_V1_ShopShareOrderSession(handler:handler, provider:provider).run(queue:queue)
         default:
           break // handle unknown requests
         }
