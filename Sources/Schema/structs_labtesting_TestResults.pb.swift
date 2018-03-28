@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Empirical laboratory product testing structures and definitions. Provides support for cannabinoid testing, terpene
+/// testing, pesticide testing, moisture ratings, and subjective testing.
+
 import Foundation
 import SwiftProtobuf
 
@@ -340,22 +344,27 @@ public enum Opencannabis_Structs_Labtesting_Terpene: SwiftProtobuf.Enum {
 
 }
 
-/// -- Testing: Full Protocol
+/// Lab testing results for a given product. Includes cannabinoid, terpene, pesticide, moisture, and subjective testing
+/// properties. Only cannabinoid testing is considered required.
 public struct Opencannabis_Structs_Labtesting_TestResults {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Boolean flag indicating whether results are available for lab testing at all.
   public var available: Bool {
     get {return _storage._available}
     set {_uniqueStorage()._available = newValue}
   }
 
+  /// Media attached to a set of lab results. This might include images taken during testing, documents (such as PDFs)
+  /// specifying test results, and so on.
   public var media: [Opencannabis_Structs_Labtesting_TestMedia] {
     get {return _storage._media}
     set {_uniqueStorage()._media = newValue}
   }
 
+  /// Last-updated value for these lab test results. Updated each time the record is updated.
   public var lastUpdated: Opencannabis_Temporal_Instant {
     get {return _storage._lastUpdated ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._lastUpdated = newValue}
@@ -365,7 +374,30 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Clears the value of `lastUpdated`. Subsequent reads from it will return its default value.
   public mutating func clearLastUpdated() {_storage._lastUpdated = nil}
 
-  /// --- Testing Extensions
+  /// Precise moment that these results were considered 'sealed' and returned. Once this timestamp is set, a given set of
+  /// test results (unique by their coordinates) is considered immutable.
+  public var sealed: Opencannabis_Temporal_Instant {
+    get {return _storage._sealed ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._sealed = newValue}
+  }
+  /// Returns true if `sealed` has been explicitly set.
+  public var hasSealed: Bool {return _storage._sealed != nil}
+  /// Clears the value of `sealed`. Subsequent reads from it will return its default value.
+  public mutating func clearSealed() {_storage._sealed = nil}
+
+  /// Coordinate, or ID values, for this set of test results. When specified at the top-level of a set of lab tests,
+  /// indicates the coordinates for the active set of test results.
+  public var coordinates: Opencannabis_Structs_Labtesting_TestCoordinates {
+    get {return _storage._coordinates ?? Opencannabis_Structs_Labtesting_TestCoordinates()}
+    set {_uniqueStorage()._coordinates = newValue}
+  }
+  /// Returns true if `coordinates` has been explicitly set.
+  public var hasCoordinates: Bool {return _storage._coordinates != nil}
+  /// Clears the value of `coordinates`. Subsequent reads from it will return its default value.
+  public mutating func clearCoordinates() {_storage._coordinates = nil}
+
+  /// Standard cannabinoid testing, with reading results at least for THC and CBD, and optionally additional cannabinoid
+  /// compounds.
   public var cannabinoids: Opencannabis_Structs_Labtesting_Cannabinoids {
     get {return _storage._cannabinoids ?? Opencannabis_Structs_Labtesting_Cannabinoids()}
     set {_uniqueStorage()._cannabinoids = newValue}
@@ -375,6 +407,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Clears the value of `cannabinoids`. Subsequent reads from it will return its default value.
   public mutating func clearCannabinoids() {_storage._cannabinoids = nil}
 
+  /// Testing for terpene volatiles, which might indicate aroma or flavor notes.
   public var terpenes: Opencannabis_Structs_Labtesting_Terpenes {
     get {return _storage._terpenes ?? Opencannabis_Structs_Labtesting_Terpenes()}
     set {_uniqueStorage()._terpenes = newValue}
@@ -384,6 +417,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Clears the value of `terpenes`. Subsequent reads from it will return its default value.
   public mutating func clearTerpenes() {_storage._terpenes = nil}
 
+  /// Pesticide-specific test results. Indicates a pesticide reading, by chemical compound name, and a reading value.
   public var pesticides: Opencannabis_Structs_Labtesting_Pesticides {
     get {return _storage._pesticides ?? Opencannabis_Structs_Labtesting_Pesticides()}
     set {_uniqueStorage()._pesticides = newValue}
@@ -393,6 +427,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Clears the value of `pesticides`. Subsequent reads from it will return its default value.
   public mutating func clearPesticides() {_storage._pesticides = nil}
 
+  /// Moisture rating and test results.
   public var moisture: Opencannabis_Structs_Labtesting_Moisture {
     get {return _storage._moisture ?? Opencannabis_Structs_Labtesting_Moisture()}
     set {_uniqueStorage()._moisture = newValue}
@@ -402,11 +437,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Clears the value of `moisture`. Subsequent reads from it will return its default value.
   public mutating func clearMoisture() {_storage._moisture = nil}
 
-  public var aroma: [Opencannabis_Structs_Labtesting_TasteNote] {
-    get {return _storage._aroma}
-    set {_uniqueStorage()._aroma = newValue}
-  }
-
+  /// Results from subjective testing - i.e, opinionated human evaluation.
   public var subjective: Opencannabis_Structs_Labtesting_Subjective {
     get {return _storage._subjective ?? Opencannabis_Structs_Labtesting_Subjective()}
     set {_uniqueStorage()._subjective = newValue}
@@ -416,11 +447,42 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Clears the value of `subjective`. Subsequent reads from it will return its default value.
   public mutating func clearSubjective() {_storage._subjective = nil}
 
+  /// Computed taste notes for this product, based on the combination of terpene testing and subjective testing, if
+  /// available.
+  public var aroma: [Opencannabis_Structs_Labtesting_TasteNote] {
+    get {return _storage._aroma}
+    set {_uniqueStorage()._aroma = newValue}
+  }
+
+  /// Raw test result data, stored under a master set of test results. Only one level of nesting is allowed.
+  public var data: [Opencannabis_Structs_Labtesting_TestResults] {
+    get {return _storage._data}
+    set {_uniqueStorage()._data = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Specifies coordinate values for a given lab testing result. This generally consists of a 'lot' and 'batch' value,
+/// which essentially correlate to a 'zone' and 'group', which are expressed here.
+public struct Opencannabis_Structs_Labtesting_TestCoordinates {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Specifies the 'zone,' or 'lot,' value for a set of test results.
+  public var zone: String = String()
+
+  /// Specifies the 'group,' or 'batch,' value for a set of test results.
+  public var group: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
 }
 
 public struct Opencannabis_Structs_Labtesting_Cannabinoids {
@@ -541,7 +603,7 @@ public struct Opencannabis_Structs_Labtesting_Terpenes {
 
   public var available: Bool = false
 
-  public var terpenes: [Opencannabis_Structs_Labtesting_Terpenes.Result] = []
+  public var terpene: [Opencannabis_Structs_Labtesting_Terpenes.Result] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -713,24 +775,30 @@ extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf.Message, Sw
     1: .same(proto: "available"),
     2: .same(proto: "media"),
     3: .standard(proto: "last_updated"),
+    4: .same(proto: "sealed"),
+    5: .same(proto: "coordinates"),
     30: .same(proto: "cannabinoids"),
     31: .same(proto: "terpenes"),
     32: .same(proto: "pesticides"),
     33: .same(proto: "moisture"),
-    34: .same(proto: "aroma"),
-    35: .same(proto: "subjective"),
+    34: .same(proto: "subjective"),
+    35: .same(proto: "aroma"),
+    36: .same(proto: "data"),
   ]
 
   fileprivate class _StorageClass {
     var _available: Bool = false
     var _media: [Opencannabis_Structs_Labtesting_TestMedia] = []
     var _lastUpdated: Opencannabis_Temporal_Instant? = nil
+    var _sealed: Opencannabis_Temporal_Instant? = nil
+    var _coordinates: Opencannabis_Structs_Labtesting_TestCoordinates? = nil
     var _cannabinoids: Opencannabis_Structs_Labtesting_Cannabinoids? = nil
     var _terpenes: Opencannabis_Structs_Labtesting_Terpenes? = nil
     var _pesticides: Opencannabis_Structs_Labtesting_Pesticides? = nil
     var _moisture: Opencannabis_Structs_Labtesting_Moisture? = nil
-    var _aroma: [Opencannabis_Structs_Labtesting_TasteNote] = []
     var _subjective: Opencannabis_Structs_Labtesting_Subjective? = nil
+    var _aroma: [Opencannabis_Structs_Labtesting_TasteNote] = []
+    var _data: [Opencannabis_Structs_Labtesting_TestResults] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -740,12 +808,15 @@ extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf.Message, Sw
       _available = source._available
       _media = source._media
       _lastUpdated = source._lastUpdated
+      _sealed = source._sealed
+      _coordinates = source._coordinates
       _cannabinoids = source._cannabinoids
       _terpenes = source._terpenes
       _pesticides = source._pesticides
       _moisture = source._moisture
-      _aroma = source._aroma
       _subjective = source._subjective
+      _aroma = source._aroma
+      _data = source._data
     }
   }
 
@@ -764,12 +835,15 @@ extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf.Message, Sw
         case 1: try decoder.decodeSingularBoolField(value: &_storage._available)
         case 2: try decoder.decodeRepeatedMessageField(value: &_storage._media)
         case 3: try decoder.decodeSingularMessageField(value: &_storage._lastUpdated)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._sealed)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._coordinates)
         case 30: try decoder.decodeSingularMessageField(value: &_storage._cannabinoids)
         case 31: try decoder.decodeSingularMessageField(value: &_storage._terpenes)
         case 32: try decoder.decodeSingularMessageField(value: &_storage._pesticides)
         case 33: try decoder.decodeSingularMessageField(value: &_storage._moisture)
-        case 34: try decoder.decodeRepeatedEnumField(value: &_storage._aroma)
-        case 35: try decoder.decodeSingularMessageField(value: &_storage._subjective)
+        case 34: try decoder.decodeSingularMessageField(value: &_storage._subjective)
+        case 35: try decoder.decodeRepeatedEnumField(value: &_storage._aroma)
+        case 36: try decoder.decodeRepeatedMessageField(value: &_storage._data)
         default: break
         }
       }
@@ -787,6 +861,12 @@ extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf.Message, Sw
       if let v = _storage._lastUpdated {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
       }
+      if let v = _storage._sealed {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._coordinates {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
       if let v = _storage._cannabinoids {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 30)
       }
@@ -799,11 +879,14 @@ extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf.Message, Sw
       if let v = _storage._moisture {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 33)
       }
-      if !_storage._aroma.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._aroma, fieldNumber: 34)
-      }
       if let v = _storage._subjective {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 35)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 34)
+      }
+      if !_storage._aroma.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._aroma, fieldNumber: 35)
+      }
+      if !_storage._data.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._data, fieldNumber: 36)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -817,16 +900,54 @@ extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf.Message, Sw
         if _storage._available != other_storage._available {return false}
         if _storage._media != other_storage._media {return false}
         if _storage._lastUpdated != other_storage._lastUpdated {return false}
+        if _storage._sealed != other_storage._sealed {return false}
+        if _storage._coordinates != other_storage._coordinates {return false}
         if _storage._cannabinoids != other_storage._cannabinoids {return false}
         if _storage._terpenes != other_storage._terpenes {return false}
         if _storage._pesticides != other_storage._pesticides {return false}
         if _storage._moisture != other_storage._moisture {return false}
-        if _storage._aroma != other_storage._aroma {return false}
         if _storage._subjective != other_storage._subjective {return false}
+        if _storage._aroma != other_storage._aroma {return false}
+        if _storage._data != other_storage._data {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Structs_Labtesting_TestCoordinates: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TestCoordinates"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "zone"),
+    2: .same(proto: "group"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.zone)
+      case 2: try decoder.decodeSingularStringField(value: &self.group)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.zone.isEmpty {
+      try visitor.visitSingularStringField(value: self.zone, fieldNumber: 1)
+    }
+    if !self.group.isEmpty {
+      try visitor.visitSingularStringField(value: self.group, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestCoordinates) -> Bool {
+    if self.zone != other.zone {return false}
+    if self.group != other.group {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1083,14 +1204,14 @@ extension Opencannabis_Structs_Labtesting_Terpenes: SwiftProtobuf.Message, Swift
   public static let protoMessageName: String = _protobuf_package + ".Terpenes"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "available"),
-    10: .same(proto: "terpenes"),
+    10: .same(proto: "terpene"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularBoolField(value: &self.available)
-      case 10: try decoder.decodeRepeatedMessageField(value: &self.terpenes)
+      case 10: try decoder.decodeRepeatedMessageField(value: &self.terpene)
       default: break
       }
     }
@@ -1100,15 +1221,15 @@ extension Opencannabis_Structs_Labtesting_Terpenes: SwiftProtobuf.Message, Swift
     if self.available != false {
       try visitor.visitSingularBoolField(value: self.available, fieldNumber: 1)
     }
-    if !self.terpenes.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.terpenes, fieldNumber: 10)
+    if !self.terpene.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.terpene, fieldNumber: 10)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Terpenes) -> Bool {
     if self.available != other.available {return false}
-    if self.terpenes != other.terpenes {return false}
+    if self.terpene != other.terpene {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

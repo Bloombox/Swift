@@ -19,20 +19,50 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// top-level flags
+/// Flags that may be applied to an entire product entry, that govern how an independent product and all of its variants
+/// or sub-products are processed or treated.
 public enum Opencannabis_Structs_ProductFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
+
+  /// Default flag value. Marks a product as 'VISIBLE,' meaning it is eligible to be displayed in public circumstances.
+  /// In some cases, this is interpreted to mean 'IN STOCK.' Being that this flag is a default value, the absence of this
+  /// flag does not designate an item as non-visible - this is accomplished by explicitly specifying the 'HIDDEN' flag.
   case visible // = 0
+
+  /// Indicates that this entire product entry should be 'HIDDEN' from public view, or considered 'OUT-OF-STOCK' in back-
+  /// office systems.
   case hidden // = 1
+
+  /// Designates a product as 'PREMIUM,' indicating it is a top-shelf or super-high-quality product. In some cases, this
+  /// flag is used to indicate items that are produced in-house.
   case premium // = 2
+
+  /// Designates a product as 'FEATURED,' which makes it eligible for extra promotional display. Featured products are
+  /// generally highlighted or displayed top-of-the-fold.
   case featured // = 3
-  case organic // = 4
-  case exclusive // = 5
-  case inHouse // = 6
-  case lastChance // = 7
-  case limitedTime // = 8
-  case onSale // = 9
-  case local // = 10
+
+  /// Designates a product as 'EXCLUSIVE,' meaning it is only carried or produced by the owning retailer or manufacturer.
+  case exclusive // = 4
+
+  /// Designates a product as 'IN-HOUSE,' indicating it is carried and produced by the same organization. In a retail
+  /// context, this flag is used to indicate items manufactured by the retailer or the retailer's partners.
+  case inHouse // = 5
+
+  /// Indicates that a product will not be around long, or that it is running out. In retail contexts, this designates
+  /// the product in a way that may trigger extra promotional UI.
+  case lastChance // = 6
+
+  /// Indicates that a particular product will only be available for a limited time, or is available only in limited
+  /// batches.
+  case limitedTime // = 7
+
+  /// Indicates that a particular product is produced locally. In retail contexts, this may trigger extra promotional UI.
+  case local // = 8
+
+  /// Designates, in general, that a product is 'ON-SALE.' This designation SHOULD be propagated-to by implementing
+  /// servers, from a product's weighted pricing sale flags. This means, if ANY product weight or variant is marked on
+  /// sale, the 'ON-SALE' flag SHOULD be sent along with the top-level product information.
+  case onSale // = 20
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -45,13 +75,12 @@ public enum Opencannabis_Structs_ProductFlag: SwiftProtobuf.Enum {
     case 1: self = .hidden
     case 2: self = .premium
     case 3: self = .featured
-    case 4: self = .organic
-    case 5: self = .exclusive
-    case 6: self = .inHouse
-    case 7: self = .lastChance
-    case 8: self = .limitedTime
-    case 9: self = .onSale
-    case 10: self = .local
+    case 4: self = .exclusive
+    case 5: self = .inHouse
+    case 6: self = .lastChance
+    case 7: self = .limitedTime
+    case 8: self = .local
+    case 20: self = .onSale
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -62,13 +91,12 @@ public enum Opencannabis_Structs_ProductFlag: SwiftProtobuf.Enum {
     case .hidden: return 1
     case .premium: return 2
     case .featured: return 3
-    case .organic: return 4
-    case .exclusive: return 5
-    case .inHouse: return 6
-    case .lastChance: return 7
-    case .limitedTime: return 8
-    case .onSale: return 9
-    case .local: return 10
+    case .exclusive: return 4
+    case .inHouse: return 5
+    case .lastChance: return 6
+    case .limitedTime: return 7
+    case .local: return 8
+    case .onSale: return 20
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -83,12 +111,11 @@ extension Opencannabis_Structs_ProductFlag: SwiftProtobuf._ProtoNameProviding {
     1: .same(proto: "HIDDEN"),
     2: .same(proto: "PREMIUM"),
     3: .same(proto: "FEATURED"),
-    4: .same(proto: "ORGANIC"),
-    5: .same(proto: "EXCLUSIVE"),
-    6: .same(proto: "IN_HOUSE"),
-    7: .same(proto: "LAST_CHANCE"),
-    8: .same(proto: "LIMITED_TIME"),
-    9: .same(proto: "ON_SALE"),
-    10: .same(proto: "LOCAL"),
+    4: .same(proto: "EXCLUSIVE"),
+    5: .same(proto: "IN_HOUSE"),
+    6: .same(proto: "LAST_CHANCE"),
+    7: .same(proto: "LIMITED_TIME"),
+    8: .same(proto: "LOCAL"),
+    20: .same(proto: "ON_SALE"),
   ]
 }

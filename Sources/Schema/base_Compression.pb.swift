@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides tools and structures related to compressing data, and indicating data compression. Also enumerates
+/// registered compression algorithims.
+
 import Foundation
 import SwiftProtobuf
 
@@ -29,31 +33,47 @@ public struct Opencannabis_Base_Compression {
   public var enabled: Bool = false
 
   /// Type of compression in use, if any. Enumerated herein via `Compression.Type`.
-  public var type: Opencannabis_Base_Compression.TypeEnum = .gzip
+  public var type: Opencannabis_Base_Compression.TypeEnum = .noCompression
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  /// Enumerates available types of compression, or strategies
-  /// or algorithms for compressing data.
+  /// Enumerates available types of compression, or strategies or algorithms for compressing data.
   public enum TypeEnum: SwiftProtobuf.Enum {
     public typealias RawValue = Int
-    case gzip // = 0
+
+    /// No compression.
+    case noCompression // = 0
+
+    /// Gzip-based compression.
+    case gzip // = 1
+
+    /// Brotli-based compression.
+    case brotli // = 2
+
+    /// Snappy-based compression.
+    case snappy // = 3
     case UNRECOGNIZED(Int)
 
     public init() {
-      self = .gzip
+      self = .noCompression
     }
 
     public init?(rawValue: Int) {
       switch rawValue {
-      case 0: self = .gzip
+      case 0: self = .noCompression
+      case 1: self = .gzip
+      case 2: self = .brotli
+      case 3: self = .snappy
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
 
     public var rawValue: Int {
       switch self {
-      case .gzip: return 0
+      case .noCompression: return 0
+      case .gzip: return 1
+      case .brotli: return 2
+      case .snappy: return 3
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -88,7 +108,7 @@ extension Opencannabis_Base_Compression: SwiftProtobuf.Message, SwiftProtobuf._M
     if self.enabled != false {
       try visitor.visitSingularBoolField(value: self.enabled, fieldNumber: 1)
     }
-    if self.type != .gzip {
+    if self.type != .noCompression {
       try visitor.visitSingularEnumField(value: self.type, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -104,6 +124,9 @@ extension Opencannabis_Base_Compression: SwiftProtobuf.Message, SwiftProtobuf._M
 
 extension Opencannabis_Base_Compression.TypeEnum: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "GZIP"),
+    0: .same(proto: "NO_COMPRESSION"),
+    1: .same(proto: "GZIP"),
+    2: .same(proto: "BROTLI"),
+    3: .same(proto: "SNAPPY"),
   ]
 }

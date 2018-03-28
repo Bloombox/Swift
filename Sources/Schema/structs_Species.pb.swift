@@ -19,13 +19,27 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Enumerates known cannabis species, that may be applied to products to indicate their general genetic and
+/// pharmacokinetic traits.
 public enum Opencannabis_Structs_Species: SwiftProtobuf.Enum {
   public typealias RawValue = Int
+
+  /// Unspecified or unknown species value.
   case unspecified // = 0
+
+  /// Purely Sativa species value.
   case sativa // = 1
+
+  /// Hybrid Indica/Sativa species value, with a focus or predominance towards Sativa.
   case hybridSativa // = 2
+
+  /// Purely hybrid Indica/Sativa species value.
   case hybrid // = 3
+
+  /// Hybrid Indica/Sativa species value, with a focus or predominance towards Indica.
   case hybridIndica // = 4
+
+  /// Purely Indica species value.
   case indica // = 5
   case UNRECOGNIZED(Int)
 

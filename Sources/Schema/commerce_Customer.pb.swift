@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the notion of a 'customer,' which is a person who is completing a purchase transaction, has completed a
+/// purchase transaction in the past, or intends to commit a purchase transaction in the future.
+
 import Foundation
 import SwiftProtobuf
 

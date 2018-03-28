@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies natural language-related messages and enumerations. Also enumerates registered languages.
+
 import Foundation
 import SwiftProtobuf
 
@@ -19,8 +22,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// Specifies languages available for specification, usually
-/// used as an attachment to content or media.
+/// Specifies languages available for specification, usually used as an attachment to content or media.
 public enum Opencannabis_Base_Language: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 

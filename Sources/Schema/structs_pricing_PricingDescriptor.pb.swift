@@ -19,12 +19,17 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// -- Pricing: Objects
+/// Enumerates supported pricing schemes. Defaults to 'UNIT'-based pricing.
 public enum Opencannabis_Structs_Pricing_PricingType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
+
+  /// Cost-per-item based pricing scheme, where each product is priced individually, regardless of other attributes. For
+  /// example, edibles or standard merchandise are purchased, at their price, "each."
   case unit // = 0
+
+  /// Cost-by-weight pricing scheme, where each product has multiple weight tiers, each priced individually. For example,
+  /// standard retail flower pricing is weighted at 1g (one gram), 3.5g, 7g, 14g and 28g (one ounce).
   case weighted // = 1
-  case freebie // = 2
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -35,7 +40,6 @@ public enum Opencannabis_Structs_Pricing_PricingType: SwiftProtobuf.Enum {
     switch rawValue {
     case 0: self = .unit
     case 1: self = .weighted
-    case 2: self = .freebie
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -44,34 +48,67 @@ public enum Opencannabis_Structs_Pricing_PricingType: SwiftProtobuf.Enum {
     switch self {
     case .unit: return 0
     case .weighted: return 1
-    case .freebie: return 2
     case .UNRECOGNIZED(let i): return i
     }
   }
 
 }
 
+/// Enumerates supported pricing tiers, when the 'WEIGHTED' pricing scheme is in effect. Each known tier is enumerated,
+/// with an additional defaulted option for 'OTHER,' which would allow a custom weight to be assigned via some other
+/// property or metric.
 public enum Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf.Enum {
   public typealias RawValue = Int
-  case other // = 0
+
+  /// No weight indicated.
+  case noWeight // = 0
+
+  /// Pricing for 'ONE GRAM' of the subject material or merchandise.
   case gram // = 1
+
+  /// Pricing for one 'HALF GRAM' of the subject material or merchandise. Usually used only for extracts.
   case halfgram // = 2
+
+  /// Pricing for one 'QUARTER GRAM' of the subject material or merchandise. Usually used only for extracts.
   case quartergram // = 3
+
+  /// Pricing for TWO GRAMS of the subject material or merchandise. Rarely used.
   case dub // = 4
+
+  /// Pricing for an 'EIGHTH' of the subject material or merchandise, usually defined as 3-and-one-half grams. In some
+  /// cases, providers may choose to define their 'EIGHTH' weight value at 4 grams. This functionality is supported via
+  /// partner or location-level settings. 'EIGHTH' usually refers to an eighth-of-an-ounce.
   case eighth // = 5
+
+  /// Pricing for a 'QUARTER' of the subject material or merchandise, usually defined as 7 grams.
   case quarter // = 6
+
+  /// Pricing for a 'HALF OUNCE' of the subject material or merchandise. Usually defined as 14 grams.
   case half // = 7
+
+  /// Pricing for 'ONCE OUNCE' of subject material or merchandise. Usually defined as 28 grams.
   case ounce // = 8
+
+  /// Pricing for 'ONE POUND' of subject material or merchandise.
   case pound // = 9
+
+  /// Pricing for 'ONE KILO' of subject material or merchandise.
+  case kilo // = 10
+
+  /// Pricing for 'ONE TON' of subject material or merchandise.
+  case ton // = 11
+
+  /// 'Other,' or custom weighted pricing.
+  case other // = 12
   case UNRECOGNIZED(Int)
 
   public init() {
-    self = .other
+    self = .noWeight
   }
 
   public init?(rawValue: Int) {
     switch rawValue {
-    case 0: self = .other
+    case 0: self = .noWeight
     case 1: self = .gram
     case 2: self = .halfgram
     case 3: self = .quartergram
@@ -81,13 +118,16 @@ public enum Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf.Enum {
     case 7: self = .half
     case 8: self = .ounce
     case 9: self = .pound
+    case 10: self = .kilo
+    case 11: self = .ton
+    case 12: self = .other
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
 
   public var rawValue: Int {
     switch self {
-    case .other: return 0
+    case .noWeight: return 0
     case .gram: return 1
     case .halfgram: return 2
     case .quartergram: return 3
@@ -97,19 +137,27 @@ public enum Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf.Enum {
     case .half: return 7
     case .ounce: return 8
     case .pound: return 9
+    case .kilo: return 10
+    case .ton: return 11
+    case .other: return 12
     case .UNRECOGNIZED(let i): return i
     }
   }
 
 }
 
+/// Specifies availability and stock status flags for a particular pricing tier.
 public struct Opencannabis_Structs_Pricing_PricingTierAvailability {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Specifies whether a particular pricing tier is offered at all. This would be interpreted to indicate whether a
+  /// particular pricing tier is 'ever available' or 'ever offered.'
   public var offered: Bool = false
 
+  /// Specifies whether a particular pricing tier is currently available. This would be interpreted to indicate whether a
+  /// particular pricing tier is 'currently available,' 'currently in stock,' or 'currently offered.'
   public var available: Bool = false
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -117,17 +165,24 @@ public struct Opencannabis_Structs_Pricing_PricingTierAvailability {
   public init() {}
 }
 
-/// -- Pricing: Typed Descriptors
+/// Specifies pricing information for a unit-priced product, including the price value, tier status, and any discounts
+/// that currently apply.
 public struct Opencannabis_Structs_Pricing_UnitPricingDescriptor {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var priceValue: Float {
-    get {return _storage._priceValue}
-    set {_uniqueStorage()._priceValue = newValue}
+  /// Unit price value.
+  public var price: Opencannabis_Commerce_CurrencyValue {
+    get {return _storage._price ?? Opencannabis_Commerce_CurrencyValue()}
+    set {_uniqueStorage()._price = newValue}
   }
+  /// Returns true if `price` has been explicitly set.
+  public var hasPrice: Bool {return _storage._price != nil}
+  /// Clears the value of `price`. Subsequent reads from it will return its default value.
+  public mutating func clearPrice() {_storage._price = nil}
 
+  /// Availability flags for this unit-priced tier.
   public var status: Opencannabis_Structs_Pricing_PricingTierAvailability {
     get {return _storage._status ?? Opencannabis_Structs_Pricing_PricingTierAvailability()}
     set {_uniqueStorage()._status = newValue}
@@ -137,6 +192,7 @@ public struct Opencannabis_Structs_Pricing_UnitPricingDescriptor {
   /// Clears the value of `status`. Subsequent reads from it will return its default value.
   public mutating func clearStatus() {_storage._status = nil}
 
+  /// Discounts that should apply to this tier.
   public var discounts: [Opencannabis_Structs_Pricing_SaleDescriptor] {
     get {return _storage._discounts}
     set {_uniqueStorage()._discounts = newValue}
@@ -149,16 +205,20 @@ public struct Opencannabis_Structs_Pricing_UnitPricingDescriptor {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+/// Specifies pricing information for a weight-priced product, at a particular weight tier, including the price value,
+/// tier status, and, optionally, a custom weight.
 public struct Opencannabis_Structs_Pricing_WeightedPricingDescriptor {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Weight tier selection.
   public var weight: Opencannabis_Structs_Pricing_PricingWeightTier {
     get {return _storage._weight}
     set {_uniqueStorage()._weight = newValue}
   }
 
+  /// Pricing descriptor for this tier, including the price value, status, and any discounts that should apply.
   public var tier: Opencannabis_Structs_Pricing_UnitPricingDescriptor {
     get {return _storage._tier ?? Opencannabis_Structs_Pricing_UnitPricingDescriptor()}
     set {_uniqueStorage()._tier = newValue}
@@ -168,6 +228,7 @@ public struct Opencannabis_Structs_Pricing_WeightedPricingDescriptor {
   /// Clears the value of `tier`. Subsequent reads from it will return its default value.
   public mutating func clearTier() {_storage._tier = nil}
 
+  /// Custom weight in grams, if any.
   public var weightInGrams: Float {
     get {return _storage._weightInGrams}
     set {_uniqueStorage()._weightInGrams = newValue}
@@ -180,70 +241,56 @@ public struct Opencannabis_Structs_Pricing_WeightedPricingDescriptor {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Opencannabis_Structs_Pricing_FreebiePricingDescriptor {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
-/// -- Pricing: Main Descriptor
+/// Specifies a descriptor for product pricing, which specifies the price configuration for one independent price tier
+/// in a given set of pricing tiers for a product.
 public struct Opencannabis_Structs_Pricing_PricingDescriptor {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Type of pricing tier this descriptor is specifying.
   public var type: Opencannabis_Structs_Pricing_PricingType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
-  public var pricing: OneOf_Pricing? {
-    get {return _storage._pricing}
-    set {_uniqueStorage()._pricing = newValue}
+  /// Pricing information for this tier, based on the pricing tier type.
+  public var tier: OneOf_Tier? {
+    get {return _storage._tier}
+    set {_uniqueStorage()._tier = newValue}
   }
 
-  /// -- descriptors
+  /// Unit-based pricing information, with no variance in price change.
   public var unit: Opencannabis_Structs_Pricing_UnitPricingDescriptor {
     get {
-      if case .unit(let v)? = _storage._pricing {return v}
+      if case .unit(let v)? = _storage._tier {return v}
       return Opencannabis_Structs_Pricing_UnitPricingDescriptor()
     }
-    set {_uniqueStorage()._pricing = .unit(newValue)}
+    set {_uniqueStorage()._tier = .unit(newValue)}
   }
 
+  /// Weight-based pricing information, with prices assgined to specific or known weights.
   public var weighted: Opencannabis_Structs_Pricing_WeightedPricingDescriptor {
     get {
-      if case .weighted(let v)? = _storage._pricing {return v}
+      if case .weighted(let v)? = _storage._tier {return v}
       return Opencannabis_Structs_Pricing_WeightedPricingDescriptor()
     }
-    set {_uniqueStorage()._pricing = .weighted(newValue)}
-  }
-
-  public var freebie: Opencannabis_Structs_Pricing_FreebiePricingDescriptor {
-    get {
-      if case .freebie(let v)? = _storage._pricing {return v}
-      return Opencannabis_Structs_Pricing_FreebiePricingDescriptor()
-    }
-    set {_uniqueStorage()._pricing = .freebie(newValue)}
+    set {_uniqueStorage()._tier = .weighted(newValue)}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  public enum OneOf_Pricing: Equatable {
-    /// -- descriptors
+  /// Pricing information for this tier, based on the pricing tier type.
+  public enum OneOf_Tier: Equatable {
+    /// Unit-based pricing information, with no variance in price change.
     case unit(Opencannabis_Structs_Pricing_UnitPricingDescriptor)
+    /// Weight-based pricing information, with prices assgined to specific or known weights.
     case weighted(Opencannabis_Structs_Pricing_WeightedPricingDescriptor)
-    case freebie(Opencannabis_Structs_Pricing_FreebiePricingDescriptor)
 
-    public static func ==(lhs: Opencannabis_Structs_Pricing_PricingDescriptor.OneOf_Pricing, rhs: Opencannabis_Structs_Pricing_PricingDescriptor.OneOf_Pricing) -> Bool {
+    public static func ==(lhs: Opencannabis_Structs_Pricing_PricingDescriptor.OneOf_Tier, rhs: Opencannabis_Structs_Pricing_PricingDescriptor.OneOf_Tier) -> Bool {
       switch (lhs, rhs) {
       case (.unit(let l), .unit(let r)): return l == r
       case (.weighted(let l), .weighted(let r)): return l == r
-      case (.freebie(let l), .freebie(let r)): return l == r
       default: return false
       }
     }
@@ -254,14 +301,17 @@ public struct Opencannabis_Structs_Pricing_PricingDescriptor {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-/// -- Pricing: Product-level Object
+/// Pricing manifest for a product, with the combined tiers and top-level discounts that are currently configured for a
+/// given sellable material or unit of merchandise.
 public struct Opencannabis_Structs_Pricing_ProductPricing {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Discounts that should apply across all pricing tiers for the subject product.
   public var discounts: [Opencannabis_Structs_Pricing_SaleDescriptor] = []
 
+  /// Pricing tiers attached to this product pricing manifest.
   public var manifest: [Opencannabis_Structs_Pricing_PricingDescriptor] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -277,13 +327,12 @@ extension Opencannabis_Structs_Pricing_PricingType: SwiftProtobuf._ProtoNameProv
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNIT"),
     1: .same(proto: "WEIGHTED"),
-    2: .same(proto: "FREEBIE"),
   ]
 }
 
 extension Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "OTHER"),
+    0: .same(proto: "NO_WEIGHT"),
     1: .same(proto: "GRAM"),
     2: .same(proto: "HALFGRAM"),
     3: .same(proto: "QUARTERGRAM"),
@@ -293,6 +342,9 @@ extension Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf._ProtoNa
     7: .same(proto: "HALF"),
     8: .same(proto: "OUNCE"),
     9: .same(proto: "POUND"),
+    10: .same(proto: "KILO"),
+    11: .same(proto: "TON"),
+    12: .same(proto: "OTHER"),
   ]
 }
 
@@ -334,13 +386,13 @@ extension Opencannabis_Structs_Pricing_PricingTierAvailability: SwiftProtobuf.Me
 extension Opencannabis_Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UnitPricingDescriptor"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "price_value"),
+    1: .same(proto: "price"),
     2: .same(proto: "status"),
     3: .same(proto: "discounts"),
   ]
 
   fileprivate class _StorageClass {
-    var _priceValue: Float = 0
+    var _price: Opencannabis_Commerce_CurrencyValue? = nil
     var _status: Opencannabis_Structs_Pricing_PricingTierAvailability? = nil
     var _discounts: [Opencannabis_Structs_Pricing_SaleDescriptor] = []
 
@@ -349,7 +401,7 @@ extension Opencannabis_Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf.Mess
     private init() {}
 
     init(copying source: _StorageClass) {
-      _priceValue = source._priceValue
+      _price = source._price
       _status = source._status
       _discounts = source._discounts
     }
@@ -367,7 +419,7 @@ extension Opencannabis_Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf.Mess
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularFloatField(value: &_storage._priceValue)
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._price)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._status)
         case 3: try decoder.decodeRepeatedMessageField(value: &_storage._discounts)
         default: break
@@ -378,8 +430,8 @@ extension Opencannabis_Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf.Mess
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._priceValue != 0 {
-        try visitor.visitSingularFloatField(value: _storage._priceValue, fieldNumber: 1)
+      if let v = _storage._price {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
       }
       if let v = _storage._status {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
@@ -396,7 +448,7 @@ extension Opencannabis_Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf.Mess
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let other_storage = _args.1
-        if _storage._priceValue != other_storage._priceValue {return false}
+        if _storage._price != other_storage._price {return false}
         if _storage._status != other_storage._status {return false}
         if _storage._discounts != other_storage._discounts {return false}
         return true
@@ -417,7 +469,7 @@ extension Opencannabis_Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf.
   ]
 
   fileprivate class _StorageClass {
-    var _weight: Opencannabis_Structs_Pricing_PricingWeightTier = .other
+    var _weight: Opencannabis_Structs_Pricing_PricingWeightTier = .noWeight
     var _tier: Opencannabis_Structs_Pricing_UnitPricingDescriptor? = nil
     var _weightInGrams: Float = 0
 
@@ -455,7 +507,7 @@ extension Opencannabis_Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf.
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._weight != .other {
+      if _storage._weight != .noWeight {
         try visitor.visitSingularEnumField(value: _storage._weight, fieldNumber: 1)
       }
       if let v = _storage._tier {
@@ -485,37 +537,17 @@ extension Opencannabis_Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf.
   }
 }
 
-extension Opencannabis_Structs_Pricing_FreebiePricingDescriptor: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".FreebiePricingDescriptor"
-  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_FreebiePricingDescriptor) -> Bool {
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
 extension Opencannabis_Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PricingDescriptor"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     20: .same(proto: "unit"),
     21: .same(proto: "weighted"),
-    22: .same(proto: "freebie"),
   ]
 
   fileprivate class _StorageClass {
     var _type: Opencannabis_Structs_Pricing_PricingType = .unit
-    var _pricing: Opencannabis_Structs_Pricing_PricingDescriptor.OneOf_Pricing?
+    var _tier: Opencannabis_Structs_Pricing_PricingDescriptor.OneOf_Tier?
 
     static let defaultInstance = _StorageClass()
 
@@ -523,7 +555,7 @@ extension Opencannabis_Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message,
 
     init(copying source: _StorageClass) {
       _type = source._type
-      _pricing = source._pricing
+      _tier = source._tier
     }
   }
 
@@ -542,28 +574,20 @@ extension Opencannabis_Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message,
         case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
         case 20:
           var v: Opencannabis_Structs_Pricing_UnitPricingDescriptor?
-          if let current = _storage._pricing {
+          if let current = _storage._tier {
             try decoder.handleConflictingOneOf()
             if case .unit(let m) = current {v = m}
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._pricing = .unit(v)}
+          if let v = v {_storage._tier = .unit(v)}
         case 21:
           var v: Opencannabis_Structs_Pricing_WeightedPricingDescriptor?
-          if let current = _storage._pricing {
+          if let current = _storage._tier {
             try decoder.handleConflictingOneOf()
             if case .weighted(let m) = current {v = m}
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._pricing = .weighted(v)}
-        case 22:
-          var v: Opencannabis_Structs_Pricing_FreebiePricingDescriptor?
-          if let current = _storage._pricing {
-            try decoder.handleConflictingOneOf()
-            if case .freebie(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._pricing = .freebie(v)}
+          if let v = v {_storage._tier = .weighted(v)}
         default: break
         }
       }
@@ -575,13 +599,11 @@ extension Opencannabis_Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message,
       if _storage._type != .unit {
         try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
       }
-      switch _storage._pricing {
+      switch _storage._tier {
       case .unit(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
       case .weighted(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
-      case .freebie(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 22)
       case nil: break
       }
     }
@@ -594,7 +616,7 @@ extension Opencannabis_Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message,
         let _storage = _args.0
         let other_storage = _args.1
         if _storage._type != other_storage._type {return false}
-        if _storage._pricing != other_storage._pricing {return false}
+        if _storage._tier != other_storage._tier {return false}
         return true
       }
       if !storagesAreEqual {return false}

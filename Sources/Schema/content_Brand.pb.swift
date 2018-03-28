@@ -19,12 +19,13 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-///Basic Properties
+/// Information about a particular brand or producer of products or materials.
 public struct Opencannabis_Content_Brand {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Naming information for this brand.
   public var name: Opencannabis_Content_Name {
     get {return _storage._name ?? Opencannabis_Content_Name()}
     set {_uniqueStorage()._name = newValue}
@@ -34,6 +35,7 @@ public struct Opencannabis_Content_Brand {
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
   public mutating func clearName() {_storage._name = nil}
 
+  /// Parent/owning brand, if applicable.
   public var parent: Opencannabis_Content_Brand {
     get {return _storage._parent ?? Opencannabis_Content_Brand()}
     set {_uniqueStorage()._parent = newValue}
@@ -43,6 +45,7 @@ public struct Opencannabis_Content_Brand {
   /// Clears the value of `parent`. Subsequent reads from it will return its default value.
   public mutating func clearParent() {_storage._parent = nil}
 
+  /// Summary information or content about this brand.
   public var summary: Opencannabis_Content_Content {
     get {return _storage._summary ?? Opencannabis_Content_Content()}
     set {_uniqueStorage()._summary = newValue}
@@ -52,7 +55,7 @@ public struct Opencannabis_Content_Brand {
   /// Clears the value of `summary`. Subsequent reads from it will return its default value.
   public mutating func clearSummary() {_storage._summary = nil}
 
-  ///Media
+  /// Media items attached to this brand.
   public var media: [Opencannabis_Media_MediaItem] {
     get {return _storage._media}
     set {_uniqueStorage()._media = newValue}

@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides enumerations and messages that structure and specify jurisdictionally-imposed costs on goods sold (i.e.,
+/// taxes). Support is included for taxes at the federal, provincial, and municipal levels.
+
 import Foundation
 import SwiftProtobuf
 

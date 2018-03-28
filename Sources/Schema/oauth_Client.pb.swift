@@ -19,13 +19,16 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Specifies an OAuth2-client that can perform authorization operations in certain circumstances.
 public struct Opencannabis_Oauth_Client {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// ID for this OAuth2 client.
   public var clientID: String = String()
 
+  /// Secret (password) for this OAuth2 client.
   public var clientSecret: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -33,11 +36,13 @@ public struct Opencannabis_Oauth_Client {
   public init() {}
 }
 
+/// Independent ID structure for an OAuth2 client.
 public struct Opencannabis_Oauth_ClientID {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// ID for the OAuth2 client.
   public var id: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -45,11 +50,13 @@ public struct Opencannabis_Oauth_ClientID {
   public init() {}
 }
 
+/// Independent secret value structure for an OAuth2 client.
 public struct Opencannabis_Oauth_ClientSecret {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Secret value for the the OAuth2 client.
   public var secret: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()

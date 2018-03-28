@@ -137,14 +137,14 @@ public struct Opencannabis_Content_ProductContent {
   public mutating func clearPricing() {_storage._pricing = nil}
 
   /// Lab testing information concerning this product.
-  public var testing: Opencannabis_Structs_Labtesting_TestResults {
-    get {return _storage._testing ?? Opencannabis_Structs_Labtesting_TestResults()}
-    set {_uniqueStorage()._testing = newValue}
+  public var tests: Opencannabis_Structs_Labtesting_TestResults {
+    get {return _storage._tests ?? Opencannabis_Structs_Labtesting_TestResults()}
+    set {_uniqueStorage()._tests = newValue}
   }
-  /// Returns true if `testing` has been explicitly set.
-  public var hasTesting: Bool {return _storage._testing != nil}
-  /// Clears the value of `testing`. Subsequent reads from it will return its default value.
-  public mutating func clearTesting() {_storage._testing = nil}
+  /// Returns true if `tests` has been explicitly set.
+  public var hasTests: Bool {return _storage._tests != nil}
+  /// Clears the value of `tests`. Subsequent reads from it will return its default value.
+  public mutating func clearTests() {_storage._tests = nil}
 
   /// Product flags attached to this content.
   public var flags: [Opencannabis_Structs_ProductFlag] {
@@ -260,7 +260,7 @@ extension Opencannabis_Content_ProductContent: SwiftProtobuf.Message, SwiftProto
     5: .same(proto: "dosage"),
     6: .same(proto: "media"),
     7: .same(proto: "pricing"),
-    8: .same(proto: "testing"),
+    8: .same(proto: "tests"),
     9: .same(proto: "flags"),
     10: .same(proto: "ts"),
   ]
@@ -273,7 +273,7 @@ extension Opencannabis_Content_ProductContent: SwiftProtobuf.Message, SwiftProto
     var _dosage: Opencannabis_Content_Content? = nil
     var _media: [Opencannabis_Media_MediaItem] = []
     var _pricing: Opencannabis_Structs_Pricing_ProductPricing? = nil
-    var _testing: Opencannabis_Structs_Labtesting_TestResults? = nil
+    var _tests: Opencannabis_Structs_Labtesting_TestResults? = nil
     var _flags: [Opencannabis_Structs_ProductFlag] = []
     var _ts: Opencannabis_Content_ProductTimestamps? = nil
 
@@ -289,7 +289,7 @@ extension Opencannabis_Content_ProductContent: SwiftProtobuf.Message, SwiftProto
       _dosage = source._dosage
       _media = source._media
       _pricing = source._pricing
-      _testing = source._testing
+      _tests = source._tests
       _flags = source._flags
       _ts = source._ts
     }
@@ -314,7 +314,7 @@ extension Opencannabis_Content_ProductContent: SwiftProtobuf.Message, SwiftProto
         case 5: try decoder.decodeSingularMessageField(value: &_storage._dosage)
         case 6: try decoder.decodeRepeatedMessageField(value: &_storage._media)
         case 7: try decoder.decodeSingularMessageField(value: &_storage._pricing)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._testing)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._tests)
         case 9: try decoder.decodeRepeatedEnumField(value: &_storage._flags)
         case 10: try decoder.decodeSingularMessageField(value: &_storage._ts)
         default: break
@@ -346,7 +346,7 @@ extension Opencannabis_Content_ProductContent: SwiftProtobuf.Message, SwiftProto
       if let v = _storage._pricing {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
       }
-      if let v = _storage._testing {
+      if let v = _storage._tests {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
       }
       if !_storage._flags.isEmpty {
@@ -371,7 +371,7 @@ extension Opencannabis_Content_ProductContent: SwiftProtobuf.Message, SwiftProto
         if _storage._dosage != other_storage._dosage {return false}
         if _storage._media != other_storage._media {return false}
         if _storage._pricing != other_storage._pricing {return false}
-        if _storage._testing != other_storage._testing {return false}
+        if _storage._tests != other_storage._tests {return false}
         if _storage._flags != other_storage._flags {return false}
         if _storage._ts != other_storage._ts {return false}
         return true

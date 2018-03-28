@@ -19,11 +19,23 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Enumerates common/known types or styles of cultivation that might produce a flower for sale, or resale after
+/// manufacture.
 public enum Opencannabis_Structs_Grow: SwiftProtobuf.Enum {
   public typealias RawValue = Int
+
+  /// Generic, or unknown, grow circumstances.
   case generic // = 0
+
+  /// Indoor grow circumstances, implying high-precision environment controls (temperature, humidity, light, and so on)
+  /// and close monitoring and optimization.
   case indoor // = 1
+
+  /// Greenhouse-based grow circumstances. This includes any indoor grow operation that makes use of natural light in any
+  /// manner, augmenting replacing controlled indoor lighting.
   case greenhouse // = 2
+
+  /// Outdoor-based grow circumstances, that use entirely natural light from the sun.
   case outdoor // = 3
   case UNRECOGNIZED(Int)
 

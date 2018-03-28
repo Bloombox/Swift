@@ -19,31 +19,45 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Enumerates available 'shelf' entries, for use in retail contexts, to indicate the quality of a particular product
+/// entry (usually flowers).
 public enum Opencannabis_Structs_Shelf: SwiftProtobuf.Enum {
   public typealias RawValue = Int
-  case economy // = 0
-  case midshelf // = 1
-  case topshelf // = 2
+
+  /// Default value, indicating no specific shelf choice.
+  case genericShelf // = 0
+
+  /// 'Economy' shelf. Best value for the money, generally with a focus on THC-per-gram.
+  case economy // = 1
+
+  /// 'Midshelf'. Medium-grade products that strike a balance between cost and potency/quality.
+  case midshelf // = 2
+
+  /// 'Topshelf'. High-grade, or highly-refined products, that focus on potency or quality to the exclusion or detriment
+  /// of cost.
+  case topshelf // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
-    self = .economy
+    self = .genericShelf
   }
 
   public init?(rawValue: Int) {
     switch rawValue {
-    case 0: self = .economy
-    case 1: self = .midshelf
-    case 2: self = .topshelf
+    case 0: self = .genericShelf
+    case 1: self = .economy
+    case 2: self = .midshelf
+    case 3: self = .topshelf
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
 
   public var rawValue: Int {
     switch self {
-    case .economy: return 0
-    case .midshelf: return 1
-    case .topshelf: return 2
+    case .genericShelf: return 0
+    case .economy: return 1
+    case .midshelf: return 2
+    case .topshelf: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -54,8 +68,9 @@ public enum Opencannabis_Structs_Shelf: SwiftProtobuf.Enum {
 
 extension Opencannabis_Structs_Shelf: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "ECONOMY"),
-    1: .same(proto: "MIDSHELF"),
-    2: .same(proto: "TOPSHELF"),
+    0: .same(proto: "GENERIC_SHELF"),
+    1: .same(proto: "ECONOMY"),
+    2: .same(proto: "MIDSHELF"),
+    3: .same(proto: "TOPSHELF"),
   ]
 }

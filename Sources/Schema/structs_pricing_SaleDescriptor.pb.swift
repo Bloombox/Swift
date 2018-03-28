@@ -21,29 +21,32 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 public enum Opencannabis_Structs_Pricing_SaleType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
-  case percentageOff // = 0
-  case bogo // = 1
-  case loyalty // = 2
+  case percentageReduction // = 0
+  case valueReduction // = 1
+  case bogo // = 2
+  case loyalty // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
-    self = .percentageOff
+    self = .percentageReduction
   }
 
   public init?(rawValue: Int) {
     switch rawValue {
-    case 0: self = .percentageOff
-    case 1: self = .bogo
-    case 2: self = .loyalty
+    case 0: self = .percentageReduction
+    case 1: self = .valueReduction
+    case 2: self = .bogo
+    case 3: self = .loyalty
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
 
   public var rawValue: Int {
     switch self {
-    case .percentageOff: return 0
-    case .bogo: return 1
-    case .loyalty: return 2
+    case .percentageReduction: return 0
+    case .valueReduction: return 1
+    case .bogo: return 2
+    case .loyalty: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -178,9 +181,10 @@ fileprivate let _protobuf_package = "opencannabis.structs.pricing"
 
 extension Opencannabis_Structs_Pricing_SaleType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "PERCENTAGE_OFF"),
-    1: .same(proto: "BOGO"),
-    2: .same(proto: "LOYALTY"),
+    0: .same(proto: "PERCENTAGE_REDUCTION"),
+    1: .same(proto: "VALUE_REDUCTION"),
+    2: .same(proto: "BOGO"),
+    3: .same(proto: "LOYALTY"),
   ]
 }
 
@@ -295,7 +299,7 @@ extension Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message, Sw
   ]
 
   fileprivate class _StorageClass {
-    var _type: Opencannabis_Structs_Pricing_SaleType = .percentageOff
+    var _type: Opencannabis_Structs_Pricing_SaleType = .percentageReduction
     var _effective: Opencannabis_Temporal_Instant? = nil
     var _expiration: Opencannabis_Temporal_Instant? = nil
     var _sale: Opencannabis_Structs_Pricing_SaleDescriptor.OneOf_Sale?
@@ -359,7 +363,7 @@ extension Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message, Sw
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._type != .percentageOff {
+      if _storage._type != .percentageReduction {
         try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
       }
       if let v = _storage._effective {

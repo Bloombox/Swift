@@ -28,7 +28,7 @@ public struct Opencannabis_Content_Name {
   /// Primary name.
   public var primary: String = String()
 
-  /// Display name.
+  /// Display name, if different from the 'primary name'.
   public var display: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()

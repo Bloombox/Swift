@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Discounts on pricing and products, and enumerations specifying discount types or bases.
+
 import Foundation
 import SwiftProtobuf
 
@@ -183,8 +186,8 @@ public struct Opencannabis_Commerce_Discount {
     set {_uniqueStorage()._label = newValue}
   }
 
-  /// Narrative description for this discount, to be displayed to back-office and end-users in some
-  /// special circumstances.
+  /// Narrative description for this discount, to be displayed to back-office and end-users in some special
+  /// circumstances.
   public var description_p: String {
     get {return _storage._description_p}
     set {_uniqueStorage()._description_p = newValue}

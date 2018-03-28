@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Quantitative or empirical content regarding the substance or material of a given product.
+
 import Foundation
 import SwiftProtobuf
 
@@ -47,16 +50,16 @@ public struct Opencannabis_Content_MaterialsData {
     set {_uniqueStorage()._grow = newValue}
   }
 
-  /// Shelf status of this pre-rolled product.
+  /// Shelf status of this product.
   public var shelf: Opencannabis_Structs_Shelf {
     get {return _storage._shelf}
     set {_uniqueStorage()._shelf = newValue}
   }
 
-  /// Specifies distribution policy for this material.
-  public var channels: [Opencannabis_Products_Distribution_DistributionPolicy] {
-    get {return _storage._channels}
-    set {_uniqueStorage()._channels = newValue}
+  /// Specifies distribution policy for this particular subject material.
+  public var channel: [Opencannabis_Products_Distribution_DistributionPolicy] {
+    get {return _storage._channel}
+    set {_uniqueStorage()._channel = newValue}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -77,15 +80,15 @@ extension Opencannabis_Content_MaterialsData: SwiftProtobuf.Message, SwiftProtob
     2: .same(proto: "genetics"),
     3: .same(proto: "grow"),
     4: .same(proto: "shelf"),
-    5: .same(proto: "channels"),
+    5: .same(proto: "channel"),
   ]
 
   fileprivate class _StorageClass {
     var _species: Opencannabis_Structs_Species = .unspecified
     var _genetics: Opencannabis_Structs_Genetics? = nil
     var _grow: Opencannabis_Structs_Grow = .generic
-    var _shelf: Opencannabis_Structs_Shelf = .economy
-    var _channels: [Opencannabis_Products_Distribution_DistributionPolicy] = []
+    var _shelf: Opencannabis_Structs_Shelf = .genericShelf
+    var _channel: [Opencannabis_Products_Distribution_DistributionPolicy] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -96,7 +99,7 @@ extension Opencannabis_Content_MaterialsData: SwiftProtobuf.Message, SwiftProtob
       _genetics = source._genetics
       _grow = source._grow
       _shelf = source._shelf
-      _channels = source._channels
+      _channel = source._channel
     }
   }
 
@@ -116,7 +119,7 @@ extension Opencannabis_Content_MaterialsData: SwiftProtobuf.Message, SwiftProtob
         case 2: try decoder.decodeSingularMessageField(value: &_storage._genetics)
         case 3: try decoder.decodeSingularEnumField(value: &_storage._grow)
         case 4: try decoder.decodeSingularEnumField(value: &_storage._shelf)
-        case 5: try decoder.decodeRepeatedMessageField(value: &_storage._channels)
+        case 5: try decoder.decodeRepeatedMessageField(value: &_storage._channel)
         default: break
         }
       }
@@ -134,11 +137,11 @@ extension Opencannabis_Content_MaterialsData: SwiftProtobuf.Message, SwiftProtob
       if _storage._grow != .generic {
         try visitor.visitSingularEnumField(value: _storage._grow, fieldNumber: 3)
       }
-      if _storage._shelf != .economy {
+      if _storage._shelf != .genericShelf {
         try visitor.visitSingularEnumField(value: _storage._shelf, fieldNumber: 4)
       }
-      if !_storage._channels.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._channels, fieldNumber: 5)
+      if !_storage._channel.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._channel, fieldNumber: 5)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -153,7 +156,7 @@ extension Opencannabis_Content_MaterialsData: SwiftProtobuf.Message, SwiftProtob
         if _storage._genetics != other_storage._genetics {return false}
         if _storage._grow != other_storage._grow {return false}
         if _storage._shelf != other_storage._shelf {return false}
-        if _storage._channels != other_storage._channels {return false}
+        if _storage._channel != other_storage._channel {return false}
         return true
       }
       if !storagesAreEqual {return false}

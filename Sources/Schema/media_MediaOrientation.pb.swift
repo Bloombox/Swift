@@ -19,15 +19,33 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Orientation status of a piece of media. Provided by camera operations on mobile devices,
+/// in some cases, and also stored along with media sometimes.
 public enum Opencannabis_Media_MediaOrientation: SwiftProtobuf.Enum {
   public typealias RawValue = Int
+
+  /// Media is oriented 'up'.
   case up // = 0
+
+  /// Media is oriented 'down'.
   case down // = 1
+
+  /// Media is oriented 'left'.
   case left // = 2
+
+  /// Media is oriented 'right'.
   case right // = 3
+
+  /// Media is oriented 'up,' and mirrored.
   case upMirrored // = 4
+
+  /// Media is oriented 'down,' and mirrored.
   case downMirrored // = 5
+
+  /// Media is oriented 'left,' and mirrored.
   case leftMirrored // = 6
+
+  /// Media is oriented 'right,' and mirrored.
   case rightMirrored // = 7
   case UNRECOGNIZED(Int)
 

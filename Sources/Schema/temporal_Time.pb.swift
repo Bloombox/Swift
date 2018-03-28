@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides time-of-day-related definitions and structures.
+
 import Foundation
 import SwiftProtobuf
 

@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the notion of a Commercial Order, which is a request to purchase a set of products, by a customer (which is
+/// defined as a person in a transactional context). Orders are composed of Items which reference menu products.
+
 import Foundation
 import SwiftProtobuf
 

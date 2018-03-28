@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Delivery-specific ordering messages and enumerations, where an order is physically brought to a requesting customer's
+/// location, rather than held at a fixed location for pickup.
+
 import Foundation
 import SwiftProtobuf
 

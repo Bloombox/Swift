@@ -6,6 +6,11 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the notion of an 'Order Item,' which is a product requested as part of a commercial order. An order item
+/// references a product on a partner's active menu, by key, along with a count representing the number of instances of
+/// that product that are desired for purchase.
+
 import Foundation
 import SwiftProtobuf
 
@@ -57,64 +62,6 @@ public enum Opencannabis_Commerce_ProductVariant: SwiftProtobuf.Enum {
 
 }
 
-/// Enumeration for potential weight of concentrates and flowers
-public enum Opencannabis_Commerce_ProductWeight: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// The product has no weight value.
-  case noWeight // = 0
-
-  /// Half of one gram, usually for concentrates.
-  case halfgram // = 1
-
-  /// One gram.
-  case gram // = 2
-
-  /// An eighth of an ounce.
-  case eighth // = 3
-
-  /// A quarter of an ounce.
-  case quarter // = 4
-
-  /// A half ounce.
-  case half // = 5
-
-  /// A full ounce.
-  case oz // = 6
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .noWeight
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .noWeight
-    case 1: self = .halfgram
-    case 2: self = .gram
-    case 3: self = .eighth
-    case 4: self = .quarter
-    case 5: self = .half
-    case 6: self = .oz
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .noWeight: return 0
-    case .halfgram: return 1
-    case .gram: return 2
-    case .eighth: return 3
-    case .quarter: return 4
-    case .half: return 5
-    case .oz: return 6
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
 /// Specifies if it is a weighted product or a unit priced product and attaches that to item.
 public struct Opencannabis_Commerce_VariantSpec {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -127,7 +74,7 @@ public struct Opencannabis_Commerce_VariantSpec {
   public var spec: Opencannabis_Commerce_VariantSpec.OneOf_Spec? = nil
 
   /// Specifies a product weight, when varying by weight.
-  public var weight: Opencannabis_Commerce_ProductWeight {
+  public var weight: Opencannabis_Structs_Pricing_PricingWeightTier {
     get {
       if case .weight(let v)? = spec {return v}
       return .noWeight
@@ -157,7 +104,7 @@ public struct Opencannabis_Commerce_VariantSpec {
 
   public enum OneOf_Spec: Equatable {
     /// Specifies a product weight, when varying by weight.
-    case weight(Opencannabis_Commerce_ProductWeight)
+    case weight(Opencannabis_Structs_Pricing_PricingWeightTier)
     /// Specifies a size option for the product.
     case size(String)
     /// Specifies a color option for the product.
@@ -204,18 +151,6 @@ public struct Opencannabis_Commerce_Item {
     set {_uniqueStorage()._count = newValue}
   }
 
-  /// Unit price of this item.
-  public var price: Double {
-    get {return _storage._price}
-    set {_uniqueStorage()._price = newValue}
-  }
-
-  /// Line-item cost calculated from count and price.
-  public var cost: Double {
-    get {return _storage._cost}
-    set {_uniqueStorage()._cost = newValue}
-  }
-
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -235,18 +170,6 @@ extension Opencannabis_Commerce_ProductVariant: SwiftProtobuf._ProtoNameProvidin
   ]
 }
 
-extension Opencannabis_Commerce_ProductWeight: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "NO_WEIGHT"),
-    1: .same(proto: "HALFGRAM"),
-    2: .same(proto: "GRAM"),
-    3: .same(proto: "EIGHTH"),
-    4: .same(proto: "QUARTER"),
-    5: .same(proto: "HALF"),
-    6: .same(proto: "OZ"),
-  ]
-}
-
 extension Opencannabis_Commerce_VariantSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".VariantSpec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -262,7 +185,7 @@ extension Opencannabis_Commerce_VariantSpec: SwiftProtobuf.Message, SwiftProtobu
       case 1: try decoder.decodeSingularEnumField(value: &self.variant)
       case 2:
         if self.spec != nil {try decoder.handleConflictingOneOf()}
-        var v: Opencannabis_Commerce_ProductWeight?
+        var v: Opencannabis_Structs_Pricing_PricingWeightTier?
         try decoder.decodeSingularEnumField(value: &v)
         if let v = v {self.spec = .weight(v)}
       case 3:
@@ -310,16 +233,12 @@ extension Opencannabis_Commerce_Item: SwiftProtobuf.Message, SwiftProtobuf._Mess
     1: .same(proto: "key"),
     2: .same(proto: "variant"),
     3: .same(proto: "count"),
-    4: .same(proto: "price"),
-    5: .same(proto: "cost"),
   ]
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
     var _variant: [Opencannabis_Commerce_VariantSpec] = []
     var _count: UInt32 = 0
-    var _price: Double = 0
-    var _cost: Double = 0
 
     static let defaultInstance = _StorageClass()
 
@@ -329,8 +248,6 @@ extension Opencannabis_Commerce_Item: SwiftProtobuf.Message, SwiftProtobuf._Mess
       _key = source._key
       _variant = source._variant
       _count = source._count
-      _price = source._price
-      _cost = source._cost
     }
   }
 
@@ -349,8 +266,6 @@ extension Opencannabis_Commerce_Item: SwiftProtobuf.Message, SwiftProtobuf._Mess
         case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
         case 2: try decoder.decodeRepeatedMessageField(value: &_storage._variant)
         case 3: try decoder.decodeSingularUInt32Field(value: &_storage._count)
-        case 4: try decoder.decodeSingularDoubleField(value: &_storage._price)
-        case 5: try decoder.decodeSingularDoubleField(value: &_storage._cost)
         default: break
         }
       }
@@ -368,12 +283,6 @@ extension Opencannabis_Commerce_Item: SwiftProtobuf.Message, SwiftProtobuf._Mess
       if _storage._count != 0 {
         try visitor.visitSingularUInt32Field(value: _storage._count, fieldNumber: 3)
       }
-      if _storage._price != 0 {
-        try visitor.visitSingularDoubleField(value: _storage._price, fieldNumber: 4)
-      }
-      if _storage._cost != 0 {
-        try visitor.visitSingularDoubleField(value: _storage._cost, fieldNumber: 5)
-      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -386,8 +295,6 @@ extension Opencannabis_Commerce_Item: SwiftProtobuf.Message, SwiftProtobuf._Mess
         if _storage._key != other_storage._key {return false}
         if _storage._variant != other_storage._variant {return false}
         if _storage._count != other_storage._count {return false}
-        if _storage._price != other_storage._price {return false}
-        if _storage._cost != other_storage._cost {return false}
         return true
       }
       if !storagesAreEqual {return false}

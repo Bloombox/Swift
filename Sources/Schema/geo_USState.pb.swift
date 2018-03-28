@@ -19,112 +19,214 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// Enumerates USA member states and territories by their full name.
+/// Enumerates United States member states and territories by their full name and abbreviation.
 public enum Opencannabis_Geo_Usa_USState: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Default: Unspecified.
   case unspecified // = 0
+
+  /// State of Alabama.
   case al // = 1
   public static let alabama = al
+
+  /// State of Alaska.
   case ak // = 2
   public static let alaska = ak
+
+  /// State of Arizona.
   case az // = 3
   public static let arizona = az
+
+  /// State of Arkansas.
   case ar // = 4
   public static let arkansas = ar
+
+  /// State of California.
   case ca // = 5
   public static let california = ca
+
+  /// State of Colorado.
   case co // = 6
   public static let colorado = co
+
+  /// State of Connecticut.
   case ct // = 7
   public static let connecticut = ct
+
+  /// State of Delaware.
   case de // = 8
   public static let delaware = de
+
+  /// Washington, District of Columbia (DC).
   case dc // = 9
   public static let districtOfColumbia = dc
+
+  /// State of Florida.
   case fl // = 10
   public static let florida = fl
+
+  /// State of Georgia.
   case ga // = 11
   public static let georgia = ga
+
+  /// State of Hawaii.
   case hi // = 12
   public static let hawaii = hi
+
+  /// State of Idaho.
   case id // = 13
   public static let idaho = id
+
+  /// State of Illinois.
   case il // = 14
   public static let illinois = il
+
+  /// State of Indiana.
   case `in` // = 15
   public static let indiana = `in`
+
+  /// State of Iowa.
   case ia // = 16
   public static let iowa = ia
+
+  /// State of Kansas.
   case ks // = 17
   public static let kansas = ks
+
+  /// State of Kentucky.
   case ky // = 18
   public static let kentucky = ky
+
+  /// State of Loisiana.
   case la // = 19
   public static let loisiana = la
+
+  /// State of Maine.
   case me // = 20
   public static let maine = me
+
+  /// State of Maryland.
   case md // = 21
   public static let maryland = md
+
+  /// State of Massachusetts.
   case ma // = 22
   public static let massachusetts = ma
+
+  /// State of Michigan.
   case mi // = 23
   public static let michigan = mi
+
+  /// State of Minnesota.
   case mn // = 24
   public static let minnesota = mn
+
+  /// State of Mississippi.
   case ms // = 25
   public static let mississippi = ms
+
+  /// State of Missouri.
   case mo // = 26
   public static let missouri = mo
+
+  /// State of Montana.
   case mt // = 27
   public static let montana = mt
+
+  /// State of Nebraska.
   case ne // = 28
   public static let nebraska = ne
+
+  /// State of Nevada.
   case nv // = 29
   public static let nevada = nv
+
+  /// State of New Hampshire.
   case nh // = 30
   public static let newHampshire = nh
+
+  /// State of New Jersey.
   case nj // = 31
   public static let newJersey = nj
+
+  /// State of New Mexico.
   case nm // = 32
   public static let newMexico = nm
+
+  /// State of New York.
   case ny // = 33
   public static let newYork = ny
+
+  /// State of North Carolina.
   case nc // = 34
   public static let northCarolina = nc
+
+  /// State of North Dakota.
   case nd // = 35
   public static let northDakota = nd
+
+  /// State of Ohio.
   case oh // = 36
   public static let ohio = oh
+
+  /// State of Oklahoma.
   case ok // = 37
   public static let oklahoma = ok
+
+  /// State of Oregon.
   case or // = 38
   public static let oregon = or
+
+  /// State of Pennsylvania.
   case pa // = 39
   public static let pennsylvania = pa
+
+  /// State of Rhode Island.
   case ri // = 40
   public static let rhodeIsland = ri
+
+  /// State of South Carolina.
   case sc // = 41
   public static let southCarolina = sc
+
+  /// State of South Dakota.
   case sd // = 42
   public static let southDakota = sd
+
+  /// State of Tennessee.
   case tn // = 43
   public static let tennessee = tn
+
+  /// State of Texas.
   case tx // = 44
   public static let texas = tx
+
+  /// State of Utah.
   case ut // = 45
   public static let utah = ut
+
+  /// State of Vermont.
   case vt // = 46
   public static let vermont = vt
+
+  /// State of Virginia.
   case va // = 47
   public static let virginia = va
+
+  /// State of Washington.
   case wa // = 48
   public static let washington = wa
+
+  /// State of West Virginia.
   case wv // = 49
   public static let westVirginia = wv
+
+  /// State of Wisconsin.
   case wi // = 50
   public static let wisconsin = wi
+
+  /// State of Wyoming.
   case wyoming // = 51
   public static let wy = wyoming
   case UNRECOGNIZED(Int)

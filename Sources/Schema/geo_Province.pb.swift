@@ -27,6 +27,7 @@ public struct Opencannabis_Geo_Province {
 
   public var spec: Opencannabis_Geo_Province.OneOf_Spec? = nil
 
+  /// US state, specified by enumerated ID.
   public var state: Opencannabis_Geo_Usa_USState {
     get {
       if case .state(let v)? = spec {return v}
@@ -35,6 +36,7 @@ public struct Opencannabis_Geo_Province {
     set {spec = .state(newValue)}
   }
 
+  /// Generic province reference, by name.
   public var province: String {
     get {
       if case .province(let v)? = spec {return v}
@@ -46,7 +48,9 @@ public struct Opencannabis_Geo_Province {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public enum OneOf_Spec: Equatable {
+    /// US state, specified by enumerated ID.
     case state(Opencannabis_Geo_Usa_USState)
+    /// Generic province reference, by name.
     case province(String)
 
     public static func ==(lhs: Opencannabis_Geo_Province.OneOf_Spec, rhs: Opencannabis_Geo_Province.OneOf_Spec) -> Bool {
