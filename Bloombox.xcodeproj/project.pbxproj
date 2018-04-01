@@ -115,7 +115,6 @@
 		OBJ_1292 /* base_ProductKind.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* base_ProductKind.pb.swift */; };
 		OBJ_1293 /* CheckinService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* CheckinService_Beta1.grpc.swift */; };
 		OBJ_1294 /* checkin_v1beta1_CheckinService_Beta1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* checkin_v1beta1_CheckinService_Beta1.pb.swift */; };
-		OBJ_1295 /* checkin_v1beta1_CheckinStream.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* checkin_v1beta1_CheckinStream.pb.swift */; };
 		OBJ_1296 /* commerce_Currency.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* commerce_Currency.pb.swift */; };
 		OBJ_1297 /* commerce_Customer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* commerce_Customer.pb.swift */; };
 		OBJ_1298 /* commerce_Delivery.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* commerce_Delivery.pb.swift */; };
@@ -156,7 +155,6 @@
 		OBJ_1333 /* media_MediaType.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* media_MediaType.pb.swift */; };
 		OBJ_1334 /* MenuService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_83 /* MenuService_Beta1.grpc.swift */; };
 		OBJ_1335 /* menu_v1beta1_MenuService_Beta1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_84 /* menu_v1beta1_MenuService_Beta1.pb.swift */; };
-		OBJ_1336 /* menu_v1beta1_MenuStream.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_85 /* menu_v1beta1_MenuStream.pb.swift */; };
 		OBJ_1337 /* oauth_AuthorizationScope.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_86 /* oauth_AuthorizationScope.pb.swift */; };
 		OBJ_1338 /* oauth_Client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_87 /* oauth_Client.pb.swift */; };
 		OBJ_1339 /* partner_Partner.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* partner_Partner.pb.swift */; };
@@ -208,9 +206,7 @@
 		OBJ_1385 /* structs_pricing_PricingDescriptor.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_138 /* structs_pricing_PricingDescriptor.pb.swift */; };
 		OBJ_1386 /* structs_pricing_SaleDescriptor.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_139 /* structs_pricing_SaleDescriptor.pb.swift */; };
 		OBJ_1387 /* TelemetryService_Beta3.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_142 /* TelemetryService_Beta3.grpc.swift */; };
-		OBJ_1388 /* telemetry_v1beta3_CommercialEventstream.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_143 /* telemetry_v1beta3_CommercialEventstream.pb.swift */; };
 		OBJ_1389 /* telemetry_v1beta3_GenericEvents_Beta3.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_144 /* telemetry_v1beta3_GenericEvents_Beta3.pb.swift */; };
-		OBJ_1390 /* telemetry_v1beta3_GenericEventstream.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_145 /* telemetry_v1beta3_GenericEventstream.pb.swift */; };
 		OBJ_1391 /* telemetry_v1beta3_TelemetryEvent_Beta3.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_146 /* telemetry_v1beta3_TelemetryEvent_Beta3.pb.swift */; };
 		OBJ_1392 /* telemetry_v1beta3_TelemetryService_Beta3.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_147 /* telemetry_v1beta3_TelemetryService_Beta3.pb.swift */; };
 		OBJ_1393 /* temporal_Date.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_148 /* temporal_Date.pb.swift */; };
@@ -1368,9 +1364,7 @@
 		OBJ_139 /* structs_pricing_SaleDescriptor.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structs_pricing_SaleDescriptor.pb.swift; sourceTree = "<group>"; };
 		OBJ_14 /* analytics_commerce_ProductAnalytics.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = analytics_commerce_ProductAnalytics.pb.swift; sourceTree = "<group>"; };
 		OBJ_142 /* TelemetryService_Beta3.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelemetryService_Beta3.grpc.swift; sourceTree = "<group>"; };
-		OBJ_143 /* telemetry_v1beta3_CommercialEventstream.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = telemetry_v1beta3_CommercialEventstream.pb.swift; sourceTree = "<group>"; };
 		OBJ_144 /* telemetry_v1beta3_GenericEvents_Beta3.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = telemetry_v1beta3_GenericEvents_Beta3.pb.swift; sourceTree = "<group>"; };
-		OBJ_145 /* telemetry_v1beta3_GenericEventstream.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = telemetry_v1beta3_GenericEventstream.pb.swift; sourceTree = "<group>"; };
 		OBJ_146 /* telemetry_v1beta3_TelemetryEvent_Beta3.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = telemetry_v1beta3_TelemetryEvent_Beta3.pb.swift; sourceTree = "<group>"; };
 		OBJ_147 /* telemetry_v1beta3_TelemetryService_Beta3.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = telemetry_v1beta3_TelemetryService_Beta3.pb.swift; sourceTree = "<group>"; };
 		OBJ_148 /* temporal_Date.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temporal_Date.pb.swift; sourceTree = "<group>"; };
@@ -1600,7 +1594,6 @@
 		OBJ_396 /* thread_pthread.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = thread_pthread.c; sourceTree = "<group>"; };
 		OBJ_397 /* thread_win.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = thread_win.c; sourceTree = "<group>"; };
 		OBJ_399 /* a_digest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_digest.c; sourceTree = "<group>"; };
-		OBJ_40 /* checkin_v1beta1_CheckinStream.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkin_v1beta1_CheckinStream.pb.swift; sourceTree = "<group>"; };
 		OBJ_400 /* a_sign.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_sign.c; sourceTree = "<group>"; };
 		OBJ_401 /* a_strex.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_strex.c; sourceTree = "<group>"; };
 		OBJ_402 /* a_verify.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_verify.c; sourceTree = "<group>"; };
@@ -2033,7 +2026,6 @@
 		OBJ_843 /* stap_timers.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stap_timers.c; sourceTree = "<group>"; };
 		OBJ_846 /* security_context.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = security_context.c; sourceTree = "<group>"; };
 		OBJ_849 /* composite_credentials.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = composite_credentials.c; sourceTree = "<group>"; };
-		OBJ_85 /* menu_v1beta1_MenuStream.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menu_v1beta1_MenuStream.pb.swift; sourceTree = "<group>"; };
 		OBJ_850 /* credentials.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = credentials.c; sourceTree = "<group>"; };
 		OBJ_851 /* credentials_metadata.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = credentials_metadata.c; sourceTree = "<group>"; };
 		OBJ_853 /* fake_credentials.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fake_credentials.c; sourceTree = "<group>"; };
@@ -4064,7 +4056,6 @@
 				OBJ_35 /* base_ProductKind.pb.swift */,
 				OBJ_36 /* checkin */,
 				OBJ_39 /* checkin_v1beta1_CheckinService_Beta1.pb.swift */,
-				OBJ_40 /* checkin_v1beta1_CheckinStream.pb.swift */,
 				OBJ_41 /* commerce_Currency.pb.swift */,
 				OBJ_42 /* commerce_Customer.pb.swift */,
 				OBJ_43 /* commerce_Delivery.pb.swift */,
@@ -4105,7 +4096,6 @@
 				OBJ_80 /* media_MediaType.pb.swift */,
 				OBJ_81 /* menu */,
 				OBJ_84 /* menu_v1beta1_MenuService_Beta1.pb.swift */,
-				OBJ_85 /* menu_v1beta1_MenuStream.pb.swift */,
 				OBJ_86 /* oauth_AuthorizationScope.pb.swift */,
 				OBJ_87 /* oauth_Client.pb.swift */,
 				OBJ_88 /* partner_Partner.pb.swift */,
@@ -4157,9 +4147,7 @@
 				OBJ_138 /* structs_pricing_PricingDescriptor.pb.swift */,
 				OBJ_139 /* structs_pricing_SaleDescriptor.pb.swift */,
 				OBJ_140 /* telemetry */,
-				OBJ_143 /* telemetry_v1beta3_CommercialEventstream.pb.swift */,
 				OBJ_144 /* telemetry_v1beta3_GenericEvents_Beta3.pb.swift */,
-				OBJ_145 /* telemetry_v1beta3_GenericEventstream.pb.swift */,
 				OBJ_146 /* telemetry_v1beta3_TelemetryEvent_Beta3.pb.swift */,
 				OBJ_147 /* telemetry_v1beta3_TelemetryService_Beta3.pb.swift */,
 				OBJ_148 /* temporal_Date.pb.swift */,
@@ -4908,7 +4896,6 @@
 				OBJ_1292 /* base_ProductKind.pb.swift in Sources */,
 				OBJ_1293 /* CheckinService_Beta1.grpc.swift in Sources */,
 				OBJ_1294 /* checkin_v1beta1_CheckinService_Beta1.pb.swift in Sources */,
-				OBJ_1295 /* checkin_v1beta1_CheckinStream.pb.swift in Sources */,
 				OBJ_1296 /* commerce_Currency.pb.swift in Sources */,
 				OBJ_1297 /* commerce_Customer.pb.swift in Sources */,
 				OBJ_1298 /* commerce_Delivery.pb.swift in Sources */,
@@ -4949,7 +4936,6 @@
 				OBJ_1333 /* media_MediaType.pb.swift in Sources */,
 				OBJ_1334 /* MenuService_Beta1.grpc.swift in Sources */,
 				OBJ_1335 /* menu_v1beta1_MenuService_Beta1.pb.swift in Sources */,
-				OBJ_1336 /* menu_v1beta1_MenuStream.pb.swift in Sources */,
 				OBJ_1337 /* oauth_AuthorizationScope.pb.swift in Sources */,
 				OBJ_1338 /* oauth_Client.pb.swift in Sources */,
 				OBJ_1339 /* partner_Partner.pb.swift in Sources */,
@@ -5001,9 +4987,7 @@
 				OBJ_1385 /* structs_pricing_PricingDescriptor.pb.swift in Sources */,
 				OBJ_1386 /* structs_pricing_SaleDescriptor.pb.swift in Sources */,
 				OBJ_1387 /* TelemetryService_Beta3.grpc.swift in Sources */,
-				OBJ_1388 /* telemetry_v1beta3_CommercialEventstream.pb.swift in Sources */,
 				OBJ_1389 /* telemetry_v1beta3_GenericEvents_Beta3.pb.swift in Sources */,
-				OBJ_1390 /* telemetry_v1beta3_GenericEventstream.pb.swift in Sources */,
 				OBJ_1391 /* telemetry_v1beta3_TelemetryEvent_Beta3.pb.swift in Sources */,
 				OBJ_1392 /* telemetry_v1beta3_TelemetryService_Beta3.pb.swift in Sources */,
 				OBJ_1393 /* temporal_Date.pb.swift in Sources */,
