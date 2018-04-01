@@ -151,6 +151,13 @@ public final class Bloombox {
   }
 
   /**
+   * Public access to the Devices service client.
+   */
+  public var devices: DevicesClient {
+    return _services.devices
+  }
+
+  /**
    * Public access to the Shop service client.
    */
   public var shop: ShopClient {
