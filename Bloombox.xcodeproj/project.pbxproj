@@ -57,6 +57,7 @@
 
 /* Begin PBXBuildFile section */
 		22E0489020703F25004C0F90 /* CgRPC.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_983 /* CgRPC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22E048952070620B004C0F90 /* DeviceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E048942070620B004C0F90 /* DeviceClient.swift */; };
 		OBJ_1185 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_1191 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1061 /* Package.swift */; };
 		OBJ_1197 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_1086 /* Package.swift */; };
@@ -1164,6 +1165,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22E048942070620B004C0F90 /* DeviceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceClient.swift; sourceTree = "<group>"; };
 		"Bloombox::Client::Product" /* Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Bloombox::ClientTests::Product" /* ClientTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = ClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Bloombox::Schema::Product" /* Schema.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Schema.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2583,6 +2585,7 @@
 				OBJ_161 /* TelemetryClient.swift */,
 				OBJ_162 /* TelemetryService+Generic.swift */,
 				OBJ_163 /* Transport.swift */,
+				22E048942070620B004C0F90 /* DeviceClient.swift */,
 			);
 			name = Client;
 			path = Sources/Client;
@@ -3306,7 +3309,7 @@
 			path = ssl;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -3320,7 +3323,6 @@
 				OBJ_172 /* Dependencies */,
 				OBJ_1170 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_519 /* include */ = {
@@ -4789,7 +4791,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_1170 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -4861,6 +4863,7 @@
 			files = (
 				OBJ_1238 /* Bindings.swift in Sources */,
 				OBJ_1239 /* Bloombox.swift in Sources */,
+				22E048952070620B004C0F90 /* DeviceClient.swift in Sources */,
 				OBJ_1240 /* EventCollection.swift in Sources */,
 				OBJ_1241 /* EventContext.swift in Sources */,
 				OBJ_1242 /* MenuClient.swift in Sources */,
