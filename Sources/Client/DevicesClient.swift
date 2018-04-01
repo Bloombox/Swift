@@ -104,15 +104,15 @@ public final class DevicesClient: RemoteService {
         builder.serial = name
         builder.fingerprint = fingerprint
       })
-    } catch (DevicesRPCError.invalidMessageReceived) {
+    } catch DevicesRPCError.invalidMessageReceived {
       print("error: invalid message")
       throw DevicesRPCError.invalidMessageReceived
 
-    } catch (DevicesRPCError.endOfStream) {
+    } catch DevicesRPCError.endOfStream {
       print("error: unexpected end of stream")
       throw DevicesRPCError.endOfStream
 
-    } catch (DevicesRPCError.error(let result)) {
+    } catch DevicesRPCError.error(let result) {
       print("error: got result \(result)")
       throw DevicesRPCError.error(c: result)
 
