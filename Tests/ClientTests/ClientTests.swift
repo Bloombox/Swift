@@ -54,7 +54,7 @@ final class ClientTests: XCTestCase {
     } catch MenuRPCError.invalidMessageReceived {
       print("error: invalid message")
       throw MenuRPCError.invalidMessageReceived
-    } catch MenuRPCError.endOfStream) {
+    } catch MenuRPCError.endOfStream {
       print("error: unexpected end of stream")
       throw MenuRPCError.endOfStream
     } catch MenuRPCError.error(let result) {
