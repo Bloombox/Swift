@@ -4,12 +4,12 @@ import XCTest
 
 
 final class ClientTests: XCTestCase {
-  static var allTests = [
+//  static var allTests = [
 //    ("testClientConstruct", testClientConstruct),
 //    ("testMenuDownload", testMenuDownload),
 //    ("testShopInfo", testShopInfo),
 //    ("testMemberVerify", testMemberVerify)
-  ]
+//  ]
 
   private func client(apiKey: APIKey? = "AIzaSyBpeziyO5YE-EIyt8ervAX8eSM0qFHd4T4",
               partner: PartnerCode? = "mm",
