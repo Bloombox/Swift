@@ -10,6 +10,27 @@ import Schema
 import SwiftProtobuf
 
 
+//// Devices Service
+
+/**
+ * Binding to the active DevicesService.
+ */
+public typealias DevicesService = Bloombox_Schema_Services_Devices_V1Beta1_DevicesService
+public typealias DeviceError = Bloombox_Schema_Services_Devices_V1beta1_DeviceError
+public typealias DevicesRPCError = Bloombox_Schema_Services_Devices_V1Beta1_DevicesClientError
+
+/**
+ * Method: `ping`.
+ */
+public typealias DevicesPing = Bloombox_Schema_Services_Devices_V1beta1_Ping
+
+/**
+ * Method: `activate`.
+ */
+public typealias DeviceActivation = Bloombox_Schema_Services_Devices_V1beta1_Activation
+public typealias DeviceActivateCall = Bloombox_Schema_Services_Devices_V1Beta1_DevicesActivateCall
+
+
 //// Shop Service
 
 /**

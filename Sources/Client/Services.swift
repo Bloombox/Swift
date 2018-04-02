@@ -30,6 +30,7 @@ public final class Services: ClientLogic {
   internal init(settings: Bloombox.Settings) {
     self.settings = settings
     self.rpc = RPCLogic(settings: self.settings)
+    self.devices = DevicesClient(settings: settings)
     self.shop = ShopClient(settings: settings)
     self.telemetry = TelemetryClient(settings: settings)
     self.menu = MenuClient(settings: settings)
@@ -75,4 +76,10 @@ public final class Services: ClientLogic {
    * content, and filter and sort items.
    */
   public let menu: MenuClient
+
+  /**
+   * Devices service. Provides methods that deal with partner co-located, or 2nd party,
+   * hardware devices, including pings, activations, and so on.
+   */
+  public let devices: DevicesClient
 }

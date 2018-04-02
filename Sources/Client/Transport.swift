@@ -58,6 +58,7 @@ internal struct Transport {
   internal struct Sandbox: TransportSettings {
     let data: DataEnvironment = .sandbox
     let services: ServiceSettings = RPCServicesConfig(
+      devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
       menu: ProductionMenu())
@@ -69,6 +70,7 @@ internal struct Transport {
   internal struct Staging: TransportSettings {
     let data: DataEnvironment = .v1
     let services: ServiceSettings = RPCServicesConfig(
+      devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
       menu: ProductionMenu())
@@ -81,6 +83,7 @@ internal struct Transport {
   internal struct Production: TransportSettings {
     let data: DataEnvironment = .v1
     let services: ServiceSettings = RPCServicesConfig(
+      devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
       menu: ProductionMenu())
@@ -130,6 +133,19 @@ internal enum TransportEnvironment {
       return __production
     #endif
   }
+}
+
+/**
+ * Production devices service settings.
+ */
+internal struct ProductionDevices: RPCServiceSettings {
+  let secure = true
+  let host = "devices.api.bloombox.cloud"
+  let port = 443
+  let hostname: String? = "devices.api.bloombox.cloud"
+  let chain: String? = authorityChain
+  let cert: String? = nil
+  let key: String? = nil
 }
 
 /**
@@ -217,6 +233,7 @@ internal protocol TransportSettings {
  * Specifies a configuration set for supported RPC services.
  */
 internal struct RPCServicesConfig: ServiceSettings {
+  let devices: RPCServiceSettings
   let shop: RPCServiceSettings
   let telemetry: RPCServiceSettings
   let menu: RPCServiceSettings
@@ -240,6 +257,7 @@ internal protocol RPCServiceSettings {
  * Specifies a full set of service settings.
  */
 internal protocol ServiceSettings {
+  var devices: RPCServiceSettings { get }
   var shop: RPCServiceSettings { get }
   var telemetry: RPCServiceSettings { get }
   var menu: RPCServiceSettings { get }

@@ -115,13 +115,13 @@ public final class MenuClient: RemoteService {
       return try service.retrieve(GetMenu.Request.with { builder in
         builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
       })
-    } catch (MenuRPCError.invalidMessageReceived) {
+    } catch MenuRPCError.invalidMessageReceived {
       print("error: invalid message")
       throw MenuRPCError.invalidMessageReceived
-    } catch (MenuRPCError.endOfStream) {
+    } catch MenuRPCError.endOfStream {
       print("error: unexpected end of stream")
       throw MenuRPCError.endOfStream
-    } catch (MenuRPCError.error(let result)) {
+    } catch MenuRPCError.error(let result) {
       print("error: got result \(result)")
       throw MenuRPCError.error(c: result)
     } catch {
