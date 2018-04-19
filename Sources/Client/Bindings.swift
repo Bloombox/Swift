@@ -130,12 +130,6 @@ public typealias MenuService = Bloombox_Schema_Services_Menu_V1Beta1_MenuService
 public typealias MenuRPCError = Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError
 
 /**
- * Method: `ping`.
- */
-public typealias MenuPing = Bloombox_Schema_Services_Menu_V1beta1_Ping
-public typealias MenuPingCall = Bloombox_Schema_Services_Menu_V1Beta1_MenuPingCall
-
-/**
  * Method: `retrieve`.
  */
 public typealias GetMenu = Bloombox_Schema_Services_Menu_V1beta1_GetMenu
