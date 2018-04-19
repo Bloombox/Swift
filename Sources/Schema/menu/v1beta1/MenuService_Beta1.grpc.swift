@@ -33,61 +33,6 @@ public enum Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError : Error {
   case error(c: CallResult)
 }
 
-/// Ping (Unary)
-public class Bloombox_Schema_Services_Menu_V1Beta1_MenuPingCall {
-  private var call : Call
-
-  /// Create a call.
-  fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/bloombox.schema.services.menu.v1beta1.Menu/Ping")
-  }
-
-  /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request,
-                       metadata: Metadata) throws -> Bloombox_Schema_Services_Menu_V1beta1_Ping.Response {
-    let sem = DispatchSemaphore(value: 0)
-    var returnCallResult : CallResult!
-    var returnResponse : Bloombox_Schema_Services_Menu_V1beta1_Ping.Response?
-    _ = try start(request:request, metadata:metadata) {response, callResult in
-      returnResponse = response
-      returnCallResult = callResult
-      sem.signal()
-    }
-    _ = sem.wait(timeout: DispatchTime.distantFuture)
-    if let returnResponse = returnResponse {
-      return returnResponse
-    } else {
-      throw Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
-    }
-  }
-
-  /// Start the call. Nonblocking.
-  fileprivate func start(request: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request,
-                         metadata: Metadata,
-                         completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_Ping.Response?, CallResult)->())
-    throws -> Bloombox_Schema_Services_Menu_V1Beta1_MenuPingCall {
-
-      let requestData = try request.serializedData()
-      try call.start(.unary,
-                     metadata:metadata,
-                     message:requestData)
-      {(callResult) in
-        if let responseData = callResult.resultData,
-          let response = try? Bloombox_Schema_Services_Menu_V1beta1_Ping.Response(serializedData:responseData) {
-          completion(response, callResult)
-        } else {
-          completion(nil, callResult)
-        }
-      }
-      return self
-  }
-
-  /// Cancel the call.
-  public func cancel() {
-    call.cancel()
-  }
-}
-
 /// Retrieve (Unary)
 public class Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveCall {
   private var call : Call
@@ -342,21 +287,6 @@ public final class Bloombox_Schema_Services_Menu_V1Beta1_MenuService {
   }
 
   /// Synchronous. Unary.
-  public func ping(_ request: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request)
-    throws
-    -> Bloombox_Schema_Services_Menu_V1beta1_Ping.Response {
-      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuPingCall(channel).run(request:request, metadata:metadata)
-  }
-  /// Asynchronous. Unary.
-  public func ping(_ request: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request,
-                  completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_Ping.Response?, CallResult)->())
-    throws
-    -> Bloombox_Schema_Services_Menu_V1Beta1_MenuPingCall {
-      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuPingCall(channel).start(request:request,
-                                                 metadata:metadata,
-                                                 completion:completion)
-  }
-  /// Synchronous. Unary.
   public func retrieve(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request)
     throws
     -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response {
@@ -426,7 +356,6 @@ public enum Bloombox_Schema_Services_Menu_V1Beta1_MenuServerError : Error {
 
 /// To build a server, implement a class that conforms to this protocol.
 public protocol Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider {
-  func ping(request : Bloombox_Schema_Services_Menu_V1beta1_Ping.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuPingSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_Ping.Response
   func retrieve(request : Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response
   func featured(request : Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuFeaturedSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response
   func products(request : Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuProductsSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response
@@ -445,31 +374,6 @@ public class Bloombox_Schema_Services_Menu_V1Beta1_MenuSession {
 
   fileprivate init(handler:gRPC.Handler) {
     self.handler = handler
-  }
-}
-
-// Ping (Unary)
-public class Bloombox_Schema_Services_Menu_V1Beta1_MenuPingSession : Bloombox_Schema_Services_Menu_V1Beta1_MenuSession {
-  private var provider : Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider
-
-  /// Create a session.
-  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider) {
-    self.provider = provider
-    super.init(handler:handler)
-  }
-
-  /// Run the session. Internal.
-  fileprivate func run(queue:DispatchQueue) throws {
-    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
-      if let requestData = requestData {
-        let requestMessage = try Bloombox_Schema_Services_Menu_V1beta1_Ping.Request(serializedData:requestData)
-        let replyMessage = try self.provider.ping(request:requestMessage, session: self)
-        try self.handler.sendResponse(message:replyMessage.serializedData(),
-                                      statusCode:self.statusCode,
-                                      statusMessage:self.statusMessage,
-                                      trailingMetadata:self.trailingMetadata)
-      }
-    }
   }
 }
 
@@ -619,8 +523,6 @@ public class Bloombox_Schema_Services_Menu_V1Beta1_MenuServer {
 
       do {
         switch handler.method {
-        case "/bloombox.schema.services.menu.v1beta1.Menu/Ping":
-          try Bloombox_Schema_Services_Menu_V1Beta1_MenuPingSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.menu.v1beta1.Menu/Retrieve":
           try Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.menu.v1beta1.Menu/Featured":

@@ -132,6 +132,9 @@ public enum Opencannabis_Products_Menu_Section_FilteredSection: SwiftProtobuf.En
 
   /// Only presents products containing CBD.
   case cbd // = 2
+
+  /// Special section for product search.
+  case search // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -143,6 +146,7 @@ public enum Opencannabis_Products_Menu_Section_FilteredSection: SwiftProtobuf.En
     case 0: self = .onSale
     case 1: self = .house
     case 2: self = .cbd
+    case 3: self = .search
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -152,6 +156,7 @@ public enum Opencannabis_Products_Menu_Section_FilteredSection: SwiftProtobuf.En
     case .onSale: return 0
     case .house: return 1
     case .cbd: return 2
+    case .search: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -342,6 +347,7 @@ extension Opencannabis_Products_Menu_Section_FilteredSection: SwiftProtobuf._Pro
     0: .same(proto: "ON_SALE"),
     1: .same(proto: "HOUSE"),
     2: .same(proto: "CBD"),
+    3: .same(proto: "SEARCH"),
   ]
 }
 

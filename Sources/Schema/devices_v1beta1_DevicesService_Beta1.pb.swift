@@ -74,14 +74,17 @@ public enum Bloombox_Schema_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf.E
   /// The device does not currently have an assigned role.
   case unassigned // = 0
 
-  /// The device should display a TV menu.
-  case tv // = 1
+  /// The device should display a menu.
+  case menu // = 1
 
   /// The device should act as a checkin station.
   case checkin // = 2
 
   /// The device should act as a passive BLE (Bluetooth Low Energy) beacon.
   case beacon // = 3
+
+  /// The device should act as a point-of-sale unit.
+  case pos // = 4
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -91,9 +94,10 @@ public enum Bloombox_Schema_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf.E
   public init?(rawValue: Int) {
     switch rawValue {
     case 0: self = .unassigned
-    case 1: self = .tv
+    case 1: self = .menu
     case 2: self = .checkin
     case 3: self = .beacon
+    case 4: self = .pos
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -101,9 +105,10 @@ public enum Bloombox_Schema_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf.E
   public var rawValue: Int {
     switch self {
     case .unassigned: return 0
-    case .tv: return 1
+    case .menu: return 1
     case .checkin: return 2
     case .beacon: return 3
+    case .pos: return 4
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -349,9 +354,10 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceError: SwiftProtobuf._P
 extension Bloombox_Schema_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNASSIGNED"),
-    1: .same(proto: "TV"),
+    1: .same(proto: "MENU"),
     2: .same(proto: "CHECKIN"),
     3: .same(proto: "BEACON"),
+    4: .same(proto: "POS"),
   ]
 }
 

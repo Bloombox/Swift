@@ -198,116 +198,6 @@ public class Bloombox_Schema_Services_Platform_V1_PlatformResolveCall {
   }
 }
 
-/// Stats (Unary)
-public class Bloombox_Schema_Services_Platform_V1_PlatformStatsCall {
-  private var call : Call
-
-  /// Create a call.
-  fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/bloombox.schema.services.platform.v1.Platform/Stats")
-  }
-
-  /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Bloombox_Schema_Services_Platform_V1_PlatformStats.Request,
-                       metadata: Metadata) throws -> Bloombox_Schema_Services_Platform_V1_PlatformStats.Response {
-    let sem = DispatchSemaphore(value: 0)
-    var returnCallResult : CallResult!
-    var returnResponse : Bloombox_Schema_Services_Platform_V1_PlatformStats.Response?
-    _ = try start(request:request, metadata:metadata) {response, callResult in
-      returnResponse = response
-      returnCallResult = callResult
-      sem.signal()
-    }
-    _ = sem.wait(timeout: DispatchTime.distantFuture)
-    if let returnResponse = returnResponse {
-      return returnResponse
-    } else {
-      throw Bloombox_Schema_Services_Platform_V1_PlatformClientError.error(c: returnCallResult)
-    }
-  }
-
-  /// Start the call. Nonblocking.
-  fileprivate func start(request: Bloombox_Schema_Services_Platform_V1_PlatformStats.Request,
-                         metadata: Metadata,
-                         completion: @escaping (Bloombox_Schema_Services_Platform_V1_PlatformStats.Response?, CallResult)->())
-    throws -> Bloombox_Schema_Services_Platform_V1_PlatformStatsCall {
-
-      let requestData = try request.serializedData()
-      try call.start(.unary,
-                     metadata:metadata,
-                     message:requestData)
-      {(callResult) in
-        if let responseData = callResult.resultData,
-          let response = try? Bloombox_Schema_Services_Platform_V1_PlatformStats.Response(serializedData:responseData) {
-          completion(response, callResult)
-        } else {
-          completion(nil, callResult)
-        }
-      }
-      return self
-  }
-
-  /// Cancel the call.
-  public func cancel() {
-    call.cancel()
-  }
-}
-
-/// Reindex (Unary)
-public class Bloombox_Schema_Services_Platform_V1_PlatformReindexCall {
-  private var call : Call
-
-  /// Create a call.
-  fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/bloombox.schema.services.platform.v1.Platform/Reindex")
-  }
-
-  /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Bloombox_Schema_Services_Platform_V1_SearchReindex.Request,
-                       metadata: Metadata) throws -> Bloombox_Schema_Services_Platform_V1_SearchReindex.Response {
-    let sem = DispatchSemaphore(value: 0)
-    var returnCallResult : CallResult!
-    var returnResponse : Bloombox_Schema_Services_Platform_V1_SearchReindex.Response?
-    _ = try start(request:request, metadata:metadata) {response, callResult in
-      returnResponse = response
-      returnCallResult = callResult
-      sem.signal()
-    }
-    _ = sem.wait(timeout: DispatchTime.distantFuture)
-    if let returnResponse = returnResponse {
-      return returnResponse
-    } else {
-      throw Bloombox_Schema_Services_Platform_V1_PlatformClientError.error(c: returnCallResult)
-    }
-  }
-
-  /// Start the call. Nonblocking.
-  fileprivate func start(request: Bloombox_Schema_Services_Platform_V1_SearchReindex.Request,
-                         metadata: Metadata,
-                         completion: @escaping (Bloombox_Schema_Services_Platform_V1_SearchReindex.Response?, CallResult)->())
-    throws -> Bloombox_Schema_Services_Platform_V1_PlatformReindexCall {
-
-      let requestData = try request.serializedData()
-      try call.start(.unary,
-                     metadata:metadata,
-                     message:requestData)
-      {(callResult) in
-        if let responseData = callResult.resultData,
-          let response = try? Bloombox_Schema_Services_Platform_V1_SearchReindex.Response(serializedData:responseData) {
-          completion(response, callResult)
-        } else {
-          completion(nil, callResult)
-        }
-      }
-      return self
-  }
-
-  /// Cancel the call.
-  public func cancel() {
-    call.cancel()
-  }
-}
-
 /// Call methods of this class to make API calls.
 public final class Bloombox_Schema_Services_Platform_V1_PlatformService {
   public var channel: Channel
@@ -386,36 +276,6 @@ public final class Bloombox_Schema_Services_Platform_V1_PlatformService {
                                                  metadata:metadata,
                                                  completion:completion)
   }
-  /// Synchronous. Unary.
-  public func stats(_ request: Bloombox_Schema_Services_Platform_V1_PlatformStats.Request)
-    throws
-    -> Bloombox_Schema_Services_Platform_V1_PlatformStats.Response {
-      return try Bloombox_Schema_Services_Platform_V1_PlatformStatsCall(channel).run(request:request, metadata:metadata)
-  }
-  /// Asynchronous. Unary.
-  public func stats(_ request: Bloombox_Schema_Services_Platform_V1_PlatformStats.Request,
-                  completion: @escaping (Bloombox_Schema_Services_Platform_V1_PlatformStats.Response?, CallResult)->())
-    throws
-    -> Bloombox_Schema_Services_Platform_V1_PlatformStatsCall {
-      return try Bloombox_Schema_Services_Platform_V1_PlatformStatsCall(channel).start(request:request,
-                                                 metadata:metadata,
-                                                 completion:completion)
-  }
-  /// Synchronous. Unary.
-  public func reindex(_ request: Bloombox_Schema_Services_Platform_V1_SearchReindex.Request)
-    throws
-    -> Bloombox_Schema_Services_Platform_V1_SearchReindex.Response {
-      return try Bloombox_Schema_Services_Platform_V1_PlatformReindexCall(channel).run(request:request, metadata:metadata)
-  }
-  /// Asynchronous. Unary.
-  public func reindex(_ request: Bloombox_Schema_Services_Platform_V1_SearchReindex.Request,
-                  completion: @escaping (Bloombox_Schema_Services_Platform_V1_SearchReindex.Response?, CallResult)->())
-    throws
-    -> Bloombox_Schema_Services_Platform_V1_PlatformReindexCall {
-      return try Bloombox_Schema_Services_Platform_V1_PlatformReindexCall(channel).start(request:request,
-                                                 metadata:metadata,
-                                                 completion:completion)
-  }
 }
 
 
@@ -429,8 +289,6 @@ public protocol Bloombox_Schema_Services_Platform_V1_PlatformProvider {
   func ping(request : Bloombox_Schema_Services_Platform_V1_Ping.Request, session : Bloombox_Schema_Services_Platform_V1_PlatformPingSession) throws -> Bloombox_Schema_Services_Platform_V1_Ping.Response
   func health(request : SwiftProtobuf.Google_Protobuf_Empty, session : Bloombox_Schema_Services_Platform_V1_PlatformHealthSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
   func resolve(request : Bloombox_Schema_Services_Platform_V1_DomainResolve.Request, session : Bloombox_Schema_Services_Platform_V1_PlatformResolveSession) throws -> Bloombox_Schema_Services_Platform_V1_DomainResolve.Response
-  func stats(request : Bloombox_Schema_Services_Platform_V1_PlatformStats.Request, session : Bloombox_Schema_Services_Platform_V1_PlatformStatsSession) throws -> Bloombox_Schema_Services_Platform_V1_PlatformStats.Response
-  func reindex(request : Bloombox_Schema_Services_Platform_V1_SearchReindex.Request, session : Bloombox_Schema_Services_Platform_V1_PlatformReindexSession) throws -> Bloombox_Schema_Services_Platform_V1_SearchReindex.Response
 }
 
 /// Common properties available in each service session.
@@ -523,56 +381,6 @@ public class Bloombox_Schema_Services_Platform_V1_PlatformResolveSession : Bloom
   }
 }
 
-// Stats (Unary)
-public class Bloombox_Schema_Services_Platform_V1_PlatformStatsSession : Bloombox_Schema_Services_Platform_V1_PlatformSession {
-  private var provider : Bloombox_Schema_Services_Platform_V1_PlatformProvider
-
-  /// Create a session.
-  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Platform_V1_PlatformProvider) {
-    self.provider = provider
-    super.init(handler:handler)
-  }
-
-  /// Run the session. Internal.
-  fileprivate func run(queue:DispatchQueue) throws {
-    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
-      if let requestData = requestData {
-        let requestMessage = try Bloombox_Schema_Services_Platform_V1_PlatformStats.Request(serializedData:requestData)
-        let replyMessage = try self.provider.stats(request:requestMessage, session: self)
-        try self.handler.sendResponse(message:replyMessage.serializedData(),
-                                      statusCode:self.statusCode,
-                                      statusMessage:self.statusMessage,
-                                      trailingMetadata:self.trailingMetadata)
-      }
-    }
-  }
-}
-
-// Reindex (Unary)
-public class Bloombox_Schema_Services_Platform_V1_PlatformReindexSession : Bloombox_Schema_Services_Platform_V1_PlatformSession {
-  private var provider : Bloombox_Schema_Services_Platform_V1_PlatformProvider
-
-  /// Create a session.
-  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Platform_V1_PlatformProvider) {
-    self.provider = provider
-    super.init(handler:handler)
-  }
-
-  /// Run the session. Internal.
-  fileprivate func run(queue:DispatchQueue) throws {
-    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
-      if let requestData = requestData {
-        let requestMessage = try Bloombox_Schema_Services_Platform_V1_SearchReindex.Request(serializedData:requestData)
-        let replyMessage = try self.provider.reindex(request:requestMessage, session: self)
-        try self.handler.sendResponse(message:replyMessage.serializedData(),
-                                      statusCode:self.statusCode,
-                                      statusMessage:self.statusMessage,
-                                      trailingMetadata:self.trailingMetadata)
-      }
-    }
-  }
-}
-
 
 /// Main server for generated service
 public class Bloombox_Schema_Services_Platform_V1_PlatformServer {
@@ -625,10 +433,6 @@ public class Bloombox_Schema_Services_Platform_V1_PlatformServer {
           try Bloombox_Schema_Services_Platform_V1_PlatformHealthSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.platform.v1.Platform/Resolve":
           try Bloombox_Schema_Services_Platform_V1_PlatformResolveSession(handler:handler, provider:provider).run(queue:queue)
-        case "/bloombox.schema.services.platform.v1.Platform/Stats":
-          try Bloombox_Schema_Services_Platform_V1_PlatformStatsSession(handler:handler, provider:provider).run(queue:queue)
-        case "/bloombox.schema.services.platform.v1.Platform/Reindex":
-          try Bloombox_Schema_Services_Platform_V1_PlatformReindexSession(handler:handler, provider:provider).run(queue:queue)
         default:
           break // handle unknown requests
         }

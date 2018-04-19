@@ -33,61 +33,6 @@ public enum Bloombox_Schema_Services_Auth_V1Beta1_AuthClientError : Error {
   case error(c: CallResult)
 }
 
-/// Ping (Unary)
-public class Bloombox_Schema_Services_Auth_V1Beta1_AuthPingCall {
-  private var call : Call
-
-  /// Create a call.
-  fileprivate init(_ channel: Channel) {
-    self.call = channel.makeCall("/bloombox.schema.services.auth.v1beta1.Auth/Ping")
-  }
-
-  /// Run the call. Blocks until the reply is received.
-  fileprivate func run(request: Bloombox_Schema_Services_Auth_V1beta1_Ping.Request,
-                       metadata: Metadata) throws -> Bloombox_Schema_Services_Auth_V1beta1_Ping.Response {
-    let sem = DispatchSemaphore(value: 0)
-    var returnCallResult : CallResult!
-    var returnResponse : Bloombox_Schema_Services_Auth_V1beta1_Ping.Response?
-    _ = try start(request:request, metadata:metadata) {response, callResult in
-      returnResponse = response
-      returnCallResult = callResult
-      sem.signal()
-    }
-    _ = sem.wait(timeout: DispatchTime.distantFuture)
-    if let returnResponse = returnResponse {
-      return returnResponse
-    } else {
-      throw Bloombox_Schema_Services_Auth_V1Beta1_AuthClientError.error(c: returnCallResult)
-    }
-  }
-
-  /// Start the call. Nonblocking.
-  fileprivate func start(request: Bloombox_Schema_Services_Auth_V1beta1_Ping.Request,
-                         metadata: Metadata,
-                         completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_Ping.Response?, CallResult)->())
-    throws -> Bloombox_Schema_Services_Auth_V1Beta1_AuthPingCall {
-
-      let requestData = try request.serializedData()
-      try call.start(.unary,
-                     metadata:metadata,
-                     message:requestData)
-      {(callResult) in
-        if let responseData = callResult.resultData,
-          let response = try? Bloombox_Schema_Services_Auth_V1beta1_Ping.Response(serializedData:responseData) {
-          completion(response, callResult)
-        } else {
-          completion(nil, callResult)
-        }
-      }
-      return self
-  }
-
-  /// Cancel the call.
-  public func cancel() {
-    call.cancel()
-  }
-}
-
 /// Authenticate (Unary)
 public class Bloombox_Schema_Services_Auth_V1Beta1_AuthAuthenticateCall {
   private var call : Call
@@ -129,6 +74,281 @@ public class Bloombox_Schema_Services_Auth_V1Beta1_AuthAuthenticateCall {
       {(callResult) in
         if let responseData = callResult.resultData,
           let response = try? Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// Consent (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthConsentCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.auth.v1beta1.Auth/Consent")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Auth_V1Beta1_AuthClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Auth_V1Beta1_AuthConsentCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// Token (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthTokenCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.auth.v1beta1.Auth/Token")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Auth_V1Beta1_AuthClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Auth_V1Beta1_AuthTokenCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// Accept (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthAcceptCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.auth.v1beta1.Auth/Accept")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept,
+                       metadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : SwiftProtobuf.Google_Protobuf_Empty?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Auth_V1Beta1_AuthClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept,
+                         metadata: Metadata,
+                         completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Auth_V1Beta1_AuthAcceptCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? SwiftProtobuf.Google_Protobuf_Empty(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// Reject (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthRejectCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.auth.v1beta1.Auth/Reject")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject,
+                       metadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : SwiftProtobuf.Google_Protobuf_Empty?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Auth_V1Beta1_AuthClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject,
+                         metadata: Metadata,
+                         completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Auth_V1Beta1_AuthRejectCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? SwiftProtobuf.Google_Protobuf_Empty(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// Context (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthContextCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.auth.v1beta1.Auth/Context")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Auth_V1Beta1_AuthClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Auth_V1Beta1_AuthContextCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response(serializedData:responseData) {
           completion(response, callResult)
         } else {
           completion(nil, callResult)
@@ -232,21 +452,6 @@ public final class Bloombox_Schema_Services_Auth_V1Beta1_AuthService {
   }
 
   /// Synchronous. Unary.
-  public func ping(_ request: Bloombox_Schema_Services_Auth_V1beta1_Ping.Request)
-    throws
-    -> Bloombox_Schema_Services_Auth_V1beta1_Ping.Response {
-      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthPingCall(channel).run(request:request, metadata:metadata)
-  }
-  /// Asynchronous. Unary.
-  public func ping(_ request: Bloombox_Schema_Services_Auth_V1beta1_Ping.Request,
-                  completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_Ping.Response?, CallResult)->())
-    throws
-    -> Bloombox_Schema_Services_Auth_V1Beta1_AuthPingCall {
-      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthPingCall(channel).start(request:request,
-                                                 metadata:metadata,
-                                                 completion:completion)
-  }
-  /// Synchronous. Unary.
   public func authenticate(_ request: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request)
     throws
     -> Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response {
@@ -258,6 +463,81 @@ public final class Bloombox_Schema_Services_Auth_V1Beta1_AuthService {
     throws
     -> Bloombox_Schema_Services_Auth_V1Beta1_AuthAuthenticateCall {
       return try Bloombox_Schema_Services_Auth_V1Beta1_AuthAuthenticateCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func consent(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request)
+    throws
+    -> Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthConsentCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func consent(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Auth_V1Beta1_AuthConsentCall {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthConsentCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func token(_ request: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request)
+    throws
+    -> Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthTokenCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func token(_ request: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Auth_V1Beta1_AuthTokenCall {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthTokenCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func accept(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept)
+    throws
+    -> SwiftProtobuf.Google_Protobuf_Empty {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthAcceptCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func accept(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept,
+                  completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Auth_V1Beta1_AuthAcceptCall {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthAcceptCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func reject(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject)
+    throws
+    -> SwiftProtobuf.Google_Protobuf_Empty {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthRejectCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func reject(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject,
+                  completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Auth_V1Beta1_AuthRejectCall {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthRejectCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func context(_ request: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request)
+    throws
+    -> Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthContextCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func context(_ request: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Auth_V1Beta1_AuthContextCall {
+      return try Bloombox_Schema_Services_Auth_V1Beta1_AuthContextCall(channel).start(request:request,
                                                  metadata:metadata,
                                                  completion:completion)
   }
@@ -286,8 +566,12 @@ public enum Bloombox_Schema_Services_Auth_V1Beta1_AuthServerError : Error {
 
 /// To build a server, implement a class that conforms to this protocol.
 public protocol Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider {
-  func ping(request : Bloombox_Schema_Services_Auth_V1beta1_Ping.Request, session : Bloombox_Schema_Services_Auth_V1Beta1_AuthPingSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_Ping.Response
   func authenticate(request : Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request, session : Bloombox_Schema_Services_Auth_V1Beta1_AuthAuthenticateSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response
+  func consent(request : Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request, session : Bloombox_Schema_Services_Auth_V1Beta1_AuthConsentSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response
+  func token(request : Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request, session : Bloombox_Schema_Services_Auth_V1Beta1_AuthTokenSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response
+  func accept(request : Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept, session : Bloombox_Schema_Services_Auth_V1Beta1_AuthAcceptSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func reject(request : Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject, session : Bloombox_Schema_Services_Auth_V1Beta1_AuthRejectSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func context(request : Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request, session : Bloombox_Schema_Services_Auth_V1Beta1_AuthContextSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response
   func profile(request : Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request, session : Bloombox_Schema_Services_Auth_V1Beta1_AuthProfileSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response
 }
 
@@ -303,31 +587,6 @@ public class Bloombox_Schema_Services_Auth_V1Beta1_AuthSession {
 
   fileprivate init(handler:gRPC.Handler) {
     self.handler = handler
-  }
-}
-
-// Ping (Unary)
-public class Bloombox_Schema_Services_Auth_V1Beta1_AuthPingSession : Bloombox_Schema_Services_Auth_V1Beta1_AuthSession {
-  private var provider : Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider
-
-  /// Create a session.
-  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider) {
-    self.provider = provider
-    super.init(handler:handler)
-  }
-
-  /// Run the session. Internal.
-  fileprivate func run(queue:DispatchQueue) throws {
-    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
-      if let requestData = requestData {
-        let requestMessage = try Bloombox_Schema_Services_Auth_V1beta1_Ping.Request(serializedData:requestData)
-        let replyMessage = try self.provider.ping(request:requestMessage, session: self)
-        try self.handler.sendResponse(message:replyMessage.serializedData(),
-                                      statusCode:self.statusCode,
-                                      statusMessage:self.statusMessage,
-                                      trailingMetadata:self.trailingMetadata)
-      }
-    }
   }
 }
 
@@ -347,6 +606,131 @@ public class Bloombox_Schema_Services_Auth_V1Beta1_AuthAuthenticateSession : Blo
       if let requestData = requestData {
         let requestMessage = try Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request(serializedData:requestData)
         let replyMessage = try self.provider.authenticate(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// Consent (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthConsentSession : Bloombox_Schema_Services_Auth_V1Beta1_AuthSession {
+  private var provider : Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request(serializedData:requestData)
+        let replyMessage = try self.provider.consent(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// Token (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthTokenSession : Bloombox_Schema_Services_Auth_V1Beta1_AuthSession {
+  private var provider : Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request(serializedData:requestData)
+        let replyMessage = try self.provider.token(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// Accept (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthAcceptSession : Bloombox_Schema_Services_Auth_V1Beta1_AuthSession {
+  private var provider : Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept(serializedData:requestData)
+        let replyMessage = try self.provider.accept(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// Reject (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthRejectSession : Bloombox_Schema_Services_Auth_V1Beta1_AuthSession {
+  private var provider : Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject(serializedData:requestData)
+        let replyMessage = try self.provider.reject(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// Context (Unary)
+public class Bloombox_Schema_Services_Auth_V1Beta1_AuthContextSession : Bloombox_Schema_Services_Auth_V1Beta1_AuthSession {
+  private var provider : Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Auth_V1Beta1_AuthProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request(serializedData:requestData)
+        let replyMessage = try self.provider.context(request:requestMessage, session: self)
         try self.handler.sendResponse(message:replyMessage.serializedData(),
                                       statusCode:self.statusCode,
                                       statusMessage:self.statusMessage,
@@ -427,10 +811,18 @@ public class Bloombox_Schema_Services_Auth_V1Beta1_AuthServer {
 
       do {
         switch handler.method {
-        case "/bloombox.schema.services.auth.v1beta1.Auth/Ping":
-          try Bloombox_Schema_Services_Auth_V1Beta1_AuthPingSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.auth.v1beta1.Auth/Authenticate":
           try Bloombox_Schema_Services_Auth_V1Beta1_AuthAuthenticateSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.auth.v1beta1.Auth/Consent":
+          try Bloombox_Schema_Services_Auth_V1Beta1_AuthConsentSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.auth.v1beta1.Auth/Token":
+          try Bloombox_Schema_Services_Auth_V1Beta1_AuthTokenSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.auth.v1beta1.Auth/Accept":
+          try Bloombox_Schema_Services_Auth_V1Beta1_AuthAcceptSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.auth.v1beta1.Auth/Reject":
+          try Bloombox_Schema_Services_Auth_V1Beta1_AuthRejectSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.auth.v1beta1.Auth/Context":
+          try Bloombox_Schema_Services_Auth_V1Beta1_AuthContextSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.auth.v1beta1.Auth/Profile":
           try Bloombox_Schema_Services_Auth_V1Beta1_AuthProfileSession(handler:handler, provider:provider).run(queue:queue)
         default:
