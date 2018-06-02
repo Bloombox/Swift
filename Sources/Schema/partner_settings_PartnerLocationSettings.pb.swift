@@ -301,6 +301,44 @@ public enum Bloombox_Schema_Partner_Settings_ShopContactChannel: SwiftProtobuf.E
 
 }
 
+/// Specifies the operating mode for build-a-bag/cart UI on tablet menus.
+public enum Bloombox_Schema_Partner_Settings_CartMode: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// Cart mode is off.
+  case off // = 0
+
+  /// Cart is in "build-a-bag" mode.
+  case bag // = 1
+
+  /// Full-blown cart UI and order flow.
+  case cart // = 2
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .off
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .off
+    case 1: self = .bag
+    case 2: self = .cart
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .off: return 0
+    case .bag: return 1
+    case .cart: return 2
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
 /// Specifies API-related settings that are setup on a per-location basis.
 public struct Bloombox_Schema_Partner_Settings_APISettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -1314,6 +1352,46 @@ public struct Bloombox_Schema_Partner_Settings_ShopSettings {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+/// Settings for the cart UI and mode switch on tablet menus.
+public struct Bloombox_Schema_Partner_Settings_CartSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Operating mode for the cart.
+  public var mode: Bloombox_Schema_Partner_Settings_CartMode = .off
+
+  /// Default order type to send from the device.
+  public var orderType: Opencannabis_Commerce_OrderType = .pickup
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// Settings related to tablet menus.
+public struct Bloombox_Schema_Partner_Settings_TabletSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Settings for the tablet menu cart/build-a-bag feature.
+  public var cart: Bloombox_Schema_Partner_Settings_CartSettings {
+    get {return _storage._cart ?? Bloombox_Schema_Partner_Settings_CartSettings()}
+    set {_uniqueStorage()._cart = newValue}
+  }
+  /// Returns true if `cart` has been explicitly set.
+  public var hasCart: Bool {return _storage._cart != nil}
+  /// Clears the value of `cart`. Subsequent reads from it will return its default value.
+  public mutating func clearCart() {_storage._cart = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 /// Partner location-level account settings.
 public struct Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -1380,15 +1458,25 @@ public struct Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
   /// Clears the value of `tv`. Subsequent reads from it will return its default value.
   public mutating func clearTv() {_storage._tv = nil}
 
-  /// Integration settings for this location.
-  public var partners: Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings {
-    get {return _storage._partners ?? Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings()}
-    set {_uniqueStorage()._partners = newValue}
+  /// Tablet-related settings.
+  public var tablet: Bloombox_Schema_Partner_Settings_TabletSettings {
+    get {return _storage._tablet ?? Bloombox_Schema_Partner_Settings_TabletSettings()}
+    set {_uniqueStorage()._tablet = newValue}
   }
-  /// Returns true if `partners` has been explicitly set.
-  public var hasPartners: Bool {return _storage._partners != nil}
-  /// Clears the value of `partners`. Subsequent reads from it will return its default value.
-  public mutating func clearPartners() {_storage._partners = nil}
+  /// Returns true if `tablet` has been explicitly set.
+  public var hasTablet: Bool {return _storage._tablet != nil}
+  /// Clears the value of `tablet`. Subsequent reads from it will return its default value.
+  public mutating func clearTablet() {_storage._tablet = nil}
+
+  /// Integration settings for this location.
+  public var integration: Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings {
+    get {return _storage._integration ?? Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings()}
+    set {_uniqueStorage()._integration = newValue}
+  }
+  /// Returns true if `integration` has been explicitly set.
+  public var hasIntegration: Bool {return _storage._integration != nil}
+  /// Clears the value of `integration`. Subsequent reads from it will return its default value.
+  public mutating func clearIntegration() {_storage._integration = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1457,6 +1545,14 @@ extension Bloombox_Schema_Partner_Settings_ShopContactChannel: SwiftProtobuf._Pr
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ORDERING"),
     1: .same(proto: "ENROLLMENT"),
+  ]
+}
+
+extension Bloombox_Schema_Partner_Settings_CartMode: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "OFF"),
+    1: .same(proto: "BAG"),
+    2: .same(proto: "CART"),
   ]
 }
 
@@ -3252,6 +3348,102 @@ extension Bloombox_Schema_Partner_Settings_ShopSettings: SwiftProtobuf.Message, 
   }
 }
 
+extension Bloombox_Schema_Partner_Settings_CartSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CartSettings"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "mode"),
+    2: .standard(proto: "order_type"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.mode)
+      case 2: try decoder.decodeSingularEnumField(value: &self.orderType)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.mode != .off {
+      try visitor.visitSingularEnumField(value: self.mode, fieldNumber: 1)
+    }
+    if self.orderType != .pickup {
+      try visitor.visitSingularEnumField(value: self.orderType, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Settings_CartSettings) -> Bool {
+    if self.mode != other.mode {return false}
+    if self.orderType != other.orderType {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Partner_Settings_TabletSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TabletSettings"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "cart"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _cart: Bloombox_Schema_Partner_Settings_CartSettings? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _cart = source._cart
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._cart)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._cart {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Settings_TabletSettings) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._cart != other_storage._cart {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
 extension Bloombox_Schema_Partner_Settings_PartnerLocationSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerLocationSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -3261,7 +3453,8 @@ extension Bloombox_Schema_Partner_Settings_PartnerLocationSettings: SwiftProtobu
     4: .same(proto: "sections"),
     5: .same(proto: "shop"),
     6: .same(proto: "tv"),
-    7: .same(proto: "partners"),
+    7: .same(proto: "tablet"),
+    20: .same(proto: "integration"),
   ]
 
   fileprivate class _StorageClass {
@@ -3271,7 +3464,8 @@ extension Bloombox_Schema_Partner_Settings_PartnerLocationSettings: SwiftProtobu
     var _sections: Bloombox_Schema_Partner_Settings_SectionSettings? = nil
     var _shop: Bloombox_Schema_Partner_Settings_ShopSettings? = nil
     var _tv: Bloombox_Schema_Partner_Settings_TVSettings? = nil
-    var _partners: Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings? = nil
+    var _tablet: Bloombox_Schema_Partner_Settings_TabletSettings? = nil
+    var _integration: Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3284,7 +3478,8 @@ extension Bloombox_Schema_Partner_Settings_PartnerLocationSettings: SwiftProtobu
       _sections = source._sections
       _shop = source._shop
       _tv = source._tv
-      _partners = source._partners
+      _tablet = source._tablet
+      _integration = source._integration
     }
   }
 
@@ -3306,7 +3501,8 @@ extension Bloombox_Schema_Partner_Settings_PartnerLocationSettings: SwiftProtobu
         case 4: try decoder.decodeSingularMessageField(value: &_storage._sections)
         case 5: try decoder.decodeSingularMessageField(value: &_storage._shop)
         case 6: try decoder.decodeSingularMessageField(value: &_storage._tv)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._partners)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._tablet)
+        case 20: try decoder.decodeSingularMessageField(value: &_storage._integration)
         default: break
         }
       }
@@ -3333,8 +3529,11 @@ extension Bloombox_Schema_Partner_Settings_PartnerLocationSettings: SwiftProtobu
       if let v = _storage._tv {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
       }
-      if let v = _storage._partners {
+      if let v = _storage._tablet {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+      if let v = _storage._integration {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -3351,7 +3550,8 @@ extension Bloombox_Schema_Partner_Settings_PartnerLocationSettings: SwiftProtobu
         if _storage._sections != other_storage._sections {return false}
         if _storage._shop != other_storage._shop {return false}
         if _storage._tv != other_storage._tv {return false}
-        if _storage._partners != other_storage._partners {return false}
+        if _storage._tablet != other_storage._tablet {return false}
+        if _storage._integration != other_storage._integration {return false}
         return true
       }
       if !storagesAreEqual {return false}

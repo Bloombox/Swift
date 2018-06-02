@@ -32,6 +32,12 @@ public enum Opencannabis_Commerce_OrderType: SwiftProtobuf.Enum {
 
   /// Delivery order.
   case delivery // = 1
+
+  /// On-site orders, placed on-premises.
+  case onsite // = 2
+
+  /// Remote orders, placed with the help of a salesman.
+  case remote // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -42,6 +48,8 @@ public enum Opencannabis_Commerce_OrderType: SwiftProtobuf.Enum {
     switch rawValue {
     case 0: self = .pickup
     case 1: self = .delivery
+    case 2: self = .onsite
+    case 3: self = .remote
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -50,6 +58,8 @@ public enum Opencannabis_Commerce_OrderType: SwiftProtobuf.Enum {
     switch self {
     case .pickup: return 0
     case .delivery: return 1
+    case .onsite: return 2
+    case .remote: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -339,6 +349,8 @@ extension Opencannabis_Commerce_OrderType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PICKUP"),
     1: .same(proto: "DELIVERY"),
+    2: .same(proto: "ONSITE"),
+    3: .same(proto: "REMOTE"),
   ]
 }
 

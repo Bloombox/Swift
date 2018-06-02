@@ -134,6 +134,12 @@ public struct Opencannabis_Products_Menu_MenuSettings {
     set {_uniqueStorage()._section = newValue}
   }
 
+  /// Hint for other available sections. Included on a sectioned menu payload with only one section.
+  public var availableSection: [Opencannabis_Products_Menu_Section_Section] {
+    get {return _storage._availableSection}
+    set {_uniqueStorage()._availableSection = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -512,6 +518,7 @@ extension Opencannabis_Products_Menu_MenuSettings: SwiftProtobuf.Message, SwiftP
     3: .same(proto: "snapshot"),
     4: .same(proto: "fingerprint"),
     5: .same(proto: "section"),
+    6: .standard(proto: "available_section"),
   ]
 
   fileprivate class _StorageClass {
@@ -520,6 +527,7 @@ extension Opencannabis_Products_Menu_MenuSettings: SwiftProtobuf.Message, SwiftP
     var _snapshot: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
     var _fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
     var _section: [Opencannabis_Products_Menu_Section_Section] = []
+    var _availableSection: [Opencannabis_Products_Menu_Section_Section] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -531,6 +539,7 @@ extension Opencannabis_Products_Menu_MenuSettings: SwiftProtobuf.Message, SwiftP
       _snapshot = source._snapshot
       _fingerprint = source._fingerprint
       _section = source._section
+      _availableSection = source._availableSection
     }
   }
 
@@ -551,6 +560,7 @@ extension Opencannabis_Products_Menu_MenuSettings: SwiftProtobuf.Message, SwiftP
         case 3: try decoder.decodeSingularMessageField(value: &_storage._snapshot)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._fingerprint)
         case 5: try decoder.decodeRepeatedEnumField(value: &_storage._section)
+        case 6: try decoder.decodeRepeatedEnumField(value: &_storage._availableSection)
         default: break
         }
       }
@@ -574,6 +584,9 @@ extension Opencannabis_Products_Menu_MenuSettings: SwiftProtobuf.Message, SwiftP
       if !_storage._section.isEmpty {
         try visitor.visitPackedEnumField(value: _storage._section, fieldNumber: 5)
       }
+      if !_storage._availableSection.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._availableSection, fieldNumber: 6)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -588,6 +601,7 @@ extension Opencannabis_Products_Menu_MenuSettings: SwiftProtobuf.Message, SwiftP
         if _storage._snapshot != other_storage._snapshot {return false}
         if _storage._fingerprint != other_storage._fingerprint {return false}
         if _storage._section != other_storage._section {return false}
+        if _storage._availableSection != other_storage._availableSection {return false}
         return true
       }
       if !storagesAreEqual {return false}

@@ -234,14 +234,14 @@ public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
   public mutating func clearSearch() {_storage._search = nil}
 
   /// Integration settings for this location.
-  public var partners: Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings {
-    get {return _storage._partners ?? Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings()}
-    set {_uniqueStorage()._partners = newValue}
+  public var integration: Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings {
+    get {return _storage._integration ?? Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings()}
+    set {_uniqueStorage()._integration = newValue}
   }
-  /// Returns true if `partners` has been explicitly set.
-  public var hasPartners: Bool {return _storage._partners != nil}
-  /// Clears the value of `partners`. Subsequent reads from it will return its default value.
-  public mutating func clearPartners() {_storage._partners = nil}
+  /// Returns true if `integration` has been explicitly set.
+  public var hasIntegration: Bool {return _storage._integration != nil}
+  /// Clears the value of `integration`. Subsequent reads from it will return its default value.
+  public mutating func clearIntegration() {_storage._integration = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -583,7 +583,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerSettings: SwiftProtobuf.Messag
     2: .same(proto: "beta"),
     3: .same(proto: "features"),
     4: .same(proto: "search"),
-    7: .same(proto: "partners"),
+    7: .same(proto: "integration"),
   ]
 
   fileprivate class _StorageClass {
@@ -591,7 +591,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerSettings: SwiftProtobuf.Messag
     var _beta: Bloombox_Schema_Partner_Settings_BetaSettings? = nil
     var _features: Bloombox_Schema_Partner_Settings_FeatureStatus? = nil
     var _search: Bloombox_Schema_Partner_Settings_SearchSettings? = nil
-    var _partners: Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings? = nil
+    var _integration: Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -602,7 +602,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerSettings: SwiftProtobuf.Messag
       _beta = source._beta
       _features = source._features
       _search = source._search
-      _partners = source._partners
+      _integration = source._integration
     }
   }
 
@@ -622,7 +622,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerSettings: SwiftProtobuf.Messag
         case 2: try decoder.decodeSingularMessageField(value: &_storage._beta)
         case 3: try decoder.decodeSingularMessageField(value: &_storage._features)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._search)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._partners)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._integration)
         default: break
         }
       }
@@ -643,7 +643,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerSettings: SwiftProtobuf.Messag
       if let v = _storage._search {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
       }
-      if let v = _storage._partners {
+      if let v = _storage._integration {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
       }
     }
@@ -659,7 +659,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerSettings: SwiftProtobuf.Messag
         if _storage._beta != other_storage._beta {return false}
         if _storage._features != other_storage._features {return false}
         if _storage._search != other_storage._search {return false}
-        if _storage._partners != other_storage._partners {return false}
+        if _storage._integration != other_storage._integration {return false}
         return true
       }
       if !storagesAreEqual {return false}

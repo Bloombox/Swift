@@ -88,6 +88,61 @@ public class Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveCall {
   }
 }
 
+/// Section (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuSectionCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.menu.v1beta1.Menu/Section")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Menu_V1Beta1_MenuSectionCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
 /// Featured (Unary)
 public class Bloombox_Schema_Services_Menu_V1Beta1_MenuFeaturedCall {
   private var call : Call
@@ -253,6 +308,336 @@ public class Bloombox_Schema_Services_Menu_V1Beta1_MenuSearchCall {
   }
 }
 
+/// Create (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuCreateCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.menu.v1beta1.Menu/Create")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Menu_V1Beta1_MenuCreateCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// Update (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuUpdateCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.menu.v1beta1.Menu/Update")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request,
+                       metadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : SwiftProtobuf.Google_Protobuf_Empty?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request,
+                         metadata: Metadata,
+                         completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Menu_V1Beta1_MenuUpdateCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? SwiftProtobuf.Google_Protobuf_Empty(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// Remove (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuRemoveCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.menu.v1beta1.Menu/Remove")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request,
+                       metadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : SwiftProtobuf.Google_Protobuf_Empty?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request,
+                         metadata: Metadata,
+                         completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Menu_V1Beta1_MenuRemoveCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? SwiftProtobuf.Google_Protobuf_Empty(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// ProductStatus (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuProductStatusCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.menu.v1beta1.Menu/ProductStatus")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request,
+                       metadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : SwiftProtobuf.Google_Protobuf_Empty?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request,
+                         metadata: Metadata,
+                         completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Menu_V1Beta1_MenuProductStatusCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? SwiftProtobuf.Google_Protobuf_Empty(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// InStock (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuInStockCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.menu.v1beta1.Menu/InStock")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request,
+                       metadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : SwiftProtobuf.Google_Protobuf_Empty?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request,
+                         metadata: Metadata,
+                         completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Menu_V1Beta1_MenuInStockCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? SwiftProtobuf.Google_Protobuf_Empty(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// OutOfStock (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuOutOfStockCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.menu.v1beta1.Menu/OutOfStock")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request,
+                       metadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : SwiftProtobuf.Google_Protobuf_Empty?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Menu_V1Beta1_MenuClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request,
+                         metadata: Metadata,
+                         completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Menu_V1Beta1_MenuOutOfStockCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? SwiftProtobuf.Google_Protobuf_Empty(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
 /// Call methods of this class to make API calls.
 public final class Bloombox_Schema_Services_Menu_V1Beta1_MenuService {
   public var channel: Channel
@@ -302,6 +687,21 @@ public final class Bloombox_Schema_Services_Menu_V1Beta1_MenuService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
+  public func section(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request)
+    throws
+    -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuSectionCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func section(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Menu_V1Beta1_MenuSectionCall {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuSectionCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
   public func featured(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request)
     throws
     -> Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response {
@@ -346,6 +746,96 @@ public final class Bloombox_Schema_Services_Menu_V1Beta1_MenuService {
                                                  metadata:metadata,
                                                  completion:completion)
   }
+  /// Synchronous. Unary.
+  public func create(_ request: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request)
+    throws
+    -> Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuCreateCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func create(_ request: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Menu_V1Beta1_MenuCreateCall {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuCreateCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func update(_ request: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request)
+    throws
+    -> SwiftProtobuf.Google_Protobuf_Empty {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuUpdateCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func update(_ request: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request,
+                  completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Menu_V1Beta1_MenuUpdateCall {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuUpdateCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func remove(_ request: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request)
+    throws
+    -> SwiftProtobuf.Google_Protobuf_Empty {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuRemoveCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func remove(_ request: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request,
+                  completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Menu_V1Beta1_MenuRemoveCall {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuRemoveCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func productstatus(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request)
+    throws
+    -> SwiftProtobuf.Google_Protobuf_Empty {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuProductStatusCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func productstatus(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request,
+                  completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Menu_V1Beta1_MenuProductStatusCall {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuProductStatusCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func instock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request)
+    throws
+    -> SwiftProtobuf.Google_Protobuf_Empty {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuInStockCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func instock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request,
+                  completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Menu_V1Beta1_MenuInStockCall {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuInStockCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func outofstock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request)
+    throws
+    -> SwiftProtobuf.Google_Protobuf_Empty {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuOutOfStockCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func outofstock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request,
+                  completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Menu_V1Beta1_MenuOutOfStockCall {
+      return try Bloombox_Schema_Services_Menu_V1Beta1_MenuOutOfStockCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
 }
 
 
@@ -357,9 +847,16 @@ public enum Bloombox_Schema_Services_Menu_V1Beta1_MenuServerError : Error {
 /// To build a server, implement a class that conforms to this protocol.
 public protocol Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider {
   func retrieve(request : Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response
+  func section(request : Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuSectionSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response
   func featured(request : Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuFeaturedSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response
   func products(request : Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuProductsSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response
   func search(request : Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuSearchSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response
+  func create(request : Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuCreateSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response
+  func update(request : Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuUpdateSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func remove(request : Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuRemoveSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func productstatus(request : Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuProductStatusSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func instock(request : Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuInStockSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func outofstock(request : Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, session : Bloombox_Schema_Services_Menu_V1Beta1_MenuOutOfStockSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
 }
 
 /// Common properties available in each service session.
@@ -393,6 +890,31 @@ public class Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveSession : Bloombo
       if let requestData = requestData {
         let requestMessage = try Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request(serializedData:requestData)
         let replyMessage = try self.provider.retrieve(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// Section (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuSectionSession : Bloombox_Schema_Services_Menu_V1Beta1_MenuSession {
+  private var provider : Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request(serializedData:requestData)
+        let replyMessage = try self.provider.section(request:requestMessage, session: self)
         try self.handler.sendResponse(message:replyMessage.serializedData(),
                                       statusCode:self.statusCode,
                                       statusMessage:self.statusMessage,
@@ -477,6 +999,156 @@ public class Bloombox_Schema_Services_Menu_V1Beta1_MenuSearchSession : Bloombox_
   }
 }
 
+// Create (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuCreateSession : Bloombox_Schema_Services_Menu_V1Beta1_MenuSession {
+  private var provider : Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request(serializedData:requestData)
+        let replyMessage = try self.provider.create(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// Update (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuUpdateSession : Bloombox_Schema_Services_Menu_V1Beta1_MenuSession {
+  private var provider : Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request(serializedData:requestData)
+        let replyMessage = try self.provider.update(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// Remove (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuRemoveSession : Bloombox_Schema_Services_Menu_V1Beta1_MenuSession {
+  private var provider : Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request(serializedData:requestData)
+        let replyMessage = try self.provider.remove(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// ProductStatus (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuProductStatusSession : Bloombox_Schema_Services_Menu_V1Beta1_MenuSession {
+  private var provider : Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request(serializedData:requestData)
+        let replyMessage = try self.provider.productstatus(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// InStock (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuInStockSession : Bloombox_Schema_Services_Menu_V1Beta1_MenuSession {
+  private var provider : Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request(serializedData:requestData)
+        let replyMessage = try self.provider.instock(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// OutOfStock (Unary)
+public class Bloombox_Schema_Services_Menu_V1Beta1_MenuOutOfStockSession : Bloombox_Schema_Services_Menu_V1Beta1_MenuSession {
+  private var provider : Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Menu_V1Beta1_MenuProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request(serializedData:requestData)
+        let replyMessage = try self.provider.outofstock(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
 
 /// Main server for generated service
 public class Bloombox_Schema_Services_Menu_V1Beta1_MenuServer {
@@ -525,12 +1197,26 @@ public class Bloombox_Schema_Services_Menu_V1Beta1_MenuServer {
         switch handler.method {
         case "/bloombox.schema.services.menu.v1beta1.Menu/Retrieve":
           try Bloombox_Schema_Services_Menu_V1Beta1_MenuRetrieveSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.menu.v1beta1.Menu/Section":
+          try Bloombox_Schema_Services_Menu_V1Beta1_MenuSectionSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.menu.v1beta1.Menu/Featured":
           try Bloombox_Schema_Services_Menu_V1Beta1_MenuFeaturedSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.menu.v1beta1.Menu/Products":
           try Bloombox_Schema_Services_Menu_V1Beta1_MenuProductsSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.menu.v1beta1.Menu/Search":
           try Bloombox_Schema_Services_Menu_V1Beta1_MenuSearchSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.menu.v1beta1.Menu/Create":
+          try Bloombox_Schema_Services_Menu_V1Beta1_MenuCreateSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.menu.v1beta1.Menu/Update":
+          try Bloombox_Schema_Services_Menu_V1Beta1_MenuUpdateSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.menu.v1beta1.Menu/Remove":
+          try Bloombox_Schema_Services_Menu_V1Beta1_MenuRemoveSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.menu.v1beta1.Menu/ProductStatus":
+          try Bloombox_Schema_Services_Menu_V1Beta1_MenuProductStatusSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.menu.v1beta1.Menu/InStock":
+          try Bloombox_Schema_Services_Menu_V1Beta1_MenuInStockSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.menu.v1beta1.Menu/OutOfStock":
+          try Bloombox_Schema_Services_Menu_V1Beta1_MenuOutOfStockSession(handler:handler, provider:provider).run(queue:queue)
         default:
           break // handle unknown requests
         }
