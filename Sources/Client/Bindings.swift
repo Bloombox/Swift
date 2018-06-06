@@ -91,34 +91,34 @@ public typealias SubmitOrderCall = Bloombox_Schema_Services_Shop_V1_ShopSubmitOr
 /**
  * Binding to the active EventTelemetryService.
  */
-public typealias EventTelemetry = Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryService
+public typealias EventTelemetry = Bloombox_Schema_Services_Telemetry_V1Beta4_EventTelemetryService
 
 /**
  * Method: `ping`.
  */
-public typealias TelemetryPing = Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryPing
+public typealias TelemetryPing = Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing
 
 /**
  * Method: `event`.
  */
-public typealias TelemetryEvent = Bloombox_Schema_Services_Telemetry_V1beta3_Event
-public typealias TelemetryEventCall = Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryEventCall
+public typealias TelemetryEvent = Bloombox_Schema_Services_Telemetry_V1beta4_Event
+public typealias TelemetryEventCall = Bloombox_Schema_Services_Telemetry_V1Beta4_EventTelemetryEventCall
 
 /**
  * Method: `batch`.
  */
-public typealias TelemetryEventBatch = Bloombox_Schema_Services_Telemetry_V1beta3_Event_Batch
-public typealias TelemetryEventBatchRequest = Bloombox_Schema_Services_Telemetry_V1beta3_Event_BatchRequest
+public typealias TelemetryEventBatch = Bloombox_Schema_Services_Telemetry_V1beta4_Event_Batch
+public typealias TelemetryEventBatchRequest = Bloombox_Schema_Services_Telemetry_V1beta4_Event_BatchRequest
 
 /**
  * Method: `error`.
  */
-public typealias TelemetryException = Bloombox_Schema_Services_Telemetry_V1beta3_Exception
+public typealias TelemetryException = Bloombox_Schema_Services_Telemetry_V1beta4_Exception
 
 /**
  * Enumerated errors from EventTelemetryService.
  */
-public typealias EventTelemetryClientError = Bloombox_Schema_Services_Telemetry_V1Beta3_EventTelemetryClientError
+public typealias EventTelemetryClientError = Bloombox_Schema_Services_Telemetry_V1Beta4_EventTelemetryClientError
 
 
 //// Menu Service
@@ -142,12 +142,12 @@ public typealias UserKey = Bloombox_Schema_Identity_UserKey
 public typealias PartnerKey = Bloombox_Schema_Partner_PartnerKey
 public typealias PartnerDeviceKey = Bloombox_Schema_Partner_PartnerDeviceKey
 public typealias PartnerLocationKey = Bloombox_Schema_Partner_PartnerLocationKey
-public typealias Event = Bloombox_Schema_Services_Telemetry_V1beta3_Event
+public typealias Event = Bloombox_Schema_Services_Telemetry_V1beta4_Event
 public typealias GenericEvent = Bloombox_Schema_Analytics_Generic_Event
 public typealias AnalyticsContext = Bloombox_Schema_Analytics_Context
 public typealias AnalyticsScope = Bloombox_Schema_Analytics_Scope
 public typealias AnalyticsCollection = Bloombox_Schema_Analytics_Context_Collection
-public typealias TelemetryResponse = Bloombox_Schema_Services_Telemetry_V1beta3_TelemetryResponse
+public typealias TelemetryResponse = Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse
 public typealias LibraryContext = Bloombox_Schema_Analytics_Context_DeviceLibrary
 public typealias ApplicationContext = Bloombox_Schema_Analytics_Context_DeviceApplication
 public typealias NativeDeviceContext = Bloombox_Schema_Analytics_Context_NativeDeviceContext

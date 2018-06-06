@@ -19,6 +19,49 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Genders that a user may be.
+public enum Opencannabis_Person_Gender: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// Unspecified gender.
+  case unspecified // = 0
+
+  /// Male.
+  case male // = 1
+
+  /// Female.
+  case female // = 2
+
+  /// Other.
+  case other // = 3
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .unspecified
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .unspecified
+    case 1: self = .male
+    case 2: self = .female
+    case 3: self = .other
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .unspecified: return 0
+    case .male: return 1
+    case .female: return 2
+    case .other: return 3
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
 /// A person/patint and their name, legal name, nickname, etc.
 public struct Opencannabis_Person_Person {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -75,6 +118,11 @@ public struct Opencannabis_Person_Person {
   /// Clears the value of `dateOfBirth`. Subsequent reads from it will return its default value.
   public mutating func clearDateOfBirth() {_storage._dateOfBirth = nil}
 
+  public var gender: Opencannabis_Person_Gender {
+    get {return _storage._gender}
+    set {_uniqueStorage()._gender = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -86,6 +134,15 @@ public struct Opencannabis_Person_Person {
 
 fileprivate let _protobuf_package = "opencannabis.person"
 
+extension Opencannabis_Person_Gender: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNSPECIFIED"),
+    1: .same(proto: "MALE"),
+    2: .same(proto: "FEMALE"),
+    3: .same(proto: "OTHER"),
+  ]
+}
+
 extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Person"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -94,6 +151,7 @@ extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._Mess
     3: .standard(proto: "alternate_name"),
     4: .same(proto: "contact"),
     5: .standard(proto: "date_of_birth"),
+    6: .same(proto: "gender"),
   ]
 
   fileprivate class _StorageClass {
@@ -102,6 +160,7 @@ extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._Mess
     var _alternateName: Opencannabis_Person_Name? = nil
     var _contact: Opencannabis_Contact_ContactInfo? = nil
     var _dateOfBirth: Opencannabis_Temporal_Date? = nil
+    var _gender: Opencannabis_Person_Gender = .unspecified
 
     static let defaultInstance = _StorageClass()
 
@@ -113,6 +172,7 @@ extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._Mess
       _alternateName = source._alternateName
       _contact = source._contact
       _dateOfBirth = source._dateOfBirth
+      _gender = source._gender
     }
   }
 
@@ -133,6 +193,7 @@ extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._Mess
         case 3: try decoder.decodeSingularMessageField(value: &_storage._alternateName)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._contact)
         case 5: try decoder.decodeSingularMessageField(value: &_storage._dateOfBirth)
+        case 6: try decoder.decodeSingularEnumField(value: &_storage._gender)
         default: break
         }
       }
@@ -156,6 +217,9 @@ extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._Mess
       if let v = _storage._dateOfBirth {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
       }
+      if _storage._gender != .unspecified {
+        try visitor.visitSingularEnumField(value: _storage._gender, fieldNumber: 6)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -170,6 +234,7 @@ extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._Mess
         if _storage._alternateName != other_storage._alternateName {return false}
         if _storage._contact != other_storage._contact {return false}
         if _storage._dateOfBirth != other_storage._dateOfBirth {return false}
+        if _storage._gender != other_storage._gender {return false}
         return true
       }
       if !storagesAreEqual {return false}

@@ -49,6 +49,9 @@ public enum Bloombox_Schema_Partner_Integrations_IntegrationPartner: SwiftProtob
 
   /// Google GSuite - https://admin.google.com/
   case gsuite // = 8
+
+  /// Treez IO - https://www.treez.io
+  case treez // = 9
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -66,6 +69,7 @@ public enum Bloombox_Schema_Partner_Integrations_IntegrationPartner: SwiftProtob
     case 6: self = .twilio
     case 7: self = .onfleet
     case 8: self = .gsuite
+    case 9: self = .treez
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -81,6 +85,7 @@ public enum Bloombox_Schema_Partner_Integrations_IntegrationPartner: SwiftProtob
     case .twilio: return 6
     case .onfleet: return 7
     case .gsuite: return 8
+    case .treez: return 9
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -196,6 +201,16 @@ public struct Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings {
   /// Clears the value of `onfleet`. Subsequent reads from it will return its default value.
   public mutating func clearOnfleet() {_storage._onfleet = nil}
 
+  /// Specifies location-specific integration settings with Treez.
+  public var treez: Bloombox_Schema_Partner_Integrations_Treez_TreezSettings {
+    get {return _storage._treez ?? Bloombox_Schema_Partner_Integrations_Treez_TreezSettings()}
+    set {_uniqueStorage()._treez = newValue}
+  }
+  /// Returns true if `treez` has been explicitly set.
+  public var hasTreez: Bool {return _storage._treez != nil}
+  /// Clears the value of `treez`. Subsequent reads from it will return its default value.
+  public mutating func clearTreez() {_storage._treez = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -229,6 +244,7 @@ extension Bloombox_Schema_Partner_Integrations_IntegrationPartner: SwiftProtobuf
     6: .same(proto: "TWILIO"),
     7: .same(proto: "ONFLEET"),
     8: .same(proto: "GSUITE"),
+    9: .same(proto: "TREEZ"),
   ]
 }
 
@@ -327,6 +343,7 @@ extension Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: Swif
     12: .same(proto: "sendgrid"),
     13: .same(proto: "twilio"),
     14: .same(proto: "onfleet"),
+    15: .same(proto: "treez"),
   ]
 
   fileprivate class _StorageClass {
@@ -337,6 +354,7 @@ extension Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: Swif
     var _sendgrid: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings? = nil
     var _twilio: Bloombox_Schema_Partner_Integrations_Twilio_TwilioSettings? = nil
     var _onfleet: Bloombox_Schema_Partner_Integrations_Onfleet_OnFleetSettings? = nil
+    var _treez: Bloombox_Schema_Partner_Integrations_Treez_TreezSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -350,6 +368,7 @@ extension Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: Swif
       _sendgrid = source._sendgrid
       _twilio = source._twilio
       _onfleet = source._onfleet
+      _treez = source._treez
     }
   }
 
@@ -372,6 +391,7 @@ extension Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: Swif
         case 12: try decoder.decodeSingularMessageField(value: &_storage._sendgrid)
         case 13: try decoder.decodeSingularMessageField(value: &_storage._twilio)
         case 14: try decoder.decodeSingularMessageField(value: &_storage._onfleet)
+        case 15: try decoder.decodeSingularMessageField(value: &_storage._treez)
         default: break
         }
       }
@@ -401,6 +421,9 @@ extension Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: Swif
       if let v = _storage._onfleet {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
       }
+      if let v = _storage._treez {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -417,6 +440,7 @@ extension Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: Swif
         if _storage._sendgrid != other_storage._sendgrid {return false}
         if _storage._twilio != other_storage._twilio {return false}
         if _storage._onfleet != other_storage._onfleet {return false}
+        if _storage._treez != other_storage._treez {return false}
         return true
       }
       if !storagesAreEqual {return false}

@@ -51,10 +51,16 @@ public struct Opencannabis_Media_MediaItem {
     set {_uniqueStorage()._name = newValue}
   }
 
-  /// Absolute URI to this media.
+  /// Origin URI to this media.
   public var uri: String {
     get {return _storage._uri}
     set {_uniqueStorage()._uri = newValue}
+  }
+
+  /// Serving URI for this media, if it differs from the origin URI.
+  public var servingUri: String {
+    get {return _storage._servingUri}
+    set {_uniqueStorage()._servingUri = newValue}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -75,6 +81,7 @@ extension Opencannabis_Media_MediaItem: SwiftProtobuf.Message, SwiftProtobuf._Me
     2: .same(proto: "type"),
     3: .same(proto: "name"),
     4: .same(proto: "uri"),
+    5: .standard(proto: "serving_uri"),
   ]
 
   fileprivate class _StorageClass {
@@ -82,6 +89,7 @@ extension Opencannabis_Media_MediaItem: SwiftProtobuf.Message, SwiftProtobuf._Me
     var _type: Opencannabis_Media_MediaType? = nil
     var _name: String = String()
     var _uri: String = String()
+    var _servingUri: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -92,6 +100,7 @@ extension Opencannabis_Media_MediaItem: SwiftProtobuf.Message, SwiftProtobuf._Me
       _type = source._type
       _name = source._name
       _uri = source._uri
+      _servingUri = source._servingUri
     }
   }
 
@@ -111,6 +120,7 @@ extension Opencannabis_Media_MediaItem: SwiftProtobuf.Message, SwiftProtobuf._Me
         case 2: try decoder.decodeSingularMessageField(value: &_storage._type)
         case 3: try decoder.decodeSingularStringField(value: &_storage._name)
         case 4: try decoder.decodeSingularStringField(value: &_storage._uri)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._servingUri)
         default: break
         }
       }
@@ -131,6 +141,9 @@ extension Opencannabis_Media_MediaItem: SwiftProtobuf.Message, SwiftProtobuf._Me
       if !_storage._uri.isEmpty {
         try visitor.visitSingularStringField(value: _storage._uri, fieldNumber: 4)
       }
+      if !_storage._servingUri.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._servingUri, fieldNumber: 5)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -144,6 +157,7 @@ extension Opencannabis_Media_MediaItem: SwiftProtobuf.Message, SwiftProtobuf._Me
         if _storage._type != other_storage._type {return false}
         if _storage._name != other_storage._name {return false}
         if _storage._uri != other_storage._uri {return false}
+        if _storage._servingUri != other_storage._servingUri {return false}
         return true
       }
       if !storagesAreEqual {return false}

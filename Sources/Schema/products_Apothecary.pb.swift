@@ -37,9 +37,6 @@ public enum Opencannabis_Products_ApothecaryType: SwiftProtobuf.Enum {
 
   /// Specifies an injector or injection style system.
   case injector // = 4
-
-  /// Specifies a sublingual-applied product, i.e., under-the-tongue.
-  case sublingual // = 5
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -53,7 +50,6 @@ public enum Opencannabis_Products_ApothecaryType: SwiftProtobuf.Enum {
     case 2: self = .tincture
     case 3: self = .capsule
     case 4: self = .injector
-    case 5: self = .sublingual
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -65,7 +61,6 @@ public enum Opencannabis_Products_ApothecaryType: SwiftProtobuf.Enum {
     case .tincture: return 2
     case .capsule: return 3
     case .injector: return 4
-    case .sublingual: return 5
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -133,7 +128,6 @@ extension Opencannabis_Products_ApothecaryType: SwiftProtobuf._ProtoNameProvidin
     2: .same(proto: "TINCTURE"),
     3: .same(proto: "CAPSULE"),
     4: .same(proto: "INJECTOR"),
-    5: .same(proto: "SUBLINGUAL"),
   ]
 }
 

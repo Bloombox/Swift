@@ -46,6 +46,15 @@ public enum Opencannabis_Products_ExtractType: SwiftProtobuf.Enum {
 
   /// Heated and terpene-vaporized live resin.
   case rosin // = 7
+
+  /// Similar process to shatter, but with higher-terpene output and a softer, cheese-like consistency.
+  case crumble // = 8
+
+  /// THC distillate, often with extracted terpene content added.
+  case sauce // = 9
+
+  /// Raw THC or terpene distillate, in dust or powder form.
+  case sugar // = 10
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -62,6 +71,9 @@ public enum Opencannabis_Products_ExtractType: SwiftProtobuf.Enum {
     case 5: self = .hash
     case 6: self = .liveResin
     case 7: self = .rosin
+    case 8: self = .crumble
+    case 9: self = .sauce
+    case 10: self = .sugar
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -76,6 +88,9 @@ public enum Opencannabis_Products_ExtractType: SwiftProtobuf.Enum {
     case .hash: return 5
     case .liveResin: return 6
     case .rosin: return 7
+    case .crumble: return 8
+    case .sauce: return 9
+    case .sugar: return 10
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -195,6 +210,9 @@ extension Opencannabis_Products_ExtractType: SwiftProtobuf._ProtoNameProviding {
     5: .same(proto: "HASH"),
     6: .same(proto: "LIVE_RESIN"),
     7: .same(proto: "ROSIN"),
+    8: .same(proto: "CRUMBLE"),
+    9: .same(proto: "SAUCE"),
+    10: .same(proto: "SUGAR"),
   ]
 }
 

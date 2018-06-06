@@ -32,11 +32,29 @@ public enum Opencannabis_Products_EdibleType: SwiftProtobuf.Enum {
   /// Specifies a baked good, such as a cookie, doughnut, brownie, pie, and so on.
   case bakedGood // = 2
 
-  /// Specifies candy items like lollipops, lozenges, gummies, etc.
+  /// Specifies generic candy items not otherwise specified.
   case candy // = 3
 
-  /// Specifies beverage products.
-  case drink // = 4
+  /// Beverage/drink products.
+  case beverage // = 4
+
+  /// Lozenge (hardened candy) products.
+  case lozenge // = 5
+
+  /// Sub-lingual, i.e. under-the-tongue, products.
+  case sublingual // = 6
+
+  /// Soft candies made of congealed sugar product.
+  case gummy // = 7
+
+  /// Medicated butter pdocuts.
+  case butter // = 8
+
+  /// Cooking oil and other edible oils.
+  case oils // = 9
+
+  /// Cereals and related breakfast products.
+  case cereal // = 10
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -49,7 +67,13 @@ public enum Opencannabis_Products_EdibleType: SwiftProtobuf.Enum {
     case 1: self = .chocolate
     case 2: self = .bakedGood
     case 3: self = .candy
-    case 4: self = .drink
+    case 4: self = .beverage
+    case 5: self = .lozenge
+    case 6: self = .sublingual
+    case 7: self = .gummy
+    case 8: self = .butter
+    case 9: self = .oils
+    case 10: self = .cereal
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -60,7 +84,13 @@ public enum Opencannabis_Products_EdibleType: SwiftProtobuf.Enum {
     case .chocolate: return 1
     case .bakedGood: return 2
     case .candy: return 3
-    case .drink: return 4
+    case .beverage: return 4
+    case .lozenge: return 5
+    case .sublingual: return 6
+    case .gummy: return 7
+    case .butter: return 8
+    case .oils: return 9
+    case .cereal: return 10
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -214,7 +244,13 @@ extension Opencannabis_Products_EdibleType: SwiftProtobuf._ProtoNameProviding {
     1: .same(proto: "CHOCOLATE"),
     2: .same(proto: "BAKED_GOOD"),
     3: .same(proto: "CANDY"),
-    4: .same(proto: "DRINK"),
+    4: .same(proto: "BEVERAGE"),
+    5: .same(proto: "LOZENGE"),
+    6: .same(proto: "SUBLINGUAL"),
+    7: .same(proto: "GUMMY"),
+    8: .same(proto: "BUTTER"),
+    9: .same(proto: "OILS"),
+    10: .same(proto: "CEREAL"),
   ]
 }
 
