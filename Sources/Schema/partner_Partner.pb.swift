@@ -6,6 +6,11 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the structure of a Bloombox partner record, which represents an organizational customer. Partners are the
+/// root container for user data. Locations are under partners, and menus, members, orders, and other datapoints are all
+/// specified under partner locations.
+
 import Foundation
 import SwiftProtobuf
 
@@ -45,20 +50,6 @@ public enum Bloombox_Schema_Partner_PartnerChannel: SwiftProtobuf.Enum {
     }
   }
 
-}
-
-/// Specifies a key that references a partner organization, with an account opened at Bloombox.
-public struct Bloombox_Schema_Partner_PartnerKey {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Short string that uniquely identifies a partner organization.
-  public var code: String = String()
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
 }
 
 /// Specifies information about a partner organization that has an account opened with Bloombox. A partner can own/manage
@@ -123,6 +114,28 @@ public struct Bloombox_Schema_Partner_Partner {
     set {_uniqueStorage()._channel = newValue}
   }
 
+  /// Settings for this partner.
+  public var settings: Bloombox_Schema_Partner_Settings_PartnerSettings {
+    get {return _storage._settings ?? Bloombox_Schema_Partner_Settings_PartnerSettings()}
+    set {_uniqueStorage()._settings = newValue}
+  }
+  /// Returns true if `settings` has been explicitly set.
+  public var hasSettings: Bool {return _storage._settings != nil}
+  /// Clears the value of `settings`. Subsequent reads from it will return its default value.
+  public mutating func clearSettings() {_storage._settings = nil}
+
+  /// Location records attached to this partner.
+  public var location: [Bloombox_Schema_Partner_PartnerLocation] {
+    get {return _storage._location}
+    set {_uniqueStorage()._location = newValue}
+  }
+
+  /// Access policy records attached to this partner.
+  public var policy: [Bloombox_Schema_Security_Access_AccessPolicy] {
+    get {return _storage._policy}
+    set {_uniqueStorage()._policy = newValue}
+  }
+
   /// Timestamp for when this record was created.
   public var created: Opencannabis_Temporal_Instant {
     get {return _storage._created ?? Opencannabis_Temporal_Instant()}
@@ -150,35 +163,6 @@ public struct Bloombox_Schema_Partner_Partner {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-/// Specifies flags that may be set on a partner organization account.
-public struct Bloombox_Schema_Partner_PartnerFlags {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Specifies that the subject partner organization is currently suspended, organization wide, and has had access
-  /// revoked to Bloombox systems.
-  public var suspended: Bool = false
-
-  /// Specifies that the subject partner organiztaion is currently in a past-due state, where their organization and
-  /// related access has been heavily restricted.
-  public var pastdue: Bool = false
-
-  /// Specifies that the subject partner organization has access to beta features, clusters, and systems.
-  public var beta: Bool = false
-
-  /// Specifies that the subject partner organization has internal sandbox access.
-  public var sandbox: Bool = false
-
-  /// Specifies that the subject partner organization is a testing account held and managed internally by Bloombox, or
-  /// by selected partners.
-  public var `internal`: Bool = false
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bloombox.schema.partner"
@@ -187,35 +171,6 @@ extension Bloombox_Schema_Partner_PartnerChannel: SwiftProtobuf._ProtoNameProvid
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "DIRECT"),
   ]
-}
-
-extension Bloombox_Schema_Partner_PartnerKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".PartnerKey"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "code"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.code)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.code.isEmpty {
-      try visitor.visitSingularStringField(value: self.code, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerKey) -> Bool {
-    if self.code != other.code {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
 }
 
 extension Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -228,6 +183,9 @@ extension Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf.
     5: .same(proto: "contact"),
     6: .same(proto: "branding"),
     7: .same(proto: "channel"),
+    8: .same(proto: "settings"),
+    9: .same(proto: "location"),
+    10: .same(proto: "policy"),
     100: .same(proto: "created"),
     101: .same(proto: "modified"),
   ]
@@ -240,6 +198,9 @@ extension Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf.
     var _contact: Opencannabis_Contact_ContactInfo? = nil
     var _branding: Opencannabis_Media_MediaItem? = nil
     var _channel: Bloombox_Schema_Partner_PartnerChannel = .direct
+    var _settings: Bloombox_Schema_Partner_Settings_PartnerSettings? = nil
+    var _location: [Bloombox_Schema_Partner_PartnerLocation] = []
+    var _policy: [Bloombox_Schema_Security_Access_AccessPolicy] = []
     var _created: Opencannabis_Temporal_Instant? = nil
     var _modified: Opencannabis_Temporal_Instant? = nil
 
@@ -255,6 +216,9 @@ extension Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf.
       _contact = source._contact
       _branding = source._branding
       _channel = source._channel
+      _settings = source._settings
+      _location = source._location
+      _policy = source._policy
       _created = source._created
       _modified = source._modified
     }
@@ -279,6 +243,9 @@ extension Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf.
         case 5: try decoder.decodeSingularMessageField(value: &_storage._contact)
         case 6: try decoder.decodeSingularMessageField(value: &_storage._branding)
         case 7: try decoder.decodeSingularEnumField(value: &_storage._channel)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._settings)
+        case 9: try decoder.decodeRepeatedMessageField(value: &_storage._location)
+        case 10: try decoder.decodeRepeatedMessageField(value: &_storage._policy)
         case 100: try decoder.decodeSingularMessageField(value: &_storage._created)
         case 101: try decoder.decodeSingularMessageField(value: &_storage._modified)
         default: break
@@ -310,6 +277,15 @@ extension Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf.
       if _storage._channel != .direct {
         try visitor.visitSingularEnumField(value: _storage._channel, fieldNumber: 7)
       }
+      if let v = _storage._settings {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if !_storage._location.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._location, fieldNumber: 9)
+      }
+      if !_storage._policy.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._policy, fieldNumber: 10)
+      }
       if let v = _storage._created {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 100)
       }
@@ -332,65 +308,15 @@ extension Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf.
         if _storage._contact != other_storage._contact {return false}
         if _storage._branding != other_storage._branding {return false}
         if _storage._channel != other_storage._channel {return false}
+        if _storage._settings != other_storage._settings {return false}
+        if _storage._location != other_storage._location {return false}
+        if _storage._policy != other_storage._policy {return false}
         if _storage._created != other_storage._created {return false}
         if _storage._modified != other_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Partner_PartnerFlags: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".PartnerFlags"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "suspended"),
-    2: .same(proto: "pastdue"),
-    3: .same(proto: "beta"),
-    4: .same(proto: "sandbox"),
-    5: .same(proto: "internal"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.suspended)
-      case 2: try decoder.decodeSingularBoolField(value: &self.pastdue)
-      case 3: try decoder.decodeSingularBoolField(value: &self.beta)
-      case 4: try decoder.decodeSingularBoolField(value: &self.sandbox)
-      case 5: try decoder.decodeSingularBoolField(value: &self.`internal`)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.suspended != false {
-      try visitor.visitSingularBoolField(value: self.suspended, fieldNumber: 1)
-    }
-    if self.pastdue != false {
-      try visitor.visitSingularBoolField(value: self.pastdue, fieldNumber: 2)
-    }
-    if self.beta != false {
-      try visitor.visitSingularBoolField(value: self.beta, fieldNumber: 3)
-    }
-    if self.sandbox != false {
-      try visitor.visitSingularBoolField(value: self.sandbox, fieldNumber: 4)
-    }
-    if self.`internal` != false {
-      try visitor.visitSingularBoolField(value: self.`internal`, fieldNumber: 5)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerFlags) -> Bool {
-    if self.suspended != other.suspended {return false}
-    if self.pastdue != other.pastdue {return false}
-    if self.beta != other.beta {return false}
-    if self.sandbox != other.sandbox {return false}
-    if self.`internal` != other.`internal` {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

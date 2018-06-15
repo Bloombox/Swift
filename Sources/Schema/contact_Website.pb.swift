@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Record to store and express a website link.
+
 import Foundation
 import SwiftProtobuf
 

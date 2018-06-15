@@ -19,6 +19,92 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Specifies the subject properties of this media. That is to say, properties of the item of which this media is the
+/// subject. Also referred to as this media item's "parent" in some cases.
+public struct Opencannabis_Media_MediaSubject {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Name of this media item, with regard to it's subject parent. Optional.
+  public var name: String {
+    get {return _storage._name}
+    set {_uniqueStorage()._name = newValue}
+  }
+
+  /// Specified subject attachment for this media. Can be a product key, or a partnership, or location-level key, to
+  /// facilitate later garbage collection of unused media.
+  public var attachment: OneOf_Attachment? {
+    get {return _storage._attachment}
+    set {_uniqueStorage()._attachment = newValue}
+  }
+
+  /// Specify a product key as the subject parent of this media.
+  public var product: Opencannabis_Base_ProductKey {
+    get {
+      if case .product(let v)? = _storage._attachment {return v}
+      return Opencannabis_Base_ProductKey()
+    }
+    set {_uniqueStorage()._attachment = .product(newValue)}
+  }
+
+  /// Specify a partner as the subject parent of this media.
+  public var partner: Bloombox_Schema_Partner_PartnerKey {
+    get {
+      if case .partner(let v)? = _storage._attachment {return v}
+      return Bloombox_Schema_Partner_PartnerKey()
+    }
+    set {_uniqueStorage()._attachment = .partner(newValue)}
+  }
+
+  /// Specify a partner and location as the subject parent of this media.
+  public var location: Bloombox_Schema_Partner_LocationKey {
+    get {
+      if case .location(let v)? = _storage._attachment {return v}
+      return Bloombox_Schema_Partner_LocationKey()
+    }
+    set {_uniqueStorage()._attachment = .location(newValue)}
+  }
+
+  /// Specify this media as global. This is a special flag that should only be used internally.
+  public var global: Bool {
+    get {
+      if case .global(let v)? = _storage._attachment {return v}
+      return false
+    }
+    set {_uniqueStorage()._attachment = .global(newValue)}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Specified subject attachment for this media. Can be a product key, or a partnership, or location-level key, to
+  /// facilitate later garbage collection of unused media.
+  public enum OneOf_Attachment: Equatable {
+    /// Specify a product key as the subject parent of this media.
+    case product(Opencannabis_Base_ProductKey)
+    /// Specify a partner as the subject parent of this media.
+    case partner(Bloombox_Schema_Partner_PartnerKey)
+    /// Specify a partner and location as the subject parent of this media.
+    case location(Bloombox_Schema_Partner_LocationKey)
+    /// Specify this media as global. This is a special flag that should only be used internally.
+    case global(Bool)
+
+    public static func ==(lhs: Opencannabis_Media_MediaSubject.OneOf_Attachment, rhs: Opencannabis_Media_MediaSubject.OneOf_Attachment) -> Bool {
+      switch (lhs, rhs) {
+      case (.product(let l), .product(let r)): return l == r
+      case (.partner(let l), .partner(let r)): return l == r
+      case (.location(let l), .location(let r)): return l == r
+      case (.global(let l), .global(let r)): return l == r
+      default: return false
+      }
+    }
+  }
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 /// Describes an individual media item, which can be an image, video, etc.
 public struct Opencannabis_Media_MediaItem {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -73,6 +159,114 @@ public struct Opencannabis_Media_MediaItem {
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.media"
+
+extension Opencannabis_Media_MediaSubject: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MediaSubject"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "name"),
+    2: .same(proto: "product"),
+    3: .same(proto: "partner"),
+    4: .same(proto: "location"),
+    5: .same(proto: "global"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _name: String = String()
+    var _attachment: Opencannabis_Media_MediaSubject.OneOf_Attachment?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _name = source._name
+      _attachment = source._attachment
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 2:
+          var v: Opencannabis_Base_ProductKey?
+          if let current = _storage._attachment {
+            try decoder.handleConflictingOneOf()
+            if case .product(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._attachment = .product(v)}
+        case 3:
+          var v: Bloombox_Schema_Partner_PartnerKey?
+          if let current = _storage._attachment {
+            try decoder.handleConflictingOneOf()
+            if case .partner(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._attachment = .partner(v)}
+        case 4:
+          var v: Bloombox_Schema_Partner_LocationKey?
+          if let current = _storage._attachment {
+            try decoder.handleConflictingOneOf()
+            if case .location(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._attachment = .location(v)}
+        case 5:
+          if _storage._attachment != nil {try decoder.handleConflictingOneOf()}
+          var v: Bool?
+          try decoder.decodeSingularBoolField(value: &v)
+          if let v = v {_storage._attachment = .global(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 1)
+      }
+      switch _storage._attachment {
+      case .product(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case .partner(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      case .location(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      case .global(let v)?:
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 5)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_MediaSubject) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._name != other_storage._name {return false}
+        if _storage._attachment != other_storage._attachment {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
 
 extension Opencannabis_Media_MediaItem: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MediaItem"

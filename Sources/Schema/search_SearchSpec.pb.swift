@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies structures that allow a caller to detail a search operation for a search request.
+
 import Foundation
 import SwiftProtobuf
 

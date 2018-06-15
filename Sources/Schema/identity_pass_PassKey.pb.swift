@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the structure of a key that uniquely identifies an individual user's digital ID.
+
 import Foundation
 import SwiftProtobuf
 
@@ -19,15 +22,19 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Specifies the key for a digital pass record.
 public struct Bloombox_Schema_Identity_Pass_PassKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Specifies the entire encoded ID.
   public var encoded: String = String()
 
+  /// Specifies the serial number for a pass.
   public var serial: String = String()
 
+  /// Specifies the user ID that owns the pass.
   public var uid: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()

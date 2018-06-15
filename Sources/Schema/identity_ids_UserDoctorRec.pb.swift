@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies structures for a user's prescription, from a physician, to consume/purchase cannabis.
+
 import Foundation
 import SwiftProtobuf
 

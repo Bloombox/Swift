@@ -431,6 +431,9 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend {
     /// ID of the campaign to send.
     public var campaignID: String = String()
 
+    /// Set to `true` to prevent actual sending operations.
+    public var dryRun: Bool = false
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
@@ -500,7 +503,7 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate {
     }
 
     /// Marketing communication channel to employ.
-    public var channel: Bloombox_Schema_Marketing_Channel {
+    public var channel: Bloombox_Schema_Comms_Channel {
       get {return _storage._channel}
       set {_uniqueStorage()._channel = newValue}
     }
@@ -608,7 +611,7 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate {
     /// ID for the campaign.
     public var campaignID: String = String()
 
-    /// Adgroup ID to fetch.
+    /// Adgroup ID to update.
     public var adgroupID: String = String()
 
     /// Creative updates to apply.
@@ -1237,12 +1240,14 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request: Swift
   public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "campaign_id"),
+    2: .standard(proto: "dry_run"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
+      case 2: try decoder.decodeSingularBoolField(value: &self.dryRun)
       default: break
       }
     }
@@ -1252,11 +1257,15 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request: Swift
     if !self.campaignID.isEmpty {
       try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
     }
+    if self.dryRun != false {
+      try visitor.visitSingularBoolField(value: self.dryRun, fieldNumber: 2)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request) -> Bool {
     if self.campaignID != other.campaignID {return false}
+    if self.dryRun != other.dryRun {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1368,7 +1377,7 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Request: Swif
 
   fileprivate class _StorageClass {
     var _campaignID: String = String()
-    var _channel: Bloombox_Schema_Marketing_Channel = .unspecified
+    var _channel: Bloombox_Schema_Comms_Channel = .unspecified
     var _creative: Bloombox_Schema_Marketing_Creative? = nil
 
     static let defaultInstance = _StorageClass()

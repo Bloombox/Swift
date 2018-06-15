@@ -6,6 +6,12 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the central concept of an application user. In technical terms, a "user" is simply an authenticated person,
+/// with attached records supplying their identity information, government issued ID, and profile data. This record is
+/// used, stored, created, and manipulated in some cases without the surrounding info: a "User" represents the state
+/// between authentication and authorization, or signup.
+
 import Foundation
 import SwiftProtobuf
 
@@ -237,23 +243,6 @@ public enum Bloombox_Schema_Identity_ConsumerType: SwiftProtobuf.Enum {
     }
   }
 
-}
-
-/// Represents a key that refers to a user account.
-public struct Bloombox_Schema_Identity_UserKey {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Unique ID for the user.
-  public var uid: String = String()
-
-  /// Specific user identity in use.
-  public var identity: String = String()
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
 }
 
 /// Represents an individual who uses software.
@@ -601,7 +590,7 @@ public struct Bloombox_Schema_Identity_IndustryProfile {
   public var active: Bool = false
 
   /// Map of partner accesses levels to partner codes.
-  public var partners: Dictionary<String,Bloombox_Schema_Security_Access_PartnerAccess> = [:]
+  public var partners: Dictionary<String,Bloombox_Schema_Security_Access_AccessPolicy> = [:]
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -656,41 +645,6 @@ extension Bloombox_Schema_Identity_ConsumerType: SwiftProtobuf._ProtoNameProvidi
     1: .same(proto: "RECREATIONAL"),
     2: .same(proto: "MEDICAL"),
   ]
-}
-
-extension Bloombox_Schema_Identity_UserKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".UserKey"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "uid"),
-    2: .same(proto: "identity"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.uid)
-      case 2: try decoder.decodeSingularStringField(value: &self.identity)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.uid.isEmpty {
-      try visitor.visitSingularStringField(value: self.uid, fieldNumber: 1)
-    }
-    if !self.identity.isEmpty {
-      try visitor.visitSingularStringField(value: self.identity, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_UserKey) -> Bool {
-    if self.uid != other.uid {return false}
-    if self.identity != other.identity {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
 }
 
 extension Bloombox_Schema_Identity_User: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -1311,7 +1265,7 @@ extension Bloombox_Schema_Identity_IndustryProfile: SwiftProtobuf.Message, Swift
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularBoolField(value: &self.active)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_PartnerAccess>.self, value: &self.partners)
+      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_AccessPolicy>.self, value: &self.partners)
       default: break
       }
     }
@@ -1322,7 +1276,7 @@ extension Bloombox_Schema_Identity_IndustryProfile: SwiftProtobuf.Message, Swift
       try visitor.visitSingularBoolField(value: self.active, fieldNumber: 1)
     }
     if !self.partners.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_PartnerAccess>.self, value: self.partners, fieldNumber: 2)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_AccessPolicy>.self, value: self.partners, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }

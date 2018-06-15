@@ -198,6 +198,61 @@ public class Bloombox_Schema_Services_Platform_V1_PlatformResolveCall {
   }
 }
 
+/// Domains (Unary)
+public class Bloombox_Schema_Services_Platform_V1_PlatformDomainsCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.platform.v1.Platform/Domains")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Platform_V1_DomainInfo.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Platform_V1_DomainInfo.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Platform_V1_DomainInfo.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Platform_V1_PlatformClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Platform_V1_DomainInfo.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Platform_V1_DomainInfo.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Platform_V1_PlatformDomainsCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Platform_V1_DomainInfo.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
 /// Call methods of this class to make API calls.
 public final class Bloombox_Schema_Services_Platform_V1_PlatformService {
   public var channel: Channel
@@ -276,6 +331,21 @@ public final class Bloombox_Schema_Services_Platform_V1_PlatformService {
                                                  metadata:metadata,
                                                  completion:completion)
   }
+  /// Synchronous. Unary.
+  public func domains(_ request: Bloombox_Schema_Services_Platform_V1_DomainInfo.Request)
+    throws
+    -> Bloombox_Schema_Services_Platform_V1_DomainInfo.Response {
+      return try Bloombox_Schema_Services_Platform_V1_PlatformDomainsCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func domains(_ request: Bloombox_Schema_Services_Platform_V1_DomainInfo.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Platform_V1_DomainInfo.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Platform_V1_PlatformDomainsCall {
+      return try Bloombox_Schema_Services_Platform_V1_PlatformDomainsCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
 }
 
 
@@ -289,6 +359,7 @@ public protocol Bloombox_Schema_Services_Platform_V1_PlatformProvider {
   func ping(request : Bloombox_Schema_Services_Platform_V1_Ping.Request, session : Bloombox_Schema_Services_Platform_V1_PlatformPingSession) throws -> Bloombox_Schema_Services_Platform_V1_Ping.Response
   func health(request : SwiftProtobuf.Google_Protobuf_Empty, session : Bloombox_Schema_Services_Platform_V1_PlatformHealthSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
   func resolve(request : Bloombox_Schema_Services_Platform_V1_DomainResolve.Request, session : Bloombox_Schema_Services_Platform_V1_PlatformResolveSession) throws -> Bloombox_Schema_Services_Platform_V1_DomainResolve.Response
+  func domains(request : Bloombox_Schema_Services_Platform_V1_DomainInfo.Request, session : Bloombox_Schema_Services_Platform_V1_PlatformDomainsSession) throws -> Bloombox_Schema_Services_Platform_V1_DomainInfo.Response
 }
 
 /// Common properties available in each service session.
@@ -381,6 +452,31 @@ public class Bloombox_Schema_Services_Platform_V1_PlatformResolveSession : Bloom
   }
 }
 
+// Domains (Unary)
+public class Bloombox_Schema_Services_Platform_V1_PlatformDomainsSession : Bloombox_Schema_Services_Platform_V1_PlatformSession {
+  private var provider : Bloombox_Schema_Services_Platform_V1_PlatformProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Platform_V1_PlatformProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Platform_V1_DomainInfo.Request(serializedData:requestData)
+        let replyMessage = try self.provider.domains(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
 
 /// Main server for generated service
 public class Bloombox_Schema_Services_Platform_V1_PlatformServer {
@@ -433,6 +529,8 @@ public class Bloombox_Schema_Services_Platform_V1_PlatformServer {
           try Bloombox_Schema_Services_Platform_V1_PlatformHealthSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.platform.v1.Platform/Resolve":
           try Bloombox_Schema_Services_Platform_V1_PlatformResolveSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.platform.v1.Platform/Domains":
+          try Bloombox_Schema_Services_Platform_V1_PlatformDomainsSession(handler:handler, provider:provider).run(queue:queue)
         default:
           break // handle unknown requests
         }

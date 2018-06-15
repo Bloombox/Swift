@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structured record that specifies an E164-formatted telephone number.
+
 import Foundation
 import SwiftProtobuf
 
@@ -33,6 +36,9 @@ public struct Opencannabis_Contact_PhoneNumber {
   /// number remains unvalidated.
   public var validated: Bool = false
 
+  /// Display text for this phone number, if applicable.
+  public var display: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -47,6 +53,7 @@ extension Opencannabis_Contact_PhoneNumber: SwiftProtobuf.Message, SwiftProtobuf
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "e164"),
     2: .same(proto: "validated"),
+    3: .same(proto: "display"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -54,6 +61,7 @@ extension Opencannabis_Contact_PhoneNumber: SwiftProtobuf.Message, SwiftProtobuf
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.e164)
       case 2: try decoder.decodeSingularBoolField(value: &self.validated)
+      case 3: try decoder.decodeSingularStringField(value: &self.display)
       default: break
       }
     }
@@ -66,12 +74,16 @@ extension Opencannabis_Contact_PhoneNumber: SwiftProtobuf.Message, SwiftProtobuf
     if self.validated != false {
       try visitor.visitSingularBoolField(value: self.validated, fieldNumber: 2)
     }
+    if !self.display.isEmpty {
+      try visitor.visitSingularStringField(value: self.display, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Contact_PhoneNumber) -> Bool {
     if self.e164 != other.e164 {return false}
     if self.validated != other.validated {return false}
+    if self.display != other.display {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

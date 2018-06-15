@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the concept of a partner co-located device. Partner devices are items like iPad menus, TV menus, checkin
+/// stations, and other devices that actually live at a partner location.
+
 import Foundation
 import SwiftProtobuf
 
@@ -19,20 +23,29 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Specifies types of partner co-located devices.
 public enum Bloombox_Schema_Partner_PartnerDeviceType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
+
+  /// Unspecified, or unrecognized, device type.
   case unspecifiedDeviceType // = 0
+
+  /// Internal devices. Used for sandbox/development operations.
   case `internal` // = 1
 
-  /// -- Menu Devices
+  /// Menu tablet devices.
   case menuTablet // = 10
+
+  /// Menu TV (display) devices.
   case menuTv // = 11
 
-  /// -- Checkin Devices
+  /// Checkin station units.
   case checkinStation // = 20
+
+  /// Checkin queue TV (display) devices.
   case checkinTv // = 21
 
-  /// -- Point of Sale
+  /// Point-of-Sale/cash register devices.
   case posRegister // = 30
   case UNRECOGNIZED(Int)
 
@@ -68,13 +81,15 @@ public enum Bloombox_Schema_Partner_PartnerDeviceType: SwiftProtobuf.Enum {
 
 }
 
+/// Specifies the structure of a key for a given partner device.
 public struct Bloombox_Schema_Partner_PartnerDeviceKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var location: Bloombox_Schema_Partner_PartnerLocationKey {
-    get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocationKey()}
+  /// Partner location that owns/co-locates this device.
+  public var location: Bloombox_Schema_Partner_LocationKey {
+    get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -82,6 +97,7 @@ public struct Bloombox_Schema_Partner_PartnerDeviceKey {
   /// Clears the value of `location`. Subsequent reads from it will return its default value.
   public mutating func clearLocation() {_storage._location = nil}
 
+  /// UUID for this particular device.
   public var uuid: String {
     get {return _storage._uuid}
     set {_uniqueStorage()._uuid = newValue}
@@ -94,27 +110,21 @@ public struct Bloombox_Schema_Partner_PartnerDeviceKey {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+/// Specifies the structure of partner co-located device records.
 public struct Bloombox_Schema_Partner_PartnerDevice {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Unique ID for this partner device.
   public var uuid: String {
     get {return _storage._uuid}
     set {_uniqueStorage()._uuid = newValue}
   }
 
-  public var partner: Bloombox_Schema_Partner_Partner {
-    get {return _storage._partner ?? Bloombox_Schema_Partner_Partner()}
-    set {_uniqueStorage()._partner = newValue}
-  }
-  /// Returns true if `partner` has been explicitly set.
-  public var hasPartner: Bool {return _storage._partner != nil}
-  /// Clears the value of `partner`. Subsequent reads from it will return its default value.
-  public mutating func clearPartner() {_storage._partner = nil}
-
-  public var location: Bloombox_Schema_Partner_PartnerLocation {
-    get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocation()}
+  /// Partner that owns this device.
+  public var location: Bloombox_Schema_Partner_LocationKey {
+    get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -122,11 +132,13 @@ public struct Bloombox_Schema_Partner_PartnerDevice {
   /// Clears the value of `location`. Subsequent reads from it will return its default value.
   public mutating func clearLocation() {_storage._location = nil}
 
+  /// Type of the device this record represents.
   public var type: Bloombox_Schema_Partner_PartnerDeviceType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
+  /// Flags for this device.
   public var flags: Bloombox_Schema_Partner_PartnerDeviceFlags {
     get {return _storage._flags ?? Bloombox_Schema_Partner_PartnerDeviceFlags()}
     set {_uniqueStorage()._flags = newValue}
@@ -136,6 +148,7 @@ public struct Bloombox_Schema_Partner_PartnerDevice {
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
   public mutating func clearFlags() {_storage._flags = nil}
 
+  /// Device-specific information.
   public var device: Opencannabis_Device_Device {
     get {return _storage._device ?? Opencannabis_Device_Device()}
     set {_uniqueStorage()._device = newValue}
@@ -145,6 +158,7 @@ public struct Bloombox_Schema_Partner_PartnerDevice {
   /// Clears the value of `device`. Subsequent reads from it will return its default value.
   public mutating func clearDevice() {_storage._device = nil}
 
+  /// Timestamp for the last time this device was "seen" on the API.
   public var seen: Opencannabis_Temporal_Instant {
     get {return _storage._seen ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._seen = newValue}
@@ -154,6 +168,7 @@ public struct Bloombox_Schema_Partner_PartnerDevice {
   /// Clears the value of `seen`. Subsequent reads from it will return its default value.
   public mutating func clearSeen() {_storage._seen = nil}
 
+  /// Timestamp for when this device originally registered.
   public var registered: Opencannabis_Temporal_Instant {
     get {return _storage._registered ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._registered = newValue}
@@ -170,17 +185,22 @@ public struct Bloombox_Schema_Partner_PartnerDevice {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+/// Enumerates flags that may be applied to partner co-located devices.
 public struct Bloombox_Schema_Partner_PartnerDeviceFlags {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Indicates this device is active, or inactive.
   public var active: Bool = false
 
+  /// Indicates this device is suspended.
   public var suspended: Bool = false
 
+  /// Indicates this device has beta access.
   public var beta: Bool = false
 
+  /// Indicates this device has sandbox access.
   public var sandbox: Bool = false
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -212,7 +232,7 @@ extension Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf.Message, Swift
   ]
 
   fileprivate class _StorageClass {
-    var _location: Bloombox_Schema_Partner_PartnerLocationKey? = nil
+    var _location: Bloombox_Schema_Partner_LocationKey? = nil
     var _uuid: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -277,19 +297,17 @@ extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message, SwiftPro
   public static let protoMessageName: String = _protobuf_package + ".PartnerDevice"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
-    2: .same(proto: "partner"),
-    3: .same(proto: "location"),
-    4: .same(proto: "type"),
-    5: .same(proto: "flags"),
-    6: .same(proto: "device"),
-    7: .same(proto: "seen"),
-    8: .same(proto: "registered"),
+    2: .same(proto: "location"),
+    3: .same(proto: "type"),
+    4: .same(proto: "flags"),
+    5: .same(proto: "device"),
+    6: .same(proto: "seen"),
+    7: .same(proto: "registered"),
   ]
 
   fileprivate class _StorageClass {
     var _uuid: String = String()
-    var _partner: Bloombox_Schema_Partner_Partner? = nil
-    var _location: Bloombox_Schema_Partner_PartnerLocation? = nil
+    var _location: Bloombox_Schema_Partner_LocationKey? = nil
     var _type: Bloombox_Schema_Partner_PartnerDeviceType = .unspecifiedDeviceType
     var _flags: Bloombox_Schema_Partner_PartnerDeviceFlags? = nil
     var _device: Opencannabis_Device_Device? = nil
@@ -302,7 +320,6 @@ extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message, SwiftPro
 
     init(copying source: _StorageClass) {
       _uuid = source._uuid
-      _partner = source._partner
       _location = source._location
       _type = source._type
       _flags = source._flags
@@ -325,13 +342,12 @@ extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message, SwiftPro
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._partner)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._location)
-        case 4: try decoder.decodeSingularEnumField(value: &_storage._type)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._flags)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._device)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._seen)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._registered)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._location)
+        case 3: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._flags)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._device)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._seen)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._registered)
         default: break
         }
       }
@@ -343,26 +359,23 @@ extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message, SwiftPro
       if !_storage._uuid.isEmpty {
         try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
       }
-      if let v = _storage._partner {
+      if let v = _storage._location {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
-      if let v = _storage._location {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
       if _storage._type != .unspecifiedDeviceType {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 4)
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 3)
       }
       if let v = _storage._flags {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
       }
       if let v = _storage._device {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
       }
       if let v = _storage._seen {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
       }
       if let v = _storage._registered {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -374,7 +387,6 @@ extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message, SwiftPro
         let _storage = _args.0
         let other_storage = _args.1
         if _storage._uuid != other_storage._uuid {return false}
-        if _storage._partner != other_storage._partner {return false}
         if _storage._location != other_storage._location {return false}
         if _storage._type != other_storage._type {return false}
         if _storage._flags != other_storage._flags {return false}

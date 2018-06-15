@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the concept of individual, and aggregate, search results.
+
 import Foundation
 import SwiftProtobuf
 
@@ -58,6 +61,7 @@ public struct Bloombox_Schema_Search_UserSearchResult {
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
   public mutating func clearKey() {_storage._key = nil}
 
+  /// User profile record.
   public var user: Bloombox_Schema_Identity_User {
     get {return _storage._user ?? Bloombox_Schema_Identity_User()}
     set {_uniqueStorage()._user = newValue}
