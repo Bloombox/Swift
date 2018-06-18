@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies a partner or partner location's settings for integrating with Treez.
+
 import Foundation
 import SwiftProtobuf
 
@@ -44,6 +47,16 @@ public struct Bloombox_Schema_Partner_Integrations_Treez_TreezSettings {
     get {return _storage._accountID}
     set {_uniqueStorage()._accountID = newValue}
   }
+
+  /// Sync interval settings.
+  public var syncInterval: Opencannabis_Temporal_Schedule {
+    get {return _storage._syncInterval ?? Opencannabis_Temporal_Schedule()}
+    set {_uniqueStorage()._syncInterval = newValue}
+  }
+  /// Returns true if `syncInterval` has been explicitly set.
+  public var hasSyncInterval: Bool {return _storage._syncInterval != nil}
+  /// Clears the value of `syncInterval`. Subsequent reads from it will return its default value.
+  public mutating func clearSyncInterval() {_storage._syncInterval = nil}
 
   /// Flags indicating features that should be enabled or disabled.
   public var features: Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures {
@@ -99,11 +112,13 @@ extension Bloombox_Schema_Partner_Integrations_Treez_TreezSettings: SwiftProtobu
   public static let protoMessageName: String = _protobuf_package + ".TreezSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "account_id"),
+    2: .standard(proto: "sync_interval"),
     10: .same(proto: "features"),
   ]
 
   fileprivate class _StorageClass {
     var _accountID: String = String()
+    var _syncInterval: Opencannabis_Temporal_Schedule? = nil
     var _features: Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures? = nil
 
     static let defaultInstance = _StorageClass()
@@ -112,6 +127,7 @@ extension Bloombox_Schema_Partner_Integrations_Treez_TreezSettings: SwiftProtobu
 
     init(copying source: _StorageClass) {
       _accountID = source._accountID
+      _syncInterval = source._syncInterval
       _features = source._features
     }
   }
@@ -129,6 +145,7 @@ extension Bloombox_Schema_Partner_Integrations_Treez_TreezSettings: SwiftProtobu
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1: try decoder.decodeSingularStringField(value: &_storage._accountID)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._syncInterval)
         case 10: try decoder.decodeSingularMessageField(value: &_storage._features)
         default: break
         }
@@ -140,6 +157,9 @@ extension Bloombox_Schema_Partner_Integrations_Treez_TreezSettings: SwiftProtobu
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       if !_storage._accountID.isEmpty {
         try visitor.visitSingularStringField(value: _storage._accountID, fieldNumber: 1)
+      }
+      if let v = _storage._syncInterval {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
       if let v = _storage._features {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
@@ -154,6 +174,7 @@ extension Bloombox_Schema_Partner_Integrations_Treez_TreezSettings: SwiftProtobu
         let _storage = _args.0
         let other_storage = _args.1
         if _storage._accountID != other_storage._accountID {return false}
+        if _storage._syncInterval != other_storage._syncInterval {return false}
         if _storage._features != other_storage._features {return false}
         return true
       }

@@ -151,6 +151,18 @@ public struct Opencannabis_Commerce_Item {
     set {_uniqueStorage()._count = newValue}
   }
 
+  /// Detail/link URL for this item.
+  public var uri: String {
+    get {return _storage._uri}
+    set {_uniqueStorage()._uri = newValue}
+  }
+
+  /// Image URL for this item.
+  public var imageUri: String {
+    get {return _storage._imageUri}
+    set {_uniqueStorage()._imageUri = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -233,12 +245,16 @@ extension Opencannabis_Commerce_Item: SwiftProtobuf.Message, SwiftProtobuf._Mess
     1: .same(proto: "key"),
     2: .same(proto: "variant"),
     3: .same(proto: "count"),
+    4: .same(proto: "uri"),
+    5: .standard(proto: "image_uri"),
   ]
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
     var _variant: [Opencannabis_Commerce_VariantSpec] = []
     var _count: UInt32 = 0
+    var _uri: String = String()
+    var _imageUri: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -248,6 +264,8 @@ extension Opencannabis_Commerce_Item: SwiftProtobuf.Message, SwiftProtobuf._Mess
       _key = source._key
       _variant = source._variant
       _count = source._count
+      _uri = source._uri
+      _imageUri = source._imageUri
     }
   }
 
@@ -266,6 +284,8 @@ extension Opencannabis_Commerce_Item: SwiftProtobuf.Message, SwiftProtobuf._Mess
         case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
         case 2: try decoder.decodeRepeatedMessageField(value: &_storage._variant)
         case 3: try decoder.decodeSingularUInt32Field(value: &_storage._count)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._uri)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._imageUri)
         default: break
         }
       }
@@ -283,6 +303,12 @@ extension Opencannabis_Commerce_Item: SwiftProtobuf.Message, SwiftProtobuf._Mess
       if _storage._count != 0 {
         try visitor.visitSingularUInt32Field(value: _storage._count, fieldNumber: 3)
       }
+      if !_storage._uri.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uri, fieldNumber: 4)
+      }
+      if !_storage._imageUri.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._imageUri, fieldNumber: 5)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -295,6 +321,8 @@ extension Opencannabis_Commerce_Item: SwiftProtobuf.Message, SwiftProtobuf._Mess
         if _storage._key != other_storage._key {return false}
         if _storage._variant != other_storage._variant {return false}
         if _storage._count != other_storage._count {return false}
+        if _storage._uri != other_storage._uri {return false}
+        if _storage._imageUri != other_storage._imageUri {return false}
         return true
       }
       if !storagesAreEqual {return false}

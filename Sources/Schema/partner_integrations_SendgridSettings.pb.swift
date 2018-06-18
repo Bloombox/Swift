@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies a partner or partner location's settings for integrating with SendGrid.
+
 import Foundation
 import SwiftProtobuf
 

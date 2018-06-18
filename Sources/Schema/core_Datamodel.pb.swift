@@ -73,6 +73,9 @@ public enum Core_FieldType: SwiftProtobuf.Enum {
 
   /// This is a tags-style field.
   case tags // = 3
+
+  /// Store this object as a special flags-style mapping.
+  case flags // = 4
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -85,6 +88,7 @@ public enum Core_FieldType: SwiftProtobuf.Enum {
     case 1: self = .key
     case 2: self = .id
     case 3: self = .tags
+    case 4: self = .flags
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -95,6 +99,7 @@ public enum Core_FieldType: SwiftProtobuf.Enum {
     case .key: return 1
     case .id: return 2
     case .tags: return 3
+    case .flags: return 4
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -344,6 +349,7 @@ extension Core_FieldType: SwiftProtobuf._ProtoNameProviding {
     1: .same(proto: "KEY"),
     2: .same(proto: "ID"),
     3: .same(proto: "TAGS"),
+    4: .same(proto: "FLAGS"),
   ]
 }
 

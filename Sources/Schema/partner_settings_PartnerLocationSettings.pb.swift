@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the concept of partner location-level settings or preferences.
+
 import Foundation
 import SwiftProtobuf
 
@@ -277,6 +280,9 @@ public enum Bloombox_Schema_Partner_Settings_ShopContactChannel: SwiftProtobuf.E
 
   /// Specifies notifications related to user enrollment.
   case enrollment // = 1
+
+  /// Specifies marketing/newsletter style communications.
+  case marketing // = 2
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -287,6 +293,7 @@ public enum Bloombox_Schema_Partner_Settings_ShopContactChannel: SwiftProtobuf.E
     switch rawValue {
     case 0: self = .ordering
     case 1: self = .enrollment
+    case 2: self = .marketing
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -295,6 +302,7 @@ public enum Bloombox_Schema_Partner_Settings_ShopContactChannel: SwiftProtobuf.E
     switch self {
     case .ordering: return 0
     case .enrollment: return 1
+    case .marketing: return 2
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -961,6 +969,12 @@ public struct Bloombox_Schema_Partner_Settings_ShopServiceSettings {
   /// Specifies whether there is a physical storefront for this location.
   public var storefront: Bool = false
 
+  /// Specifies whether this operator supports medical sales.
+  public var medical: Bool = false
+
+  /// Specifies whether this operator supports adult-use, or recreational, sales.
+  public var adultUse: Bool = false
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -1046,6 +1060,16 @@ public struct Bloombox_Schema_Partner_Settings_ShopChannelSettings {
   public var hasEnrollment: Bool {return _storage._enrollment != nil}
   /// Clears the value of `enrollment`. Subsequent reads from it will return its default value.
   public mutating func clearEnrollment() {_storage._enrollment = nil}
+
+  /// Specifies channel-specific settings for marketing notifications.
+  public var marketing: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings {
+    get {return _storage._marketing ?? Bloombox_Schema_Partner_Settings_ShopContactChannelSettings()}
+    set {_uniqueStorage()._marketing = newValue}
+  }
+  /// Returns true if `marketing` has been explicitly set.
+  public var hasMarketing: Bool {return _storage._marketing != nil}
+  /// Clears the value of `marketing`. Subsequent reads from it will return its default value.
+  public mutating func clearMarketing() {_storage._marketing = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1236,6 +1260,36 @@ public struct Bloombox_Schema_Partner_Settings_OnlineShopSettings {
   /// Clears the value of `comms`. Subsequent reads from it will return its default value.
   public mutating func clearComms() {_storage._comms = nil}
 
+  /// Domain to use for online shop operations.
+  public var domain: String {
+    get {return _storage._domain}
+    set {_uniqueStorage()._domain = newValue}
+  }
+
+  /// Signup URL to use for online shop operations.
+  public var signup: String {
+    get {return _storage._signup}
+    set {_uniqueStorage()._signup = newValue}
+  }
+
+  /// Login URL to use for online shop operations.
+  public var login: String {
+    get {return _storage._login}
+    set {_uniqueStorage()._login = newValue}
+  }
+
+  /// List of accepted payment methods at this location's digital/online storefront.
+  public var acceptedMethod: [Opencannabis_Commerce_PaymentMethod] {
+    get {return _storage._acceptedMethod}
+    set {_uniqueStorage()._acceptedMethod = newValue}
+  }
+
+  /// List of accepted credit/debit card types at this location's digital/online storefront.
+  public var acceptedCard: [Opencannabis_Commerce_PaymentCardType] {
+    get {return _storage._acceptedCard}
+    set {_uniqueStorage()._acceptedCard = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -1258,6 +1312,18 @@ public struct Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings {
   public var hasLocation: Bool {return _storage._location != nil}
   /// Clears the value of `location`. Subsequent reads from it will return its default value.
   public mutating func clearLocation() {_storage._location = nil}
+
+  /// List of accepted payment methods at this location's physical storefront.
+  public var acceptedMethod: [Opencannabis_Commerce_PaymentMethod] {
+    get {return _storage._acceptedMethod}
+    set {_uniqueStorage()._acceptedMethod = newValue}
+  }
+
+  /// List of accepted credit/debit card types at this location's physical storefront.
+  public var acceptedCard: [Opencannabis_Commerce_PaymentCardType] {
+    get {return _storage._acceptedCard}
+    set {_uniqueStorage()._acceptedCard = newValue}
+  }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1545,6 +1611,7 @@ extension Bloombox_Schema_Partner_Settings_ShopContactChannel: SwiftProtobuf._Pr
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ORDERING"),
     1: .same(proto: "ENROLLMENT"),
+    2: .same(proto: "MARKETING"),
   ]
 }
 
@@ -2536,6 +2603,8 @@ extension Bloombox_Schema_Partner_Settings_ShopServiceSettings: SwiftProtobuf.Me
     2: .same(proto: "express"),
     3: .same(proto: "pickup"),
     4: .same(proto: "storefront"),
+    5: .same(proto: "medical"),
+    6: .standard(proto: "adult_use"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2545,6 +2614,8 @@ extension Bloombox_Schema_Partner_Settings_ShopServiceSettings: SwiftProtobuf.Me
       case 2: try decoder.decodeSingularBoolField(value: &self.express)
       case 3: try decoder.decodeSingularBoolField(value: &self.pickup)
       case 4: try decoder.decodeSingularBoolField(value: &self.storefront)
+      case 5: try decoder.decodeSingularBoolField(value: &self.medical)
+      case 6: try decoder.decodeSingularBoolField(value: &self.adultUse)
       default: break
       }
     }
@@ -2563,6 +2634,12 @@ extension Bloombox_Schema_Partner_Settings_ShopServiceSettings: SwiftProtobuf.Me
     if self.storefront != false {
       try visitor.visitSingularBoolField(value: self.storefront, fieldNumber: 4)
     }
+    if self.medical != false {
+      try visitor.visitSingularBoolField(value: self.medical, fieldNumber: 5)
+    }
+    if self.adultUse != false {
+      try visitor.visitSingularBoolField(value: self.adultUse, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -2571,6 +2648,8 @@ extension Bloombox_Schema_Partner_Settings_ShopServiceSettings: SwiftProtobuf.Me
     if self.express != other.express {return false}
     if self.pickup != other.pickup {return false}
     if self.storefront != other.storefront {return false}
+    if self.medical != other.medical {return false}
+    if self.adultUse != other.adultUse {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -2692,11 +2771,13 @@ extension Bloombox_Schema_Partner_Settings_ShopChannelSettings: SwiftProtobuf.Me
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "orders"),
     2: .same(proto: "enrollment"),
+    3: .same(proto: "marketing"),
   ]
 
   fileprivate class _StorageClass {
     var _orders: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings? = nil
     var _enrollment: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings? = nil
+    var _marketing: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2705,6 +2786,7 @@ extension Bloombox_Schema_Partner_Settings_ShopChannelSettings: SwiftProtobuf.Me
     init(copying source: _StorageClass) {
       _orders = source._orders
       _enrollment = source._enrollment
+      _marketing = source._marketing
     }
   }
 
@@ -2722,6 +2804,7 @@ extension Bloombox_Schema_Partner_Settings_ShopChannelSettings: SwiftProtobuf.Me
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._orders)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._enrollment)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._marketing)
         default: break
         }
       }
@@ -2736,6 +2819,9 @@ extension Bloombox_Schema_Partner_Settings_ShopChannelSettings: SwiftProtobuf.Me
       if let v = _storage._enrollment {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
+      if let v = _storage._marketing {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -2747,6 +2833,7 @@ extension Bloombox_Schema_Partner_Settings_ShopChannelSettings: SwiftProtobuf.Me
         let other_storage = _args.1
         if _storage._orders != other_storage._orders {return false}
         if _storage._enrollment != other_storage._enrollment {return false}
+        if _storage._marketing != other_storage._marketing {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -3069,11 +3156,21 @@ extension Bloombox_Schema_Partner_Settings_OnlineShopSettings: SwiftProtobuf.Mes
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "origin"),
     2: .same(proto: "comms"),
+    3: .same(proto: "domain"),
+    4: .same(proto: "signup"),
+    5: .same(proto: "login"),
+    6: .standard(proto: "accepted_method"),
+    7: .standard(proto: "accepted_card"),
   ]
 
   fileprivate class _StorageClass {
     var _origin: String = String()
     var _comms: Bloombox_Schema_Partner_Settings_ShopCommsSettings? = nil
+    var _domain: String = String()
+    var _signup: String = String()
+    var _login: String = String()
+    var _acceptedMethod: [Opencannabis_Commerce_PaymentMethod] = []
+    var _acceptedCard: [Opencannabis_Commerce_PaymentCardType] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -3082,6 +3179,11 @@ extension Bloombox_Schema_Partner_Settings_OnlineShopSettings: SwiftProtobuf.Mes
     init(copying source: _StorageClass) {
       _origin = source._origin
       _comms = source._comms
+      _domain = source._domain
+      _signup = source._signup
+      _login = source._login
+      _acceptedMethod = source._acceptedMethod
+      _acceptedCard = source._acceptedCard
     }
   }
 
@@ -3099,6 +3201,11 @@ extension Bloombox_Schema_Partner_Settings_OnlineShopSettings: SwiftProtobuf.Mes
         switch fieldNumber {
         case 1: try decoder.decodeSingularStringField(value: &_storage._origin)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._comms)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._domain)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._signup)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._login)
+        case 6: try decoder.decodeRepeatedEnumField(value: &_storage._acceptedMethod)
+        case 7: try decoder.decodeRepeatedEnumField(value: &_storage._acceptedCard)
         default: break
         }
       }
@@ -3113,6 +3220,21 @@ extension Bloombox_Schema_Partner_Settings_OnlineShopSettings: SwiftProtobuf.Mes
       if let v = _storage._comms {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
+      if !_storage._domain.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._domain, fieldNumber: 3)
+      }
+      if !_storage._signup.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._signup, fieldNumber: 4)
+      }
+      if !_storage._login.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._login, fieldNumber: 5)
+      }
+      if !_storage._acceptedMethod.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._acceptedMethod, fieldNumber: 6)
+      }
+      if !_storage._acceptedCard.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._acceptedCard, fieldNumber: 7)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -3124,6 +3246,11 @@ extension Bloombox_Schema_Partner_Settings_OnlineShopSettings: SwiftProtobuf.Mes
         let other_storage = _args.1
         if _storage._origin != other_storage._origin {return false}
         if _storage._comms != other_storage._comms {return false}
+        if _storage._domain != other_storage._domain {return false}
+        if _storage._signup != other_storage._signup {return false}
+        if _storage._login != other_storage._login {return false}
+        if _storage._acceptedMethod != other_storage._acceptedMethod {return false}
+        if _storage._acceptedCard != other_storage._acceptedCard {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -3137,10 +3264,14 @@ extension Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings: SwiftProt
   public static let protoMessageName: String = _protobuf_package + ".PhysicalStorefrontSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "location"),
+    2: .standard(proto: "accepted_method"),
+    3: .standard(proto: "accepted_card"),
   ]
 
   fileprivate class _StorageClass {
     var _location: Opencannabis_Geo_Location? = nil
+    var _acceptedMethod: [Opencannabis_Commerce_PaymentMethod] = []
+    var _acceptedCard: [Opencannabis_Commerce_PaymentCardType] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -3148,6 +3279,8 @@ extension Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings: SwiftProt
 
     init(copying source: _StorageClass) {
       _location = source._location
+      _acceptedMethod = source._acceptedMethod
+      _acceptedCard = source._acceptedCard
     }
   }
 
@@ -3164,6 +3297,8 @@ extension Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings: SwiftProt
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._location)
+        case 2: try decoder.decodeRepeatedEnumField(value: &_storage._acceptedMethod)
+        case 3: try decoder.decodeRepeatedEnumField(value: &_storage._acceptedCard)
         default: break
         }
       }
@@ -3175,6 +3310,12 @@ extension Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings: SwiftProt
       if let v = _storage._location {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
       }
+      if !_storage._acceptedMethod.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._acceptedMethod, fieldNumber: 2)
+      }
+      if !_storage._acceptedCard.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._acceptedCard, fieldNumber: 3)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -3185,6 +3326,8 @@ extension Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings: SwiftProt
         let _storage = _args.0
         let other_storage = _args.1
         if _storage._location != other_storage._location {return false}
+        if _storage._acceptedMethod != other_storage._acceptedMethod {return false}
+        if _storage._acceptedCard != other_storage._acceptedCard {return false}
         return true
       }
       if !storagesAreEqual {return false}

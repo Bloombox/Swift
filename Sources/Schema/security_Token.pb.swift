@@ -6,6 +6,11 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies payloads related to cryptographic tokens, which may be emitted/transmitted during or after auth-related
+/// flows to verifiably assert one state or another, or make claims on behalf of an authenticated/authorized user,
+/// system, or device.
+
 import Foundation
 import SwiftProtobuf
 

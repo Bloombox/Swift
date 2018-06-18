@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies structures that track/express media related to government-issued ID for a user.
+
 import Foundation
 import SwiftProtobuf
 

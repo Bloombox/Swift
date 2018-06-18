@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies top-level or shared settings structures.
+
 import Foundation
 import SwiftProtobuf
 
@@ -224,9 +227,33 @@ public struct Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Specifies integrations that a specific partner has setup.
+  public var integrations: [Bloombox_Schema_Partner_Integrations_IntegrationPartner] {
+    get {return _storage._integrations}
+    set {_uniqueStorage()._integrations = newValue}
+  }
+
+  /// Generic settings, specified for each partner-level integration.
+  public var generic: Dictionary<String,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings> {
+    get {return _storage._generic}
+    set {_uniqueStorage()._generic = newValue}
+  }
+
+  /// Specifies location-specific integration settings with GSuite.
+  public var gsuite: Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings {
+    get {return _storage._gsuite ?? Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings()}
+    set {_uniqueStorage()._gsuite = newValue}
+  }
+  /// Returns true if `gsuite` has been explicitly set.
+  public var hasGsuite: Bool {return _storage._gsuite != nil}
+  /// Clears the value of `gsuite`. Subsequent reads from it will return its default value.
+  public mutating func clearGsuite() {_storage._gsuite = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -452,18 +479,76 @@ extension Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: Swif
 
 extension Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerIntegrationSettings"
-  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "integrations"),
+    2: .same(proto: "generic"),
+    10: .same(proto: "gsuite"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _integrations: [Bloombox_Schema_Partner_Integrations_IntegrationPartner] = []
+    var _generic: Dictionary<String,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings> = [:]
+    var _gsuite: Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _integrations = source._integrations
+      _generic = source._generic
+      _gsuite = source._gsuite
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeRepeatedEnumField(value: &_storage._integrations)
+        case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings>.self, value: &_storage._generic)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._gsuite)
+        default: break
+        }
+      }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._integrations.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._integrations, fieldNumber: 1)
+      }
+      if !_storage._generic.isEmpty {
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings>.self, value: _storage._generic, fieldNumber: 2)
+      }
+      if let v = _storage._gsuite {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._integrations != other_storage._integrations {return false}
+        if _storage._generic != other_storage._generic {return false}
+        if _storage._gsuite != other_storage._gsuite {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if unknownFields != other.unknownFields {return false}
     return true
   }

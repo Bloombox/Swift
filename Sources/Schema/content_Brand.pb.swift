@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies a structure for dealing with brand content information.
+
 import Foundation
 import SwiftProtobuf
 

@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the generic concept of a "name," in the concept of a non-human object.
+
 import Foundation
 import SwiftProtobuf
 

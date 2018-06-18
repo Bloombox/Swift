@@ -24,7 +24,7 @@ public enum Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case milligrams // = 0
   case percentage // = 1
-  case presence // = 3
+  case presence // = 2
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -35,7 +35,7 @@ public enum Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
     switch rawValue {
     case 0: self = .milligrams
     case 1: self = .percentage
-    case 3: self = .presence
+    case 2: self = .presence
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -44,7 +44,40 @@ public enum Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
     switch self {
     case .milligrams: return 0
     case .percentage: return 1
-    case .presence: return 3
+    case .presence: return 2
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+/// Specifies the different types of testing error that may be reported: percent error, absolute error, and
+/// relative error.
+public enum Opencannabis_Structs_Labtesting_TestErrorType: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+  case percent // = 0
+  case absolute // = 1
+  case relative // = 2
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .percent
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .percent
+    case 1: self = .absolute
+    case 2: self = .relative
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .percent: return 0
+    case .absolute: return 1
+    case .relative: return 2
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -87,24 +120,39 @@ public struct Opencannabis_Structs_Labtesting_TestValue {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var type: Opencannabis_Structs_Labtesting_TestValueType = .milligrams
+  public var type: Opencannabis_Structs_Labtesting_TestValueType {
+    get {return _storage._type}
+    set {_uniqueStorage()._type = newValue}
+  }
 
-  public var value: Opencannabis_Structs_Labtesting_TestValue.OneOf_Value? = nil
+  public var error: Opencannabis_Structs_Labtesting_TestValue.TestError {
+    get {return _storage._error ?? Opencannabis_Structs_Labtesting_TestValue.TestError()}
+    set {_uniqueStorage()._error = newValue}
+  }
+  /// Returns true if `error` has been explicitly set.
+  public var hasError: Bool {return _storage._error != nil}
+  /// Clears the value of `error`. Subsequent reads from it will return its default value.
+  public mutating func clearError() {_storage._error = nil}
+
+  public var value: OneOf_Value? {
+    get {return _storage._value}
+    set {_uniqueStorage()._value = newValue}
+  }
 
   public var measurement: Double {
     get {
-      if case .measurement(let v)? = value {return v}
+      if case .measurement(let v)? = _storage._value {return v}
       return 0
     }
-    set {value = .measurement(newValue)}
+    set {_uniqueStorage()._value = .measurement(newValue)}
   }
 
   public var present: Bool {
     get {
-      if case .present(let v)? = value {return v}
+      if case .present(let v)? = _storage._value {return v}
       return false
     }
-    set {value = .present(newValue)}
+    set {_uniqueStorage()._value = .present(newValue)}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -122,7 +170,26 @@ public struct Opencannabis_Structs_Labtesting_TestValue {
     }
   }
 
+  /// Represents the degree of uncertainty that arises during testing and consists of the type of error being reported
+  /// along with the error value.  See more information at: 
+  /// https://www.nde-ed.org/GeneralResources/ErrorAnalysis/UncertaintyTerms.htm
+  public struct TestError {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    public var type: Opencannabis_Structs_Labtesting_TestErrorType = .percent
+
+    public var value: Double = 0
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
   public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 public struct Opencannabis_Structs_Labtesting_TestMedia {
@@ -159,7 +226,15 @@ extension Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf._ProtoNam
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "MILLIGRAMS"),
     1: .same(proto: "PERCENTAGE"),
-    3: .same(proto: "PRESENCE"),
+    2: .same(proto: "PRESENCE"),
+  ]
+}
+
+extension Opencannabis_Structs_Labtesting_TestErrorType: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "PERCENT"),
+    1: .same(proto: "ABSOLUTE"),
+    2: .same(proto: "RELATIVE"),
   ]
 }
 
@@ -175,44 +250,121 @@ extension Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf.Message, Swif
   public static let protoMessageName: String = _protobuf_package + ".TestValue"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
+    2: .same(proto: "error"),
     10: .same(proto: "measurement"),
     20: .same(proto: "present"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _type: Opencannabis_Structs_Labtesting_TestValueType = .milligrams
+    var _error: Opencannabis_Structs_Labtesting_TestValue.TestError? = nil
+    var _value: Opencannabis_Structs_Labtesting_TestValue.OneOf_Value?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _type = source._type
+      _error = source._error
+      _value = source._value
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._error)
+        case 10:
+          if _storage._value != nil {try decoder.handleConflictingOneOf()}
+          var v: Double?
+          try decoder.decodeSingularDoubleField(value: &v)
+          if let v = v {_storage._value = .measurement(v)}
+        case 20:
+          if _storage._value != nil {try decoder.handleConflictingOneOf()}
+          var v: Bool?
+          try decoder.decodeSingularBoolField(value: &v)
+          if let v = v {_storage._value = .present(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._type != .milligrams {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
+      }
+      if let v = _storage._error {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      switch _storage._value {
+      case .measurement(let v)?:
+        try visitor.visitSingularDoubleField(value: v, fieldNumber: 10)
+      case .present(let v)?:
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 20)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestValue) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._type != other_storage._type {return false}
+        if _storage._error != other_storage._error {return false}
+        if _storage._value != other_storage._value {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Structs_Labtesting_TestValue.TestError: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Opencannabis_Structs_Labtesting_TestValue.protoMessageName + ".TestError"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "type"),
+    2: .same(proto: "value"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularEnumField(value: &self.type)
-      case 10:
-        if self.value != nil {try decoder.handleConflictingOneOf()}
-        var v: Double?
-        try decoder.decodeSingularDoubleField(value: &v)
-        if let v = v {self.value = .measurement(v)}
-      case 20:
-        if self.value != nil {try decoder.handleConflictingOneOf()}
-        var v: Bool?
-        try decoder.decodeSingularBoolField(value: &v)
-        if let v = v {self.value = .present(v)}
+      case 2: try decoder.decodeSingularDoubleField(value: &self.value)
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.type != .milligrams {
+    if self.type != .percent {
       try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
     }
-    switch self.value {
-    case .measurement(let v)?:
-      try visitor.visitSingularDoubleField(value: v, fieldNumber: 10)
-    case .present(let v)?:
-      try visitor.visitSingularBoolField(value: v, fieldNumber: 20)
-    case nil: break
+    if self.value != 0 {
+      try visitor.visitSingularDoubleField(value: self.value, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestValue) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestValue.TestError) -> Bool {
     if self.type != other.type {return false}
     if self.value != other.value {return false}
     if unknownFields != other.unknownFields {return false}

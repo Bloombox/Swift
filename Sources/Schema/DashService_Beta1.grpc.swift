@@ -33,6 +33,171 @@ public enum Bloombox_Schema_Services_Dash_V1Beta1_DashboardClientError : Error {
   case error(c: CallResult)
 }
 
+/// Partner (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.dash.v1beta1.Dashboard/Partner")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Dash_V1Beta1_DashboardClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// Locations (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationsCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.dash.v1beta1.Dashboard/Locations")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Dash_V1Beta1_DashboardClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationsCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// Location (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.dash.v1beta1.Dashboard/Location")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Dash_V1Beta1_DashboardClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
 /// PartnerSettings (Unary)
 public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerSettingsCall {
   private var call : Call
@@ -253,6 +418,171 @@ public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationSettingsUpda
   }
 }
 
+/// IntegrationValidate (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationValidateCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.dash.v1beta1.Dashboard/IntegrationValidate")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Dash_V1Beta1_DashboardClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationValidateCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// IntegrationTest (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTestCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.dash.v1beta1.Dashboard/IntegrationTest")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Dash_V1Beta1_DashboardClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTestCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// IntegrationTrigger (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTriggerCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.dash.v1beta1.Dashboard/IntegrationTrigger")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Dash_V1Beta1_DashboardClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTriggerCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
 /// Call methods of this class to make API calls.
 public final class Bloombox_Schema_Services_Dash_V1Beta1_DashboardService {
   public var channel: Channel
@@ -286,6 +616,51 @@ public final class Bloombox_Schema_Services_Dash_V1Beta1_DashboardService {
     metadata = Metadata()
   }
 
+  /// Synchronous. Unary.
+  public func partner(_ request: Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Request)
+    throws
+    -> Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func partner(_ request: Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerCall {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func locations(_ request: Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Request)
+    throws
+    -> Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Response {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationsCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func locations(_ request: Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationsCall {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationsCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func location(_ request: Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Request)
+    throws
+    -> Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Response {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func location(_ request: Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationCall {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
   /// Synchronous. Unary.
   public func partnersettings(_ request: Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Request)
     throws
@@ -346,6 +721,51 @@ public final class Bloombox_Schema_Services_Dash_V1Beta1_DashboardService {
                                                  metadata:metadata,
                                                  completion:completion)
   }
+  /// Synchronous. Unary.
+  public func integrationvalidate(_ request: Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Request)
+    throws
+    -> Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Response {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationValidateCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func integrationvalidate(_ request: Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationValidateCall {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationValidateCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func integrationtest(_ request: Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Request)
+    throws
+    -> Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Response {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTestCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func integrationtest(_ request: Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTestCall {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTestCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func integrationtrigger(_ request: Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Request)
+    throws
+    -> Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Response {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTriggerCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func integrationtrigger(_ request: Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTriggerCall {
+      return try Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTriggerCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
 }
 
 
@@ -356,10 +776,16 @@ public enum Bloombox_Schema_Services_Dash_V1Beta1_DashboardServerError : Error {
 
 /// To build a server, implement a class that conforms to this protocol.
 public protocol Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider {
+  func partner(request : Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Request, session : Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerSession) throws -> Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response
+  func locations(request : Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Request, session : Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationsSession) throws -> Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Response
+  func location(request : Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Request, session : Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationSession) throws -> Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Response
   func partnersettings(request : Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Request, session : Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerSettingsSession) throws -> Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Response
   func partnersettingsupdate(request : Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings.Request, session : Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerSettingsUpdateSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
   func locationsettings(request : Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.Request, session : Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationSettingsSession) throws -> Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.Response
   func locationsettingsupdate(request : Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings.Request, session : Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationSettingsUpdateSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func integrationvalidate(request : Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Request, session : Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationValidateSession) throws -> Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Response
+  func integrationtest(request : Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Request, session : Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTestSession) throws -> Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Response
+  func integrationtrigger(request : Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Request, session : Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTriggerSession) throws -> Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Response
 }
 
 /// Common properties available in each service session.
@@ -374,6 +800,81 @@ public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardSession {
 
   fileprivate init(handler:gRPC.Handler) {
     self.handler = handler
+  }
+}
+
+// Partner (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerSession : Bloombox_Schema_Services_Dash_V1Beta1_DashboardSession {
+  private var provider : Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Request(serializedData:requestData)
+        let replyMessage = try self.provider.partner(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// Locations (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationsSession : Bloombox_Schema_Services_Dash_V1Beta1_DashboardSession {
+  private var provider : Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Request(serializedData:requestData)
+        let replyMessage = try self.provider.locations(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// Location (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationSession : Bloombox_Schema_Services_Dash_V1Beta1_DashboardSession {
+  private var provider : Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Request(serializedData:requestData)
+        let replyMessage = try self.provider.location(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
   }
 }
 
@@ -477,6 +978,81 @@ public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationSettingsUpda
   }
 }
 
+// IntegrationValidate (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationValidateSession : Bloombox_Schema_Services_Dash_V1Beta1_DashboardSession {
+  private var provider : Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Request(serializedData:requestData)
+        let replyMessage = try self.provider.integrationvalidate(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// IntegrationTest (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTestSession : Bloombox_Schema_Services_Dash_V1Beta1_DashboardSession {
+  private var provider : Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Request(serializedData:requestData)
+        let replyMessage = try self.provider.integrationtest(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// IntegrationTrigger (Unary)
+public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTriggerSession : Bloombox_Schema_Services_Dash_V1Beta1_DashboardSession {
+  private var provider : Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Dash_V1Beta1_DashboardProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Request(serializedData:requestData)
+        let replyMessage = try self.provider.integrationtrigger(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
 
 /// Main server for generated service
 public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardServer {
@@ -523,6 +1099,12 @@ public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardServer {
 
       do {
         switch handler.method {
+        case "/bloombox.schema.services.dash.v1beta1.Dashboard/Partner":
+          try Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.dash.v1beta1.Dashboard/Locations":
+          try Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationsSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.dash.v1beta1.Dashboard/Location":
+          try Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.dash.v1beta1.Dashboard/PartnerSettings":
           try Bloombox_Schema_Services_Dash_V1Beta1_DashboardPartnerSettingsSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.dash.v1beta1.Dashboard/PartnerSettingsUpdate":
@@ -531,6 +1113,12 @@ public class Bloombox_Schema_Services_Dash_V1Beta1_DashboardServer {
           try Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationSettingsSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.dash.v1beta1.Dashboard/LocationSettingsUpdate":
           try Bloombox_Schema_Services_Dash_V1Beta1_DashboardLocationSettingsUpdateSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.dash.v1beta1.Dashboard/IntegrationValidate":
+          try Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationValidateSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.dash.v1beta1.Dashboard/IntegrationTest":
+          try Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTestSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.dash.v1beta1.Dashboard/IntegrationTrigger":
+          try Bloombox_Schema_Services_Dash_V1Beta1_DashboardIntegrationTriggerSession(handler:handler, provider:provider).run(queue:queue)
         default:
           break // handle unknown requests
         }

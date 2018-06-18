@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structured record to store email addresses.
+
 import Foundation
 import SwiftProtobuf
 
@@ -32,6 +35,9 @@ public struct Opencannabis_Contact_EmailAddress {
   /// address remains unvalidated.
   public var validated: Bool = false
 
+  /// Display name for the email address, if known/specified.
+  public var name: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -46,6 +52,7 @@ extension Opencannabis_Contact_EmailAddress: SwiftProtobuf.Message, SwiftProtobu
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "address"),
     2: .same(proto: "validated"),
+    3: .same(proto: "name"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -53,6 +60,7 @@ extension Opencannabis_Contact_EmailAddress: SwiftProtobuf.Message, SwiftProtobu
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.address)
       case 2: try decoder.decodeSingularBoolField(value: &self.validated)
+      case 3: try decoder.decodeSingularStringField(value: &self.name)
       default: break
       }
     }
@@ -65,12 +73,16 @@ extension Opencannabis_Contact_EmailAddress: SwiftProtobuf.Message, SwiftProtobu
     if self.validated != false {
       try visitor.visitSingularBoolField(value: self.validated, fieldNumber: 2)
     }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Contact_EmailAddress) -> Bool {
     if self.address != other.address {return false}
     if self.validated != other.validated {return false}
+    if self.name != other.name {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

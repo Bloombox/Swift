@@ -371,8 +371,8 @@ public struct Bloombox_Schema_Services_Shop_V1_ShopInfo {
     // methods supported on all messages.
 
     /// Location key.
-    public var location: Bloombox_Schema_Partner_PartnerLocationKey {
-      get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocationKey()}
+    public var location: Bloombox_Schema_Partner_LocationKey {
+      get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
       set {_uniqueStorage()._location = newValue}
     }
     /// Returns true if `location` has been explicitly set.
@@ -491,8 +491,8 @@ public struct Bloombox_Schema_Services_Shop_V1_EnrollMember {
     public mutating func clearGovernmentID() {_storage._governmentID = nil}
 
     /// Specifies the partner we are enrolling to.
-    public var location: Bloombox_Schema_Partner_PartnerLocationKey {
-      get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocationKey()}
+    public var location: Bloombox_Schema_Partner_LocationKey {
+      get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
       set {_uniqueStorage()._location = newValue}
     }
     /// Returns true if `location` has been explicitly set.
@@ -636,8 +636,8 @@ public struct Bloombox_Schema_Services_Shop_V1_VerifyMember {
     }
 
     /// Location key.
-    public var location: Bloombox_Schema_Partner_PartnerLocationKey {
-      get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocationKey()}
+    public var location: Bloombox_Schema_Partner_LocationKey {
+      get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
       set {_uniqueStorage()._location = newValue}
     }
     /// Returns true if `location` has been explicitly set.
@@ -763,8 +763,8 @@ public struct Bloombox_Schema_Services_Shop_V1_CheckZipcode {
     }
 
     /// Location to check.
-    public var location: Bloombox_Schema_Partner_PartnerLocationKey {
-      get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocationKey()}
+    public var location: Bloombox_Schema_Partner_LocationKey {
+      get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
       set {_uniqueStorage()._location = newValue}
     }
     /// Returns true if `location` has been explicitly set.
@@ -874,8 +874,8 @@ public struct Bloombox_Schema_Services_Shop_V1_ShareOrder {
     public mutating func clearOrder() {_storage._order = nil}
 
     /// Location to check.
-    public var location: Bloombox_Schema_Partner_PartnerLocationKey {
-      get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocationKey()}
+    public var location: Bloombox_Schema_Partner_LocationKey {
+      get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
       set {_uniqueStorage()._location = newValue}
     }
     /// Returns true if `location` has been explicitly set.
@@ -962,8 +962,8 @@ public struct Bloombox_Schema_Services_Shop_V1_SubmitOrder {
     public mutating func clearOrder() {_storage._order = nil}
 
     /// Location to check.
-    public var location: Bloombox_Schema_Partner_PartnerLocationKey {
-      get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocationKey()}
+    public var location: Bloombox_Schema_Partner_LocationKey {
+      get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
       set {_uniqueStorage()._location = newValue}
     }
     /// Returns true if `location` has been explicitly set.
@@ -1049,8 +1049,8 @@ public struct Bloombox_Schema_Services_Shop_V1_GetOrder {
     }
 
     /// Partner/location code.
-    public var location: Bloombox_Schema_Partner_PartnerLocationKey {
-      get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocationKey()}
+    public var location: Bloombox_Schema_Partner_LocationKey {
+      get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
       set {_uniqueStorage()._location = newValue}
     }
     /// Returns true if `location` has been explicitly set.
@@ -1356,7 +1356,7 @@ extension Bloombox_Schema_Services_Shop_V1_ShopInfo.Request: SwiftProtobuf.Messa
   ]
 
   fileprivate class _StorageClass {
-    var _location: Bloombox_Schema_Partner_PartnerLocationKey? = nil
+    var _location: Bloombox_Schema_Partner_LocationKey? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1547,7 +1547,7 @@ extension Bloombox_Schema_Services_Shop_V1_EnrollMember.Request: SwiftProtobuf.M
     var _channel: String = String()
     var _doctorRec: Bloombox_Schema_Identity_Ids_UserDoctorRec? = nil
     var _governmentID: Bloombox_Schema_Identity_ID? = nil
-    var _location: Bloombox_Schema_Partner_PartnerLocationKey? = nil
+    var _location: Bloombox_Schema_Partner_LocationKey? = nil
     var _password: String = String()
     var _dryRun: Bool = false
     var _consumerProfile: Bloombox_Schema_Identity_ConsumerProfile? = nil
@@ -1798,7 +1798,7 @@ extension Bloombox_Schema_Services_Shop_V1_VerifyMember.Request: SwiftProtobuf.M
 
   fileprivate class _StorageClass {
     var _emailAddress: String = String()
-    var _location: Bloombox_Schema_Partner_PartnerLocationKey? = nil
+    var _location: Bloombox_Schema_Partner_LocationKey? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2041,7 +2041,7 @@ extension Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request: SwiftProtobuf.M
 
   fileprivate class _StorageClass {
     var _zipcode: String = String()
-    var _location: Bloombox_Schema_Partner_PartnerLocationKey? = nil
+    var _location: Bloombox_Schema_Partner_LocationKey? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2237,7 +2237,7 @@ extension Bloombox_Schema_Services_Shop_V1_ShareOrder.Request: SwiftProtobuf.Mes
     var _emailAddress: Opencannabis_Contact_EmailAddress? = nil
     var _phoneNumber: Opencannabis_Contact_PhoneNumber? = nil
     var _order: Opencannabis_Commerce_Order? = nil
-    var _location: Bloombox_Schema_Partner_PartnerLocationKey? = nil
+    var _location: Bloombox_Schema_Partner_LocationKey? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2435,7 +2435,7 @@ extension Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request: SwiftProtobuf.Me
 
   fileprivate class _StorageClass {
     var _order: Opencannabis_Commerce_Order? = nil
-    var _location: Bloombox_Schema_Partner_PartnerLocationKey? = nil
+    var _location: Bloombox_Schema_Partner_LocationKey? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2627,7 +2627,7 @@ extension Bloombox_Schema_Services_Shop_V1_GetOrder.Request: SwiftProtobuf.Messa
 
   fileprivate class _StorageClass {
     var _orderID: String = String()
-    var _location: Bloombox_Schema_Partner_PartnerLocationKey? = nil
+    var _location: Bloombox_Schema_Partner_LocationKey? = nil
 
     static let defaultInstance = _StorageClass()
 
