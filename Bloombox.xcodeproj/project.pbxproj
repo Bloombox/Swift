@@ -46,6 +46,9 @@
 
 /* Begin PBXBuildFile section */
 		228571EB215E9ECF0031BCFF /* CgRPC.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_591 /* CgRPC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		228571EE215EB17E0031BCFF /* POSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228571EC215EB0450031BCFF /* POSClient.swift */; };
+		228571F1215EBB370031BCFF /* POSClient+AuthorizeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228571EF215EBA680031BCFF /* POSClient+AuthorizeUser.swift */; };
+		228571F4215EBCA20031BCFF /* POSClient+VerifyTicketKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228571F2215EBC7C0031BCFF /* POSClient+VerifyTicketKey.swift */; };
 		OBJ_1218 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_1224 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_659 /* aes.c */; };
 		OBJ_1225 /* key_wrap.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_660 /* key_wrap.c */; };
@@ -1134,6 +1137,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		228571EC215EB0450031BCFF /* POSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSClient.swift; sourceTree = "<group>"; };
+		228571EF215EBA680031BCFF /* POSClient+AuthorizeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "POSClient+AuthorizeUser.swift"; sourceTree = "<group>"; };
+		228571F2215EBC7C0031BCFF /* POSClient+VerifyTicketKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "POSClient+VerifyTicketKey.swift"; sourceTree = "<group>"; };
 		"Bloombox::Client::Product" /* Client.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Bloombox::Schema::Product" /* Schema.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Schema.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* CheckinService_Beta1.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinService_Beta1.grpc.swift; sourceTree = "<group>"; };
@@ -2579,6 +2585,9 @@
 				OBJ_192 /* TelemetryClient.swift */,
 				OBJ_193 /* TelemetryService+Generic.swift */,
 				OBJ_194 /* Transport.swift */,
+				228571EC215EB0450031BCFF /* POSClient.swift */,
+				228571EF215EBA680031BCFF /* POSClient+AuthorizeUser.swift */,
+				228571F2215EBC7C0031BCFF /* POSClient+VerifyTicketKey.swift */,
 			);
 			name = Client;
 			path = Sources/Client;
@@ -3419,7 +3428,7 @@
 			path = support;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -3432,7 +3441,6 @@
 				OBJ_200 /* Dependencies */,
 				OBJ_1198 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_540 /* surface */ = {
@@ -4672,6 +4680,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"SwiftGRPC::gRPC" = {
+						LastSwiftMigration = 0940;
+					};
+				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "Bloombox" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -4680,7 +4693,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_1198 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -5349,16 +5362,19 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_1863 /* Bindings.swift in Sources */,
+				228571EE215EB17E0031BCFF /* POSClient.swift in Sources */,
 				OBJ_1864 /* Bloombox.swift in Sources */,
 				OBJ_1865 /* DevicesClient.swift in Sources */,
 				OBJ_1866 /* EventCollection.swift in Sources */,
 				OBJ_1867 /* EventContext.swift in Sources */,
 				OBJ_1868 /* MenuClient.swift in Sources */,
 				OBJ_1869 /* RPCLogic.swift in Sources */,
+				228571F4215EBCA20031BCFF /* POSClient+VerifyTicketKey.swift in Sources */,
 				OBJ_1870 /* RemoteService.swift in Sources */,
 				OBJ_1871 /* Services.swift in Sources */,
 				OBJ_1872 /* ShopClient.swift in Sources */,
 				OBJ_1873 /* TelemetryClient.swift in Sources */,
+				228571F1215EBB370031BCFF /* POSClient+AuthorizeUser.swift in Sources */,
 				OBJ_1874 /* TelemetryService+Generic.swift in Sources */,
 				OBJ_1875 /* Transport.swift in Sources */,
 			);
