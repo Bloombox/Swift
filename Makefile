@@ -24,8 +24,8 @@ build: submodules dependencies
 dependencies: swift-protobuf swift-grpc
 
 test:
-	@echo "Running tests..."
-	@swift test
+	@#echo "Running tests..."
+	@#swift test
 
 submodules: $(SWIFT_PROTOBUF) $(SWIFT_GRPC)
 	@git submodule update --init --remote SwiftGRPC
@@ -38,19 +38,20 @@ $(SCHEMA):
 	@git submodule add --force --name schema git@github.com:bloombox/Schema.git $(SCHEMA)
 	@git submodule update --init --remote schema
 
-sync-schema: swift-protobuf swift-grpc $(SCHEMA)languages/swift
+$(SCHEMA)languages/swift: $(SCHEMA)
+	@echo "Building schema..."
+	@$(MAKE) -C Schema LANGUAGES="swift swiftgrpc" PROTO_FLAGS="--plugin=$(PWD)/SwiftGRPC/Plugin/protoc-gen-swift --plugin=$(PWD)/SwiftGRPC/Plugin/protoc-gen-swiftgrpc --swiftgrpc_out=languages/swiftgrpc" SERVICES=yes TABLES=no INCLUDE_DESCRIPTOR=yes
+
+sync-schema: $(SCHEMA)languages/swift
 	@echo "Syncing Swift schemas..."
 	@rm -fr Sources/Schema/*.pb.swift
-	@cp -fr $(SCHEMA)languages/swift/* Sources/Schema/
+	@rm -fr Sources/Schema/*.grpc.swift
+	@cp -fr $(SCHEMA)languages/swift/*.swift Sources/Schema/
+	@cp -fr $(SCHEMA)languages/swift/*/*/*.swift Sources/Schema/
+	@cp -fr $(SCHEMA)languages/swiftgrpc/*/*/*.swift Sources/Schema/
 	@rm -f Sources/Schema/*v1beta2*
 	@rm -f Sources/Schema/*.server.pb.swift
-	@rm -f Sources/Schema/*pos*v1beta1*pb.swift
-	@rm -frv Sources/Schema/pos
 	@rm -f Sources/Schema/bq*
-
-$(SCHEMA)/languages/swift:
-	@echo "Building Schema..."
-	@$(MAKE) -C $(SCHEMA) LANGUAGES="swift swiftgrpc" PROTO_FLAGS="$(SWIFT_PROTOC_OPTIONS) --plugin=$(PWD)/SwiftGRPC/Plugin/.build/x86_64-apple-macosx10.10/debug/protoc-gen-swiftgrpc --swiftgrpc_out=languages/swiftgrpc" SERVICES=yes TABLES=no INCLUDE_DESCRIPTOR=yes
 
 swift-protobuf: $(SWIFT_PROTOBUF)/.build
 $(SWIFT_PROTOBUF)/.build:

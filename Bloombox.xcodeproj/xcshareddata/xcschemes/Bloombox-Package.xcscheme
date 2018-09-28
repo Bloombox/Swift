@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftGRPC::CgRPC"
-               BuildableName = "CgRPC.framework"
-               BlueprintName = "CgRPC"
+               BlueprintIdentifier = "Bloombox::Schema"
+               BuildableName = "Schema.framework"
+               BlueprintName = "Schema"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "zlib::zlib-example"
-               BuildableName = "zlib-example"
-               BlueprintName = "zlib-example"
+               BlueprintIdentifier = "Bloombox::Client"
+               BuildableName = "Client.framework"
+               BlueprintName = "Client"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,20 +45,6 @@
                BlueprintIdentifier = "SwiftGRPC::gRPC"
                BuildableName = "gRPC.framework"
                BlueprintName = "gRPC"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftGRPC::BoringSSL"
-               BuildableName = "BoringSSL.framework"
-               BlueprintName = "BoringSSL"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -98,9 +84,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::Client"
-               BuildableName = "Client.framework"
-               BlueprintName = "Client"
+               BlueprintIdentifier = "SwiftGRPC::CgRPC"
+               BuildableName = "CgRPC.framework"
+               BlueprintName = "CgRPC"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -112,9 +98,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::Schema"
-               BuildableName = "Schema.framework"
-               BlueprintName = "Schema"
+               BlueprintIdentifier = "zlib::zlib-example"
+               BuildableName = "zlib-example"
+               BlueprintName = "zlib-example"
+               ReferencedContainer = "container:Bloombox.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftGRPC::BoringSSL"
+               BuildableName = "BoringSSL.framework"
+               BlueprintName = "BoringSSL"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -126,16 +126,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::ClientTests"
-               BuildableName = "ClientTests.xctest"
-               BlueprintName = "ClientTests"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <AdditionalOptions>
       </AdditionalOptions>
@@ -153,9 +143,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "SwiftGRPC::CgRPC"
-            BuildableName = "CgRPC.framework"
-            BlueprintName = "CgRPC"
+            BlueprintIdentifier = "Bloombox::Schema"
+            BuildableName = "Schema.framework"
+            BlueprintName = "Schema"
             ReferencedContainer = "container:Bloombox.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

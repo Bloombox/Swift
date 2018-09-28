@@ -61,10 +61,8 @@ public enum Bloombox_Schema_Identity_IDMedia: SwiftProtobuf.Enum {
 }
 
 /// Media attachment that binds some document media to a particular driver's license.
-public struct Bloombox_Schema_Identity_IDMediaAttachment {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".IDMediaAttachment"
 
   /// Specifies the kind of media being attached.
   public var type: Bloombox_Schema_Identity_IDMedia = .documentFront
@@ -84,30 +82,11 @@ public struct Bloombox_Schema_Identity_IDMediaAttachment {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.identity"
-
-extension Bloombox_Schema_Identity_IDMedia: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "DOCUMENT_FRONT"),
-    1: .same(proto: "DOCUMENT_REAR"),
-    2: .same(proto: "PORTRAIT"),
-  ]
-}
-
-extension Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".IDMediaAttachment"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "type"),
-    2: .same(proto: "orientation"),
-    3: .same(proto: "data"),
-    4: .standard(proto: "image_type"),
-    5: .same(proto: "quality"),
-  ]
-
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -121,6 +100,10 @@ extension Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf.Message, Swi
     }
   }
 
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.type != .documentFront {
       try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
@@ -139,6 +122,28 @@ extension Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf.Message, Swi
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.identity"
+
+extension Bloombox_Schema_Identity_IDMedia: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "DOCUMENT_FRONT"),
+    1: .same(proto: "DOCUMENT_REAR"),
+    2: .same(proto: "PORTRAIT"),
+  ]
+}
+
+extension Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "type"),
+    2: .same(proto: "orientation"),
+    3: .same(proto: "data"),
+    4: .standard(proto: "image_type"),
+    5: .same(proto: "quality"),
+  ]
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_IDMediaAttachment) -> Bool {
     if self.type != other.type {return false}

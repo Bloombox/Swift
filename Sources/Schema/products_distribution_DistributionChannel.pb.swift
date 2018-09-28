@@ -104,10 +104,8 @@ public enum Opencannabis_Products_Distribution_ChannelType: SwiftProtobuf.Enum {
 
 /// Specifies information required to note a channel and its settings for a given datapoint. Presence of this record
 /// indicates an affirmative setting to distribute it to the specified channel, unless `suppress` is set.
-public struct Opencannabis_Products_Distribution_DistributionPolicy {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Products_Distribution_DistributionPolicy: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".DistributionPolicy"
 
   /// Whether this policy is enabled.
   public var enabled: Bool = false
@@ -125,6 +123,42 @@ public struct Opencannabis_Products_Distribution_DistributionPolicy {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.enabled)
+      case 2: try decoder.decodeSingularEnumField(value: &self.channel)
+      case 3: try decoder.decodeSingularEnumField(value: &self.type)
+      case 4: try decoder.decodeSingularBoolField(value: &self.suppress)
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.enabled != false {
+      try visitor.visitSingularBoolField(value: self.enabled, fieldNumber: 1)
+    }
+    if self.channel != .unspecifiedChannel {
+      try visitor.visitSingularEnumField(value: self.channel, fieldNumber: 2)
+    }
+    if self.type != .unspecifiedChannelType {
+      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 3)
+    }
+    if self.suppress != false {
+      try visitor.visitSingularBoolField(value: self.suppress, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -148,42 +182,13 @@ extension Opencannabis_Products_Distribution_ChannelType: SwiftProtobuf._ProtoNa
   ]
 }
 
-extension Opencannabis_Products_Distribution_DistributionPolicy: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".DistributionPolicy"
+extension Opencannabis_Products_Distribution_DistributionPolicy: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "enabled"),
     2: .same(proto: "channel"),
     3: .same(proto: "type"),
     4: .same(proto: "suppress"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.enabled)
-      case 2: try decoder.decodeSingularEnumField(value: &self.channel)
-      case 3: try decoder.decodeSingularEnumField(value: &self.type)
-      case 4: try decoder.decodeSingularBoolField(value: &self.suppress)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.enabled != false {
-      try visitor.visitSingularBoolField(value: self.enabled, fieldNumber: 1)
-    }
-    if self.channel != .unspecifiedChannel {
-      try visitor.visitSingularEnumField(value: self.channel, fieldNumber: 2)
-    }
-    if self.type != .unspecifiedChannelType {
-      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 3)
-    }
-    if self.suppress != false {
-      try visitor.visitSingularBoolField(value: self.suppress, fieldNumber: 4)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Distribution_DistributionPolicy) -> Bool {
     if self.enabled != other.enabled {return false}

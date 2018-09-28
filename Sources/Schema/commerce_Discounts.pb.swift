@@ -99,10 +99,8 @@ public enum Opencannabis_Commerce_DiscountBasis: SwiftProtobuf.Enum {
 }
 
 /// Specifies the concept of a discount, and how it is set to behave.
-public struct Opencannabis_Commerce_DiscountSpec {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Commerce_DiscountSpec: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".DiscountSpec"
 
   /// Type of discount to apply.
   public var type: Opencannabis_Commerce_DiscountType = .custom
@@ -150,13 +148,56 @@ public struct Opencannabis_Commerce_DiscountSpec {
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.type)
+      case 2: try decoder.decodeSingularEnumField(value: &self.basis)
+      case 3:
+        if self.rate != nil {try decoder.handleConflictingOneOf()}
+        var v: Double?
+        try decoder.decodeSingularDoubleField(value: &v)
+        if let v = v {self.rate = .percentage(v)}
+      case 4:
+        if self.rate != nil {try decoder.handleConflictingOneOf()}
+        var v: Double?
+        try decoder.decodeSingularDoubleField(value: &v)
+        if let v = v {self.rate = .staticValue(v)}
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.type != .custom {
+      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
+    }
+    if self.basis != .item {
+      try visitor.visitSingularEnumField(value: self.basis, fieldNumber: 2)
+    }
+    switch self.rate {
+    case .percentage(let v)?:
+      try visitor.visitSingularDoubleField(value: v, fieldNumber: 3)
+    case .staticValue(let v)?:
+      try visitor.visitSingularDoubleField(value: v, fieldNumber: 4)
+    case nil: break
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Specifies a discount to be applied during a purchase or order.
-public struct Opencannabis_Commerce_Discount {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Commerce_Discount: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".Discount"
 
   /// ID code for this discount entry.
   public var id: String {
@@ -217,6 +258,59 @@ public struct Opencannabis_Commerce_Discount {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._spec)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._label)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._description_p)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._createdAt)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._modifiedAt)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if let v = _storage._spec {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 3)
+      }
+      if !_storage._label.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._label, fieldNumber: 4)
+      }
+      if !_storage._description_p.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 5)
+      }
+      if let v = _storage._createdAt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._modifiedAt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -240,51 +334,13 @@ extension Opencannabis_Commerce_DiscountBasis: SwiftProtobuf._ProtoNameProviding
   ]
 }
 
-extension Opencannabis_Commerce_DiscountSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".DiscountSpec"
+extension Opencannabis_Commerce_DiscountSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "basis"),
     3: .same(proto: "percentage"),
     4: .standard(proto: "static_value"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.type)
-      case 2: try decoder.decodeSingularEnumField(value: &self.basis)
-      case 3:
-        if self.rate != nil {try decoder.handleConflictingOneOf()}
-        var v: Double?
-        try decoder.decodeSingularDoubleField(value: &v)
-        if let v = v {self.rate = .percentage(v)}
-      case 4:
-        if self.rate != nil {try decoder.handleConflictingOneOf()}
-        var v: Double?
-        try decoder.decodeSingularDoubleField(value: &v)
-        if let v = v {self.rate = .staticValue(v)}
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.type != .custom {
-      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
-    }
-    if self.basis != .item {
-      try visitor.visitSingularEnumField(value: self.basis, fieldNumber: 2)
-    }
-    switch self.rate {
-    case .percentage(let v)?:
-      try visitor.visitSingularDoubleField(value: v, fieldNumber: 3)
-    case .staticValue(let v)?:
-      try visitor.visitSingularDoubleField(value: v, fieldNumber: 4)
-    case nil: break
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_DiscountSpec) -> Bool {
     if self.type != other.type {return false}
@@ -295,8 +351,7 @@ extension Opencannabis_Commerce_DiscountSpec: SwiftProtobuf.Message, SwiftProtob
   }
 }
 
-extension Opencannabis_Commerce_Discount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Discount"
+extension Opencannabis_Commerce_Discount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "spec"),
@@ -336,51 +391,6 @@ extension Opencannabis_Commerce_Discount: SwiftProtobuf.Message, SwiftProtobuf._
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._spec)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._name)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._label)
-        case 5: try decoder.decodeSingularStringField(value: &_storage._description_p)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._createdAt)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._modifiedAt)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if let v = _storage._spec {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._name.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 3)
-      }
-      if !_storage._label.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._label, fieldNumber: 4)
-      }
-      if !_storage._description_p.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 5)
-      }
-      if let v = _storage._createdAt {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if let v = _storage._modifiedAt {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_Discount) -> Bool {

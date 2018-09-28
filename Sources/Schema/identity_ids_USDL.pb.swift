@@ -233,10 +233,8 @@ public enum Bloombox_Schema_Identity_Ids_USDLField: SwiftProtobuf.Enum {
 }
 
 /// Specifies an individual raw field value read or scanned from a United States Driver's License.
-public struct Bloombox_Schema_Identity_Ids_USDLFieldValue {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Identity_Ids_USDLFieldValue: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".USDLFieldValue"
 
   /// Field that we are storing data for.
   public var field: Bloombox_Schema_Identity_Ids_USDLField = .backBarcode
@@ -279,13 +277,142 @@ public struct Bloombox_Schema_Identity_Ids_USDLFieldValue {
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.field)
+      case 2:
+        if self.data != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.data = .value(v)}
+      case 3:
+        if self.data != nil {try decoder.handleConflictingOneOf()}
+        var v: Data?
+        try decoder.decodeSingularBytesField(value: &v)
+        if let v = v {self.data = .rawValue(v)}
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.field != .backBarcode {
+      try visitor.visitSingularEnumField(value: self.field, fieldNumber: 1)
+    }
+    switch self.data {
+    case .value(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 2)
+    case .rawValue(let v)?:
+      try visitor.visitSingularBytesField(value: v, fieldNumber: 3)
+    case nil: break
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+}
+
+/// Reference to a US Driver's License.
+public struct Bloombox_Schema_Identity_Ids_USDLReference: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".USDLReference"
+
+  /// Driver's license number.
+  public var number: String = String()
+
+  /// Raw data, in base64 form.
+  public var data: Bloombox_Schema_Identity_Ids_USDLReference.OneOf_Data? = nil
+
+  /// PDF417 back-side barcode.
+  public var barcode: String {
+    get {
+      if case .barcode(let v)? = data {return v}
+      return String()
+    }
+    set {data = .barcode(newValue)}
+  }
+
+  /// Magnetic stripe data.
+  public var magstripe: String {
+    get {
+      if case .magstripe(let v)? = data {return v}
+      return String()
+    }
+    set {data = .magstripe(newValue)}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Raw data, in base64 form.
+  public enum OneOf_Data: Equatable {
+    /// PDF417 back-side barcode.
+    case barcode(String)
+    /// Magnetic stripe data.
+    case magstripe(String)
+
+    public static func ==(lhs: Bloombox_Schema_Identity_Ids_USDLReference.OneOf_Data, rhs: Bloombox_Schema_Identity_Ids_USDLReference.OneOf_Data) -> Bool {
+      switch (lhs, rhs) {
+      case (.barcode(let l), .barcode(let r)): return l == r
+      case (.magstripe(let l), .magstripe(let r)): return l == r
+      default: return false
+      }
+    }
+  }
+
+  public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.number)
+      case 2:
+        if self.data != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.data = .barcode(v)}
+      case 3:
+        if self.data != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.data = .magstripe(v)}
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.number.isEmpty {
+      try visitor.visitSingularStringField(value: self.number, fieldNumber: 1)
+    }
+    switch self.data {
+    case .barcode(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 2)
+    case .magstripe(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 3)
+    case nil: break
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Specifies a United States Driver's License.
-public struct Bloombox_Schema_Identity_Ids_USDL {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Identity_Ids_USDL: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".USDL"
 
   /// Raw barcode data for this Driver's License.
   public var barcode: String = String()
@@ -305,6 +432,46 @@ public struct Bloombox_Schema_Identity_Ids_USDL {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.barcode)
+      case 2: try decoder.decodeSingularStringField(value: &self.magstripe)
+      case 3: try decoder.decodeSingularEnumField(value: &self.jurisdiction)
+      case 4: try decoder.decodeSingularBoolField(value: &self.identificationCard)
+      case 100: try decoder.decodeRepeatedMessageField(value: &self.fields)
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.barcode.isEmpty {
+      try visitor.visitSingularStringField(value: self.barcode, fieldNumber: 1)
+    }
+    if !self.magstripe.isEmpty {
+      try visitor.visitSingularStringField(value: self.magstripe, fieldNumber: 2)
+    }
+    if self.jurisdiction != .unspecified {
+      try visitor.visitSingularEnumField(value: self.jurisdiction, fieldNumber: 3)
+    }
+    if self.identificationCard != false {
+      try visitor.visitSingularBoolField(value: self.identificationCard, fieldNumber: 4)
+    }
+    if !self.fields.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.fields, fieldNumber: 100)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -353,46 +520,12 @@ extension Bloombox_Schema_Identity_Ids_USDLField: SwiftProtobuf._ProtoNameProvid
   ]
 }
 
-extension Bloombox_Schema_Identity_Ids_USDLFieldValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".USDLFieldValue"
+extension Bloombox_Schema_Identity_Ids_USDLFieldValue: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "field"),
     2: .same(proto: "value"),
     3: .standard(proto: "raw_value"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.field)
-      case 2:
-        if self.data != nil {try decoder.handleConflictingOneOf()}
-        var v: String?
-        try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.data = .value(v)}
-      case 3:
-        if self.data != nil {try decoder.handleConflictingOneOf()}
-        var v: Data?
-        try decoder.decodeSingularBytesField(value: &v)
-        if let v = v {self.data = .rawValue(v)}
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.field != .backBarcode {
-      try visitor.visitSingularEnumField(value: self.field, fieldNumber: 1)
-    }
-    switch self.data {
-    case .value(let v)?:
-      try visitor.visitSingularStringField(value: v, fieldNumber: 2)
-    case .rawValue(let v)?:
-      try visitor.visitSingularBytesField(value: v, fieldNumber: 3)
-    case nil: break
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_USDLFieldValue) -> Bool {
     if self.field != other.field {return false}
@@ -402,8 +535,22 @@ extension Bloombox_Schema_Identity_Ids_USDLFieldValue: SwiftProtobuf.Message, Sw
   }
 }
 
-extension Bloombox_Schema_Identity_Ids_USDL: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".USDL"
+extension Bloombox_Schema_Identity_Ids_USDLReference: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "number"),
+    2: .same(proto: "barcode"),
+    3: .same(proto: "magstripe"),
+  ]
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_USDLReference) -> Bool {
+    if self.number != other.number {return false}
+    if self.data != other.data {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Identity_Ids_USDL: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "barcode"),
     2: .same(proto: "magstripe"),
@@ -411,38 +558,6 @@ extension Bloombox_Schema_Identity_Ids_USDL: SwiftProtobuf.Message, SwiftProtobu
     4: .standard(proto: "identification_card"),
     100: .same(proto: "fields"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.barcode)
-      case 2: try decoder.decodeSingularStringField(value: &self.magstripe)
-      case 3: try decoder.decodeSingularEnumField(value: &self.jurisdiction)
-      case 4: try decoder.decodeSingularBoolField(value: &self.identificationCard)
-      case 100: try decoder.decodeRepeatedMessageField(value: &self.fields)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.barcode.isEmpty {
-      try visitor.visitSingularStringField(value: self.barcode, fieldNumber: 1)
-    }
-    if !self.magstripe.isEmpty {
-      try visitor.visitSingularStringField(value: self.magstripe, fieldNumber: 2)
-    }
-    if self.jurisdiction != .unspecified {
-      try visitor.visitSingularEnumField(value: self.jurisdiction, fieldNumber: 3)
-    }
-    if self.identificationCard != false {
-      try visitor.visitSingularBoolField(value: self.identificationCard, fieldNumber: 4)
-    }
-    if !self.fields.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.fields, fieldNumber: 100)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_USDL) -> Bool {
     if self.barcode != other.barcode {return false}

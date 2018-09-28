@@ -23,10 +23,8 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a schedule for something.
-public struct Opencannabis_Temporal_Schedule {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Temporal_Schedule: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".Schedule"
 
   /// Specification options for the schedule.
   public var spec: OneOf_Spec? {
@@ -84,40 +82,10 @@ public struct Opencannabis_Temporal_Schedule {
 
   public init() {}
 
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.temporal"
-
-extension Opencannabis_Temporal_Schedule: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Schedule"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "absolute"),
-    2: .same(proto: "time"),
-    3: .same(proto: "interval"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _spec: Opencannabis_Temporal_Schedule.OneOf_Spec?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _spec = source._spec
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
@@ -150,6 +118,10 @@ extension Opencannabis_Temporal_Schedule: SwiftProtobuf.Message, SwiftProtobuf._
     }
   }
 
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       switch _storage._spec {
@@ -163,6 +135,39 @@ extension Opencannabis_Temporal_Schedule: SwiftProtobuf.Message, SwiftProtobuf._
       }
     }
     try unknownFields.traverse(visitor: &visitor)
+  }
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.temporal"
+
+extension Opencannabis_Temporal_Schedule: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "absolute"),
+    2: .same(proto: "time"),
+    3: .same(proto: "interval"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _spec: Opencannabis_Temporal_Schedule.OneOf_Spec?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _spec = source._spec
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
   }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Temporal_Schedule) -> Bool {

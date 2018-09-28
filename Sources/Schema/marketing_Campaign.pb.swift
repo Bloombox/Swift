@@ -74,10 +74,8 @@ public enum Bloombox_Schema_Marketing_CampaignStatus: SwiftProtobuf.Enum {
 }
 
 /// Tags applied to a campaign to organize/group similar marketing efforts.
-public struct Bloombox_Schema_Marketing_CampaignTag {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Marketing_CampaignTag: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".CampaignTag"
 
   /// Unique ID for this campaign tag.
   public var id: String = String()
@@ -88,13 +86,39 @@ public struct Bloombox_Schema_Marketing_CampaignTag {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.label)
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.label.isEmpty {
+      try visitor.visitSingularStringField(value: self.label, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Settings for a given channel.
-public struct Bloombox_Schema_Marketing_ChannelSettings {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".ChannelSettings"
 
   /// Channel for which we are specifying settings.
   public var channel: Bloombox_Schema_Comms_Channel {
@@ -152,14 +176,68 @@ public struct Bloombox_Schema_Marketing_ChannelSettings {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._channel)
+        case 2: try decoder.decodeSingularBoolField(value: &_storage._active)
+        case 20:
+          var v: Bloombox_Schema_Comms_SMSSettings?
+          if let current = _storage._settings {
+            try decoder.handleConflictingOneOf()
+            if case .sms(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._settings = .sms(v)}
+        case 21:
+          var v: Bloombox_Schema_Comms_EmailSettings?
+          if let current = _storage._settings {
+            try decoder.handleConflictingOneOf()
+            if case .email(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._settings = .email(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._channel != .unspecified {
+        try visitor.visitSingularEnumField(value: _storage._channel, fieldNumber: 1)
+      }
+      if _storage._active != false {
+        try visitor.visitSingularBoolField(value: _storage._active, fieldNumber: 2)
+      }
+      switch _storage._settings {
+      case .sms(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
+      case .email(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies the actual content of a marketing campaign ad group.
-public struct Bloombox_Schema_Marketing_Creative {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".Creative"
 
   /// Specifies the content for a given type.
   public var content: OneOf_Content? {
@@ -205,14 +283,60 @@ public struct Bloombox_Schema_Marketing_Creative {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 10:
+          var v: Bloombox_Schema_Comms_SMSContent?
+          if let current = _storage._content {
+            try decoder.handleConflictingOneOf()
+            if case .sms(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._content = .sms(v)}
+        case 11:
+          var v: Bloombox_Schema_Comms_EmailContent?
+          if let current = _storage._content {
+            try decoder.handleConflictingOneOf()
+            if case .email(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._content = .email(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      switch _storage._content {
+      case .sms(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      case .email(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies campaign settings for a given channel.
-public struct Bloombox_Schema_Marketing_AdGroup {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Marketing_AdGroup: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".AdGroup"
 
   /// Unique ID for this particular ad group.
   public var id: String {
@@ -246,14 +370,53 @@ public struct Bloombox_Schema_Marketing_AdGroup {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._campaign)
+        case 3: try decoder.decodeSingularEnumField(value: &_storage._channel)
+        case 4: try decoder.decodeRepeatedMessageField(value: &_storage._creative)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if let v = _storage._campaign {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if _storage._channel != .unspecified {
+        try visitor.visitSingularEnumField(value: _storage._channel, fieldNumber: 3)
+      }
+      if !_storage._creative.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._creative, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Marketing campaign targeting parameters/configuration.
-public struct Bloombox_Schema_Marketing_CampaignTargeting {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Marketing_CampaignTargeting: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".CampaignTargeting"
 
   /// Only target users matching filters.
   public var strict: Bool = false
@@ -264,13 +427,39 @@ public struct Bloombox_Schema_Marketing_CampaignTargeting {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.strict)
+      case 2: try decoder.decodeRepeatedMessageField(value: &self.block)
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.strict != false {
+      try visitor.visitSingularBoolField(value: self.strict, fieldNumber: 1)
+    }
+    if !self.block.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.block, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Specifies the structure of a marketing campaign's unique primary key.
-public struct Bloombox_Schema_Marketing_CampaignKey {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Marketing_CampaignKey: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".CampaignKey"
 
   /// Unique ID for the campaign.
   public var id: String = String()
@@ -284,14 +473,44 @@ public struct Bloombox_Schema_Marketing_CampaignKey {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.partner)
+      case 3: try decoder.decodeSingularStringField(value: &self.location)
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.partner.isEmpty {
+      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 2)
+    }
+    if !self.location.isEmpty {
+      try visitor.visitSingularStringField(value: self.location, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Represents a single marketing operation, involving outreach and potentially other forms of engagement building, in a
 /// concentrated effort towards specific, defined conversion goals.
-public struct Bloombox_Schema_Marketing_Campaign {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Marketing_Campaign: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".Campaign"
 
   /// Unique key for this campaign.
   public var key: Bloombox_Schema_Marketing_CampaignKey {
@@ -389,6 +608,79 @@ public struct Bloombox_Schema_Marketing_Campaign {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._description_p)
+        case 4: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 5: try decoder.decodeSingularBoolField(value: &_storage._live)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._targeting)
+        case 7: try decoder.decodeRepeatedMessageField(value: &_storage._channel)
+        case 8: try decoder.decodeRepeatedMessageField(value: &_storage._tag)
+        case 9: try decoder.decodeRepeatedMessageField(value: &_storage._group)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._published)
+        case 11: try decoder.decodeSingularMessageField(value: &_storage._created)
+        case 12: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
+      }
+      if !_storage._description_p.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 3)
+      }
+      if _storage._status != .pending {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 4)
+      }
+      if _storage._live != false {
+        try visitor.visitSingularBoolField(value: _storage._live, fieldNumber: 5)
+      }
+      if let v = _storage._targeting {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if !_storage._channel.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._channel, fieldNumber: 7)
+      }
+      if !_storage._tag.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._tag, fieldNumber: 8)
+      }
+      if !_storage._group.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._group, fieldNumber: 9)
+      }
+      if let v = _storage._published {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -406,32 +698,11 @@ extension Bloombox_Schema_Marketing_CampaignStatus: SwiftProtobuf._ProtoNameProv
   ]
 }
 
-extension Bloombox_Schema_Marketing_CampaignTag: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".CampaignTag"
+extension Bloombox_Schema_Marketing_CampaignTag: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "label"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.id)
-      case 2: try decoder.decodeSingularStringField(value: &self.label)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.id.isEmpty {
-      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
-    }
-    if !self.label.isEmpty {
-      try visitor.visitSingularStringField(value: self.label, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_CampaignTag) -> Bool {
     if self.id != other.id {return false}
@@ -441,8 +712,7 @@ extension Bloombox_Schema_Marketing_CampaignTag: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ChannelSettings"
+extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "channel"),
     2: .same(proto: "active"),
@@ -473,54 +743,6 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._channel)
-        case 2: try decoder.decodeSingularBoolField(value: &_storage._active)
-        case 20:
-          var v: Bloombox_Schema_Comms_SMSSettings?
-          if let current = _storage._settings {
-            try decoder.handleConflictingOneOf()
-            if case .sms(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._settings = .sms(v)}
-        case 21:
-          var v: Bloombox_Schema_Comms_EmailSettings?
-          if let current = _storage._settings {
-            try decoder.handleConflictingOneOf()
-            if case .email(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._settings = .email(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._channel != .unspecified {
-        try visitor.visitSingularEnumField(value: _storage._channel, fieldNumber: 1)
-      }
-      if _storage._active != false {
-        try visitor.visitSingularBoolField(value: _storage._active, fieldNumber: 2)
-      }
-      switch _storage._settings {
-      case .sms(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
-      case .email(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_ChannelSettings) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -538,8 +760,7 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
   }
 }
 
-extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Creative"
+extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     10: .same(proto: "sms"),
     11: .same(proto: "email"),
@@ -564,46 +785,6 @@ extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtob
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 10:
-          var v: Bloombox_Schema_Comms_SMSContent?
-          if let current = _storage._content {
-            try decoder.handleConflictingOneOf()
-            if case .sms(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._content = .sms(v)}
-        case 11:
-          var v: Bloombox_Schema_Comms_EmailContent?
-          if let current = _storage._content {
-            try decoder.handleConflictingOneOf()
-            if case .email(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._content = .email(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      switch _storage._content {
-      case .sms(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      case .email(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_Creative) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -619,8 +800,7 @@ extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Marketing_AdGroup: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".AdGroup"
+extension Bloombox_Schema_Marketing_AdGroup: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "campaign"),
@@ -653,39 +833,6 @@ extension Bloombox_Schema_Marketing_AdGroup: SwiftProtobuf.Message, SwiftProtobu
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._campaign)
-        case 3: try decoder.decodeSingularEnumField(value: &_storage._channel)
-        case 4: try decoder.decodeRepeatedMessageField(value: &_storage._creative)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if let v = _storage._campaign {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if _storage._channel != .unspecified {
-        try visitor.visitSingularEnumField(value: _storage._channel, fieldNumber: 3)
-      }
-      if !_storage._creative.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._creative, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_AdGroup) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -704,32 +851,11 @@ extension Bloombox_Schema_Marketing_AdGroup: SwiftProtobuf.Message, SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Marketing_CampaignTargeting: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".CampaignTargeting"
+extension Bloombox_Schema_Marketing_CampaignTargeting: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "strict"),
     2: .same(proto: "block"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.strict)
-      case 2: try decoder.decodeRepeatedMessageField(value: &self.block)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.strict != false {
-      try visitor.visitSingularBoolField(value: self.strict, fieldNumber: 1)
-    }
-    if !self.block.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.block, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_CampaignTargeting) -> Bool {
     if self.strict != other.strict {return false}
@@ -739,37 +865,12 @@ extension Bloombox_Schema_Marketing_CampaignTargeting: SwiftProtobuf.Message, Sw
   }
 }
 
-extension Bloombox_Schema_Marketing_CampaignKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".CampaignKey"
+extension Bloombox_Schema_Marketing_CampaignKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "partner"),
     3: .same(proto: "location"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.id)
-      case 2: try decoder.decodeSingularStringField(value: &self.partner)
-      case 3: try decoder.decodeSingularStringField(value: &self.location)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.id.isEmpty {
-      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
-    }
-    if !self.partner.isEmpty {
-      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 2)
-    }
-    if !self.location.isEmpty {
-      try visitor.visitSingularStringField(value: self.location, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_CampaignKey) -> Bool {
     if self.id != other.id {return false}
@@ -780,8 +881,7 @@ extension Bloombox_Schema_Marketing_CampaignKey: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Marketing_Campaign: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Campaign"
+extension Bloombox_Schema_Marketing_Campaign: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "name"),
@@ -836,71 +936,6 @@ extension Bloombox_Schema_Marketing_Campaign: SwiftProtobuf.Message, SwiftProtob
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._description_p)
-        case 4: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 5: try decoder.decodeSingularBoolField(value: &_storage._live)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._targeting)
-        case 7: try decoder.decodeRepeatedMessageField(value: &_storage._channel)
-        case 8: try decoder.decodeRepeatedMessageField(value: &_storage._tag)
-        case 9: try decoder.decodeRepeatedMessageField(value: &_storage._group)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._published)
-        case 11: try decoder.decodeSingularMessageField(value: &_storage._created)
-        case 12: try decoder.decodeSingularMessageField(value: &_storage._modified)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if !_storage._name.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
-      }
-      if !_storage._description_p.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 3)
-      }
-      if _storage._status != .pending {
-        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 4)
-      }
-      if _storage._live != false {
-        try visitor.visitSingularBoolField(value: _storage._live, fieldNumber: 5)
-      }
-      if let v = _storage._targeting {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if !_storage._channel.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._channel, fieldNumber: 7)
-      }
-      if !_storage._tag.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._tag, fieldNumber: 8)
-      }
-      if !_storage._group.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._group, fieldNumber: 9)
-      }
-      if let v = _storage._published {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      }
-      if let v = _storage._created {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
-      }
-      if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_Campaign) -> Bool {

@@ -78,10 +78,8 @@ public enum Opencannabis_Geo_DistanceUnit: SwiftProtobuf.Enum {
 }
 
 /// Specifies a single distance value.
-public struct Opencannabis_Geo_DistanceValue {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Geo_DistanceValue: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".DistanceValue"
 
   /// Specifies the unit of measurement employed for this distance.
   public var unit: Opencannabis_Geo_DistanceUnit = .meters
@@ -92,13 +90,39 @@ public struct Opencannabis_Geo_DistanceValue {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.unit)
+      case 3: try decoder.decodeSingularDoubleField(value: &self.value)
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.unit != .meters {
+      try visitor.visitSingularEnumField(value: self.unit, fieldNumber: 1)
+    }
+    if self.value != 0 {
+      try visitor.visitSingularDoubleField(value: self.value, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Represents an estimate of location accuracy.
-public struct Opencannabis_Geo_LocationAccuracy {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Geo_LocationAccuracy: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".LocationAccuracy"
 
   /// Specifies whether this accuracy rating is an estimate.
   public var estimate: Bool {
@@ -120,14 +144,45 @@ public struct Opencannabis_Geo_LocationAccuracy {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularBoolField(value: &_storage._estimate)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._value)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._estimate != false {
+        try visitor.visitSingularBoolField(value: _storage._estimate, fieldNumber: 1)
+      }
+      if let v = _storage._value {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Represents a physically addressable location in the real world.
-public struct Opencannabis_Geo_Location {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Geo_Location: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".Location"
 
   /// Name for this location, if applicable.
   public var name: Opencannabis_Content_Name {
@@ -173,14 +228,53 @@ public struct Opencannabis_Geo_Location {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._name)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._address)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._point)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._accuracy)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._name {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._address {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._point {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._accuracy {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies a distance between two locations.
-public struct Opencannabis_Geo_Distance {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Geo_Distance: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".Distance"
 
   /// Specifies whether this distance is an estimate.
   public var estimate: Bool {
@@ -228,6 +322,51 @@ public struct Opencannabis_Geo_Distance {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularBoolField(value: &_storage._estimate)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._accuracy)
+        case 3: try decoder.decodeSingularEnumField(value: &_storage._unit)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._start)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._end)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._estimate != false {
+        try visitor.visitSingularBoolField(value: _storage._estimate, fieldNumber: 1)
+      }
+      if let v = _storage._accuracy {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if _storage._unit != .meters {
+        try visitor.visitSingularEnumField(value: _storage._unit, fieldNumber: 3)
+      }
+      if let v = _storage._start {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._end {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -247,32 +386,11 @@ extension Opencannabis_Geo_DistanceUnit: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Opencannabis_Geo_DistanceValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".DistanceValue"
+extension Opencannabis_Geo_DistanceValue: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "unit"),
     3: .same(proto: "value"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.unit)
-      case 3: try decoder.decodeSingularDoubleField(value: &self.value)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.unit != .meters {
-      try visitor.visitSingularEnumField(value: self.unit, fieldNumber: 1)
-    }
-    if self.value != 0 {
-      try visitor.visitSingularDoubleField(value: self.value, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_DistanceValue) -> Bool {
     if self.unit != other.unit {return false}
@@ -282,8 +400,7 @@ extension Opencannabis_Geo_DistanceValue: SwiftProtobuf.Message, SwiftProtobuf._
   }
 }
 
-extension Opencannabis_Geo_LocationAccuracy: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".LocationAccuracy"
+extension Opencannabis_Geo_LocationAccuracy: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "estimate"),
     2: .same(proto: "value"),
@@ -310,31 +427,6 @@ extension Opencannabis_Geo_LocationAccuracy: SwiftProtobuf.Message, SwiftProtobu
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularBoolField(value: &_storage._estimate)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._value)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._estimate != false {
-        try visitor.visitSingularBoolField(value: _storage._estimate, fieldNumber: 1)
-      }
-      if let v = _storage._value {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_LocationAccuracy) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -351,8 +443,7 @@ extension Opencannabis_Geo_LocationAccuracy: SwiftProtobuf.Message, SwiftProtobu
   }
 }
 
-extension Opencannabis_Geo_Location: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Location"
+extension Opencannabis_Geo_Location: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "address"),
@@ -385,39 +476,6 @@ extension Opencannabis_Geo_Location: SwiftProtobuf.Message, SwiftProtobuf._Messa
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._name)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._address)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._point)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._accuracy)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._name {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._address {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._point {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._accuracy {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Location) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -436,8 +494,7 @@ extension Opencannabis_Geo_Location: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 }
 
-extension Opencannabis_Geo_Distance: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Distance"
+extension Opencannabis_Geo_Distance: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "estimate"),
     2: .same(proto: "accuracy"),
@@ -471,43 +528,6 @@ extension Opencannabis_Geo_Distance: SwiftProtobuf.Message, SwiftProtobuf._Messa
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularBoolField(value: &_storage._estimate)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._accuracy)
-        case 3: try decoder.decodeSingularEnumField(value: &_storage._unit)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._start)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._end)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._estimate != false {
-        try visitor.visitSingularBoolField(value: _storage._estimate, fieldNumber: 1)
-      }
-      if let v = _storage._accuracy {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if _storage._unit != .meters {
-        try visitor.visitSingularEnumField(value: _storage._unit, fieldNumber: 3)
-      }
-      if let v = _storage._start {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._end {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Distance) -> Bool {

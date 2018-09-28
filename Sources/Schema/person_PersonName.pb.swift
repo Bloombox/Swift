@@ -21,10 +21,8 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Represents a human being's name, in the style of "given" name (first) and "family" name (last) being concatenated to
 /// form a full person's name. Additional names, like middle names, etc, are also specified here.
-public struct Opencannabis_Person_Name {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Person_Name: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".Name"
 
   /// Person's full name, if a fulltext value should override.
   public var fullName: String = String()
@@ -47,23 +45,11 @@ public struct Opencannabis_Person_Name {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.person"
-
-extension Opencannabis_Person_Name: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Name"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "full_name"),
-    2: .standard(proto: "first_name"),
-    3: .standard(proto: "last_name"),
-    4: .standard(proto: "middle_name"),
-    5: .same(proto: "prefix"),
-    6: .same(proto: "postfix"),
-  ]
-
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -78,6 +64,10 @@ extension Opencannabis_Person_Name: SwiftProtobuf.Message, SwiftProtobuf._Messag
     }
   }
 
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.fullName.isEmpty {
       try visitor.visitSingularStringField(value: self.fullName, fieldNumber: 1)
@@ -99,6 +89,21 @@ extension Opencannabis_Person_Name: SwiftProtobuf.Message, SwiftProtobuf._Messag
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.person"
+
+extension Opencannabis_Person_Name: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "full_name"),
+    2: .standard(proto: "first_name"),
+    3: .standard(proto: "last_name"),
+    4: .standard(proto: "middle_name"),
+    5: .same(proto: "prefix"),
+    6: .same(proto: "postfix"),
+  ]
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Person_Name) -> Bool {
     if self.fullName != other.fullName {return false}

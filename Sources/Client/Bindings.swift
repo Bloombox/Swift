@@ -107,8 +107,8 @@ public typealias TelemetryEventCall = Bloombox_Schema_Services_Telemetry_V1Beta4
 /**
  * Method: `batch`.
  */
-public typealias TelemetryEventBatch = Bloombox_Schema_Services_Telemetry_V1beta4_Event_Batch
-public typealias TelemetryEventBatchRequest = Bloombox_Schema_Services_Telemetry_V1beta4_Event_BatchRequest
+public typealias TelemetryEventBatch = Bloombox_Schema_Services_Telemetry_V1beta4_Event.Batch
+public typealias TelemetryEventBatchRequest = Bloombox_Schema_Services_Telemetry_V1beta4_Event.BatchRequest
 
 /**
  * Method: `error`.
@@ -141,7 +141,7 @@ public typealias User = Bloombox_Schema_Identity_User
 public typealias UserKey = Bloombox_Schema_Identity_UserKey
 public typealias PartnerKey = Bloombox_Schema_Partner_PartnerKey
 public typealias PartnerDeviceKey = Bloombox_Schema_Partner_PartnerDeviceKey
-public typealias PartnerLocationKey = Bloombox_Schema_Partner_PartnerLocationKey
+public typealias PartnerLocationKey = Bloombox_Schema_Partner_LocationKey
 public typealias Event = Bloombox_Schema_Services_Telemetry_V1beta4_Event
 public typealias GenericEvent = Bloombox_Schema_Analytics_Generic_Event
 public typealias AnalyticsContext = Bloombox_Schema_Analytics_Context

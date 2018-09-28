@@ -20,10 +20,8 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Wrapper object that provides support for transporting telemetry data of any kind.
-public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".TelemetryEvent"
 
   /// UUID, as assigned by the server upon receiving this event.
   public var uuid: String {
@@ -190,63 +188,10 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
 
   public init() {}
 
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.services.telemetry.v1beta4"
-
-extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".TelemetryEvent"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "uuid"),
-    2: .same(proto: "parent"),
-    3: .same(proto: "internal"),
-    4: .same(proto: "timing"),
-    5: .same(proto: "context"),
-    6: .same(proto: "actors"),
-    10: .same(proto: "generic"),
-    11: .same(proto: "error"),
-    20: .same(proto: "impression"),
-    21: .same(proto: "view"),
-    22: .same(proto: "action"),
-    30: .standard(proto: "user_action"),
-    31: .standard(proto: "search_query"),
-    32: .standard(proto: "search_result"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _uuid: String = String()
-    var _parent: String = String()
-    var _internal: Bool = false
-    var _timing: Bloombox_Schema_Analytics_EventPosition? = nil
-    var _context: Bloombox_Schema_Analytics_Context? = nil
-    var _actors: Bloombox_Schema_Analytics_EventActors? = nil
-    var _event: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _uuid = source._uuid
-      _parent = source._parent
-      _internal = source._internal
-      _timing = source._timing
-      _context = source._context
-      _actors = source._actors
-      _event = source._event
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
@@ -328,6 +273,10 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
     }
   }
 
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       if !_storage._uuid.isEmpty {
@@ -369,6 +318,62 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
       }
     }
     try unknownFields.traverse(visitor: &visitor)
+  }
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.services.telemetry.v1beta4"
+
+extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "uuid"),
+    2: .same(proto: "parent"),
+    3: .same(proto: "internal"),
+    4: .same(proto: "timing"),
+    5: .same(proto: "context"),
+    6: .same(proto: "actors"),
+    10: .same(proto: "generic"),
+    11: .same(proto: "error"),
+    20: .same(proto: "impression"),
+    21: .same(proto: "view"),
+    22: .same(proto: "action"),
+    30: .standard(proto: "user_action"),
+    31: .standard(proto: "search_query"),
+    32: .standard(proto: "search_result"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _uuid: String = String()
+    var _parent: String = String()
+    var _internal: Bool = false
+    var _timing: Bloombox_Schema_Analytics_EventPosition? = nil
+    var _context: Bloombox_Schema_Analytics_Context? = nil
+    var _actors: Bloombox_Schema_Analytics_EventActors? = nil
+    var _event: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _uuid = source._uuid
+      _parent = source._parent
+      _internal = source._internal
+      _timing = source._timing
+      _context = source._context
+      _actors = source._actors
+      _event = source._event
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent) -> Bool {

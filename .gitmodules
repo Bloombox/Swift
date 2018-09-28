@@ -5,3 +5,7 @@
 [submodule "SwiftGRPC"]
 	path = SwiftGRPC
 	url = https://github.com/bloombox/grpc-swift.git
+[submodule "Schema"]
+	path = Schema
+	url = git@github.com:bloombox/Schema.git
+	branch = feature/purchases

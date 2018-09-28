@@ -53,10 +53,8 @@ public enum Bloombox_Schema_Analytics_Context_ApplicationType: SwiftProtobuf.Enu
 }
 
 /// Specifies information about a web application reporting information to the telemetry service.
-public struct Bloombox_Schema_Analytics_Context_WebApplication {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Analytics_Context_WebApplication: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".WebApplication"
 
   /// Specifies an origin for a web application.
   public var origin: String = String()
@@ -79,13 +77,55 @@ public struct Bloombox_Schema_Analytics_Context_WebApplication {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.origin)
+      case 2: try decoder.decodeSingularStringField(value: &self.location)
+      case 3: try decoder.decodeSingularStringField(value: &self.anchor)
+      case 4: try decoder.decodeSingularStringField(value: &self.title)
+      case 5: try decoder.decodeSingularStringField(value: &self.referrer)
+      case 6: try decoder.decodeSingularStringField(value: &self.`protocol`)
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.origin.isEmpty {
+      try visitor.visitSingularStringField(value: self.origin, fieldNumber: 1)
+    }
+    if !self.location.isEmpty {
+      try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
+    }
+    if !self.anchor.isEmpty {
+      try visitor.visitSingularStringField(value: self.anchor, fieldNumber: 3)
+    }
+    if !self.title.isEmpty {
+      try visitor.visitSingularStringField(value: self.title, fieldNumber: 4)
+    }
+    if !self.referrer.isEmpty {
+      try visitor.visitSingularStringField(value: self.referrer, fieldNumber: 5)
+    }
+    if !self.`protocol`.isEmpty {
+      try visitor.visitSingularStringField(value: self.`protocol`, fieldNumber: 6)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Specifies information about the application reporting information to the telemetry service.
-public struct Bloombox_Schema_Analytics_Context_DeviceApplication {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Analytics_Context_DeviceApplication: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".DeviceApplication"
 
   /// Type of application.
   public var type: Bloombox_Schema_Analytics_Context_ApplicationType {
@@ -159,112 +199,10 @@ public struct Bloombox_Schema_Analytics_Context_DeviceApplication {
 
   public init() {}
 
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
-
-extension Bloombox_Schema_Analytics_Context_ApplicationType: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "INTERNAL"),
-    1: .same(proto: "PARTNER"),
-  ]
-}
-
-extension Bloombox_Schema_Analytics_Context_WebApplication: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".WebApplication"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "origin"),
-    2: .same(proto: "location"),
-    3: .same(proto: "anchor"),
-    4: .same(proto: "title"),
-    5: .same(proto: "referrer"),
-    6: .same(proto: "protocol"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.origin)
-      case 2: try decoder.decodeSingularStringField(value: &self.location)
-      case 3: try decoder.decodeSingularStringField(value: &self.anchor)
-      case 4: try decoder.decodeSingularStringField(value: &self.title)
-      case 5: try decoder.decodeSingularStringField(value: &self.referrer)
-      case 6: try decoder.decodeSingularStringField(value: &self.`protocol`)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.origin.isEmpty {
-      try visitor.visitSingularStringField(value: self.origin, fieldNumber: 1)
-    }
-    if !self.location.isEmpty {
-      try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
-    }
-    if !self.anchor.isEmpty {
-      try visitor.visitSingularStringField(value: self.anchor, fieldNumber: 3)
-    }
-    if !self.title.isEmpty {
-      try visitor.visitSingularStringField(value: self.title, fieldNumber: 4)
-    }
-    if !self.referrer.isEmpty {
-      try visitor.visitSingularStringField(value: self.referrer, fieldNumber: 5)
-    }
-    if !self.`protocol`.isEmpty {
-      try visitor.visitSingularStringField(value: self.`protocol`, fieldNumber: 6)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_WebApplication) -> Bool {
-    if self.origin != other.origin {return false}
-    if self.location != other.location {return false}
-    if self.anchor != other.anchor {return false}
-    if self.title != other.title {return false}
-    if self.referrer != other.referrer {return false}
-    if self.`protocol` != other.`protocol` {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Analytics_Context_DeviceApplication: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".DeviceApplication"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "type"),
-    2: .same(proto: "version"),
-    10: .same(proto: "web"),
-    20: .standard(proto: "bundle_id"),
-    30: .standard(proto: "android_package_id"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _type: Bloombox_Schema_Analytics_Context_ApplicationType = .internal
-    var _version: Opencannabis_Structs_VersionSpec? = nil
-    var _spec: Bloombox_Schema_Analytics_Context_DeviceApplication.OneOf_Spec?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _type = source._type
-      _version = source._version
-      _spec = source._spec
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
@@ -296,6 +234,10 @@ extension Bloombox_Schema_Analytics_Context_DeviceApplication: SwiftProtobuf.Mes
     }
   }
 
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       if _storage._type != .internal {
@@ -315,6 +257,74 @@ extension Bloombox_Schema_Analytics_Context_DeviceApplication: SwiftProtobuf.Mes
       }
     }
     try unknownFields.traverse(visitor: &visitor)
+  }
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
+
+extension Bloombox_Schema_Analytics_Context_ApplicationType: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "INTERNAL"),
+    1: .same(proto: "PARTNER"),
+  ]
+}
+
+extension Bloombox_Schema_Analytics_Context_WebApplication: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "origin"),
+    2: .same(proto: "location"),
+    3: .same(proto: "anchor"),
+    4: .same(proto: "title"),
+    5: .same(proto: "referrer"),
+    6: .same(proto: "protocol"),
+  ]
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_WebApplication) -> Bool {
+    if self.origin != other.origin {return false}
+    if self.location != other.location {return false}
+    if self.anchor != other.anchor {return false}
+    if self.title != other.title {return false}
+    if self.referrer != other.referrer {return false}
+    if self.`protocol` != other.`protocol` {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Analytics_Context_DeviceApplication: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "type"),
+    2: .same(proto: "version"),
+    10: .same(proto: "web"),
+    20: .standard(proto: "bundle_id"),
+    30: .standard(proto: "android_package_id"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _type: Bloombox_Schema_Analytics_Context_ApplicationType = .internal
+    var _version: Opencannabis_Structs_VersionSpec? = nil
+    var _spec: Bloombox_Schema_Analytics_Context_DeviceApplication.OneOf_Spec?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _type = source._type
+      _version = source._version
+      _spec = source._spec
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_DeviceApplication) -> Bool {

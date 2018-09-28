@@ -1,4 +1,4 @@
 module Czlib {
-    umbrella "/Volumes/PROPHET/Vault/Code/Bloombox/Client/Swift/.build/checkouts/zlib.git--9016602441419864029/Sources/Czlib/include"
+    umbrella "/Users/sam/Workspace/Client/Swift/.build/checkouts/zlib.git--9016602441419864029/Sources/Czlib/include"
     export *
 }

@@ -104,10 +104,8 @@ public enum Bloombox_Schema_Analytics_Order_OrderAction: SwiftProtobuf.Enum {
 
 /// Specifies an order action event, wherein a user or backoffice admin has affirmatively taken some action upon or
 /// regarding a commercial order to be submitted or previously submitted by an end user.
-public struct Bloombox_Schema_Analytics_Order_Action {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Analytics_Order_Action: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".Action"
 
   /// Order being referenced for action, if any.
   public var orderKey: Opencannabis_Commerce_OrderKey {
@@ -149,6 +147,47 @@ public struct Bloombox_Schema_Analytics_Order_Action {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._orderKey)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._verb)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._customer)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._occurred)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._orderKey {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if _storage._verb != .addToCart {
+        try visitor.visitSingularEnumField(value: _storage._verb, fieldNumber: 2)
+      }
+      if let v = _storage._customer {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._occurred {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -173,8 +212,7 @@ extension Bloombox_Schema_Analytics_Order_OrderAction: SwiftProtobuf._ProtoNameP
   ]
 }
 
-extension Bloombox_Schema_Analytics_Order_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Action"
+extension Bloombox_Schema_Analytics_Order_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "order_key"),
     2: .same(proto: "verb"),
@@ -205,39 +243,6 @@ extension Bloombox_Schema_Analytics_Order_Action: SwiftProtobuf.Message, SwiftPr
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._orderKey)
-        case 2: try decoder.decodeSingularEnumField(value: &_storage._verb)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._customer)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._occurred)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._orderKey {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if _storage._verb != .addToCart {
-        try visitor.visitSingularEnumField(value: _storage._verb, fieldNumber: 2)
-      }
-      if let v = _storage._customer {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._occurred {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Order_Action) -> Bool {

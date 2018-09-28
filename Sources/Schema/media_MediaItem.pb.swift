@@ -19,18 +19,99 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Specifies the states an individual media item may exist in. This covers the process of uploading/provisioning a media
+/// item, optimizing/compressing/transforming it, and marking it as ready for serving.
+public enum Opencannabis_Media_MediaStatus: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// The media item has been provisioned, but is not yet subject to a resumable write operation (at which point, the
+  /// media item would be 'PENDING').
+  case provisioned // = 0
+
+  /// The media item is in the process of being uploaded or otherwise processed. It is not ready yet to be served and may
+  /// not even yet have underlying data written.
+  case pending // = 1
+
+  /// Data for the subject media item has been uploaded and written, but the media item has yet to be attached to its
+  /// subject data in the backing datastore, so it is not ready for serving yet.
+  case uploaded // = 2
+
+  /// This media item is ready to be served, and may include an optimized serving URL to be used instead of the raw URL
+  /// for the item in storage.
+  case ready // = 3
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .provisioned
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .provisioned
+    case 1: self = .pending
+    case 2: self = .uploaded
+    case 3: self = .ready
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .provisioned: return 0
+    case .pending: return 1
+    case .uploaded: return 2
+    case .ready: return 3
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+/// Specifies the allowed access scope for an individual media item. By default, uploaded items are accessible to users
+/// at the same partner location as the uploading user. That access can be extended to the entire partner (all locations)
+/// or the media item can be published for public serving.
+public enum Opencannabis_Media_MediaPrivacy: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// Default privacy mode. At the time of this writing, this is defined as an access scheme where all users with read
+  /// permission on the partner location account matching the uploading user are granted access.
+  case defaultPrivacy // = 0
+
+  /// All accounts in the entire partner organization should be able to see, access, and download this media item.
+  case partner // = 1
+
+  /// The subject media item is published globally, and can be accessed by anyone with the link on the open Internet.
+  case `public` // = 2
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .defaultPrivacy
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .defaultPrivacy
+    case 1: self = .partner
+    case 2: self = .public
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .defaultPrivacy: return 0
+    case .partner: return 1
+    case .public: return 2
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
 /// Specifies the subject properties of this media. That is to say, properties of the item of which this media is the
 /// subject. Also referred to as this media item's "parent" in some cases.
-public struct Opencannabis_Media_MediaSubject {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Name of this media item, with regard to it's subject parent. Optional.
-  public var name: String {
-    get {return _storage._name}
-    set {_uniqueStorage()._name = newValue}
-  }
+public struct Opencannabis_Media_MediaSubject: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".MediaSubject"
 
   /// Specified subject attachment for this media. Can be a product key, or a partnership, or location-level key, to
   /// facilitate later garbage collection of unused media.
@@ -102,101 +183,15 @@ public struct Opencannabis_Media_MediaSubject {
 
   public init() {}
 
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Describes an individual media item, which can be an image, video, etc.
-public struct Opencannabis_Media_MediaItem {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Key uniquely identifying this media item.
-  public var key: Opencannabis_Media_MediaKey {
-    get {return _storage._key ?? Opencannabis_Media_MediaKey()}
-    set {_uniqueStorage()._key = newValue}
-  }
-  /// Returns true if `key` has been explicitly set.
-  public var hasKey: Bool {return _storage._key != nil}
-  /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
-
-  /// Type of media this is describing.
-  public var type: Opencannabis_Media_MediaType {
-    get {return _storage._type ?? Opencannabis_Media_MediaType()}
-    set {_uniqueStorage()._type = newValue}
-  }
-  /// Returns true if `type` has been explicitly set.
-  public var hasType: Bool {return _storage._type != nil}
-  /// Clears the value of `type`. Subsequent reads from it will return its default value.
-  public mutating func clearType() {_storage._type = nil}
-
-  /// Friendly name for this media.
-  public var name: String {
-    get {return _storage._name}
-    set {_uniqueStorage()._name = newValue}
-  }
-
-  /// Origin URI to this media.
-  public var uri: String {
-    get {return _storage._uri}
-    set {_uniqueStorage()._uri = newValue}
-  }
-
-  /// Serving URI for this media, if it differs from the origin URI.
-  public var servingUri: String {
-    get {return _storage._servingUri}
-    set {_uniqueStorage()._servingUri = newValue}
-  }
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.media"
-
-extension Opencannabis_Media_MediaSubject: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".MediaSubject"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "name"),
-    2: .same(proto: "product"),
-    3: .same(proto: "partner"),
-    4: .same(proto: "location"),
-    5: .same(proto: "global"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _name: String = String()
-    var _attachment: Opencannabis_Media_MediaSubject.OneOf_Attachment?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _name = source._name
-      _attachment = source._attachment
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._name)
         case 2:
           var v: Opencannabis_Base_ProductKey?
           if let current = _storage._attachment {
@@ -232,11 +227,12 @@ extension Opencannabis_Media_MediaSubject: SwiftProtobuf.Message, SwiftProtobuf.
     }
   }
 
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._name.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 1)
-      }
       switch _storage._attachment {
       case .product(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
@@ -252,49 +248,410 @@ extension Opencannabis_Media_MediaSubject: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_MediaSubject) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._attachment != other_storage._attachment {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-extension Opencannabis_Media_MediaItem: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+/// Describes a pending upload operation, which may be waiting for data to finish uploading to underlying storage before
+/// the resulting record is attached to its subject owner (partner/location account, product, user, etc).
+public struct Opencannabis_Media_MediaUpload: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".MediaUpload"
+
+  /// Unique token identifying this media upload operation. This token is provisioned when the upload operation begins,
+  /// and is used to track and later attach the resulting data.
+  public var token: String {
+    get {return _storage._token}
+    set {_uniqueStorage()._token = newValue}
+  }
+
+  /// Upload operation ID, provided by GCS upon initializing a resumable upload operation.
+  public var operation: String {
+    get {return _storage._operation}
+    set {_uniqueStorage()._operation = newValue}
+  }
+
+  /// Media item provided during this upload operation.
+  public var media: Opencannabis_Media_MediaItem {
+    get {return _storage._media ?? Opencannabis_Media_MediaItem()}
+    set {_uniqueStorage()._media = newValue}
+  }
+  /// Returns true if `media` has been explicitly set.
+  public var hasMedia: Bool {return _storage._media != nil}
+  /// Clears the value of `media`. Subsequent reads from it will return its default value.
+  public mutating func clearMedia() {_storage._media = nil}
+
+  /// Mimetype for the file uploaded as part of this media operation. This should be known ahead of time.
+  public var mime: String {
+    get {return _storage._mime}
+    set {_uniqueStorage()._mime = newValue}
+  }
+
+  /// Size, in bytes, of the item uploaded in this operation.
+  public var size: UInt64 {
+    get {return _storage._size}
+    set {_uniqueStorage()._size = newValue}
+  }
+
+  /// Whether this upload operation has completed or not.
+  public var finished: Bool {
+    get {return _storage._finished}
+    set {_uniqueStorage()._finished = newValue}
+  }
+
+  /// MD5 hash for the data uploaded. Usually filled in afterwards but may be specified before the upload to check
+  /// integrity of uploaded data.
+  public var md5: String {
+    get {return _storage._md5}
+    set {_uniqueStorage()._md5 = newValue}
+  }
+
+  /// CRC32 hash for the data uploaded. Usually filled in afterwards but may be specified before the upload to check
+  /// integrity of uploaded data.
+  public var crc32: String {
+    get {return _storage._crc32}
+    set {_uniqueStorage()._crc32 = newValue}
+  }
+
+  /// User account that initiated this upload operation.
+  public var owner: Bloombox_Schema_Identity_UserKey {
+    get {return _storage._owner ?? Bloombox_Schema_Identity_UserKey()}
+    set {_uniqueStorage()._owner = newValue}
+  }
+  /// Returns true if `owner` has been explicitly set.
+  public var hasOwner: Bool {return _storage._owner != nil}
+  /// Clears the value of `owner`. Subsequent reads from it will return its default value.
+  public mutating func clearOwner() {_storage._owner = nil}
+
+  /// Path to the underlying file in GCS, without a bucket.
+  public var path: String {
+    get {return _storage._path}
+    set {_uniqueStorage()._path = newValue}
+  }
+
+  /// Parent upload, in cases where an upload is performed over an existing item (overwriting it).
+  public var parent: String {
+    get {return _storage._parent}
+    set {_uniqueStorage()._parent = newValue}
+  }
+
+  /// Timestamp for when this upload operation was created.
+  public var created: Opencannabis_Temporal_Instant {
+    get {return _storage._created ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._created = newValue}
+  }
+  /// Returns true if `created` has been explicitly set.
+  public var hasCreated: Bool {return _storage._created != nil}
+  /// Clears the value of `created`. Subsequent reads from it will return its default value.
+  public mutating func clearCreated() {_storage._created = nil}
+
+  /// Timestamp for when this upload operation was completed.
+  public var completed: Opencannabis_Temporal_Instant {
+    get {return _storage._completed ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._completed = newValue}
+  }
+  /// Returns true if `completed` has been explicitly set.
+  public var hasCompleted: Bool {return _storage._completed != nil}
+  /// Clears the value of `completed`. Subsequent reads from it will return its default value.
+  public mutating func clearCompleted() {_storage._completed = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._token)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._operation)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._media)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._mime)
+        case 5: try decoder.decodeSingularUInt64Field(value: &_storage._size)
+        case 6: try decoder.decodeSingularBoolField(value: &_storage._finished)
+        case 7: try decoder.decodeSingularStringField(value: &_storage._md5)
+        case 8: try decoder.decodeSingularStringField(value: &_storage._crc32)
+        case 9: try decoder.decodeSingularMessageField(value: &_storage._owner)
+        case 10: try decoder.decodeSingularStringField(value: &_storage._path)
+        case 11: try decoder.decodeSingularStringField(value: &_storage._parent)
+        case 20: try decoder.decodeSingularMessageField(value: &_storage._created)
+        case 21: try decoder.decodeSingularMessageField(value: &_storage._completed)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._token.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._token, fieldNumber: 1)
+      }
+      if !_storage._operation.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._operation, fieldNumber: 2)
+      }
+      if let v = _storage._media {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if !_storage._mime.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._mime, fieldNumber: 4)
+      }
+      if _storage._size != 0 {
+        try visitor.visitSingularUInt64Field(value: _storage._size, fieldNumber: 5)
+      }
+      if _storage._finished != false {
+        try visitor.visitSingularBoolField(value: _storage._finished, fieldNumber: 6)
+      }
+      if !_storage._md5.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._md5, fieldNumber: 7)
+      }
+      if !_storage._crc32.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._crc32, fieldNumber: 8)
+      }
+      if let v = _storage._owner {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
+      if !_storage._path.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._path, fieldNumber: 10)
+      }
+      if !_storage._parent.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._parent, fieldNumber: 11)
+      }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
+      }
+      if let v = _storage._completed {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Describes an individual media item, which can be an image, video, etc. Media at its most basic is simply binary blob
+/// data persisted in GCS and tracked with a corresponding DB record. Document types (like PDF, HTML, TXT) are all
+/// supported in addition to traditional rich media (images, video, sound).
+public struct Opencannabis_Media_MediaItem: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".MediaItem"
+
+  /// Key uniquely identifying this media item.
+  public var key: Opencannabis_Media_MediaKey {
+    get {return _storage._key ?? Opencannabis_Media_MediaKey()}
+    set {_uniqueStorage()._key = newValue}
+  }
+  /// Returns true if `key` has been explicitly set.
+  public var hasKey: Bool {return _storage._key != nil}
+  /// Clears the value of `key`. Subsequent reads from it will return its default value.
+  public mutating func clearKey() {_storage._key = nil}
+
+  public var status: Opencannabis_Media_MediaStatus {
+    get {return _storage._status}
+    set {_uniqueStorage()._status = newValue}
+  }
+
+  /// Type of media this is describing.
+  public var type: Opencannabis_Media_MediaType {
+    get {return _storage._type ?? Opencannabis_Media_MediaType()}
+    set {_uniqueStorage()._type = newValue}
+  }
+  /// Returns true if `type` has been explicitly set.
+  public var hasType: Bool {return _storage._type != nil}
+  /// Clears the value of `type`. Subsequent reads from it will return its default value.
+  public mutating func clearType() {_storage._type = nil}
+
+  /// Friendly name for this media.
+  public var name: String {
+    get {return _storage._name}
+    set {_uniqueStorage()._name = newValue}
+  }
+
+  /// Origin URI to this media.
+  public var uri: String {
+    get {return _storage._uri}
+    set {_uniqueStorage()._uri = newValue}
+  }
+
+  /// Serving URI for this media, if it differs from the origin URI.
+  public var servingUri: String {
+    get {return _storage._servingUri}
+    set {_uniqueStorage()._servingUri = newValue}
+  }
+
+  /// Privacy setting for this media item. Defaults to location-wide access.
+  public var privacy: Opencannabis_Media_MediaPrivacy {
+    get {return _storage._privacy}
+    set {_uniqueStorage()._privacy = newValue}
+  }
+
+  /// Timestamp for when this record was created.
+  public var created: Opencannabis_Temporal_Instant {
+    get {return _storage._created ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._created = newValue}
+  }
+  /// Returns true if `created` has been explicitly set.
+  public var hasCreated: Bool {return _storage._created != nil}
+  /// Clears the value of `created`. Subsequent reads from it will return its default value.
+  public mutating func clearCreated() {_storage._created = nil}
+
+  /// Timestamp for when this record was last modified.
+  public var modified: Opencannabis_Temporal_Instant {
+    get {return _storage._modified ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._modified = newValue}
+  }
+  /// Returns true if `modified` has been explicitly set.
+  public var hasModified: Bool {return _storage._modified != nil}
+  /// Clears the value of `modified`. Subsequent reads from it will return its default value.
+  public mutating func clearModified() {_storage._modified = nil}
+
+  /// Timestamp for when this media item was originally published.
+  public var published: Opencannabis_Temporal_Instant {
+    get {return _storage._published ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._published = newValue}
+  }
+  /// Returns true if `published` has been explicitly set.
+  public var hasPublished: Bool {return _storage._published != nil}
+  /// Clears the value of `published`. Subsequent reads from it will return its default value.
+  public mutating func clearPublished() {_storage._published = nil}
+
+  /// Ownership scope for this media item.
+  public var scope: String {
+    get {return _storage._scope}
+    set {_uniqueStorage()._scope = newValue}
+  }
+
+  /// Most recent upload token for this media item.
+  public var token: String {
+    get {return _storage._token}
+    set {_uniqueStorage()._token = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._type)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._uri)
+        case 6: try decoder.decodeSingularStringField(value: &_storage._servingUri)
+        case 7: try decoder.decodeSingularEnumField(value: &_storage._privacy)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._created)
+        case 9: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._published)
+        case 11: try decoder.decodeSingularStringField(value: &_storage._scope)
+        case 12: try decoder.decodeSingularStringField(value: &_storage._token)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if _storage._status != .provisioned {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 2)
+      }
+      if let v = _storage._type {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 4)
+      }
+      if !_storage._uri.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uri, fieldNumber: 5)
+      }
+      if !_storage._servingUri.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._servingUri, fieldNumber: 6)
+      }
+      if _storage._privacy != .defaultPrivacy {
+        try visitor.visitSingularEnumField(value: _storage._privacy, fieldNumber: 7)
+      }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
+      if let v = _storage._published {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+      if !_storage._scope.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._scope, fieldNumber: 11)
+      }
+      if !_storage._token.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._token, fieldNumber: 12)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.media"
+
+extension Opencannabis_Media_MediaStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "key"),
-    2: .same(proto: "type"),
-    3: .same(proto: "name"),
-    4: .same(proto: "uri"),
-    5: .standard(proto: "serving_uri"),
+    0: .same(proto: "PROVISIONED"),
+    1: .same(proto: "PENDING"),
+    2: .same(proto: "UPLOADED"),
+    3: .same(proto: "READY"),
+  ]
+}
+
+extension Opencannabis_Media_MediaPrivacy: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "DEFAULT_PRIVACY"),
+    1: .same(proto: "PARTNER"),
+    2: .same(proto: "PUBLIC"),
+  ]
+}
+
+extension Opencannabis_Media_MediaSubject: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    2: .same(proto: "product"),
+    3: .same(proto: "partner"),
+    4: .same(proto: "location"),
+    5: .same(proto: "global"),
   ]
 
   fileprivate class _StorageClass {
-    var _key: Opencannabis_Media_MediaKey? = nil
-    var _type: Opencannabis_Media_MediaType? = nil
-    var _name: String = String()
-    var _uri: String = String()
-    var _servingUri: String = String()
+    var _attachment: Opencannabis_Media_MediaSubject.OneOf_Attachment?
 
     static let defaultInstance = _StorageClass()
 
     private init() {}
 
     init(copying source: _StorageClass) {
-      _key = source._key
-      _type = source._type
-      _name = source._name
-      _uri = source._uri
-      _servingUri = source._servingUri
+      _attachment = source._attachment
     }
   }
 
@@ -305,41 +662,163 @@ extension Opencannabis_Media_MediaItem: SwiftProtobuf.Message, SwiftProtobuf._Me
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._type)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._name)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._uri)
-        case 5: try decoder.decodeSingularStringField(value: &_storage._servingUri)
-        default: break
-        }
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_MediaSubject) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._attachment != other_storage._attachment {return false}
+        return true
       }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Media_MediaUpload: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "token"),
+    2: .same(proto: "operation"),
+    3: .same(proto: "media"),
+    4: .same(proto: "mime"),
+    5: .same(proto: "size"),
+    6: .same(proto: "finished"),
+    7: .same(proto: "md5"),
+    8: .same(proto: "crc32"),
+    9: .same(proto: "owner"),
+    10: .same(proto: "path"),
+    11: .same(proto: "parent"),
+    20: .same(proto: "created"),
+    21: .same(proto: "completed"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _token: String = String()
+    var _operation: String = String()
+    var _media: Opencannabis_Media_MediaItem? = nil
+    var _mime: String = String()
+    var _size: UInt64 = 0
+    var _finished: Bool = false
+    var _md5: String = String()
+    var _crc32: String = String()
+    var _owner: Bloombox_Schema_Identity_UserKey? = nil
+    var _path: String = String()
+    var _parent: String = String()
+    var _created: Opencannabis_Temporal_Instant? = nil
+    var _completed: Opencannabis_Temporal_Instant? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _token = source._token
+      _operation = source._operation
+      _media = source._media
+      _mime = source._mime
+      _size = source._size
+      _finished = source._finished
+      _md5 = source._md5
+      _crc32 = source._crc32
+      _owner = source._owner
+      _path = source._path
+      _parent = source._parent
+      _created = source._created
+      _completed = source._completed
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._type {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._name.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 3)
-      }
-      if !_storage._uri.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._uri, fieldNumber: 4)
-      }
-      if !_storage._servingUri.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._servingUri, fieldNumber: 5)
-      }
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
     }
-    try unknownFields.traverse(visitor: &visitor)
+    return _storage
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_MediaUpload) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._token != other_storage._token {return false}
+        if _storage._operation != other_storage._operation {return false}
+        if _storage._media != other_storage._media {return false}
+        if _storage._mime != other_storage._mime {return false}
+        if _storage._size != other_storage._size {return false}
+        if _storage._finished != other_storage._finished {return false}
+        if _storage._md5 != other_storage._md5 {return false}
+        if _storage._crc32 != other_storage._crc32 {return false}
+        if _storage._owner != other_storage._owner {return false}
+        if _storage._path != other_storage._path {return false}
+        if _storage._parent != other_storage._parent {return false}
+        if _storage._created != other_storage._created {return false}
+        if _storage._completed != other_storage._completed {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Media_MediaItem: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "key"),
+    2: .same(proto: "status"),
+    3: .same(proto: "type"),
+    4: .same(proto: "name"),
+    5: .same(proto: "uri"),
+    6: .standard(proto: "serving_uri"),
+    7: .same(proto: "privacy"),
+    8: .same(proto: "created"),
+    9: .same(proto: "modified"),
+    10: .same(proto: "published"),
+    11: .same(proto: "scope"),
+    12: .same(proto: "token"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _key: Opencannabis_Media_MediaKey? = nil
+    var _status: Opencannabis_Media_MediaStatus = .provisioned
+    var _type: Opencannabis_Media_MediaType? = nil
+    var _name: String = String()
+    var _uri: String = String()
+    var _servingUri: String = String()
+    var _privacy: Opencannabis_Media_MediaPrivacy = .defaultPrivacy
+    var _created: Opencannabis_Temporal_Instant? = nil
+    var _modified: Opencannabis_Temporal_Instant? = nil
+    var _published: Opencannabis_Temporal_Instant? = nil
+    var _scope: String = String()
+    var _token: String = String()
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _key = source._key
+      _status = source._status
+      _type = source._type
+      _name = source._name
+      _uri = source._uri
+      _servingUri = source._servingUri
+      _privacy = source._privacy
+      _created = source._created
+      _modified = source._modified
+      _published = source._published
+      _scope = source._scope
+      _token = source._token
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
   }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_MediaItem) -> Bool {
@@ -348,10 +827,17 @@ extension Opencannabis_Media_MediaItem: SwiftProtobuf.Message, SwiftProtobuf._Me
         let _storage = _args.0
         let other_storage = _args.1
         if _storage._key != other_storage._key {return false}
+        if _storage._status != other_storage._status {return false}
         if _storage._type != other_storage._type {return false}
         if _storage._name != other_storage._name {return false}
         if _storage._uri != other_storage._uri {return false}
         if _storage._servingUri != other_storage._servingUri {return false}
+        if _storage._privacy != other_storage._privacy {return false}
+        if _storage._created != other_storage._created {return false}
+        if _storage._modified != other_storage._modified {return false}
+        if _storage._published != other_storage._published {return false}
+        if _storage._scope != other_storage._scope {return false}
+        if _storage._token != other_storage._token {return false}
         return true
       }
       if !storagesAreEqual {return false}

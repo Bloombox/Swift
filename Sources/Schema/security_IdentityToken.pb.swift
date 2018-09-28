@@ -40,6 +40,12 @@ public enum Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
 
   /// GSuite-powered authentication.
   case google // = 3
+
+  /// Second-party domain authentication, perhaps via SAML or other SSO technologies.
+  case domain // = 4
+
+  /// External IDP-powered authentication.
+  case external // = 5
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -52,6 +58,8 @@ public enum Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
     case 1: self = .firebase
     case 2: self = .auth0
     case 3: self = .google
+    case 4: self = .domain
+    case 5: self = .external
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -62,6 +70,8 @@ public enum Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
     case .firebase: return 1
     case .auth0: return 2
     case .google: return 3
+    case .domain: return 4
+    case .external: return 5
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -70,10 +80,8 @@ public enum Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
 
 /// Specifies an individual token asserting the identity of a user. An identity token does not make any claim related to
 /// authorization, only identity.
-public struct Bloombox_Schema_Security_IdentityToken {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Security_IdentityToken: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".IdentityToken"
 
   /// ID for the subject user.
   public var uid: String = String()
@@ -87,29 +95,11 @@ public struct Bloombox_Schema_Security_IdentityToken {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.security"
-
-extension Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "INTERNAL"),
-    1: .same(proto: "FIREBASE"),
-    2: .same(proto: "AUTH0"),
-    3: .same(proto: "GOOGLE"),
-  ]
-}
-
-extension Bloombox_Schema_Security_IdentityToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".IdentityToken"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "uid"),
-    2: .same(proto: "encoded"),
-    3: .same(proto: "issuer"),
-  ]
-
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -121,6 +111,10 @@ extension Bloombox_Schema_Security_IdentityToken: SwiftProtobuf.Message, SwiftPr
     }
   }
 
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.uid.isEmpty {
       try visitor.visitSingularStringField(value: self.uid, fieldNumber: 1)
@@ -133,6 +127,29 @@ extension Bloombox_Schema_Security_IdentityToken: SwiftProtobuf.Message, SwiftPr
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.security"
+
+extension Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "INTERNAL"),
+    1: .same(proto: "FIREBASE"),
+    2: .same(proto: "AUTH0"),
+    3: .same(proto: "GOOGLE"),
+    4: .same(proto: "DOMAIN"),
+    5: .same(proto: "EXTERNAL"),
+  ]
+}
+
+extension Bloombox_Schema_Security_IdentityToken: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "uid"),
+    2: .same(proto: "encoded"),
+    3: .same(proto: "issuer"),
+  ]
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_IdentityToken) -> Bool {
     if self.uid != other.uid {return false}

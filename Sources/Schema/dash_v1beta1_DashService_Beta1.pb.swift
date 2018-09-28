@@ -108,18 +108,14 @@ public enum Bloombox_Schema_Services_Dash_V1beta1_DashError: SwiftProtobuf.Enum 
 }
 
 /// Specifies an RPC operation to retrieve partner-level settings.
-public struct Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".GetPartnerSettings"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request for partner-level settings.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.protoMessageName + ".Request"
 
     /// Partner ID.
     public var partner: String = String()
@@ -127,13 +123,35 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &self.partner)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.partner.isEmpty {
+        try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   /// Response to a request for partner-level settings.
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.protoMessageName + ".Response"
 
     /// Current partner-level settings.
     public var settings: Bloombox_Schema_Partner_Settings_PartnerSettings {
@@ -149,25 +167,67 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings {
 
     public init() {}
 
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1: try decoder.decodeSingularMessageField(value: &_storage._settings)
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        if let v = _storage._settings {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Specifies an RPC operation to update partner-level settings from the dashboard.
-public struct Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".UpdatePartnerSettings"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to update partner-level settings.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings.protoMessageName + ".Request"
 
     /// Partner ID.
     public var partner: String {
@@ -189,25 +249,71 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings {
 
     public init() {}
 
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1: try decoder.decodeSingularStringField(value: &_storage._partner)
+          case 2: try decoder.decodeSingularMessageField(value: &_storage._settings)
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        if !_storage._partner.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._partner, fieldNumber: 1)
+        }
+        if let v = _storage._settings {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Specifies an RPC operation to retrieve location-level settings.
-public struct Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".GetLocationSettings"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request for location-level settings.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.protoMessageName + ".Request"
 
     /// Partner ID.
     public var partner: String = String()
@@ -218,13 +324,39 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &self.partner)
+        case 2: try decoder.decodeSingularStringField(value: &self.location)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.partner.isEmpty {
+        try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+      }
+      if !self.location.isEmpty {
+        try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   /// Response to a request for location-level settings.
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.protoMessageName + ".Response"
 
     /// Current location-level settings.
     public var settings: Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
@@ -240,25 +372,67 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings {
 
     public init() {}
 
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1: try decoder.decodeSingularMessageField(value: &_storage._settings)
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        if let v = _storage._settings {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Specifies an RPC operation to update partner location-level settings from the dashboard.
-public struct Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".UpdateLocationSettings"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to update location-level settings.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings.protoMessageName + ".Request"
 
     /// Partner ID.
     public var partner: String {
@@ -286,25 +460,75 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings {
 
     public init() {}
 
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1: try decoder.decodeSingularStringField(value: &_storage._partner)
+          case 2: try decoder.decodeSingularStringField(value: &_storage._location)
+          case 3: try decoder.decodeSingularMessageField(value: &_storage._settings)
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        if !_storage._partner.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._partner, fieldNumber: 1)
+        }
+        if !_storage._location.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._location, fieldNumber: 2)
+        }
+        if let v = _storage._settings {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Validate settings for an integrated piece of software against a Bloombox account.
-public struct Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".ValidateIntegration"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to validate settings for an integrated piece of software.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.protoMessageName + ".Request"
 
     /// Partner scope for the request. Required.
     public var partner: String = String()
@@ -318,13 +542,43 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &self.partner)
+        case 2: try decoder.decodeSingularStringField(value: &self.location)
+        case 3: try decoder.decodeSingularEnumField(value: &self.vendor)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.partner.isEmpty {
+        try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+      }
+      if !self.location.isEmpty {
+        try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
+      }
+      if self.vendor != .internal {
+        try visitor.visitSingularEnumField(value: self.vendor, fieldNumber: 3)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   /// Response to a request to validate settings for an integrated piece of software.
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.protoMessageName + ".Response"
 
     /// Integration error experienced, if any.
     public var err: Bloombox_Schema_Services_Dash_V1beta1_DashError = .noError
@@ -335,24 +589,65 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &self.err)
+        case 2: try decoder.decodeSingularStringField(value: &self.message)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if self.err != .noError {
+        try visitor.visitSingularEnumField(value: self.err, fieldNumber: 1)
+      }
+      if !self.message.isEmpty {
+        try visitor.visitSingularStringField(value: self.message, fieldNumber: 2)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Test an integrated piece of software against a Bloombox account.
-public struct Bloombox_Schema_Services_Dash_V1beta1_TestIntegration {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Dash_V1beta1_TestIntegration: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".TestIntegration"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to test an integrated piece of software.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.protoMessageName + ".Request"
 
     /// Partner scope for the request. Required.
     public var partner: String = String()
@@ -366,13 +661,43 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_TestIntegration {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &self.partner)
+        case 2: try decoder.decodeSingularStringField(value: &self.location)
+        case 3: try decoder.decodeSingularEnumField(value: &self.vendor)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.partner.isEmpty {
+        try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+      }
+      if !self.location.isEmpty {
+        try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
+      }
+      if self.vendor != .internal {
+        try visitor.visitSingularEnumField(value: self.vendor, fieldNumber: 3)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   /// Response to a request to test an integrated piece of software.
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.protoMessageName + ".Response"
 
     /// Integration error experienced, if any.
     public var err: Bloombox_Schema_Services_Dash_V1beta1_DashError = .noError
@@ -383,24 +708,65 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_TestIntegration {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &self.err)
+        case 2: try decoder.decodeSingularStringField(value: &self.message)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if self.err != .noError {
+        try visitor.visitSingularEnumField(value: self.err, fieldNumber: 1)
+      }
+      if !self.message.isEmpty {
+        try visitor.visitSingularStringField(value: self.message, fieldNumber: 2)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Manually trigger an integration to run.
-public struct Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".TriggerIntegration"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to trigger an integration.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.protoMessageName + ".Request"
 
     /// Partner scope for the request. Required.
     public var partner: String = String()
@@ -414,13 +780,43 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &self.partner)
+        case 2: try decoder.decodeSingularStringField(value: &self.location)
+        case 3: try decoder.decodeSingularEnumField(value: &self.vendor)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.partner.isEmpty {
+        try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+      }
+      if !self.location.isEmpty {
+        try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
+      }
+      if self.vendor != .internal {
+        try visitor.visitSingularEnumField(value: self.vendor, fieldNumber: 3)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   /// Response to a request to trigger an integration.
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.protoMessageName + ".Response"
 
     /// Integration error experienced, if any.
     public var err: Bloombox_Schema_Services_Dash_V1beta1_DashError = .noError
@@ -431,24 +827,65 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &self.err)
+        case 2: try decoder.decodeSingularStringField(value: &self.message)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if self.err != .noError {
+        try visitor.visitSingularEnumField(value: self.err, fieldNumber: 1)
+      }
+      if !self.message.isEmpty {
+        try visitor.visitSingularStringField(value: self.message, fieldNumber: 2)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Fetch an individual partner record.
-public struct Bloombox_Schema_Services_Dash_V1beta1_GetPartner {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Dash_V1beta1_GetPartner: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".GetPartner"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to retrieve an individual partner record by its ID.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetPartner.protoMessageName + ".Request"
 
     /// Shortcode for the desired partner.
     public var partner: String = String()
@@ -456,13 +893,35 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_GetPartner {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &self.partner)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.partner.isEmpty {
+        try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   /// Response to a request to retrieve an individual partner record.
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetPartner.protoMessageName + ".Response"
 
     /// Resulting partner record.
     public var partner: Bloombox_Schema_Partner_Partner {
@@ -478,25 +937,67 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_GetPartner {
 
     public init() {}
 
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1: try decoder.decodeSingularMessageField(value: &_storage._partner)
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        if let v = _storage._partner {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// List locations for a given partner account.
-public struct Bloombox_Schema_Services_Dash_V1beta1_ListLocations {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Dash_V1beta1_ListLocations: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".ListLocations"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to list locations for a given partner account.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_ListLocations.protoMessageName + ".Request"
 
     /// Shortcode for the partner for which we want to list locations.
     public var partner: String = String()
@@ -504,13 +1005,35 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_ListLocations {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &self.partner)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.partner.isEmpty {
+        try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   /// Response to a request to list locations for a given partner.
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_ListLocations.protoMessageName + ".Response"
 
     /// Locations owned by the partner, if the partner record could be located.
     public var locations: [Bloombox_Schema_Partner_PartnerLocation] = []
@@ -518,24 +1041,61 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_ListLocations {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeRepeatedMessageField(value: &self.locations)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.locations.isEmpty {
+        try visitor.visitRepeatedMessageField(value: self.locations, fieldNumber: 1)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Retrieve an individual partner location record.
-public struct Bloombox_Schema_Services_Dash_V1beta1_GetLocation {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Dash_V1beta1_GetLocation: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".GetLocation"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to retrieve an individual partner location record.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetLocation.protoMessageName + ".Request"
 
     /// Shorcode for the partner that owns the desired location.
     public var partner: String = String()
@@ -546,13 +1106,39 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_GetLocation {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &self.partner)
+        case 2: try decoder.decodeSingularStringField(value: &self.location)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.partner.isEmpty {
+        try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+      }
+      if !self.location.isEmpty {
+        try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   /// Response to a request to retrieve an individual location.
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetLocation.protoMessageName + ".Response"
 
     /// Resulting location record.
     public var location: Bloombox_Schema_Partner_PartnerLocation {
@@ -568,10 +1154,56 @@ public struct Bloombox_Schema_Services_Dash_V1beta1_GetLocation {
 
     public init() {}
 
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1: try decoder.decodeSingularMessageField(value: &_storage._location)
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        if let v = _storage._location {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -596,18 +1228,8 @@ extension Bloombox_Schema_Services_Dash_V1beta1_DashError: SwiftProtobuf._ProtoN
   ]
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".GetPartnerSettings"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -615,27 +1237,10 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.partner)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.partner.isEmpty {
-      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Request) -> Bool {
     if self.partner != other.partner {return false}
@@ -644,8 +1249,7 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Request: Swif
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.protoMessageName + ".Response"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "settings"),
   ]
@@ -669,27 +1273,6 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Response: Swi
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._settings)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._settings {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Response) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -705,18 +1288,8 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetPartnerSettings.Response: Swi
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".UpdatePartnerSettings"
+extension Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -724,8 +1297,7 @@ extension Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "settings"),
@@ -752,31 +1324,6 @@ extension Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings.Request: S
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._partner)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._settings)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._partner.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._partner, fieldNumber: 1)
-      }
-      if let v = _storage._settings {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings.Request) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -793,18 +1340,8 @@ extension Bloombox_Schema_Services_Dash_V1beta1_UpdatePartnerSettings.Request: S
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".GetLocationSettings"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -812,32 +1349,11 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "location"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.partner)
-      case 2: try decoder.decodeSingularStringField(value: &self.location)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.partner.isEmpty {
-      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
-    }
-    if !self.location.isEmpty {
-      try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.Request) -> Bool {
     if self.partner != other.partner {return false}
@@ -847,8 +1363,7 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.Request: Swi
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.protoMessageName + ".Response"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "settings"),
   ]
@@ -872,27 +1387,6 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.Response: Sw
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._settings)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._settings {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.Response) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -908,18 +1402,8 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetLocationSettings.Response: Sw
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".UpdateLocationSettings"
+extension Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -927,8 +1411,7 @@ extension Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "location"),
@@ -958,35 +1441,6 @@ extension Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings.Request: 
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._partner)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._location)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._settings)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._partner.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._partner, fieldNumber: 1)
-      }
-      if !_storage._location.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._location, fieldNumber: 2)
-      }
-      if let v = _storage._settings {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings.Request) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -1004,18 +1458,8 @@ extension Bloombox_Schema_Services_Dash_V1beta1_UpdateLocationSettings.Request: 
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ValidateIntegration"
+extension Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -1023,37 +1467,12 @@ extension Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "location"),
     3: .same(proto: "vendor"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.partner)
-      case 2: try decoder.decodeSingularStringField(value: &self.location)
-      case 3: try decoder.decodeSingularEnumField(value: &self.vendor)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.partner.isEmpty {
-      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
-    }
-    if !self.location.isEmpty {
-      try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
-    }
-    if self.vendor != .internal {
-      try visitor.visitSingularEnumField(value: self.vendor, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Request) -> Bool {
     if self.partner != other.partner {return false}
@@ -1064,32 +1483,11 @@ extension Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Request: Swi
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.protoMessageName + ".Response"
+extension Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "err"),
     2: .same(proto: "message"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.err)
-      case 2: try decoder.decodeSingularStringField(value: &self.message)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.err != .noError {
-      try visitor.visitSingularEnumField(value: self.err, fieldNumber: 1)
-    }
-    if !self.message.isEmpty {
-      try visitor.visitSingularStringField(value: self.message, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Response) -> Bool {
     if self.err != other.err {return false}
@@ -1099,18 +1497,8 @@ extension Bloombox_Schema_Services_Dash_V1beta1_ValidateIntegration.Response: Sw
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_TestIntegration: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".TestIntegration"
+extension Bloombox_Schema_Services_Dash_V1beta1_TestIntegration: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_TestIntegration) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -1118,37 +1506,12 @@ extension Bloombox_Schema_Services_Dash_V1beta1_TestIntegration: SwiftProtobuf.M
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "location"),
     3: .same(proto: "vendor"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.partner)
-      case 2: try decoder.decodeSingularStringField(value: &self.location)
-      case 3: try decoder.decodeSingularEnumField(value: &self.vendor)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.partner.isEmpty {
-      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
-    }
-    if !self.location.isEmpty {
-      try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
-    }
-    if self.vendor != .internal {
-      try visitor.visitSingularEnumField(value: self.vendor, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Request) -> Bool {
     if self.partner != other.partner {return false}
@@ -1159,32 +1522,11 @@ extension Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Request: SwiftPr
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.protoMessageName + ".Response"
+extension Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "err"),
     2: .same(proto: "message"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.err)
-      case 2: try decoder.decodeSingularStringField(value: &self.message)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.err != .noError {
-      try visitor.visitSingularEnumField(value: self.err, fieldNumber: 1)
-    }
-    if !self.message.isEmpty {
-      try visitor.visitSingularStringField(value: self.message, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Response) -> Bool {
     if self.err != other.err {return false}
@@ -1194,18 +1536,8 @@ extension Bloombox_Schema_Services_Dash_V1beta1_TestIntegration.Response: SwiftP
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".TriggerIntegration"
+extension Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -1213,37 +1545,12 @@ extension Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "location"),
     3: .same(proto: "vendor"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.partner)
-      case 2: try decoder.decodeSingularStringField(value: &self.location)
-      case 3: try decoder.decodeSingularEnumField(value: &self.vendor)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.partner.isEmpty {
-      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
-    }
-    if !self.location.isEmpty {
-      try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
-    }
-    if self.vendor != .internal {
-      try visitor.visitSingularEnumField(value: self.vendor, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Request) -> Bool {
     if self.partner != other.partner {return false}
@@ -1254,32 +1561,11 @@ extension Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Request: Swif
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.protoMessageName + ".Response"
+extension Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "err"),
     2: .same(proto: "message"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.err)
-      case 2: try decoder.decodeSingularStringField(value: &self.message)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.err != .noError {
-      try visitor.visitSingularEnumField(value: self.err, fieldNumber: 1)
-    }
-    if !self.message.isEmpty {
-      try visitor.visitSingularStringField(value: self.message, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Response) -> Bool {
     if self.err != other.err {return false}
@@ -1289,18 +1575,8 @@ extension Bloombox_Schema_Services_Dash_V1beta1_TriggerIntegration.Response: Swi
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetPartner: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".GetPartner"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetPartner: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetPartner) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -1308,27 +1584,10 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetPartner: SwiftProtobuf.Messag
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetPartner.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.partner)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.partner.isEmpty {
-      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Request) -> Bool {
     if self.partner != other.partner {return false}
@@ -1337,8 +1596,7 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Request: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetPartner.protoMessageName + ".Response"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
   ]
@@ -1362,27 +1620,6 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response: SwiftProtob
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._partner)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._partner {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -1398,18 +1635,8 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetPartner.Response: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_ListLocations: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ListLocations"
+extension Bloombox_Schema_Services_Dash_V1beta1_ListLocations: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_ListLocations) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -1417,27 +1644,10 @@ extension Bloombox_Schema_Services_Dash_V1beta1_ListLocations: SwiftProtobuf.Mes
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_ListLocations.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.partner)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.partner.isEmpty {
-      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Request) -> Bool {
     if self.partner != other.partner {return false}
@@ -1446,27 +1656,10 @@ extension Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Request: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_ListLocations.protoMessageName + ".Response"
+extension Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "locations"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeRepeatedMessageField(value: &self.locations)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.locations.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.locations, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Response) -> Bool {
     if self.locations != other.locations {return false}
@@ -1475,18 +1668,8 @@ extension Bloombox_Schema_Services_Dash_V1beta1_ListLocations.Response: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetLocation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".GetLocation"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetLocation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetLocation) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -1494,32 +1677,11 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetLocation: SwiftProtobuf.Messa
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetLocation.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "location"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.partner)
-      case 2: try decoder.decodeSingularStringField(value: &self.location)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.partner.isEmpty {
-      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
-    }
-    if !self.location.isEmpty {
-      try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Request) -> Bool {
     if self.partner != other.partner {return false}
@@ -1529,8 +1691,7 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Request: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Dash_V1beta1_GetLocation.protoMessageName + ".Response"
+extension Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "location"),
   ]
@@ -1552,27 +1713,6 @@ extension Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Response: SwiftProto
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._location)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._location {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Dash_V1beta1_GetLocation.Response) -> Bool {

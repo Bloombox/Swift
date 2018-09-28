@@ -12,7 +12,7 @@ import gRPC
 // Callback Types
 public typealias DeviceSerial = String
 public typealias DeviceFingerprint = String
-public typealias DeviceActivateCallback = (CallResult, DeviceActivation.Response?) -> ()
+public typealias DeviceActivateCallback = (CallResult?, DeviceActivation.Response?, Error?) -> ()
 
 
 /**
@@ -135,7 +135,7 @@ public final class DevicesClient: RemoteService {
       builder.serial = name
       builder.fingerprint = fingerprint
     }) { (response, callResult) in
-      callback(callResult, response)
+      callback(callResult, response, nil)
     }
   }
 }

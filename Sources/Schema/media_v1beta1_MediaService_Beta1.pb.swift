@@ -81,10 +81,8 @@ public enum Bloombox_Schema_Services_Media_V1beta1_MediaError: SwiftProtobuf.Enu
 }
 
 /// Specifies a payload containing a media file upload.
-public struct Bloombox_Schema_Services_Media_V1beta1_MediaFile {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Media_V1beta1_MediaFile: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".MediaFile"
 
   /// Name of the file being uploaded.
   public var filename: String = String()
@@ -95,19 +93,39 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaFile {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.filename)
+      case 2: try decoder.decodeSingularStringField(value: &self.mimetype)
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.filename.isEmpty {
+      try visitor.visitSingularStringField(value: self.filename, fieldNumber: 1)
+    }
+    if !self.mimetype.isEmpty {
+      try visitor.visitSingularStringField(value: self.mimetype, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Specifies media content uploaded inline via the API, if applicable for a given media upload request.
-public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Raw data for the media content being uploaded, if applicable.
-  public var content: Data {
-    get {return _storage._content}
-    set {_uniqueStorage()._content = newValue}
-  }
+public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".MediaContent"
 
   /// Type specification for the media being uploaded.
   public var type: Opencannabis_Media_MediaType {
@@ -144,6 +162,22 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
     set {_uniqueStorage()._spec = .blob(newValue)}
   }
 
+  /// Raw data for the media content being uploaded, if applicable.
+  public var content: Opencannabis_Content_Content {
+    get {return _storage._content ?? Opencannabis_Content_Content()}
+    set {_uniqueStorage()._content = newValue}
+  }
+  /// Returns true if `content` has been explicitly set.
+  public var hasContent: Bool {return _storage._content != nil}
+  /// Clears the value of `content`. Subsequent reads from it will return its default value.
+  public mutating func clearContent() {_storage._content = nil}
+
+  /// Name to give the media. Optional, and should be a human-readable label. Not usually based on a filename.
+  public var name: String {
+    get {return _storage._name}
+    set {_uniqueStorage()._name = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specification for the data to be uploaded. Either a file, in which case, a mime type and/or filename can be
@@ -165,35 +199,78 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._type)
+        case 2:
+          var v: Bloombox_Schema_Services_Media_V1beta1_MediaFile?
+          if let current = _storage._spec {
+            try decoder.handleConflictingOneOf()
+            if case .file(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._spec = .file(v)}
+        case 3:
+          if _storage._spec != nil {try decoder.handleConflictingOneOf()}
+          var v: Bool?
+          try decoder.decodeSingularBoolField(value: &v)
+          if let v = v {_storage._spec = .blob(v)}
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._content)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._name)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._type {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      switch _storage._spec {
+      case .file(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case .blob(let v)?:
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 3)
+      case nil: break
+      }
+      if let v = _storage._content {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies a resumeable upload operation, created and authorized in response to a request to upload a new media item
 /// from a web browser.
-public struct Bloombox_Schema_Services_Media_V1beta1_UploadTransaction {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Media_V1beta1_UploadTransaction: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".UploadTransaction"
 
   /// URI to upload the data to.
-  public var target: String = String()
+  public var target: String {
+    get {return _storage._target}
+    set {_uniqueStorage()._target = newValue}
+  }
 
-  /// Token uniquely identifying this upload transaction, so the resulting media may later be attached after being
-  /// uploaded by the client.
-  public var token: String = String()
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
-/// Media operation result, when data/operations are performed inline with a request and do not require followup.
-public struct Bloombox_Schema_Services_Media_V1beta1_OperationResult {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Resulting key, provisioned fresh for this media item.
+  /// Key provisioned for the media item we are being asked to accept as an upload.
   public var key: Opencannabis_Media_MediaKey {
     get {return _storage._key ?? Opencannabis_Media_MediaKey()}
     set {_uniqueStorage()._key = newValue}
@@ -207,22 +284,101 @@ public struct Bloombox_Schema_Services_Media_V1beta1_OperationResult {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._target)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._key)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._target.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._target, fieldNumber: 1)
+      }
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Media operation result, when data/operations are performed inline with a request and do not require followup.
+public struct Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".OperationResult"
+
+  /// URI to access this item.
+  public var item: Opencannabis_Media_MediaItem {
+    get {return _storage._item ?? Opencannabis_Media_MediaItem()}
+    set {_uniqueStorage()._item = newValue}
+  }
+  /// Returns true if `item` has been explicitly set.
+  public var hasItem: Bool {return _storage._item != nil}
+  /// Clears the value of `item`. Subsequent reads from it will return its default value.
+  public mutating func clearItem() {_storage._item = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._item)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._item {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies an RPC structure and operation to list media items for a given partner/location scope.
-public struct Bloombox_Schema_Services_Media_V1beta1_ListMedia {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Media_V1beta1_ListMedia: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".ListMedia"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to list media items for a given scope.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_ListMedia.protoMessageName + ".Request"
 
     /// Partnership scope for the request.
     public var scope: String = String()
@@ -230,13 +386,35 @@ public struct Bloombox_Schema_Services_Media_V1beta1_ListMedia {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &self.scope)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.scope.isEmpty {
+        try visitor.visitSingularStringField(value: self.scope, fieldNumber: 1)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   /// Response containing a list of media items.
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_ListMedia.protoMessageName + ".Response"
 
     /// Resulting media item records list.
     public var media: [Opencannabis_Media_MediaItem] = []
@@ -244,25 +422,62 @@ public struct Bloombox_Schema_Services_Media_V1beta1_ListMedia {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeRepeatedMessageField(value: &self.media)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.media.isEmpty {
+        try visitor.visitRepeatedMessageField(value: self.media, fieldNumber: 1)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Specifies an RPC structure and operation to retrieve an individual media item record, stored under a partner/location
 /// account scope value.
-public struct Bloombox_Schema_Services_Media_V1beta1_GetMedia {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Media_V1beta1_GetMedia: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".GetMedia"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to retrieve an individual media item record.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_GetMedia.protoMessageName + ".Request"
 
     /// Partnership scope for the request.
     public var scope: String {
@@ -284,14 +499,45 @@ public struct Bloombox_Schema_Services_Media_V1beta1_GetMedia {
 
     public init() {}
 
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1: try decoder.decodeSingularStringField(value: &_storage._scope)
+          case 2: try decoder.decodeSingularMessageField(value: &_storage._key)
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        if !_storage._scope.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._scope, fieldNumber: 1)
+        }
+        if let v = _storage._key {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Response containing the resulting media item, if any.
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_GetMedia.protoMessageName + ".Response"
 
     /// Resulting media item record.
     public var media: Opencannabis_Media_MediaItem {
@@ -307,26 +553,68 @@ public struct Bloombox_Schema_Services_Media_V1beta1_GetMedia {
 
     public init() {}
 
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1: try decoder.decodeSingularMessageField(value: &_storage._media)
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        if let v = _storage._media {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Specifies an RPC operation to upload a new piece of media, provisioning a media item record (and key) along the way.
 /// The resulting key, or an error encountered while attempting to fulfill the operation, is returned.
-public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".UploadMedia"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies an RPC request to upload a new media item.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_UploadMedia.protoMessageName + ".Request"
 
     /// Partnership scope value. Includes the partner account and location.
     public var scope: String {
@@ -354,18 +642,73 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
     /// Clears the value of `content`. Subsequent reads from it will return its default value.
     public mutating func clearContent() {_storage._content = nil}
 
+    /// Whether the content should be exposed publicly, or at some other privacy level.
+    public var privacy: Opencannabis_Media_MediaPrivacy {
+      get {return _storage._privacy}
+      set {_uniqueStorage()._privacy = newValue}
+    }
+
+    /// Origin from which we are uploading data.
+    public var origin: String {
+      get {return _storage._origin}
+      set {_uniqueStorage()._origin = newValue}
+    }
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1: try decoder.decodeSingularStringField(value: &_storage._scope)
+          case 2: try decoder.decodeSingularMessageField(value: &_storage._subject)
+          case 3: try decoder.decodeSingularMessageField(value: &_storage._content)
+          case 4: try decoder.decodeSingularEnumField(value: &_storage._privacy)
+          case 5: try decoder.decodeSingularStringField(value: &_storage._origin)
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        if !_storage._scope.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._scope, fieldNumber: 1)
+        }
+        if let v = _storage._subject {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        }
+        if let v = _storage._content {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+        }
+        if _storage._privacy != .defaultPrivacy {
+          try visitor.visitSingularEnumField(value: _storage._privacy, fieldNumber: 4)
+        }
+        if !_storage._origin.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._origin, fieldNumber: 5)
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
 
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies the response to a request to upload a new media item.
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_UploadMedia.protoMessageName + ".Response"
 
     /// Followup operation specified in response to the specified media upload request, if any/applicable.
     public var operation: OneOf_Operation? {
@@ -417,40 +760,163 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
 
     public init() {}
 
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1:
+            var v: Bloombox_Schema_Services_Media_V1beta1_UploadTransaction?
+            if let current = _storage._operation {
+              try decoder.handleConflictingOneOf()
+              if case .transaction(let m) = current {v = m}
+            }
+            try decoder.decodeSingularMessageField(value: &v)
+            if let v = v {_storage._operation = .transaction(v)}
+          case 2:
+            var v: Bloombox_Schema_Services_Media_V1beta1_OperationResult?
+            if let current = _storage._operation {
+              try decoder.handleConflictingOneOf()
+              if case .result(let m) = current {v = m}
+            }
+            try decoder.decodeSingularMessageField(value: &v)
+            if let v = v {_storage._operation = .result(v)}
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        switch _storage._operation {
+        case .transaction(let v)?:
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+        case .result(let v)?:
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        case nil: break
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Specifies an RPC operation notifying the server that a piece of media has completed uploading, and is ready to be
 /// attached to a given media subject parent.
-public struct Bloombox_Schema_Services_Media_V1beta1_AttachMedia {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Services_Media_V1beta1_AttachMedia: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".AttachMedia"
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request payload representing a client's desire to attach an uploaded piece of media to its specified subject parent
   /// object, once followup is complete.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_AttachMedia.protoMessageName + ".Request"
 
     /// Partnership scope for the request, including the partner code and location code.
-    public var scope: String = String()
+    public var scope: String {
+      get {return _storage._scope}
+      set {_uniqueStorage()._scope = newValue}
+    }
 
-    /// Upload transaction token, returned in a request to provision a new media upload.
-    public var token: String = String()
+    /// Key for the media item to attach.
+    public var key: Opencannabis_Media_MediaKey {
+      get {return _storage._key ?? Opencannabis_Media_MediaKey()}
+      set {_uniqueStorage()._key = newValue}
+    }
+    /// Returns true if `key` has been explicitly set.
+    public var hasKey: Bool {return _storage._key != nil}
+    /// Clears the value of `key`. Subsequent reads from it will return its default value.
+    public mutating func clearKey() {_storage._key = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1: try decoder.decodeSingularStringField(value: &_storage._scope)
+          case 2: try decoder.decodeSingularMessageField(value: &_storage._key)
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        if !_storage._scope.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._scope, fieldNumber: 1)
+        }
+        if let v = _storage._key {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+
+    fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -469,32 +935,11 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaError: SwiftProtobuf._Prot
   ]
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_MediaFile: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".MediaFile"
+extension Bloombox_Schema_Services_Media_V1beta1_MediaFile: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "filename"),
     2: .same(proto: "mimetype"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.filename)
-      case 2: try decoder.decodeSingularStringField(value: &self.mimetype)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.filename.isEmpty {
-      try visitor.visitSingularStringField(value: self.filename, fieldNumber: 1)
-    }
-    if !self.mimetype.isEmpty {
-      try visitor.visitSingularStringField(value: self.mimetype, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_MediaFile) -> Bool {
     if self.filename != other.filename {return false}
@@ -504,28 +949,30 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaFile: SwiftProtobuf.Messag
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".MediaContent"
+extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "content"),
-    2: .same(proto: "type"),
-    3: .same(proto: "file"),
-    4: .same(proto: "blob"),
+    1: .same(proto: "type"),
+    2: .same(proto: "file"),
+    3: .same(proto: "blob"),
+    4: .same(proto: "content"),
+    5: .same(proto: "name"),
   ]
 
   fileprivate class _StorageClass {
-    var _content: Data = SwiftProtobuf.Internal.emptyData
     var _type: Opencannabis_Media_MediaType? = nil
     var _spec: Bloombox_Schema_Services_Media_V1beta1_MediaContent.OneOf_Spec?
+    var _content: Opencannabis_Content_Content? = nil
+    var _name: String = String()
 
     static let defaultInstance = _StorageClass()
 
     private init() {}
 
     init(copying source: _StorageClass) {
-      _content = source._content
       _type = source._type
       _spec = source._spec
+      _content = source._content
+      _name = source._name
     }
   }
 
@@ -536,59 +983,15 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Mes
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularBytesField(value: &_storage._content)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._type)
-        case 3:
-          var v: Bloombox_Schema_Services_Media_V1beta1_MediaFile?
-          if let current = _storage._spec {
-            try decoder.handleConflictingOneOf()
-            if case .file(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._spec = .file(v)}
-        case 4:
-          if _storage._spec != nil {try decoder.handleConflictingOneOf()}
-          var v: Bool?
-          try decoder.decodeSingularBoolField(value: &v)
-          if let v = v {_storage._spec = .blob(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._content.isEmpty {
-        try visitor.visitSingularBytesField(value: _storage._content, fieldNumber: 1)
-      }
-      if let v = _storage._type {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      switch _storage._spec {
-      case .file(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      case .blob(let v)?:
-        try visitor.visitSingularBoolField(value: v, fieldNumber: 4)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_MediaContent) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let other_storage = _args.1
-        if _storage._content != other_storage._content {return false}
         if _storage._type != other_storage._type {return false}
         if _storage._spec != other_storage._spec {return false}
+        if _storage._content != other_storage._content {return false}
+        if _storage._name != other_storage._name {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -598,48 +1001,14 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Mes
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_UploadTransaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".UploadTransaction"
+extension Bloombox_Schema_Services_Media_V1beta1_UploadTransaction: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "target"),
-    2: .same(proto: "token"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.target)
-      case 2: try decoder.decodeSingularStringField(value: &self.token)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.target.isEmpty {
-      try visitor.visitSingularStringField(value: self.target, fieldNumber: 1)
-    }
-    if !self.token.isEmpty {
-      try visitor.visitSingularStringField(value: self.token, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_UploadTransaction) -> Bool {
-    if self.target != other.target {return false}
-    if self.token != other.token {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".OperationResult"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "key"),
+    2: .same(proto: "key"),
   ]
 
   fileprivate class _StorageClass {
+    var _target: String = String()
     var _key: Opencannabis_Media_MediaKey? = nil
 
     static let defaultInstance = _StorageClass()
@@ -647,6 +1016,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.
     private init() {}
 
     init(copying source: _StorageClass) {
+      _target = source._target
       _key = source._key
     }
   }
@@ -658,32 +1028,12 @@ extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_OperationResult) -> Bool {
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_UploadTransaction) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let other_storage = _args.1
+        if _storage._target != other_storage._target {return false}
         if _storage._key != other_storage._key {return false}
         return true
       }
@@ -694,18 +1044,47 @@ extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_ListMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ListMedia"
-  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "item"),
+  ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
+  fileprivate class _StorageClass {
+    var _item: Opencannabis_Media_MediaItem? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _item = source._item
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
   }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_OperationResult) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._item != other_storage._item {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Media_V1beta1_ListMedia: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_ListMedia) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -713,27 +1092,10 @@ extension Bloombox_Schema_Services_Media_V1beta1_ListMedia: SwiftProtobuf.Messag
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_ListMedia.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.scope)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.scope.isEmpty {
-      try visitor.visitSingularStringField(value: self.scope, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request) -> Bool {
     if self.scope != other.scope {return false}
@@ -742,27 +1104,10 @@ extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_ListMedia.protoMessageName + ".Response"
+extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "media"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeRepeatedMessageField(value: &self.media)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.media.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.media, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response) -> Bool {
     if self.media != other.media {return false}
@@ -771,18 +1116,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_GetMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".GetMedia"
+extension Bloombox_Schema_Services_Media_V1beta1_GetMedia: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_GetMedia) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -790,8 +1125,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia: SwiftProtobuf.Message
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_GetMedia.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "key"),
@@ -818,31 +1152,6 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request: SwiftProtobuf
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._scope)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._key)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._scope.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._scope, fieldNumber: 1)
-      }
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -859,8 +1168,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request: SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_GetMedia.protoMessageName + ".Response"
+extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "media"),
   ]
@@ -884,27 +1192,6 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response: SwiftProtobu
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._media)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._media {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -920,18 +1207,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".UploadMedia"
+extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_UploadMedia) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -939,18 +1216,21 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia: SwiftProtobuf.Mess
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_UploadMedia.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "subject"),
     3: .same(proto: "content"),
+    4: .same(proto: "privacy"),
+    5: .same(proto: "origin"),
   ]
 
   fileprivate class _StorageClass {
     var _scope: String = String()
     var _subject: Opencannabis_Media_MediaSubject? = nil
     var _content: Bloombox_Schema_Services_Media_V1beta1_MediaContent? = nil
+    var _privacy: Opencannabis_Media_MediaPrivacy = .defaultPrivacy
+    var _origin: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -960,6 +1240,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProto
       _scope = source._scope
       _subject = source._subject
       _content = source._content
+      _privacy = source._privacy
+      _origin = source._origin
     }
   }
 
@@ -970,35 +1252,6 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProto
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._scope)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._subject)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._content)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._scope.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._scope, fieldNumber: 1)
-      }
-      if let v = _storage._subject {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._content {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -1007,6 +1260,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProto
         if _storage._scope != other_storage._scope {return false}
         if _storage._subject != other_storage._subject {return false}
         if _storage._content != other_storage._content {return false}
+        if _storage._privacy != other_storage._privacy {return false}
+        if _storage._origin != other_storage._origin {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -1016,8 +1271,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_UploadMedia.protoMessageName + ".Response"
+extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "transaction"),
     2: .same(proto: "result"),
@@ -1042,46 +1296,6 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response: SwiftProt
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1:
-          var v: Bloombox_Schema_Services_Media_V1beta1_UploadTransaction?
-          if let current = _storage._operation {
-            try decoder.handleConflictingOneOf()
-            if case .transaction(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._operation = .transaction(v)}
-        case 2:
-          var v: Bloombox_Schema_Services_Media_V1beta1_OperationResult?
-          if let current = _storage._operation {
-            try decoder.handleConflictingOneOf()
-            if case .result(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._operation = .result(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      switch _storage._operation {
-      case .transaction(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      case .result(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -1097,18 +1311,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_AttachMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".AttachMedia"
+extension Bloombox_Schema_Services_Media_V1beta1_AttachMedia: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_AttachMedia) -> Bool {
     if unknownFields != other.unknownFields {return false}
@@ -1116,36 +1320,44 @@ extension Bloombox_Schema_Services_Media_V1beta1_AttachMedia: SwiftProtobuf.Mess
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_AttachMedia.protoMessageName + ".Request"
+extension Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
-    2: .same(proto: "token"),
+    2: .same(proto: "key"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.scope)
-      case 2: try decoder.decodeSingularStringField(value: &self.token)
-      default: break
-      }
+  fileprivate class _StorageClass {
+    var _scope: String = String()
+    var _key: Opencannabis_Media_MediaKey? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _scope = source._scope
+      _key = source._key
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.scope.isEmpty {
-      try visitor.visitSingularStringField(value: self.scope, fieldNumber: 1)
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
     }
-    if !self.token.isEmpty {
-      try visitor.visitSingularStringField(value: self.token, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
+    return _storage
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request) -> Bool {
-    if self.scope != other.scope {return false}
-    if self.token != other.token {return false}
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._scope != other_storage._scope {return false}
+        if _storage._key != other_storage._key {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if unknownFields != other.unknownFields {return false}
     return true
   }

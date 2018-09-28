@@ -91,10 +91,8 @@ public enum Bloombox_Schema_Analytics_Context_ScreenOrientation: SwiftProtobuf.E
 }
 
 /// Carries information about a device display, including resolution, pixel density, and viewport size, if applicable.
-public struct Bloombox_Schema_Analytics_Context_PixelSize {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Analytics_Context_PixelSize: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".PixelSize"
 
   /// Specifies the width portion of a pixel size.
   public var width: UInt32 = 0
@@ -105,13 +103,39 @@ public struct Bloombox_Schema_Analytics_Context_PixelSize {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularUInt32Field(value: &self.width)
+      case 2: try decoder.decodeSingularUInt32Field(value: &self.height)
+      default: break
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.width != 0 {
+      try visitor.visitSingularUInt32Field(value: self.width, fieldNumber: 1)
+    }
+    if self.height != 0 {
+      try visitor.visitSingularUInt32Field(value: self.height, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 }
 
 /// Carries information about the screen being used on the device to display whatever is being instrumented.
-public struct Bloombox_Schema_Analytics_Context_DeviceScreen {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Analytics_Context_DeviceScreen: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".DeviceScreen"
 
   /// Size of the screen.
   public var screen: Bloombox_Schema_Analytics_Context_PixelSize {
@@ -149,14 +173,53 @@ public struct Bloombox_Schema_Analytics_Context_DeviceScreen {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._screen)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._viewport)
+        case 3: try decoder.decodeSingularUInt32Field(value: &_storage._density)
+        case 4: try decoder.decodeSingularEnumField(value: &_storage._orientation)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._screen {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._viewport {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if _storage._density != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._density, fieldNumber: 3)
+      }
+      if _storage._orientation != .unspecifiedOrientation {
+        try visitor.visitSingularEnumField(value: _storage._orientation, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies a structure describing code running in some form of a native context.
-public struct Bloombox_Schema_Analytics_Context_NativeDeviceContext {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Analytics_Context_NativeDeviceContext: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".NativeDeviceContext"
 
   /// Specifies the type of native device.
   public var type: Opencannabis_Device_DeviceType {
@@ -210,6 +273,55 @@ public struct Bloombox_Schema_Analytics_Context_NativeDeviceContext {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._role)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._os)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._screen)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._beacon)
+        case 7: try decoder.decodeRepeatedMessageField(value: &_storage._witnessed)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._type != .unknownDeviceType {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
+      }
+      if _storage._role != .client {
+        try visitor.visitSingularEnumField(value: _storage._role, fieldNumber: 2)
+      }
+      if let v = _storage._os {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._screen {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._beacon {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if !_storage._witnessed.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._witnessed, fieldNumber: 7)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -232,32 +344,11 @@ extension Bloombox_Schema_Analytics_Context_ScreenOrientation: SwiftProtobuf._Pr
   ]
 }
 
-extension Bloombox_Schema_Analytics_Context_PixelSize: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".PixelSize"
+extension Bloombox_Schema_Analytics_Context_PixelSize: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "width"),
     2: .same(proto: "height"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularUInt32Field(value: &self.width)
-      case 2: try decoder.decodeSingularUInt32Field(value: &self.height)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.width != 0 {
-      try visitor.visitSingularUInt32Field(value: self.width, fieldNumber: 1)
-    }
-    if self.height != 0 {
-      try visitor.visitSingularUInt32Field(value: self.height, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_PixelSize) -> Bool {
     if self.width != other.width {return false}
@@ -267,8 +358,7 @@ extension Bloombox_Schema_Analytics_Context_PixelSize: SwiftProtobuf.Message, Sw
   }
 }
 
-extension Bloombox_Schema_Analytics_Context_DeviceScreen: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".DeviceScreen"
+extension Bloombox_Schema_Analytics_Context_DeviceScreen: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "screen"),
     2: .same(proto: "viewport"),
@@ -301,39 +391,6 @@ extension Bloombox_Schema_Analytics_Context_DeviceScreen: SwiftProtobuf.Message,
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._screen)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._viewport)
-        case 3: try decoder.decodeSingularUInt32Field(value: &_storage._density)
-        case 4: try decoder.decodeSingularEnumField(value: &_storage._orientation)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._screen {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._viewport {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if _storage._density != 0 {
-        try visitor.visitSingularUInt32Field(value: _storage._density, fieldNumber: 3)
-      }
-      if _storage._orientation != .unspecifiedOrientation {
-        try visitor.visitSingularEnumField(value: _storage._orientation, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_DeviceScreen) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -352,8 +409,7 @@ extension Bloombox_Schema_Analytics_Context_DeviceScreen: SwiftProtobuf.Message,
   }
 }
 
-extension Bloombox_Schema_Analytics_Context_NativeDeviceContext: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".NativeDeviceContext"
+extension Bloombox_Schema_Analytics_Context_NativeDeviceContext: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "role"),
@@ -390,47 +446,6 @@ extension Bloombox_Schema_Analytics_Context_NativeDeviceContext: SwiftProtobuf.M
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
-        case 2: try decoder.decodeSingularEnumField(value: &_storage._role)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._os)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._screen)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._beacon)
-        case 7: try decoder.decodeRepeatedMessageField(value: &_storage._witnessed)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._type != .unknownDeviceType {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
-      }
-      if _storage._role != .client {
-        try visitor.visitSingularEnumField(value: _storage._role, fieldNumber: 2)
-      }
-      if let v = _storage._os {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._screen {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._beacon {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if !_storage._witnessed.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._witnessed, fieldNumber: 7)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_NativeDeviceContext) -> Bool {

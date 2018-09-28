@@ -89,10 +89,8 @@ public enum Opencannabis_Commerce_FiatCurrency: SwiftProtobuf.Enum {
 }
 
 /// Specifies a value, with a particular currency specification as the unit.
-public struct Opencannabis_Commerce_CurrencyValue {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Commerce_CurrencyValue: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".CurrencyValue"
 
   /// Numeric amount value to specify.
   public var value: Float = 0
@@ -140,35 +138,11 @@ public struct Opencannabis_Commerce_CurrencyValue {
   }
 
   public init() {}
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.commerce"
-
-extension Opencannabis_Commerce_CurrencyType: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "FIAT"),
-    1: .same(proto: "REAL"),
-    2: .same(proto: "CRYPTO"),
-  ]
-}
-
-extension Opencannabis_Commerce_FiatCurrency: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "USD"),
-  ]
-}
-
-extension Opencannabis_Commerce_CurrencyValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".CurrencyValue"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "value"),
-    2: .same(proto: "type"),
-    10: .same(proto: "fiat"),
-    100: .same(proto: "custom"),
-  ]
-
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -189,6 +163,10 @@ extension Opencannabis_Commerce_CurrencyValue: SwiftProtobuf.Message, SwiftProto
     }
   }
 
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.value != 0 {
       try visitor.visitSingularFloatField(value: self.value, fieldNumber: 1)
@@ -205,6 +183,33 @@ extension Opencannabis_Commerce_CurrencyValue: SwiftProtobuf.Message, SwiftProto
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.commerce"
+
+extension Opencannabis_Commerce_CurrencyType: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "FIAT"),
+    1: .same(proto: "REAL"),
+    2: .same(proto: "CRYPTO"),
+  ]
+}
+
+extension Opencannabis_Commerce_FiatCurrency: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "USD"),
+  ]
+}
+
+extension Opencannabis_Commerce_CurrencyValue: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "value"),
+    2: .same(proto: "type"),
+    10: .same(proto: "fiat"),
+    100: .same(proto: "custom"),
+  ]
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_CurrencyValue) -> Bool {
     if self.value != other.value {return false}

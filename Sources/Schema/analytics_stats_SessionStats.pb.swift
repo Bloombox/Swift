@@ -20,10 +20,8 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a set of basic calculated statistics, computed at the level of an entire user session.
-public struct Bloombox_Schema_Analytics_Stats_SessionStats {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Bloombox_Schema_Analytics_Stats_SessionStats: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".SessionStats"
 
   /// Original ID of the session.
   public var sid: String {
@@ -79,6 +77,59 @@ public struct Bloombox_Schema_Analytics_Stats_SessionStats {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._sid)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._partnerScope)
+        case 3: try decoder.decodeSingularUInt32Field(value: &_storage._eventCount)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._begin)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._end)
+        case 6: try decoder.decodeSingularStringField(value: &_storage._deviceID)
+        case 7: try decoder.decodeSingularStringField(value: &_storage._userID)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._sid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._sid, fieldNumber: 1)
+      }
+      if !_storage._partnerScope.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._partnerScope, fieldNumber: 2)
+      }
+      if _storage._eventCount != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._eventCount, fieldNumber: 3)
+      }
+      if let v = _storage._begin {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._end {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if !_storage._deviceID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._deviceID, fieldNumber: 6)
+      }
+      if !_storage._userID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._userID, fieldNumber: 7)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -86,8 +137,7 @@ public struct Bloombox_Schema_Analytics_Stats_SessionStats {
 
 fileprivate let _protobuf_package = "bloombox.schema.analytics.stats"
 
-extension Bloombox_Schema_Analytics_Stats_SessionStats: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".SessionStats"
+extension Bloombox_Schema_Analytics_Stats_SessionStats: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "sid"),
     2: .standard(proto: "partner_scope"),
@@ -127,51 +177,6 @@ extension Bloombox_Schema_Analytics_Stats_SessionStats: SwiftProtobuf.Message, S
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._sid)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._partnerScope)
-        case 3: try decoder.decodeSingularUInt32Field(value: &_storage._eventCount)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._begin)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._end)
-        case 6: try decoder.decodeSingularStringField(value: &_storage._deviceID)
-        case 7: try decoder.decodeSingularStringField(value: &_storage._userID)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._sid.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._sid, fieldNumber: 1)
-      }
-      if !_storage._partnerScope.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._partnerScope, fieldNumber: 2)
-      }
-      if _storage._eventCount != 0 {
-        try visitor.visitSingularUInt32Field(value: _storage._eventCount, fieldNumber: 3)
-      }
-      if let v = _storage._begin {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._end {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if !_storage._deviceID.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._deviceID, fieldNumber: 6)
-      }
-      if !_storage._userID.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._userID, fieldNumber: 7)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Stats_SessionStats) -> Bool {

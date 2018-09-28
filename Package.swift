@@ -20,7 +20,5 @@ let package = Package(
             dependencies: ["Schema"]),
         .target(
             name: "Schema",
-            dependencies: ["SwiftProtobuf", "SwiftGRPC"]),
-        .testTarget(
-            name: "ClientTests",
-            dependencies: ["Client"])])
+            dependencies: ["SwiftProtobuf", "SwiftGRPC"])])
+

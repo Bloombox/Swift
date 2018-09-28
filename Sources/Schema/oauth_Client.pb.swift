@@ -106,10 +106,8 @@ public enum Opencannabis_Oauth_GrantType: SwiftProtobuf.Enum {
 }
 
 /// Specifies an OAuth2-client that can perform authorization operations in certain circumstances.
-public struct Opencannabis_Oauth_Client {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Oauth_Client: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".Client"
 
   /// ID for this OAuth2 client.
   public var id: String {
@@ -205,14 +203,89 @@ public struct Opencannabis_Oauth_Client {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._secret)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 4: try decoder.decodeRepeatedStringField(value: &_storage._contact)
+        case 5: try decoder.decodeRepeatedEnumField(value: &_storage._grantTypes)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._branding)
+        case 7: try decoder.decodeSingularStringField(value: &_storage._owner)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._policy)
+        case 9: try decoder.decodeSingularMessageField(value: &_storage._terms)
+        case 10: try decoder.decodeSingularBoolField(value: &_storage._public)
+        case 11: try decoder.decodeRepeatedStringField(value: &_storage._redirectUri)
+        case 12: try decoder.decodeRepeatedEnumField(value: &_storage._responseType)
+        case 13: try decoder.decodeRepeatedMessageField(value: &_storage._scope)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if !_storage._secret.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._secret, fieldNumber: 2)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 3)
+      }
+      if !_storage._contact.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._contact, fieldNumber: 4)
+      }
+      if !_storage._grantTypes.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._grantTypes, fieldNumber: 5)
+      }
+      if let v = _storage._branding {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if !_storage._owner.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._owner, fieldNumber: 7)
+      }
+      if let v = _storage._policy {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if let v = _storage._terms {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
+      if _storage._public != false {
+        try visitor.visitSingularBoolField(value: _storage._public, fieldNumber: 10)
+      }
+      if !_storage._redirectUri.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._redirectUri, fieldNumber: 11)
+      }
+      if !_storage._responseType.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._responseType, fieldNumber: 12)
+      }
+      if !_storage._scope.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._scope, fieldNumber: 13)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Client/auth information regarding the consent application.
-public struct Opencannabis_Oauth_Consent {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Oauth_Consent: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".Consent"
 
   /// ID value of THIS indvidual request.
   public var id: String {
@@ -252,14 +325,57 @@ public struct Opencannabis_Oauth_Consent {
 
   public init() {}
 
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._clientID)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._expiresAt)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._redirectUri)
+        case 5: try decoder.decodeRepeatedStringField(value: &_storage._requestedScope)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if !_storage._clientID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._clientID, fieldNumber: 2)
+      }
+      if let v = _storage._expiresAt {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if !_storage._redirectUri.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._redirectUri, fieldNumber: 4)
+      }
+      if !_storage._requestedScope.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._requestedScope, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies a ticket responding to a consent flow.
-public struct Opencannabis_Oauth_ConsentTicket {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+public struct Opencannabis_Oauth_ConsentTicket: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".ConsentTicket"
 
   /// Specifies client information for this flow.
   public var client: Opencannabis_Oauth_Client {
@@ -284,6 +400,39 @@ public struct Opencannabis_Oauth_ConsentTicket {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._client)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._consent)
+        default: break
+        }
+      }
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._client {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._consent {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -310,8 +459,7 @@ extension Opencannabis_Oauth_GrantType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Opencannabis_Oauth_Client: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Client"
+extension Opencannabis_Oauth_Client: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "secret"),
@@ -371,75 +519,6 @@ extension Opencannabis_Oauth_Client: SwiftProtobuf.Message, SwiftProtobuf._Messa
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._secret)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._name)
-        case 4: try decoder.decodeRepeatedStringField(value: &_storage._contact)
-        case 5: try decoder.decodeRepeatedEnumField(value: &_storage._grantTypes)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._branding)
-        case 7: try decoder.decodeSingularStringField(value: &_storage._owner)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._policy)
-        case 9: try decoder.decodeSingularMessageField(value: &_storage._terms)
-        case 10: try decoder.decodeSingularBoolField(value: &_storage._public)
-        case 11: try decoder.decodeRepeatedStringField(value: &_storage._redirectUri)
-        case 12: try decoder.decodeRepeatedEnumField(value: &_storage._responseType)
-        case 13: try decoder.decodeRepeatedMessageField(value: &_storage._scope)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if !_storage._secret.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._secret, fieldNumber: 2)
-      }
-      if !_storage._name.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 3)
-      }
-      if !_storage._contact.isEmpty {
-        try visitor.visitRepeatedStringField(value: _storage._contact, fieldNumber: 4)
-      }
-      if !_storage._grantTypes.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._grantTypes, fieldNumber: 5)
-      }
-      if let v = _storage._branding {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if !_storage._owner.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._owner, fieldNumber: 7)
-      }
-      if let v = _storage._policy {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-      }
-      if let v = _storage._terms {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-      }
-      if _storage._public != false {
-        try visitor.visitSingularBoolField(value: _storage._public, fieldNumber: 10)
-      }
-      if !_storage._redirectUri.isEmpty {
-        try visitor.visitRepeatedStringField(value: _storage._redirectUri, fieldNumber: 11)
-      }
-      if !_storage._responseType.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._responseType, fieldNumber: 12)
-      }
-      if !_storage._scope.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._scope, fieldNumber: 13)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Oauth_Client) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -467,8 +546,7 @@ extension Opencannabis_Oauth_Client: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 }
 
-extension Opencannabis_Oauth_Consent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Consent"
+extension Opencannabis_Oauth_Consent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .standard(proto: "client_id"),
@@ -504,43 +582,6 @@ extension Opencannabis_Oauth_Consent: SwiftProtobuf.Message, SwiftProtobuf._Mess
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._clientID)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._expiresAt)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._redirectUri)
-        case 5: try decoder.decodeRepeatedStringField(value: &_storage._requestedScope)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if !_storage._clientID.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._clientID, fieldNumber: 2)
-      }
-      if let v = _storage._expiresAt {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if !_storage._redirectUri.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._redirectUri, fieldNumber: 4)
-      }
-      if !_storage._requestedScope.isEmpty {
-        try visitor.visitRepeatedStringField(value: _storage._requestedScope, fieldNumber: 5)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Oauth_Consent) -> Bool {
     if _storage !== other._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
@@ -560,8 +601,7 @@ extension Opencannabis_Oauth_Consent: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 }
 
-extension Opencannabis_Oauth_ConsentTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ConsentTicket"
+extension Opencannabis_Oauth_ConsentTicket: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "client"),
     2: .same(proto: "consent"),
@@ -586,31 +626,6 @@ extension Opencannabis_Oauth_ConsentTicket: SwiftProtobuf.Message, SwiftProtobuf
       _storage = _StorageClass(copying: _storage)
     }
     return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._client)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._consent)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._client {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._consent {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
   }
 
   public func _protobuf_generated_isEqualTo(other: Opencannabis_Oauth_ConsentTicket) -> Bool {

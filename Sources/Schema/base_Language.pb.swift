@@ -26,34 +26,39 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 public enum Opencannabis_Base_Language: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
+  /// Default or unset language.
+  case unspecified // = 0
+
   /// English.
-  case english // = 0
+  case english // = 1
 
   /// Spanish.
-  case spanish // = 1
+  case spanish // = 2
 
   /// French.
-  case french // = 2
+  case french // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
-    self = .english
+    self = .unspecified
   }
 
   public init?(rawValue: Int) {
     switch rawValue {
-    case 0: self = .english
-    case 1: self = .spanish
-    case 2: self = .french
+    case 0: self = .unspecified
+    case 1: self = .english
+    case 2: self = .spanish
+    case 3: self = .french
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
 
   public var rawValue: Int {
     switch self {
-    case .english: return 0
-    case .spanish: return 1
-    case .french: return 2
+    case .unspecified: return 0
+    case .english: return 1
+    case .spanish: return 2
+    case .french: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -64,8 +69,9 @@ public enum Opencannabis_Base_Language: SwiftProtobuf.Enum {
 
 extension Opencannabis_Base_Language: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "ENGLISH"),
-    1: .same(proto: "SPANISH"),
-    2: .same(proto: "FRENCH"),
+    0: .same(proto: "LANGUAGE_UNSPECIFIED"),
+    1: .same(proto: "ENGLISH"),
+    2: .same(proto: "SPANISH"),
+    3: .same(proto: "FRENCH"),
   ]
 }
