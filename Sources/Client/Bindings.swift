@@ -31,6 +31,78 @@ public typealias DeviceActivation = Bloombox_Schema_Services_Devices_V1beta1_Act
 public typealias DeviceActivateCall = Bloombox_Schema_Services_Devices_V1Beta1_DevicesActivateCall
 
 
+//// POS Service
+
+/**
+ * Binding to the active Point-of-Sale service.
+ */
+public typealias PointOfSaleService = Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleService
+
+// Error Types
+public typealias POSError = Bloombox_Schema_Services_Pos_V1beta1_POSError
+
+// Object Types
+public typealias SessionToken = Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken
+public typealias SessionTokenGrant = Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant
+public typealias InventoryStreamEvent = Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent
+public typealias StaffUser = Bloombox_Schema_Services_Pos_V1beta1_StaffUser
+
+/**
+ * Method `authorize`.
+ */
+public typealias POSAuthorize = Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser
+public typealias POSAuthorizeCall = Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleAuthorizeCall
+
+/**
+ * Method `openTicket`.
+ */
+public typealias POSOpenTicket = Bloombox_Schema_Services_Pos_V1beta1_OpenTicket
+public typealias POSOpenTicketCall = Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleTicketOpenCall
+
+/**
+ * Method `loadTicket`.
+ */
+public typealias POSLoadTicket = Bloombox_Schema_Services_Pos_V1beta1_LoadTicket
+public typealias POSLoadTicketCall = Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleTicketLoadCall
+
+/**
+ * Method `saveTicket`.
+ */
+public typealias POSSaveTicket = Bloombox_Schema_Services_Pos_V1beta1_SaveTicket
+public typealias POSSaveTicketCall = Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleTicketSaveCall
+
+/**
+ * Method `voidTicket`.
+ */
+public typealias POSVoidTicket = Bloombox_Schema_Services_Pos_V1beta1_VoidTicket
+public typealias POSVoidTicketCall = Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleTicketVoidCall
+
+/**
+ * Method `finalizeTicket`.
+ */
+public typealias POSFinalizeTicket = Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket
+public typealias POSFinalizeTicketCall = Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleTicketFinalizeCall
+
+/**
+ * Method `memberSearch`.
+ */
+public typealias POSMemberSearch = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch
+public typealias POSMemberSearchCall = Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSearchMembersCall
+
+/**
+ * Method `inventoryRetrieve`.
+ */
+public typealias POSInventoryQuery = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery
+public typealias POSInventoryQueryCall = Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleInventoryRetrieveCall
+
+/**
+ * Method `inventoryStream`.
+ */
+public typealias POSInventoryStream = Bloombox_Schema_Services_Pos_V1beta1_InventoryStream
+public typealias POSInventoryStreamCall = Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleInventoryStreamCall
+public typealias POSInventoryStreamSession = Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleInventoryStreamSession
+
+
 //// Shop Service
 
 /**
@@ -137,6 +209,13 @@ public typealias GetMenuCall = Bloombox_Schema_Services_Menu_V1Beta1_MenuRetriev
 
 
 //// Objects
+public typealias Hash = Opencannabis_Crypto_Primitives_Integrity_Hash
+public typealias Keypair = Opencannabis_Crypto_Primitives_Pki_Keypair
+public typealias KeyMaterial = Opencannabis_Crypto_Primitives_Pki_KeyMaterial
+public typealias KeyingScheme = Opencannabis_Crypto_Primitives_Pki_KeyingScheme
+public typealias KeyParameters = Opencannabis_Crypto_Primitives_Pki_KeyParameters
+public typealias IdentityToken = Bloombox_Schema_Security_IdentityToken
+public typealias IdentityTokenIssuer = Bloombox_Schema_Security_IdentityTokenIssuer
 public typealias User = Bloombox_Schema_Identity_User
 public typealias UserKey = Bloombox_Schema_Identity_UserKey
 public typealias PartnerKey = Bloombox_Schema_Partner_PartnerKey
@@ -158,7 +237,31 @@ public typealias OrderKey = Opencannabis_Commerce_OrderKey
 public typealias MenuSection = Opencannabis_Products_Menu_Section_Section
 public typealias VersionSpec = Opencannabis_Structs_VersionSpec
 public typealias TemporalInstant = Opencannabis_Temporal_Instant
+public typealias Menu = Opencannabis_Products_Menu_Menu
+public typealias StaticMenu = Opencannabis_Products_Menu_StaticMenu
+public typealias SectionedMenu = Opencannabis_Products_Menu_SectionedMenu
+public typealias SectionData = Opencannabis_Products_Menu_SectionData
+public typealias SectionSpec = Opencannabis_Products_Menu_Section_SectionSpec
+public typealias MenuProduct = Opencannabis_Products_Menu_MenuProduct
+public typealias MenuSettings = Opencannabis_Products_Menu_MenuSettings
+public typealias InventoryKey = Opencannabis_Inventory_InventoryKey
+public typealias InventoryState = Opencannabis_Inventory_InventoryState
+public typealias InventoryAmount = Opencannabis_Inventory_InventoryAmount
+public typealias InventoryBinding = Opencannabis_Inventory_InventoryBinding
+public typealias InventoryProduct = Opencannabis_Inventory_InventoryProduct
+public typealias InventoryLocation = Opencannabis_Inventory_InventoryLocation
+public typealias InventoryCoordinates = Opencannabis_Inventory_InventoryCoordinates
+public typealias InventoryLocationKey = Opencannabis_Inventory_InventoryLocationKey
+public typealias InventoryLocationType = Opencannabis_Inventory_InventoryLocationType
+public typealias PurchaseKey = Opencannabis_Commerce_PurchaseKey
+public typealias PurchaseTicket = Opencannabis_Commerce_PurchaseTicket
+public typealias PurchaseStatus = Opencannabis_Commerce_PurchaseStatus
+public typealias PurchaseTimestamps = Opencannabis_Commerce_PurchaseTimestamps
+public typealias PurchaseFacilitator = Opencannabis_Commerce_PurchaseFacilitator
+public typealias PurchaseCustomer = Opencannabis_Commerce_PurchaseCustomer
+public typealias BillOfCharges = Opencannabis_Commerce_BillOfCharges
 
 //// Protobuf Types
+public typealias Empty = Google_Protobuf_Empty
 public typealias ProtobufValue = Google_Protobuf_Value
 public typealias ProtobufStruct = Google_Protobuf_Struct
