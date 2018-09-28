@@ -31,8 +31,8 @@ public enum MenuClientError: Error {
 
 
 /**
- * Provides functionality for the Shop API, which supports operations related to pickup or
- * delivery ordering, member verification and enrollment, and basic shop operations.
+ * Provides functionality for the Menu API, which supports operations related to fetching, querying, and managing, menu
+ * catalog data (i.e. product content, pricing, materials information, and so on). Menus do not include inventory.
  */
 public final class MenuClient: RemoteService {
   /**
@@ -94,7 +94,7 @@ public final class MenuClient: RemoteService {
   }
 
   /**
-   * Prepare the shop service for use.
+   * Prepare the menu service for use.
    */
   func prepare() {
   }
