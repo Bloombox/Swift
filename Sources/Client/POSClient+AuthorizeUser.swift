@@ -40,11 +40,11 @@ public protocol IPOSAuthorizeUser {
 
 public struct POSAuthorizeOptions {
   public struct MessagingOptions {
-    let nonce: String
+    public let nonce: String
   }
 
-  let apiKey: APIKey?  /* Override the default API key. */
-  let messaging: MessagingOptions?
+  public let apiKey: APIKey?  /* Override the default API key. */
+  public let messaging: MessagingOptions?
 
   public static var defaults: POSAuthorizeOptions {
     get {

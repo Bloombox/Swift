@@ -22,7 +22,12 @@ public enum POSClientError: Error {
   case invalidApiKey
   case invalidPartnerCode
   case invalidLocationCode
+  case invalidPurchaseKey
   case invalidDeviceKey
+  case invalidIDToken
+  case invalidAuthToken
+  case invalidAuthChallenge
+  case invalidAuthUID
 }
 
 
