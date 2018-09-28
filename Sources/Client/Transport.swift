@@ -61,7 +61,8 @@ internal struct Transport {
       devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
-      menu: ProductionMenu())
+      menu: ProductionMenu(),
+      pos: ProductionPOS())
   }
 
   /**
@@ -73,7 +74,8 @@ internal struct Transport {
       devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
-      menu: ProductionMenu())
+      menu: ProductionMenu(),
+      pos: ProductionPOS())
   }
   #endif
 
@@ -86,7 +88,8 @@ internal struct Transport {
       devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
-      menu: ProductionMenu())
+      menu: ProductionMenu(),
+      pos: ProductionPOS())
   }
 }
 
@@ -187,6 +190,19 @@ internal struct ProductionMenu: RPCServiceSettings {
   let key: String? = nil
 }
 
+/**
+ * Production POS settings.
+ */
+internal struct ProductionPOS: RPCServiceSettings {
+  let secure = true
+  let host = "pos.api.bloombox.cloud"
+  let port = 443
+  let hostname: String? = "pos.api.bloombox.cloud"
+  let chain: String? = authorityChain
+  let cert: String? = nil
+  let key: String? = nil
+}
+
 #if DEBUG
   /**
    * Local shop settings.
@@ -214,6 +230,15 @@ internal struct ProductionMenu: RPCServiceSettings {
     let host = "127.0.0.1"
     let port = 1094
   }
+
+  /**
+   * Local POS settings.
+   */
+  internal struct LocalPOS: RPCServiceSettings {
+    let secure = false
+    let host = "127.0.0.1"
+    let port = 1105
+  }
 #endif
 
 
@@ -237,6 +262,7 @@ internal struct RPCServicesConfig: ServiceSettings {
   let shop: RPCServiceSettings
   let telemetry: RPCServiceSettings
   let menu: RPCServiceSettings
+  let pos: RPCServiceSettings
 }
 
 /**
@@ -261,6 +287,7 @@ internal protocol ServiceSettings {
   var shop: RPCServiceSettings { get }
   var telemetry: RPCServiceSettings { get }
   var menu: RPCServiceSettings { get }
+  var pos: RPCServiceSettings { get }
 }
 
 // MARK: Data Services

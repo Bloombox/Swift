@@ -172,6 +172,13 @@ public final class Bloombox {
   }
 
   /**
+   * Public access to the Point-of-Sale service client.
+   */
+  public var pos: PointOfSaleClient {
+    return _services.pos
+  }
+
+  /**
    * Public access to the Telemetry service client.
    */
   public var telemetry: TelemetryClient {

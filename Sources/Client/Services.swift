@@ -34,6 +34,7 @@ public final class Services: ClientLogic {
     self.shop = ShopClient(settings: settings)
     self.telemetry = TelemetryClient(settings: settings)
     self.menu = MenuClient(settings: settings)
+    self.pos = PointOfSaleClient(settings: settings)
   }
 
   /**
@@ -43,7 +44,8 @@ public final class Services: ClientLogic {
     return [
       shop,
       telemetry,
-      menu
+      menu,
+      pos
     ]
   }
 
@@ -76,6 +78,12 @@ public final class Services: ClientLogic {
    * content, and filter and sort items.
    */
   public let menu: MenuClient
+
+  /**
+   * Point-of-Sale service. Provides supporting logic for physical, in-person purchases at brick
+   * and mortar retailer locations.
+   */
+  public let pos: PointOfSaleClient
 
   /**
    * Devices service. Provides methods that deal with partner co-located, or 2nd party,
