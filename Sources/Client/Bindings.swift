@@ -45,7 +45,6 @@ public typealias POSError = Bloombox_Schema_Services_Pos_V1beta1_POSError
 public typealias SessionToken = Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken
 public typealias SessionTokenGrant = Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant
 public typealias InventoryStreamEvent = Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent
-public typealias StaffUser = Bloombox_Schema_Services_Pos_V1beta1_StaffUser
 
 /**
  * Method `authorize`.
@@ -260,6 +259,8 @@ public typealias PurchaseTimestamps = Opencannabis_Commerce_PurchaseTimestamps
 public typealias PurchaseFacilitator = Opencannabis_Commerce_PurchaseFacilitator
 public typealias PurchaseCustomer = Opencannabis_Commerce_PurchaseCustomer
 public typealias BillOfCharges = Opencannabis_Commerce_BillOfCharges
+public typealias StaffUser = Bloombox_Schema_Identity_StaffUser
+public typealias MessagingAuth = Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth
 
 //// Protobuf Types
 public typealias Empty = Google_Protobuf_Empty

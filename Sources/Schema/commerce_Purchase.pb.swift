@@ -1482,6 +1482,12 @@ public struct Opencannabis_Commerce_PurchaseTicket: SwiftProtobuf.Message {
     set {_uniqueStorage()._status = newValue}
   }
 
+  /// Point-of-sale session that is currently claiming this ticket, or last claimed this ticket.
+  public var claim: String {
+    get {return _storage._claim}
+    set {_uniqueStorage()._claim = newValue}
+  }
+
   /// Partner organization, location, device, and staff member that facilitated this transaction.
   public var facilitator: Opencannabis_Commerce_PurchaseFacilitator {
     get {return _storage._facilitator ?? Opencannabis_Commerce_PurchaseFacilitator()}
@@ -1556,13 +1562,14 @@ public struct Opencannabis_Commerce_PurchaseTicket: SwiftProtobuf.Message {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
         case 2: try decoder.decodeSingularUInt32Field(value: &_storage._version)
         case 3: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._facilitator)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._customer)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._bill)
-        case 7: try decoder.decodeRepeatedMessageField(value: &_storage._item)
-        case 8: try decoder.decodeRepeatedMessageField(value: &_storage._payment)
-        case 9: try decoder.decodeRepeatedMessageField(value: &_storage._action)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._ts)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._claim)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._facilitator)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._customer)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._bill)
+        case 8: try decoder.decodeRepeatedMessageField(value: &_storage._item)
+        case 9: try decoder.decodeRepeatedMessageField(value: &_storage._payment)
+        case 10: try decoder.decodeRepeatedMessageField(value: &_storage._action)
+        case 11: try decoder.decodeSingularMessageField(value: &_storage._ts)
         default: break
         }
       }
@@ -1584,26 +1591,29 @@ public struct Opencannabis_Commerce_PurchaseTicket: SwiftProtobuf.Message {
       if _storage._status != .fresh {
         try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 3)
       }
-      if let v = _storage._facilitator {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      if !_storage._claim.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._claim, fieldNumber: 4)
       }
-      if let v = _storage._customer {
+      if let v = _storage._facilitator {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
       }
-      if let v = _storage._bill {
+      if let v = _storage._customer {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
       }
+      if let v = _storage._bill {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
       if !_storage._item.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._item, fieldNumber: 7)
+        try visitor.visitRepeatedMessageField(value: _storage._item, fieldNumber: 8)
       }
       if !_storage._payment.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._payment, fieldNumber: 8)
+        try visitor.visitRepeatedMessageField(value: _storage._payment, fieldNumber: 9)
       }
       if !_storage._action.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._action, fieldNumber: 9)
+        try visitor.visitRepeatedMessageField(value: _storage._action, fieldNumber: 10)
       }
       if let v = _storage._ts {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -2195,19 +2205,21 @@ extension Opencannabis_Commerce_PurchaseTicket: SwiftProtobuf._MessageImplementa
     1: .same(proto: "key"),
     2: .same(proto: "version"),
     3: .same(proto: "status"),
-    4: .same(proto: "facilitator"),
-    5: .same(proto: "customer"),
-    6: .same(proto: "bill"),
-    7: .same(proto: "item"),
-    8: .same(proto: "payment"),
-    9: .same(proto: "action"),
-    10: .same(proto: "ts"),
+    4: .same(proto: "claim"),
+    5: .same(proto: "facilitator"),
+    6: .same(proto: "customer"),
+    7: .same(proto: "bill"),
+    8: .same(proto: "item"),
+    9: .same(proto: "payment"),
+    10: .same(proto: "action"),
+    11: .same(proto: "ts"),
   ]
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Commerce_PurchaseKey? = nil
     var _version: UInt32 = 0
     var _status: Opencannabis_Commerce_PurchaseStatus = .fresh
+    var _claim: String = String()
     var _facilitator: Opencannabis_Commerce_PurchaseFacilitator? = nil
     var _customer: Opencannabis_Commerce_PurchaseCustomer? = nil
     var _bill: Opencannabis_Commerce_BillOfCharges? = nil
@@ -2224,6 +2236,7 @@ extension Opencannabis_Commerce_PurchaseTicket: SwiftProtobuf._MessageImplementa
       _key = source._key
       _version = source._version
       _status = source._status
+      _claim = source._claim
       _facilitator = source._facilitator
       _customer = source._customer
       _bill = source._bill
@@ -2249,6 +2262,7 @@ extension Opencannabis_Commerce_PurchaseTicket: SwiftProtobuf._MessageImplementa
         if _storage._key != other_storage._key {return false}
         if _storage._version != other_storage._version {return false}
         if _storage._status != other_storage._status {return false}
+        if _storage._claim != other_storage._claim {return false}
         if _storage._facilitator != other_storage._facilitator {return false}
         if _storage._customer != other_storage._customer {return false}
         if _storage._bill != other_storage._bill {return false}

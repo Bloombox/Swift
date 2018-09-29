@@ -66,6 +66,12 @@ public enum Opencannabis_Commerce_FiatCurrency: SwiftProtobuf.Enum {
 
   /// Specifies 'US Dollar' as a currency.
   case usd // = 0
+
+  /// Specifies 'Canadian Dollar' as a currency.
+  case cad // = 1
+
+  /// Specifies 'Euro' as a currency.
+  case eur // = 2
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -75,6 +81,8 @@ public enum Opencannabis_Commerce_FiatCurrency: SwiftProtobuf.Enum {
   public init?(rawValue: Int) {
     switch rawValue {
     case 0: self = .usd
+    case 1: self = .cad
+    case 2: self = .eur
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -82,6 +90,8 @@ public enum Opencannabis_Commerce_FiatCurrency: SwiftProtobuf.Enum {
   public var rawValue: Int {
     switch self {
     case .usd: return 0
+    case .cad: return 1
+    case .eur: return 2
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -200,6 +210,8 @@ extension Opencannabis_Commerce_CurrencyType: SwiftProtobuf._ProtoNameProviding 
 extension Opencannabis_Commerce_FiatCurrency: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "USD"),
+    1: .same(proto: "CAD"),
+    2: .same(proto: "EUR"),
   ]
 }
 

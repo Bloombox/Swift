@@ -86,7 +86,9 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
       obj.token = token
       obj.register = deviceKey
       if let nce = options.messaging?.nonce {
-        obj.nonce = nce
+        obj.messaging = MessagingAuth.with { msg in
+          msg.nonce = nce
+        }
       }
     }, withAPIKey: apiKey)
   }
@@ -104,7 +106,9 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
       obj.challenge = challenge
       obj.register = deviceKey
       if let nce = options.messaging?.nonce {
-        obj.nonce = nce
+        obj.messaging = MessagingAuth.with { msg in
+          msg.nonce = nce
+        }
       }
     }, withAPIKey: apiKey)
   }
@@ -123,7 +127,9 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
       obj.token = token
       obj.register = deviceKey
       if let nce = options.messaging?.nonce {
-        obj.nonce = nce
+        obj.messaging = MessagingAuth.with { msg in
+          msg.nonce = nce
+        }
       }
     }, withAPIKey: apiKey, callback)
   }
@@ -142,7 +148,9 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
       obj.challenge = challenge
       obj.register = deviceKey
       if let nce = options.messaging?.nonce {
-        obj.nonce = nce
+        obj.messaging = MessagingAuth.with { msg in
+          msg.nonce = nce
+        }
       }
     }, withAPIKey: apiKey, callback)
   }

@@ -88,6 +88,116 @@ public class Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleAuthorizeCall {
   }
 }
 
+/// SessionOpen (Unary)
+public class Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionOpenCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.pos.v1beta1.PointOfSale/SessionOpen")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionOpenCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// SessionClose (Unary)
+public class Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionCloseCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.pos.v1beta1.PointOfSale/SessionClose")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionCloseCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
 /// TicketOpen (Unary)
 public class Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleTicketOpenCall {
   private var call : Call
@@ -602,6 +712,36 @@ public final class Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleService {
                                                  completion:completion)
   }
   /// Synchronous. Unary.
+  public func sessionopen(_ request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request)
+    throws
+    -> Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response {
+      return try Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionOpenCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func sessionopen(_ request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionOpenCall {
+      return try Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionOpenCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func sessionclose(_ request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request)
+    throws
+    -> Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response {
+      return try Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionCloseCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func sessionclose(_ request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionCloseCall {
+      return try Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionCloseCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
   public func ticketopen(_ request: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request)
     throws
     -> Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response {
@@ -725,6 +865,8 @@ public enum Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleServerError : Error 
 /// To build a server, implement a class that conforms to this protocol.
 public protocol Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleProvider {
   func authorize(request : Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request, session : Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleAuthorizeSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response
+  func sessionopen(request : Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request, session : Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionOpenSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response
+  func sessionclose(request : Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request, session : Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionCloseSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response
   func ticketopen(request : Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request, session : Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleTicketOpenSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response
   func ticketsave(request : Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request, session : Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleTicketSaveSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response
   func ticketload(request : Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request, session : Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleTicketLoadSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response
@@ -766,6 +908,56 @@ public class Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleAuthorizeSession : 
       if let requestData = requestData {
         let requestMessage = try Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request(serializedData:requestData)
         let replyMessage = try self.provider.authorize(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// SessionOpen (Unary)
+public class Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionOpenSession : Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSession {
+  private var provider : Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request(serializedData:requestData)
+        let replyMessage = try self.provider.sessionopen(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// SessionClose (Unary)
+public class Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionCloseSession : Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSession {
+  private var provider : Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request(serializedData:requestData)
+        let replyMessage = try self.provider.sessionclose(request:requestMessage, session: self)
         try self.handler.sendResponse(message:replyMessage.serializedData(),
                                       statusCode:self.statusCode,
                                       statusMessage:self.statusMessage,
@@ -1060,6 +1252,10 @@ public class Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleServer {
         switch handler.method {
         case "/bloombox.schema.services.pos.v1beta1.PointOfSale/Authorize":
           try Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleAuthorizeSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.pos.v1beta1.PointOfSale/SessionOpen":
+          try Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionOpenSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.pos.v1beta1.PointOfSale/SessionClose":
+          try Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleSessionCloseSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketOpen":
           try Bloombox_Schema_Services_Pos_V1Beta1_PointOfSaleTicketOpenSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketSave":
