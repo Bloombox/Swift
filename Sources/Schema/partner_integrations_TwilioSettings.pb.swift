@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies settings for integrating with a partner or partner location's Twilio account.
+
 import Foundation
 import SwiftProtobuf
 

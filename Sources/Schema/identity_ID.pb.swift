@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies top-level records related to the generic concept of a user's government-issued identification. These
+/// records are specified for a user if we have ID on file for them, regardless of the type/status of the ID itself.
+
 import Foundation
 import SwiftProtobuf
 

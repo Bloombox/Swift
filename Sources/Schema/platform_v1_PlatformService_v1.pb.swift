@@ -214,6 +214,60 @@ public struct Bloombox_Schema_Services_Platform_V1_DomainResolve {
   public init() {}
 }
 
+/// Specifies a request to retrieve the set of domains assigned for use by a partner location.
+public struct Bloombox_Schema_Services_Platform_V1_DomainInfo {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Request for domain info.
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Partner ID to fetch domains for.
+    public var partnerID: String = String()
+
+    /// Location ID to fetch domains for.
+    public var locationID: String = String()
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  /// Response to a request for domain info.
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Shop domain/home link.
+    public var shop: String = String()
+
+    /// Standalone menu link.
+    public var menu: String = String()
+
+    /// Dashboard link.
+    public var dashboard: String = String()
+
+    /// TV menu link.
+    public var tv: String = String()
+
+    /// Embedded/email link domain.
+    public var link: String = String()
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  public init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bloombox.schema.services.platform.v1"
@@ -441,6 +495,113 @@ extension Bloombox_Schema_Services_Platform_V1_DomainResolve.Response: SwiftProt
     if self.location != other.location {return false}
     if self.apikey != other.apikey {return false}
     if self.clientID != other.clientID {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_DomainInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DomainInfo"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainInfo) -> Bool {
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_DomainInfo.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Platform_V1_DomainInfo.protoMessageName + ".Request"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "partner_id"),
+    2: .standard(proto: "location_id"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.partnerID)
+      case 2: try decoder.decodeSingularStringField(value: &self.locationID)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.partnerID.isEmpty {
+      try visitor.visitSingularStringField(value: self.partnerID, fieldNumber: 1)
+    }
+    if !self.locationID.isEmpty {
+      try visitor.visitSingularStringField(value: self.locationID, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainInfo.Request) -> Bool {
+    if self.partnerID != other.partnerID {return false}
+    if self.locationID != other.locationID {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_DomainInfo.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Platform_V1_DomainInfo.protoMessageName + ".Response"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "shop"),
+    2: .same(proto: "menu"),
+    3: .same(proto: "dashboard"),
+    4: .same(proto: "tv"),
+    5: .same(proto: "link"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.shop)
+      case 2: try decoder.decodeSingularStringField(value: &self.menu)
+      case 3: try decoder.decodeSingularStringField(value: &self.dashboard)
+      case 4: try decoder.decodeSingularStringField(value: &self.tv)
+      case 5: try decoder.decodeSingularStringField(value: &self.link)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.shop.isEmpty {
+      try visitor.visitSingularStringField(value: self.shop, fieldNumber: 1)
+    }
+    if !self.menu.isEmpty {
+      try visitor.visitSingularStringField(value: self.menu, fieldNumber: 2)
+    }
+    if !self.dashboard.isEmpty {
+      try visitor.visitSingularStringField(value: self.dashboard, fieldNumber: 3)
+    }
+    if !self.tv.isEmpty {
+      try visitor.visitSingularStringField(value: self.tv, fieldNumber: 4)
+    }
+    if !self.link.isEmpty {
+      try visitor.visitSingularStringField(value: self.link, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainInfo.Response) -> Bool {
+    if self.shop != other.shop {return false}
+    if self.menu != other.menu {return false}
+    if self.dashboard != other.dashboard {return false}
+    if self.tv != other.tv {return false}
+    if self.link != other.link {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

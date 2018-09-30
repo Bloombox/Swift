@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies combined contact information for a given record.
+
 import Foundation
 import SwiftProtobuf
 

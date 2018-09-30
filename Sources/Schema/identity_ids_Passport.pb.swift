@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies structures that allow storage/expression of a user's passport as government-issued ID.
+
 import Foundation
 import SwiftProtobuf
 

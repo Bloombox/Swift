@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies structures that allow the storage/expression of a user's ID as a US Driver's License.
+
 import Foundation
 import SwiftProtobuf
 

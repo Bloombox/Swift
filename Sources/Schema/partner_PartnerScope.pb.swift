@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies authentication/authorization scopes that may be granted by/on behalf of/for a Bloombox partner record, or
+/// Bloombox partner location record.
+
 import Foundation
 import SwiftProtobuf
 

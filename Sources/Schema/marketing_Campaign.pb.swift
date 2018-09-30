@@ -6,6 +6,12 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the concept of a marketing campaign, which is a top-level container that represents an individual marketing
+/// effort at some point of time, or dealing with some relevant concept or interest. Campaigns own ad groups and settings
+/// for targeting. When a campaign is filled out and ready, a user validates the campaign's settings, and then triggers
+/// it to be sent.
+
 import Foundation
 import SwiftProtobuf
 
@@ -17,44 +23,6 @@ import SwiftProtobuf
 fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
   struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
-}
-
-/// Specifies channels which marketing campaigns may be associated with.
-public enum Bloombox_Schema_Marketing_Channel: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// Unspecified, or default, channel type.
-  case unspecified // = 0
-
-  /// Email channel type.
-  case email // = 1
-
-  /// SMS, or text, channel type.
-  case sms // = 2
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .unspecified
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .unspecified
-    case 1: self = .email
-    case 2: self = .sms
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .unspecified: return 0
-    case .email: return 1
-    case .sms: return 2
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
 }
 
 /// Enumerates the statuses a campaign object may live in.
@@ -129,7 +97,7 @@ public struct Bloombox_Schema_Marketing_ChannelSettings {
   // methods supported on all messages.
 
   /// Channel for which we are specifying settings.
-  public var channel: Bloombox_Schema_Marketing_Channel {
+  public var channel: Bloombox_Schema_Comms_Channel {
     get {return _storage._channel}
     set {_uniqueStorage()._channel = newValue}
   }
@@ -147,19 +115,19 @@ public struct Bloombox_Schema_Marketing_ChannelSettings {
   }
 
   /// SMS settings.
-  public var sms: Bloombox_Schema_Marketing_ChannelSettings.SMS {
+  public var sms: Bloombox_Schema_Comms_SMSSettings {
     get {
       if case .sms(let v)? = _storage._settings {return v}
-      return Bloombox_Schema_Marketing_ChannelSettings.SMS()
+      return Bloombox_Schema_Comms_SMSSettings()
     }
     set {_uniqueStorage()._settings = .sms(newValue)}
   }
 
   /// Email settings.
-  public var email: Bloombox_Schema_Marketing_ChannelSettings.Email {
+  public var email: Bloombox_Schema_Comms_EmailSettings {
     get {
       if case .email(let v)? = _storage._settings {return v}
-      return Bloombox_Schema_Marketing_ChannelSettings.Email()
+      return Bloombox_Schema_Comms_EmailSettings()
     }
     set {_uniqueStorage()._settings = .email(newValue)}
   }
@@ -169,9 +137,9 @@ public struct Bloombox_Schema_Marketing_ChannelSettings {
   /// Settings payload for the specified channel.
   public enum OneOf_Settings: Equatable {
     /// SMS settings.
-    case sms(Bloombox_Schema_Marketing_ChannelSettings.SMS)
+    case sms(Bloombox_Schema_Comms_SMSSettings)
     /// Email settings.
-    case email(Bloombox_Schema_Marketing_ChannelSettings.Email)
+    case email(Bloombox_Schema_Comms_EmailSettings)
 
     public static func ==(lhs: Bloombox_Schema_Marketing_ChannelSettings.OneOf_Settings, rhs: Bloombox_Schema_Marketing_ChannelSettings.OneOf_Settings) -> Bool {
       switch (lhs, rhs) {
@@ -182,101 +150,9 @@ public struct Bloombox_Schema_Marketing_ChannelSettings {
     }
   }
 
-  /// SMS-specific settings.
-  public struct SMS {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    /// Origin phone number to send the SMS from.
-    public var sender: String = String()
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-  }
-
-  /// Email-specific settings.
-  public struct Email {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    /// Origin email address to send the email from.
-    public var sender: String = String()
-
-    /// Reply-to email address, if different from sender.
-    public var replyTo: String = String()
-
-    /// Email addresses to include via CC.
-    public var cc: [String] = []
-
-    /// Email addresses to include via BCC.
-    public var bcc: [String] = []
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-  }
-
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Specifies SMS content for a given ad group.
-public struct Bloombox_Schema_Marketing_SMSContent {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Optional SMS subject line.
-  public var subject: String {
-    get {return _storage._subject}
-    set {_uniqueStorage()._subject = newValue}
-  }
-
-  /// SMS content to send.
-  public var content: String {
-    get {return _storage._content}
-    set {_uniqueStorage()._content = newValue}
-  }
-
-  /// Attached media item, if applicable.
-  public var media: Opencannabis_Media_MediaItem {
-    get {return _storage._media ?? Opencannabis_Media_MediaItem()}
-    set {_uniqueStorage()._media = newValue}
-  }
-  /// Returns true if `media` has been explicitly set.
-  public var hasMedia: Bool {return _storage._media != nil}
-  /// Clears the value of `media`. Subsequent reads from it will return its default value.
-  public mutating func clearMedia() {_storage._media = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Specifies email content for a given ad group.
-public struct Bloombox_Schema_Marketing_EmailContent {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Email subject line.
-  public var subject: String = String()
-
-  /// Email content.
-  public var content: [Opencannabis_Content_Content] = []
-
-  /// Email attachments.
-  public var attachment: [Opencannabis_Media_MediaItem] = []
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
 }
 
 /// Specifies the actual content of a marketing campaign ad group.
@@ -292,19 +168,19 @@ public struct Bloombox_Schema_Marketing_Creative {
   }
 
   /// SMS-specific content.
-  public var sms: Bloombox_Schema_Marketing_SMSContent {
+  public var sms: Bloombox_Schema_Comms_SMSContent {
     get {
       if case .sms(let v)? = _storage._content {return v}
-      return Bloombox_Schema_Marketing_SMSContent()
+      return Bloombox_Schema_Comms_SMSContent()
     }
     set {_uniqueStorage()._content = .sms(newValue)}
   }
 
   /// Email-specific content.
-  public var email: Bloombox_Schema_Marketing_EmailContent {
+  public var email: Bloombox_Schema_Comms_EmailContent {
     get {
       if case .email(let v)? = _storage._content {return v}
-      return Bloombox_Schema_Marketing_EmailContent()
+      return Bloombox_Schema_Comms_EmailContent()
     }
     set {_uniqueStorage()._content = .email(newValue)}
   }
@@ -314,9 +190,9 @@ public struct Bloombox_Schema_Marketing_Creative {
   /// Specifies the content for a given type.
   public enum OneOf_Content: Equatable {
     /// SMS-specific content.
-    case sms(Bloombox_Schema_Marketing_SMSContent)
+    case sms(Bloombox_Schema_Comms_SMSContent)
     /// Email-specific content.
-    case email(Bloombox_Schema_Marketing_EmailContent)
+    case email(Bloombox_Schema_Comms_EmailContent)
 
     public static func ==(lhs: Bloombox_Schema_Marketing_Creative.OneOf_Content, rhs: Bloombox_Schema_Marketing_Creative.OneOf_Content) -> Bool {
       switch (lhs, rhs) {
@@ -355,7 +231,7 @@ public struct Bloombox_Schema_Marketing_AdGroup {
   public mutating func clearCampaign() {_storage._campaign = nil}
 
   /// Channel for this specification.
-  public var channel: Bloombox_Schema_Marketing_Channel {
+  public var channel: Bloombox_Schema_Comms_Channel {
     get {return _storage._channel}
     set {_uniqueStorage()._channel = newValue}
   }
@@ -520,14 +396,6 @@ public struct Bloombox_Schema_Marketing_Campaign {
 
 fileprivate let _protobuf_package = "bloombox.schema.marketing"
 
-extension Bloombox_Schema_Marketing_Channel: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "UNSPECIFIED"),
-    1: .same(proto: "EMAIL"),
-    2: .same(proto: "SMS"),
-  ]
-}
-
 extension Bloombox_Schema_Marketing_CampaignStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PENDING"),
@@ -583,7 +451,7 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
   ]
 
   fileprivate class _StorageClass {
-    var _channel: Bloombox_Schema_Marketing_Channel = .unspecified
+    var _channel: Bloombox_Schema_Comms_Channel = .unspecified
     var _active: Bool = false
     var _settings: Bloombox_Schema_Marketing_ChannelSettings.OneOf_Settings?
 
@@ -613,7 +481,7 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
         case 1: try decoder.decodeSingularEnumField(value: &_storage._channel)
         case 2: try decoder.decodeSingularBoolField(value: &_storage._active)
         case 20:
-          var v: Bloombox_Schema_Marketing_ChannelSettings.SMS?
+          var v: Bloombox_Schema_Comms_SMSSettings?
           if let current = _storage._settings {
             try decoder.handleConflictingOneOf()
             if case .sms(let m) = current {v = m}
@@ -621,7 +489,7 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._settings = .sms(v)}
         case 21:
-          var v: Bloombox_Schema_Marketing_ChannelSettings.Email?
+          var v: Bloombox_Schema_Comms_EmailSettings?
           if let current = _storage._settings {
             try decoder.handleConflictingOneOf()
             if case .email(let m) = current {v = m}
@@ -670,200 +538,6 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
   }
 }
 
-extension Bloombox_Schema_Marketing_ChannelSettings.SMS: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Marketing_ChannelSettings.protoMessageName + ".SMS"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "sender"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.sender)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.sender.isEmpty {
-      try visitor.visitSingularStringField(value: self.sender, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_ChannelSettings.SMS) -> Bool {
-    if self.sender != other.sender {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Marketing_ChannelSettings.Email: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Marketing_ChannelSettings.protoMessageName + ".Email"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "sender"),
-    2: .standard(proto: "reply_to"),
-    3: .same(proto: "cc"),
-    4: .same(proto: "bcc"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.sender)
-      case 2: try decoder.decodeSingularStringField(value: &self.replyTo)
-      case 3: try decoder.decodeRepeatedStringField(value: &self.cc)
-      case 4: try decoder.decodeRepeatedStringField(value: &self.bcc)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.sender.isEmpty {
-      try visitor.visitSingularStringField(value: self.sender, fieldNumber: 1)
-    }
-    if !self.replyTo.isEmpty {
-      try visitor.visitSingularStringField(value: self.replyTo, fieldNumber: 2)
-    }
-    if !self.cc.isEmpty {
-      try visitor.visitRepeatedStringField(value: self.cc, fieldNumber: 3)
-    }
-    if !self.bcc.isEmpty {
-      try visitor.visitRepeatedStringField(value: self.bcc, fieldNumber: 4)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_ChannelSettings.Email) -> Bool {
-    if self.sender != other.sender {return false}
-    if self.replyTo != other.replyTo {return false}
-    if self.cc != other.cc {return false}
-    if self.bcc != other.bcc {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Marketing_SMSContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".SMSContent"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "subject"),
-    2: .same(proto: "content"),
-    3: .same(proto: "media"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _subject: String = String()
-    var _content: String = String()
-    var _media: Opencannabis_Media_MediaItem? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _subject = source._subject
-      _content = source._content
-      _media = source._media
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._subject)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._content)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._media)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._subject.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._subject, fieldNumber: 1)
-      }
-      if !_storage._content.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._content, fieldNumber: 2)
-      }
-      if let v = _storage._media {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_SMSContent) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._subject != other_storage._subject {return false}
-        if _storage._content != other_storage._content {return false}
-        if _storage._media != other_storage._media {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Marketing_EmailContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".EmailContent"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "subject"),
-    2: .same(proto: "content"),
-    3: .same(proto: "attachment"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.subject)
-      case 2: try decoder.decodeRepeatedMessageField(value: &self.content)
-      case 3: try decoder.decodeRepeatedMessageField(value: &self.attachment)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.subject.isEmpty {
-      try visitor.visitSingularStringField(value: self.subject, fieldNumber: 1)
-    }
-    if !self.content.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.content, fieldNumber: 2)
-    }
-    if !self.attachment.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.attachment, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_EmailContent) -> Bool {
-    if self.subject != other.subject {return false}
-    if self.content != other.content {return false}
-    if self.attachment != other.attachment {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
 extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Creative"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -896,7 +570,7 @@ extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtob
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 10:
-          var v: Bloombox_Schema_Marketing_SMSContent?
+          var v: Bloombox_Schema_Comms_SMSContent?
           if let current = _storage._content {
             try decoder.handleConflictingOneOf()
             if case .sms(let m) = current {v = m}
@@ -904,7 +578,7 @@ extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtob
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._content = .sms(v)}
         case 11:
-          var v: Bloombox_Schema_Marketing_EmailContent?
+          var v: Bloombox_Schema_Comms_EmailContent?
           if let current = _storage._content {
             try decoder.handleConflictingOneOf()
             if case .email(let m) = current {v = m}
@@ -957,7 +631,7 @@ extension Bloombox_Schema_Marketing_AdGroup: SwiftProtobuf.Message, SwiftProtobu
   fileprivate class _StorageClass {
     var _id: String = String()
     var _campaign: Bloombox_Schema_Marketing_CampaignKey? = nil
-    var _channel: Bloombox_Schema_Marketing_Channel = .unspecified
+    var _channel: Bloombox_Schema_Comms_Channel = .unspecified
     var _creative: [Bloombox_Schema_Marketing_Creative] = []
 
     static let defaultInstance = _StorageClass()

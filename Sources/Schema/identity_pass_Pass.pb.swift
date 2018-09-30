@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the structural concept of a digital pass that is capable of asserting/representing a user's identity.
+
 import Foundation
 import SwiftProtobuf
 
@@ -19,11 +22,13 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Specifies the structure of a digital pass record.
 public struct Bloombox_Schema_Identity_Pass_Pass {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Specifies the key for a digital pass record.
   public var key: Bloombox_Schema_Identity_Pass_PassKey {
     get {return _storage._key ?? Bloombox_Schema_Identity_Pass_PassKey()}
     set {_uniqueStorage()._key = newValue}
@@ -33,21 +38,25 @@ public struct Bloombox_Schema_Identity_Pass_Pass {
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
   public mutating func clearKey() {_storage._key = nil}
 
+  /// Specifies the auth token value for a given digital pass.
   public var token: String {
     get {return _storage._token}
     set {_uniqueStorage()._token = newValue}
   }
 
+  /// Specifes a URI where the subject digital pass may be downloaded.
   public var uri: String {
     get {return _storage._uri}
     set {_uniqueStorage()._uri = newValue}
   }
 
+  /// Specifies whether this pass is active.
   public var active: Bool {
     get {return _storage._active}
     set {_uniqueStorage()._active = newValue}
   }
 
+  /// Timestamp indicating when this pass was originally issued.
   public var issued: Opencannabis_Temporal_Instant {
     get {return _storage._issued ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._issued = newValue}
@@ -57,6 +66,7 @@ public struct Bloombox_Schema_Identity_Pass_Pass {
   /// Clears the value of `issued`. Subsequent reads from it will return its default value.
   public mutating func clearIssued() {_storage._issued = nil}
 
+  /// Timestamp indicating when this pass was suspended, if applicable.
   public var suspended: Opencannabis_Temporal_Instant {
     get {return _storage._suspended ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._suspended = newValue}

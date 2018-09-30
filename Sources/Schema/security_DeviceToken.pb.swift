@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the notion of a device authorization token. Partner co-located devices are authorized to use APIs based on
+/// the issuance of this token by the devices service.
+
 import Foundation
 import SwiftProtobuf
 

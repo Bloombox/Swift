@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the generic concept of "content," which may be attached to nearly anything.
+
 import Foundation
 import SwiftProtobuf
 

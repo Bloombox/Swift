@@ -152,6 +152,64 @@ public enum Opencannabis_Commerce_OrderStatus: SwiftProtobuf.Enum {
 
 }
 
+/// Enumeration for payment status of an order.
+public enum Opencannabis_Commerce_OrderPaymentStatus: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// Payment information is not applicable to this order.
+  case notApplicable // = 0
+
+  /// Charge is pending fulfillment.
+  case waiting // = 1
+
+  /// The user's card has been pre-authorized, pending fulfillment.
+  case preauthorized // = 2
+
+  /// The user has paid partially for this order.
+  case partial // = 3
+
+  /// The user has settled payment for this order in full.
+  case settled // = 4
+
+  /// Payment for this order did not go through.
+  case bounced // = 5
+
+  /// Payment for this order did not go through, and was retried.
+  case retried // = 6
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .notApplicable
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .notApplicable
+    case 1: self = .waiting
+    case 2: self = .preauthorized
+    case 3: self = .partial
+    case 4: self = .settled
+    case 5: self = .bounced
+    case 6: self = .retried
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .notApplicable: return 0
+    case .waiting: return 1
+    case .preauthorized: return 2
+    case .partial: return 3
+    case .settled: return 4
+    case .bounced: return 5
+    case .retried: return 6
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
 /// Specifies the desired timing of the delivery order.
 public struct Opencannabis_Commerce_OrderScheduling {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -179,6 +237,29 @@ public struct Opencannabis_Commerce_OrderScheduling {
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Information about payment status and info for an order.
+public struct Opencannabis_Commerce_OrderPayment {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Status of payment for this order.
+  public var status: Opencannabis_Commerce_OrderPaymentStatus = .notApplicable
+
+  /// Method of payment used on this order.
+  public var method: Opencannabis_Commerce_PaymentMethod = .cash
+
+  /// Amount of tax added to the subtotal.
+  public var tax: Double = 0
+
+  /// Amount the user has paid so far for this order.
+  public var paid: Double = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
 }
 
 /// Specifies a moment at which an order changed status, when it happened, and, optionally, why.
@@ -334,6 +415,16 @@ public struct Opencannabis_Commerce_Order {
     set {_uniqueStorage()._sid = newValue}
   }
 
+  /// Payment information/metadata for this order, if applicable.
+  public var payment: Opencannabis_Commerce_OrderPayment {
+    get {return _storage._payment ?? Opencannabis_Commerce_OrderPayment()}
+    set {_uniqueStorage()._payment = newValue}
+  }
+  /// Returns true if `payment` has been explicitly set.
+  public var hasPayment: Bool {return _storage._payment != nil}
+  /// Clears the value of `payment`. Subsequent reads from it will return its default value.
+  public mutating func clearPayment() {_storage._payment = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -369,6 +460,18 @@ extension Opencannabis_Commerce_OrderStatus: SwiftProtobuf._ProtoNameProviding {
     3: .same(proto: "ASSIGNED"),
     4: .same(proto: "EN_ROUTE"),
     5: .same(proto: "FULFILLED"),
+  ]
+}
+
+extension Opencannabis_Commerce_OrderPaymentStatus: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "NOT_APPLICABLE"),
+    1: .same(proto: "WAITING"),
+    2: .same(proto: "PREAUTHORIZED"),
+    3: .same(proto: "PARTIAL"),
+    4: .same(proto: "SETTLED"),
+    5: .same(proto: "BOUNCED"),
+    6: .same(proto: "RETRIED"),
   ]
 }
 
@@ -436,6 +539,53 @@ extension Opencannabis_Commerce_OrderScheduling: SwiftProtobuf.Message, SwiftPro
       }
       if !storagesAreEqual {return false}
     }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Commerce_OrderPayment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".OrderPayment"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "method"),
+    3: .same(proto: "tax"),
+    4: .same(proto: "paid"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.status)
+      case 2: try decoder.decodeSingularEnumField(value: &self.method)
+      case 3: try decoder.decodeSingularDoubleField(value: &self.tax)
+      case 4: try decoder.decodeSingularDoubleField(value: &self.paid)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != .notApplicable {
+      try visitor.visitSingularEnumField(value: self.status, fieldNumber: 1)
+    }
+    if self.method != .cash {
+      try visitor.visitSingularEnumField(value: self.method, fieldNumber: 2)
+    }
+    if self.tax != 0 {
+      try visitor.visitSingularDoubleField(value: self.tax, fieldNumber: 3)
+    }
+    if self.paid != 0 {
+      try visitor.visitSingularDoubleField(value: self.paid, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_OrderPayment) -> Bool {
+    if self.status != other.status {return false}
+    if self.method != other.method {return false}
+    if self.tax != other.tax {return false}
+    if self.paid != other.paid {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -563,6 +713,7 @@ extension Opencannabis_Commerce_Order: SwiftProtobuf.Message, SwiftProtobuf._Mes
     11: .same(proto: "subtotal"),
     12: .standard(proto: "updated_at"),
     13: .same(proto: "sid"),
+    14: .same(proto: "payment"),
   ]
 
   fileprivate class _StorageClass {
@@ -579,6 +730,7 @@ extension Opencannabis_Commerce_Order: SwiftProtobuf.Message, SwiftProtobuf._Mes
     var _subtotal: Double = 0
     var _updatedAt: Opencannabis_Temporal_Instant? = nil
     var _sid: String = String()
+    var _payment: Opencannabis_Commerce_OrderPayment? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -598,6 +750,7 @@ extension Opencannabis_Commerce_Order: SwiftProtobuf.Message, SwiftProtobuf._Mes
       _subtotal = source._subtotal
       _updatedAt = source._updatedAt
       _sid = source._sid
+      _payment = source._payment
     }
   }
 
@@ -626,6 +779,7 @@ extension Opencannabis_Commerce_Order: SwiftProtobuf.Message, SwiftProtobuf._Mes
         case 11: try decoder.decodeSingularDoubleField(value: &_storage._subtotal)
         case 12: try decoder.decodeSingularMessageField(value: &_storage._updatedAt)
         case 13: try decoder.decodeSingularStringField(value: &_storage._sid)
+        case 14: try decoder.decodeSingularMessageField(value: &_storage._payment)
         default: break
         }
       }
@@ -673,6 +827,9 @@ extension Opencannabis_Commerce_Order: SwiftProtobuf.Message, SwiftProtobuf._Mes
       if !_storage._sid.isEmpty {
         try visitor.visitSingularStringField(value: _storage._sid, fieldNumber: 13)
       }
+      if let v = _storage._payment {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -695,6 +852,7 @@ extension Opencannabis_Commerce_Order: SwiftProtobuf.Message, SwiftProtobuf._Mes
         if _storage._subtotal != other_storage._subtotal {return false}
         if _storage._updatedAt != other_storage._updatedAt {return false}
         if _storage._sid != other_storage._sid {return false}
+        if _storage._payment != other_storage._payment {return false}
         return true
       }
       if !storagesAreEqual {return false}

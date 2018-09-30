@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the notion of a user identity token, which is used to specify/transmit/emit user authorization assertion
+/// materials to frontends (in particular, web).
+
 import Foundation
 import SwiftProtobuf
 
@@ -19,11 +23,23 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Enumerates identity token issuers, or authorizing IdPs (Identity Providers). Internal authorization refers to systems
+/// internal to Bloombox, where a system account is authorizing some resource. Otherwise, Firebase is the main auth
+/// mechanism for end-users.
 public enum Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
   public typealias RawValue = Int
+
+  /// Internal, Bloombox-system account authentication.
   case `internal` // = 0
+
+  /// Firebase end-user authentication.
   case firebase // = 1
+
+  /// Auth0-powered authentication.
   case auth0 // = 2
+
+  /// GSuite-powered authentication.
+  case google // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -35,6 +51,7 @@ public enum Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
     case 0: self = .internal
     case 1: self = .firebase
     case 2: self = .auth0
+    case 3: self = .google
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -44,21 +61,27 @@ public enum Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
     case .internal: return 0
     case .firebase: return 1
     case .auth0: return 2
+    case .google: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
 
 }
 
+/// Specifies an individual token asserting the identity of a user. An identity token does not make any claim related to
+/// authorization, only identity.
 public struct Bloombox_Schema_Security_IdentityToken {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// ID for the subject user.
   public var uid: String = String()
 
+  /// Encoded JWT identity token.
   public var encoded: String = String()
 
+  /// Token issuer, or authorizing IdP (Identity Provider).
   public var issuer: Bloombox_Schema_Security_IdentityTokenIssuer = .internal
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -75,6 +98,7 @@ extension Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf._ProtoName
     0: .same(proto: "INTERNAL"),
     1: .same(proto: "FIREBASE"),
     2: .same(proto: "AUTH0"),
+    3: .same(proto: "GOOGLE"),
   ]
 }
 

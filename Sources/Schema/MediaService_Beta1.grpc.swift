@@ -33,6 +33,116 @@ public enum Bloombox_Schema_Services_Media_V1Beta1_MediaClientError : Error {
   case error(c: CallResult)
 }
 
+/// List (Unary)
+public class Bloombox_Schema_Services_Media_V1Beta1_MediaListCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.media.v1beta1.Media/List")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Media_V1Beta1_MediaClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Media_V1Beta1_MediaListCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
+/// Retrieve (Unary)
+public class Bloombox_Schema_Services_Media_V1Beta1_MediaRetrieveCall {
+  private var call : Call
+
+  /// Create a call.
+  fileprivate init(_ channel: Channel) {
+    self.call = channel.makeCall("/bloombox.schema.services.media.v1beta1.Media/Retrieve")
+  }
+
+  /// Run the call. Blocks until the reply is received.
+  fileprivate func run(request: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request,
+                       metadata: Metadata) throws -> Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response {
+    let sem = DispatchSemaphore(value: 0)
+    var returnCallResult : CallResult!
+    var returnResponse : Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response?
+    _ = try start(request:request, metadata:metadata) {response, callResult in
+      returnResponse = response
+      returnCallResult = callResult
+      sem.signal()
+    }
+    _ = sem.wait(timeout: DispatchTime.distantFuture)
+    if let returnResponse = returnResponse {
+      return returnResponse
+    } else {
+      throw Bloombox_Schema_Services_Media_V1Beta1_MediaClientError.error(c: returnCallResult)
+    }
+  }
+
+  /// Start the call. Nonblocking.
+  fileprivate func start(request: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request,
+                         metadata: Metadata,
+                         completion: @escaping (Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response?, CallResult)->())
+    throws -> Bloombox_Schema_Services_Media_V1Beta1_MediaRetrieveCall {
+
+      let requestData = try request.serializedData()
+      try call.start(.unary,
+                     metadata:metadata,
+                     message:requestData)
+      {(callResult) in
+        if let responseData = callResult.resultData,
+          let response = try? Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response(serializedData:responseData) {
+          completion(response, callResult)
+        } else {
+          completion(nil, callResult)
+        }
+      }
+      return self
+  }
+
+  /// Cancel the call.
+  public func cancel() {
+    call.cancel()
+  }
+}
+
 /// Upload (Unary)
 public class Bloombox_Schema_Services_Media_V1Beta1_MediaUploadCall {
   private var call : Call
@@ -177,6 +287,36 @@ public final class Bloombox_Schema_Services_Media_V1Beta1_MediaService {
   }
 
   /// Synchronous. Unary.
+  public func list(_ request: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request)
+    throws
+    -> Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response {
+      return try Bloombox_Schema_Services_Media_V1Beta1_MediaListCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func list(_ request: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Media_V1Beta1_MediaListCall {
+      return try Bloombox_Schema_Services_Media_V1Beta1_MediaListCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
+  public func retrieve(_ request: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request)
+    throws
+    -> Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response {
+      return try Bloombox_Schema_Services_Media_V1Beta1_MediaRetrieveCall(channel).run(request:request, metadata:metadata)
+  }
+  /// Asynchronous. Unary.
+  public func retrieve(_ request: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request,
+                  completion: @escaping (Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response?, CallResult)->())
+    throws
+    -> Bloombox_Schema_Services_Media_V1Beta1_MediaRetrieveCall {
+      return try Bloombox_Schema_Services_Media_V1Beta1_MediaRetrieveCall(channel).start(request:request,
+                                                 metadata:metadata,
+                                                 completion:completion)
+  }
+  /// Synchronous. Unary.
   public func upload(_ request: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request)
     throws
     -> Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response {
@@ -216,6 +356,8 @@ public enum Bloombox_Schema_Services_Media_V1Beta1_MediaServerError : Error {
 
 /// To build a server, implement a class that conforms to this protocol.
 public protocol Bloombox_Schema_Services_Media_V1Beta1_MediaProvider {
+  func list(request : Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request, session : Bloombox_Schema_Services_Media_V1Beta1_MediaListSession) throws -> Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response
+  func retrieve(request : Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request, session : Bloombox_Schema_Services_Media_V1Beta1_MediaRetrieveSession) throws -> Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response
   func upload(request : Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request, session : Bloombox_Schema_Services_Media_V1Beta1_MediaUploadSession) throws -> Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response
   func attach(request : Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request, session : Bloombox_Schema_Services_Media_V1Beta1_MediaAttachSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
 }
@@ -232,6 +374,56 @@ public class Bloombox_Schema_Services_Media_V1Beta1_MediaSession {
 
   fileprivate init(handler:gRPC.Handler) {
     self.handler = handler
+  }
+}
+
+// List (Unary)
+public class Bloombox_Schema_Services_Media_V1Beta1_MediaListSession : Bloombox_Schema_Services_Media_V1Beta1_MediaSession {
+  private var provider : Bloombox_Schema_Services_Media_V1Beta1_MediaProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Media_V1Beta1_MediaProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request(serializedData:requestData)
+        let replyMessage = try self.provider.list(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
+  }
+}
+
+// Retrieve (Unary)
+public class Bloombox_Schema_Services_Media_V1Beta1_MediaRetrieveSession : Bloombox_Schema_Services_Media_V1Beta1_MediaSession {
+  private var provider : Bloombox_Schema_Services_Media_V1Beta1_MediaProvider
+
+  /// Create a session.
+  fileprivate init(handler:gRPC.Handler, provider: Bloombox_Schema_Services_Media_V1Beta1_MediaProvider) {
+    self.provider = provider
+    super.init(handler:handler)
+  }
+
+  /// Run the session. Internal.
+  fileprivate func run(queue:DispatchQueue) throws {
+    try handler.receiveMessage(initialMetadata:initialMetadata) {(requestData) in
+      if let requestData = requestData {
+        let requestMessage = try Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request(serializedData:requestData)
+        let replyMessage = try self.provider.retrieve(request:requestMessage, session: self)
+        try self.handler.sendResponse(message:replyMessage.serializedData(),
+                                      statusCode:self.statusCode,
+                                      statusMessage:self.statusMessage,
+                                      trailingMetadata:self.trailingMetadata)
+      }
+    }
   }
 }
 
@@ -331,6 +523,10 @@ public class Bloombox_Schema_Services_Media_V1Beta1_MediaServer {
 
       do {
         switch handler.method {
+        case "/bloombox.schema.services.media.v1beta1.Media/List":
+          try Bloombox_Schema_Services_Media_V1Beta1_MediaListSession(handler:handler, provider:provider).run(queue:queue)
+        case "/bloombox.schema.services.media.v1beta1.Media/Retrieve":
+          try Bloombox_Schema_Services_Media_V1Beta1_MediaRetrieveSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.media.v1beta1.Media/Upload":
           try Bloombox_Schema_Services_Media_V1Beta1_MediaUploadSession(handler:handler, provider:provider).run(queue:queue)
         case "/bloombox.schema.services.media.v1beta1.Media/Attach":
