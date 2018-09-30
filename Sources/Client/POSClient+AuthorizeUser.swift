@@ -155,4 +155,5 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
       }
     }, withAPIKey: apiKey, callback)
   }
+
 }

@@ -48,6 +48,7 @@ public struct POSTicketVerifyOptions {
 // MARK: - Method: Authorize User -
 extension PointOfSaleClient: IPOSVerifyTicketKey {
   // MARK: Internals
+
   private func verifyTicketKey(_ request: POSOpenTicket.Request,
                                withAPIKey apiKey: APIKey) throws -> POSOpenTicket.Response {
     return try self.service(apiKey).ticketopen(request)

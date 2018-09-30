@@ -21,7 +21,9 @@ internal protocol ClientLogic {
 
 
 extension ClientLogic {
+
   func prepare() { /* no-op */ }
+
 }
 
 
