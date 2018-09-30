@@ -346,7 +346,7 @@ public struct Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message {
   /// Clears the value of `hardware`. Subsequent reads from it will return its default value.
   public mutating func clearHardware() {_storage._hardware = nil}
 
-  /// Information about the POS app in use.
+  /// Information about the last-seen POS app in use.
   public var app: Bloombox_Schema_Analytics_Context_DeviceApplication {
     get {return _storage._app ?? Bloombox_Schema_Analytics_Context_DeviceApplication()}
     set {_uniqueStorage()._app = newValue}

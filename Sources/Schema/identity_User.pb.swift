@@ -918,10 +918,26 @@ public struct Bloombox_Schema_Identity_IndustryProfile: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".IndustryProfile"
 
   /// Profile inactive/active status.
-  public var active: Bool = false
+  public var active: Bool {
+    get {return _storage._active}
+    set {_uniqueStorage()._active = newValue}
+  }
 
   /// Map of partner accesses levels to partner codes.
-  public var partners: Dictionary<String,Bloombox_Schema_Security_Access_AccessPolicy> = [:]
+  public var partners: Dictionary<String,Bloombox_Schema_Security_Access_AccessPolicy> {
+    get {return _storage._partners}
+    set {_uniqueStorage()._partners = newValue}
+  }
+
+  /// Settings for the user's industry profile.
+  public var settings: Bloombox_Schema_Identity_Industry_StaffSettings {
+    get {return _storage._settings ?? Bloombox_Schema_Identity_Industry_StaffSettings()}
+    set {_uniqueStorage()._settings = newValue}
+  }
+  /// Returns true if `settings` has been explicitly set.
+  public var hasSettings: Bool {return _storage._settings != nil}
+  /// Clears the value of `settings`. Subsequent reads from it will return its default value.
+  public mutating func clearSettings() {_storage._settings = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -932,11 +948,15 @@ public struct Bloombox_Schema_Identity_IndustryProfile: SwiftProtobuf.Message {
   /// initializers are defined in the SwiftProtobuf library. See the Message and
   /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.active)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_AccessPolicy>.self, value: &self.partners)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularBoolField(value: &_storage._active)
+        case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_AccessPolicy>.self, value: &_storage._partners)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._settings)
+        default: break
+        }
       }
     }
   }
@@ -946,14 +966,21 @@ public struct Bloombox_Schema_Identity_IndustryProfile: SwiftProtobuf.Message {
   /// other serializer methods are defined in the SwiftProtobuf library. See the
   /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.active != false {
-      try visitor.visitSingularBoolField(value: self.active, fieldNumber: 1)
-    }
-    if !self.partners.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_AccessPolicy>.self, value: self.partners, fieldNumber: 2)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._active != false {
+        try visitor.visitSingularBoolField(value: _storage._active, fieldNumber: 1)
+      }
+      if !_storage._partners.isEmpty {
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_AccessPolicy>.self, value: _storage._partners, fieldNumber: 2)
+      }
+      if let v = _storage._settings {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -1346,11 +1373,44 @@ extension Bloombox_Schema_Identity_IndustryProfile: SwiftProtobuf._MessageImplem
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "active"),
     2: .same(proto: "partners"),
+    3: .same(proto: "settings"),
   ]
 
+  fileprivate class _StorageClass {
+    var _active: Bool = false
+    var _partners: Dictionary<String,Bloombox_Schema_Security_Access_AccessPolicy> = [:]
+    var _settings: Bloombox_Schema_Identity_Industry_StaffSettings? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _active = source._active
+      _partners = source._partners
+      _settings = source._settings
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_IndustryProfile) -> Bool {
-    if self.active != other.active {return false}
-    if self.partners != other.partners {return false}
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._active != other_storage._active {return false}
+        if _storage._partners != other_storage._partners {return false}
+        if _storage._settings != other_storage._settings {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if unknownFields != other.unknownFields {return false}
     return true
   }

@@ -514,6 +514,125 @@ public struct Bloombox_Schema_Services_Platform_V1_DomainInfo: SwiftProtobuf.Mes
   }
 }
 
+/// Specifies an operation to retrieve brand information for a given partner location.
+public struct Bloombox_Schema_Services_Platform_V1_BrandInfo: SwiftProtobuf.Message {
+  public static let protoMessageName: String = _protobuf_package + ".BrandInfo"
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Specifies a request for branding information.
+  public struct Request: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Platform_V1_BrandInfo.protoMessageName + ".Request"
+
+    /// Partner code identifying the partner organization owning the location for which branding is being requested.
+    public var partner: String = String()
+
+    /// Location code for which branding is being requested.
+    public var location: String = String()
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &self.partner)
+        case 2: try decoder.decodeSingularStringField(value: &self.location)
+        default: break
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      if !self.partner.isEmpty {
+        try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+      }
+      if !self.location.isEmpty {
+        try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+  }
+
+  /// Specifies a response to a request for branding information.
+  public struct Response: SwiftProtobuf.Message {
+    public static let protoMessageName: String = Bloombox_Schema_Services_Platform_V1_BrandInfo.protoMessageName + ".Response"
+
+    /// Branding information returned to the callee, assuming it could be located.
+    public var brand: Opencannabis_Content_Brand {
+      get {return _storage._brand ?? Opencannabis_Content_Brand()}
+      set {_uniqueStorage()._brand = newValue}
+    }
+    /// Returns true if `brand` has been explicitly set.
+    public var hasBrand: Bool {return _storage._brand != nil}
+    /// Clears the value of `brand`. Subsequent reads from it will return its default value.
+    public mutating func clearBrand() {_storage._brand = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+    /// initializers are defined in the SwiftProtobuf library. See the Message and
+    /// Message+*Additions` files.
+    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+      _ = _uniqueStorage()
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        while let fieldNumber = try decoder.nextFieldNumber() {
+          switch fieldNumber {
+          case 1: try decoder.decodeSingularMessageField(value: &_storage._brand)
+          default: break
+          }
+        }
+      }
+    }
+
+    /// Used by the encoding methods of the SwiftProtobuf library, not generally
+    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+    /// other serializer methods are defined in the SwiftProtobuf library. See the
+    /// `Message` and `Message+*Additions` files.
+    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+        if let v = _storage._brand {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+        }
+      }
+      try unknownFields.traverse(visitor: &visitor)
+    }
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  public init() {}
+
+  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
+  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
+  /// initializers are defined in the SwiftProtobuf library. See the Message and
+  /// Message+*Additions` files.
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  /// Used by the encoding methods of the SwiftProtobuf library, not generally
+  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
+  /// other serializer methods are defined in the SwiftProtobuf library. See the
+  /// `Message` and `Message+*Additions` files.
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bloombox.schema.services.platform.v1"
@@ -666,6 +785,68 @@ extension Bloombox_Schema_Services_Platform_V1_DomainInfo.Response: SwiftProtobu
     if self.tv != other.tv {return false}
     if self.link != other.link {return false}
     if self.website != other.website {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_BrandInfo: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_BrandInfo) -> Bool {
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_BrandInfo.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "partner"),
+    2: .same(proto: "location"),
+  ]
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_BrandInfo.Request) -> Bool {
+    if self.partner != other.partner {return false}
+    if self.location != other.location {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_BrandInfo.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "brand"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _brand: Opencannabis_Content_Brand? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _brand = source._brand
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_BrandInfo.Response) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._brand != other_storage._brand {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if unknownFields != other.unknownFields {return false}
     return true
   }

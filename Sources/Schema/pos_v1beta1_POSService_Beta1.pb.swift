@@ -732,6 +732,26 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
     /// Clears the value of `messaging`. Subsequent reads from it will return its default value.
     public mutating func clearMessaging() {_storage._messaging = nil}
 
+    /// Information about point-of-sale hardware installed or supported on this device.
+    public var hardware: Opencannabis_Commerce_POSHardware {
+      get {return _storage._hardware ?? Opencannabis_Commerce_POSHardware()}
+      set {_uniqueStorage()._hardware = newValue}
+    }
+    /// Returns true if `hardware` has been explicitly set.
+    public var hasHardware: Bool {return _storage._hardware != nil}
+    /// Clears the value of `hardware`. Subsequent reads from it will return its default value.
+    public mutating func clearHardware() {_storage._hardware = nil}
+
+    /// Information about the POS app in use.
+    public var app: Bloombox_Schema_Analytics_Context_DeviceApplication {
+      get {return _storage._app ?? Bloombox_Schema_Analytics_Context_DeviceApplication()}
+      set {_uniqueStorage()._app = newValue}
+    }
+    /// Returns true if `app` has been explicitly set.
+    public var hasApp: Bool {return _storage._app != nil}
+    /// Clears the value of `app`. Subsequent reads from it will return its default value.
+    public mutating func clearApp() {_storage._app = nil}
+
     public var auth: OneOf_Auth? {
       get {return _storage._auth}
       set {_uniqueStorage()._auth = newValue}
@@ -785,6 +805,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
           switch fieldNumber {
           case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
           case 2: try decoder.decodeSingularMessageField(value: &_storage._messaging)
+          case 3: try decoder.decodeSingularMessageField(value: &_storage._hardware)
+          case 4: try decoder.decodeSingularMessageField(value: &_storage._app)
           case 10:
             var v: Bloombox_Schema_Security_IdentityToken?
             if let current = _storage._auth {
@@ -818,6 +840,12 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
         }
         if let v = _storage._messaging {
           try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        }
+        if let v = _storage._hardware {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+        }
+        if let v = _storage._app {
+          try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
         }
         switch _storage._auth {
         case .token(let v)?:
@@ -3744,6 +3772,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "messaging"),
+    3: .same(proto: "hardware"),
+    4: .same(proto: "app"),
     10: .same(proto: "token"),
     11: .same(proto: "challenge"),
   ]
@@ -3751,6 +3781,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
   fileprivate class _StorageClass {
     var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
     var _messaging: Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth? = nil
+    var _hardware: Opencannabis_Commerce_POSHardware? = nil
+    var _app: Bloombox_Schema_Analytics_Context_DeviceApplication? = nil
     var _auth: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request.OneOf_Auth?
 
     static let defaultInstance = _StorageClass()
@@ -3760,6 +3792,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
     init(copying source: _StorageClass) {
       _register = source._register
       _messaging = source._messaging
+      _hardware = source._hardware
+      _app = source._app
       _auth = source._auth
     }
   }
@@ -3778,6 +3812,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
         let other_storage = _args.1
         if _storage._register != other_storage._register {return false}
         if _storage._messaging != other_storage._messaging {return false}
+        if _storage._hardware != other_storage._hardware {return false}
+        if _storage._app != other_storage._app {return false}
         if _storage._auth != other_storage._auth {return false}
         return true
       }
