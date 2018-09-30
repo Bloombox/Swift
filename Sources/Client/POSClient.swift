@@ -108,11 +108,4 @@ public final class PointOfSaleClient: RemoteService {
 
     return (device: device, apiKey: apiKey!)
   }
-
-  /**
-   * Prepare the POS service for use.
-   */
-  func prepare() {
-    // no-op
-  }
 }

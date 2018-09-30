@@ -93,12 +93,6 @@ public final class MenuClient: RemoteService {
     return (partner: partnerCode!, location: locationCode!, apiKey: apiKey!)
   }
 
-  /**
-   * Prepare the menu service for use.
-   */
-  func prepare() {
-  }
-
   // MARK: - Public API -
 
   // MARK: Menu Retrieve

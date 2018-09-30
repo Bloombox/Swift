@@ -10,6 +10,47 @@ import Schema
 import SwiftProtobuf
 
 
+//// Platform Service
+
+/**
+ * Binding to the active PlatformService.
+ */
+public typealias PlatformService = Bloombox_Schema_Services_Platform_V1_PlatformService
+public typealias PlatformError = Bloombox_Schema_Services_Platform_V1_PlatformError
+public typealias PlatformRPCError = Bloombox_Schema_Services_Platform_V1_PlatformClientError
+public typealias PlatformServiceStatus = Bloombox_Schema_Services_Platform_V1_PlatformServiceStatus
+
+/**
+ * Method: `ping`.
+ */
+public typealias PlatformPing = Bloombox_Schema_Services_Platform_V1_Ping
+public typealias PlatformPingCall = Bloombox_Schema_Services_Platform_V1_PlatformPingCall
+
+/**
+ * Method: `health`.
+ */
+public typealias Healthcheck = Bloombox_Schema_Services_Platform_V1_Healthcheck
+public typealias HealthcheckCall = Bloombox_Schema_Services_Platform_V1_PlatformHealthCall
+
+/**
+ * Method: `resolve`.
+ */
+public typealias ResolveDomains = Bloombox_Schema_Services_Platform_V1_DomainResolve
+public typealias ResolveDomainsCall = Bloombox_Schema_Services_Platform_V1_PlatformResolveCall
+
+/**
+ * Method: `domains`.
+ */
+public typealias DomainInfo = Bloombox_Schema_Services_Platform_V1_DomainInfo
+public typealias DomainInfoCall = Bloombox_Schema_Services_Platform_V1_PlatformDomainsCall
+
+/**
+ * Method: `brand`.
+ */
+public typealias BrandInfo = Bloombox_Schema_Services_Platform_V1_BrandInfo
+public typealias BrandInfoCall = Bloombox_Schema_Services_Platform_V1_PlatformBrandCall
+
+
 //// Devices Service
 
 /**
@@ -23,6 +64,7 @@ public typealias DevicesRPCError = Bloombox_Schema_Services_Devices_V1Beta1_Devi
  * Method: `ping`.
  */
 public typealias DevicesPing = Bloombox_Schema_Services_Devices_V1beta1_Ping
+public typealias DevicesPingCall = Bloombox_Schema_Services_Devices_V1Beta1_DevicesPingCall
 
 /**
  * Method: `activate`.

@@ -61,9 +61,4 @@ public class TelemetryClient: RemoteService {
     // initialize events service
     events = RPCServiceFactory<EventTelemetry>.factory(forService: Transport.config.services.telemetry)
   }
-
-  /**
-   * Prepare the telemetry service for use.
-   */
-  func prepare() { /* default: no-op */ }
 }

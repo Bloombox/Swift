@@ -20,6 +20,11 @@ internal protocol ClientLogic {
 }
 
 
+extension ClientLogic {
+  func prepare() { /* no-op */ }
+}
+
+
 /**
  * Specifies a remotely-supported service. Complies with `ClientLogic` so that it may be prepared
  * early in the execution flow. Also supports a name for logging.

@@ -100,13 +100,6 @@ public final class ShopClient: RemoteService {
     return (partner: partnerCode!, location: locationCode!, apiKey: apiKey!)
   }
 
-  /**
-   * Prepare the shop service for use.
-   */
-  func prepare() {
-    // no-op
-  }
-
   // MARK: - Public API -
 
   // MARK: Shop Info

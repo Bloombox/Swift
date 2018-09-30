@@ -30,11 +30,13 @@ public final class Services: ClientLogic {
   internal init(settings: Bloombox.Settings) {
     self.settings = settings
     self.rpc = RPCLogic(settings: self.settings)
+
     self.devices = DevicesClient(settings: settings)
     self.shop = ShopClient(settings: settings)
     self.telemetry = TelemetryClient(settings: settings)
     self.menu = MenuClient(settings: settings)
     self.pos = PointOfSaleClient(settings: settings)
+    self.platform = PlatformClient(settings: settings)
   }
 
   /**
@@ -45,7 +47,9 @@ public final class Services: ClientLogic {
       shop,
       telemetry,
       menu,
-      pos
+      pos,
+      devices,
+      platform
     ]
   }
 
@@ -90,4 +94,10 @@ public final class Services: ClientLogic {
    * hardware devices, including pings, activations, and so on.
    */
   public let devices: DevicesClient
+
+  /**
+   * Platform service. Provides methods that resolve basic info, map info to other info, and so on.
+   * Healthchecks and cloud platform pings happen here, too.
+   */
+  public let platform: PlatformClient
 }

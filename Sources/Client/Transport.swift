@@ -58,11 +58,15 @@ internal struct Transport {
   internal struct Sandbox: TransportSettings {
     let data: DataEnvironment = .sandbox
     let services: ServiceSettings = RPCServicesConfig(
+      auth: ProductionAuth(),
       devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
       menu: ProductionMenu(),
-      pos: ProductionPOS())
+      media: ProductionMedia(),
+      pos: ProductionPOS(),
+      platform: ProductionPlatform(),
+      checkin: ProductionCheckin())
   }
 
   /**
@@ -71,11 +75,15 @@ internal struct Transport {
   internal struct Staging: TransportSettings {
     let data: DataEnvironment = .v1
     let services: ServiceSettings = RPCServicesConfig(
+      auth: ProductionAuth(),
       devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
       menu: ProductionMenu(),
-      pos: ProductionPOS())
+      media: ProductionMedia(),
+      pos: ProductionPOS(),
+      platform: ProductionPlatform(),
+      checkin: ProductionCheckin())
   }
   #endif
 
@@ -85,11 +93,15 @@ internal struct Transport {
   internal struct Production: TransportSettings {
     let data: DataEnvironment = .v1
     let services: ServiceSettings = RPCServicesConfig(
+      auth: ProductionAuth(),
       devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
       menu: ProductionMenu(),
-      pos: ProductionPOS())
+      media: ProductionMedia(),
+      pos: ProductionPOS(),
+      platform: ProductionPlatform(),
+      checkin: ProductionCheckin())
   }
 }
 
@@ -178,6 +190,19 @@ internal struct ProductionTelemetry: RPCServiceSettings {
 }
 
 /**
+ * Production media settings.
+ */
+internal struct ProductionMedia: RPCServiceSettings {
+  let secure = true
+  let host = "media.api.bloombox.cloud"
+  let port = 443
+  let hostname: String? = "media.api.bloombox.cloud"
+  let chain: String? = authorityChain
+  let cert: String? = nil
+  let key: String? = nil
+}
+
+/**
  * Production menu settings.
  */
 internal struct ProductionMenu: RPCServiceSettings {
@@ -198,6 +223,45 @@ internal struct ProductionPOS: RPCServiceSettings {
   let host = "pos.api.bloombox.cloud"
   let port = 443
   let hostname: String? = "pos.api.bloombox.cloud"
+  let chain: String? = authorityChain
+  let cert: String? = nil
+  let key: String? = nil
+}
+
+/**
+ * Production auth settings.
+ */
+internal struct ProductionAuth: RPCServiceSettings {
+  let secure = true
+  let host = "auth.api.bloombox.cloud"
+  let port = 443
+  let hostname: String? = "auth.api.bloombox.cloud"
+  let chain: String? = authorityChain
+  let cert: String? = nil
+  let key: String? = nil
+}
+
+/**
+ * Production checkin settings.
+ */
+internal struct ProductionCheckin: RPCServiceSettings {
+  let secure = true
+  let host = "checkin.api.bloombox.cloud"
+  let port = 443
+  let hostname: String? = "checkin.api.bloombox.cloud"
+  let chain: String? = authorityChain
+  let cert: String? = nil
+  let key: String? = nil
+}
+
+/**
+ * Production platform API settings.
+ */
+internal struct ProductionPlatform: RPCServiceSettings {
+  let secure = true
+  let host = "platform.api.bloombox.cloud"
+  let port = 443
+  let hostname: String? = "platform.api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -258,11 +322,15 @@ internal protocol TransportSettings {
  * Specifies a configuration set for supported RPC services.
  */
 internal struct RPCServicesConfig: ServiceSettings {
+  let auth: RPCServiceSettings
   let devices: RPCServiceSettings
   let shop: RPCServiceSettings
   let telemetry: RPCServiceSettings
   let menu: RPCServiceSettings
+  let media: RPCServiceSettings
   let pos: RPCServiceSettings
+  let platform: RPCServiceSettings
+  let checkin: RPCServiceSettings
 }
 
 /**
@@ -288,6 +356,9 @@ internal protocol ServiceSettings {
   var telemetry: RPCServiceSettings { get }
   var menu: RPCServiceSettings { get }
   var pos: RPCServiceSettings { get }
+  var auth: RPCServiceSettings { get }
+  var platform: RPCServiceSettings { get }
+  var checkin: RPCServiceSettings { get }
 }
 
 // MARK: Data Services

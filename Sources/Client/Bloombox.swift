@@ -179,6 +179,13 @@ public final class Bloombox {
   }
 
   /**
+   * Public access to the Platform service client.
+   */
+  public var platform: PlatformClient {
+    return _services.platform
+  }
+
+  /**
    * Public access to the Telemetry service client.
    */
   public var telemetry: TelemetryClient {

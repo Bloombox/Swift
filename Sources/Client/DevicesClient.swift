@@ -82,12 +82,6 @@ public final class DevicesClient: RemoteService {
     return apiKey!
   }
 
-  /**
-   * Prepare the shop service for use.
-   */
-  func prepare() {
-  }
-
   // MARK: - Public API -
 
   // MARK: Device Activation
