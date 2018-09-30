@@ -6,6 +6,8 @@ env:
 language: swift
 xcode_project: BloomboxClient.xcodeproj
 xcode_scheme: BloomboxClient
+git:
+  submodules: false
 cache:
   directories:
     - ./.build
