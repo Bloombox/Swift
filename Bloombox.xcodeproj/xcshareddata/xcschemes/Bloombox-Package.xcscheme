@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftProtobuf::SwiftProtobuf"
+               BuildableName = "SwiftProtobuf.framework"
+               BlueprintName = "SwiftProtobuf"
+               ReferencedContainer = "container:Bloombox.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "SwiftGRPC::CgRPC"
                BuildableName = "CgRPC.framework"
                BlueprintName = "CgRPC"
@@ -28,9 +42,51 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftGRPC::BoringSSL"
+               BuildableName = "BoringSSL.framework"
+               BlueprintName = "BoringSSL"
+               ReferencedContainer = "container:Bloombox.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "zlib::zlib-example"
                BuildableName = "zlib-example"
                BlueprintName = "zlib-example"
+               ReferencedContainer = "container:Bloombox.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Bloombox::Client"
+               BuildableName = "Client.framework"
+               BlueprintName = "Client"
+               ReferencedContainer = "container:Bloombox.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SwiftGRPC::gRPC"
+               BuildableName = "gRPC.framework"
+               BlueprintName = "gRPC"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -62,62 +118,6 @@
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftProtobuf::SwiftProtobuf"
-               BuildableName = "SwiftProtobuf.framework"
-               BlueprintName = "SwiftProtobuf"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::Client"
-               BuildableName = "Client.framework"
-               BlueprintName = "Client"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftGRPC::BoringSSL"
-               BuildableName = "BoringSSL.framework"
-               BlueprintName = "BoringSSL"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftGRPC::gRPC"
-               BuildableName = "gRPC.framework"
-               BlueprintName = "gRPC"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -143,9 +143,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "SwiftGRPC::CgRPC"
-            BuildableName = "CgRPC.framework"
-            BlueprintName = "CgRPC"
+            BlueprintIdentifier = "SwiftProtobuf::SwiftProtobuf"
+            BuildableName = "SwiftProtobuf.framework"
+            BlueprintName = "SwiftProtobuf"
             ReferencedContainer = "container:Bloombox.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
