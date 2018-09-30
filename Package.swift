@@ -21,4 +21,3 @@ let package = Package(
         .target(
             name: "Schema",
             dependencies: ["SwiftProtobuf", "SwiftGRPC"])])
-
