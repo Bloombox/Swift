@@ -105,7 +105,7 @@ public final class PointOfSaleClient: RemoteService {
         }
       }
     }
-
     return (device: device, apiKey: apiKey!)
   }
+
 }

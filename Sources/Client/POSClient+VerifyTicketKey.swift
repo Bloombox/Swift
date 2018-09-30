@@ -100,4 +100,5 @@ extension PointOfSaleClient: IPOSVerifyTicketKey {
       }
     }, withAPIKey: apiKey, callback)
   }
+
 }

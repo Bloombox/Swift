@@ -89,7 +89,7 @@ public final class PlatformClient: RemoteService {
     // validate partner and location codes
     guard partnerCode != nil, locationCode != nil else {
       // throw error: we require a partner or location code from somewhere
-      if (partnerCode == nil) {
+      if partnerCode == nil {
         throw MenuClientError.invalidPartnerCode
       }
       throw MenuClientError.invalidLocationCode
@@ -212,4 +212,5 @@ public final class PlatformClient: RemoteService {
       callback(result, resp)
     }
   }
+
 }

@@ -92,7 +92,7 @@ public final class ShopClient: RemoteService {
     // validate partner and location codes
     guard partnerCode != nil, locationCode != nil else {
       // throw error: we require a partner or location code from somewhere
-      if (partnerCode == nil) {
+      if partnerCode == nil {
         throw ShopClientError.invalidPartnerCode
       }
       throw ShopClientError.invalidPartnerCode

@@ -22,7 +22,9 @@ internal protocol ClientLogic {
 
 extension ClientLogic {
 
-  func prepare() { /* no-op */ }
+  func prepare() {
+    /* no-op */
+  }
 
 }
 
