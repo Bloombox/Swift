@@ -19,6 +19,7 @@ extension PointOfSaleService: RPCService {}
  * Enumerates code-level errors in the POS client.
  */
 public enum POSClientError: Error {
+  case notReady
   case invalidApiKey
   case invalidPartnerCode
   case invalidLocationCode
