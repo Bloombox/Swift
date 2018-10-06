@@ -53,6 +53,15 @@ public enum Bloombox_Schema_Services_Pos_V1beta1_POSError: SwiftProtobuf.Enum {
   /// An invalid timestamp was provided.
   case invalidTimestamp // = 9
 
+  /// Unable to locate the specified device.
+  case deviceNotFound // = 10
+
+  /// Unable to locate the specified session.
+  case sessionNotFound // = 11
+
+  /// Specifies an illegal session state.
+  case sessionConflict // = 12
+
   /// The given purchase was structurally invalid.
   case illegalTicketStructure // = 20
 
@@ -100,6 +109,9 @@ public enum Bloombox_Schema_Services_Pos_V1beta1_POSError: SwiftProtobuf.Enum {
     case 7: self = .invalidTicketKey
     case 8: self = .invalidTicketSignature
     case 9: self = .invalidTimestamp
+    case 10: self = .deviceNotFound
+    case 11: self = .sessionNotFound
+    case 12: self = .sessionConflict
     case 20: self = .illegalTicketStructure
     case 21: self = .illegalTicketVersion
     case 22: self = .illegalTimestamp
@@ -126,6 +138,9 @@ public enum Bloombox_Schema_Services_Pos_V1beta1_POSError: SwiftProtobuf.Enum {
     case .invalidTicketKey: return 7
     case .invalidTicketSignature: return 8
     case .invalidTimestamp: return 9
+    case .deviceNotFound: return 10
+    case .sessionNotFound: return 11
+    case .sessionConflict: return 12
     case .illegalTicketStructure: return 20
     case .illegalTicketVersion: return 21
     case .illegalTimestamp: return 22
@@ -500,208 +515,6 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftPro
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-/// Specifies a combined state payload, provided to the point-of-sale unit once a session changes status.
-public struct Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PointOfSaleState"
-
-  /// Describes the opening state of a point of sale session.
-  public var `open`: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionOpen {
-    get {return _storage._open ?? Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionOpen()}
-    set {_uniqueStorage()._open = newValue}
-  }
-  /// Returns true if ``open`` has been explicitly set.
-  public var hasOpen: Bool {return _storage._open != nil}
-  /// Clears the value of ``open``. Subsequent reads from it will return its default value.
-  public mutating func clearOpen() {_storage._open = nil}
-
-  /// Describes all transactions that occurred during a point of sale session.
-  public var transaction: [Opencannabis_Commerce_PurchaseKey] {
-    get {return _storage._transaction}
-    set {_uniqueStorage()._transaction = newValue}
-  }
-
-  /// Describes the closing state of a point of sale session.
-  public var close: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionClose {
-    get {return _storage._close ?? Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionClose()}
-    set {_uniqueStorage()._close = newValue}
-  }
-  /// Returns true if `close` has been explicitly set.
-  public var hasClose: Bool {return _storage._close != nil}
-  /// Clears the value of `close`. Subsequent reads from it will return its default value.
-  public mutating func clearClose() {_storage._close = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  /// Message payload when a session has been opened.
-  public struct SessionOpen: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.protoMessageName + ".SessionOpen"
-
-    /// Opening float value for the cash register. This is the initial cash amount used for change, etc.
-    public var openingFloat: Opencannabis_Commerce_CurrencyValue {
-      get {return _storage._openingFloat ?? Opencannabis_Commerce_CurrencyValue()}
-      set {_uniqueStorage()._openingFloat = newValue}
-    }
-    /// Returns true if `openingFloat` has been explicitly set.
-    public var hasOpeningFloat: Bool {return _storage._openingFloat != nil}
-    /// Clears the value of `openingFloat`. Subsequent reads from it will return its default value.
-    public mutating func clearOpeningFloat() {_storage._openingFloat = nil}
-
-    /// Describes the moment the session was actually opened.
-    public var occurred: Opencannabis_Temporal_Instant {
-      get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
-      set {_uniqueStorage()._occurred = newValue}
-    }
-    /// Returns true if `occurred` has been explicitly set.
-    public var hasOccurred: Bool {return _storage._occurred != nil}
-    /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-    public mutating func clearOccurred() {_storage._occurred = nil}
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._openingFloat)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._occurred)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._openingFloat {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._occurred {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
-    fileprivate var _storage = _StorageClass.defaultInstance
-  }
-
-  /// Message payload when a session has been closed.
-  public struct SessionClose: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.protoMessageName + ".SessionClose"
-
-    /// Closing cash value for the session. This is the total cash amount in the register upon closing.
-    public var closingCount: Opencannabis_Commerce_CurrencyValue {
-      get {return _storage._closingCount ?? Opencannabis_Commerce_CurrencyValue()}
-      set {_uniqueStorage()._closingCount = newValue}
-    }
-    /// Returns true if `closingCount` has been explicitly set.
-    public var hasClosingCount: Bool {return _storage._closingCount != nil}
-    /// Clears the value of `closingCount`. Subsequent reads from it will return its default value.
-    public mutating func clearClosingCount() {_storage._closingCount = nil}
-
-    /// Describes the moment the session was actually opened.
-    public var occurred: Opencannabis_Temporal_Instant {
-      get {return _storage._occurred ?? Opencannabis_Temporal_Instant()}
-      set {_uniqueStorage()._occurred = newValue}
-    }
-    /// Returns true if `occurred` has been explicitly set.
-    public var hasOccurred: Bool {return _storage._occurred != nil}
-    /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-    public mutating func clearOccurred() {_storage._occurred = nil}
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._closingCount)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._occurred)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._closingCount {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._occurred {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
-    fileprivate var _storage = _StorageClass.defaultInstance
-  }
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._open)
-        case 2: try decoder.decodeRepeatedMessageField(value: &_storage._transaction)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._close)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._open {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if !_storage._transaction.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._transaction, fieldNumber: 2)
-      }
-      if let v = _storage._close {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
 /// Specifies an RPC transaction to authenticate a staff member user on a point-of-sale device.
 public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.Message {
   public static let protoMessageName: String = _protobuf_package + ".AuthorizeUser"
@@ -751,6 +564,12 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
     public var hasApp: Bool {return _storage._app != nil}
     /// Clears the value of `app`. Subsequent reads from it will return its default value.
     public mutating func clearApp() {_storage._app = nil}
+
+    /// Specifies an existing session ID, implying a desire to resume the session referenced.
+    public var session: String {
+      get {return _storage._session}
+      set {_uniqueStorage()._session = newValue}
+    }
 
     public var auth: OneOf_Auth? {
       get {return _storage._auth}
@@ -807,6 +626,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
           case 2: try decoder.decodeSingularMessageField(value: &_storage._messaging)
           case 3: try decoder.decodeSingularMessageField(value: &_storage._hardware)
           case 4: try decoder.decodeSingularMessageField(value: &_storage._app)
+          case 5: try decoder.decodeSingularStringField(value: &_storage._session)
           case 10:
             var v: Bloombox_Schema_Security_IdentityToken?
             if let current = _storage._auth {
@@ -846,6 +666,9 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
         }
         if let v = _storage._app {
           try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+        }
+        if !_storage._session.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 5)
         }
         switch _storage._auth {
         case .token(let v)?:
@@ -1028,8 +851,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Me
     }
 
     /// Specifies the opening state of the cash register, including the beginning float for the session.
-    public var `open`: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionOpen {
-      get {return _storage._open ?? Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionOpen()}
+    public var `open`: Opencannabis_Commerce_PointOfSaleState.SessionOpen {
+      get {return _storage._open ?? Opencannabis_Commerce_PointOfSaleState.SessionOpen()}
       set {_uniqueStorage()._open = newValue}
     }
     /// Returns true if ``open`` has been explicitly set.
@@ -1246,8 +1069,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.M
     }
 
     /// Specifies the closing state of the cash register, including the final cash total for the session.
-    public var close: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionClose {
-      get {return _storage._close ?? Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionClose()}
+    public var close: Opencannabis_Commerce_PointOfSaleState.SessionClose {
+      get {return _storage._close ?? Opencannabis_Commerce_PointOfSaleState.SessionClose()}
       set {_uniqueStorage()._close = newValue}
     }
     /// Returns true if `close` has been explicitly set.
@@ -3459,6 +3282,9 @@ extension Bloombox_Schema_Services_Pos_V1beta1_POSError: SwiftProtobuf._ProtoNam
     7: .same(proto: "INVALID_TICKET_KEY"),
     8: .same(proto: "INVALID_TICKET_SIGNATURE"),
     9: .same(proto: "INVALID_TIMESTAMP"),
+    10: .same(proto: "DEVICE_NOT_FOUND"),
+    11: .same(proto: "SESSION_NOT_FOUND"),
+    12: .same(proto: "SESSION_CONFLICT"),
     20: .same(proto: "ILLEGAL_TICKET_STRUCTURE"),
     21: .same(proto: "ILLEGAL_TICKET_VERSION"),
     22: .same(proto: "ILLEGAL_TIMESTAMP"),
@@ -3626,139 +3452,6 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSess
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "open"),
-    2: .same(proto: "transaction"),
-    3: .same(proto: "close"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _open: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionOpen? = nil
-    var _transaction: [Opencannabis_Commerce_PurchaseKey] = []
-    var _close: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionClose? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _open = source._open
-      _transaction = source._transaction
-      _close = source._close
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._open != other_storage._open {return false}
-        if _storage._transaction != other_storage._transaction {return false}
-        if _storage._close != other_storage._close {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionOpen: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "opening_float"),
-    2: .same(proto: "occurred"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _openingFloat: Opencannabis_Commerce_CurrencyValue? = nil
-    var _occurred: Opencannabis_Temporal_Instant? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _openingFloat = source._openingFloat
-      _occurred = source._occurred
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionOpen) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._openingFloat != other_storage._openingFloat {return false}
-        if _storage._occurred != other_storage._occurred {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionClose: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "closing_count"),
-    2: .same(proto: "occurred"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _closingCount: Opencannabis_Commerce_CurrencyValue? = nil
-    var _occurred: Opencannabis_Temporal_Instant? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _closingCount = source._closingCount
-      _occurred = source._occurred
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionClose) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._closingCount != other_storage._closingCount {return false}
-        if _storage._occurred != other_storage._occurred {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
 extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -3774,6 +3467,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
     2: .same(proto: "messaging"),
     3: .same(proto: "hardware"),
     4: .same(proto: "app"),
+    5: .same(proto: "session"),
     10: .same(proto: "token"),
     11: .same(proto: "challenge"),
   ]
@@ -3783,6 +3477,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
     var _messaging: Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth? = nil
     var _hardware: Opencannabis_Commerce_POSHardware? = nil
     var _app: Bloombox_Schema_Analytics_Context_DeviceApplication? = nil
+    var _session: String = String()
     var _auth: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request.OneOf_Auth?
 
     static let defaultInstance = _StorageClass()
@@ -3794,6 +3489,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
       _messaging = source._messaging
       _hardware = source._hardware
       _app = source._app
+      _session = source._session
       _auth = source._auth
     }
   }
@@ -3814,6 +3510,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
         if _storage._messaging != other_storage._messaging {return false}
         if _storage._hardware != other_storage._hardware {return false}
         if _storage._app != other_storage._app {return false}
+        if _storage._session != other_storage._session {return false}
         if _storage._auth != other_storage._auth {return false}
         return true
       }
@@ -3927,7 +3624,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobu
     var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
     var _session: String = String()
     var _token: String = String()
-    var _open: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionOpen? = nil
+    var _open: Opencannabis_Commerce_PointOfSaleState.SessionOpen? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4068,7 +3765,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtob
   fileprivate class _StorageClass {
     var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
     var _session: String = String()
-    var _close: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleState.SessionClose? = nil
+    var _close: Opencannabis_Commerce_PointOfSaleState.SessionClose? = nil
     var _transaction: [Opencannabis_Commerce_PurchaseKey] = []
 
     static let defaultInstance = _StorageClass()
