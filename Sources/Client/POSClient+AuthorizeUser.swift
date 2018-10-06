@@ -45,11 +45,20 @@ public struct POSAuthorizeOptions {
 
   public let apiKey: APIKey?  /* Override the default API key. */
   public let messaging: MessagingOptions?
+  public let resume: String?
 
   public static var defaults: POSAuthorizeOptions {
     get {
-      return POSAuthorizeOptions(apiKey: nil, messaging: nil)
+      return POSAuthorizeOptions(apiKey: nil, messaging: nil, resume: nil)
     }
+  }
+
+  public func withOverrides(apiKey: APIKey? = nil,
+                            messaging: MessagingOptions? = nil,
+                            resume: String? = nil) -> POSAuthorizeOptions {
+    return POSAuthorizeOptions(apiKey: apiKey ?? self.apiKey,
+                               messaging: messaging ?? self.messaging,
+                               resume: resume ?? self.resume)
   }
 }
 
