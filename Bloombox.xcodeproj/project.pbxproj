@@ -45,7 +45,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		22FBA58A2169961C00D4F805 /* CgRPC.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_601 /* CgRPC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		225148BE216EFDCB007F0458 /* CgRPC.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_601 /* CgRPC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		OBJ_1228 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_1234 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_669 /* aes.c */; };
 		OBJ_1235 /* key_wrap.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_670 /* key_wrap.c */; };
@@ -987,154 +987,154 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		22FBA56D216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148A2216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::gRPC";
 			remoteInfo = gRPC;
 		};
-		22FBA56E216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148A3216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::CgRPC";
 			remoteInfo = CgRPC;
 		};
-		22FBA56F216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148A4216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::BoringSSL";
 			remoteInfo = BoringSSL;
 		};
-		22FBA572216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148A6216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "zlib::Czlib";
 			remoteInfo = Czlib;
 		};
-		22FBA574216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148A8216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "zlib::Czlib";
 			remoteInfo = Czlib;
 		};
-		22FBA575216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148A9216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::BoringSSL";
 			remoteInfo = BoringSSL;
 		};
-		22FBA577216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148AB216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "zlib::Czlib";
 			remoteInfo = Czlib;
 		};
-		22FBA578216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148AC216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::CgRPC";
 			remoteInfo = CgRPC;
 		};
-		22FBA579216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148AD216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::BoringSSL";
 			remoteInfo = BoringSSL;
 		};
-		22FBA57B216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148AF216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "zlib::Czlib";
 			remoteInfo = Czlib;
 		};
-		22FBA57C216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148B0216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftProtobuf::SwiftProtobuf";
 			remoteInfo = SwiftProtobuf;
 		};
-		22FBA57D216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148B1216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Bloombox::Schema";
 			remoteInfo = Schema;
 		};
-		22FBA57E216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148B2216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::gRPC";
 			remoteInfo = gRPC;
 		};
-		22FBA57F216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148B3216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::CgRPC";
 			remoteInfo = CgRPC;
 		};
-		22FBA580216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148B4216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::BoringSSL";
 			remoteInfo = BoringSSL;
 		};
-		22FBA582216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148B6216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "zlib::Czlib";
 			remoteInfo = Czlib;
 		};
-		22FBA583216995C500D4F805 /* PBXContainerItemProxy */ = {
+		225148B7216EFBE1007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftProtobuf::SwiftProtobuf";
 			remoteInfo = SwiftProtobuf;
 		};
-		22FBA584216995C600D4F805 /* PBXContainerItemProxy */ = {
+		225148B8216EFBE2007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Bloombox::Client";
 			remoteInfo = Client;
 		};
-		22FBA585216995C700D4F805 /* PBXContainerItemProxy */ = {
+		225148B9216EFBE2007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::CgRPC";
 			remoteInfo = CgRPC;
 		};
-		22FBA586216995C700D4F805 /* PBXContainerItemProxy */ = {
+		225148BA216EFBE2007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::BoringSSL";
 			remoteInfo = BoringSSL;
 		};
-		22FBA587216995C700D4F805 /* PBXContainerItemProxy */ = {
+		225148BB216EFBE2007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "SwiftGRPC::gRPC";
 			remoteInfo = gRPC;
 		};
-		22FBA588216995C700D4F805 /* PBXContainerItemProxy */ = {
+		225148BC216EFBE2007F0458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -2572,12 +2572,12 @@
 		OBJ_1208 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				"SwiftGRPC::gRPC::Product" /* gRPC.framework */,
+				"zlib::Czlib::Product" /* Czlib.framework */,
 				"Bloombox::Schema::Product" /* Schema.framework */,
+				"SwiftGRPC::gRPC::Product" /* gRPC.framework */,
+				"SwiftGRPC::BoringSSL::Product" /* BoringSSL.framework */,
 				"SwiftGRPC::CgRPC::Product" /* CgRPC.framework */,
 				"SwiftProtobuf::SwiftProtobuf::Product" /* SwiftProtobuf.framework */,
-				"zlib::Czlib::Product" /* Czlib.framework */,
-				"SwiftGRPC::BoringSSL::Product" /* BoringSSL.framework */,
 				"Bloombox::Client::Product" /* Client.framework */,
 			);
 			name = Products;
@@ -3392,7 +3392,7 @@
 			path = slice;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -3405,7 +3405,6 @@
 				OBJ_210 /* Dependencies */,
 				OBJ_1208 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_505 /* support */ = {
@@ -4498,11 +4497,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		22FBA5892169961400D4F805 /* Headers */ = {
+		225148BD216EFDC5007F0458 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22FBA58A2169961C00D4F805 /* CgRPC.h in Headers */,
+				225148BE216EFDCB007F0458 /* CgRPC.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4589,7 +4588,7 @@
 			buildPhases = (
 				OBJ_1546 /* Sources */,
 				OBJ_1863 /* Frameworks */,
-				22FBA5892169961400D4F805 /* Headers */,
+				225148BD216EFDC5007F0458 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -4702,6 +4701,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"SwiftGRPC::gRPC" = {
+						LastSwiftMigration = 0940;
+					};
+				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "Bloombox" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -4710,7 +4714,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_1208 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -5738,112 +5742,112 @@
 		OBJ_1221 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Bloombox::Client" /* Client */;
-			targetProxy = 22FBA584216995C600D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148B8216EFBE2007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_1540 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "zlib::Czlib" /* Czlib */;
-			targetProxy = 22FBA572216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148A6216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_1866 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::BoringSSL" /* BoringSSL */;
-			targetProxy = 22FBA56F216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148A4216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_1868 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "zlib::Czlib" /* Czlib */;
-			targetProxy = 22FBA574216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148A8216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_1897 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Bloombox::Schema" /* Schema */;
-			targetProxy = 22FBA57D216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148B1216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_1899 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::gRPC" /* gRPC */;
-			targetProxy = 22FBA57E216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148B2216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_1901 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::CgRPC" /* CgRPC */;
-			targetProxy = 22FBA57F216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148B3216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_1902 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::BoringSSL" /* BoringSSL */;
-			targetProxy = 22FBA580216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148B4216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_1904 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "zlib::Czlib" /* Czlib */;
-			targetProxy = 22FBA582216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148B6216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_1905 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftProtobuf::SwiftProtobuf" /* SwiftProtobuf */;
-			targetProxy = 22FBA583216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148B7216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2115 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::gRPC" /* gRPC */;
-			targetProxy = 22FBA56D216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148A2216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2116 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::CgRPC" /* CgRPC */;
-			targetProxy = 22FBA578216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148AC216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2117 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::BoringSSL" /* BoringSSL */;
-			targetProxy = 22FBA579216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148AD216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2119 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "zlib::Czlib" /* Czlib */;
-			targetProxy = 22FBA57B216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148AF216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2120 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftProtobuf::SwiftProtobuf" /* SwiftProtobuf */;
-			targetProxy = 22FBA57C216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148B0216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2125 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::CgRPC" /* CgRPC */;
-			targetProxy = 22FBA585216995C700D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148B9216EFBE2007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2126 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::BoringSSL" /* BoringSSL */;
-			targetProxy = 22FBA586216995C700D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148BA216EFBE2007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2127 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::gRPC" /* gRPC */;
-			targetProxy = 22FBA587216995C700D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148BB216EFBE2007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2242 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::CgRPC" /* CgRPC */;
-			targetProxy = 22FBA56E216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148A3216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2243 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "SwiftGRPC::BoringSSL" /* BoringSSL */;
-			targetProxy = 22FBA575216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148A9216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2245 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "zlib::Czlib" /* Czlib */;
-			targetProxy = 22FBA577216995C500D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148AB216EFBE1007F0458 /* PBXContainerItemProxy */;
 		};
 		OBJ_2250 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "zlib::Czlib" /* Czlib */;
-			targetProxy = 22FBA588216995C700D4F805 /* PBXContainerItemProxy */;
+			targetProxy = 225148BC216EFBE2007F0458 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
