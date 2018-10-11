@@ -850,17 +850,57 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Me
       set {_uniqueStorage()._token = newValue}
     }
 
+    /// Specifies the operation being taken to open the session. Either we are establishing a fresh session for this
+    /// device, in which case the POS open state must be defined, or we are resuming a previous or suspended session, in
+    /// which case the resumption flag must be present.
+    public var claim: OneOf_Claim? {
+      get {return _storage._claim}
+      set {_uniqueStorage()._claim = newValue}
+    }
+
     /// Specifies the opening state of the cash register, including the beginning float for the session.
     public var `open`: Opencannabis_Commerce_PointOfSaleState.SessionOpen {
-      get {return _storage._open ?? Opencannabis_Commerce_PointOfSaleState.SessionOpen()}
-      set {_uniqueStorage()._open = newValue}
+      get {
+        if case .open(let v)? = _storage._claim {return v}
+        return Opencannabis_Commerce_PointOfSaleState.SessionOpen()
+      }
+      set {_uniqueStorage()._claim = .open(newValue)}
     }
-    /// Returns true if ``open`` has been explicitly set.
-    public var hasOpen: Bool {return _storage._open != nil}
-    /// Clears the value of ``open``. Subsequent reads from it will return its default value.
-    public mutating func clearOpen() {_storage._open = nil}
+
+    /// Flag to indicate this session-open call is reclaiming or resuming a previously opened and established session.
+    public var resume: Bool {
+      get {
+        if case .resume(let v)? = _storage._claim {return v}
+        return false
+      }
+      set {_uniqueStorage()._claim = .resume(newValue)}
+    }
+
+    /// Hex-encoded signature of the SHA512-digest of the binary-encoded session claim, if establishing.
+    public var signature: String {
+      get {return _storage._signature}
+      set {_uniqueStorage()._signature = newValue}
+    }
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    /// Specifies the operation being taken to open the session. Either we are establishing a fresh session for this
+    /// device, in which case the POS open state must be defined, or we are resuming a previous or suspended session, in
+    /// which case the resumption flag must be present.
+    public enum OneOf_Claim: Equatable {
+      /// Specifies the opening state of the cash register, including the beginning float for the session.
+      case `open`(Opencannabis_Commerce_PointOfSaleState.SessionOpen)
+      /// Flag to indicate this session-open call is reclaiming or resuming a previously opened and established session.
+      case resume(Bool)
+
+      public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim) -> Bool {
+        switch (lhs, rhs) {
+        case (.open(let l), .open(let r)): return l == r
+        case (.resume(let l), .resume(let r)): return l == r
+        default: return false
+        }
+      }
+    }
 
     public init() {}
 
@@ -876,7 +916,20 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Me
           case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
           case 2: try decoder.decodeSingularStringField(value: &_storage._session)
           case 3: try decoder.decodeSingularStringField(value: &_storage._token)
-          case 4: try decoder.decodeSingularMessageField(value: &_storage._open)
+          case 4:
+            var v: Opencannabis_Commerce_PointOfSaleState.SessionOpen?
+            if let current = _storage._claim {
+              try decoder.handleConflictingOneOf()
+              if case .open(let m) = current {v = m}
+            }
+            try decoder.decodeSingularMessageField(value: &v)
+            if let v = v {_storage._claim = .open(v)}
+          case 5:
+            if _storage._claim != nil {try decoder.handleConflictingOneOf()}
+            var v: Bool?
+            try decoder.decodeSingularBoolField(value: &v)
+            if let v = v {_storage._claim = .resume(v)}
+          case 6: try decoder.decodeSingularStringField(value: &_storage._signature)
           default: break
           }
         }
@@ -898,8 +951,15 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Me
         if !_storage._token.isEmpty {
           try visitor.visitSingularStringField(value: _storage._token, fieldNumber: 3)
         }
-        if let v = _storage._open {
+        switch _storage._claim {
+        case .open(let v)?:
           try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+        case .resume(let v)?:
+          try visitor.visitSingularBoolField(value: v, fieldNumber: 5)
+        case nil: break
+        }
+        if !_storage._signature.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 6)
         }
       }
       try unknownFields.traverse(visitor: &visitor)
@@ -1084,6 +1144,12 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.M
       set {_uniqueStorage()._transaction = newValue}
     }
 
+    /// Hex-encoded signature of the SHA512-digest of the binary-encoded session close claim, and transactions.
+    public var signature: String {
+      get {return _storage._signature}
+      set {_uniqueStorage()._signature = newValue}
+    }
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
@@ -1101,6 +1167,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.M
           case 2: try decoder.decodeSingularStringField(value: &_storage._session)
           case 3: try decoder.decodeSingularMessageField(value: &_storage._close)
           case 4: try decoder.decodeRepeatedMessageField(value: &_storage._transaction)
+          case 6: try decoder.decodeSingularStringField(value: &_storage._signature)
           default: break
           }
         }
@@ -1124,6 +1191,9 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.M
         }
         if !_storage._transaction.isEmpty {
           try visitor.visitRepeatedMessageField(value: _storage._transaction, fieldNumber: 4)
+        }
+        if !_storage._signature.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 6)
         }
       }
       try unknownFields.traverse(visitor: &visitor)
@@ -1308,6 +1378,12 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Mes
       set {_uniqueStorage()._fresh = newValue}
     }
 
+    /// Hex-encoded signature of the SHA512-digest of the binary-encoded purchase key.
+    public var signature: String {
+      get {return _storage._signature}
+      set {_uniqueStorage()._signature = newValue}
+    }
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
@@ -1325,6 +1401,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Mes
           case 2: try decoder.decodeSingularMessageField(value: &_storage._register)
           case 3: try decoder.decodeSingularStringField(value: &_storage._session)
           case 4: try decoder.decodeSingularBoolField(value: &_storage._fresh)
+          case 6: try decoder.decodeSingularStringField(value: &_storage._signature)
           default: break
           }
         }
@@ -1348,6 +1425,9 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Mes
         }
         if _storage._fresh != false {
           try visitor.visitSingularBoolField(value: _storage._fresh, fieldNumber: 4)
+        }
+        if !_storage._signature.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 6)
         }
       }
       try unknownFields.traverse(visitor: &visitor)
@@ -2084,6 +2164,12 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Mes
       set {_uniqueStorage()._session = newValue}
     }
 
+    /// Hex-encoded signature of the SHA512-digest of the binary-encoded purchase key.
+    public var signature: String {
+      get {return _storage._signature}
+      set {_uniqueStorage()._signature = newValue}
+    }
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
@@ -2100,6 +2186,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Mes
           case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
           case 2: try decoder.decodeSingularMessageField(value: &_storage._purchase)
           case 3: try decoder.decodeSingularStringField(value: &_storage._session)
+          case 4: try decoder.decodeSingularStringField(value: &_storage._signature)
           default: break
           }
         }
@@ -2120,6 +2207,9 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Mes
         }
         if !_storage._session.isEmpty {
           try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
+        }
+        if !_storage._signature.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 4)
         }
       }
       try unknownFields.traverse(visitor: &visitor)
@@ -2308,6 +2398,12 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf
       set {_uniqueStorage()._session = newValue}
     }
 
+    /// Hex-encoded signature of the SHA512-digest of the binary-encoded purchase key.
+    public var signature: String {
+      get {return _storage._signature}
+      set {_uniqueStorage()._signature = newValue}
+    }
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
@@ -2324,6 +2420,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf
           case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
           case 2: try decoder.decodeSingularMessageField(value: &_storage._purchase)
           case 3: try decoder.decodeSingularStringField(value: &_storage._session)
+          case 4: try decoder.decodeSingularStringField(value: &_storage._signature)
           default: break
           }
         }
@@ -2344,6 +2441,9 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf
         }
         if !_storage._session.isEmpty {
           try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
+        }
+        if !_storage._signature.isEmpty {
+          try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 4)
         }
       }
       try unknownFields.traverse(visitor: &visitor)
@@ -3618,13 +3718,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobu
     2: .same(proto: "session"),
     3: .same(proto: "token"),
     4: .same(proto: "open"),
+    5: .same(proto: "resume"),
+    6: .same(proto: "signature"),
   ]
 
   fileprivate class _StorageClass {
     var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
     var _session: String = String()
     var _token: String = String()
-    var _open: Opencannabis_Commerce_PointOfSaleState.SessionOpen? = nil
+    var _claim: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim?
+    var _signature: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -3634,7 +3737,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobu
       _register = source._register
       _session = source._session
       _token = source._token
-      _open = source._open
+      _claim = source._claim
+      _signature = source._signature
     }
   }
 
@@ -3653,7 +3757,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobu
         if _storage._register != other_storage._register {return false}
         if _storage._session != other_storage._session {return false}
         if _storage._token != other_storage._token {return false}
-        if _storage._open != other_storage._open {return false}
+        if _storage._claim != other_storage._claim {return false}
+        if _storage._signature != other_storage._signature {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -3760,6 +3865,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtob
     2: .same(proto: "session"),
     3: .same(proto: "close"),
     4: .same(proto: "transaction"),
+    6: .same(proto: "signature"),
   ]
 
   fileprivate class _StorageClass {
@@ -3767,6 +3873,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtob
     var _session: String = String()
     var _close: Opencannabis_Commerce_PointOfSaleState.SessionClose? = nil
     var _transaction: [Opencannabis_Commerce_PurchaseKey] = []
+    var _signature: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -3777,6 +3884,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtob
       _session = source._session
       _close = source._close
       _transaction = source._transaction
+      _signature = source._signature
     }
   }
 
@@ -3796,6 +3904,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtob
         if _storage._session != other_storage._session {return false}
         if _storage._close != other_storage._close {return false}
         if _storage._transaction != other_storage._transaction {return false}
+        if _storage._signature != other_storage._signature {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -3902,6 +4011,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf
     2: .same(proto: "register"),
     3: .same(proto: "session"),
     4: .same(proto: "fresh"),
+    6: .same(proto: "signature"),
   ]
 
   fileprivate class _StorageClass {
@@ -3909,6 +4019,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf
     var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
     var _session: String = String()
     var _fresh: Bool = false
+    var _signature: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -3919,6 +4030,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf
       _register = source._register
       _session = source._session
       _fresh = source._fresh
+      _signature = source._signature
     }
   }
 
@@ -3938,6 +4050,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf
         if _storage._register != other_storage._register {return false}
         if _storage._session != other_storage._session {return false}
         if _storage._fresh != other_storage._fresh {return false}
+        if _storage._signature != other_storage._signature {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -4363,12 +4476,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf
     1: .same(proto: "register"),
     2: .same(proto: "purchase"),
     3: .same(proto: "session"),
+    4: .same(proto: "signature"),
   ]
 
   fileprivate class _StorageClass {
     var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
     var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
     var _session: String = String()
+    var _signature: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -4378,6 +4493,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf
       _register = source._register
       _purchase = source._purchase
       _session = source._session
+      _signature = source._signature
     }
   }
 
@@ -4396,6 +4512,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf
         if _storage._register != other_storage._register {return false}
         if _storage._purchase != other_storage._purchase {return false}
         if _storage._session != other_storage._session {return false}
+        if _storage._signature != other_storage._signature {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -4505,12 +4622,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProt
     1: .same(proto: "register"),
     2: .same(proto: "purchase"),
     3: .same(proto: "session"),
+    4: .same(proto: "signature"),
   ]
 
   fileprivate class _StorageClass {
     var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
     var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
     var _session: String = String()
+    var _signature: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -4520,6 +4639,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProt
       _register = source._register
       _purchase = source._purchase
       _session = source._session
+      _signature = source._signature
     }
   }
 
@@ -4538,6 +4658,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProt
         if _storage._register != other_storage._register {return false}
         if _storage._purchase != other_storage._purchase {return false}
         if _storage._session != other_storage._session {return false}
+        if _storage._signature != other_storage._signature {return false}
         return true
       }
       if !storagesAreEqual {return false}

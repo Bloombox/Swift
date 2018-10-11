@@ -362,6 +362,16 @@ public struct Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message {
     set {_uniqueStorage()._session = newValue}
   }
 
+  /// Indicates the current state of the point-of-sale device, including the current till value.
+  public var state: Opencannabis_Commerce_PointOfSaleState {
+    get {return _storage._state ?? Opencannabis_Commerce_PointOfSaleState()}
+    set {_uniqueStorage()._state = newValue}
+  }
+  /// Returns true if `state` has been explicitly set.
+  public var hasState: Bool {return _storage._state != nil}
+  /// Clears the value of `state`. Subsequent reads from it will return its default value.
+  public mutating func clearState() {_storage._state = nil}
+
   /// Last time this point-of-sale device was seen.
   public var seen: Opencannabis_Temporal_Instant {
     get {return _storage._seen ?? Opencannabis_Temporal_Instant()}
@@ -412,9 +422,10 @@ public struct Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message {
         case 5: try decoder.decodeSingularMessageField(value: &_storage._hardware)
         case 6: try decoder.decodeSingularMessageField(value: &_storage._app)
         case 7: try decoder.decodeRepeatedMessageField(value: &_storage._session)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._seen)
-        case 9: try decoder.decodeSingularMessageField(value: &_storage._created)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._state)
+        case 9: try decoder.decodeSingularMessageField(value: &_storage._seen)
+        case 98: try decoder.decodeSingularMessageField(value: &_storage._created)
+        case 99: try decoder.decodeSingularMessageField(value: &_storage._modified)
         default: break
         }
       }
@@ -448,14 +459,17 @@ public struct Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message {
       if !_storage._session.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._session, fieldNumber: 7)
       }
-      if let v = _storage._seen {
+      if let v = _storage._state {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
       }
-      if let v = _storage._created {
+      if let v = _storage._seen {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
       }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 98)
+      }
       if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -483,6 +497,16 @@ public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
     get {return _storage._transaction}
     set {_uniqueStorage()._transaction = newValue}
   }
+
+  /// Specifies the current, complete, aggregated bill-of-charges state. Computed by the backend.
+  public var current: Opencannabis_Commerce_BillOfCharges {
+    get {return _storage._current ?? Opencannabis_Commerce_BillOfCharges()}
+    set {_uniqueStorage()._current = newValue}
+  }
+  /// Returns true if `current` has been explicitly set.
+  public var hasCurrent: Bool {return _storage._current != nil}
+  /// Clears the value of `current`. Subsequent reads from it will return its default value.
+  public mutating func clearCurrent() {_storage._current = nil}
 
   /// Describes the closing state of a point of sale session.
   public var close: Opencannabis_Commerce_PointOfSaleState.SessionClose {
@@ -637,7 +661,8 @@ public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._open)
         case 2: try decoder.decodeRepeatedMessageField(value: &_storage._transaction)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._close)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._current)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._close)
         default: break
         }
       }
@@ -656,8 +681,11 @@ public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
       if !_storage._transaction.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._transaction, fieldNumber: 2)
       }
-      if let v = _storage._close {
+      if let v = _storage._current {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._close {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -914,9 +942,10 @@ extension Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf._MessageImpleme
     5: .same(proto: "hardware"),
     6: .same(proto: "app"),
     7: .same(proto: "session"),
-    8: .same(proto: "seen"),
-    9: .same(proto: "created"),
-    10: .same(proto: "modified"),
+    8: .same(proto: "state"),
+    9: .same(proto: "seen"),
+    98: .same(proto: "created"),
+    99: .same(proto: "modified"),
   ]
 
   fileprivate class _StorageClass {
@@ -927,6 +956,7 @@ extension Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf._MessageImpleme
     var _hardware: Opencannabis_Commerce_POSHardware? = nil
     var _app: Bloombox_Schema_Analytics_Context_DeviceApplication? = nil
     var _session: [Opencannabis_Commerce_PointOfSaleSession] = []
+    var _state: Opencannabis_Commerce_PointOfSaleState? = nil
     var _seen: Opencannabis_Temporal_Instant? = nil
     var _created: Opencannabis_Temporal_Instant? = nil
     var _modified: Opencannabis_Temporal_Instant? = nil
@@ -943,6 +973,7 @@ extension Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf._MessageImpleme
       _hardware = source._hardware
       _app = source._app
       _session = source._session
+      _state = source._state
       _seen = source._seen
       _created = source._created
       _modified = source._modified
@@ -968,6 +999,7 @@ extension Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf._MessageImpleme
         if _storage._hardware != other_storage._hardware {return false}
         if _storage._app != other_storage._app {return false}
         if _storage._session != other_storage._session {return false}
+        if _storage._state != other_storage._state {return false}
         if _storage._seen != other_storage._seen {return false}
         if _storage._created != other_storage._created {return false}
         if _storage._modified != other_storage._modified {return false}
@@ -984,12 +1016,14 @@ extension Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf._MessageImplemen
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "open"),
     2: .same(proto: "transaction"),
-    3: .same(proto: "close"),
+    3: .same(proto: "current"),
+    4: .same(proto: "close"),
   ]
 
   fileprivate class _StorageClass {
     var _open: Opencannabis_Commerce_PointOfSaleState.SessionOpen? = nil
     var _transaction: [Opencannabis_Commerce_PurchaseKey] = []
+    var _current: Opencannabis_Commerce_BillOfCharges? = nil
     var _close: Opencannabis_Commerce_PointOfSaleState.SessionClose? = nil
 
     static let defaultInstance = _StorageClass()
@@ -999,6 +1033,7 @@ extension Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf._MessageImplemen
     init(copying source: _StorageClass) {
       _open = source._open
       _transaction = source._transaction
+      _current = source._current
       _close = source._close
     }
   }
@@ -1017,6 +1052,7 @@ extension Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf._MessageImplemen
         let other_storage = _args.1
         if _storage._open != other_storage._open {return false}
         if _storage._transaction != other_storage._transaction {return false}
+        if _storage._current != other_storage._current {return false}
         if _storage._close != other_storage._close {return false}
         return true
       }
