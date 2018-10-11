@@ -11,6 +11,7 @@ import gRPC
 
 // Callback Types
 public typealias DeviceSerial = String
+public typealias DevicePublicKey = String
 public typealias DeviceFingerprint = String
 public typealias DeviceActivateCallback = (CallResult?, DeviceActivation.Response?, Error?) -> ()
 
