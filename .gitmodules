@@ -1,7 +1,7 @@
 [submodule "SwiftGRPC"]
 	path = SwiftGRPC
 	url = https://github.com/bloombox/grpc-swift.git
-	tag = 0.6.0
+	branch = update-0-6-0
 [submodule "Schema"]
 	path = Schema
 	url = git@github.com:bloombox/Schema.git
