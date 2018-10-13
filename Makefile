@@ -5,7 +5,6 @@
 
 SCHEMA ?= Schema/
 SCHEMA_BRANCH ?= master
-SWIFT_PROTOBUF ?= SwiftProtobuf
 SWIFT_GRPC ?= SwiftGRPC
 
 SWIFT_PROTOC_OPTIONS ?= --swift_opt=FileNaming=PathToUnderscores --swift_opt=Visibility=Public --swiftgrpc_opt=Visibility=Public
@@ -21,7 +20,7 @@ build: dependencies
 	@echo "Building Swift client for Bloombox..."
 	@swift build
 
-dependencies: swift-protobuf swift-grpc
+dependencies: swift-grpc
 
 test:
 	@#echo "Running tests..."
@@ -29,7 +28,6 @@ test:
 
 submodules: $(SWIFT_PROTOBUF) $(SWIFT_GRPC)
 	@git submodule update --init --remote SwiftGRPC
-	@git submodule update --init --remote SwiftProtobuf
 
 schema: $(SCHEMA) $(SCHEMA)/languages/swift
 
@@ -40,7 +38,7 @@ $(SCHEMA):
 
 $(SCHEMA)languages/swift: $(SCHEMA)
 	@echo "Building schema..."
-	@$(MAKE) -C Schema LANGUAGES="swift swiftgrpc" PROTO_FLAGS="--plugin=$(PWD)/SwiftGRPC/Plugin/protoc-gen-swift --plugin=$(PWD)/SwiftGRPC/Plugin/protoc-gen-swiftgrpc --swiftgrpc_out=languages/swiftgrpc" SERVICES=yes TABLES=no INCLUDE_DESCRIPTOR=yes
+	@$(MAKE) -C Schema LANGUAGES="swift swiftgrpc" PROTO_FLAGS="--plugin=$(PWD)/SwiftGRPC/protoc-gen-swift --plugin=$(PWD)/SwiftGRPC/protoc-gen-swiftgrpc --swiftgrpc_out=languages/swiftgrpc" SERVICES=yes TABLES=no INCLUDE_DESCRIPTOR=yes
 
 sync-schema: $(SCHEMA)languages/swift
 	@echo "Syncing Swift schemas..."
@@ -53,26 +51,13 @@ sync-schema: $(SCHEMA)languages/swift
 	@rm -f Sources/Schema/*.server.pb.swift
 	@rm -f Sources/Schema/bq*
 
-swift-protobuf: $(SWIFT_PROTOBUF)/.build
-$(SWIFT_PROTOBUF)/.build:
-	@echo "Building SwiftProtobuf..."
-	@$(MAKE) -C $(SWIFT_PROTOBUF)
-
-swift-grpc: $(SWIFT_GRPC)/.build $(SWIFT_GRPC)/Plugin/.build
+swift-grpc: $(SWIFT_GRPC)/.build
 	@echo "Cleaning SwiftGRPC."
-	@rm -f $(SWIFT_GRPC)/Package.resolved $(SWIFT_GRPC)/Plugin/Package.resolved
+	@rm -f $(SWIFT_GRPC)/Package.resolved
 
 $(SWIFT_GRPC)/.build:
 	@echo "Building SwiftGRPC..."
 	@$(MAKE) -C $(SWIFT_GRPC)
-
-$(SWIFT_GRPC)/Plugin/.build:
-	@echo "Building SwiftGRPC plugin..."
-	@$(MAKE) -C $(SWIFT_GRPC)/Plugin
-
-$(SWIFT_PROTOBUF):
-	@echo "Initializing SwiftProtobuf..."
-	@git submodule add --force --name SwiftProtobuf git@github.com:apple/swift-protobuf.git $(SWIFT_PROTOBUF)
 
 $(SWIFT_GRPC):
 	@echo "Initializing SwiftGRPC..."
