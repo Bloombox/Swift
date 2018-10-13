@@ -35,3 +35,4 @@ Carthage
 Sources/Client/swiftgrpc.log
 Sources/Schema/swiftgrpc.log
 docs
+Package.resolved
