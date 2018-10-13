@@ -6,55 +6,40 @@
 //
 
 import Foundation
-import gRPC
+import SwiftGRPC
 
 
 // Callback Types
-/**
- * Specifies a callback for a `ping` operation. It is passed one parameter, which is the observed
- * latency of PING to PONG.
- */
+
+/// Specifies a callback for a `ping` operation. It is passed one parameter, which is the observed latency of PING to
+/// PONG.
 public typealias PingCallback = (Double) -> ()
 
-/**
- * Specifies a callback for an `event` submission operation. It is passed two parameters - the
- * call result object, and the telemetry response.
- */
+/// Specifies a callback for an `event` submission operation. It is passed two parameters - the call result object, and
+/// the telemetry response.
 public typealias GenericEventCallback = (CallResult) -> ()
 
 
 // MARK: Telemetry Service
 
-/**
- * Provides functionality for the Telemetry API, which supports sending event analytics data as it
- * happens, to be recorded and stored, and later analyzed.
- */
+/// Provides functionality for the Telemetry API, which supports sending event analytics data as it happens, to be
+/// recorded and stored, and later analyzed.
 public class TelemetryClient: RemoteService {
-  /**
-   * Name of the telemtry service, which is "telemetry."
-   */
+  /// Name of the telemtry service, which is "telemetry."
   let name = "telemetry"
 
-  /**
-   * Version of this service with which we intend to communicate.
-   */
+  /// Version of this service with which we intend to communicate.
   let version = "v1beta3"
 
   // MARK: Internals
 
-  /**
-   * Generic event telemetry service.
-   */
+  /// Generic event telemetry service.
   internal let events: EventTelemetry
 
-  /**
-   * Client-wide settings.
-   */
+  /// Client-wide settings.
   internal let settings: Bloombox.Settings
 
-  /**
-   * Library-internal initializer.
-   */
+  /// Library-internal initializer.
   public init(settings: Bloombox.Settings) {
     self.settings = settings
 

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import gRPC
+import SwiftGRPC
 import Schema
 
 
@@ -18,15 +18,7 @@ public typealias DomainInfoCallback = (CallResult, DomainInfo.Response?) -> ()
 public typealias BrandCallback = (CallResult, BrandInfo.Response?) -> ()
 
 
-/**
- * Apply RPC Service compliance to Platform.
- */
-extension PlatformService: RPCService {}
-
-
-/**
- * Enumerates code-level errors in the platform client.
- */
+/// Enumerates code-level errors in the platform client.
 public enum PlatformClientError: Error {
   case invalidApiKey
   case invalidPartnerCode
@@ -35,46 +27,41 @@ public enum PlatformClientError: Error {
 }
 
 
-/**
- * Provides functionality for the Platform API, which supports general configuration and information support for
- * cannabis retail partner locations.
- */
+/// Provides functionality for the Platform API, which supports general configuration and information support for
+/// cannabis retail partner locations.
 public final class PlatformClient: RemoteService {
-  /**
-   * API name. Always 'platform'.
-   */
+  /// API name. Always 'platform'.
   let name = "platform"
 
-  /**
-   * Active API version. Currently 'v1'.
-   */
+  /// Active API version. Currently 'v1'.
   let version = "v1"
 
   // MARK: Internals
-  /**
-   * Client-wide settings.
-   */
+
+  /// Client-wide settings.
   internal let settings: Bloombox.Settings
 
-  /**
-   * Library-internal initializer.
-   */
+  /// Library-internal initializer.
+  ///
   public init(settings: Bloombox.Settings) {
     self.settings = settings
   }
 
-  /**
-   * Platform service.
-   */
-  internal func service(_ apiKey: APIKey) -> PlatformService {
+  /// Platform service.
+  ///
+  internal func service(_ apiKey: APIKey) throws -> PlatformService {
     let svc = RPCServiceFactory<PlatformService>.factory(forService: Transport.config.services.platform)
-    svc.metadata.add(key: "x-api-key", value: apiKey)
+    do {
+      try svc.metadata.add(key: "x-api-key", value: apiKey)
+    } catch {
+      // unable to mount API key
+      throw POSClientError.invalidApiKey
+    }
     return svc
   }
 
-  /**
-   * Resolve partner and location context, throwing an error if it cannot be figured out.
-   */
+  /// Resolve partner and location context, throwing an error if it cannot be figured out.
+  ///
   private func resolveContext(_ partner: PartnerCode? = nil,
                               _ location: LocationCode? = nil,
                               _ apiKey: APIKey? = nil) throws -> (partner: PartnerCode, location: LocationCode, apiKey: APIKey) {
@@ -97,29 +84,44 @@ public final class PlatformClient: RemoteService {
     return (partner: partnerCode!, location: locationCode!, apiKey: apiKey!)
   }
 
-  // MARK: - Method: Ping
+  // MARK: - Public API -
+
+  // MARK: Method: Ping
+
+  ///
+  ///
   func ping() throws -> PlatformPing.Response {
     return try self.service(self.resolveContext().apiKey).ping(PlatformPing.Request())
   }
 
+  ///
+  ///
   func ping(_ callback: @escaping PlatformPingCallback) throws -> PlatformPingCall {
     return try self.service(self.resolveContext().apiKey).ping(PlatformPing.Request()) { (resp, result) in
       callback(result, resp?.status)
     }
   }
 
-  // MARK: - Method: Healthcheck
+  // MARK: Method: Healthcheck
+
+  ///
+  ///
   func healthcheck() throws -> Empty {
     return try self.service(self.resolveContext().apiKey).health(Empty())
   }
 
+  ///
+  ///
   func healthcheck(_ callback: @escaping HealthcheckCallback) throws -> HealthcheckCall {
     return try self.service(self.resolveContext().apiKey).health(Empty()) { (_, result) in
       callback(result)
     }
   }
 
-  // MARK: - Method: Resolve
+  // MARK: Method: Resolve
+
+  ///
+  ///
   func resolve(encodedDomain domain: String,
                forAPIKey apiKey: APIKey? = nil) throws -> ResolveDomains.Response {
     return try self.service(self.resolveContext(apiKey).apiKey)
@@ -128,6 +130,8 @@ public final class PlatformClient: RemoteService {
       })
   }
 
+  ///
+  ///
   func resolve(encodedDomain domain: String,
                forAPIKey apiKey: APIKey? = nil,
                _ callback: @escaping ResolveCallback) throws -> ResolveDomainsCall {
@@ -140,6 +144,8 @@ public final class PlatformClient: RemoteService {
     }
   }
 
+  ///
+  ///
   func resolve(domain: String) throws -> ResolveDomains.Response {
     if let encoded = domain.data(using: .utf8)?
                            .base64EncodedString()
@@ -150,6 +156,8 @@ public final class PlatformClient: RemoteService {
     throw PlatformClientError.cannotBase64Encode
   }
 
+  ///
+  ///
   func resolve(domain: String, _ callback: @escaping ResolveCallback) throws -> ResolveDomainsCall {
     if let encoded = domain.data(using: .utf8)?
                            .base64EncodedString()
@@ -159,7 +167,10 @@ public final class PlatformClient: RemoteService {
     throw PlatformClientError.cannotBase64Encode
   }
 
-  // MARK: - Method: Domain Info
+  // MARK: Method: Domain Info
+
+  ///
+  ///
   func domains(forPartner partner: PartnerCode? = nil,
                withLocation location: LocationCode? = nil,
                andAPIKey apiKey: APIKey? = nil) throws -> DomainInfo.Response {
@@ -171,6 +182,8 @@ public final class PlatformClient: RemoteService {
       })
   }
 
+  ///
+  ///
   func domains(forPartner partner: PartnerCode? = nil,
                withLocation location: LocationCode? = nil,
                andAPIKey apiKey: APIKey? = nil,
@@ -186,7 +199,10 @@ public final class PlatformClient: RemoteService {
     }
   }
 
-  // MARK: - Method: Brand Info
+  // MARK: Method: Brand Info
+
+  ///
+  ///
   func brand(forPartner partner: PartnerCode? = nil,
              withLocation location: LocationCode? = nil,
              andAPIKey apiKey: APIKey? = nil) throws -> BrandInfo.Response {
@@ -198,6 +214,8 @@ public final class PlatformClient: RemoteService {
     })
   }
 
+  ///
+  ///
   func brand(forPartner partner: PartnerCode? = nil,
              withLocation location: LocationCode? = nil,
              andAPIKey apiKey: APIKey? = nil,

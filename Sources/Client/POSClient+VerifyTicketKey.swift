@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import gRPC
+import SwiftGRPC
 import Schema
 
 
@@ -14,29 +14,30 @@ import Schema
 public typealias POSVerifyTicketKeyCallback = (CallResult, POSOpenTicket.Response?) -> Void
 
 
-/**
- * Interface for the service client ticket key verification method.
- */
+/// Interface for the service client ticket key verification method.
 public protocol IPOSVerifyTicketKey {
-  // Authorize: User with Token (Sync)
+  /// Authorize: User with Token (Sync)
+  ///
   func verify(ticketKey key: PurchaseKey,
               forDevice device: PartnerDeviceKey,
               withOptions options: POSTicketVerifyOptions) throws -> POSOpenTicket.Response
 
-  // Authorize: User with Token (Async)
+  /// Authorize: User with Token (Async)
+  ///
   func verify(ticketKey key: PurchaseKey,
               forDevice device: PartnerDeviceKey,
               withOptions options: POSTicketVerifyOptions,
               _ callback: @escaping POSVerifyTicketKeyCallback) throws -> POSOpenTicketCall
+
 }
 
 
-/**
- * Options for ticket key verification calls.
- */
+///  Options for ticket key verification calls.
 public struct POSTicketVerifyOptions {
+  ///
   let fresh: Bool  /* Mark as true if we're checking a freshly-generated ID for uniqueness. */
 
+  ///
   public static var defaults: POSTicketVerifyOptions {
     get {
       return POSTicketVerifyOptions(fresh: true)
@@ -46,27 +47,35 @@ public struct POSTicketVerifyOptions {
 
 
 // MARK: - Method: Authorize User -
+
+
+///
+///
 extension PointOfSaleClient: IPOSVerifyTicketKey {
   // MARK: Internals
 
+  ///
+  ///
   private func verifyTicketKey(_ request: POSOpenTicket.Request,
                                withAPIKey apiKey: APIKey) throws -> POSOpenTicket.Response {
-    return try self.service(apiKey).ticketopen(request)
+    return try self.service(apiKey).ticketOpen(request)
   }
 
+  ///
+  ///
   private func verifyTicketKey(_ request: POSOpenTicket.Request,
                                withAPIKey apiKey: APIKey,
                                _ callback: @escaping POSVerifyTicketKeyCallback) throws -> POSOpenTicketCall {
-    return try self.service(apiKey).ticketopen(request) { (response, callResult) in
+    return try self.service(apiKey).ticketOpen(request) { (response, callResult) in
       // handle callback
       callback(callResult, response)
     }
   }
 
   // MARK: Public API
-  /**
-   * Verify a candidate string to be a ticket key, synchronously, with server-side systems.
-   */
+
+  /// Verify a candidate string to be a ticket key, synchronously, with server-side systems.
+  ///
   public func verify(ticketKey key: PurchaseKey,
                      forDevice device: PartnerDeviceKey,
                      withOptions options: POSTicketVerifyOptions) throws -> POSOpenTicket.Response {
@@ -82,9 +91,8 @@ extension PointOfSaleClient: IPOSVerifyTicketKey {
     }, withAPIKey: apiKey)
   }
 
-  /**
-   * Verify a candidate string to be a ticket key, asynchronously, with server-side systems.
-   */
+  /// Verify a candidate string to be a ticket key, asynchronously, with server-side systems.
+  ///
   public func verify(ticketKey key: PurchaseKey,
                      forDevice device: PartnerDeviceKey,
                      withOptions options: POSTicketVerifyOptions,

@@ -6,18 +6,10 @@
 //
 
 import Foundation
-import gRPC
+import SwiftGRPC
 
 
-/**
- * Apply RPC Service compliance to the POS service.
- */
-extension PointOfSaleService: RPCService {}
-
-
-/**
- * Enumerates code-level errors in the POS client.
- */
+/// Enumerates code-level errors in the POS client.
 public enum POSClientError: Error {
   case notReady
   case invalidApiKey
@@ -32,47 +24,41 @@ public enum POSClientError: Error {
 }
 
 
-/**
- * Provides functionality for the Point-of-Sale API, which supports physical in-person transactions between a licensed
- * cannabis retailer and qualified cannabis consumer.
- */
+/// Provides functionality for the Point-of-Sale API, which supports physical in-person transactions between a licensed
+/// cannabis retailer and qualified cannabis consumer.
 public final class PointOfSaleClient: RemoteService {
-  /**
-   * Name of the Point of Sale API, which is "pos".
-   */
+  /// Name of the Point of Sale API, which is "pos".
   let name = "pos"
 
-  /**
-   * Version of this service.
-   */
+  /// Version of this service.
   let version = "v1beta1"
 
   // MARK: Internals
 
-  /**
-   * Client-wide settings.
-   */
+  /// Client-wide settings.
   internal let settings: Bloombox.Settings
 
-  /**
-   * Library-internal initializer.
-   */
+  /// Library-internal initializer.
+  ///
   public init(settings: Bloombox.Settings) {
     self.settings = settings
   }
 
-  /**
-   * Point-of-Sale service.
-   */
-  internal func service(_ apiKey: APIKey) -> PointOfSaleService {
+  /// Point-of-Sale service.
+  ///
+  internal func service(_ apiKey: APIKey) throws -> PointOfSaleService {
     let svc = RPCServiceFactory<PointOfSaleService>.factory(forService: Transport.config.services.pos)
-    svc.metadata.add(key: "x-api-key", value: apiKey)
+    do {
+      try svc.metadata.add(key: "x-api-key", value: apiKey)
+    } catch {
+      // unable to mount API key
+      throw POSClientError.invalidApiKey
+    }
     return svc
   }
 
-  /**
-   * Resolve partner and location context, throwing an error if it cannot be figured out.
-   */
+  /// Resolve partner and location context, throwing an error if it cannot be figured out.
+  ///
   internal func resolveContext(_ device: PartnerDeviceKey? = nil,
                                _ apiKey: APIKey? = nil) throws -> (device: PartnerDeviceKey, apiKey: APIKey) {
     let partnerCode: PartnerCode? = device?.location.partner.code ?? settings.partner
@@ -99,7 +85,7 @@ public final class PointOfSaleClient: RemoteService {
 
     let device: PartnerDeviceKey = device ?? PartnerDeviceKey.with { obj in
       obj.uuid = settings.deviceUUID!
-      obj.location = PartnerLocationKey.with { loc in
+      obj.location = LocationKey.with { loc in
         loc.code = locationCode!
         loc.partner = PartnerKey.with { ptr in
           ptr.code = partnerCode!

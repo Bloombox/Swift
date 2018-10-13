@@ -8,15 +8,15 @@
 import Foundation
 
 
-/**
- * Enumerates types of event collections that events may be relayed to. The simplest form of an
- * event collection is simply a string name, via the `.named(String)` enum.
- */
+/// Enumerates types of event collections that events may be relayed to. The simplest form of an event collection is
+/// simply a string name, via the `.named(String)` enum.
 public enum EventCollection {
   case named(String)
   case commercial(CommercialEvent)
   case identity(IdentityEvent)
 
+  ///
+  ///
   static func encodeCollectionName(_ name: String) -> String? {
     guard let data = Data(base64Encoded: name) else {
       // failed to encode collection name
@@ -25,6 +25,8 @@ public enum EventCollection {
     return String(data: data, encoding: .utf8)
   }
 
+  ///
+  ///
   func export() -> AnalyticsCollection {
     return AnalyticsCollection.with { collection in
       switch self {
@@ -45,18 +47,22 @@ public enum EventCollection {
       }
     }
   }
+
 }
 
 
-/**
- * Enumerates types of commercial events. Used to specify a commercial event collection with a
- * known event type.
- */
+/// Enumerates types of commercial events. Used to specify a commercial event collection with a known event type.
 public enum CommercialEvent {
+  ///
   case impression
+
+  ///
   case view
+
+  ///
   case action
 
+  ///
   var label: String {
     switch self {
     case .impression: return "IMPRESSION"
@@ -67,13 +73,12 @@ public enum CommercialEvent {
 }
 
 
-/**
- * Enumerates types of identity events. Used to specify a user identity event collection with a
- * known event type.
- */
+/// Enumerates types of identity events. Used to specify a user identity event collection with a known event type.
 public enum IdentityEvent {
+  ///
   case action
 
+  ///
   var label: String {
     switch self {
     case .action: return "ACTION"

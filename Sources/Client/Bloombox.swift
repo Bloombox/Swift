@@ -8,91 +8,58 @@
 import Schema
 
 
-/**
- * Variant, or build permutation, of this library.
- */
+/// Client variant, or build permutation, of this library.
 public let __BLOOMBOX_VARIANT__ = "full"
 
-/**
- * Version of this library.
- */
+/// Version of this library.
 public let __BLOOMBOX_VERSION__ = "0.0.7"
 
 
-/**
- * Main client class. Provides access to service-specific clients, and initializes basic settings
- * or context required for communication with servers.
- */
+/// Main Bloombox API client class. Provides access to service-specific clients, and initializes basic settings or
+/// context required for communication with servers.
 public final class Bloombox {
-  /**
-   * Specifies settings for an instance of Bloombox.
-   */
+  /// Specifies settings for an instance of Bloombox.
   public struct Settings: EventContextData {
-    /**
-     * Default partner location code to use.
-     */
+    /// Default API key to use. Identifies the app or project invoking the API.
     public let apiKey: APIKey?
 
-    /**
-     * Default partner code to use.
-     */
+    /// Default partner code to use.
     public let partner: PartnerCode?
 
-    /**
-     * Default partner location code to use.
-     */
+    /// Default partner location code to use.
     public let location: LocationCode?
 
-    /**
-     * Default device UUID to use, if known.
-     */
+    /// Default device UUID to use, if known.
     public let deviceUUID: DeviceUUID?
 
-    /**
-     * Default collection to send events to.
-     */
+    /// Default collection to send events to.
     public let collection: EventCollection?
 
-    /**
-     * Active order ID, if any.
-     */
+    /// Active order ID, if any.
     public let order: OrderID?
 
-    /**
-     * Active user ID, if any.
-     */
+    /// Active user ID, if any.
     public let user: UserID?
 
-    /**
-     * Menu section to specify, if any.
-     */
+    /// Menu section to specify, if any.
     public let section: MenuSection?
 
-    /**
-     * Commercial item related to this event, if any.
-     */
+    /// Commercial item related to this event, if any.
     public let item: ItemID?
 
-    /**
-     * Session or group ID, if applicable, and set.
-     */
+    /// Session or group ID, if applicable, and set.
     public let group: GroupID?
 
-    /**
-     * Specifies the iOS application sending events.
-     */
+    /// Specifies the iOS application sending events.
     public let bundleId: String?
 
-    /**
-     * Produce a default set of settings.
-     */
+    /// Produce a default set of settings.
     static func defaultSettings() -> Settings {
       return Settings()
     }
 
-    /**
-     * Initialize a new settings object.
-     */
+    /// Initialize a new settings object.
+    ///
     public init(apiKey: APIKey? = nil,
                 partner: PartnerCode? = nil,
                 location: LocationCode? = nil,
@@ -122,9 +89,7 @@ public final class Bloombox {
   private let _settings: Settings
   private let _services: Services
 
-  /**
-   * Main initializer. Defaults settings to sensible values, if none are provided.
-   */
+  /// Main initializer. Defaults settings to sensible values, if none are provided.
   public init(settings: Settings? = nil) {
     if let s = settings {
       self._settings = s
@@ -136,59 +101,44 @@ public final class Bloombox {
 
   // -- Public Interface -- //
 
-  /**
-   * Fetch active settings for this client.
-   */
+  /// Fetch active settings for this client.
   public var settings: Settings {
     return _settings
   }
 
-  /**
-   * Public access to the mounted services.
-   */
+  /// Public access to the mounted services.
   public var services: Services {
     return _services
   }
 
-  /**
-   * Public access to the Devices service client.
-   */
+  /// Public access to the Devices service client.
   public var devices: DevicesClient {
     return _services.devices
   }
 
-  /**
-   * Public access to the Shop service client.
-   */
+  /// Public access to the Shop service client.
   public var shop: ShopClient {
     return _services.shop
   }
 
-  /**
-   * Public access to the Menu service client.
-   */
+  /// Public access to the Menu service client.
   public var menu: MenuClient {
     return _services.menu
   }
 
-  /**
-   * Public access to the Point-of-Sale service client.
-   */
+  /// Public access to the Point-of-Sale service client.
   public var pos: PointOfSaleClient {
     return _services.pos
   }
 
-  /**
-   * Public access to the Platform service client.
-   */
+  /// Public access to the Platform service client.
   public var platform: PlatformClient {
     return _services.platform
   }
 
-  /**
-   * Public access to the Telemetry service client.
-   */
+  /// Public access to the Telemetry service client.
   public var telemetry: TelemetryClient {
     return _services.telemetry
   }
+
 }

@@ -6,22 +6,14 @@
 //
 
 import Foundation
-import gRPC
+import SwiftGRPC
 
 
 // Callback Types
 public typealias MenuRetrieveCallback = (CallResult, GetMenu.Response?) -> ()
 
 
-/**
- * Apply RPC Service compliance to the Menu Service.
- */
-extension MenuService: RPCService {}
-
-
-/**
- * Enumerates code-level errors in the menu client.
- */
+/// Enumerates code-level errors in the menu client.
 public enum MenuClientError: Error {
   case invalidPartnerCode
   case invalidLocationCode
@@ -30,47 +22,41 @@ public enum MenuClientError: Error {
 }
 
 
-/**
- * Provides functionality for the Menu API, which supports operations related to fetching, querying, and managing, menu
- * catalog data (i.e. product content, pricing, materials information, and so on). Menus do not include inventory.
- */
+/// Provides functionality for the Menu API, which supports operations related to fetching, querying, and managing, menu
+/// catalog data (i.e. product content, pricing, materials information, and so on). Menus do not include inventory.
 public final class MenuClient: RemoteService {
-  /**
-   * Name of the Menu API, which is "menu".
-   */
+  /// Name of the Menu API, which is "menu".
   let name = "menu"
 
-  /**
-   * Version of this service.
-   */
+  /// Version of this service.
   let version = "v1beta1"
 
   // MARK: Internals
 
-  /**
-   * Client-wide settings.
-   */
+  /// Client-wide settings.
   internal let settings: Bloombox.Settings
 
-  /**
-   * Library-internal initializer.
-   */
+  /// Library-internal initializer.
+  ///
   public init(settings: Bloombox.Settings) {
     self.settings = settings
   }
 
-  /**
-   * Menu service.
-   */
-  internal func service(_ apiKey: APIKey) -> MenuService {
+  /// Menu service.
+  ///
+  internal func service(_ apiKey: APIKey) throws -> MenuService {
     let svc = RPCServiceFactory<MenuService>.factory(forService: Transport.config.services.menu)
-    svc.metadata.add(key: "x-api-key", value: apiKey)
+    do {
+      try svc.metadata.add(key: "x-api-key", value: apiKey)
+    } catch {
+      // unable to resolve API key
+      throw MenuClientError.invalidApiKey
+    }
     return svc
   }
 
-  /**
-   * Resolve partner and location context, throwing an error if it cannot be figured out.
-   */
+  /// Resolve partner and location context, throwing an error if it cannot be figured out.
+  ///
   private func resolveContext(_ partner: PartnerCode? = nil,
                               _ location: LocationCode? = nil,
                               _ apiKey: APIKey? = nil) throws -> (partner: PartnerCode, location: LocationCode, apiKey: APIKey) {
@@ -96,28 +82,19 @@ public final class MenuClient: RemoteService {
   // MARK: - Public API -
 
   // MARK: Menu Retrieve
-  /**
-   * Retrieve the active product catalog (menu) for a given partner/location.
-   */
+
+  /// Retrieve the active product catalog (menu) for a given partner/location.
+  ///
   public func retrieve(partner: PartnerCode? = nil,
                        location: LocationCode? = nil,
                        apiKey: APIKey? = nil) throws -> GetMenu.Response {
     let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
-    let service = self.service(apiKey)
+    let service = try self.service(apiKey)
 
     do {
       return try service.retrieve(GetMenu.Request.with { builder in
         builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
       })
-    } catch MenuRPCError.invalidMessageReceived {
-      print("error: invalid message")
-      throw MenuRPCError.invalidMessageReceived
-    } catch MenuRPCError.endOfStream {
-      print("error: unexpected end of stream")
-      throw MenuRPCError.endOfStream
-    } catch MenuRPCError.error(let result) {
-      print("error: got result \(result)")
-      throw MenuRPCError.error(c: result)
     } catch {
       // some other error occurred
       print("error: unknown error occurred")
@@ -125,16 +102,15 @@ public final class MenuClient: RemoteService {
     }
   }
 
-  /**
-   * Retrieve the active product catalog, asynchronously (menu) for a given
-   * partner/location.
-   */
+  /// Retrieve the active product catalog, asynchronously (menu) for a given
+  /// partner/location.
+  ///
   public func retrieve(partner: PartnerCode? = nil,
                        location: LocationCode? = nil,
                        apiKey: APIKey? = nil,
                        callback: @escaping MenuRetrieveCallback) throws -> GetMenuCall {
     let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
-    let service = self.service(apiKey)
+    let service = try self.service(apiKey)
 
     return try service.retrieve(GetMenu.Request.with { builder in
       builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
@@ -142,4 +118,5 @@ public final class MenuClient: RemoteService {
       callback(callResult, response)
     }
   }
+
 }
