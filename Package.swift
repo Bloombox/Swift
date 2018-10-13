@@ -20,4 +20,4 @@ let package = Package(
             dependencies: ["Schema"]),
         .target(
             name: "Schema",
-            dependencies: ["SwiftProtobuf", "SwiftGRPC"])])
+            dependencies: ["SwiftGRPC"])])
