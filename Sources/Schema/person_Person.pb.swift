@@ -62,9 +62,25 @@ public enum Opencannabis_Person_Gender: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Person_Gender: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Person_Gender] = [
+    .unspecified,
+    .male,
+    .female,
+    .other,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// A person/patint and their name, legal name, nickname, etc.
-public struct Opencannabis_Person_Person: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Person"
+public struct Opencannabis_Person_Person {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Person's primary name information.
   public var name: Opencannabis_Person_Name {
@@ -74,7 +90,7 @@ public struct Opencannabis_Person_Person: SwiftProtobuf.Message {
   /// Returns true if `name` has been explicitly set.
   public var hasName: Bool {return _storage._name != nil}
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
-  public mutating func clearName() {_storage._name = nil}
+  public mutating func clearName() {_uniqueStorage()._name = nil}
 
   /// Person's legal name, if it differs from their primary name.
   public var legalName: Opencannabis_Person_Name {
@@ -84,7 +100,7 @@ public struct Opencannabis_Person_Person: SwiftProtobuf.Message {
   /// Returns true if `legalName` has been explicitly set.
   public var hasLegalName: Bool {return _storage._legalName != nil}
   /// Clears the value of `legalName`. Subsequent reads from it will return its default value.
-  public mutating func clearLegalName() {_storage._legalName = nil}
+  public mutating func clearLegalName() {_uniqueStorage()._legalName = nil}
 
   /// Person's optional alternate name.
   public var alternateName: Opencannabis_Person_Name {
@@ -94,7 +110,7 @@ public struct Opencannabis_Person_Person: SwiftProtobuf.Message {
   /// Returns true if `alternateName` has been explicitly set.
   public var hasAlternateName: Bool {return _storage._alternateName != nil}
   /// Clears the value of `alternateName`. Subsequent reads from it will return its default value.
-  public mutating func clearAlternateName() {_storage._alternateName = nil}
+  public mutating func clearAlternateName() {_uniqueStorage()._alternateName = nil}
 
   /// Person's contact information.
   public var contact: Opencannabis_Contact_ContactInfo {
@@ -104,7 +120,7 @@ public struct Opencannabis_Person_Person: SwiftProtobuf.Message {
   /// Returns true if `contact` has been explicitly set.
   public var hasContact: Bool {return _storage._contact != nil}
   /// Clears the value of `contact`. Subsequent reads from it will return its default value.
-  public mutating func clearContact() {_storage._contact = nil}
+  public mutating func clearContact() {_uniqueStorage()._contact = nil}
 
   /// Date of birth.
   public var dateOfBirth: Opencannabis_Temporal_Date {
@@ -114,7 +130,7 @@ public struct Opencannabis_Person_Person: SwiftProtobuf.Message {
   /// Returns true if `dateOfBirth` has been explicitly set.
   public var hasDateOfBirth: Bool {return _storage._dateOfBirth != nil}
   /// Clears the value of `dateOfBirth`. Subsequent reads from it will return its default value.
-  public mutating func clearDateOfBirth() {_storage._dateOfBirth = nil}
+  public mutating func clearDateOfBirth() {_uniqueStorage()._dateOfBirth = nil}
 
   public var gender: Opencannabis_Person_Gender {
     get {return _storage._gender}
@@ -124,55 +140,6 @@ public struct Opencannabis_Person_Person: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._name)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._legalName)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._alternateName)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._contact)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._dateOfBirth)
-        case 6: try decoder.decodeSingularEnumField(value: &_storage._gender)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._name {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._legalName {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._alternateName {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._contact {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._dateOfBirth {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if _storage._gender != .unspecified {
-        try visitor.visitSingularEnumField(value: _storage._gender, fieldNumber: 6)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -190,7 +157,8 @@ extension Opencannabis_Person_Gender: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Opencannabis_Person_Person: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Person"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .standard(proto: "legal_name"),
@@ -229,22 +197,63 @@ extension Opencannabis_Person_Person: SwiftProtobuf._MessageImplementationBase, 
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Person_Person) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._name)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._legalName)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._alternateName)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._contact)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._dateOfBirth)
+        case 6: try decoder.decodeSingularEnumField(value: &_storage._gender)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._name {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._legalName {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._alternateName {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._contact {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._dateOfBirth {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if _storage._gender != .unspecified {
+        try visitor.visitSingularEnumField(value: _storage._gender, fieldNumber: 6)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Person_Person, rhs: Opencannabis_Person_Person) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._legalName != other_storage._legalName {return false}
-        if _storage._alternateName != other_storage._alternateName {return false}
-        if _storage._contact != other_storage._contact {return false}
-        if _storage._dateOfBirth != other_storage._dateOfBirth {return false}
-        if _storage._gender != other_storage._gender {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._legalName != rhs_storage._legalName {return false}
+        if _storage._alternateName != rhs_storage._alternateName {return false}
+        if _storage._contact != rhs_storage._contact {return false}
+        if _storage._dateOfBirth != rhs_storage._dateOfBirth {return false}
+        if _storage._gender != rhs_storage._gender {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

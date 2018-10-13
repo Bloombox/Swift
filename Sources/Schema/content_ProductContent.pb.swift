@@ -24,8 +24,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Specifies timestamps applied to a product, so that it may be tracked or sorted according to publish date, creation
 /// date, or last modification date.
-public struct Opencannabis_Content_ProductTimestamps: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".ProductTimestamps"
+public struct Opencannabis_Content_ProductTimestamps {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// When the subject product was created.
   public var created: Opencannabis_Temporal_Instant {
@@ -35,7 +37,7 @@ public struct Opencannabis_Content_ProductTimestamps: SwiftProtobuf.Message {
   /// Returns true if `created` has been explicitly set.
   public var hasCreated: Bool {return _storage._created != nil}
   /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   /// When the subject product was last modified.
   public var modified: Opencannabis_Temporal_Instant {
@@ -45,7 +47,7 @@ public struct Opencannabis_Content_ProductTimestamps: SwiftProtobuf.Message {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   /// When the subject product was last or first published.
   public var published: Opencannabis_Temporal_Instant {
@@ -55,56 +57,21 @@ public struct Opencannabis_Content_ProductTimestamps: SwiftProtobuf.Message {
   /// Returns true if `published` has been explicitly set.
   public var hasPublished: Bool {return _storage._published != nil}
   /// Clears the value of `published`. Subsequent reads from it will return its default value.
-  public mutating func clearPublished() {_storage._published = nil}
+  public mutating func clearPublished() {_uniqueStorage()._published = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._created)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._modified)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._published)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._created {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._published {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies a common model for product content, mostly user-visible, and shared by all concrete models. Most of the
 /// information you see when a product is displayed or listed comes from this model.
-public struct Opencannabis_Content_ProductContent: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".ProductContent"
+public struct Opencannabis_Content_ProductContent {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Main product name.
   public var name: Opencannabis_Content_Name {
@@ -114,7 +81,7 @@ public struct Opencannabis_Content_ProductContent: SwiftProtobuf.Message {
   /// Returns true if `name` has been explicitly set.
   public var hasName: Bool {return _storage._name != nil}
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
-  public mutating func clearName() {_storage._name = nil}
+  public mutating func clearName() {_uniqueStorage()._name = nil}
 
   /// Brand information for this product.
   public var brand: Opencannabis_Content_Brand {
@@ -124,7 +91,7 @@ public struct Opencannabis_Content_ProductContent: SwiftProtobuf.Message {
   /// Returns true if `brand` has been explicitly set.
   public var hasBrand: Bool {return _storage._brand != nil}
   /// Clears the value of `brand`. Subsequent reads from it will return its default value.
-  public mutating func clearBrand() {_storage._brand = nil}
+  public mutating func clearBrand() {_uniqueStorage()._brand = nil}
 
   /// Description or narrative-style content about this product.
   public var summary: Opencannabis_Content_Content {
@@ -134,7 +101,7 @@ public struct Opencannabis_Content_ProductContent: SwiftProtobuf.Message {
   /// Returns true if `summary` has been explicitly set.
   public var hasSummary: Bool {return _storage._summary != nil}
   /// Clears the value of `summary`. Subsequent reads from it will return its default value.
-  public mutating func clearSummary() {_storage._summary = nil}
+  public mutating func clearSummary() {_uniqueStorage()._summary = nil}
 
   /// Content about how this product is best used, or recommended to be used, either from the manufacturer or retailer.
   public var usage: Opencannabis_Content_Content {
@@ -144,7 +111,7 @@ public struct Opencannabis_Content_ProductContent: SwiftProtobuf.Message {
   /// Returns true if `usage` has been explicitly set.
   public var hasUsage: Bool {return _storage._usage != nil}
   /// Clears the value of `usage`. Subsequent reads from it will return its default value.
-  public mutating func clearUsage() {_storage._usage = nil}
+  public mutating func clearUsage() {_uniqueStorage()._usage = nil}
 
   /// Dosage advice about this product, either from the manufacturer or retailer.
   public var dosage: Opencannabis_Content_Content {
@@ -154,7 +121,7 @@ public struct Opencannabis_Content_ProductContent: SwiftProtobuf.Message {
   /// Returns true if `dosage` has been explicitly set.
   public var hasDosage: Bool {return _storage._dosage != nil}
   /// Clears the value of `dosage`. Subsequent reads from it will return its default value.
-  public mutating func clearDosage() {_storage._dosage = nil}
+  public mutating func clearDosage() {_uniqueStorage()._dosage = nil}
 
   /// Product media, including images, videos, and so on.
   public var media: [Opencannabis_Media_MediaReference] {
@@ -170,7 +137,7 @@ public struct Opencannabis_Content_ProductContent: SwiftProtobuf.Message {
   /// Returns true if `pricing` has been explicitly set.
   public var hasPricing: Bool {return _storage._pricing != nil}
   /// Clears the value of `pricing`. Subsequent reads from it will return its default value.
-  public mutating func clearPricing() {_storage._pricing = nil}
+  public mutating func clearPricing() {_uniqueStorage()._pricing = nil}
 
   /// Lab testing information concerning this product.
   public var tests: Opencannabis_Structs_Labtesting_TestResults {
@@ -180,7 +147,7 @@ public struct Opencannabis_Content_ProductContent: SwiftProtobuf.Message {
   /// Returns true if `tests` has been explicitly set.
   public var hasTests: Bool {return _storage._tests != nil}
   /// Clears the value of `tests`. Subsequent reads from it will return its default value.
-  public mutating func clearTests() {_storage._tests = nil}
+  public mutating func clearTests() {_uniqueStorage()._tests = nil}
 
   /// Product flags attached to this content.
   public var flags: [Opencannabis_Structs_ProductFlag] {
@@ -196,76 +163,11 @@ public struct Opencannabis_Content_ProductContent: SwiftProtobuf.Message {
   /// Returns true if `ts` has been explicitly set.
   public var hasTs: Bool {return _storage._ts != nil}
   /// Clears the value of `ts`. Subsequent reads from it will return its default value.
-  public mutating func clearTs() {_storage._ts = nil}
+  public mutating func clearTs() {_uniqueStorage()._ts = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._name)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._brand)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._summary)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._usage)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._dosage)
-        case 6: try decoder.decodeRepeatedMessageField(value: &_storage._media)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._pricing)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._tests)
-        case 9: try decoder.decodeRepeatedEnumField(value: &_storage._flags)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._ts)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._name {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._brand {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._summary {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._usage {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._dosage {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if !_storage._media.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._media, fieldNumber: 6)
-      }
-      if let v = _storage._pricing {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-      if let v = _storage._tests {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-      }
-      if !_storage._flags.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._flags, fieldNumber: 9)
-      }
-      if let v = _storage._ts {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -274,7 +176,8 @@ public struct Opencannabis_Content_ProductContent: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "opencannabis.content"
 
-extension Opencannabis_Content_ProductTimestamps: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_ProductTimestamps: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ProductTimestamps"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "created"),
     2: .same(proto: "modified"),
@@ -304,24 +207,54 @@ extension Opencannabis_Content_ProductTimestamps: SwiftProtobuf._MessageImplemen
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_ProductTimestamps) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._created)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._published)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._published {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_ProductTimestamps, rhs: Opencannabis_Content_ProductTimestamps) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._created != other_storage._created {return false}
-        if _storage._modified != other_storage._modified {return false}
-        if _storage._published != other_storage._published {return false}
+        let rhs_storage = _args.1
+        if _storage._created != rhs_storage._created {return false}
+        if _storage._modified != rhs_storage._modified {return false}
+        if _storage._published != rhs_storage._published {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Content_ProductContent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_ProductContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ProductContent"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "brand"),
@@ -372,26 +305,83 @@ extension Opencannabis_Content_ProductContent: SwiftProtobuf._MessageImplementat
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_ProductContent) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._name)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._brand)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._summary)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._usage)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._dosage)
+        case 6: try decoder.decodeRepeatedMessageField(value: &_storage._media)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._pricing)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._tests)
+        case 9: try decoder.decodeRepeatedEnumField(value: &_storage._flags)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._ts)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._name {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._brand {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._summary {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._usage {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._dosage {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if !_storage._media.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._media, fieldNumber: 6)
+      }
+      if let v = _storage._pricing {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+      if let v = _storage._tests {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if !_storage._flags.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._flags, fieldNumber: 9)
+      }
+      if let v = _storage._ts {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_ProductContent, rhs: Opencannabis_Content_ProductContent) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._brand != other_storage._brand {return false}
-        if _storage._summary != other_storage._summary {return false}
-        if _storage._usage != other_storage._usage {return false}
-        if _storage._dosage != other_storage._dosage {return false}
-        if _storage._media != other_storage._media {return false}
-        if _storage._pricing != other_storage._pricing {return false}
-        if _storage._tests != other_storage._tests {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._ts != other_storage._ts {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._brand != rhs_storage._brand {return false}
+        if _storage._summary != rhs_storage._summary {return false}
+        if _storage._usage != rhs_storage._usage {return false}
+        if _storage._dosage != rhs_storage._dosage {return false}
+        if _storage._media != rhs_storage._media {return false}
+        if _storage._pricing != rhs_storage._pricing {return false}
+        if _storage._tests != rhs_storage._tests {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._ts != rhs_storage._ts {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

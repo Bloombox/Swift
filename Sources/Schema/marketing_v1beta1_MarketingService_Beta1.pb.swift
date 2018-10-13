@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides the Marketing API, which supports the creation, management, and execution of SMS and email marketing
+/// campaigns, based on product data made available by the Menu API.
+
 import Foundation
 import SwiftProtobuf
 
@@ -122,9 +126,37 @@ public enum Bloombox_Schema_Services_Marketing_V1beta1_MarketingError: SwiftProt
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Marketing_V1beta1_MarketingError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Marketing_V1beta1_MarketingError] = [
+    .noError,
+    .partnerInvalid,
+    .locationInvalid,
+    .idInvalid,
+    .nameInvalid,
+    .campaignNotFound,
+    .accessDenied,
+    .settingsInvalid,
+    .channelInvalid,
+    .adgroupInvalid,
+    .settingsMismatch,
+    .creativeInvalid,
+    .smsCreativeInvalid,
+    .emailCreativeInvalid,
+    .updateInvalid,
+    .internalError,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Campaign summary payload for listing campaigns, given a particular scope.
-public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CampaignSummary"
+public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Key for the underlying campaign.
   public var key: Bloombox_Schema_Marketing_CampaignKey {
@@ -134,7 +166,7 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary: SwiftP
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Name for the campaign object.
   public var name: String {
@@ -186,85 +218,28 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary: SwiftP
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._description_p)
-        case 4: try decoder.decodeSingularBoolField(value: &_storage._live)
-        case 5: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 6: try decoder.decodeSingularBoolField(value: &_storage._sms)
-        case 7: try decoder.decodeSingularBoolField(value: &_storage._email)
-        case 8: try decoder.decodeRepeatedMessageField(value: &_storage._tag)
-        case 9: try decoder.decodeSingularMessageField(value: &_storage._modified)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if !_storage._name.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
-      }
-      if !_storage._description_p.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 3)
-      }
-      if _storage._live != false {
-        try visitor.visitSingularBoolField(value: _storage._live, fieldNumber: 4)
-      }
-      if _storage._status != .pending {
-        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 5)
-      }
-      if _storage._sms != false {
-        try visitor.visitSingularBoolField(value: _storage._sms, fieldNumber: 6)
-      }
-      if _storage._email != false {
-        try visitor.visitSingularBoolField(value: _storage._email, fieldNumber: 7)
-      }
-      if !_storage._tag.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._tag, fieldNumber: 8)
-      }
-      if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Represents an RPC operation to list marketing campaigns for a given partner/location context.
-public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignList: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CampaignList"
+public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignList {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to list marketing campaigns.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Partnership scope for the request.
     public var partner: String = String()
@@ -275,39 +250,13 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignList: SwiftProt
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.partner)
-        case 2: try decoder.decodeSingularStringField(value: &self.location)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.partner.isEmpty {
-        try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
-      }
-      if !self.location.isEmpty {
-        try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Response to a request to list marketing campaigns.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Campaigns for a given partner/location pair.
     public var campaign: [Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary] = []
@@ -315,61 +264,24 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignList: SwiftProt
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeRepeatedMessageField(value: &self.campaign)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.campaign.isEmpty {
-        try visitor.visitRepeatedMessageField(value: self.campaign, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Represents an RPC operation to retrieve campaign info by its ID.
-public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CampaignGet"
+public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request for campaign info.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// ID for the campaign to fetch.
     public var campaignID: String = String()
@@ -377,35 +289,13 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet: SwiftProto
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.campaignID.isEmpty {
-        try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Response to a request for campaign info.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Marketing campaign payload data.
     public var campaign: Bloombox_Schema_Marketing_Campaign {
@@ -415,73 +305,31 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet: SwiftProto
     /// Returns true if `campaign` has been explicitly set.
     public var hasCampaign: Bool {return _storage._campaign != nil}
     /// Clears the value of `campaign`. Subsequent reads from it will return its default value.
-    public mutating func clearCampaign() {_storage._campaign = nil}
+    public mutating func clearCampaign() {_uniqueStorage()._campaign = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._campaign)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._campaign {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Represents an RPC operation to create a new marketing campaign from scratch.
-public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CampaignCreate"
+public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to create a marketing campaign.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Partner ID under which to create the campaign.
     public var partner: String = String()
@@ -501,51 +349,13 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate: SwiftPr
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.partner)
-        case 2: try decoder.decodeSingularStringField(value: &self.location)
-        case 3: try decoder.decodeSingularStringField(value: &self.name)
-        case 4: try decoder.decodeSingularStringField(value: &self.description_p)
-        case 5: try decoder.decodeRepeatedMessageField(value: &self.channel)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.partner.isEmpty {
-        try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
-      }
-      if !self.location.isEmpty {
-        try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
-      }
-      if !self.name.isEmpty {
-        try visitor.visitSingularStringField(value: self.name, fieldNumber: 3)
-      }
-      if !self.description_p.isEmpty {
-        try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 4)
-      }
-      if !self.channel.isEmpty {
-        try visitor.visitRepeatedMessageField(value: self.channel, fieldNumber: 5)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Response containing the resulting campaign ID.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// ID of the resulting campaign.
     public var id: String = String()
@@ -553,61 +363,24 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate: SwiftPr
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.id)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.id.isEmpty {
-        try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Represents an RPC operation to update underlying data for a marketing campaign, given its ID.
-public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CampaignUpdate"
+public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to update a marketing campaign.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// ID for the campaign to be updated.
     public var campaignID: String = String()
@@ -627,77 +400,24 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate: SwiftPr
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
-        case 3: try decoder.decodeSingularStringField(value: &self.name)
-        case 4: try decoder.decodeSingularStringField(value: &self.description_p)
-        case 5: try decoder.decodeSingularEnumField(value: &self.status)
-        case 6: try decoder.decodeRepeatedMessageField(value: &self.channel)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.campaignID.isEmpty {
-        try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
-      }
-      if !self.name.isEmpty {
-        try visitor.visitSingularStringField(value: self.name, fieldNumber: 3)
-      }
-      if !self.description_p.isEmpty {
-        try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 4)
-      }
-      if self.status != .pending {
-        try visitor.visitSingularEnumField(value: self.status, fieldNumber: 5)
-      }
-      if !self.channel.isEmpty {
-        try visitor.visitRepeatedMessageField(value: self.channel, fieldNumber: 6)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Represents an RPC operation to perform a validation routine on a campaign, to check if it is ready to be sent.
-public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CampaignValidate"
+public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to perform validation on a marketing campaign.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// ID for the campaign to validate.
     public var campaignID: String = String()
@@ -705,35 +425,13 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate: Swift
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.campaignID.isEmpty {
-        try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Response to a request to perform validation on a marketing campaign.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Error encountered during campaign validation, if any, or `NO_ERROR`.
     public var err: Bloombox_Schema_Services_Marketing_V1beta1_MarketingError = .noError
@@ -741,61 +439,24 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate: Swift
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &self.err)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if self.err != .noError {
-        try visitor.visitSingularEnumField(value: self.err, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Represents an RPC operation to trigger a marketing campaign to be sent, either now or at some point in the future.
-public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CampaignSend"
+public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to trigger a marketing campaign to be sent.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// ID of the campaign to send.
     public var campaignID: String = String()
@@ -806,65 +467,24 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend: SwiftProt
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
-        case 2: try decoder.decodeSingularBoolField(value: &self.dryRun)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.campaignID.isEmpty {
-        try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
-      }
-      if self.dryRun != false {
-        try visitor.visitSingularBoolField(value: self.dryRun, fieldNumber: 2)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Represents an RPC operation to list groups of ad parameters for a given marketing campaign.
-public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".AdGroupList"
+public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to list adgroups for a specific campaign.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// ID of the campaign to send.
     public var campaignID: String = String()
@@ -872,35 +492,13 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList: SwiftProto
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.campaignID.isEmpty {
-        try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Response to a request to list adgroups for a specific campaign.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Ad groups attached to the specified campaign.
     public var adgroup: [Bloombox_Schema_Marketing_AdGroup] = []
@@ -908,62 +506,25 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList: SwiftProto
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeRepeatedMessageField(value: &self.adgroup)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.adgroup.isEmpty {
-        try visitor.visitRepeatedMessageField(value: self.adgroup, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Represents an RPC operation to create a new adgroup and attach it to a specific marketing campaign. An "ad group,"
 /// in Bloombox, is a containing group of ad parameters. Individual ads are calculated from these parameters.
-public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".AdGroupCreate"
+public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to create a new adgroup and attach it to a specific campaign.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// ID for the campaign.
     public var campaignID: String {
@@ -985,55 +546,20 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate: SwiftPro
     /// Returns true if `creative` has been explicitly set.
     public var hasCreative: Bool {return _storage._creative != nil}
     /// Clears the value of `creative`. Subsequent reads from it will return its default value.
-    public mutating func clearCreative() {_storage._creative = nil}
+    public mutating func clearCreative() {_uniqueStorage()._creative = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularStringField(value: &_storage._campaignID)
-          case 2: try decoder.decodeSingularEnumField(value: &_storage._channel)
-          case 3: try decoder.decodeSingularMessageField(value: &_storage._creative)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if !_storage._campaignID.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._campaignID, fieldNumber: 1)
-        }
-        if _storage._channel != .unspecified {
-          try visitor.visitSingularEnumField(value: _storage._channel, fieldNumber: 2)
-        }
-        if let v = _storage._creative {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Response to a request to create a new adgroup and attach it to a specific campaign.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Resulting adgroup ID.
     public var adgroupID: String = String()
@@ -1041,62 +567,25 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate: SwiftPro
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.adgroupID)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.adgroupID.isEmpty {
-        try visitor.visitSingularStringField(value: self.adgroupID, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Represents an RPC operation to retrieve an individual adgroup, addressed by its ID, under a specific marketing
 /// campaign, also addressed by its ID.
-public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".AdGroupGet"
+public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to retrieve a particular adgroup's data.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// ID for the campaign.
     public var campaignID: String = String()
@@ -1107,39 +596,13 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet: SwiftProtob
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
-        case 2: try decoder.decodeSingularStringField(value: &self.adgroupID)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.campaignID.isEmpty {
-        try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
-      }
-      if !self.adgroupID.isEmpty {
-        try visitor.visitSingularStringField(value: self.adgroupID, fieldNumber: 2)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Response to a request to retrieve a particular adgroup's data.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Resulting adgroup, if it could be located.
     public var adgroup: Bloombox_Schema_Marketing_AdGroup {
@@ -1149,73 +612,31 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet: SwiftProtob
     /// Returns true if `adgroup` has been explicitly set.
     public var hasAdgroup: Bool {return _storage._adgroup != nil}
     /// Clears the value of `adgroup`. Subsequent reads from it will return its default value.
-    public mutating func clearAdgroup() {_storage._adgroup = nil}
+    public mutating func clearAdgroup() {_uniqueStorage()._adgroup = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._adgroup)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._adgroup {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Represents an RPC operation to update an individual ad group's configuration or content.
-public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".AdGroupUpdate"
+public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to update an individual adgroup.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// ID for the campaign.
     public var campaignID: String = String()
@@ -1229,58 +650,9 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate: SwiftPro
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
-        case 2: try decoder.decodeSingularStringField(value: &self.adgroupID)
-        case 3: try decoder.decodeRepeatedMessageField(value: &self.creative)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.campaignID.isEmpty {
-        try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
-      }
-      if !self.adgroupID.isEmpty {
-        try visitor.visitSingularStringField(value: self.adgroupID, fieldNumber: 2)
-      }
-      if !self.creative.isEmpty {
-        try visitor.visitRepeatedMessageField(value: self.creative, fieldNumber: 3)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -1308,7 +680,8 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_MarketingError: SwiftProtob
   ]
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CampaignSummary"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "name"),
@@ -1356,86 +729,215 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary: SwiftProto
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._description_p)
+        case 4: try decoder.decodeSingularBoolField(value: &_storage._live)
+        case 5: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 6: try decoder.decodeSingularBoolField(value: &_storage._sms)
+        case 7: try decoder.decodeSingularBoolField(value: &_storage._email)
+        case 8: try decoder.decodeRepeatedMessageField(value: &_storage._tag)
+        case 9: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
+      }
+      if !_storage._description_p.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 3)
+      }
+      if _storage._live != false {
+        try visitor.visitSingularBoolField(value: _storage._live, fieldNumber: 4)
+      }
+      if _storage._status != .pending {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 5)
+      }
+      if _storage._sms != false {
+        try visitor.visitSingularBoolField(value: _storage._sms, fieldNumber: 6)
+      }
+      if _storage._email != false {
+        try visitor.visitSingularBoolField(value: _storage._email, fieldNumber: 7)
+      }
+      if !_storage._tag.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._tag, fieldNumber: 8)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._name != other_storage._name {return false}
-        if _storage._description_p != other_storage._description_p {return false}
-        if _storage._live != other_storage._live {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._sms != other_storage._sms {return false}
-        if _storage._email != other_storage._email {return false}
-        if _storage._tag != other_storage._tag {return false}
-        if _storage._modified != other_storage._modified {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._live != rhs_storage._live {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._sms != rhs_storage._sms {return false}
+        if _storage._email != rhs_storage._email {return false}
+        if _storage._tag != rhs_storage._tag {return false}
+        if _storage._modified != rhs_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignList: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CampaignList"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "location"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Request) -> Bool {
-    if self.partner != other.partner {return false}
-    if self.location != other.location {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.partner)
+      case 2: try decoder.decodeSingularStringField(value: &self.location)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.partner.isEmpty {
+      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+    }
+    if !self.location.isEmpty {
+      try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Request) -> Bool {
+    if lhs.partner != rhs.partner {return false}
+    if lhs.location != rhs.location {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "campaign"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Response) -> Bool {
-    if self.campaign != other.campaign {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.campaign)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.campaign.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.campaign, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Response) -> Bool {
+    if lhs.campaign != rhs.campaign {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CampaignGet"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "campaign_id"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.campaignID.isEmpty {
+      try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "campaign"),
   ]
@@ -1459,31 +961,63 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Response: Swift
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._campaign)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._campaign {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._campaign != other_storage._campaign {return false}
+        let rhs_storage = _args.1
+        if _storage._campaign != rhs_storage._campaign {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CampaignCreate"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "location"),
@@ -1492,39 +1026,99 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Request: Swi
     5: .same(proto: "channel"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Request) -> Bool {
-    if self.partner != other.partner {return false}
-    if self.location != other.location {return false}
-    if self.name != other.name {return false}
-    if self.description_p != other.description_p {return false}
-    if self.channel != other.channel {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.partner)
+      case 2: try decoder.decodeSingularStringField(value: &self.location)
+      case 3: try decoder.decodeSingularStringField(value: &self.name)
+      case 4: try decoder.decodeSingularStringField(value: &self.description_p)
+      case 5: try decoder.decodeRepeatedMessageField(value: &self.channel)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.partner.isEmpty {
+      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+    }
+    if !self.location.isEmpty {
+      try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 3)
+    }
+    if !self.description_p.isEmpty {
+      try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 4)
+    }
+    if !self.channel.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.channel, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Request) -> Bool {
+    if lhs.partner != rhs.partner {return false}
+    if lhs.location != rhs.location {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.channel != rhs.channel {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Response) -> Bool {
-    if self.id != other.id {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Response) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CampaignUpdate"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "campaign_id"),
     3: .same(proto: "name"),
@@ -1533,116 +1127,278 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.Request: Swi
     6: .same(proto: "channel"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if self.name != other.name {return false}
-    if self.description_p != other.description_p {return false}
-    if self.status != other.status {return false}
-    if self.channel != other.channel {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
+      case 3: try decoder.decodeSingularStringField(value: &self.name)
+      case 4: try decoder.decodeSingularStringField(value: &self.description_p)
+      case 5: try decoder.decodeSingularEnumField(value: &self.status)
+      case 6: try decoder.decodeRepeatedMessageField(value: &self.channel)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.campaignID.isEmpty {
+      try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 3)
+    }
+    if !self.description_p.isEmpty {
+      try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 4)
+    }
+    if self.status != .pending {
+      try visitor.visitSingularEnumField(value: self.status, fieldNumber: 5)
+    }
+    if !self.channel.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.channel, fieldNumber: 6)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.status != rhs.status {return false}
+    if lhs.channel != rhs.channel {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CampaignValidate"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "campaign_id"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.campaignID.isEmpty {
+      try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "err"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Response) -> Bool {
-    if self.err != other.err {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.err)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.err != .noError {
+      try visitor.visitSingularEnumField(value: self.err, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Response) -> Bool {
+    if lhs.err != rhs.err {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CampaignSend"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "campaign_id"),
     2: .standard(proto: "dry_run"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if self.dryRun != other.dryRun {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
+      case 2: try decoder.decodeSingularBoolField(value: &self.dryRun)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.campaignID.isEmpty {
+      try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
+    }
+    if self.dryRun != false {
+      try visitor.visitSingularBoolField(value: self.dryRun, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.dryRun != rhs.dryRun {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AdGroupList"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "campaign_id"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.campaignID.isEmpty {
+      try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "adgroup"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Response) -> Bool {
-    if self.adgroup != other.adgroup {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.adgroup)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.adgroup.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.adgroup, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Response) -> Bool {
+    if lhs.adgroup != rhs.adgroup {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AdGroupCreate"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "campaign_id"),
     2: .same(proto: "channel"),
@@ -1672,59 +1428,137 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Request: Swif
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._campaignID)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._channel)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._creative)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._campaignID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._campaignID, fieldNumber: 1)
+      }
+      if _storage._channel != .unspecified {
+        try visitor.visitSingularEnumField(value: _storage._channel, fieldNumber: 2)
+      }
+      if let v = _storage._creative {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._campaignID != other_storage._campaignID {return false}
-        if _storage._channel != other_storage._channel {return false}
-        if _storage._creative != other_storage._creative {return false}
+        let rhs_storage = _args.1
+        if _storage._campaignID != rhs_storage._campaignID {return false}
+        if _storage._channel != rhs_storage._channel {return false}
+        if _storage._creative != rhs_storage._creative {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "adgroup_id"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Response) -> Bool {
-    if self.adgroupID != other.adgroupID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.adgroupID)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.adgroupID.isEmpty {
+      try visitor.visitSingularStringField(value: self.adgroupID, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Response) -> Bool {
+    if lhs.adgroupID != rhs.adgroupID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AdGroupGet"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "campaign_id"),
     2: .standard(proto: "adgroup_id"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if self.adgroupID != other.adgroupID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
+      case 2: try decoder.decodeSingularStringField(value: &self.adgroupID)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.campaignID.isEmpty {
+      try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
+    }
+    if !self.adgroupID.isEmpty {
+      try visitor.visitSingularStringField(value: self.adgroupID, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.adgroupID != rhs.adgroupID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "adgroup"),
   ]
@@ -1748,42 +1582,98 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Response: SwiftP
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._adgroup)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._adgroup {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._adgroup != other_storage._adgroup {return false}
+        let rhs_storage = _args.1
+        if _storage._adgroup != rhs_storage._adgroup {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AdGroupUpdate"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "campaign_id"),
     2: .standard(proto: "adgroup_id"),
     3: .same(proto: "creative"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if self.adgroupID != other.adgroupID {return false}
-    if self.creative != other.creative {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.campaignID)
+      case 2: try decoder.decodeSingularStringField(value: &self.adgroupID)
+      case 3: try decoder.decodeRepeatedMessageField(value: &self.creative)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.campaignID.isEmpty {
+      try visitor.visitSingularStringField(value: self.campaignID, fieldNumber: 1)
+    }
+    if !self.adgroupID.isEmpty {
+      try visitor.visitSingularStringField(value: self.adgroupID, fieldNumber: 2)
+    }
+    if !self.creative.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.creative, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.adgroupID != rhs.adgroupID {return false}
+    if lhs.creative != rhs.creative {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

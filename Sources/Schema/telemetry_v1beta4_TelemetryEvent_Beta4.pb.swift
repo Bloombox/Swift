@@ -20,8 +20,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Wrapper object that provides support for transporting telemetry data of any kind.
-public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".TelemetryEvent"
+public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// UUID, as assigned by the server upon receiving this event.
   public var uuid: String {
@@ -50,7 +52,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftPr
   /// Returns true if `timing` has been explicitly set.
   public var hasTiming: Bool {return _storage._timing != nil}
   /// Clears the value of `timing`. Subsequent reads from it will return its default value.
-  public mutating func clearTiming() {_storage._timing = nil}
+  public mutating func clearTiming() {_uniqueStorage()._timing = nil}
 
   /// Event context.
   public var context: Bloombox_Schema_Analytics_Context {
@@ -60,7 +62,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftPr
   /// Returns true if `context` has been explicitly set.
   public var hasContext: Bool {return _storage._context != nil}
   /// Clears the value of `context`. Subsequent reads from it will return its default value.
-  public mutating func clearContext() {_storage._context = nil}
+  public mutating func clearContext() {_uniqueStorage()._context = nil}
 
   /// Full event actor records.
   public var actors: Bloombox_Schema_Analytics_EventActors {
@@ -70,7 +72,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftPr
   /// Returns true if `actors` has been explicitly set.
   public var hasActors: Bool {return _storage._actors != nil}
   /// Clears the value of `actors`. Subsequent reads from it will return its default value.
-  public mutating func clearActors() {_storage._actors = nil}
+  public mutating func clearActors() {_uniqueStorage()._actors = nil}
 
   /// Event data payload.
   public var event: OneOf_Event? {
@@ -171,6 +173,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftPr
     /// Search: Result.
     case searchResult(Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event) -> Bool {
       switch (lhs, rhs) {
       case (.generic(let l), .generic(let r)): return l == r
@@ -184,14 +187,68 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftPr
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.services.telemetry.v1beta4"
+
+extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TelemetryEvent"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "uuid"),
+    2: .same(proto: "parent"),
+    3: .same(proto: "internal"),
+    4: .same(proto: "timing"),
+    5: .same(proto: "context"),
+    6: .same(proto: "actors"),
+    10: .same(proto: "generic"),
+    11: .same(proto: "error"),
+    20: .same(proto: "impression"),
+    21: .same(proto: "view"),
+    22: .same(proto: "action"),
+    30: .standard(proto: "user_action"),
+    31: .standard(proto: "search_query"),
+    32: .standard(proto: "search_result"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _uuid: String = String()
+    var _parent: String = String()
+    var _internal: Bool = false
+    var _timing: Bloombox_Schema_Analytics_EventPosition? = nil
+    var _context: Bloombox_Schema_Analytics_Context? = nil
+    var _actors: Bloombox_Schema_Analytics_EventActors? = nil
+    var _event: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _uuid = source._uuid
+      _parent = source._parent
+      _internal = source._internal
+      _timing = source._timing
+      _context = source._context
+      _actors = source._actors
+      _event = source._event
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
@@ -273,10 +330,6 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftPr
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       if !_storage._uuid.isEmpty {
@@ -320,79 +373,23 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.services.telemetry.v1beta4"
-
-extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "uuid"),
-    2: .same(proto: "parent"),
-    3: .same(proto: "internal"),
-    4: .same(proto: "timing"),
-    5: .same(proto: "context"),
-    6: .same(proto: "actors"),
-    10: .same(proto: "generic"),
-    11: .same(proto: "error"),
-    20: .same(proto: "impression"),
-    21: .same(proto: "view"),
-    22: .same(proto: "action"),
-    30: .standard(proto: "user_action"),
-    31: .standard(proto: "search_query"),
-    32: .standard(proto: "search_result"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _uuid: String = String()
-    var _parent: String = String()
-    var _internal: Bool = false
-    var _timing: Bloombox_Schema_Analytics_EventPosition? = nil
-    var _context: Bloombox_Schema_Analytics_Context? = nil
-    var _actors: Bloombox_Schema_Analytics_EventActors? = nil
-    var _event: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _uuid = source._uuid
-      _parent = source._parent
-      _internal = source._internal
-      _timing = source._timing
-      _context = source._context
-      _actors = source._actors
-      _event = source._event
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._parent != other_storage._parent {return false}
-        if _storage._internal != other_storage._internal {return false}
-        if _storage._timing != other_storage._timing {return false}
-        if _storage._context != other_storage._context {return false}
-        if _storage._actors != other_storage._actors {return false}
-        if _storage._event != other_storage._event {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._parent != rhs_storage._parent {return false}
+        if _storage._internal != rhs_storage._internal {return false}
+        if _storage._timing != rhs_storage._timing {return false}
+        if _storage._context != rhs_storage._context {return false}
+        if _storage._actors != rhs_storage._actors {return false}
+        if _storage._event != rhs_storage._event {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -20,8 +20,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Represents a generic event, which can carry an arbitrary payload and is bound to an unenumerated collection.
-public struct Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Event"
+public struct Bloombox_Schema_Analytics_Generic_Event {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Payload data for this event.
   public var payload: SwiftProtobuf.Google_Protobuf_Struct {
@@ -31,7 +33,7 @@ public struct Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf.Message {
   /// Returns true if `payload` has been explicitly set.
   public var hasPayload: Bool {return _storage._payload != nil}
   /// Clears the value of `payload`. Subsequent reads from it will return its default value.
-  public mutating func clearPayload() {_storage._payload = nil}
+  public mutating func clearPayload() {_uniqueStorage()._payload = nil}
 
   /// Occurrence timestamp.
   public var occurred: Opencannabis_Temporal_Instant {
@@ -41,44 +43,11 @@ public struct Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf.Message {
   /// Returns true if `occurred` has been explicitly set.
   public var hasOccurred: Bool {return _storage._occurred != nil}
   /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-  public mutating func clearOccurred() {_storage._occurred = nil}
+  public mutating func clearOccurred() {_uniqueStorage()._occurred = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._payload)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._occurred)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._payload {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._occurred {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -87,7 +56,8 @@ public struct Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "bloombox.schema.analytics.generic"
 
-extension Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Event"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "payload"),
     2: .same(proto: "occurred"),
@@ -114,18 +84,43 @@ extension Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf._MessageImpleme
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_Event) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._payload)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._occurred)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._payload {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._occurred {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Analytics_Generic_Event, rhs: Bloombox_Schema_Analytics_Generic_Event) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._payload != other_storage._payload {return false}
-        if _storage._occurred != other_storage._occurred {return false}
+        let rhs_storage = _args.1
+        if _storage._payload != rhs_storage._payload {return false}
+        if _storage._occurred != rhs_storage._occurred {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

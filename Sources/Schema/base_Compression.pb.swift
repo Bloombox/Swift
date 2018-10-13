@@ -24,8 +24,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies enabled/disabled state and compression type, and is usually attached to arbitrary data or metadata.
-public struct Opencannabis_Base_Compression: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Compression"
+public struct Opencannabis_Base_Compression {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Enabled/disabled flag for compression. Defaults to not being set, so, falsy.
   public var enabled: Bool = false
@@ -79,11 +81,33 @@ public struct Opencannabis_Base_Compression: SwiftProtobuf.Message {
   }
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+#if swift(>=4.2)
+
+extension Opencannabis_Base_Compression.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Base_Compression.TypeEnum] = [
+    .noCompression,
+    .gzip,
+    .brotli,
+    .snappy,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.base"
+
+extension Opencannabis_Base_Compression: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Compression"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "enabled"),
+    2: .same(proto: "type"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -94,10 +118,6 @@ public struct Opencannabis_Base_Compression: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.enabled != false {
       try visitor.visitSingularBoolField(value: self.enabled, fieldNumber: 1)
@@ -107,22 +127,11 @@ public struct Opencannabis_Base_Compression: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.base"
-
-extension Opencannabis_Base_Compression: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "enabled"),
-    2: .same(proto: "type"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Base_Compression) -> Bool {
-    if self.enabled != other.enabled {return false}
-    if self.type != other.type {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Base_Compression, rhs: Opencannabis_Base_Compression) -> Bool {
+    if lhs.enabled != rhs.enabled {return false}
+    if lhs.type != rhs.type {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

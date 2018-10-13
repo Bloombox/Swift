@@ -73,6 +73,22 @@ public enum Opencannabis_Structs_Species: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Species: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Species] = [
+    .unspecified,
+    .sativa,
+    .hybridSativa,
+    .hybrid,
+    .hybridIndica,
+    .indica,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Opencannabis_Structs_Species: SwiftProtobuf._ProtoNameProviding {

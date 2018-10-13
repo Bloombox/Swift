@@ -24,8 +24,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Customer identity.
-public struct Opencannabis_Commerce_Customer: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Customer"
+public struct Opencannabis_Commerce_Customer {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Person attached to this customer.
   public var person: Opencannabis_Person_Person {
@@ -35,7 +37,7 @@ public struct Opencannabis_Commerce_Customer: SwiftProtobuf.Message {
   /// Returns true if `person` has been explicitly set.
   public var hasPerson: Bool {return _storage._person != nil}
   /// Clears the value of `person`. Subsequent reads from it will return its default value.
-  public mutating func clearPerson() {_storage._person = nil}
+  public mutating func clearPerson() {_uniqueStorage()._person = nil}
 
   /// Partner-scoped foreign system ID.
   public var foreignID: String {
@@ -53,43 +55,6 @@ public struct Opencannabis_Commerce_Customer: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._person)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._foreignID)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._userKey)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._person {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if !_storage._foreignID.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._foreignID, fieldNumber: 2)
-      }
-      if !_storage._userKey.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._userKey, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -97,7 +62,8 @@ public struct Opencannabis_Commerce_Customer: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "opencannabis.commerce"
 
-extension Opencannabis_Commerce_Customer: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_Customer: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Customer"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "person"),
     2: .standard(proto: "foreign_id"),
@@ -127,19 +93,48 @@ extension Opencannabis_Commerce_Customer: SwiftProtobuf._MessageImplementationBa
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_Customer) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._person)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._foreignID)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._userKey)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._person {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._foreignID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._foreignID, fieldNumber: 2)
+      }
+      if !_storage._userKey.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._userKey, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Commerce_Customer, rhs: Opencannabis_Commerce_Customer) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._person != other_storage._person {return false}
-        if _storage._foreignID != other_storage._foreignID {return false}
-        if _storage._userKey != other_storage._userKey {return false}
+        let rhs_storage = _args.1
+        if _storage._person != rhs_storage._person {return false}
+        if _storage._foreignID != rhs_storage._foreignID {return false}
+        if _storage._userKey != rhs_storage._userKey {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

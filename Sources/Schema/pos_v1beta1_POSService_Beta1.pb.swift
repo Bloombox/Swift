@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Defines the Point of Sale API, which provides supporting functionality to hardware POS devices that are co-located at
+/// partner locations.
+
 import Foundation
 import SwiftProtobuf
 
@@ -157,6 +161,39 @@ public enum Bloombox_Schema_Services_Pos_V1beta1_POSError: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Pos_V1beta1_POSError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Pos_V1beta1_POSError] = [
+    .noError,
+    .invalidPartner,
+    .invalidLocation,
+    .invalidDevice,
+    .invalidIDToken,
+    .invalidDeviceSignature,
+    .invalidTicket,
+    .invalidTicketKey,
+    .invalidTicketSignature,
+    .invalidTimestamp,
+    .deviceNotFound,
+    .sessionNotFound,
+    .sessionConflict,
+    .illegalTicketStructure,
+    .illegalTicketVersion,
+    .illegalTimestamp,
+    .ticketNotFound,
+    .ticketConflict,
+    .ticketClaimed,
+    .invalidRequest,
+    .authorizationDenied,
+    .accessConflict,
+    .internalError,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates types of events for a live inventory connection.
 public enum Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -194,6 +231,19 @@ public enum Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent: SwiftProt
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent] = [
+    .pingPong,
+    .noChange,
+    .update,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Enumerates types of authorization tokens supported or used by a point-of-sale session.
 public enum Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant: SwiftProtobuf.Enum {
@@ -233,9 +283,24 @@ public enum Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant: SwiftProtobu
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant] = [
+    .api,
+    .stream,
+    .messaging,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies authorization tokens for a given device/user pair.
-public struct Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".RegisterSessionToken"
+public struct Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Type of grant that this token provides the bearer.
   public var grant: Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant {
@@ -251,51 +316,20 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken: SwiftPr
   /// Returns true if `token` has been explicitly set.
   public var hasToken: Bool {return _storage._token != nil}
   /// Clears the value of `token`. Subsequent reads from it will return its default value.
-  public mutating func clearToken() {_storage._token = nil}
+  public mutating func clearToken() {_uniqueStorage()._token = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._grant)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._token)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._grant != .api {
-        try visitor.visitSingularEnumField(value: _storage._grant, fieldNumber: 1)
-      }
-      if let v = _storage._token {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies details for authenticating with messaging services.
-public struct Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".MessagingAuth"
+public struct Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the one-time-use nonce for messaging authentication.
   public var nonce: String = String()
@@ -303,35 +337,13 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth: SwiftProtobuf.
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.nonce)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.nonce.isEmpty {
-      try visitor.visitSingularStringField(value: self.nonce, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies the notion of a point-of-sale session, bound to a user and particular POS device.
-public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CashRegisterSession"
+public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Session ID. Unique string to provide during POS operations, to reference this session.
   public var id: String {
@@ -347,7 +359,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftPro
   /// Returns true if `user` has been explicitly set.
   public var hasUser: Bool {return _storage._user != nil}
   /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  public mutating func clearUser() {_storage._user = nil}
+  public mutating func clearUser() {_uniqueStorage()._user = nil}
 
   /// Specifies the current/active status of a particular point of sale session.
   public var status: Opencannabis_Commerce_SessionStatus {
@@ -363,7 +375,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftPro
   /// Returns true if `rights` has been explicitly set.
   public var hasRights: Bool {return _storage._rights != nil}
   /// Clears the value of `rights`. Subsequent reads from it will return its default value.
-  public mutating func clearRights() {_storage._rights = nil}
+  public mutating func clearRights() {_uniqueStorage()._rights = nil}
 
   /// Authorization grants/tokens issued in response to this authentication transaction.
   public var authorization: [Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken] {
@@ -379,7 +391,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftPro
   /// Returns true if `messaging` has been explicitly set.
   public var hasMessaging: Bool {return _storage._messaging != nil}
   /// Clears the value of `messaging`. Subsequent reads from it will return its default value.
-  public mutating func clearMessaging() {_storage._messaging = nil}
+  public mutating func clearMessaging() {_uniqueStorage()._messaging = nil}
 
   /// When we expect the POS to check-in next.
   public var checkIn: Opencannabis_Temporal_Instant {
@@ -389,7 +401,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftPro
   /// Returns true if `checkIn` has been explicitly set.
   public var hasCheckIn: Bool {return _storage._checkIn != nil}
   /// Clears the value of `checkIn`. Subsequent reads from it will return its default value.
-  public mutating func clearCheckIn() {_storage._checkIn = nil}
+  public mutating func clearCheckIn() {_uniqueStorage()._checkIn = nil}
 
   /// When the session hard-expires.
   public var expires: Opencannabis_Temporal_Instant {
@@ -399,7 +411,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftPro
   /// Returns true if `expires` has been explicitly set.
   public var hasExpires: Bool {return _storage._expires != nil}
   /// Clears the value of `expires`. Subsequent reads from it will return its default value.
-  public mutating func clearExpires() {_storage._expires = nil}
+  public mutating func clearExpires() {_uniqueStorage()._expires = nil}
 
   /// When the point-of-sale session was established.
   public var established: Opencannabis_Temporal_Instant {
@@ -409,13 +421,15 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftPro
   /// Returns true if `established` has been explicitly set.
   public var hasEstablished: Bool {return _storage._established != nil}
   /// Clears the value of `established`. Subsequent reads from it will return its default value.
-  public mutating func clearEstablished() {_storage._established = nil}
+  public mutating func clearEstablished() {_uniqueStorage()._established = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Properties related to a messaging session, if one was established.
-  public struct MessagingSession: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.protoMessageName + ".MessagingSession"
+  public struct MessagingSession {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Identity of the authenticated and authorized user.
     public var identity: String = String()
@@ -423,107 +437,26 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftPro
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.identity)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.identity.isEmpty {
-        try visitor.visitSingularStringField(value: self.identity, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._user)
-        case 3: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._rights)
-        case 6: try decoder.decodeRepeatedMessageField(value: &_storage._authorization)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._messaging)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._checkIn)
-        case 9: try decoder.decodeSingularMessageField(value: &_storage._expires)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._established)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if let v = _storage._user {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if _storage._status != .established {
-        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 3)
-      }
-      if let v = _storage._rights {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if !_storage._authorization.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._authorization, fieldNumber: 6)
-      }
-      if let v = _storage._messaging {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-      if let v = _storage._checkIn {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-      }
-      if let v = _storage._expires {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-      }
-      if let v = _storage._established {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies an RPC transaction to authenticate a staff member user on a point-of-sale device.
-public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".AuthorizeUser"
+public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Request to authenticate a staff member via ID token.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Device key, including the location and partner where the device is located.
     public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
@@ -533,7 +466,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
     /// Returns true if `register` has been explicitly set.
     public var hasRegister: Bool {return _storage._register != nil}
     /// Clears the value of `register`. Subsequent reads from it will return its default value.
-    public mutating func clearRegister() {_storage._register = nil}
+    public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// Authentication nonce, for access to messaging services.
     public var messaging: Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth {
@@ -543,7 +476,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
     /// Returns true if `messaging` has been explicitly set.
     public var hasMessaging: Bool {return _storage._messaging != nil}
     /// Clears the value of `messaging`. Subsequent reads from it will return its default value.
-    public mutating func clearMessaging() {_storage._messaging = nil}
+    public mutating func clearMessaging() {_uniqueStorage()._messaging = nil}
 
     /// Information about point-of-sale hardware installed or supported on this device.
     public var hardware: Opencannabis_Commerce_POSHardware {
@@ -553,7 +486,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
     /// Returns true if `hardware` has been explicitly set.
     public var hasHardware: Bool {return _storage._hardware != nil}
     /// Clears the value of `hardware`. Subsequent reads from it will return its default value.
-    public mutating func clearHardware() {_storage._hardware = nil}
+    public mutating func clearHardware() {_uniqueStorage()._hardware = nil}
 
     /// Information about the POS app in use.
     public var app: Bloombox_Schema_Analytics_Context_DeviceApplication {
@@ -563,7 +496,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
     /// Returns true if `app` has been explicitly set.
     public var hasApp: Bool {return _storage._app != nil}
     /// Clears the value of `app`. Subsequent reads from it will return its default value.
-    public mutating func clearApp() {_storage._app = nil}
+    public mutating func clearApp() {_uniqueStorage()._app = nil}
 
     /// Specifies an existing session ID, implying a desire to resume the session referenced.
     public var session: String {
@@ -602,6 +535,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
       /// Cryptographic hash representing the user's response to an identity challenge.
       case challenge(Opencannabis_Crypto_Primitives_Integrity_Hash)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request.OneOf_Auth, rhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request.OneOf_Auth) -> Bool {
         switch (lhs, rhs) {
         case (.token(let l), .token(let r)): return l == r
@@ -609,84 +543,19 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._messaging)
-          case 3: try decoder.decodeSingularMessageField(value: &_storage._hardware)
-          case 4: try decoder.decodeSingularMessageField(value: &_storage._app)
-          case 5: try decoder.decodeSingularStringField(value: &_storage._session)
-          case 10:
-            var v: Bloombox_Schema_Security_IdentityToken?
-            if let current = _storage._auth {
-              try decoder.handleConflictingOneOf()
-              if case .token(let m) = current {v = m}
-            }
-            try decoder.decodeSingularMessageField(value: &v)
-            if let v = v {_storage._auth = .token(v)}
-          case 11:
-            var v: Opencannabis_Crypto_Primitives_Integrity_Hash?
-            if let current = _storage._auth {
-              try decoder.handleConflictingOneOf()
-              if case .challenge(let m) = current {v = m}
-            }
-            try decoder.decodeSingularMessageField(value: &v)
-            if let v = v {_storage._auth = .challenge(v)}
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._register {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._messaging {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-        if let v = _storage._hardware {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-        }
-        if let v = _storage._app {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-        }
-        if !_storage._session.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 5)
-        }
-        switch _storage._auth {
-        case .token(let v)?:
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-        case .challenge(let v)?:
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
-        case nil: break
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
 
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Response to a request to authenticate a staff member via ID token.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Session allocated to coordinate this user's point-of-sale transactions.
     public var session: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession {
@@ -696,47 +565,20 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
     /// Returns true if `session` has been explicitly set.
     public var hasSession: Bool {return _storage._session != nil}
     /// Clears the value of `session`. Subsequent reads from it will return its default value.
-    public mutating func clearSession() {_storage._session = nil}
+    public mutating func clearSession() {_uniqueStorage()._session = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._session)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._session {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies a single authorization operation.
-  public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Operation"
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Authorization request.
     public var request: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request {
@@ -746,7 +588,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Authorization response.
     public var response: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response {
@@ -756,77 +598,31 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._request {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._response {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an RPC operation to open a formal point-of-sale session.
-public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".OpenSession"
+public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies a request to open an authorized, formal POS session.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Device key, including the location and partner where the device is located.
     public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
@@ -836,7 +632,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Me
     /// Returns true if `register` has been explicitly set.
     public var hasRegister: Bool {return _storage._register != nil}
     /// Clears the value of `register`. Subsequent reads from it will return its default value.
-    public mutating func clearRegister() {_storage._register = nil}
+    public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// ID of the session that the callee wishes to open.
     public var session: String {
@@ -877,10 +673,14 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Me
     }
 
     /// Hex-encoded signature of the SHA512-digest of the binary-encoded session claim, if establishing.
-    public var signature: String {
-      get {return _storage._signature}
+    public var signature: Opencannabis_Crypto_Signature {
+      get {return _storage._signature ?? Opencannabis_Crypto_Signature()}
       set {_uniqueStorage()._signature = newValue}
     }
+    /// Returns true if `signature` has been explicitly set.
+    public var hasSignature: Bool {return _storage._signature != nil}
+    /// Clears the value of `signature`. Subsequent reads from it will return its default value.
+    public mutating func clearSignature() {_uniqueStorage()._signature = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -893,6 +693,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Me
       /// Flag to indicate this session-open call is reclaiming or resuming a previously opened and established session.
       case resume(Bool)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim) -> Bool {
         switch (lhs, rhs) {
         case (.open(let l), .open(let r)): return l == r
@@ -900,77 +701,19 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Me
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
-          case 2: try decoder.decodeSingularStringField(value: &_storage._session)
-          case 3: try decoder.decodeSingularStringField(value: &_storage._token)
-          case 4:
-            var v: Opencannabis_Commerce_PointOfSaleState.SessionOpen?
-            if let current = _storage._claim {
-              try decoder.handleConflictingOneOf()
-              if case .open(let m) = current {v = m}
-            }
-            try decoder.decodeSingularMessageField(value: &v)
-            if let v = v {_storage._claim = .open(v)}
-          case 5:
-            if _storage._claim != nil {try decoder.handleConflictingOneOf()}
-            var v: Bool?
-            try decoder.decodeSingularBoolField(value: &v)
-            if let v = v {_storage._claim = .resume(v)}
-          case 6: try decoder.decodeSingularStringField(value: &_storage._signature)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._register {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if !_storage._session.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 2)
-        }
-        if !_storage._token.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._token, fieldNumber: 3)
-        }
-        switch _storage._claim {
-        case .open(let v)?:
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-        case .resume(let v)?:
-          try visitor.visitSingularBoolField(value: v, fieldNumber: 5)
-        case nil: break
-        }
-        if !_storage._signature.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 6)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
 
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies a response to a request to open a POS operation.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Updated session, after it has presumably been opened (i.e. not encountered a fatal error).
     public var session: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession {
@@ -980,47 +723,20 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Me
     /// Returns true if `session` has been explicitly set.
     public var hasSession: Bool {return _storage._session != nil}
     /// Clears the value of `session`. Subsequent reads from it will return its default value.
-    public mutating func clearSession() {_storage._session = nil}
+    public mutating func clearSession() {_uniqueStorage()._session = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._session)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._session {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies one entire open-session operation.
-  public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Operation"
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Request to open a POS session.
     public var request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request {
@@ -1030,7 +746,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Me
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to open a POS session.
     public var response: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response {
@@ -1040,77 +756,31 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Me
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._request {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._response {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an RPC operation to close a formal point-of-sale session.
-public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CloseSession"
+public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies a request to conduct a close of a POS session.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Device key, including the location and partner where the device is located.
     public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
@@ -1120,7 +790,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.M
     /// Returns true if `register` has been explicitly set.
     public var hasRegister: Bool {return _storage._register != nil}
     /// Clears the value of `register`. Subsequent reads from it will return its default value.
-    public mutating func clearRegister() {_storage._register = nil}
+    public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// ID of the session that the callee wishes to close.
     public var session: String {
@@ -1136,7 +806,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.M
     /// Returns true if `close` has been explicitly set.
     public var hasClose: Bool {return _storage._close != nil}
     /// Clears the value of `close`. Subsequent reads from it will return its default value.
-    public mutating func clearClose() {_storage._close = nil}
+    public mutating func clearClose() {_uniqueStorage()._close = nil}
 
     /// Describes all transactions that occurred during the subject point of sale session.
     public var transaction: [Opencannabis_Commerce_PurchaseKey] {
@@ -1145,66 +815,27 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.M
     }
 
     /// Hex-encoded signature of the SHA512-digest of the binary-encoded session close claim, and transactions.
-    public var signature: String {
-      get {return _storage._signature}
+    public var signature: Opencannabis_Crypto_Signature {
+      get {return _storage._signature ?? Opencannabis_Crypto_Signature()}
       set {_uniqueStorage()._signature = newValue}
     }
+    /// Returns true if `signature` has been explicitly set.
+    public var hasSignature: Bool {return _storage._signature != nil}
+    /// Clears the value of `signature`. Subsequent reads from it will return its default value.
+    public mutating func clearSignature() {_uniqueStorage()._signature = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
-          case 2: try decoder.decodeSingularStringField(value: &_storage._session)
-          case 3: try decoder.decodeSingularMessageField(value: &_storage._close)
-          case 4: try decoder.decodeRepeatedMessageField(value: &_storage._transaction)
-          case 6: try decoder.decodeSingularStringField(value: &_storage._signature)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._register {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if !_storage._session.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 2)
-        }
-        if let v = _storage._close {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-        }
-        if !_storage._transaction.isEmpty {
-          try visitor.visitRepeatedMessageField(value: _storage._transaction, fieldNumber: 4)
-        }
-        if !_storage._signature.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 6)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies a response to a request to close a POS session.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies the timestamp at which the session was closed.
     public var closed: Opencannabis_Temporal_Instant {
@@ -1214,47 +845,20 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.M
     /// Returns true if `closed` has been explicitly set.
     public var hasClosed: Bool {return _storage._closed != nil}
     /// Clears the value of `closed`. Subsequent reads from it will return its default value.
-    public mutating func clearClosed() {_storage._closed = nil}
+    public mutating func clearClosed() {_uniqueStorage()._closed = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._closed)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._closed {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies an entire close-session RPC operation.
-  public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Operation"
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies the close-session request.
     public var request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request {
@@ -1264,7 +868,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.M
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Specifies the close-session response.
     public var response: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response {
@@ -1274,77 +878,31 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.M
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._request {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._response {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an RPC operation to open a new or existing ticket.
-public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".OpenTicket"
+public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies a request to open a new purchase ticket.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies the ticket ID to open.
     public var purchase: Opencannabis_Commerce_PurchaseKey {
@@ -1354,7 +912,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Mes
     /// Returns true if `purchase` has been explicitly set.
     public var hasPurchase: Bool {return _storage._purchase != nil}
     /// Clears the value of `purchase`. Subsequent reads from it will return its default value.
-    public mutating func clearPurchase() {_storage._purchase = nil}
+    public mutating func clearPurchase() {_uniqueStorage()._purchase = nil}
 
     /// Specifies the device for which a ticket is being requested.
     public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
@@ -1364,7 +922,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Mes
     /// Returns true if `register` has been explicitly set.
     public var hasRegister: Bool {return _storage._register != nil}
     /// Clears the value of `register`. Subsequent reads from it will return its default value.
-    public mutating func clearRegister() {_storage._register = nil}
+    public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// Active and valid point-of-sale session.
     public var session: String {
@@ -1379,66 +937,27 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Mes
     }
 
     /// Hex-encoded signature of the SHA512-digest of the binary-encoded purchase key.
-    public var signature: String {
-      get {return _storage._signature}
+    public var signature: Opencannabis_Crypto_Signature {
+      get {return _storage._signature ?? Opencannabis_Crypto_Signature()}
       set {_uniqueStorage()._signature = newValue}
     }
+    /// Returns true if `signature` has been explicitly set.
+    public var hasSignature: Bool {return _storage._signature != nil}
+    /// Clears the value of `signature`. Subsequent reads from it will return its default value.
+    public mutating func clearSignature() {_uniqueStorage()._signature = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._purchase)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._register)
-          case 3: try decoder.decodeSingularStringField(value: &_storage._session)
-          case 4: try decoder.decodeSingularBoolField(value: &_storage._fresh)
-          case 6: try decoder.decodeSingularStringField(value: &_storage._signature)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._purchase {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._register {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-        if !_storage._session.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
-        }
-        if _storage._fresh != false {
-          try visitor.visitSingularBoolField(value: _storage._fresh, fieldNumber: 4)
-        }
-        if !_storage._signature.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 6)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies the resulting claim ID from an open-ticket lease operation.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies the ticket ID that was opened.
     public var purchase: Opencannabis_Commerce_PurchaseKey {
@@ -1448,7 +967,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Mes
     /// Returns true if `purchase` has been explicitly set.
     public var hasPurchase: Bool {return _storage._purchase != nil}
     /// Clears the value of `purchase`. Subsequent reads from it will return its default value.
-    public mutating func clearPurchase() {_storage._purchase = nil}
+    public mutating func clearPurchase() {_uniqueStorage()._purchase = nil}
 
     /// Specifies an opaque string representing this ticket claim.
     public var claim: String {
@@ -1470,7 +989,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Mes
     /// Returns true if `granted` has been explicitly set.
     public var hasGranted: Bool {return _storage._granted != nil}
     /// Clears the value of `granted`. Subsequent reads from it will return its default value.
-    public mutating func clearGranted() {_storage._granted = nil}
+    public mutating func clearGranted() {_uniqueStorage()._granted = nil}
 
     /// Timestamp indicating when this lease expires.
     public var expires: Opencannabis_Temporal_Instant {
@@ -1480,63 +999,20 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Mes
     /// Returns true if `expires` has been explicitly set.
     public var hasExpires: Bool {return _storage._expires != nil}
     /// Clears the value of `expires`. Subsequent reads from it will return its default value.
-    public mutating func clearExpires() {_storage._expires = nil}
+    public mutating func clearExpires() {_uniqueStorage()._expires = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._purchase)
-          case 2: try decoder.decodeSingularStringField(value: &_storage._claim)
-          case 3: try decoder.decodeSingularEnumField(value: &_storage._status)
-          case 4: try decoder.decodeSingularMessageField(value: &_storage._granted)
-          case 5: try decoder.decodeSingularMessageField(value: &_storage._expires)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._purchase {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if !_storage._claim.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._claim, fieldNumber: 2)
-        }
-        if _storage._status != .fresh {
-          try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 3)
-        }
-        if let v = _storage._granted {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-        }
-        if let v = _storage._expires {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies an entire open-ticket operation.
-  public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Operation"
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Request to open a ticket.
     public var request: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request {
@@ -1546,7 +1022,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Mes
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to open a ticket.
     public var response: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response {
@@ -1556,77 +1032,31 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Mes
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._request {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._response {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an RPC operation to save a ticket after modifications were made.
-public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SaveTicket"
+public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies a request to save a purchase ticket.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Device key, including the location and partner.
     public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
@@ -1636,7 +1066,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Mes
     /// Returns true if `register` has been explicitly set.
     public var hasRegister: Bool {return _storage._register != nil}
     /// Clears the value of `register`. Subsequent reads from it will return its default value.
-    public mutating func clearRegister() {_storage._register = nil}
+    public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// Specifies the purchase to save.
     public var ticket: Opencannabis_Commerce_PurchaseTicket {
@@ -1646,7 +1076,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Mes
     /// Returns true if `ticket` has been explicitly set.
     public var hasTicket: Bool {return _storage._ticket != nil}
     /// Clears the value of `ticket`. Subsequent reads from it will return its default value.
-    public mutating func clearTicket() {_storage._ticket = nil}
+    public mutating func clearTicket() {_uniqueStorage()._ticket = nil}
 
     /// Active and valid point-of-sale session.
     public var session: String {
@@ -1662,7 +1092,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Mes
     /// Returns true if `signature` has been explicitly set.
     public var hasSignature: Bool {return _storage._signature != nil}
     /// Clears the value of `signature`. Subsequent reads from it will return its default value.
-    public mutating func clearSignature() {_storage._signature = nil}
+    public mutating func clearSignature() {_uniqueStorage()._signature = nil}
 
     /// Timestamp identifying when, precisely, this ticket was frozen for persistence.
     public var timestamp: Opencannabis_Temporal_Instant {
@@ -1672,7 +1102,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Mes
     /// Returns true if `timestamp` has been explicitly set.
     public var hasTimestamp: Bool {return _storage._timestamp != nil}
     /// Clears the value of `timestamp`. Subsequent reads from it will return its default value.
-    public mutating func clearTimestamp() {_storage._timestamp = nil}
+    public mutating func clearTimestamp() {_uniqueStorage()._timestamp = nil}
 
     /// Specifies whether this save operation was auto-initiated or user-initiated.
     public var auto: Bool {
@@ -1690,65 +1120,14 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Mes
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._ticket)
-          case 3: try decoder.decodeSingularStringField(value: &_storage._session)
-          case 4: try decoder.decodeSingularMessageField(value: &_storage._signature)
-          case 5: try decoder.decodeSingularMessageField(value: &_storage._timestamp)
-          case 6: try decoder.decodeSingularBoolField(value: &_storage._auto)
-          case 7: try decoder.decodeSingularBoolField(value: &_storage._close)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._register {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._ticket {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-        if !_storage._session.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
-        }
-        if let v = _storage._signature {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-        }
-        if let v = _storage._timestamp {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-        }
-        if _storage._auto != false {
-          try visitor.visitSingularBoolField(value: _storage._auto, fieldNumber: 6)
-        }
-        if _storage._close != false {
-          try visitor.visitSingularBoolField(value: _storage._close, fieldNumber: 7)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies a response to a request to save a purchase ticket.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies the version number saved as part of this operation.
     public var version: UInt32 {
@@ -1770,7 +1149,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Mes
     /// Returns true if `granted` has been explicitly set.
     public var hasGranted: Bool {return _storage._granted != nil}
     /// Clears the value of `granted`. Subsequent reads from it will return its default value.
-    public mutating func clearGranted() {_storage._granted = nil}
+    public mutating func clearGranted() {_uniqueStorage()._granted = nil}
 
     /// Timestamp indicating when this ticket's lease expires.
     public var expires: Opencannabis_Temporal_Instant {
@@ -1780,59 +1159,20 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Mes
     /// Returns true if `expires` has been explicitly set.
     public var hasExpires: Bool {return _storage._expires != nil}
     /// Clears the value of `expires`. Subsequent reads from it will return its default value.
-    public mutating func clearExpires() {_storage._expires = nil}
+    public mutating func clearExpires() {_uniqueStorage()._expires = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularUInt32Field(value: &_storage._version)
-          case 2: try decoder.decodeSingularEnumField(value: &_storage._status)
-          case 3: try decoder.decodeSingularMessageField(value: &_storage._granted)
-          case 4: try decoder.decodeSingularMessageField(value: &_storage._expires)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if _storage._version != 0 {
-          try visitor.visitSingularUInt32Field(value: _storage._version, fieldNumber: 1)
-        }
-        if _storage._status != .fresh {
-          try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 2)
-        }
-        if let v = _storage._granted {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-        }
-        if let v = _storage._expires {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies an entire ticket-save operation.
-  public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Operation"
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Request to save a ticket.
     public var request: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request {
@@ -1842,7 +1182,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Mes
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to save a ticket.
     public var response: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response {
@@ -1852,77 +1192,31 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Mes
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._request {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._response {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an RPC operation to load a ticket by its ID or key.
-public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".LoadTicket"
+public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies a request to load an existing purchase ticket.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Device key, including the location and partner.
     public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
@@ -1932,7 +1226,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf.Mes
     /// Returns true if `register` has been explicitly set.
     public var hasRegister: Bool {return _storage._register != nil}
     /// Clears the value of `register`. Subsequent reads from it will return its default value.
-    public mutating func clearRegister() {_storage._register = nil}
+    public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// Specifies the purchase key to load.
     public var purchase: Opencannabis_Commerce_PurchaseKey {
@@ -1942,7 +1236,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf.Mes
     /// Returns true if `purchase` has been explicitly set.
     public var hasPurchase: Bool {return _storage._purchase != nil}
     /// Clears the value of `purchase`. Subsequent reads from it will return its default value.
-    public mutating func clearPurchase() {_storage._purchase = nil}
+    public mutating func clearPurchase() {_uniqueStorage()._purchase = nil}
 
     /// Active and valid point-of-sale session.
     public var session: String {
@@ -1954,49 +1248,14 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf.Mes
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._purchase)
-          case 3: try decoder.decodeSingularStringField(value: &_storage._session)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._register {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._purchase {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-        if !_storage._session.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies the resulting purchase ticket, if it could be located.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies the resulting purchase ticket, if it could be located.
     public var ticket: Opencannabis_Commerce_PurchaseTicket {
@@ -2006,47 +1265,20 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf.Mes
     /// Returns true if `ticket` has been explicitly set.
     public var hasTicket: Bool {return _storage._ticket != nil}
     /// Clears the value of `ticket`. Subsequent reads from it will return its default value.
-    public mutating func clearTicket() {_storage._ticket = nil}
+    public mutating func clearTicket() {_uniqueStorage()._ticket = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._ticket)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._ticket {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies an entire load-ticket operation.
-  public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Operation"
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Request for service status.
     public var request: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request {
@@ -2056,7 +1288,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf.Mes
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request for service status.
     public var response: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response {
@@ -2066,77 +1298,246 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf.Mes
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-          default: break
-          }
-        }
-      }
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  public init() {}
+}
+
+/// Specifies an RPC operation to claim an existing, open ticket. "Claim"-ing a ticket involves changing the facilitator
+/// identity, such that a new budtender/staff members owns the ticket.
+public struct Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Request to claim an existing, open ticket.
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Device key, including the location and partner, where the ticket should be claimed.
+    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+      set {_uniqueStorage()._register = newValue}
+    }
+    /// Returns true if `register` has been explicitly set.
+    public var hasRegister: Bool {return _storage._register != nil}
+    /// Clears the value of `register`. Subsequent reads from it will return its default value.
+    public mutating func clearRegister() {_uniqueStorage()._register = nil}
+
+    /// Specifies the purchase ticket to claim, by key.
+    public var purchase: Opencannabis_Commerce_PurchaseKey {
+      get {return _storage._purchase ?? Opencannabis_Commerce_PurchaseKey()}
+      set {_uniqueStorage()._purchase = newValue}
+    }
+    /// Returns true if `purchase` has been explicitly set.
+    public var hasPurchase: Bool {return _storage._purchase != nil}
+    /// Clears the value of `purchase`. Subsequent reads from it will return its default value.
+    public mutating func clearPurchase() {_uniqueStorage()._purchase = nil}
+
+    /// Active and valid point-of-sale session to claim the ticket with.
+    public var session: String {
+      get {return _storage._session}
+      set {_uniqueStorage()._session = newValue}
     }
 
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._request {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._response {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  /// Response to a request to claim an existing, open ticket.
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Specifies the resulting purchase ticket, if it could successfully be claimed.
+    public var ticket: Opencannabis_Commerce_PurchaseTicket {
+      get {return _storage._ticket ?? Opencannabis_Commerce_PurchaseTicket()}
+      set {_uniqueStorage()._ticket = newValue}
     }
+    /// Returns true if `ticket` has been explicitly set.
+    public var hasTicket: Bool {return _storage._ticket != nil}
+    /// Clears the value of `ticket`. Subsequent reads from it will return its default value.
+    public mutating func clearTicket() {_uniqueStorage()._ticket = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  /// Represents an entire RPC operation to claim ownership of a ticket.
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Request to claim ownership of a ticket.
+    public var request: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request {
+      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request()}
+      set {_uniqueStorage()._request = newValue}
+    }
+    /// Returns true if `request` has been explicitly set.
+    public var hasRequest: Bool {return _storage._request != nil}
+    /// Clears the value of `request`. Subsequent reads from it will return its default value.
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
+
+    /// Response to a request to claim ownership of a ticket.
+    public var response: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response {
+      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response()}
+      set {_uniqueStorage()._response = newValue}
+    }
+    /// Returns true if `response` has been explicitly set.
+    public var hasResponse: Bool {return _storage._response != nil}
+    /// Clears the value of `response`. Subsequent reads from it will return its default value.
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
 
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
+/// Specifies an RPC operation to clone an existing ticket. The source ticket may be in any state. The purchase ticket
+/// items are pre-filled, and any other computed properties are provided (i.e. bill of sale), but the facilitator and
+/// customer may be replaced.
+public struct Bloombox_Schema_Services_Pos_V1beta1_CloneTicket {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Request to clone an existing purchase ticket.
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Specifies the ticket ID to clone into a new ticket (i.e. the "source" ticket).
+    public var purchase: Opencannabis_Commerce_PurchaseKey {
+      get {return _storage._purchase ?? Opencannabis_Commerce_PurchaseKey()}
+      set {_uniqueStorage()._purchase = newValue}
     }
+    /// Returns true if `purchase` has been explicitly set.
+    public var hasPurchase: Bool {return _storage._purchase != nil}
+    /// Clears the value of `purchase`. Subsequent reads from it will return its default value.
+    public mutating func clearPurchase() {_uniqueStorage()._purchase = nil}
+
+    /// Specifies the device for which a ticket is being cloned.
+    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+      set {_uniqueStorage()._register = newValue}
+    }
+    /// Returns true if `register` has been explicitly set.
+    public var hasRegister: Bool {return _storage._register != nil}
+    /// Clears the value of `register`. Subsequent reads from it will return its default value.
+    public mutating func clearRegister() {_uniqueStorage()._register = nil}
+
+    /// Active and valid point-of-sale session to clone the ticket with.
+    public var session: String {
+      get {return _storage._session}
+      set {_uniqueStorage()._session = newValue}
+    }
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
+  /// Response to a request to clone an existing purchase ticket.
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Specifies the resulting newly-cloned purchase ticket, if it could successfully be cloned.
+    public var ticket: Opencannabis_Commerce_PurchaseTicket {
+      get {return _storage._ticket ?? Opencannabis_Commerce_PurchaseTicket()}
+      set {_uniqueStorage()._ticket = newValue}
+    }
+    /// Returns true if `ticket` has been explicitly set.
+    public var hasTicket: Bool {return _storage._ticket != nil}
+    /// Clears the value of `ticket`. Subsequent reads from it will return its default value.
+    public mutating func clearTicket() {_uniqueStorage()._ticket = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
   }
+
+  /// Represents an entire RPC operation to clone an existing purchase ticket.
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Request to clone a purchase ticket.
+    public var request: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request {
+      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request()}
+      set {_uniqueStorage()._request = newValue}
+    }
+    /// Returns true if `request` has been explicitly set.
+    public var hasRequest: Bool {return _storage._request != nil}
+    /// Clears the value of `request`. Subsequent reads from it will return its default value.
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
+
+    /// Response provided to this request to clone a purchase ticket.
+    public var response: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response {
+      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response()}
+      set {_uniqueStorage()._response = newValue}
+    }
+    /// Returns true if `response` has been explicitly set.
+    public var hasResponse: Bool {return _storage._response != nil}
+    /// Clears the value of `response`. Subsequent reads from it will return its default value.
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  public init() {}
 }
 
 /// Specifies an RPC operation to void an existing, open ticket.
-public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".VoidTicket"
+public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies a request to void a purchase ticket.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Device key, including the location and partner.
     public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
@@ -2146,7 +1547,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Mes
     /// Returns true if `register` has been explicitly set.
     public var hasRegister: Bool {return _storage._register != nil}
     /// Clears the value of `register`. Subsequent reads from it will return its default value.
-    public mutating func clearRegister() {_storage._register = nil}
+    public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// Specifies the purchase key to void.
     public var purchase: Opencannabis_Commerce_PurchaseKey {
@@ -2156,7 +1557,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Mes
     /// Returns true if `purchase` has been explicitly set.
     public var hasPurchase: Bool {return _storage._purchase != nil}
     /// Clears the value of `purchase`. Subsequent reads from it will return its default value.
-    public mutating func clearPurchase() {_storage._purchase = nil}
+    public mutating func clearPurchase() {_uniqueStorage()._purchase = nil}
 
     /// Active and valid point-of-sale session.
     public var session: String {
@@ -2165,62 +1566,27 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Mes
     }
 
     /// Hex-encoded signature of the SHA512-digest of the binary-encoded purchase key.
-    public var signature: String {
-      get {return _storage._signature}
+    public var signature: Opencannabis_Crypto_Signature {
+      get {return _storage._signature ?? Opencannabis_Crypto_Signature()}
       set {_uniqueStorage()._signature = newValue}
     }
+    /// Returns true if `signature` has been explicitly set.
+    public var hasSignature: Bool {return _storage._signature != nil}
+    /// Clears the value of `signature`. Subsequent reads from it will return its default value.
+    public mutating func clearSignature() {_uniqueStorage()._signature = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._purchase)
-          case 3: try decoder.decodeSingularStringField(value: &_storage._session)
-          case 4: try decoder.decodeSingularStringField(value: &_storage._signature)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._register {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._purchase {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-        if !_storage._session.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
-        }
-        if !_storage._signature.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 4)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Response to a request to void a purchase ticket.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies the version of the ticket that was voided.
     public var version: UInt32 {
@@ -2236,51 +1602,20 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Mes
     /// Returns true if `timestamp` has been explicitly set.
     public var hasTimestamp: Bool {return _storage._timestamp != nil}
     /// Clears the value of `timestamp`. Subsequent reads from it will return its default value.
-    public mutating func clearTimestamp() {_storage._timestamp = nil}
+    public mutating func clearTimestamp() {_uniqueStorage()._timestamp = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularUInt32Field(value: &_storage._version)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._timestamp)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if _storage._version != 0 {
-          try visitor.visitSingularUInt32Field(value: _storage._version, fieldNumber: 1)
-        }
-        if let v = _storage._timestamp {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies an entire ticket-void operation.
-  public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Operation"
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Request to void a ticket.
     public var request: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request {
@@ -2290,7 +1625,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Mes
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to void a ticket.
     public var response: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response {
@@ -2300,77 +1635,31 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Mes
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._request {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._response {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an RPC operation to finalize an existing, open ticket.
-public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".FinalizeTicket"
+public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies a request to finalize a purchase ticket.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Device key, including the location and partner.
     public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
@@ -2380,7 +1669,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf
     /// Returns true if `register` has been explicitly set.
     public var hasRegister: Bool {return _storage._register != nil}
     /// Clears the value of `register`. Subsequent reads from it will return its default value.
-    public mutating func clearRegister() {_storage._register = nil}
+    public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// Specifies the purchase key to finalize.
     public var purchase: Opencannabis_Commerce_PurchaseKey {
@@ -2390,7 +1679,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf
     /// Returns true if `purchase` has been explicitly set.
     public var hasPurchase: Bool {return _storage._purchase != nil}
     /// Clears the value of `purchase`. Subsequent reads from it will return its default value.
-    public mutating func clearPurchase() {_storage._purchase = nil}
+    public mutating func clearPurchase() {_uniqueStorage()._purchase = nil}
 
     /// Active and valid point-of-sale session.
     public var session: String {
@@ -2399,62 +1688,27 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf
     }
 
     /// Hex-encoded signature of the SHA512-digest of the binary-encoded purchase key.
-    public var signature: String {
-      get {return _storage._signature}
+    public var signature: Opencannabis_Crypto_Signature {
+      get {return _storage._signature ?? Opencannabis_Crypto_Signature()}
       set {_uniqueStorage()._signature = newValue}
     }
+    /// Returns true if `signature` has been explicitly set.
+    public var hasSignature: Bool {return _storage._signature != nil}
+    /// Clears the value of `signature`. Subsequent reads from it will return its default value.
+    public mutating func clearSignature() {_uniqueStorage()._signature = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._purchase)
-          case 3: try decoder.decodeSingularStringField(value: &_storage._session)
-          case 4: try decoder.decodeSingularStringField(value: &_storage._signature)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._register {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._purchase {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-        if !_storage._session.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
-        }
-        if !_storage._signature.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 4)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Response to a request to finalize a purchase ticket.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies the version of the ticket that was finalized.
     public var version: UInt32 {
@@ -2470,51 +1724,20 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf
     /// Returns true if `timestamp` has been explicitly set.
     public var hasTimestamp: Bool {return _storage._timestamp != nil}
     /// Clears the value of `timestamp`. Subsequent reads from it will return its default value.
-    public mutating func clearTimestamp() {_storage._timestamp = nil}
+    public mutating func clearTimestamp() {_uniqueStorage()._timestamp = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularUInt32Field(value: &_storage._version)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._timestamp)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if _storage._version != 0 {
-          try visitor.visitSingularUInt32Field(value: _storage._version, fieldNumber: 1)
-        }
-        if let v = _storage._timestamp {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies an entire ticket-finalize operation.
-  public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Operation"
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Request to finalize a ticket.
     public var request: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request {
@@ -2524,7 +1747,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to finalize a ticket.
     public var response: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response {
@@ -2534,77 +1757,31 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._request {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._response {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an RPC operation to search member accounts by ID, contact info, or name.
-public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".MemberSearch"
+public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Criteria to qualify a search for a member account.
-  public struct MemberPredicate: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".MemberPredicate"
+  public struct MemberPredicate {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Search by email address.
     public var email: String = String()
@@ -2615,39 +1792,64 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf.M
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+  }
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.email)
-        case 2: try decoder.decodeSingularStringField(value: &self.phone)
-        default: break
-        }
-      }
-    }
+  /// Criteria to qualify a search via a digital pass.
+  public struct DigitalPass {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.email.isEmpty {
-        try visitor.visitSingularStringField(value: self.email, fieldNumber: 1)
-      }
-      if !self.phone.isEmpty {
-        try visitor.visitSingularStringField(value: self.phone, fieldNumber: 2)
-      }
-      try unknownFields.traverse(visitor: &visitor)
+    /// Specifies the scanned/received information from the pass.
+    public var pass: Bloombox_Schema_Identity_Pass_DigitalPassKey {
+      get {return _storage._pass ?? Bloombox_Schema_Identity_Pass_DigitalPassKey()}
+      set {_uniqueStorage()._pass = newValue}
     }
+    /// Returns true if `pass` has been explicitly set.
+    public var hasPass: Bool {return _storage._pass != nil}
+    /// Clears the value of `pass`. Subsequent reads from it will return its default value.
+    public mutating func clearPass() {_uniqueStorage()._pass = nil}
+
+    /// Cryptographic signature hash from the physical device that scanned the pass.
+    public var challenge: Opencannabis_Crypto_Primitives_Integrity_Hash {
+      get {return _storage._challenge ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+      set {_uniqueStorage()._challenge = newValue}
+    }
+    /// Returns true if `challenge` has been explicitly set.
+    public var hasChallenge: Bool {return _storage._challenge != nil}
+    /// Clears the value of `challenge`. Subsequent reads from it will return its default value.
+    public mutating func clearChallenge() {_uniqueStorage()._challenge = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Request to search for a member account.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Cursor, specifying a previous operation to continue paging.
+    public var cursor: String {
+      get {return _storage._cursor}
+      set {_uniqueStorage()._cursor = newValue}
+    }
+
+    /// Result count limit for this operation.
+    public var limit: UInt32 {
+      get {return _storage._limit}
+      set {_uniqueStorage()._limit = newValue}
+    }
+
+    /// Bluetooth signals witnessed by the device forming this query, if applicable.
+    public var signal: [String] {
+      get {return _storage._signal}
+      set {_uniqueStorage()._signal = newValue}
+    }
 
     /// Specification of how we want to locate a member.
     public var spec: OneOf_Spec? {
@@ -2682,22 +1884,22 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf.M
       set {_uniqueStorage()._spec = .lobby(newValue)}
     }
 
-    /// Cursor, specifying a previous operation to continue paging.
-    public var cursor: String {
-      get {return _storage._cursor}
-      set {_uniqueStorage()._cursor = newValue}
+    /// Flag to indicate currently-shopping users with an open ticket.
+    public var shopping: Bool {
+      get {
+        if case .shopping(let v)? = _storage._spec {return v}
+        return false
+      }
+      set {_uniqueStorage()._spec = .shopping(newValue)}
     }
 
-    /// Result count limit for this operation.
-    public var limit: UInt32 {
-      get {return _storage._limit}
-      set {_uniqueStorage()._limit = newValue}
-    }
-
-    /// Bluetooth signals witnessed by the device forming this query, if applicable.
-    public var signal: [String] {
-      get {return _storage._signal}
-      set {_uniqueStorage()._signal = newValue}
+    /// Specifies a members-resolve request being requested based on a digital wallet pass.
+    public var wallet: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass {
+      get {
+        if case .wallet(let v)? = _storage._spec {return v}
+        return Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass()
+      }
+      set {_uniqueStorage()._spec = .wallet(newValue)}
     }
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -2710,92 +1912,35 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf.M
       case identification(Bloombox_Schema_Identity_IDReference)
       /// Flag to indicate lobby-checked-in users are desired.
       case lobby(Bool)
+      /// Flag to indicate currently-shopping users with an open ticket.
+      case shopping(Bool)
+      /// Specifies a members-resolve request being requested based on a digital wallet pass.
+      case wallet(Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request.OneOf_Spec, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request.OneOf_Spec) -> Bool {
         switch (lhs, rhs) {
         case (.search(let l), .search(let r)): return l == r
         case (.identification(let l), .identification(let r)): return l == r
         case (.lobby(let l), .lobby(let r)): return l == r
+        case (.shopping(let l), .shopping(let r)): return l == r
+        case (.wallet(let l), .wallet(let r)): return l == r
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1:
-            var v: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate?
-            if let current = _storage._spec {
-              try decoder.handleConflictingOneOf()
-              if case .search(let m) = current {v = m}
-            }
-            try decoder.decodeSingularMessageField(value: &v)
-            if let v = v {_storage._spec = .search(v)}
-          case 2:
-            var v: Bloombox_Schema_Identity_IDReference?
-            if let current = _storage._spec {
-              try decoder.handleConflictingOneOf()
-              if case .identification(let m) = current {v = m}
-            }
-            try decoder.decodeSingularMessageField(value: &v)
-            if let v = v {_storage._spec = .identification(v)}
-          case 3:
-            if _storage._spec != nil {try decoder.handleConflictingOneOf()}
-            var v: Bool?
-            try decoder.decodeSingularBoolField(value: &v)
-            if let v = v {_storage._spec = .lobby(v)}
-          case 4: try decoder.decodeSingularStringField(value: &_storage._cursor)
-          case 5: try decoder.decodeSingularUInt32Field(value: &_storage._limit)
-          case 6: try decoder.decodeRepeatedStringField(value: &_storage._signal)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        switch _storage._spec {
-        case .search(let v)?:
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        case .identification(let v)?:
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        case .lobby(let v)?:
-          try visitor.visitSingularBoolField(value: v, fieldNumber: 3)
-        case nil: break
-        }
-        if !_storage._cursor.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._cursor, fieldNumber: 4)
-        }
-        if _storage._limit != 0 {
-          try visitor.visitSingularUInt32Field(value: _storage._limit, fieldNumber: 5)
-        }
-        if !_storage._signal.isEmpty {
-          try visitor.visitRepeatedStringField(value: _storage._signal, fieldNumber: 6)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
 
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies the structure of a response to a request to search for member accounts.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Cursor to resume this operation and keep paging.
     public var cursor: String = String()
@@ -2812,47 +1957,13 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf.M
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.cursor)
-        case 2: try decoder.decodeSingularUInt32Field(value: &self.count)
-        case 3: try decoder.decodeSingularUInt32Field(value: &self.total)
-        case 4: try decoder.decodeRepeatedMessageField(value: &self.member)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.cursor.isEmpty {
-        try visitor.visitSingularStringField(value: self.cursor, fieldNumber: 1)
-      }
-      if self.count != 0 {
-        try visitor.visitSingularUInt32Field(value: self.count, fieldNumber: 2)
-      }
-      if self.total != 0 {
-        try visitor.visitSingularUInt32Field(value: self.total, fieldNumber: 3)
-      }
-      if !self.member.isEmpty {
-        try visitor.visitRepeatedMessageField(value: self.member, fieldNumber: 4)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Specifies one complete member search operation.
-  public struct Operation: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Operation"
+  public struct Operation {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Request to search for members.
     public var request: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request {
@@ -2862,7 +1973,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf.M
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to search for members.
     public var response: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response {
@@ -2872,77 +1983,31 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf.M
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._request {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._response {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an RPC operation to search for active stock status at a given location.
-public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".InventoryQuery"
+public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies an inventory query based on item keys.
-  public struct KeyQuerySpec: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".KeyQuerySpec"
+  public struct KeyQuerySpec {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specific key the requestor is interested in, if applicable.
     public var key: Opencannabis_Inventory_InventoryKey {
@@ -2952,47 +2017,20 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf
     /// Returns true if `key` has been explicitly set.
     public var hasKey: Bool {return _storage._key != nil}
     /// Clears the value of `key`. Subsequent reads from it will return its default value.
-    public mutating func clearKey() {_storage._key = nil}
+    public mutating func clearKey() {_uniqueStorage()._key = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._key {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Specifies an inventory query based on menu sections.
-  public struct SectionQuerySpec: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".SectionQuerySpec"
+  public struct SectionQuerySpec {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies a menu section for which to retrieve inventory.
     public var section: Opencannabis_Products_Menu_Section_Section = .unspecified
@@ -3000,35 +2038,13 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &self.section)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if self.section != .unspecified {
-        try visitor.visitSingularEnumField(value: self.section, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Request to query inventory status.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// The device that is submitting this search.
     public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
@@ -3038,7 +2054,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf
     /// Returns true if `register` has been explicitly set.
     public var hasRegister: Bool {return _storage._register != nil}
     /// Clears the value of `register`. Subsequent reads from it will return its default value.
-    public mutating func clearRegister() {_storage._register = nil}
+    public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// Specifies the location at which we wish to query inventory.
     public var location: Bloombox_Schema_Partner_LocationKey {
@@ -3048,7 +2064,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf
     /// Returns true if `location` has been explicitly set.
     public var hasLocation: Bool {return _storage._location != nil}
     /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_storage._location = nil}
+    public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
     public var query: OneOf_Query? {
       get {return _storage._query}
@@ -3092,6 +2108,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf
       /// Specifies a section-based query.
       case sections(Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request.OneOf_Query, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request.OneOf_Query) -> Bool {
         switch (lhs, rhs) {
         case (.full(let l), .full(let r)): return l == r
@@ -3100,79 +2117,19 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._location)
-          case 3:
-            if _storage._query != nil {try decoder.handleConflictingOneOf()}
-            var v: Bool?
-            try decoder.decodeSingularBoolField(value: &v)
-            if let v = v {_storage._query = .full(v)}
-          case 4:
-            var v: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec?
-            if let current = _storage._query {
-              try decoder.handleConflictingOneOf()
-              if case .keys(let m) = current {v = m}
-            }
-            try decoder.decodeSingularMessageField(value: &v)
-            if let v = v {_storage._query = .keys(v)}
-          case 5:
-            var v: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec?
-            if let current = _storage._query {
-              try decoder.handleConflictingOneOf()
-              if case .sections(let m) = current {v = m}
-            }
-            try decoder.decodeSingularMessageField(value: &v)
-            if let v = v {_storage._query = .sections(v)}
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._register {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._location {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-        switch _storage._query {
-        case .full(let v)?:
-          try visitor.visitSingularBoolField(value: v, fieldNumber: 3)
-        case .keys(let v)?:
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-        case .sections(let v)?:
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-        case nil: break
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
 
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Response to an inventory enquiry. Indicates status of the requested stock items.
-  public struct Response: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".Response"
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies update payloads for this event, if applicable.
     public var item: [Opencannabis_Inventory_InventoryProduct] = []
@@ -3180,62 +2137,25 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeRepeatedMessageField(value: &self.item)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.item.isEmpty {
-        try visitor.visitRepeatedMessageField(value: self.item, fieldNumber: 1)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an RPC operation to establish an inventory status stream, wherein initial inventory information is sent and
 /// then kept up to date with real-time notifications.
-public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryStream: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".InventoryStream"
+public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryStream {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies a request to establish an inventory update stream.
-  public struct Request: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.protoMessageName + ".Request"
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies the location at which we wish to query inventory.
     public var location: Opencannabis_Inventory_InventoryLocationKey {
@@ -3245,7 +2165,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryStream: SwiftProtobu
     /// Returns true if `location` has been explicitly set.
     public var hasLocation: Bool {return _storage._location != nil}
     /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_storage._location = nil}
+    public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
     /// Active and valid point-of-sale session.
     public var session: String {
@@ -3263,49 +2183,14 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryStream: SwiftProtobu
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._location)
-          case 2: try decoder.decodeRepeatedStringField(value: &_storage._local)
-          case 3: try decoder.decodeSingularStringField(value: &_storage._session)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._location {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if !_storage._local.isEmpty {
-          try visitor.visitRepeatedStringField(value: _storage._local, fieldNumber: 2)
-        }
-        if !_storage._session.isEmpty {
-          try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Response stanza payload for an inventory stream.
-  public struct Payload: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.protoMessageName + ".Payload"
+  public struct Payload {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies the event being transmitted in this payload.
     public var event: Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent = .pingPong
@@ -3316,54 +2201,9 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryStream: SwiftProtobu
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &self.event)
-        case 2: try decoder.decodeRepeatedMessageField(value: &self.item)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if self.event != .pingPong {
-        try visitor.visitSingularEnumField(value: self.event, fieldNumber: 1)
-      }
-      if !self.item.isEmpty {
-        try visitor.visitRepeatedMessageField(value: self.item, fieldNumber: 2)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -3414,7 +2254,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant: SwiftProtobuf.
   ]
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".RegisterSessionToken"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "grant"),
     2: .same(proto: "token"),
@@ -3441,35 +2282,78 @@ extension Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken: SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._grant)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._token)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._grant != .api {
+        try visitor.visitSingularEnumField(value: _storage._grant, fieldNumber: 1)
+      }
+      if let v = _storage._token {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken, rhs: Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._grant != other_storage._grant {return false}
-        if _storage._token != other_storage._token {return false}
+        let rhs_storage = _args.1
+        if _storage._grant != rhs_storage._grant {return false}
+        if _storage._token != rhs_storage._token {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MessagingAuth"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "nonce"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth) -> Bool {
-    if self.nonce != other.nonce {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.nonce)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.nonce.isEmpty {
+      try visitor.visitSingularStringField(value: self.nonce, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth, rhs: Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth) -> Bool {
+    if lhs.nonce != rhs.nonce {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CashRegisterSession"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "user"),
@@ -3517,51 +2401,132 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftProtobu
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._user)
+        case 3: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._rights)
+        case 6: try decoder.decodeRepeatedMessageField(value: &_storage._authorization)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._messaging)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._checkIn)
+        case 9: try decoder.decodeSingularMessageField(value: &_storage._expires)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._established)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if let v = _storage._user {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if _storage._status != .established {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 3)
+      }
+      if let v = _storage._rights {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if !_storage._authorization.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._authorization, fieldNumber: 6)
+      }
+      if let v = _storage._messaging {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+      if let v = _storage._checkIn {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if let v = _storage._expires {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
+      if let v = _storage._established {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession, rhs: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._user != other_storage._user {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._rights != other_storage._rights {return false}
-        if _storage._authorization != other_storage._authorization {return false}
-        if _storage._messaging != other_storage._messaging {return false}
-        if _storage._checkIn != other_storage._checkIn {return false}
-        if _storage._expires != other_storage._expires {return false}
-        if _storage._established != other_storage._established {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._user != rhs_storage._user {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._rights != rhs_storage._rights {return false}
+        if _storage._authorization != rhs_storage._authorization {return false}
+        if _storage._messaging != rhs_storage._messaging {return false}
+        if _storage._checkIn != rhs_storage._checkIn {return false}
+        if _storage._expires != rhs_storage._expires {return false}
+        if _storage._established != rhs_storage._established {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSession: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.protoMessageName + ".MessagingSession"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "identity"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSession) -> Bool {
-    if self.identity != other.identity {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.identity)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.identity.isEmpty {
+      try visitor.visitSingularStringField(value: self.identity, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSession, rhs: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSession) -> Bool {
+    if lhs.identity != rhs.identity {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AuthorizeUser"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser, rhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "messaging"),
@@ -3601,27 +2566,88 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._messaging)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._hardware)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._app)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._session)
+        case 10:
+          var v: Bloombox_Schema_Security_IdentityToken?
+          if let current = _storage._auth {
+            try decoder.handleConflictingOneOf()
+            if case .token(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._auth = .token(v)}
+        case 11:
+          var v: Opencannabis_Crypto_Primitives_Integrity_Hash?
+          if let current = _storage._auth {
+            try decoder.handleConflictingOneOf()
+            if case .challenge(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._auth = .challenge(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._messaging {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._hardware {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._app {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 5)
+      }
+      switch _storage._auth {
+      case .token(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      case .challenge(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._register != other_storage._register {return false}
-        if _storage._messaging != other_storage._messaging {return false}
-        if _storage._hardware != other_storage._hardware {return false}
-        if _storage._app != other_storage._app {return false}
-        if _storage._session != other_storage._session {return false}
-        if _storage._auth != other_storage._auth {return false}
+        let rhs_storage = _args.1
+        if _storage._register != rhs_storage._register {return false}
+        if _storage._messaging != rhs_storage._messaging {return false}
+        if _storage._hardware != rhs_storage._hardware {return false}
+        if _storage._app != rhs_storage._app {return false}
+        if _storage._session != rhs_storage._session {return false}
+        if _storage._auth != rhs_storage._auth {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "session"),
   ]
@@ -3645,22 +2671,44 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response: SwiftProt
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._session)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._session {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._session != other_storage._session {return false}
+        let rhs_storage = _args.1
+        if _storage._session != rhs_storage._session {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
@@ -3687,32 +2735,68 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Operation: SwiftPro
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".OpenSession"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_OpenSession) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "session"),
@@ -3727,7 +2811,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobu
     var _session: String = String()
     var _token: String = String()
     var _claim: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim?
-    var _signature: String = String()
+    var _signature: Opencannabis_Crypto_Signature? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3749,26 +2833,80 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobu
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._session)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._token)
+        case 4:
+          var v: Opencannabis_Commerce_PointOfSaleState.SessionOpen?
+          if let current = _storage._claim {
+            try decoder.handleConflictingOneOf()
+            if case .open(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._claim = .open(v)}
+        case 5:
+          if _storage._claim != nil {try decoder.handleConflictingOneOf()}
+          var v: Bool?
+          try decoder.decodeSingularBoolField(value: &v)
+          if let v = v {_storage._claim = .resume(v)}
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._signature)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 2)
+      }
+      if !_storage._token.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._token, fieldNumber: 3)
+      }
+      switch _storage._claim {
+      case .open(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      case .resume(let v)?:
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 5)
+      case nil: break
+      }
+      if let v = _storage._signature {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._register != other_storage._register {return false}
-        if _storage._session != other_storage._session {return false}
-        if _storage._token != other_storage._token {return false}
-        if _storage._claim != other_storage._claim {return false}
-        if _storage._signature != other_storage._signature {return false}
+        let rhs_storage = _args.1
+        if _storage._register != rhs_storage._register {return false}
+        if _storage._session != rhs_storage._session {return false}
+        if _storage._token != rhs_storage._token {return false}
+        if _storage._claim != rhs_storage._claim {return false}
+        if _storage._signature != rhs_storage._signature {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "session"),
   ]
@@ -3792,22 +2930,44 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response: SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._session)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._session {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._session != other_storage._session {return false}
+        let rhs_storage = _args.1
+        if _storage._session != rhs_storage._session {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
@@ -3834,32 +2994,68 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Operation: SwiftProto
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CloseSession"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_CloseSession) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "session"),
@@ -3873,7 +3069,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtob
     var _session: String = String()
     var _close: Opencannabis_Commerce_PointOfSaleState.SessionClose? = nil
     var _transaction: [Opencannabis_Commerce_PurchaseKey] = []
-    var _signature: String = String()
+    var _signature: Opencannabis_Crypto_Signature? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3895,26 +3091,64 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._session)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._close)
+        case 4: try decoder.decodeRepeatedMessageField(value: &_storage._transaction)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._signature)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 2)
+      }
+      if let v = _storage._close {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if !_storage._transaction.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._transaction, fieldNumber: 4)
+      }
+      if let v = _storage._signature {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._register != other_storage._register {return false}
-        if _storage._session != other_storage._session {return false}
-        if _storage._close != other_storage._close {return false}
-        if _storage._transaction != other_storage._transaction {return false}
-        if _storage._signature != other_storage._signature {return false}
+        let rhs_storage = _args.1
+        if _storage._register != rhs_storage._register {return false}
+        if _storage._session != rhs_storage._session {return false}
+        if _storage._close != rhs_storage._close {return false}
+        if _storage._transaction != rhs_storage._transaction {return false}
+        if _storage._signature != rhs_storage._signature {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .same(proto: "closed"),
   ]
@@ -3938,22 +3172,44 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response: SwiftProto
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._closed)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._closed {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._closed != other_storage._closed {return false}
+        let rhs_storage = _args.1
+        if _storage._closed != rhs_storage._closed {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
@@ -3980,32 +3236,68 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Operation: SwiftProt
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".OpenTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "purchase"),
     2: .same(proto: "register"),
@@ -4019,7 +3311,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf
     var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
     var _session: String = String()
     var _fresh: Bool = false
-    var _signature: String = String()
+    var _signature: Opencannabis_Crypto_Signature? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4041,26 +3333,64 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._purchase)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._session)
+        case 4: try decoder.decodeSingularBoolField(value: &_storage._fresh)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._signature)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._purchase {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
+      }
+      if _storage._fresh != false {
+        try visitor.visitSingularBoolField(value: _storage._fresh, fieldNumber: 4)
+      }
+      if let v = _storage._signature {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._purchase != other_storage._purchase {return false}
-        if _storage._register != other_storage._register {return false}
-        if _storage._session != other_storage._session {return false}
-        if _storage._fresh != other_storage._fresh {return false}
-        if _storage._signature != other_storage._signature {return false}
+        let rhs_storage = _args.1
+        if _storage._purchase != rhs_storage._purchase {return false}
+        if _storage._register != rhs_storage._register {return false}
+        if _storage._session != rhs_storage._session {return false}
+        if _storage._fresh != rhs_storage._fresh {return false}
+        if _storage._signature != rhs_storage._signature {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "purchase"),
     2: .same(proto: "claim"),
@@ -4096,26 +3426,64 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response: SwiftProtobu
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._purchase)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._claim)
+        case 3: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._granted)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._expires)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._purchase {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._claim.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._claim, fieldNumber: 2)
+      }
+      if _storage._status != .fresh {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 3)
+      }
+      if let v = _storage._granted {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._expires {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._purchase != other_storage._purchase {return false}
-        if _storage._claim != other_storage._claim {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._granted != other_storage._granted {return false}
-        if _storage._expires != other_storage._expires {return false}
+        let rhs_storage = _args.1
+        if _storage._purchase != rhs_storage._purchase {return false}
+        if _storage._claim != rhs_storage._claim {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._granted != rhs_storage._granted {return false}
+        if _storage._expires != rhs_storage._expires {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
@@ -4142,32 +3510,68 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Operation: SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SaveTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "ticket"),
@@ -4209,28 +3613,74 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request: SwiftProtobuf
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._ticket)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._session)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._signature)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._timestamp)
+        case 6: try decoder.decodeSingularBoolField(value: &_storage._auto)
+        case 7: try decoder.decodeSingularBoolField(value: &_storage._close)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._ticket {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
+      }
+      if let v = _storage._signature {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._timestamp {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if _storage._auto != false {
+        try visitor.visitSingularBoolField(value: _storage._auto, fieldNumber: 6)
+      }
+      if _storage._close != false {
+        try visitor.visitSingularBoolField(value: _storage._close, fieldNumber: 7)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._register != other_storage._register {return false}
-        if _storage._ticket != other_storage._ticket {return false}
-        if _storage._session != other_storage._session {return false}
-        if _storage._signature != other_storage._signature {return false}
-        if _storage._timestamp != other_storage._timestamp {return false}
-        if _storage._auto != other_storage._auto {return false}
-        if _storage._close != other_storage._close {return false}
+        let rhs_storage = _args.1
+        if _storage._register != rhs_storage._register {return false}
+        if _storage._ticket != rhs_storage._ticket {return false}
+        if _storage._session != rhs_storage._session {return false}
+        if _storage._signature != rhs_storage._signature {return false}
+        if _storage._timestamp != rhs_storage._timestamp {return false}
+        if _storage._auto != rhs_storage._auto {return false}
+        if _storage._close != rhs_storage._close {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "version"),
     2: .same(proto: "status"),
@@ -4263,25 +3713,59 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response: SwiftProtobu
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularUInt32Field(value: &_storage._version)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._granted)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._expires)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._version != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._version, fieldNumber: 1)
+      }
+      if _storage._status != .fresh {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 2)
+      }
+      if let v = _storage._granted {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._expires {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._version != other_storage._version {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._granted != other_storage._granted {return false}
-        if _storage._expires != other_storage._expires {return false}
+        let rhs_storage = _args.1
+        if _storage._version != rhs_storage._version {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._granted != rhs_storage._granted {return false}
+        if _storage._expires != rhs_storage._expires {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
@@ -4308,32 +3792,68 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Operation: SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LoadTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "purchase"),
@@ -4363,24 +3883,54 @@ extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request: SwiftProtobuf
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._purchase)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._session)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._purchase {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._register != other_storage._register {return false}
-        if _storage._purchase != other_storage._purchase {return false}
-        if _storage._session != other_storage._session {return false}
+        let rhs_storage = _args.1
+        if _storage._register != rhs_storage._register {return false}
+        if _storage._purchase != rhs_storage._purchase {return false}
+        if _storage._session != rhs_storage._session {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "ticket"),
   ]
@@ -4404,22 +3954,44 @@ extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response: SwiftProtobu
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._ticket)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._ticket {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._ticket != other_storage._ticket {return false}
+        let rhs_storage = _args.1
+        if _storage._ticket != rhs_storage._ticket {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
@@ -4446,32 +4018,520 @@ extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Operation: SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ClaimTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.protoMessageName + ".Request"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "register"),
+    2: .same(proto: "purchase"),
+    3: .same(proto: "session"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
+    var _session: String = String()
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _register = source._register
+      _purchase = source._purchase
+      _session = source._session
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._purchase)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._session)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._purchase {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._register != rhs_storage._register {return false}
+        if _storage._purchase != rhs_storage._purchase {return false}
+        if _storage._session != rhs_storage._session {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.protoMessageName + ".Response"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "ticket"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _ticket: Opencannabis_Commerce_PurchaseTicket? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _ticket = source._ticket
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._ticket)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._ticket {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._ticket != rhs_storage._ticket {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.protoMessageName + ".Operation"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "request"),
+    2: .same(proto: "response"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _request: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request? = nil
+    var _response: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _request = source._request
+      _response = source._response
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CloneTicket"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.protoMessageName + ".Request"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "purchase"),
+    2: .same(proto: "register"),
+    3: .same(proto: "session"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
+    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _session: String = String()
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _purchase = source._purchase
+      _register = source._register
+      _session = source._session
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._purchase)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._session)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._purchase {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._purchase != rhs_storage._purchase {return false}
+        if _storage._register != rhs_storage._register {return false}
+        if _storage._session != rhs_storage._session {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.protoMessageName + ".Response"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "ticket"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _ticket: Opencannabis_Commerce_PurchaseTicket? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _ticket = source._ticket
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._ticket)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._ticket {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._ticket != rhs_storage._ticket {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.protoMessageName + ".Operation"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "request"),
+    2: .same(proto: "response"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _request: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request? = nil
+    var _response: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _request = source._request
+      _response = source._response
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".VoidTicket"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "purchase"),
@@ -4483,7 +4543,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf
     var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
     var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
     var _session: String = String()
-    var _signature: String = String()
+    var _signature: Opencannabis_Crypto_Signature? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4504,25 +4564,59 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._purchase)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._session)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._signature)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._purchase {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
+      }
+      if let v = _storage._signature {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._register != other_storage._register {return false}
-        if _storage._purchase != other_storage._purchase {return false}
-        if _storage._session != other_storage._session {return false}
-        if _storage._signature != other_storage._signature {return false}
+        let rhs_storage = _args.1
+        if _storage._register != rhs_storage._register {return false}
+        if _storage._purchase != rhs_storage._purchase {return false}
+        if _storage._session != rhs_storage._session {return false}
+        if _storage._signature != rhs_storage._signature {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "version"),
     2: .same(proto: "timestamp"),
@@ -4549,23 +4643,49 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response: SwiftProtobu
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularUInt32Field(value: &_storage._version)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._timestamp)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._version != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._version, fieldNumber: 1)
+      }
+      if let v = _storage._timestamp {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._version != other_storage._version {return false}
-        if _storage._timestamp != other_storage._timestamp {return false}
+        let rhs_storage = _args.1
+        if _storage._version != rhs_storage._version {return false}
+        if _storage._timestamp != rhs_storage._timestamp {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
@@ -4592,32 +4712,68 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Operation: SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".FinalizeTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "purchase"),
@@ -4629,7 +4785,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProt
     var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
     var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
     var _session: String = String()
-    var _signature: String = String()
+    var _signature: Opencannabis_Crypto_Signature? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4650,25 +4806,59 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProt
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._purchase)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._session)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._signature)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._purchase {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
+      }
+      if let v = _storage._signature {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._register != other_storage._register {return false}
-        if _storage._purchase != other_storage._purchase {return false}
-        if _storage._session != other_storage._session {return false}
-        if _storage._signature != other_storage._signature {return false}
+        let rhs_storage = _args.1
+        if _storage._register != rhs_storage._register {return false}
+        if _storage._purchase != rhs_storage._purchase {return false}
+        if _storage._session != rhs_storage._session {return false}
+        if _storage._signature != rhs_storage._signature {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "version"),
     2: .same(proto: "timestamp"),
@@ -4695,23 +4885,49 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response: SwiftPro
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularUInt32Field(value: &_storage._version)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._timestamp)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._version != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._version, fieldNumber: 1)
+      }
+      if let v = _storage._timestamp {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._version != other_storage._version {return false}
-        if _storage._timestamp != other_storage._timestamp {return false}
+        let rhs_storage = _args.1
+        if _storage._version != rhs_storage._version {return false}
+        if _storage._timestamp != rhs_storage._timestamp {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
@@ -4738,70 +4954,119 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Operation: SwiftPr
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MemberSearch"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".MemberPredicate"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "email"),
     2: .same(proto: "phone"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate) -> Bool {
-    if self.email != other.email {return false}
-    if self.phone != other.phone {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.email)
+      case 2: try decoder.decodeSingularStringField(value: &self.phone)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.email.isEmpty {
+      try visitor.visitSingularStringField(value: self.email, fieldNumber: 1)
+    }
+    if !self.phone.isEmpty {
+      try visitor.visitSingularStringField(value: self.phone, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate) -> Bool {
+    if lhs.email != rhs.email {return false}
+    if lhs.phone != rhs.phone {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".DigitalPass"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "search"),
-    2: .same(proto: "identification"),
-    3: .same(proto: "lobby"),
-    4: .same(proto: "cursor"),
-    5: .same(proto: "limit"),
-    6: .same(proto: "signal"),
+    1: .same(proto: "pass"),
+    2: .same(proto: "challenge"),
   ]
 
   fileprivate class _StorageClass {
-    var _spec: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request.OneOf_Spec?
-    var _cursor: String = String()
-    var _limit: UInt32 = 0
-    var _signal: [String] = []
+    var _pass: Bloombox_Schema_Identity_Pass_DigitalPassKey? = nil
+    var _challenge: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
 
     static let defaultInstance = _StorageClass()
 
     private init() {}
 
     init(copying source: _StorageClass) {
-      _spec = source._spec
-      _cursor = source._cursor
-      _limit = source._limit
-      _signal = source._signal
+      _pass = source._pass
+      _challenge = source._challenge
     }
   }
 
@@ -4812,25 +5077,181 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request: SwiftProtob
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._pass)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._challenge)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._pass {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._challenge {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._spec != other_storage._spec {return false}
-        if _storage._cursor != other_storage._cursor {return false}
-        if _storage._limit != other_storage._limit {return false}
-        if _storage._signal != other_storage._signal {return false}
+        let rhs_storage = _args.1
+        if _storage._pass != rhs_storage._pass {return false}
+        if _storage._challenge != rhs_storage._challenge {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Request"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "cursor"),
+    2: .same(proto: "limit"),
+    3: .same(proto: "signal"),
+    20: .same(proto: "search"),
+    21: .same(proto: "identification"),
+    22: .same(proto: "lobby"),
+    23: .same(proto: "shopping"),
+    24: .same(proto: "wallet"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _cursor: String = String()
+    var _limit: UInt32 = 0
+    var _signal: [String] = []
+    var _spec: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request.OneOf_Spec?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _cursor = source._cursor
+      _limit = source._limit
+      _signal = source._signal
+      _spec = source._spec
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._cursor)
+        case 2: try decoder.decodeSingularUInt32Field(value: &_storage._limit)
+        case 3: try decoder.decodeRepeatedStringField(value: &_storage._signal)
+        case 20:
+          var v: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate?
+          if let current = _storage._spec {
+            try decoder.handleConflictingOneOf()
+            if case .search(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._spec = .search(v)}
+        case 21:
+          var v: Bloombox_Schema_Identity_IDReference?
+          if let current = _storage._spec {
+            try decoder.handleConflictingOneOf()
+            if case .identification(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._spec = .identification(v)}
+        case 22:
+          if _storage._spec != nil {try decoder.handleConflictingOneOf()}
+          var v: Bool?
+          try decoder.decodeSingularBoolField(value: &v)
+          if let v = v {_storage._spec = .lobby(v)}
+        case 23:
+          if _storage._spec != nil {try decoder.handleConflictingOneOf()}
+          var v: Bool?
+          try decoder.decodeSingularBoolField(value: &v)
+          if let v = v {_storage._spec = .shopping(v)}
+        case 24:
+          var v: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass?
+          if let current = _storage._spec {
+            try decoder.handleConflictingOneOf()
+            if case .wallet(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._spec = .wallet(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._cursor.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._cursor, fieldNumber: 1)
+      }
+      if _storage._limit != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._limit, fieldNumber: 2)
+      }
+      if !_storage._signal.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._signal, fieldNumber: 3)
+      }
+      switch _storage._spec {
+      case .search(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
+      case .identification(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
+      case .lobby(let v)?:
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 22)
+      case .shopping(let v)?:
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 23)
+      case .wallet(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 24)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._cursor != rhs_storage._cursor {return false}
+        if _storage._limit != rhs_storage._limit {return false}
+        if _storage._signal != rhs_storage._signal {return false}
+        if _storage._spec != rhs_storage._spec {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "cursor"),
     2: .same(proto: "count"),
@@ -4838,17 +5259,46 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response: SwiftProto
     4: .same(proto: "member"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response) -> Bool {
-    if self.cursor != other.cursor {return false}
-    if self.count != other.count {return false}
-    if self.total != other.total {return false}
-    if self.member != other.member {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.cursor)
+      case 2: try decoder.decodeSingularUInt32Field(value: &self.count)
+      case 3: try decoder.decodeSingularUInt32Field(value: &self.total)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.member)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.cursor.isEmpty {
+      try visitor.visitSingularStringField(value: self.cursor, fieldNumber: 1)
+    }
+    if self.count != 0 {
+      try visitor.visitSingularUInt32Field(value: self.count, fieldNumber: 2)
+    }
+    if self.total != 0 {
+      try visitor.visitSingularUInt32Field(value: self.total, fieldNumber: 3)
+    }
+    if !self.member.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.member, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response) -> Bool {
+    if lhs.cursor != rhs.cursor {return false}
+    if lhs.count != rhs.count {return false}
+    if lhs.total != rhs.total {return false}
+    if lhs.member != rhs.member {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Operation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
@@ -4875,32 +5325,68 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Operation: SwiftProt
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._request {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._response {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".InventoryQuery"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".KeyQuerySpec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
   ]
@@ -4924,34 +5410,73 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec: Swif
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".SectionQuerySpec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "section"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec) -> Bool {
-    if self.section != other.section {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.section)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.section != .unspecified {
+      try visitor.visitSingularEnumField(value: self.section, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec) -> Bool {
+    if lhs.section != rhs.section {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "location"),
@@ -4983,45 +5508,128 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request: SwiftProt
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._register)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._location)
+        case 3:
+          if _storage._query != nil {try decoder.handleConflictingOneOf()}
+          var v: Bool?
+          try decoder.decodeSingularBoolField(value: &v)
+          if let v = v {_storage._query = .full(v)}
+        case 4:
+          var v: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec?
+          if let current = _storage._query {
+            try decoder.handleConflictingOneOf()
+            if case .keys(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._query = .keys(v)}
+        case 5:
+          var v: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec?
+          if let current = _storage._query {
+            try decoder.handleConflictingOneOf()
+            if case .sections(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._query = .sections(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._register {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._location {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      switch _storage._query {
+      case .full(let v)?:
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 3)
+      case .keys(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      case .sections(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._register != other_storage._register {return false}
-        if _storage._location != other_storage._location {return false}
-        if _storage._query != other_storage._query {return false}
+        let rhs_storage = _args.1
+        if _storage._register != rhs_storage._register {return false}
+        if _storage._location != rhs_storage._location {return false}
+        if _storage._query != rhs_storage._query {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "item"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response) -> Bool {
-    if self.item != other.item {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.item)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.item.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.item, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response) -> Bool {
+    if lhs.item != rhs.item {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".InventoryStream"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "location"),
     3: .same(proto: "session"),
@@ -5051,33 +5659,83 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request: SwiftPro
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._location)
+        case 2: try decoder.decodeRepeatedStringField(value: &_storage._local)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._session)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._location {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._local.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._local, fieldNumber: 2)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._session, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._location != other_storage._location {return false}
-        if _storage._session != other_storage._session {return false}
-        if _storage._local != other_storage._local {return false}
+        let rhs_storage = _args.1
+        if _storage._location != rhs_storage._location {return false}
+        if _storage._session != rhs_storage._session {return false}
+        if _storage._local != rhs_storage._local {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.protoMessageName + ".Payload"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "event"),
     2: .same(proto: "item"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload) -> Bool {
-    if self.event != other.event {return false}
-    if self.item != other.item {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.event)
+      case 2: try decoder.decodeRepeatedMessageField(value: &self.item)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.event != .pingPong {
+      try visitor.visitSingularEnumField(value: self.event, fieldNumber: 1)
+    }
+    if !self.item.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.item, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload) -> Bool {
+    if lhs.event != rhs.event {return false}
+    if lhs.item != rhs.item {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

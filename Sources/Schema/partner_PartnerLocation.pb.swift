@@ -25,8 +25,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Specifies information about a brick-and-mortar location owned by a partner organization that has an active account
 /// with Bloombox.
-public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PartnerLocation"
+public struct Bloombox_Schema_Partner_PartnerLocation {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Short, unique string that identifies this location, scoped to the parent organization.
   public var code: String {
@@ -42,7 +44,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
   /// Returns true if `partner` has been explicitly set.
   public var hasPartner: Bool {return _storage._partner != nil}
   /// Clears the value of `partner`. Subsequent reads from it will return its default value.
-  public mutating func clearPartner() {_storage._partner = nil}
+  public mutating func clearPartner() {_uniqueStorage()._partner = nil}
 
   /// Name of this location, in human-readable verbose form.
   public var name: String {
@@ -64,7 +66,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
   /// Returns true if `flags` has been explicitly set.
   public var hasFlags: Bool {return _storage._flags != nil}
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {_storage._flags = nil}
+  public mutating func clearFlags() {_uniqueStorage()._flags = nil}
 
   /// Contact information for this location.
   public var contact: Opencannabis_Contact_ContactInfo {
@@ -74,7 +76,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
   /// Returns true if `contact` has been explicitly set.
   public var hasContact: Bool {return _storage._contact != nil}
   /// Clears the value of `contact`. Subsequent reads from it will return its default value.
-  public mutating func clearContact() {_storage._contact = nil}
+  public mutating func clearContact() {_uniqueStorage()._contact = nil}
 
   /// Branding specific to this location. Partner-level branding is used if this is left unspecified.
   public var branding: Opencannabis_Media_MediaKey {
@@ -84,7 +86,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
   /// Returns true if `branding` has been explicitly set.
   public var hasBranding: Bool {return _storage._branding != nil}
   /// Clears the value of `branding`. Subsequent reads from it will return its default value.
-  public mutating func clearBranding() {_storage._branding = nil}
+  public mutating func clearBranding() {_uniqueStorage()._branding = nil}
 
   /// Settings for this partner location.
   public var settings: Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
@@ -94,7 +96,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
   /// Returns true if `settings` has been explicitly set.
   public var hasSettings: Bool {return _storage._settings != nil}
   /// Clears the value of `settings`. Subsequent reads from it will return its default value.
-  public mutating func clearSettings() {_storage._settings = nil}
+  public mutating func clearSettings() {_uniqueStorage()._settings = nil}
 
   /// Timestamp for when this record was created.
   public var created: Opencannabis_Temporal_Instant {
@@ -104,7 +106,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
   /// Returns true if `created` has been explicitly set.
   public var hasCreated: Bool {return _storage._created != nil}
   /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   /// Timestamp for when this record was last modified.
   public var modified: Opencannabis_Temporal_Instant {
@@ -114,76 +116,11 @@ public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._code)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._partner)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._name)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._label)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._flags)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._branding)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._contact)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._settings)
-        case 100: try decoder.decodeSingularMessageField(value: &_storage._created)
-        case 101: try decoder.decodeSingularMessageField(value: &_storage._modified)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._code.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._code, fieldNumber: 1)
-      }
-      if let v = _storage._partner {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._name.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 3)
-      }
-      if !_storage._label.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._label, fieldNumber: 4)
-      }
-      if let v = _storage._flags {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._branding {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if let v = _storage._contact {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-      if let v = _storage._settings {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-      }
-      if let v = _storage._created {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 100)
-      }
-      if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 101)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -192,7 +129,8 @@ public struct Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "bloombox.schema.partner"
 
-extension Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PartnerLocation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "code"),
     2: .same(proto: "partner"),
@@ -243,26 +181,83 @@ extension Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf._MessageImpleme
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerLocation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._code)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._partner)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._label)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._flags)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._branding)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._contact)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._settings)
+        case 100: try decoder.decodeSingularMessageField(value: &_storage._created)
+        case 101: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._code.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._code, fieldNumber: 1)
+      }
+      if let v = _storage._partner {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 3)
+      }
+      if !_storage._label.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._label, fieldNumber: 4)
+      }
+      if let v = _storage._flags {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._branding {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._contact {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+      if let v = _storage._settings {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 100)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 101)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_PartnerLocation, rhs: Bloombox_Schema_Partner_PartnerLocation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._code != other_storage._code {return false}
-        if _storage._partner != other_storage._partner {return false}
-        if _storage._name != other_storage._name {return false}
-        if _storage._label != other_storage._label {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._contact != other_storage._contact {return false}
-        if _storage._branding != other_storage._branding {return false}
-        if _storage._settings != other_storage._settings {return false}
-        if _storage._created != other_storage._created {return false}
-        if _storage._modified != other_storage._modified {return false}
+        let rhs_storage = _args.1
+        if _storage._code != rhs_storage._code {return false}
+        if _storage._partner != rhs_storage._partner {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._label != rhs_storage._label {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._contact != rhs_storage._contact {return false}
+        if _storage._branding != rhs_storage._branding {return false}
+        if _storage._settings != rhs_storage._settings {return false}
+        if _storage._created != rhs_storage._created {return false}
+        if _storage._modified != rhs_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

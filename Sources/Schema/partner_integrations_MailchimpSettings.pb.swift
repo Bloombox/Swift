@@ -23,8 +23,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies MailChimp integration features to enable or disable.
-public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".MailchimpIntegrationFeatures"
+public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Route user signups to MailChimp.
   public var signups: Bool = false
@@ -38,43 +40,13 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegratio
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.signups)
-      case 2: try decoder.decodeSingularBoolField(value: &self.segments)
-      case 3: try decoder.decodeSingularBoolField(value: &self.ordering)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.signups != false {
-      try visitor.visitSingularBoolField(value: self.signups, fieldNumber: 1)
-    }
-    if self.segments != false {
-      try visitor.visitSingularBoolField(value: self.segments, fieldNumber: 2)
-    }
-    if self.ordering != false {
-      try visitor.visitSingularBoolField(value: self.ordering, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// MailChimp list mappings to use for signup integration.
-public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".MailchimpLists"
+public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Main comms list to use for user notifications.
   public var comms: String = String()
@@ -85,39 +57,13 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists: Swi
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.comms)
-      case 2: try decoder.decodeSingularStringField(value: &self.marketing)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.comms.isEmpty {
-      try visitor.visitSingularStringField(value: self.comms, fieldNumber: 1)
-    }
-    if !self.marketing.isEmpty {
-      try visitor.visitSingularStringField(value: self.marketing, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies MailChimp integration settings.
-public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".MailchimpSettings"
+public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// API key for use with MailChimp.
   public var apiKey: String {
@@ -133,7 +79,7 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings: 
   /// Returns true if `features` has been explicitly set.
   public var hasFeatures: Bool {return _storage._features != nil}
   /// Clears the value of `features`. Subsequent reads from it will return its default value.
-  public mutating func clearFeatures() {_storage._features = nil}
+  public mutating func clearFeatures() {_uniqueStorage()._features = nil}
 
   /// Lists to use for various bindings in MailChimp.
   public var lists: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists {
@@ -143,48 +89,11 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings: 
   /// Returns true if `lists` has been explicitly set.
   public var hasLists: Bool {return _storage._lists != nil}
   /// Clears the value of `lists`. Subsequent reads from it will return its default value.
-  public mutating func clearLists() {_storage._lists = nil}
+  public mutating func clearLists() {_uniqueStorage()._lists = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._apiKey)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._features)
-        case 11: try decoder.decodeSingularMessageField(value: &_storage._lists)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._apiKey.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._apiKey, fieldNumber: 1)
-      }
-      if let v = _storage._features {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      }
-      if let v = _storage._lists {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -193,37 +102,84 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings: 
 
 fileprivate let _protobuf_package = "bloombox.schema.partner.integrations.mailchimp"
 
-extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MailchimpIntegrationFeatures"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "signups"),
     2: .same(proto: "segments"),
     3: .same(proto: "ordering"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures) -> Bool {
-    if self.signups != other.signups {return false}
-    if self.segments != other.segments {return false}
-    if self.ordering != other.ordering {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.signups)
+      case 2: try decoder.decodeSingularBoolField(value: &self.segments)
+      case 3: try decoder.decodeSingularBoolField(value: &self.ordering)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.signups != false {
+      try visitor.visitSingularBoolField(value: self.signups, fieldNumber: 1)
+    }
+    if self.segments != false {
+      try visitor.visitSingularBoolField(value: self.segments, fieldNumber: 2)
+    }
+    if self.ordering != false {
+      try visitor.visitSingularBoolField(value: self.ordering, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures, rhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures) -> Bool {
+    if lhs.signups != rhs.signups {return false}
+    if lhs.segments != rhs.segments {return false}
+    if lhs.ordering != rhs.ordering {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MailchimpLists"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "comms"),
     2: .same(proto: "marketing"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists) -> Bool {
-    if self.comms != other.comms {return false}
-    if self.marketing != other.marketing {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.comms)
+      case 2: try decoder.decodeSingularStringField(value: &self.marketing)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.comms.isEmpty {
+      try visitor.visitSingularStringField(value: self.comms, fieldNumber: 1)
+    }
+    if !self.marketing.isEmpty {
+      try visitor.visitSingularStringField(value: self.marketing, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists, rhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists) -> Bool {
+    if lhs.comms != rhs.comms {return false}
+    if lhs.marketing != rhs.marketing {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MailchimpSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "api_key"),
     10: .same(proto: "features"),
@@ -253,19 +209,48 @@ extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings: Swif
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._apiKey)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._features)
+        case 11: try decoder.decodeSingularMessageField(value: &_storage._lists)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._apiKey.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._apiKey, fieldNumber: 1)
+      }
+      if let v = _storage._features {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+      if let v = _storage._lists {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings, rhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._apiKey != other_storage._apiKey {return false}
-        if _storage._features != other_storage._features {return false}
-        if _storage._lists != other_storage._lists {return false}
+        let rhs_storage = _args.1
+        if _storage._apiKey != rhs_storage._apiKey {return false}
+        if _storage._features != rhs_storage._features {return false}
+        if _storage._lists != rhs_storage._lists {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

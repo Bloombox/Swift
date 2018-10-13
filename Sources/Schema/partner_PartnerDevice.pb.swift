@@ -81,9 +81,28 @@ public enum Bloombox_Schema_Partner_PartnerDeviceType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Partner_PartnerDeviceType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Partner_PartnerDeviceType] = [
+    .unspecifiedDeviceType,
+    .internal,
+    .menuTablet,
+    .menuTv,
+    .checkinStation,
+    .checkinTv,
+    .posRegister,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the structure of a key for a given partner device.
-public struct Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PartnerDeviceKey"
+public struct Bloombox_Schema_Partner_PartnerDeviceKey {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Partner location that owns/co-locates this device.
   public var location: Bloombox_Schema_Partner_LocationKey {
@@ -93,7 +112,7 @@ public struct Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf.Message {
   /// Returns true if `location` has been explicitly set.
   public var hasLocation: Bool {return _storage._location != nil}
   /// Clears the value of `location`. Subsequent reads from it will return its default value.
-  public mutating func clearLocation() {_storage._location = nil}
+  public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
   /// UUID for this particular device.
   public var uuid: String {
@@ -105,45 +124,14 @@ public struct Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._location)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._uuid)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._location {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if !_storage._uuid.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies the structure of partner co-located device records.
-public struct Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PartnerDevice"
+public struct Bloombox_Schema_Partner_PartnerDevice {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Unique ID for this partner device.
   public var uuid: String {
@@ -159,7 +147,7 @@ public struct Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message {
   /// Returns true if `location` has been explicitly set.
   public var hasLocation: Bool {return _storage._location != nil}
   /// Clears the value of `location`. Subsequent reads from it will return its default value.
-  public mutating func clearLocation() {_storage._location = nil}
+  public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
   /// Type of the device this record represents.
   public var type: Bloombox_Schema_Partner_PartnerDeviceType {
@@ -175,7 +163,7 @@ public struct Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message {
   /// Returns true if `flags` has been explicitly set.
   public var hasFlags: Bool {return _storage._flags != nil}
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {_storage._flags = nil}
+  public mutating func clearFlags() {_uniqueStorage()._flags = nil}
 
   /// Device-specific information.
   public var device: Opencannabis_Device_Device {
@@ -185,7 +173,7 @@ public struct Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message {
   /// Returns true if `device` has been explicitly set.
   public var hasDevice: Bool {return _storage._device != nil}
   /// Clears the value of `device`. Subsequent reads from it will return its default value.
-  public mutating func clearDevice() {_storage._device = nil}
+  public mutating func clearDevice() {_uniqueStorage()._device = nil}
 
   /// Timestamp for the last time this device was "seen" on the API.
   public var seen: Opencannabis_Temporal_Instant {
@@ -195,7 +183,7 @@ public struct Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message {
   /// Returns true if `seen` has been explicitly set.
   public var hasSeen: Bool {return _storage._seen != nil}
   /// Clears the value of `seen`. Subsequent reads from it will return its default value.
-  public mutating func clearSeen() {_storage._seen = nil}
+  public mutating func clearSeen() {_uniqueStorage()._seen = nil}
 
   /// Timestamp for when this device originally registered.
   public var registered: Opencannabis_Temporal_Instant {
@@ -205,71 +193,20 @@ public struct Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message {
   /// Returns true if `registered` has been explicitly set.
   public var hasRegistered: Bool {return _storage._registered != nil}
   /// Clears the value of `registered`. Subsequent reads from it will return its default value.
-  public mutating func clearRegistered() {_storage._registered = nil}
+  public mutating func clearRegistered() {_uniqueStorage()._registered = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._location)
-        case 3: try decoder.decodeSingularEnumField(value: &_storage._type)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._flags)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._device)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._seen)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._registered)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._uuid.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
-      }
-      if let v = _storage._location {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if _storage._type != .unspecifiedDeviceType {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 3)
-      }
-      if let v = _storage._flags {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._device {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._seen {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if let v = _storage._registered {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Enumerates flags that may be applied to partner co-located devices.
-public struct Bloombox_Schema_Partner_PartnerDeviceFlags: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PartnerDeviceFlags"
+public struct Bloombox_Schema_Partner_PartnerDeviceFlags {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Indicates this device is active, or inactive.
   public var active: Bool = false
@@ -286,42 +223,6 @@ public struct Bloombox_Schema_Partner_PartnerDeviceFlags: SwiftProtobuf.Message 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.active)
-      case 2: try decoder.decodeSingularBoolField(value: &self.suspended)
-      case 3: try decoder.decodeSingularBoolField(value: &self.beta)
-      case 4: try decoder.decodeSingularBoolField(value: &self.sandbox)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.active != false {
-      try visitor.visitSingularBoolField(value: self.active, fieldNumber: 1)
-    }
-    if self.suspended != false {
-      try visitor.visitSingularBoolField(value: self.suspended, fieldNumber: 2)
-    }
-    if self.beta != false {
-      try visitor.visitSingularBoolField(value: self.beta, fieldNumber: 3)
-    }
-    if self.sandbox != false {
-      try visitor.visitSingularBoolField(value: self.sandbox, fieldNumber: 4)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -340,7 +241,8 @@ extension Bloombox_Schema_Partner_PartnerDeviceType: SwiftProtobuf._ProtoNamePro
   ]
 }
 
-extension Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PartnerDeviceKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "location"),
     2: .same(proto: "uuid"),
@@ -367,23 +269,49 @@ extension Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf._MessageImplem
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerDeviceKey) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._location)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._location {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_PartnerDeviceKey, rhs: Bloombox_Schema_Partner_PartnerDeviceKey) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._location != other_storage._location {return false}
-        if _storage._uuid != other_storage._uuid {return false}
+        let rhs_storage = _args.1
+        if _storage._location != rhs_storage._location {return false}
+        if _storage._uuid != rhs_storage._uuid {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PartnerDevice"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
     2: .same(proto: "location"),
@@ -425,28 +353,74 @@ extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf._MessageImplement
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerDevice) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._location)
+        case 3: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._flags)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._device)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._seen)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._registered)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
+      }
+      if let v = _storage._location {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if _storage._type != .unspecifiedDeviceType {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 3)
+      }
+      if let v = _storage._flags {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._device {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._seen {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._registered {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_PartnerDevice, rhs: Bloombox_Schema_Partner_PartnerDevice) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._location != other_storage._location {return false}
-        if _storage._type != other_storage._type {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._device != other_storage._device {return false}
-        if _storage._seen != other_storage._seen {return false}
-        if _storage._registered != other_storage._registered {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._location != rhs_storage._location {return false}
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._device != rhs_storage._device {return false}
+        if _storage._seen != rhs_storage._seen {return false}
+        if _storage._registered != rhs_storage._registered {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_PartnerDeviceFlags: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_PartnerDeviceFlags: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PartnerDeviceFlags"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "active"),
     2: .same(proto: "suspended"),
@@ -454,12 +428,40 @@ extension Bloombox_Schema_Partner_PartnerDeviceFlags: SwiftProtobuf._MessageImpl
     4: .same(proto: "sandbox"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerDeviceFlags) -> Bool {
-    if self.active != other.active {return false}
-    if self.suspended != other.suspended {return false}
-    if self.beta != other.beta {return false}
-    if self.sandbox != other.sandbox {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.active)
+      case 2: try decoder.decodeSingularBoolField(value: &self.suspended)
+      case 3: try decoder.decodeSingularBoolField(value: &self.beta)
+      case 4: try decoder.decodeSingularBoolField(value: &self.sandbox)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.active != false {
+      try visitor.visitSingularBoolField(value: self.active, fieldNumber: 1)
+    }
+    if self.suspended != false {
+      try visitor.visitSingularBoolField(value: self.suspended, fieldNumber: 2)
+    }
+    if self.beta != false {
+      try visitor.visitSingularBoolField(value: self.beta, fieldNumber: 3)
+    }
+    if self.sandbox != false {
+      try visitor.visitSingularBoolField(value: self.sandbox, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_PartnerDeviceFlags, rhs: Bloombox_Schema_Partner_PartnerDeviceFlags) -> Bool {
+    if lhs.active != rhs.active {return false}
+    if lhs.suspended != rhs.suspended {return false}
+    if lhs.beta != rhs.beta {return false}
+    if lhs.sandbox != rhs.sandbox {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

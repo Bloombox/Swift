@@ -320,6 +320,71 @@ public enum Opencannabis_Geo_Usa_Ca_CaliforniaCounty: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Geo_Usa_Ca_CaliforniaCounty: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Geo_Usa_Ca_CaliforniaCounty] = [
+    .unknownCounty,
+    .alameda,
+    .alpine,
+    .amador,
+    .butte,
+    .calaveras,
+    .colusa,
+    .contraCosta,
+    .delNorte,
+    .elDorado,
+    .fresno,
+    .glenn,
+    .humboldt,
+    .imerial,
+    .inyo,
+    .kern,
+    .kings,
+    .lake,
+    .lassen,
+    .losAngeles,
+    .madera,
+    .marin,
+    .mariposa,
+    .mendocino,
+    .merced,
+    .modoc,
+    .mono,
+    .monterey,
+    .napa,
+    .orange,
+    .placer,
+    .plumas,
+    .riverside,
+    .sacramento,
+    .sanBenito,
+    .sanBernadino,
+    .sanDiego,
+    .sanFrancisco,
+    .sanJoaquin,
+    .sanLuisObispo,
+    .sanMateo,
+    .santaClara,
+    .santaCruz,
+    .shasta,
+    .sierra,
+    .siskiyou,
+    .sonoma,
+    .stanislaus,
+    .sutter,
+    .trinity,
+    .tulare,
+    .tuolomne,
+    .ventura,
+    .yolo,
+    .yuba,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Opencannabis_Geo_Usa_Ca_CaliforniaCounty: SwiftProtobuf._ProtoNameProviding {

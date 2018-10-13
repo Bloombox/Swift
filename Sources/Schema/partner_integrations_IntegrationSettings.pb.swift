@@ -95,9 +95,31 @@ public enum Bloombox_Schema_Partner_Integrations_IntegrationPartner: SwiftProtob
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Partner_Integrations_IntegrationPartner: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Partner_Integrations_IntegrationPartner] = [
+    .internal,
+    .salsify,
+    .keen,
+    .greenbits,
+    .mailchimp,
+    .sendgrid,
+    .twilio,
+    .onfleet,
+    .gsuite,
+    .treez,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a generic set of settings for a given integration.
-public struct Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".GenericIntegrationSettings"
+public struct Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the integration partner to which these settings apply for a given location.
   public var partner: Bloombox_Schema_Partner_Integrations_IntegrationPartner {
@@ -125,59 +147,20 @@ public struct Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings: S
   /// Returns true if `lastTested` has been explicitly set.
   public var hasLastTested: Bool {return _storage._lastTested != nil}
   /// Clears the value of `lastTested`. Subsequent reads from it will return its default value.
-  public mutating func clearLastTested() {_storage._lastTested = nil}
+  public mutating func clearLastTested() {_uniqueStorage()._lastTested = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._partner)
-        case 2: try decoder.decodeSingularBoolField(value: &_storage._enabled)
-        case 3: try decoder.decodeSingularBoolField(value: &_storage._fullySetup)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._lastTested)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._partner != .internal {
-        try visitor.visitSingularEnumField(value: _storage._partner, fieldNumber: 1)
-      }
-      if _storage._enabled != false {
-        try visitor.visitSingularBoolField(value: _storage._enabled, fieldNumber: 2)
-      }
-      if _storage._fullySetup != false {
-        try visitor.visitSingularBoolField(value: _storage._fullySetup, fieldNumber: 3)
-      }
-      if let v = _storage._lastTested {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Location-level integration settings.
-public struct Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".LocationIntegrationSettings"
+public struct Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies integrations that a specific location has setup.
   public var integrations: [Bloombox_Schema_Partner_Integrations_IntegrationPartner] {
@@ -199,7 +182,7 @@ public struct Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: 
   /// Returns true if `greenbits` has been explicitly set.
   public var hasGreenbits: Bool {return _storage._greenbits != nil}
   /// Clears the value of `greenbits`. Subsequent reads from it will return its default value.
-  public mutating func clearGreenbits() {_storage._greenbits = nil}
+  public mutating func clearGreenbits() {_uniqueStorage()._greenbits = nil}
 
   /// Specifies location-specific integration settings with MailChimp.
   public var mailchimp: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings {
@@ -209,7 +192,7 @@ public struct Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: 
   /// Returns true if `mailchimp` has been explicitly set.
   public var hasMailchimp: Bool {return _storage._mailchimp != nil}
   /// Clears the value of `mailchimp`. Subsequent reads from it will return its default value.
-  public mutating func clearMailchimp() {_storage._mailchimp = nil}
+  public mutating func clearMailchimp() {_uniqueStorage()._mailchimp = nil}
 
   /// Specifies location-specific integration settings with Sendgrid.
   public var sendgrid: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings {
@@ -219,7 +202,7 @@ public struct Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: 
   /// Returns true if `sendgrid` has been explicitly set.
   public var hasSendgrid: Bool {return _storage._sendgrid != nil}
   /// Clears the value of `sendgrid`. Subsequent reads from it will return its default value.
-  public mutating func clearSendgrid() {_storage._sendgrid = nil}
+  public mutating func clearSendgrid() {_uniqueStorage()._sendgrid = nil}
 
   /// Specifies location-specific integration settings with Twilio.
   public var twilio: Bloombox_Schema_Partner_Integrations_Twilio_TwilioSettings {
@@ -229,7 +212,7 @@ public struct Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: 
   /// Returns true if `twilio` has been explicitly set.
   public var hasTwilio: Bool {return _storage._twilio != nil}
   /// Clears the value of `twilio`. Subsequent reads from it will return its default value.
-  public mutating func clearTwilio() {_storage._twilio = nil}
+  public mutating func clearTwilio() {_uniqueStorage()._twilio = nil}
 
   /// Specifies location-specific integration settings with OnFleet.
   public var onfleet: Bloombox_Schema_Partner_Integrations_Onfleet_OnFleetSettings {
@@ -239,7 +222,7 @@ public struct Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: 
   /// Returns true if `onfleet` has been explicitly set.
   public var hasOnfleet: Bool {return _storage._onfleet != nil}
   /// Clears the value of `onfleet`. Subsequent reads from it will return its default value.
-  public mutating func clearOnfleet() {_storage._onfleet = nil}
+  public mutating func clearOnfleet() {_uniqueStorage()._onfleet = nil}
 
   /// Specifies location-specific integration settings with Treez.
   public var treez: Bloombox_Schema_Partner_Integrations_Treez_TreezSettings {
@@ -249,75 +232,20 @@ public struct Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: 
   /// Returns true if `treez` has been explicitly set.
   public var hasTreez: Bool {return _storage._treez != nil}
   /// Clears the value of `treez`. Subsequent reads from it will return its default value.
-  public mutating func clearTreez() {_storage._treez = nil}
+  public mutating func clearTreez() {_uniqueStorage()._treez = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeRepeatedEnumField(value: &_storage._integrations)
-        case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings>.self, value: &_storage._generic)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._greenbits)
-        case 11: try decoder.decodeSingularMessageField(value: &_storage._mailchimp)
-        case 12: try decoder.decodeSingularMessageField(value: &_storage._sendgrid)
-        case 13: try decoder.decodeSingularMessageField(value: &_storage._twilio)
-        case 14: try decoder.decodeSingularMessageField(value: &_storage._onfleet)
-        case 15: try decoder.decodeSingularMessageField(value: &_storage._treez)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._integrations.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._integrations, fieldNumber: 1)
-      }
-      if !_storage._generic.isEmpty {
-        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings>.self, value: _storage._generic, fieldNumber: 2)
-      }
-      if let v = _storage._greenbits {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      }
-      if let v = _storage._mailchimp {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
-      }
-      if let v = _storage._sendgrid {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
-      }
-      if let v = _storage._twilio {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 13)
-      }
-      if let v = _storage._onfleet {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
-      }
-      if let v = _storage._treez {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Partner-level integration settings.
-public struct Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PartnerIntegrationSettings"
+public struct Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies integrations that a specific partner has setup.
   public var integrations: [Bloombox_Schema_Partner_Integrations_IntegrationPartner] {
@@ -339,48 +267,11 @@ public struct Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings: S
   /// Returns true if `gsuite` has been explicitly set.
   public var hasGsuite: Bool {return _storage._gsuite != nil}
   /// Clears the value of `gsuite`. Subsequent reads from it will return its default value.
-  public mutating func clearGsuite() {_storage._gsuite = nil}
+  public mutating func clearGsuite() {_uniqueStorage()._gsuite = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeRepeatedEnumField(value: &_storage._integrations)
-        case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings>.self, value: &_storage._generic)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._gsuite)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._integrations.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._integrations, fieldNumber: 1)
-      }
-      if !_storage._generic.isEmpty {
-        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings>.self, value: _storage._generic, fieldNumber: 2)
-      }
-      if let v = _storage._gsuite {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -404,7 +295,8 @@ extension Bloombox_Schema_Partner_Integrations_IntegrationPartner: SwiftProtobuf
   ]
 }
 
-extension Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".GenericIntegrationSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "enabled"),
@@ -437,25 +329,59 @@ extension Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings: Swift
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._partner)
+        case 2: try decoder.decodeSingularBoolField(value: &_storage._enabled)
+        case 3: try decoder.decodeSingularBoolField(value: &_storage._fullySetup)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._lastTested)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._partner != .internal {
+        try visitor.visitSingularEnumField(value: _storage._partner, fieldNumber: 1)
+      }
+      if _storage._enabled != false {
+        try visitor.visitSingularBoolField(value: _storage._enabled, fieldNumber: 2)
+      }
+      if _storage._fullySetup != false {
+        try visitor.visitSingularBoolField(value: _storage._fullySetup, fieldNumber: 3)
+      }
+      if let v = _storage._lastTested {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings, rhs: Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._partner != other_storage._partner {return false}
-        if _storage._enabled != other_storage._enabled {return false}
-        if _storage._fullySetup != other_storage._fullySetup {return false}
-        if _storage._lastTested != other_storage._lastTested {return false}
+        let rhs_storage = _args.1
+        if _storage._partner != rhs_storage._partner {return false}
+        if _storage._enabled != rhs_storage._enabled {return false}
+        if _storage._fullySetup != rhs_storage._fullySetup {return false}
+        if _storage._lastTested != rhs_storage._lastTested {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LocationIntegrationSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "integrations"),
     2: .same(proto: "generic"),
@@ -500,29 +426,79 @@ extension Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings: Swif
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeRepeatedEnumField(value: &_storage._integrations)
+        case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings>.self, value: &_storage._generic)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._greenbits)
+        case 11: try decoder.decodeSingularMessageField(value: &_storage._mailchimp)
+        case 12: try decoder.decodeSingularMessageField(value: &_storage._sendgrid)
+        case 13: try decoder.decodeSingularMessageField(value: &_storage._twilio)
+        case 14: try decoder.decodeSingularMessageField(value: &_storage._onfleet)
+        case 15: try decoder.decodeSingularMessageField(value: &_storage._treez)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._integrations.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._integrations, fieldNumber: 1)
+      }
+      if !_storage._generic.isEmpty {
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings>.self, value: _storage._generic, fieldNumber: 2)
+      }
+      if let v = _storage._greenbits {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+      if let v = _storage._mailchimp {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      }
+      if let v = _storage._sendgrid {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+      }
+      if let v = _storage._twilio {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 13)
+      }
+      if let v = _storage._onfleet {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
+      }
+      if let v = _storage._treez {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings, rhs: Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._integrations != other_storage._integrations {return false}
-        if _storage._generic != other_storage._generic {return false}
-        if _storage._greenbits != other_storage._greenbits {return false}
-        if _storage._mailchimp != other_storage._mailchimp {return false}
-        if _storage._sendgrid != other_storage._sendgrid {return false}
-        if _storage._twilio != other_storage._twilio {return false}
-        if _storage._onfleet != other_storage._onfleet {return false}
-        if _storage._treez != other_storage._treez {return false}
+        let rhs_storage = _args.1
+        if _storage._integrations != rhs_storage._integrations {return false}
+        if _storage._generic != rhs_storage._generic {return false}
+        if _storage._greenbits != rhs_storage._greenbits {return false}
+        if _storage._mailchimp != rhs_storage._mailchimp {return false}
+        if _storage._sendgrid != rhs_storage._sendgrid {return false}
+        if _storage._twilio != rhs_storage._twilio {return false}
+        if _storage._onfleet != rhs_storage._onfleet {return false}
+        if _storage._treez != rhs_storage._treez {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PartnerIntegrationSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "integrations"),
     2: .same(proto: "generic"),
@@ -552,19 +528,48 @@ extension Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings: Swift
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeRepeatedEnumField(value: &_storage._integrations)
+        case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings>.self, value: &_storage._generic)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._gsuite)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._integrations.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._integrations, fieldNumber: 1)
+      }
+      if !_storage._generic.isEmpty {
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Integrations_GenericIntegrationSettings>.self, value: _storage._generic, fieldNumber: 2)
+      }
+      if let v = _storage._gsuite {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings, rhs: Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._integrations != other_storage._integrations {return false}
-        if _storage._generic != other_storage._generic {return false}
-        if _storage._gsuite != other_storage._gsuite {return false}
+        let rhs_storage = _args.1
+        if _storage._integrations != rhs_storage._integrations {return false}
+        if _storage._generic != rhs_storage._generic {return false}
+        if _storage._gsuite != rhs_storage._gsuite {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -21,8 +21,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Specifies the model for a traditional 'flower'-style product, which involves the sale or consumption of the flower
 /// or 'bud,' of a cannabis plant.
-public struct Opencannabis_Products_Flower: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Flower"
+public struct Opencannabis_Products_Flower {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Key that uniquely identifies this flower product.
   public var key: Opencannabis_Base_ProductKey {
@@ -32,7 +34,7 @@ public struct Opencannabis_Products_Flower: SwiftProtobuf.Message {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Content about this product.
   public var product: Opencannabis_Content_ProductContent {
@@ -42,7 +44,7 @@ public struct Opencannabis_Products_Flower: SwiftProtobuf.Message {
   /// Returns true if `product` has been explicitly set.
   public var hasProduct: Bool {return _storage._product != nil}
   /// Clears the value of `product`. Subsequent reads from it will return its default value.
-  public mutating func clearProduct() {_storage._product = nil}
+  public mutating func clearProduct() {_uniqueStorage()._product = nil}
 
   /// Materials and handling information about this product.
   public var material: Opencannabis_Content_MaterialsData {
@@ -52,48 +54,11 @@ public struct Opencannabis_Products_Flower: SwiftProtobuf.Message {
   /// Returns true if `material` has been explicitly set.
   public var hasMaterial: Bool {return _storage._material != nil}
   /// Clears the value of `material`. Subsequent reads from it will return its default value.
-  public mutating func clearMaterial() {_storage._material = nil}
+  public mutating func clearMaterial() {_uniqueStorage()._material = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._product)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._material)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._product {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._material {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -102,7 +67,8 @@ public struct Opencannabis_Products_Flower: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "opencannabis.products"
 
-extension Opencannabis_Products_Flower: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Flower: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Flower"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "product"),
@@ -132,19 +98,48 @@ extension Opencannabis_Products_Flower: SwiftProtobuf._MessageImplementationBase
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Flower) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._product)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._material)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._product {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._material {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Products_Flower, rhs: Opencannabis_Products_Flower) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._product != other_storage._product {return false}
-        if _storage._material != other_storage._material {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._product != rhs_storage._product {return false}
+        if _storage._material != rhs_storage._material {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

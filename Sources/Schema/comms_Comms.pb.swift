@@ -60,6 +60,19 @@ public enum Bloombox_Schema_Comms_Channel: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Comms_Channel: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Comms_Channel] = [
+    .unspecified,
+    .email,
+    .sms,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Bloombox_Schema_Comms_Channel: SwiftProtobuf._ProtoNameProviding {

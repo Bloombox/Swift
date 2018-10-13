@@ -20,8 +20,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Indicates temporal positioning - or, the "when" - for a telemetry event, post-ingest.
-public struct Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".EventPosition"
+public struct Bloombox_Schema_Analytics_EventPosition {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Timestamp describing when this event was ingested by the backend telemetry pipeline.
   public var ingest: Opencannabis_Temporal_Instant {
@@ -31,7 +33,7 @@ public struct Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf.Message {
   /// Returns true if `ingest` has been explicitly set.
   public var hasIngest: Bool {return _storage._ingest != nil}
   /// Clears the value of `ingest`. Subsequent reads from it will return its default value.
-  public mutating func clearIngest() {_storage._ingest = nil}
+  public mutating func clearIngest() {_uniqueStorage()._ingest = nil}
 
   /// Timestamp describing when this event occurred, as reported by the submitting device or endpoint.
   public var occurred: Opencannabis_Temporal_Instant {
@@ -41,7 +43,7 @@ public struct Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf.Message {
   /// Returns true if `occurred` has been explicitly set.
   public var hasOccurred: Bool {return _storage._occurred != nil}
   /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-  public mutating func clearOccurred() {_storage._occurred = nil}
+  public mutating func clearOccurred() {_uniqueStorage()._occurred = nil}
 
   /// Timestamps describing each instance of this event being processed by the telemetry pipeline.
   public var processed: UInt64 {
@@ -59,53 +61,14 @@ public struct Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._ingest)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._occurred)
-        case 4: try decoder.decodeSingularUInt64Field(value: &_storage._processed)
-        case 5: try decoder.decodeSingularUInt64Field(value: &_storage._enriched)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._ingest {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._occurred {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if _storage._processed != 0 {
-        try visitor.visitSingularUInt64Field(value: _storage._processed, fieldNumber: 4)
-      }
-      if _storage._enriched != 0 {
-        try visitor.visitSingularUInt64Field(value: _storage._enriched, fieldNumber: 5)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies full, inflated data records for contextually-related objects, w.r.t. the current event.
-public struct Bloombox_Schema_Analytics_EventActors: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".EventActors"
+public struct Bloombox_Schema_Analytics_EventActors {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// User account that was logged in when the event was submitted.
   public var user: Bloombox_Schema_Identity_User {
@@ -115,7 +78,7 @@ public struct Bloombox_Schema_Analytics_EventActors: SwiftProtobuf.Message {
   /// Returns true if `user` has been explicitly set.
   public var hasUser: Bool {return _storage._user != nil}
   /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  public mutating func clearUser() {_storage._user = nil}
+  public mutating func clearUser() {_uniqueStorage()._user = nil}
 
   /// Partner account under which the event was submitted.
   public var partner: Bloombox_Schema_Partner_Partner {
@@ -125,7 +88,7 @@ public struct Bloombox_Schema_Analytics_EventActors: SwiftProtobuf.Message {
   /// Returns true if `partner` has been explicitly set.
   public var hasPartner: Bool {return _storage._partner != nil}
   /// Clears the value of `partner`. Subsequent reads from it will return its default value.
-  public mutating func clearPartner() {_storage._partner = nil}
+  public mutating func clearPartner() {_uniqueStorage()._partner = nil}
 
   /// Location account under which this event was submitted.
   public var location: Bloombox_Schema_Partner_PartnerLocation {
@@ -135,55 +98,20 @@ public struct Bloombox_Schema_Analytics_EventActors: SwiftProtobuf.Message {
   /// Returns true if `location` has been explicitly set.
   public var hasLocation: Bool {return _storage._location != nil}
   /// Clears the value of `location`. Subsequent reads from it will return its default value.
-  public mutating func clearLocation() {_storage._location = nil}
+  public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._user)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._partner)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._location)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._user {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._partner {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._location {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies contextual metadata to include with events or exceptions recorded via analytics/telemetry ingest.
-public struct Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Context"
+public struct Bloombox_Schema_Analytics_Context {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Collection information, specifies event type or category.
   public var collection: Bloombox_Schema_Analytics_Context_Collection {
@@ -193,7 +121,7 @@ public struct Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message {
   /// Returns true if `collection` has been explicitly set.
   public var hasCollection: Bool {return _storage._collection != nil}
   /// Clears the value of `collection`. Subsequent reads from it will return its default value.
-  public mutating func clearCollection() {_storage._collection = nil}
+  public mutating func clearCollection() {_uniqueStorage()._collection = nil}
 
   /// Specifies the user associated with this event, if known.
   public var userKey: Bloombox_Schema_Identity_UserKey {
@@ -203,7 +131,7 @@ public struct Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message {
   /// Returns true if `userKey` has been explicitly set.
   public var hasUserKey: Bool {return _storage._userKey != nil}
   /// Clears the value of `userKey`. Subsequent reads from it will return its default value.
-  public mutating func clearUserKey() {_storage._userKey = nil}
+  public mutating func clearUserKey() {_uniqueStorage()._userKey = nil}
 
   /// Unique device fingerprint for this analytics context.
   public var fingerprint: String {
@@ -238,7 +166,7 @@ public struct Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message {
   /// Returns true if `scope` has been explicitly set.
   public var hasScope: Bool {return _storage._scope != nil}
   /// Clears the value of `scope`. Subsequent reads from it will return its default value.
-  public mutating func clearScope() {_storage._scope = nil}
+  public mutating func clearScope() {_uniqueStorage()._scope = nil}
 
   /// Application version information.
   public var app: Bloombox_Schema_Analytics_Context_DeviceApplication {
@@ -248,7 +176,7 @@ public struct Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message {
   /// Returns true if `app` has been explicitly set.
   public var hasApp: Bool {return _storage._app != nil}
   /// Clears the value of `app`. Subsequent reads from it will return its default value.
-  public mutating func clearApp() {_storage._app = nil}
+  public mutating func clearApp() {_uniqueStorage()._app = nil}
 
   /// Library version information.
   public var library: Bloombox_Schema_Analytics_Context_DeviceLibrary {
@@ -258,7 +186,7 @@ public struct Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message {
   /// Returns true if `library` has been explicitly set.
   public var hasLibrary: Bool {return _storage._library != nil}
   /// Clears the value of `library`. Subsequent reads from it will return its default value.
-  public mutating func clearLibrary() {_storage._library = nil}
+  public mutating func clearLibrary() {_uniqueStorage()._library = nil}
 
   /// Specifies information about a native device, when the event is being sent from a native context of some kind,
   /// such as a mobile phone application or embedded device running partner code.
@@ -269,7 +197,7 @@ public struct Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message {
   /// Returns true if `native` has been explicitly set.
   public var hasNative: Bool {return _storage._native != nil}
   /// Clears the value of `native`. Subsequent reads from it will return its default value.
-  public mutating func clearNative() {_storage._native = nil}
+  public mutating func clearNative() {_uniqueStorage()._native = nil}
 
   /// Specifies information about a web browser, when the event is being sent from some kind of web browsing context.
   public var browser: Bloombox_Schema_Analytics_Context_BrowserDeviceContext {
@@ -279,7 +207,7 @@ public struct Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message {
   /// Returns true if `browser` has been explicitly set.
   public var hasBrowser: Bool {return _storage._browser != nil}
   /// Clears the value of `browser`. Subsequent reads from it will return its default value.
-  public mutating func clearBrowser() {_storage._browser = nil}
+  public mutating func clearBrowser() {_uniqueStorage()._browser = nil}
 
   /// Origin location for this event, as determined by geolocation or explicit inclusion in the event payload.
   public var location: Opencannabis_Geo_Location {
@@ -289,84 +217,11 @@ public struct Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message {
   /// Returns true if `location` has been explicitly set.
   public var hasLocation: Bool {return _storage._location != nil}
   /// Clears the value of `location`. Subsequent reads from it will return its default value.
-  public mutating func clearLocation() {_storage._location = nil}
+  public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._collection)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._userKey)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._fingerprint)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._group)
-        case 5: try decoder.decodeSingularStringField(value: &_storage._hostname)
-        case 6: try decoder.decodeSingularStringField(value: &_storage._ipAddress)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._scope)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._app)
-        case 9: try decoder.decodeSingularMessageField(value: &_storage._library)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._native)
-        case 11: try decoder.decodeSingularMessageField(value: &_storage._browser)
-        case 12: try decoder.decodeSingularMessageField(value: &_storage._location)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._collection {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._userKey {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._fingerprint.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._fingerprint, fieldNumber: 3)
-      }
-      if !_storage._group.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._group, fieldNumber: 4)
-      }
-      if !_storage._hostname.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._hostname, fieldNumber: 5)
-      }
-      if !_storage._ipAddress.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._ipAddress, fieldNumber: 6)
-      }
-      if let v = _storage._scope {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-      if let v = _storage._app {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-      }
-      if let v = _storage._library {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-      }
-      if let v = _storage._native {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      }
-      if let v = _storage._browser {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
-      }
-      if let v = _storage._location {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -375,7 +230,8 @@ public struct Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "bloombox.schema.analytics"
 
-extension Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".EventPosition"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .same(proto: "ingest"),
     3: .same(proto: "occurred"),
@@ -408,25 +264,59 @@ extension Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf._MessageImpleme
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_EventPosition) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._ingest)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._occurred)
+        case 4: try decoder.decodeSingularUInt64Field(value: &_storage._processed)
+        case 5: try decoder.decodeSingularUInt64Field(value: &_storage._enriched)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._ingest {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._occurred {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if _storage._processed != 0 {
+        try visitor.visitSingularUInt64Field(value: _storage._processed, fieldNumber: 4)
+      }
+      if _storage._enriched != 0 {
+        try visitor.visitSingularUInt64Field(value: _storage._enriched, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Analytics_EventPosition, rhs: Bloombox_Schema_Analytics_EventPosition) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._ingest != other_storage._ingest {return false}
-        if _storage._occurred != other_storage._occurred {return false}
-        if _storage._processed != other_storage._processed {return false}
-        if _storage._enriched != other_storage._enriched {return false}
+        let rhs_storage = _args.1
+        if _storage._ingest != rhs_storage._ingest {return false}
+        if _storage._occurred != rhs_storage._occurred {return false}
+        if _storage._processed != rhs_storage._processed {return false}
+        if _storage._enriched != rhs_storage._enriched {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Analytics_EventActors: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_EventActors: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".EventActors"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "user"),
     2: .same(proto: "partner"),
@@ -456,24 +346,54 @@ extension Bloombox_Schema_Analytics_EventActors: SwiftProtobuf._MessageImplement
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_EventActors) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._user)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._partner)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._location)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._user {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._partner {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._location {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Analytics_EventActors, rhs: Bloombox_Schema_Analytics_EventActors) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._user != other_storage._user {return false}
-        if _storage._partner != other_storage._partner {return false}
-        if _storage._location != other_storage._location {return false}
+        let rhs_storage = _args.1
+        if _storage._user != rhs_storage._user {return false}
+        if _storage._partner != rhs_storage._partner {return false}
+        if _storage._location != rhs_storage._location {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Analytics_Context: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Context"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "collection"),
     2: .standard(proto: "user_key"),
@@ -530,28 +450,93 @@ extension Bloombox_Schema_Analytics_Context: SwiftProtobuf._MessageImplementatio
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._collection)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._userKey)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._fingerprint)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._group)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._hostname)
+        case 6: try decoder.decodeSingularStringField(value: &_storage._ipAddress)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._scope)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._app)
+        case 9: try decoder.decodeSingularMessageField(value: &_storage._library)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._native)
+        case 11: try decoder.decodeSingularMessageField(value: &_storage._browser)
+        case 12: try decoder.decodeSingularMessageField(value: &_storage._location)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._collection {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._userKey {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._fingerprint.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._fingerprint, fieldNumber: 3)
+      }
+      if !_storage._group.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._group, fieldNumber: 4)
+      }
+      if !_storage._hostname.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._hostname, fieldNumber: 5)
+      }
+      if !_storage._ipAddress.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._ipAddress, fieldNumber: 6)
+      }
+      if let v = _storage._scope {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+      if let v = _storage._app {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if let v = _storage._library {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
+      if let v = _storage._native {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+      if let v = _storage._browser {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      }
+      if let v = _storage._location {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Analytics_Context, rhs: Bloombox_Schema_Analytics_Context) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._collection != other_storage._collection {return false}
-        if _storage._userKey != other_storage._userKey {return false}
-        if _storage._fingerprint != other_storage._fingerprint {return false}
-        if _storage._group != other_storage._group {return false}
-        if _storage._hostname != other_storage._hostname {return false}
-        if _storage._ipAddress != other_storage._ipAddress {return false}
-        if _storage._scope != other_storage._scope {return false}
-        if _storage._app != other_storage._app {return false}
-        if _storage._library != other_storage._library {return false}
-        if _storage._native != other_storage._native {return false}
-        if _storage._browser != other_storage._browser {return false}
-        if _storage._location != other_storage._location {return false}
+        let rhs_storage = _args.1
+        if _storage._collection != rhs_storage._collection {return false}
+        if _storage._userKey != rhs_storage._userKey {return false}
+        if _storage._fingerprint != rhs_storage._fingerprint {return false}
+        if _storage._group != rhs_storage._group {return false}
+        if _storage._hostname != rhs_storage._hostname {return false}
+        if _storage._ipAddress != rhs_storage._ipAddress {return false}
+        if _storage._scope != rhs_storage._scope {return false}
+        if _storage._app != rhs_storage._app {return false}
+        if _storage._library != rhs_storage._library {return false}
+        if _storage._native != rhs_storage._native {return false}
+        if _storage._browser != rhs_storage._browser {return false}
+        if _storage._location != rhs_storage._location {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

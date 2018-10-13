@@ -26,8 +26,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Transactions: CREATE. Create transactions allocate, or issue, digital assets within the context of a ledger. The
 /// owner-to-be of those assets commits the transaction, signed with their private key.
-public struct Bloombox_Schema_Ledger_CreateOperation: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CreateOperation"
+public struct Bloombox_Schema_Ledger_CreateOperation {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the digital asset we are creating a record for in the digital ledger. The content of this data depends on
   /// the particular asset being stored.
@@ -38,7 +40,7 @@ public struct Bloombox_Schema_Ledger_CreateOperation: SwiftProtobuf.Message {
   /// Returns true if `asset` has been explicitly set.
   public var hasAsset: Bool {return _storage._asset != nil}
   /// Clears the value of `asset`. Subsequent reads from it will return its default value.
-  public mutating func clearAsset() {_storage._asset = nil}
+  public mutating func clearAsset() {_uniqueStorage()._asset = nil}
 
   /// Specifies the acting identity on the ledger for this transaction. In the context of a CREATE transaction, this is
   /// the final owner of the digital asset after execution.
@@ -49,52 +51,21 @@ public struct Bloombox_Schema_Ledger_CreateOperation: SwiftProtobuf.Message {
   /// Returns true if `owner` has been explicitly set.
   public var hasOwner: Bool {return _storage._owner != nil}
   /// Clears the value of `owner`. Subsequent reads from it will return its default value.
-  public mutating func clearOwner() {_storage._owner = nil}
+  public mutating func clearOwner() {_uniqueStorage()._owner = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._asset)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._owner)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._asset {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._owner {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Transactions: TRANSFER. Transfer transactions enable the interchange of existing digital assets, and, as such, always
 /// follow a CREATE transaction in the lifecycle of an asset.
-public struct Bloombox_Schema_Ledger_TransferOperation: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".TransferOperation"
+public struct Bloombox_Schema_Ledger_TransferOperation {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the underlying digital asset being transferred. TRANSFER transactions specify digital assets by
   /// reference. It is worth noting here that an asset's ID is equal to the CREATE transaction's ID that created it.
@@ -105,7 +76,7 @@ public struct Bloombox_Schema_Ledger_TransferOperation: SwiftProtobuf.Message {
   /// Returns true if `asset` has been explicitly set.
   public var hasAsset: Bool {return _storage._asset != nil}
   /// Clears the value of `asset`. Subsequent reads from it will return its default value.
-  public mutating func clearAsset() {_storage._asset = nil}
+  public mutating func clearAsset() {_uniqueStorage()._asset = nil}
 
   /// Specifies the acting identity on the ledger for this transaction. In the case of a TRANSFER, it must be the
   /// authorized owner of the asset in its current state, in order to fully authorize the underlying asset's transfer.
@@ -116,7 +87,7 @@ public struct Bloombox_Schema_Ledger_TransferOperation: SwiftProtobuf.Message {
   /// Returns true if `source` has been explicitly set.
   public var hasSource: Bool {return _storage._source != nil}
   /// Clears the value of `source`. Subsequent reads from it will return its default value.
-  public mutating func clearSource() {_storage._source = nil}
+  public mutating func clearSource() {_uniqueStorage()._source = nil}
 
   /// Specifies the identity of the future-owner of the digital asset, should this transaction be deemed valid and then
   /// accepted to the ledger. That is to say, this is the "recipient" in the transaction.
@@ -127,56 +98,21 @@ public struct Bloombox_Schema_Ledger_TransferOperation: SwiftProtobuf.Message {
   /// Returns true if `target` has been explicitly set.
   public var hasTarget: Bool {return _storage._target != nil}
   /// Clears the value of `target`. Subsequent reads from it will return its default value.
-  public mutating func clearTarget() {_storage._target = nil}
+  public mutating func clearTarget() {_uniqueStorage()._target = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._asset)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._source)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._target)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._asset {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._source {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._target {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies the concept of a transaction "key," which may or may not be based on the transaction's ID, and may be
 /// allocated outside of the transaction's commitment lifecycle (i.e. to track an in-flight transaction).
-public struct Bloombox_Schema_Ledger_TransactionKey: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".TransactionKey"
+public struct Bloombox_Schema_Ledger_TransactionKey {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the 'XID', or eXternal ID, for a given transaction. External IDs are not required to be dependent on
   /// signed transaction content.
@@ -189,40 +125,14 @@ public struct Bloombox_Schema_Ledger_TransactionKey: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.xid)
-      case 2: try decoder.decodeSingularStringField(value: &self.id)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.xid.isEmpty {
-      try visitor.visitSingularStringField(value: self.xid, fieldNumber: 1)
-    }
-    if !self.id.isEmpty {
-      try visitor.visitSingularStringField(value: self.id, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Describes the structure of an individual transaction on the ledger. This serves as the main structural specification
 /// for a transaction, by operating as a generic container of both CREATE and TRANSFER operations.
-public struct Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Transaction"
+public struct Bloombox_Schema_Ledger_Transaction {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Key for the transaction, which may consist of an ID (calculated from the underlying transaction content), and/or
   /// an XID (external ID, which is independent of the transaction content and committment status).
@@ -233,7 +143,7 @@ public struct Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Operation mode of this transaction. Can either be CREATE or TRANSFER. Create transactions perform the issuance of
   /// digital assets, and TRANSFER transactions perform their interchange.
@@ -275,7 +185,7 @@ public struct Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message {
   /// Returns true if `created` has been explicitly set.
   public var hasCreated: Bool {return _storage._created != nil}
   /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   /// Timestamp for when this ledger transaction was last modified.
   public var modified: Opencannabis_Temporal_Instant {
@@ -285,7 +195,7 @@ public struct Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -297,6 +207,7 @@ public struct Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message {
     /// Specifies a payload for an asset TRANSFER transaction.
     case interchange(Bloombox_Schema_Ledger_TransferOperation)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Ledger_Transaction.OneOf_Txn, rhs: Bloombox_Schema_Ledger_Transaction.OneOf_Txn) -> Bool {
       switch (lhs, rhs) {
       case (.issuance(let l), .issuance(let r)): return l == r
@@ -304,6 +215,7 @@ public struct Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message {
       default: return false
       }
     }
+  #endif
   }
 
   /// Enumerates the types of operations supported via this interface. At the time of writing, supported transaction
@@ -342,78 +254,27 @@ public struct Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 2: try decoder.decodeSingularEnumField(value: &_storage._operation)
-        case 10:
-          var v: Bloombox_Schema_Ledger_CreateOperation?
-          if let current = _storage._txn {
-            try decoder.handleConflictingOneOf()
-            if case .issuance(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._txn = .issuance(v)}
-        case 11:
-          var v: Bloombox_Schema_Ledger_TransferOperation?
-          if let current = _storage._txn {
-            try decoder.handleConflictingOneOf()
-            if case .interchange(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._txn = .interchange(v)}
-        case 98: try decoder.decodeSingularMessageField(value: &_storage._created)
-        case 99: try decoder.decodeSingularMessageField(value: &_storage._modified)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if _storage._operation != .create {
-        try visitor.visitSingularEnumField(value: _storage._operation, fieldNumber: 2)
-      }
-      switch _storage._txn {
-      case .issuance(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      case .interchange(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
-      case nil: break
-      }
-      if let v = _storage._created {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 98)
-      }
-      if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Ledger_Transaction.Operation: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Ledger_Transaction.Operation] = [
+    .create,
+    .transfer,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bloombox.schema.ledger"
 
-extension Bloombox_Schema_Ledger_CreateOperation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Ledger_CreateOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CreateOperation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "asset"),
     2: .same(proto: "owner"),
@@ -440,23 +301,49 @@ extension Bloombox_Schema_Ledger_CreateOperation: SwiftProtobuf._MessageImplemen
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Ledger_CreateOperation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._asset)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._owner)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._asset {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._owner {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Ledger_CreateOperation, rhs: Bloombox_Schema_Ledger_CreateOperation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._asset != other_storage._asset {return false}
-        if _storage._owner != other_storage._owner {return false}
+        let rhs_storage = _args.1
+        if _storage._asset != rhs_storage._asset {return false}
+        if _storage._owner != rhs_storage._owner {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Ledger_TransferOperation: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Ledger_TransferOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TransferOperation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "asset"),
     2: .same(proto: "source"),
@@ -486,38 +373,89 @@ extension Bloombox_Schema_Ledger_TransferOperation: SwiftProtobuf._MessageImplem
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Ledger_TransferOperation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._asset)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._source)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._target)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._asset {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._source {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._target {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Ledger_TransferOperation, rhs: Bloombox_Schema_Ledger_TransferOperation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._asset != other_storage._asset {return false}
-        if _storage._source != other_storage._source {return false}
-        if _storage._target != other_storage._target {return false}
+        let rhs_storage = _args.1
+        if _storage._asset != rhs_storage._asset {return false}
+        if _storage._source != rhs_storage._source {return false}
+        if _storage._target != rhs_storage._target {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Ledger_TransactionKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Ledger_TransactionKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TransactionKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "xid"),
     2: .same(proto: "id"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Ledger_TransactionKey) -> Bool {
-    if self.xid != other.xid {return false}
-    if self.id != other.id {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.xid)
+      case 2: try decoder.decodeSingularStringField(value: &self.id)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.xid.isEmpty {
+      try visitor.visitSingularStringField(value: self.xid, fieldNumber: 1)
+    }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Ledger_TransactionKey, rhs: Bloombox_Schema_Ledger_TransactionKey) -> Bool {
+    if lhs.xid != rhs.xid {return false}
+    if lhs.id != rhs.id {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Ledger_Transaction: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Transaction"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "operation"),
@@ -554,21 +492,77 @@ extension Bloombox_Schema_Ledger_Transaction: SwiftProtobuf._MessageImplementati
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Ledger_Transaction) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._operation)
+        case 10:
+          var v: Bloombox_Schema_Ledger_CreateOperation?
+          if let current = _storage._txn {
+            try decoder.handleConflictingOneOf()
+            if case .issuance(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._txn = .issuance(v)}
+        case 11:
+          var v: Bloombox_Schema_Ledger_TransferOperation?
+          if let current = _storage._txn {
+            try decoder.handleConflictingOneOf()
+            if case .interchange(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._txn = .interchange(v)}
+        case 98: try decoder.decodeSingularMessageField(value: &_storage._created)
+        case 99: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if _storage._operation != .create {
+        try visitor.visitSingularEnumField(value: _storage._operation, fieldNumber: 2)
+      }
+      switch _storage._txn {
+      case .issuance(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      case .interchange(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      case nil: break
+      }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 98)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Ledger_Transaction, rhs: Bloombox_Schema_Ledger_Transaction) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._operation != other_storage._operation {return false}
-        if _storage._txn != other_storage._txn {return false}
-        if _storage._created != other_storage._created {return false}
-        if _storage._modified != other_storage._modified {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._operation != rhs_storage._operation {return false}
+        if _storage._txn != rhs_storage._txn {return false}
+        if _storage._created != rhs_storage._created {return false}
+        if _storage._modified != rhs_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

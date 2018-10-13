@@ -23,8 +23,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Displayable content name.
-public struct Opencannabis_Content_Name: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Name"
+public struct Opencannabis_Content_Name {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Primary name.
   public var primary: String = String()
@@ -35,11 +37,19 @@ public struct Opencannabis_Content_Name: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.content"
+
+extension Opencannabis_Content_Name: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Name"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "primary"),
+    2: .same(proto: "display"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -50,10 +60,6 @@ public struct Opencannabis_Content_Name: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.primary.isEmpty {
       try visitor.visitSingularStringField(value: self.primary, fieldNumber: 1)
@@ -63,22 +69,11 @@ public struct Opencannabis_Content_Name: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.content"
-
-extension Opencannabis_Content_Name: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "primary"),
-    2: .same(proto: "display"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_Name) -> Bool {
-    if self.primary != other.primary {return false}
-    if self.display != other.display {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Content_Name, rhs: Opencannabis_Content_Name) -> Bool {
+    if lhs.primary != rhs.primary {return false}
+    if lhs.display != rhs.display {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

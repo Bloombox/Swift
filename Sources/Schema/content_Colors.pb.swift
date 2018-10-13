@@ -95,9 +95,31 @@ public enum Opencannabis_Content_StandardColor: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Content_StandardColor: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Content_StandardColor] = [
+    .unspecifiedColor,
+    .red,
+    .green,
+    .blue,
+    .yellow,
+    .purple,
+    .orange,
+    .pink,
+    .gray,
+    .brown,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a component of a high-res color specification.
-public struct Opencannabis_Content_RGBAColorSpec: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".RGBAColorSpec"
+public struct Opencannabis_Content_RGBAColorSpec {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Red value for the color.
   public var r: UInt64 = 0
@@ -114,47 +136,13 @@ public struct Opencannabis_Content_RGBAColorSpec: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularUInt64Field(value: &self.r)
-      case 2: try decoder.decodeSingularUInt64Field(value: &self.g)
-      case 3: try decoder.decodeSingularUInt64Field(value: &self.b)
-      case 4: try decoder.decodeSingularUInt64Field(value: &self.a)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.r != 0 {
-      try visitor.visitSingularUInt64Field(value: self.r, fieldNumber: 1)
-    }
-    if self.g != 0 {
-      try visitor.visitSingularUInt64Field(value: self.g, fieldNumber: 2)
-    }
-    if self.b != 0 {
-      try visitor.visitSingularUInt64Field(value: self.b, fieldNumber: 3)
-    }
-    if self.a != 0 {
-      try visitor.visitSingularUInt64Field(value: self.a, fieldNumber: 4)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies a hue-saturation-brightness color specification.
-public struct Opencannabis_Content_HSBColorSpec: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".HSBColorSpec"
+public struct Opencannabis_Content_HSBColorSpec {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Hue value for the color.
   public var h: UInt64 = 0
@@ -168,43 +156,13 @@ public struct Opencannabis_Content_HSBColorSpec: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularUInt64Field(value: &self.h)
-      case 2: try decoder.decodeSingularUInt64Field(value: &self.s)
-      case 3: try decoder.decodeSingularUInt64Field(value: &self.b)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.h != 0 {
-      try visitor.visitSingularUInt64Field(value: self.h, fieldNumber: 1)
-    }
-    if self.s != 0 {
-      try visitor.visitSingularUInt64Field(value: self.s, fieldNumber: 2)
-    }
-    if self.b != 0 {
-      try visitor.visitSingularUInt64Field(value: self.b, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies a cyan-magenta-yellow-key color specification.
-public struct Opencannabis_Content_CMYKColorSpec: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CMYKColorSpec"
+public struct Opencannabis_Content_CMYKColorSpec {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Cyan avalue for the color.
   public var c: UInt64 = 0
@@ -221,47 +179,13 @@ public struct Opencannabis_Content_CMYKColorSpec: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularUInt64Field(value: &self.c)
-      case 2: try decoder.decodeSingularUInt64Field(value: &self.m)
-      case 3: try decoder.decodeSingularUInt64Field(value: &self.y)
-      case 4: try decoder.decodeSingularUInt64Field(value: &self.k)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.c != 0 {
-      try visitor.visitSingularUInt64Field(value: self.c, fieldNumber: 1)
-    }
-    if self.m != 0 {
-      try visitor.visitSingularUInt64Field(value: self.m, fieldNumber: 2)
-    }
-    if self.y != 0 {
-      try visitor.visitSingularUInt64Field(value: self.y, fieldNumber: 3)
-    }
-    if self.k != 0 {
-      try visitor.visitSingularUInt64Field(value: self.k, fieldNumber: 4)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an individual color, via standard reference, or hex, or some other form.
-public struct Opencannabis_Content_Color: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Color"
+public struct Opencannabis_Content_Color {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var spec: OneOf_Spec? {
     get {return _storage._spec}
@@ -327,6 +251,7 @@ public struct Opencannabis_Content_Color: SwiftProtobuf.Message {
     /// Specifies a CMYK-based color.
     case cmyk(Opencannabis_Content_CMYKColorSpec)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Content_Color.OneOf_Spec, rhs: Opencannabis_Content_Color.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.standard(let l), .standard(let r)): return l == r
@@ -337,14 +262,246 @@ public struct Opencannabis_Content_Color: SwiftProtobuf.Message {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Specifies a scheme of color selections, with primary and secondary colors and additional configurable color values.
+public struct Opencannabis_Content_ColorScheme {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Primary color for the color scheme.
+  public var primary: Opencannabis_Content_Color {
+    get {return _storage._primary ?? Opencannabis_Content_Color()}
+    set {_uniqueStorage()._primary = newValue}
+  }
+  /// Returns true if `primary` has been explicitly set.
+  public var hasPrimary: Bool {return _storage._primary != nil}
+  /// Clears the value of `primary`. Subsequent reads from it will return its default value.
+  public mutating func clearPrimary() {_uniqueStorage()._primary = nil}
+
+  /// Secondary color for the color scheme.
+  public var secondary: Opencannabis_Content_Color {
+    get {return _storage._secondary ?? Opencannabis_Content_Color()}
+    set {_uniqueStorage()._secondary = newValue}
+  }
+  /// Returns true if `secondary` has been explicitly set.
+  public var hasSecondary: Bool {return _storage._secondary != nil}
+  /// Clears the value of `secondary`. Subsequent reads from it will return its default value.
+  public mutating func clearSecondary() {_uniqueStorage()._secondary = nil}
+
+  /// Alert, or attention color, for the color scheme.
+  public var alert: Opencannabis_Content_Color {
+    get {return _storage._alert ?? Opencannabis_Content_Color()}
+    set {_uniqueStorage()._alert = newValue}
+  }
+  /// Returns true if `alert` has been explicitly set.
+  public var hasAlert: Bool {return _storage._alert != nil}
+  /// Clears the value of `alert`. Subsequent reads from it will return its default value.
+  public mutating func clearAlert() {_uniqueStorage()._alert = nil}
+
+  /// Color shades to be used in various contexts.
+  public var shades: [Opencannabis_Content_Color] {
+    get {return _storage._shades}
+    set {_uniqueStorage()._shades = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.content"
+
+extension Opencannabis_Content_StandardColor: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNSPECIFIED_COLOR"),
+    1: .same(proto: "RED"),
+    2: .same(proto: "GREEN"),
+    3: .same(proto: "BLUE"),
+    4: .same(proto: "YELLOW"),
+    5: .same(proto: "PURPLE"),
+    6: .same(proto: "ORANGE"),
+    7: .same(proto: "PINK"),
+    8: .same(proto: "GRAY"),
+    9: .same(proto: "BROWN"),
+  ]
+}
+
+extension Opencannabis_Content_RGBAColorSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".RGBAColorSpec"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "r"),
+    2: .same(proto: "g"),
+    3: .same(proto: "b"),
+    4: .same(proto: "a"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularUInt64Field(value: &self.r)
+      case 2: try decoder.decodeSingularUInt64Field(value: &self.g)
+      case 3: try decoder.decodeSingularUInt64Field(value: &self.b)
+      case 4: try decoder.decodeSingularUInt64Field(value: &self.a)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.r != 0 {
+      try visitor.visitSingularUInt64Field(value: self.r, fieldNumber: 1)
+    }
+    if self.g != 0 {
+      try visitor.visitSingularUInt64Field(value: self.g, fieldNumber: 2)
+    }
+    if self.b != 0 {
+      try visitor.visitSingularUInt64Field(value: self.b, fieldNumber: 3)
+    }
+    if self.a != 0 {
+      try visitor.visitSingularUInt64Field(value: self.a, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_RGBAColorSpec, rhs: Opencannabis_Content_RGBAColorSpec) -> Bool {
+    if lhs.r != rhs.r {return false}
+    if lhs.g != rhs.g {return false}
+    if lhs.b != rhs.b {return false}
+    if lhs.a != rhs.a {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Content_HSBColorSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".HSBColorSpec"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "h"),
+    2: .same(proto: "s"),
+    3: .same(proto: "b"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularUInt64Field(value: &self.h)
+      case 2: try decoder.decodeSingularUInt64Field(value: &self.s)
+      case 3: try decoder.decodeSingularUInt64Field(value: &self.b)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.h != 0 {
+      try visitor.visitSingularUInt64Field(value: self.h, fieldNumber: 1)
+    }
+    if self.s != 0 {
+      try visitor.visitSingularUInt64Field(value: self.s, fieldNumber: 2)
+    }
+    if self.b != 0 {
+      try visitor.visitSingularUInt64Field(value: self.b, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_HSBColorSpec, rhs: Opencannabis_Content_HSBColorSpec) -> Bool {
+    if lhs.h != rhs.h {return false}
+    if lhs.s != rhs.s {return false}
+    if lhs.b != rhs.b {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Content_CMYKColorSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CMYKColorSpec"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "c"),
+    2: .same(proto: "m"),
+    3: .same(proto: "y"),
+    4: .same(proto: "k"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularUInt64Field(value: &self.c)
+      case 2: try decoder.decodeSingularUInt64Field(value: &self.m)
+      case 3: try decoder.decodeSingularUInt64Field(value: &self.y)
+      case 4: try decoder.decodeSingularUInt64Field(value: &self.k)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.c != 0 {
+      try visitor.visitSingularUInt64Field(value: self.c, fieldNumber: 1)
+    }
+    if self.m != 0 {
+      try visitor.visitSingularUInt64Field(value: self.m, fieldNumber: 2)
+    }
+    if self.y != 0 {
+      try visitor.visitSingularUInt64Field(value: self.y, fieldNumber: 3)
+    }
+    if self.k != 0 {
+      try visitor.visitSingularUInt64Field(value: self.k, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_CMYKColorSpec, rhs: Opencannabis_Content_CMYKColorSpec) -> Bool {
+    if lhs.c != rhs.c {return false}
+    if lhs.m != rhs.m {return false}
+    if lhs.y != rhs.y {return false}
+    if lhs.k != rhs.k {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Content_Color: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Color"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "standard"),
+    2: .same(proto: "hex"),
+    3: .same(proto: "rgba"),
+    4: .same(proto: "hsb"),
+    5: .same(proto: "cmyk"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _spec: Opencannabis_Content_Color.OneOf_Spec?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _spec = source._spec
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
@@ -390,10 +547,6 @@ public struct Opencannabis_Content_Color: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       switch _storage._spec {
@@ -413,212 +566,23 @@ public struct Opencannabis_Content_Color: SwiftProtobuf.Message {
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Specifies a scheme of color selections, with primary and secondary colors and additional configurable color values.
-public struct Opencannabis_Content_ColorScheme: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".ColorScheme"
-
-  /// Primary color for the color scheme.
-  public var primary: Opencannabis_Content_Color {
-    get {return _storage._primary ?? Opencannabis_Content_Color()}
-    set {_uniqueStorage()._primary = newValue}
-  }
-  /// Returns true if `primary` has been explicitly set.
-  public var hasPrimary: Bool {return _storage._primary != nil}
-  /// Clears the value of `primary`. Subsequent reads from it will return its default value.
-  public mutating func clearPrimary() {_storage._primary = nil}
-
-  /// Secondary color for the color scheme.
-  public var secondary: Opencannabis_Content_Color {
-    get {return _storage._secondary ?? Opencannabis_Content_Color()}
-    set {_uniqueStorage()._secondary = newValue}
-  }
-  /// Returns true if `secondary` has been explicitly set.
-  public var hasSecondary: Bool {return _storage._secondary != nil}
-  /// Clears the value of `secondary`. Subsequent reads from it will return its default value.
-  public mutating func clearSecondary() {_storage._secondary = nil}
-
-  /// Alert, or attention color, for the color scheme.
-  public var alert: Opencannabis_Content_Color {
-    get {return _storage._alert ?? Opencannabis_Content_Color()}
-    set {_uniqueStorage()._alert = newValue}
-  }
-  /// Returns true if `alert` has been explicitly set.
-  public var hasAlert: Bool {return _storage._alert != nil}
-  /// Clears the value of `alert`. Subsequent reads from it will return its default value.
-  public mutating func clearAlert() {_storage._alert = nil}
-
-  /// Color shades to be used in various contexts.
-  public var shades: [Opencannabis_Content_Color] {
-    get {return _storage._shades}
-    set {_uniqueStorage()._shades = newValue}
-  }
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._primary)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._secondary)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._alert)
-        case 4: try decoder.decodeRepeatedMessageField(value: &_storage._shades)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._primary {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._secondary {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._alert {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if !_storage._shades.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._shades, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.content"
-
-extension Opencannabis_Content_StandardColor: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "UNSPECIFIED_COLOR"),
-    1: .same(proto: "RED"),
-    2: .same(proto: "GREEN"),
-    3: .same(proto: "BLUE"),
-    4: .same(proto: "YELLOW"),
-    5: .same(proto: "PURPLE"),
-    6: .same(proto: "ORANGE"),
-    7: .same(proto: "PINK"),
-    8: .same(proto: "GRAY"),
-    9: .same(proto: "BROWN"),
-  ]
-}
-
-extension Opencannabis_Content_RGBAColorSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "r"),
-    2: .same(proto: "g"),
-    3: .same(proto: "b"),
-    4: .same(proto: "a"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_RGBAColorSpec) -> Bool {
-    if self.r != other.r {return false}
-    if self.g != other.g {return false}
-    if self.b != other.b {return false}
-    if self.a != other.a {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Opencannabis_Content_HSBColorSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "h"),
-    2: .same(proto: "s"),
-    3: .same(proto: "b"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_HSBColorSpec) -> Bool {
-    if self.h != other.h {return false}
-    if self.s != other.s {return false}
-    if self.b != other.b {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Opencannabis_Content_CMYKColorSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "c"),
-    2: .same(proto: "m"),
-    3: .same(proto: "y"),
-    4: .same(proto: "k"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_CMYKColorSpec) -> Bool {
-    if self.c != other.c {return false}
-    if self.m != other.m {return false}
-    if self.y != other.y {return false}
-    if self.k != other.k {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Opencannabis_Content_Color: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "standard"),
-    2: .same(proto: "hex"),
-    3: .same(proto: "rgba"),
-    4: .same(proto: "hsb"),
-    5: .same(proto: "cmyk"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _spec: Opencannabis_Content_Color.OneOf_Spec?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _spec = source._spec
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_Color) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Content_Color, rhs: Opencannabis_Content_Color) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._spec != other_storage._spec {return false}
+        let rhs_storage = _args.1
+        if _storage._spec != rhs_storage._spec {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Content_ColorScheme: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_ColorScheme: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ColorScheme"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "primary"),
     2: .same(proto: "secondary"),
@@ -651,20 +615,53 @@ extension Opencannabis_Content_ColorScheme: SwiftProtobuf._MessageImplementation
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_ColorScheme) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._primary)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._secondary)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._alert)
+        case 4: try decoder.decodeRepeatedMessageField(value: &_storage._shades)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._primary {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._secondary {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._alert {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if !_storage._shades.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._shades, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_ColorScheme, rhs: Opencannabis_Content_ColorScheme) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._primary != other_storage._primary {return false}
-        if _storage._secondary != other_storage._secondary {return false}
-        if _storage._alert != other_storage._alert {return false}
-        if _storage._shades != other_storage._shades {return false}
+        let rhs_storage = _args.1
+        if _storage._primary != rhs_storage._primary {return false}
+        if _storage._secondary != rhs_storage._secondary {return false}
+        if _storage._alert != rhs_storage._alert {return false}
+        if _storage._shades != rhs_storage._shades {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

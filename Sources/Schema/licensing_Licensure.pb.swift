@@ -68,6 +68,19 @@ public enum Bloombox_Schema_Licensure_LicenseType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Licensure_LicenseType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Licensure_LicenseType] = [
+    .permanent,
+    .temporary,
+    .compound,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates different types of cannabis licenses that relate to the larger data model. Licensing is based on the role
 /// of a given organization or individual in the supply chain.
 public enum Bloombox_Schema_Licensure_LicensePrivilege: SwiftProtobuf.Enum {
@@ -156,6 +169,26 @@ public enum Bloombox_Schema_Licensure_LicensePrivilege: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Licensure_LicensePrivilege: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Licensure_LicensePrivilege] = [
+    .unknownLicense,
+    .cultivation,
+    .distribution,
+    .transport,
+    .laboratory,
+    .manufacturing,
+    .retail,
+    .delivery,
+    .events,
+    .consumption,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies states that a given license may exist in. Expiration, revocation, and other actions that may deny access,
 /// are enumerated here with descriptions.
 public enum Bloombox_Schema_Licensure_LicenseStatus: SwiftProtobuf.Enum {
@@ -220,11 +253,29 @@ public enum Bloombox_Schema_Licensure_LicenseStatus: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Licensure_LicenseStatus: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Licensure_LicenseStatus] = [
+    .pending,
+    .active,
+    .revoked,
+    .expired,
+    .suspended,
+    .superseded,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the jurisdictional authority that issued or is in the process of issuing a license. Jurisdiction is a
 /// hierarchical concept, and so, this structure is filled out according to the "leaf" jurisdiction that actually issued
 /// the subject license.
-public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".LicensingAuthority"
+public struct Bloombox_Schema_Licensure_LicensingAuthority {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the jurisdictional authority that applies to a subject license.
   public var jurisdiction: OneOf_Jurisdiction? {
@@ -270,6 +321,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
     /// Specifies a license issued by a regional jurisdiction, which is to say, a state.
     case state(Bloombox_Schema_Licensure_LicensingAuthority.StateLicense)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.OneOf_Jurisdiction, rhs: Bloombox_Schema_Licensure_LicensingAuthority.OneOf_Jurisdiction) -> Bool {
       switch (lhs, rhs) {
       case (.local(let l), .local(let r)): return l == r
@@ -278,12 +330,15 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
       default: return false
       }
     }
+  #endif
   }
 
   /// Specifies the concept of a local licensing authority, meaning a municipality with the statutory authority to
   /// authorize industrial cannabis privileges.
-  public struct LocalLicense: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Licensure_LicensingAuthority.protoMessageName + ".LocalLicense"
+  public struct LocalLicense {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Name of the municipality for this license.
     public var municipality: String = String()
@@ -339,6 +394,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
       /// Specifies a California county.
       case californiaCounty(Opencannabis_Geo_Usa_Ca_CaliforniaCounty)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense.OneOf_County, rhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense.OneOf_County) -> Bool {
         switch (lhs, rhs) {
         case (.countyName(let l), .countyName(let r)): return l == r
@@ -346,6 +402,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
         default: return false
         }
       }
+    #endif
     }
 
     /// Specifies, either via arbitrary name or structured reference, the state containing the municipality.
@@ -355,6 +412,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
       /// Specifies a U.S. state.
       case usState(Opencannabis_Geo_Usa_USState)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense.OneOf_Province, rhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense.OneOf_Province) -> Bool {
         switch (lhs, rhs) {
         case (.provinceName(let l), .provinceName(let r)): return l == r
@@ -362,73 +420,18 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &self.municipality)
-        case 2:
-          if self.county != nil {try decoder.handleConflictingOneOf()}
-          var v: String?
-          try decoder.decodeSingularStringField(value: &v)
-          if let v = v {self.county = .countyName(v)}
-        case 3:
-          if self.county != nil {try decoder.handleConflictingOneOf()}
-          var v: Opencannabis_Geo_Usa_Ca_CaliforniaCounty?
-          try decoder.decodeSingularEnumField(value: &v)
-          if let v = v {self.county = .californiaCounty(v)}
-        case 4:
-          if self.province != nil {try decoder.handleConflictingOneOf()}
-          var v: String?
-          try decoder.decodeSingularStringField(value: &v)
-          if let v = v {self.province = .provinceName(v)}
-        case 5:
-          if self.province != nil {try decoder.handleConflictingOneOf()}
-          var v: Opencannabis_Geo_Usa_USState?
-          try decoder.decodeSingularEnumField(value: &v)
-          if let v = v {self.province = .usState(v)}
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.municipality.isEmpty {
-        try visitor.visitSingularStringField(value: self.municipality, fieldNumber: 1)
-      }
-      switch self.county {
-      case .countyName(let v)?:
-        try visitor.visitSingularStringField(value: v, fieldNumber: 2)
-      case .californiaCounty(let v)?:
-        try visitor.visitSingularEnumField(value: v, fieldNumber: 3)
-      case nil: break
-      }
-      switch self.province {
-      case .provinceName(let v)?:
-        try visitor.visitSingularStringField(value: v, fieldNumber: 4)
-      case .usState(let v)?:
-        try visitor.visitSingularEnumField(value: v, fieldNumber: 5)
-      case nil: break
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Specifies the concept of a county-level licensing authority, meaning a provincial jurisdiction with the statutory
   /// authority to authorize industrial cannabis privileges.
-  public struct CountyLicense: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Licensure_LicensingAuthority.protoMessageName + ".CountyLicense"
+  public struct CountyLicense {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies, either via arbitrary name or structured reference, the county in question.
     public var county: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense.OneOf_County? = nil
@@ -481,6 +484,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
       /// Specifies a California county.
       case californiaCounty(Opencannabis_Geo_Usa_Ca_CaliforniaCounty)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense.OneOf_County, rhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense.OneOf_County) -> Bool {
         switch (lhs, rhs) {
         case (.name(let l), .name(let r)): return l == r
@@ -488,6 +492,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
         default: return false
         }
       }
+    #endif
     }
 
     /// Specifies, either via arbitrary name or structured reference, the state containing the county.
@@ -497,6 +502,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
       /// Specifies a U.S. state.
       case usState(Opencannabis_Geo_Usa_USState)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense.OneOf_Province, rhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense.OneOf_Province) -> Bool {
         switch (lhs, rhs) {
         case (.provinceName(let l), .provinceName(let r)): return l == r
@@ -504,69 +510,18 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1:
-          if self.county != nil {try decoder.handleConflictingOneOf()}
-          var v: String?
-          try decoder.decodeSingularStringField(value: &v)
-          if let v = v {self.county = .name(v)}
-        case 2:
-          if self.county != nil {try decoder.handleConflictingOneOf()}
-          var v: Opencannabis_Geo_Usa_Ca_CaliforniaCounty?
-          try decoder.decodeSingularEnumField(value: &v)
-          if let v = v {self.county = .californiaCounty(v)}
-        case 4:
-          if self.province != nil {try decoder.handleConflictingOneOf()}
-          var v: String?
-          try decoder.decodeSingularStringField(value: &v)
-          if let v = v {self.province = .provinceName(v)}
-        case 5:
-          if self.province != nil {try decoder.handleConflictingOneOf()}
-          var v: Opencannabis_Geo_Usa_USState?
-          try decoder.decodeSingularEnumField(value: &v)
-          if let v = v {self.province = .usState(v)}
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      switch self.county {
-      case .name(let v)?:
-        try visitor.visitSingularStringField(value: v, fieldNumber: 1)
-      case .californiaCounty(let v)?:
-        try visitor.visitSingularEnumField(value: v, fieldNumber: 2)
-      case nil: break
-      }
-      switch self.province {
-      case .provinceName(let v)?:
-        try visitor.visitSingularStringField(value: v, fieldNumber: 4)
-      case .usState(let v)?:
-        try visitor.visitSingularEnumField(value: v, fieldNumber: 5)
-      case nil: break
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   /// Specifies the concept of a state-level licensing authority, meaning a state or regional jurisdiction with the
   /// statutory authority to authorize industrial cannabis privileges.
-  public struct StateLicense: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Licensure_LicensingAuthority.protoMessageName + ".StateLicense"
+  public struct StateLicense {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies, either via arbitrary name or structured reference, the state in question.
     public var province: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense.OneOf_Province? = nil
@@ -619,6 +574,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
       /// Specifies a U.S. state.
       case usState(Opencannabis_Geo_Usa_USState)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense.OneOf_Province, rhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense.OneOf_Province) -> Bool {
         switch (lhs, rhs) {
         case (.provinceName(let l), .provinceName(let r)): return l == r
@@ -626,6 +582,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
         default: return false
         }
       }
+    #endif
     }
 
     /// Specific governing or issuing regulatory body for a given state or provincial license.
@@ -635,6 +592,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
       /// Specifies a specific executive agency in the US State of California.
       case californiaAgency(Opencannabis_Regulatory_Usa_Ca_CaliforniaAgency)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense.OneOf_Agency, rhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense.OneOf_Agency) -> Bool {
         switch (lhs, rhs) {
         case (.agencyName(let l), .agencyName(let r)): return l == r
@@ -642,132 +600,23 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Messag
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1:
-          if self.province != nil {try decoder.handleConflictingOneOf()}
-          var v: String?
-          try decoder.decodeSingularStringField(value: &v)
-          if let v = v {self.province = .provinceName(v)}
-        case 2:
-          if self.province != nil {try decoder.handleConflictingOneOf()}
-          var v: Opencannabis_Geo_Usa_USState?
-          try decoder.decodeSingularEnumField(value: &v)
-          if let v = v {self.province = .usState(v)}
-        case 3:
-          if self.agency != nil {try decoder.handleConflictingOneOf()}
-          var v: String?
-          try decoder.decodeSingularStringField(value: &v)
-          if let v = v {self.agency = .agencyName(v)}
-        case 4:
-          if self.agency != nil {try decoder.handleConflictingOneOf()}
-          var v: Opencannabis_Regulatory_Usa_Ca_CaliforniaAgency?
-          try decoder.decodeSingularEnumField(value: &v)
-          if let v = v {self.agency = .californiaAgency(v)}
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      switch self.province {
-      case .provinceName(let v)?:
-        try visitor.visitSingularStringField(value: v, fieldNumber: 1)
-      case .usState(let v)?:
-        try visitor.visitSingularEnumField(value: v, fieldNumber: 2)
-      case nil: break
-      }
-      switch self.agency {
-      case .agencyName(let v)?:
-        try visitor.visitSingularStringField(value: v, fieldNumber: 3)
-      case .californiaAgency(let v)?:
-        try visitor.visitSingularEnumField(value: v, fieldNumber: 4)
-      case nil: break
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1:
-          var v: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense?
-          if let current = _storage._jurisdiction {
-            try decoder.handleConflictingOneOf()
-            if case .local(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._jurisdiction = .local(v)}
-        case 2:
-          var v: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense?
-          if let current = _storage._jurisdiction {
-            try decoder.handleConflictingOneOf()
-            if case .county(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._jurisdiction = .county(v)}
-        case 3:
-          var v: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense?
-          if let current = _storage._jurisdiction {
-            try decoder.handleConflictingOneOf()
-            if case .state(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._jurisdiction = .state(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      switch _storage._jurisdiction {
-      case .local(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      case .county(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      case .state(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies a unique key that identifies a regulatory license document. It is generally compose of an auto-generated
 /// UUID value, and a reference to any jurisdictionally-issued document or license codes.
-public struct Bloombox_Schema_Licensure_LicenseKey: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".LicenseKey"
+public struct Bloombox_Schema_Licensure_LicenseKey {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Generated UUID for this particular license. Because a license ID may not yet have been issued by the licensing
   /// agency or jurisdiction, this ID serves as the primary key.
@@ -780,40 +629,14 @@ public struct Bloombox_Schema_Licensure_LicenseKey: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.id)
-      case 2: try decoder.decodeSingularStringField(value: &self.jid)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.id.isEmpty {
-      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
-    }
-    if !self.jid.isEmpty {
-      try visitor.visitSingularStringField(value: self.jid, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an individual event in the lifecycle of a given industrial cannabis license. History for a given license
 /// can be reconstructed from a set of license events.
-public struct Bloombox_Schema_Licensure_LicenseEvent: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".LicenseEvent"
+public struct Bloombox_Schema_Licensure_LicenseEvent {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Status for the license after this event takes place.
   public var status: Bloombox_Schema_Licensure_LicenseStatus {
@@ -842,60 +665,21 @@ public struct Bloombox_Schema_Licensure_LicenseEvent: SwiftProtobuf.Message {
   /// Returns true if `occurred` has been explicitly set.
   public var hasOccurred: Bool {return _storage._occurred != nil}
   /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-  public mutating func clearOccurred() {_storage._occurred = nil}
+  public mutating func clearOccurred() {_uniqueStorage()._occurred = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 2: try decoder.decodeRepeatedEnumField(value: &_storage._privilege)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._message)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._occurred)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._status != .pending {
-        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 1)
-      }
-      if !_storage._privilege.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._privilege, fieldNumber: 2)
-      }
-      if !_storage._message.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._message, fieldNumber: 3)
-      }
-      if let v = _storage._occurred {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies standard timestamps for a given regulatory license, that are generally considered immutable or at least
 /// only updated by changes in the license content or privileges.
-public struct Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".LicenseTimestamps"
+public struct Bloombox_Schema_Licensure_LicenseTimestamps {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Date the license application was submitted to the jurisdictional or licensing agency.
   public var submitted: Opencannabis_Temporal_Date {
@@ -905,7 +689,7 @@ public struct Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message
   /// Returns true if `submitted` has been explicitly set.
   public var hasSubmitted: Bool {return _storage._submitted != nil}
   /// Clears the value of `submitted`. Subsequent reads from it will return its default value.
-  public mutating func clearSubmitted() {_storage._submitted = nil}
+  public mutating func clearSubmitted() {_uniqueStorage()._submitted = nil}
 
   /// Date the license was issued.
   public var issued: Opencannabis_Temporal_Date {
@@ -915,7 +699,7 @@ public struct Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message
   /// Returns true if `issued` has been explicitly set.
   public var hasIssued: Bool {return _storage._issued != nil}
   /// Clears the value of `issued`. Subsequent reads from it will return its default value.
-  public mutating func clearIssued() {_storage._issued = nil}
+  public mutating func clearIssued() {_uniqueStorage()._issued = nil}
 
   /// Date the license was processed as an incoming payload by ledger systems.
   public var received: Opencannabis_Temporal_Date {
@@ -925,7 +709,7 @@ public struct Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message
   /// Returns true if `received` has been explicitly set.
   public var hasReceived: Bool {return _storage._received != nil}
   /// Clears the value of `received`. Subsequent reads from it will return its default value.
-  public mutating func clearReceived() {_storage._received = nil}
+  public mutating func clearReceived() {_uniqueStorage()._received = nil}
 
   /// Date and time the license was last verified.
   public var verified: Opencannabis_Temporal_Instant {
@@ -935,7 +719,7 @@ public struct Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message
   /// Returns true if `verified` has been explicitly set.
   public var hasVerified: Bool {return _storage._verified != nil}
   /// Clears the value of `verified`. Subsequent reads from it will return its default value.
-  public mutating func clearVerified() {_storage._verified = nil}
+  public mutating func clearVerified() {_uniqueStorage()._verified = nil}
 
   /// Date and time the license was applied and committed.
   public var applied: Opencannabis_Temporal_Instant {
@@ -945,7 +729,7 @@ public struct Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message
   /// Returns true if `applied` has been explicitly set.
   public var hasApplied: Bool {return _storage._applied != nil}
   /// Clears the value of `applied`. Subsequent reads from it will return its default value.
-  public mutating func clearApplied() {_storage._applied = nil}
+  public mutating func clearApplied() {_uniqueStorage()._applied = nil}
 
   /// Date and time the license was last modified.
   public var modified: Opencannabis_Temporal_Instant {
@@ -955,60 +739,11 @@ public struct Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._submitted)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._issued)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._received)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._verified)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._applied)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._modified)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._submitted {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._issued {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._received {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._verified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._applied {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -1016,8 +751,10 @@ public struct Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message
 /// Specifies a persistable claim with details about a regulatory license, presumably granting industrial cannabis
 /// participation privileges to a given licensee, under the statutory authority of a given licensing agency or
 /// jurisdiction. Licenses are generally considered sub-objects to existing licensee records.
-public struct Bloombox_Schema_Licensure_RegulatoryLicense: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".RegulatoryLicense"
+public struct Bloombox_Schema_Licensure_RegulatoryLicense {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Primary key for a regulatory license record. This includes an auto-generated UUID, and any external license ID
   /// allocated and issued by the licensing agency.
@@ -1028,7 +765,7 @@ public struct Bloombox_Schema_Licensure_RegulatoryLicense: SwiftProtobuf.Message
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Specifies the main type of a given regulatory license. These types are enumerated in the declared type, but
   /// generally, this value is either 'temporary' or 'permanent'.
@@ -1046,7 +783,7 @@ public struct Bloombox_Schema_Licensure_RegulatoryLicense: SwiftProtobuf.Message
   /// Returns true if `authority` has been explicitly set.
   public var hasAuthority: Bool {return _storage._authority != nil}
   /// Clears the value of `authority`. Subsequent reads from it will return its default value.
-  public mutating func clearAuthority() {_storage._authority = nil}
+  public mutating func clearAuthority() {_uniqueStorage()._authority = nil}
 
   /// Indicate the current, up-to-date status of this regulatory license record, considering all available informaiton.
   /// Docs about each state are available on the declared type.
@@ -1077,64 +814,11 @@ public struct Bloombox_Schema_Licensure_RegulatoryLicense: SwiftProtobuf.Message
   /// Returns true if `timestamps` has been explicitly set.
   public var hasTimestamps: Bool {return _storage._timestamps != nil}
   /// Clears the value of `timestamps`. Subsequent reads from it will return its default value.
-  public mutating func clearTimestamps() {_storage._timestamps = nil}
+  public mutating func clearTimestamps() {_uniqueStorage()._timestamps = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 2: try decoder.decodeSingularEnumField(value: &_storage._type)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._authority)
-        case 4: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 5: try decoder.decodeRepeatedMessageField(value: &_storage._event)
-        case 6: try decoder.decodeRepeatedEnumField(value: &_storage._privilege)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._timestamps)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if _storage._type != .permanent {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 2)
-      }
-      if let v = _storage._authority {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if _storage._status != .pending {
-        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 4)
-      }
-      if !_storage._event.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._event, fieldNumber: 5)
-      }
-      if !_storage._privilege.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._privilege, fieldNumber: 6)
-      }
-      if let v = _storage._timestamps {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -1177,7 +861,8 @@ extension Bloombox_Schema_Licensure_LicenseStatus: SwiftProtobuf._ProtoNameProvi
   ]
 }
 
-extension Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LicensingAuthority"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "local"),
     2: .same(proto: "county"),
@@ -1203,22 +888,73 @@ extension Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf._MessageIm
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Licensure_LicensingAuthority) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1:
+          var v: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense?
+          if let current = _storage._jurisdiction {
+            try decoder.handleConflictingOneOf()
+            if case .local(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._jurisdiction = .local(v)}
+        case 2:
+          var v: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense?
+          if let current = _storage._jurisdiction {
+            try decoder.handleConflictingOneOf()
+            if case .county(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._jurisdiction = .county(v)}
+        case 3:
+          var v: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense?
+          if let current = _storage._jurisdiction {
+            try decoder.handleConflictingOneOf()
+            if case .state(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._jurisdiction = .state(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      switch _storage._jurisdiction {
+      case .local(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      case .county(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case .state(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority, rhs: Bloombox_Schema_Licensure_LicensingAuthority) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._jurisdiction != other_storage._jurisdiction {return false}
+        let rhs_storage = _args.1
+        if _storage._jurisdiction != rhs_storage._jurisdiction {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Licensure_LicensingAuthority.protoMessageName + ".LocalLicense"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "municipality"),
     2: .standard(proto: "county_name"),
@@ -1227,16 +963,67 @@ extension Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense: SwiftProtob
     5: .standard(proto: "us_state"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense) -> Bool {
-    if self.municipality != other.municipality {return false}
-    if self.county != other.county {return false}
-    if self.province != other.province {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.municipality)
+      case 2:
+        if self.county != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.county = .countyName(v)}
+      case 3:
+        if self.county != nil {try decoder.handleConflictingOneOf()}
+        var v: Opencannabis_Geo_Usa_Ca_CaliforniaCounty?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.county = .californiaCounty(v)}
+      case 4:
+        if self.province != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.province = .provinceName(v)}
+      case 5:
+        if self.province != nil {try decoder.handleConflictingOneOf()}
+        var v: Opencannabis_Geo_Usa_USState?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.province = .usState(v)}
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.municipality.isEmpty {
+      try visitor.visitSingularStringField(value: self.municipality, fieldNumber: 1)
+    }
+    switch self.county {
+    case .countyName(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 2)
+    case .californiaCounty(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 3)
+    case nil: break
+    }
+    switch self.province {
+    case .provinceName(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 4)
+    case .usState(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 5)
+    case nil: break
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense, rhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense) -> Bool {
+    if lhs.municipality != rhs.municipality {return false}
+    if lhs.county != rhs.county {return false}
+    if lhs.province != rhs.province {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Licensure_LicensingAuthority.protoMessageName + ".CountyLicense"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .standard(proto: "california_county"),
@@ -1244,15 +1031,62 @@ extension Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense: SwiftProto
     5: .standard(proto: "us_state"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense) -> Bool {
-    if self.county != other.county {return false}
-    if self.province != other.province {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1:
+        if self.county != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.county = .name(v)}
+      case 2:
+        if self.county != nil {try decoder.handleConflictingOneOf()}
+        var v: Opencannabis_Geo_Usa_Ca_CaliforniaCounty?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.county = .californiaCounty(v)}
+      case 4:
+        if self.province != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.province = .provinceName(v)}
+      case 5:
+        if self.province != nil {try decoder.handleConflictingOneOf()}
+        var v: Opencannabis_Geo_Usa_USState?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.province = .usState(v)}
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    switch self.county {
+    case .name(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 1)
+    case .californiaCounty(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 2)
+    case nil: break
+    }
+    switch self.province {
+    case .provinceName(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 4)
+    case .usState(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 5)
+    case nil: break
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense, rhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense) -> Bool {
+    if lhs.county != rhs.county {return false}
+    if lhs.province != rhs.province {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Licensure_LicensingAuthority.StateLicense: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Licensure_LicensingAuthority.StateLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Licensure_LicensingAuthority.protoMessageName + ".StateLicense"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "province_name"),
     2: .standard(proto: "us_state"),
@@ -1260,29 +1094,97 @@ extension Bloombox_Schema_Licensure_LicensingAuthority.StateLicense: SwiftProtob
     4: .standard(proto: "california_agency"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense) -> Bool {
-    if self.province != other.province {return false}
-    if self.agency != other.agency {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1:
+        if self.province != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.province = .provinceName(v)}
+      case 2:
+        if self.province != nil {try decoder.handleConflictingOneOf()}
+        var v: Opencannabis_Geo_Usa_USState?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.province = .usState(v)}
+      case 3:
+        if self.agency != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.agency = .agencyName(v)}
+      case 4:
+        if self.agency != nil {try decoder.handleConflictingOneOf()}
+        var v: Opencannabis_Regulatory_Usa_Ca_CaliforniaAgency?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.agency = .californiaAgency(v)}
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    switch self.province {
+    case .provinceName(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 1)
+    case .usState(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 2)
+    case nil: break
+    }
+    switch self.agency {
+    case .agencyName(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 3)
+    case .californiaAgency(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 4)
+    case nil: break
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense, rhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense) -> Bool {
+    if lhs.province != rhs.province {return false}
+    if lhs.agency != rhs.agency {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Licensure_LicenseKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Licensure_LicenseKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LicenseKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "jid"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Licensure_LicenseKey) -> Bool {
-    if self.id != other.id {return false}
-    if self.jid != other.jid {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.jid)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.jid.isEmpty {
+      try visitor.visitSingularStringField(value: self.jid, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Licensure_LicenseKey, rhs: Bloombox_Schema_Licensure_LicenseKey) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.jid != rhs.jid {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Licensure_LicenseEvent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Licensure_LicenseEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LicenseEvent"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "privilege"),
@@ -1315,25 +1217,59 @@ extension Bloombox_Schema_Licensure_LicenseEvent: SwiftProtobuf._MessageImplemen
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Licensure_LicenseEvent) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 2: try decoder.decodeRepeatedEnumField(value: &_storage._privilege)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._message)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._occurred)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._status != .pending {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 1)
+      }
+      if !_storage._privilege.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._privilege, fieldNumber: 2)
+      }
+      if !_storage._message.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._message, fieldNumber: 3)
+      }
+      if let v = _storage._occurred {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Licensure_LicenseEvent, rhs: Bloombox_Schema_Licensure_LicenseEvent) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._status != other_storage._status {return false}
-        if _storage._privilege != other_storage._privilege {return false}
-        if _storage._message != other_storage._message {return false}
-        if _storage._occurred != other_storage._occurred {return false}
+        let rhs_storage = _args.1
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._privilege != rhs_storage._privilege {return false}
+        if _storage._message != rhs_storage._message {return false}
+        if _storage._occurred != rhs_storage._occurred {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LicenseTimestamps"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "submitted"),
     2: .same(proto: "issued"),
@@ -1372,27 +1308,69 @@ extension Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf._MessageImp
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Licensure_LicenseTimestamps) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._submitted)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._issued)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._received)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._verified)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._applied)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._submitted {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._issued {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._received {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._verified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._applied {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Licensure_LicenseTimestamps, rhs: Bloombox_Schema_Licensure_LicenseTimestamps) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._submitted != other_storage._submitted {return false}
-        if _storage._issued != other_storage._issued {return false}
-        if _storage._received != other_storage._received {return false}
-        if _storage._verified != other_storage._verified {return false}
-        if _storage._applied != other_storage._applied {return false}
-        if _storage._modified != other_storage._modified {return false}
+        let rhs_storage = _args.1
+        if _storage._submitted != rhs_storage._submitted {return false}
+        if _storage._issued != rhs_storage._issued {return false}
+        if _storage._received != rhs_storage._received {return false}
+        if _storage._verified != rhs_storage._verified {return false}
+        if _storage._applied != rhs_storage._applied {return false}
+        if _storage._modified != rhs_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Licensure_RegulatoryLicense: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Licensure_RegulatoryLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".RegulatoryLicense"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "type"),
@@ -1434,23 +1412,68 @@ extension Bloombox_Schema_Licensure_RegulatoryLicense: SwiftProtobuf._MessageImp
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Licensure_RegulatoryLicense) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._authority)
+        case 4: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 5: try decoder.decodeRepeatedMessageField(value: &_storage._event)
+        case 6: try decoder.decodeRepeatedEnumField(value: &_storage._privilege)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._timestamps)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if _storage._type != .permanent {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 2)
+      }
+      if let v = _storage._authority {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if _storage._status != .pending {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 4)
+      }
+      if !_storage._event.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._event, fieldNumber: 5)
+      }
+      if !_storage._privilege.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._privilege, fieldNumber: 6)
+      }
+      if let v = _storage._timestamps {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Licensure_RegulatoryLicense, rhs: Bloombox_Schema_Licensure_RegulatoryLicense) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._type != other_storage._type {return false}
-        if _storage._authority != other_storage._authority {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._event != other_storage._event {return false}
-        if _storage._privilege != other_storage._privilege {return false}
-        if _storage._timestamps != other_storage._timestamps {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._authority != rhs_storage._authority {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._event != rhs_storage._event {return false}
+        if _storage._privilege != rhs_storage._privilege {return false}
+        if _storage._timestamps != rhs_storage._timestamps {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

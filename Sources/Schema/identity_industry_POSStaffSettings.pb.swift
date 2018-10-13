@@ -25,8 +25,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Settings for point-of-sale devices, when this user is the active authorized user and establishes a valid, authorized
 /// point-of-sale session.
-public struct Bloombox_Schema_Identity_Industry_POSStaffSettings: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".POSStaffSettings"
+public struct Bloombox_Schema_Identity_Industry_POSStaffSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Point-of-sale authentication challenge. Stores a hashed and salted pre-image with which to compute a match or
   /// rejection of the user's point-of-sale passcode.
@@ -37,7 +39,7 @@ public struct Bloombox_Schema_Identity_Industry_POSStaffSettings: SwiftProtobuf.
   /// Returns true if `challenge` has been explicitly set.
   public var hasChallenge: Bool {return _storage._challenge != nil}
   /// Clears the value of `challenge`. Subsequent reads from it will return its default value.
-  public mutating func clearChallenge() {_storage._challenge = nil}
+  public mutating func clearChallenge() {_uniqueStorage()._challenge = nil}
 
   /// Point-of-sale keycard challenge hash. Stores a hashed and salted pre-image with which to compute a match or
   /// rejection of a keycard scan operation designed to log the user in quickly.
@@ -48,44 +50,11 @@ public struct Bloombox_Schema_Identity_Industry_POSStaffSettings: SwiftProtobuf.
   /// Returns true if `keycard` has been explicitly set.
   public var hasKeycard: Bool {return _storage._keycard != nil}
   /// Clears the value of `keycard`. Subsequent reads from it will return its default value.
-  public mutating func clearKeycard() {_storage._keycard = nil}
+  public mutating func clearKeycard() {_uniqueStorage()._keycard = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._challenge)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._keycard)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._challenge {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._keycard {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -94,7 +63,8 @@ public struct Bloombox_Schema_Identity_Industry_POSStaffSettings: SwiftProtobuf.
 
 fileprivate let _protobuf_package = "bloombox.schema.identity.industry"
 
-extension Bloombox_Schema_Identity_Industry_POSStaffSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Industry_POSStaffSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".POSStaffSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "challenge"),
     2: .same(proto: "keycard"),
@@ -121,18 +91,43 @@ extension Bloombox_Schema_Identity_Industry_POSStaffSettings: SwiftProtobuf._Mes
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Industry_POSStaffSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._challenge)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._keycard)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._challenge {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._keycard {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Identity_Industry_POSStaffSettings, rhs: Bloombox_Schema_Identity_Industry_POSStaffSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._challenge != other_storage._challenge {return false}
-        if _storage._keycard != other_storage._keycard {return false}
+        let rhs_storage = _args.1
+        if _storage._challenge != rhs_storage._challenge {return false}
+        if _storage._keycard != rhs_storage._keycard {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -26,8 +26,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Settings for staff users, attached to a user's overall industry profile. Applies in any context where the user is
 /// authorized for industry-side use of Bloombox products.
-public struct Bloombox_Schema_Identity_Industry_StaffSettings: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".StaffSettings"
+public struct Bloombox_Schema_Identity_Industry_StaffSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Point-of-sale device settings. Includes the user's authorization code hash, public key hash, and other settings or
   /// security details. User preferences on the point-of-sale device are also stored here.
@@ -38,7 +40,7 @@ public struct Bloombox_Schema_Identity_Industry_StaffSettings: SwiftProtobuf.Mes
   /// Returns true if `pos` has been explicitly set.
   public var hasPos: Bool {return _storage._pos != nil}
   /// Clears the value of `pos`. Subsequent reads from it will return its default value.
-  public mutating func clearPos() {_storage._pos = nil}
+  public mutating func clearPos() {_uniqueStorage()._pos = nil}
 
   /// Settings specific to the web dashboard when this user signs in. Personalization and preference options expressed
   /// for update by the user in the dashboard are stored here. These are distinguished from organization settings in that
@@ -50,44 +52,11 @@ public struct Bloombox_Schema_Identity_Industry_StaffSettings: SwiftProtobuf.Mes
   /// Returns true if `dashboard` has been explicitly set.
   public var hasDashboard: Bool {return _storage._dashboard != nil}
   /// Clears the value of `dashboard`. Subsequent reads from it will return its default value.
-  public mutating func clearDashboard() {_storage._dashboard = nil}
+  public mutating func clearDashboard() {_uniqueStorage()._dashboard = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._pos)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._dashboard)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._pos {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._dashboard {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -96,7 +65,8 @@ public struct Bloombox_Schema_Identity_Industry_StaffSettings: SwiftProtobuf.Mes
 
 fileprivate let _protobuf_package = "bloombox.schema.identity.industry"
 
-extension Bloombox_Schema_Identity_Industry_StaffSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Industry_StaffSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".StaffSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "pos"),
     2: .same(proto: "dashboard"),
@@ -123,18 +93,43 @@ extension Bloombox_Schema_Identity_Industry_StaffSettings: SwiftProtobuf._Messag
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Industry_StaffSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._pos)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._dashboard)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._pos {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._dashboard {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Identity_Industry_StaffSettings, rhs: Bloombox_Schema_Identity_Industry_StaffSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._pos != other_storage._pos {return false}
-        if _storage._dashboard != other_storage._dashboard {return false}
+        let rhs_storage = _args.1
+        if _storage._pos != rhs_storage._pos {return false}
+        if _storage._dashboard != rhs_storage._dashboard {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

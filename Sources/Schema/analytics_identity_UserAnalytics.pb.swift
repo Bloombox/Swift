@@ -99,10 +99,33 @@ public enum Bloombox_Schema_Analytics_Identity_UserAction: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Analytics_Identity_UserAction: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Analytics_Identity_UserAction] = [
+    .engage,
+    .enroll,
+    .activate,
+    .join,
+    .verify,
+    .checkin,
+    .preferences,
+    .purchase,
+    .order,
+    .optIn,
+    .optOut,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a user action event, wherein a user has taken some affirmative action related to themselves, their identity
 /// with regards to a particular system, or their account or preferences.
-public struct Bloombox_Schema_Analytics_Identity_Action: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Action"
+public struct Bloombox_Schema_Analytics_Identity_Action {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// User identity being referenced.
   public var identity: String {
@@ -124,48 +147,11 @@ public struct Bloombox_Schema_Analytics_Identity_Action: SwiftProtobuf.Message {
   /// Returns true if `occurred` has been explicitly set.
   public var hasOccurred: Bool {return _storage._occurred != nil}
   /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-  public mutating func clearOccurred() {_storage._occurred = nil}
+  public mutating func clearOccurred() {_uniqueStorage()._occurred = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._identity)
-        case 2: try decoder.decodeSingularEnumField(value: &_storage._verb)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._occurred)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._identity.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._identity, fieldNumber: 1)
-      }
-      if _storage._verb != .engage {
-        try visitor.visitSingularEnumField(value: _storage._verb, fieldNumber: 2)
-      }
-      if let v = _storage._occurred {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -190,7 +176,8 @@ extension Bloombox_Schema_Analytics_Identity_UserAction: SwiftProtobuf._ProtoNam
   ]
 }
 
-extension Bloombox_Schema_Analytics_Identity_Action: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Analytics_Identity_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Action"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "identity"),
     2: .same(proto: "verb"),
@@ -220,19 +207,48 @@ extension Bloombox_Schema_Analytics_Identity_Action: SwiftProtobuf._MessageImple
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Identity_Action) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._identity)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._verb)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._occurred)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._identity.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._identity, fieldNumber: 1)
+      }
+      if _storage._verb != .engage {
+        try visitor.visitSingularEnumField(value: _storage._verb, fieldNumber: 2)
+      }
+      if let v = _storage._occurred {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Analytics_Identity_Action, rhs: Bloombox_Schema_Analytics_Identity_Action) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._identity != other_storage._identity {return false}
-        if _storage._verb != other_storage._verb {return false}
-        if _storage._occurred != other_storage._occurred {return false}
+        let rhs_storage = _args.1
+        if _storage._identity != rhs_storage._identity {return false}
+        if _storage._verb != rhs_storage._verb {return false}
+        if _storage._occurred != rhs_storage._occurred {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

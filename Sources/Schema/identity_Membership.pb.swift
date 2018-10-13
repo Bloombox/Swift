@@ -24,8 +24,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the temporal position of various events related to a user's membership with a particular partner location.
-public struct Bloombox_Schema_Identity_MembershipTimestamps: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".MembershipTimestamps"
+public struct Bloombox_Schema_Identity_MembershipTimestamps {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies when a membership was first established.
   public var established: Opencannabis_Temporal_Instant {
@@ -35,7 +37,7 @@ public struct Bloombox_Schema_Identity_MembershipTimestamps: SwiftProtobuf.Messa
   /// Returns true if `established` has been explicitly set.
   public var hasEstablished: Bool {return _storage._established != nil}
   /// Clears the value of `established`. Subsequent reads from it will return its default value.
-  public mutating func clearEstablished() {_storage._established = nil}
+  public mutating func clearEstablished() {_uniqueStorage()._established = nil}
 
   /// Specifies the last time a user checked-in or made a purchase using this membership.
   public var seen: Opencannabis_Temporal_Instant {
@@ -45,7 +47,7 @@ public struct Bloombox_Schema_Identity_MembershipTimestamps: SwiftProtobuf.Messa
   /// Returns true if `seen` has been explicitly set.
   public var hasSeen: Bool {return _storage._seen != nil}
   /// Clears the value of `seen`. Subsequent reads from it will return its default value.
-  public mutating func clearSeen() {_storage._seen = nil}
+  public mutating func clearSeen() {_uniqueStorage()._seen = nil}
 
   /// Specifies the last time a user made a purchase using this membership.
   public var purchase: Opencannabis_Temporal_Instant {
@@ -55,55 +57,20 @@ public struct Bloombox_Schema_Identity_MembershipTimestamps: SwiftProtobuf.Messa
   /// Returns true if `purchase` has been explicitly set.
   public var hasPurchase: Bool {return _storage._purchase != nil}
   /// Clears the value of `purchase`. Subsequent reads from it will return its default value.
-  public mutating func clearPurchase() {_storage._purchase = nil}
+  public mutating func clearPurchase() {_uniqueStorage()._purchase = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._established)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._seen)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._purchase)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._established {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._seen {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._purchase {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Represents a user's membership within a given Bloombox partner organization or partner location.
-public struct Bloombox_Schema_Identity_Membership: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Membership"
+public struct Bloombox_Schema_Identity_Membership {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies a unique key identifying this user membership.
   public var key: Bloombox_Schema_Identity_MembershipKey {
@@ -113,7 +80,7 @@ public struct Bloombox_Schema_Identity_Membership: SwiftProtobuf.Message {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Specifies when various events occurred in the lifecycle of this user membership.
   public var ts: Bloombox_Schema_Identity_MembershipTimestamps {
@@ -123,44 +90,11 @@ public struct Bloombox_Schema_Identity_Membership: SwiftProtobuf.Message {
   /// Returns true if `ts` has been explicitly set.
   public var hasTs: Bool {return _storage._ts != nil}
   /// Clears the value of `ts`. Subsequent reads from it will return its default value.
-  public mutating func clearTs() {_storage._ts = nil}
+  public mutating func clearTs() {_uniqueStorage()._ts = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 99: try decoder.decodeSingularMessageField(value: &_storage._ts)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._ts {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -169,7 +103,8 @@ public struct Bloombox_Schema_Identity_Membership: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "bloombox.schema.identity"
 
-extension Bloombox_Schema_Identity_MembershipTimestamps: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_MembershipTimestamps: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MembershipTimestamps"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "established"),
     2: .same(proto: "seen"),
@@ -199,24 +134,54 @@ extension Bloombox_Schema_Identity_MembershipTimestamps: SwiftProtobuf._MessageI
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_MembershipTimestamps) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._established)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._seen)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._purchase)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._established {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._seen {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._purchase {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Identity_MembershipTimestamps, rhs: Bloombox_Schema_Identity_MembershipTimestamps) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._established != other_storage._established {return false}
-        if _storage._seen != other_storage._seen {return false}
-        if _storage._purchase != other_storage._purchase {return false}
+        let rhs_storage = _args.1
+        if _storage._established != rhs_storage._established {return false}
+        if _storage._seen != rhs_storage._seen {return false}
+        if _storage._purchase != rhs_storage._purchase {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Identity_Membership: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Membership: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Membership"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     99: .same(proto: "ts"),
@@ -243,18 +208,43 @@ extension Bloombox_Schema_Identity_Membership: SwiftProtobuf._MessageImplementat
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Membership) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 99: try decoder.decodeSingularMessageField(value: &_storage._ts)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._ts {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Identity_Membership, rhs: Bloombox_Schema_Identity_Membership) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._ts != other_storage._ts {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._ts != rhs_storage._ts {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

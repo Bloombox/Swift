@@ -23,8 +23,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a structure that describes a URI/website, and related information.
-public struct Opencannabis_Contact_Website: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Website"
+public struct Opencannabis_Contact_Website {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// URI for the website.
   public var uri: String = String()
@@ -38,11 +40,20 @@ public struct Opencannabis_Contact_Website: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.contact"
+
+extension Opencannabis_Contact_Website: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Website"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "uri"),
+    2: .same(proto: "title"),
+    3: .same(proto: "icon"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -54,10 +65,6 @@ public struct Opencannabis_Contact_Website: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.uri.isEmpty {
       try visitor.visitSingularStringField(value: self.uri, fieldNumber: 1)
@@ -70,24 +77,12 @@ public struct Opencannabis_Contact_Website: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.contact"
-
-extension Opencannabis_Contact_Website: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "uri"),
-    2: .same(proto: "title"),
-    3: .same(proto: "icon"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Contact_Website) -> Bool {
-    if self.uri != other.uri {return false}
-    if self.title != other.title {return false}
-    if self.icon != other.icon {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Contact_Website, rhs: Opencannabis_Contact_Website) -> Bool {
+    if lhs.uri != rhs.uri {return false}
+    if lhs.title != rhs.title {return false}
+    if lhs.icon != rhs.icon {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

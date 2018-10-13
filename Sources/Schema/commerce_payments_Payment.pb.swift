@@ -85,6 +85,24 @@ public enum Opencannabis_Commerce_PaymentMethod: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_PaymentMethod: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_PaymentMethod] = [
+    .cash,
+    .check,
+    .debit,
+    .credit,
+    .digital,
+    .ach,
+    .wire,
+    .blockchain,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates recognized payment methods.
 public enum Opencannabis_Commerce_PaymentCardType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -143,6 +161,23 @@ public enum Opencannabis_Commerce_PaymentCardType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_PaymentCardType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_PaymentCardType] = [
+    .noCardType,
+    .visa,
+    .mastercard,
+    .discover,
+    .amex,
+    .dinersClub,
+    .maestro,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates types of digital payment networks.
 public enum Opencannabis_Commerce_DigitalPaymentNetwork: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -185,6 +220,20 @@ public enum Opencannabis_Commerce_DigitalPaymentNetwork: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_DigitalPaymentNetwork: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_DigitalPaymentNetwork] = [
+    .unspecifiedNetwork,
+    .paypal,
+    .venmo,
+    .square,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Enumeration for status of an individual payment portion.
 public enum Opencannabis_Commerce_PaymentStatus: SwiftProtobuf.Enum {
@@ -234,6 +283,21 @@ public enum Opencannabis_Commerce_PaymentStatus: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_PaymentStatus: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_PaymentStatus] = [
+    .notApplicable,
+    .waiting,
+    .preauthorized,
+    .bounced,
+    .retried,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumeration for payment status of an order.
 public enum Opencannabis_Commerce_BillStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -271,6 +335,19 @@ public enum Opencannabis_Commerce_BillStatus: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_BillStatus: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_BillStatus] = [
+    .suspense,
+    .partial,
+    .settled,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 

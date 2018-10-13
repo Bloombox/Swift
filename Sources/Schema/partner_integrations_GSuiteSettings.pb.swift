@@ -23,34 +23,21 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies Google Apps features that may be enabled or disabled.
-public struct Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".GSuiteIntegrationFeatures"
+public struct Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies settings related to Google Apps integration with Bloombox.
-public struct Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".GSuiteSettings"
+public struct Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Primary domain for the integration.
   public var domain: String {
@@ -66,44 +53,11 @@ public struct Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings: SwiftP
   /// Returns true if `features` has been explicitly set.
   public var hasFeatures: Bool {return _storage._features != nil}
   /// Clears the value of `features`. Subsequent reads from it will return its default value.
-  public mutating func clearFeatures() {_storage._features = nil}
+  public mutating func clearFeatures() {_uniqueStorage()._features = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._domain)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._features)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._domain.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._domain, fieldNumber: 1)
-      }
-      if let v = _storage._features {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -112,16 +66,27 @@ public struct Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings: SwiftP
 
 fileprivate let _protobuf_package = "bloombox.schema.partner.integrations.gsuite"
 
-extension Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".GSuiteIntegrationFeatures"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures, rhs: Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".GSuiteSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "domain"),
     10: .same(proto: "features"),
@@ -148,18 +113,43 @@ extension Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings: SwiftProto
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._domain)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._features)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._domain.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._domain, fieldNumber: 1)
+      }
+      if let v = _storage._features {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings, rhs: Bloombox_Schema_Partner_Integrations_Gsuite_GSuiteSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._domain != other_storage._domain {return false}
-        if _storage._features != other_storage._features {return false}
+        let rhs_storage = _args.1
+        if _storage._domain != rhs_storage._domain {return false}
+        if _storage._features != rhs_storage._features {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

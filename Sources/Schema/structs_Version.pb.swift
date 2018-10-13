@@ -20,8 +20,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Structure that allows universal specification of most common version patterns.
-public struct Opencannabis_Structs_VersionSpec: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".VersionSpec"
+public struct Opencannabis_Structs_VersionSpec {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies one of a few eligible version specification structures.
   public var spec: Opencannabis_Structs_VersionSpec.OneOf_Spec? = nil
@@ -42,19 +44,28 @@ public struct Opencannabis_Structs_VersionSpec: SwiftProtobuf.Message {
     /// Version specified by arbitrary name.
     case name(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Structs_VersionSpec.OneOf_Spec, rhs: Opencannabis_Structs_VersionSpec.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.name(let l), .name(let r)): return l == r
       }
     }
+  #endif
   }
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.structs"
+
+extension Opencannabis_Structs_VersionSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".VersionSpec"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "name"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -68,30 +79,16 @@ public struct Opencannabis_Structs_VersionSpec: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if case .name(let v)? = self.spec {
       try visitor.visitSingularStringField(value: v, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.structs"
-
-extension Opencannabis_Structs_VersionSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "name"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_VersionSpec) -> Bool {
-    if self.spec != other.spec {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_VersionSpec, rhs: Opencannabis_Structs_VersionSpec) -> Bool {
+    if lhs.spec != rhs.spec {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

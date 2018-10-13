@@ -21,8 +21,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Represents a human being's name, in the style of "given" name (first) and "family" name (last) being concatenated to
 /// form a full person's name. Additional names, like middle names, etc, are also specified here.
-public struct Opencannabis_Person_Name: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Name"
+public struct Opencannabis_Person_Name {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Person's full name, if a fulltext value should override.
   public var fullName: String = String()
@@ -45,11 +47,23 @@ public struct Opencannabis_Person_Name: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.person"
+
+extension Opencannabis_Person_Name: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Name"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "full_name"),
+    2: .standard(proto: "first_name"),
+    3: .standard(proto: "last_name"),
+    4: .standard(proto: "middle_name"),
+    5: .same(proto: "prefix"),
+    6: .same(proto: "postfix"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -64,10 +78,6 @@ public struct Opencannabis_Person_Name: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.fullName.isEmpty {
       try visitor.visitSingularStringField(value: self.fullName, fieldNumber: 1)
@@ -89,30 +99,15 @@ public struct Opencannabis_Person_Name: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.person"
-
-extension Opencannabis_Person_Name: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "full_name"),
-    2: .standard(proto: "first_name"),
-    3: .standard(proto: "last_name"),
-    4: .standard(proto: "middle_name"),
-    5: .same(proto: "prefix"),
-    6: .same(proto: "postfix"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Person_Name) -> Bool {
-    if self.fullName != other.fullName {return false}
-    if self.firstName != other.firstName {return false}
-    if self.lastName != other.lastName {return false}
-    if self.middleName != other.middleName {return false}
-    if self.prefix != other.prefix {return false}
-    if self.postfix != other.postfix {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Person_Name, rhs: Opencannabis_Person_Name) -> Bool {
+    if lhs.fullName != rhs.fullName {return false}
+    if lhs.firstName != rhs.firstName {return false}
+    if lhs.lastName != rhs.lastName {return false}
+    if lhs.middleName != rhs.middleName {return false}
+    if lhs.prefix != rhs.prefix {return false}
+    if lhs.postfix != rhs.postfix {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

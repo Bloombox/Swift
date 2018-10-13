@@ -26,8 +26,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Key structure for inventory records. Identifies the product being inventoried, with a unique ID set upon creation or
 /// allocation of the record.
-public struct Opencannabis_Inventory_InventoryKey: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".InventoryKey"
+public struct Opencannabis_Inventory_InventoryKey {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Key record uniquely identifying this inventory product. Keys for saved items are lifted to this property from the
   /// attached concrete record below.
@@ -38,7 +40,7 @@ public struct Opencannabis_Inventory_InventoryKey: SwiftProtobuf.Message {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Unique ID provisioned for this inventory item.
   public var uuid: String {
@@ -50,39 +52,6 @@ public struct Opencannabis_Inventory_InventoryKey: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._uuid)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if !_storage._uuid.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
@@ -90,8 +59,10 @@ public struct Opencannabis_Inventory_InventoryKey: SwiftProtobuf.Message {
 /// or resolved when an inventory item is created or allocated, and further updated as the inventory item moves through
 /// process or physically moves around. How inventory coordinates are used entirely depends on how a partner wants to use
 /// them, with varying degrees of specificity possible.
-public struct Opencannabis_Inventory_InventoryCoordinates: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".InventoryCoordinates"
+public struct Opencannabis_Inventory_InventoryCoordinates {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Location code. Specifies a physical location where the inventory product is held. This is the highest-resolution
   /// property specifying inventory coordinates. Optional.
@@ -121,56 +92,14 @@ public struct Opencannabis_Inventory_InventoryCoordinates: SwiftProtobuf.Message
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.location)
-      case 2: try decoder.decodeSingularStringField(value: &self.zone)
-      case 3: try decoder.decodeSingularStringField(value: &self.rack)
-      case 4: try decoder.decodeSingularStringField(value: &self.shelf)
-      case 5: try decoder.decodeSingularStringField(value: &self.bin)
-      case 6: try decoder.decodeSingularStringField(value: &self.batch)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.location.isEmpty {
-      try visitor.visitSingularStringField(value: self.location, fieldNumber: 1)
-    }
-    if !self.zone.isEmpty {
-      try visitor.visitSingularStringField(value: self.zone, fieldNumber: 2)
-    }
-    if !self.rack.isEmpty {
-      try visitor.visitSingularStringField(value: self.rack, fieldNumber: 3)
-    }
-    if !self.shelf.isEmpty {
-      try visitor.visitSingularStringField(value: self.shelf, fieldNumber: 4)
-    }
-    if !self.bin.isEmpty {
-      try visitor.visitSingularStringField(value: self.bin, fieldNumber: 5)
-    }
-    if !self.batch.isEmpty {
-      try visitor.visitSingularStringField(value: self.batch, fieldNumber: 6)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an amount of a particular product, which may take a certain state as part of an inventory item, or batch of
 /// inventory for a given product.
-public struct Opencannabis_Inventory_InventoryAmount: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".InventoryAmount"
+public struct Opencannabis_Inventory_InventoryAmount {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Type of pricing/inventory to employ for this product. Can either be `UNIT` or `WEIGHTED` pricing.
   public var type: Opencannabis_Structs_Pricing_PricingType = .unit
@@ -210,6 +139,7 @@ public struct Opencannabis_Inventory_InventoryAmount: SwiftProtobuf.Message {
     /// The inventory item is weight-based, i.e., a certain amount of grams or pounds.
     case weight(Opencannabis_Structs_Pricing_PricingWeightTier)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Inventory_InventoryAmount.OneOf_Basis, rhs: Opencannabis_Inventory_InventoryAmount.OneOf_Basis) -> Bool {
       switch (lhs, rhs) {
       case (.unit(let l), .unit(let r)): return l == r
@@ -217,60 +147,18 @@ public struct Opencannabis_Inventory_InventoryAmount: SwiftProtobuf.Message {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.type)
-      case 2:
-        if self.basis != nil {try decoder.handleConflictingOneOf()}
-        var v: Bool?
-        try decoder.decodeSingularBoolField(value: &v)
-        if let v = v {self.basis = .unit(v)}
-      case 3:
-        if self.basis != nil {try decoder.handleConflictingOneOf()}
-        var v: Opencannabis_Structs_Pricing_PricingWeightTier?
-        try decoder.decodeSingularEnumField(value: &v)
-        if let v = v {self.basis = .weight(v)}
-      case 4: try decoder.decodeSingularUInt64Field(value: &self.quantity)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.type != .unit {
-      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
-    }
-    switch self.basis {
-    case .unit(let v)?:
-      try visitor.visitSingularBoolField(value: v, fieldNumber: 2)
-    case .weight(let v)?:
-      try visitor.visitSingularEnumField(value: v, fieldNumber: 3)
-    case nil: break
-    }
-    if self.quantity != 0 {
-      try visitor.visitSingularUInt64Field(value: self.quantity, fieldNumber: 4)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies the structure of an inventory state checkin, including the inventory item's status at the time the checkin
 /// was submitted, timestamp information, and the set of coordinates where the checkin took place.
-public struct Opencannabis_Inventory_InventoryState: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".InventoryState"
+public struct Opencannabis_Inventory_InventoryState {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Status of the inventory item. Specifies the active state for the inventory item, from a set of enumerated standard
   /// inventory states.
@@ -288,7 +176,7 @@ public struct Opencannabis_Inventory_InventoryState: SwiftProtobuf.Message {
   /// Returns true if `coordinates` has been explicitly set.
   public var hasCoordinates: Bool {return _storage._coordinates != nil}
   /// Clears the value of `coordinates`. Subsequent reads from it will return its default value.
-  public mutating func clearCoordinates() {_storage._coordinates = nil}
+  public mutating func clearCoordinates() {_uniqueStorage()._coordinates = nil}
 
   /// Indicates whether the inventory item is fit for sale, or not. This flag must be set to `true` for an item to be
   /// eligible for listing.
@@ -305,7 +193,7 @@ public struct Opencannabis_Inventory_InventoryState: SwiftProtobuf.Message {
   /// Returns true if `amount` has been explicitly set.
   public var hasAmount: Bool {return _storage._amount != nil}
   /// Clears the value of `amount`. Subsequent reads from it will return its default value.
-  public mutating func clearAmount() {_storage._amount = nil}
+  public mutating func clearAmount() {_uniqueStorage()._amount = nil}
 
   /// Timestamp for when this inventory state entry was created. Set after initially saving an inventory state checkin.
   public var created: Opencannabis_Temporal_Instant {
@@ -315,7 +203,7 @@ public struct Opencannabis_Inventory_InventoryState: SwiftProtobuf.Message {
   /// Returns true if `created` has been explicitly set.
   public var hasCreated: Bool {return _storage._created != nil}
   /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   /// Timestamp for when this inventory state entry was updated, if applicable. Set after saving an existing inventory
   /// state checkin.
@@ -326,7 +214,7 @@ public struct Opencannabis_Inventory_InventoryState: SwiftProtobuf.Message {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -396,63 +284,33 @@ public struct Opencannabis_Inventory_InventoryState: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._coordinates)
-        case 3: try decoder.decodeSingularBoolField(value: &_storage._fitForSale)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._amount)
-        case 98: try decoder.decodeSingularMessageField(value: &_storage._created)
-        case 99: try decoder.decodeSingularMessageField(value: &_storage._modified)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._status != .unreconciled {
-        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 1)
-      }
-      if let v = _storage._coordinates {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if _storage._fitForSale != false {
-        try visitor.visitSingularBoolField(value: _storage._fitForSale, fieldNumber: 3)
-      }
-      if let v = _storage._amount {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._created {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 98)
-      }
-      if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Inventory_InventoryState.Status: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Inventory_InventoryState.Status] = [
+    .unreconciled,
+    .receiving,
+    .quarantine,
+    .onHand,
+    .forSale,
+    .claimed,
+    .committed,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Menu product payload stanza. Specifies a single product as a member of a menu section. This generic record is used to
 /// wrap concrete menu product structures to make them generically usable. In V2 data stores, menu products are stored
 /// generically as a top-level entity (as opposed to V1, in which this model is synthesized from raw map data).
-public struct Opencannabis_Inventory_InventoryProduct: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".InventoryProduct"
+public struct Opencannabis_Inventory_InventoryProduct {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Key for this inventory item. Uniquely identifies the subject inventoried product, along with a globally-unique ID,
   /// which is set upon inventory item allocation (either provided explicitly or auto-generated).
@@ -463,7 +321,7 @@ public struct Opencannabis_Inventory_InventoryProduct: SwiftProtobuf.Message {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// SKUs that should reference this inventory product. These are arbitrary strings that should map to this inventory
   /// item, potentially to/from foreign or 3rd-party systems.
@@ -489,7 +347,7 @@ public struct Opencannabis_Inventory_InventoryProduct: SwiftProtobuf.Message {
   /// Returns true if `state` has been explicitly set.
   public var hasState: Bool {return _storage._state != nil}
   /// Clears the value of `state`. Subsequent reads from it will return its default value.
-  public mutating func clearState() {_storage._state = nil}
+  public mutating func clearState() {_uniqueStorage()._state = nil}
 
   /// Full history for an inventory product, including every inventory state for the item since its creation. Every item
   /// in inventory begins with exactly one history entry, stored in the `state` property. Once a second history entry is
@@ -509,60 +367,11 @@ public struct Opencannabis_Inventory_InventoryProduct: SwiftProtobuf.Message {
   /// Returns true if `item` has been explicitly set.
   public var hasItem: Bool {return _storage._item != nil}
   /// Clears the value of `item`. Subsequent reads from it will return its default value.
-  public mutating func clearItem() {_storage._item = nil}
+  public mutating func clearItem() {_uniqueStorage()._item = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 2: try decoder.decodeRepeatedStringField(value: &_storage._sku)
-        case 3: try decoder.decodeRepeatedMessageField(value: &_storage._variant)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._state)
-        case 11: try decoder.decodeRepeatedMessageField(value: &_storage._history)
-        case 20: try decoder.decodeSingularMessageField(value: &_storage._item)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if !_storage._sku.isEmpty {
-        try visitor.visitRepeatedStringField(value: _storage._sku, fieldNumber: 2)
-      }
-      if !_storage._variant.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._variant, fieldNumber: 3)
-      }
-      if let v = _storage._state {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      }
-      if !_storage._history.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._history, fieldNumber: 11)
-      }
-      if let v = _storage._item {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -571,7 +380,8 @@ public struct Opencannabis_Inventory_InventoryProduct: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "opencannabis.inventory"
 
-extension Opencannabis_Inventory_InventoryKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Inventory_InventoryKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".InventoryKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "uuid"),
@@ -598,23 +408,49 @@ extension Opencannabis_Inventory_InventoryKey: SwiftProtobuf._MessageImplementat
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Inventory_InventoryKey) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Inventory_InventoryKey, rhs: Opencannabis_Inventory_InventoryKey) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._uuid != other_storage._uuid {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._uuid != rhs_storage._uuid {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Inventory_InventoryCoordinates: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Inventory_InventoryCoordinates: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".InventoryCoordinates"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "location"),
     2: .same(proto: "zone"),
@@ -624,19 +460,56 @@ extension Opencannabis_Inventory_InventoryCoordinates: SwiftProtobuf._MessageImp
     6: .same(proto: "batch"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Inventory_InventoryCoordinates) -> Bool {
-    if self.location != other.location {return false}
-    if self.zone != other.zone {return false}
-    if self.rack != other.rack {return false}
-    if self.shelf != other.shelf {return false}
-    if self.bin != other.bin {return false}
-    if self.batch != other.batch {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.location)
+      case 2: try decoder.decodeSingularStringField(value: &self.zone)
+      case 3: try decoder.decodeSingularStringField(value: &self.rack)
+      case 4: try decoder.decodeSingularStringField(value: &self.shelf)
+      case 5: try decoder.decodeSingularStringField(value: &self.bin)
+      case 6: try decoder.decodeSingularStringField(value: &self.batch)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.location.isEmpty {
+      try visitor.visitSingularStringField(value: self.location, fieldNumber: 1)
+    }
+    if !self.zone.isEmpty {
+      try visitor.visitSingularStringField(value: self.zone, fieldNumber: 2)
+    }
+    if !self.rack.isEmpty {
+      try visitor.visitSingularStringField(value: self.rack, fieldNumber: 3)
+    }
+    if !self.shelf.isEmpty {
+      try visitor.visitSingularStringField(value: self.shelf, fieldNumber: 4)
+    }
+    if !self.bin.isEmpty {
+      try visitor.visitSingularStringField(value: self.bin, fieldNumber: 5)
+    }
+    if !self.batch.isEmpty {
+      try visitor.visitSingularStringField(value: self.batch, fieldNumber: 6)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Inventory_InventoryCoordinates, rhs: Opencannabis_Inventory_InventoryCoordinates) -> Bool {
+    if lhs.location != rhs.location {return false}
+    if lhs.zone != rhs.zone {return false}
+    if lhs.rack != rhs.rack {return false}
+    if lhs.shelf != rhs.shelf {return false}
+    if lhs.bin != rhs.bin {return false}
+    if lhs.batch != rhs.batch {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Inventory_InventoryAmount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Inventory_InventoryAmount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".InventoryAmount"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "unit"),
@@ -644,16 +517,54 @@ extension Opencannabis_Inventory_InventoryAmount: SwiftProtobuf._MessageImplemen
     4: .same(proto: "quantity"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Inventory_InventoryAmount) -> Bool {
-    if self.type != other.type {return false}
-    if self.basis != other.basis {return false}
-    if self.quantity != other.quantity {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.type)
+      case 2:
+        if self.basis != nil {try decoder.handleConflictingOneOf()}
+        var v: Bool?
+        try decoder.decodeSingularBoolField(value: &v)
+        if let v = v {self.basis = .unit(v)}
+      case 3:
+        if self.basis != nil {try decoder.handleConflictingOneOf()}
+        var v: Opencannabis_Structs_Pricing_PricingWeightTier?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.basis = .weight(v)}
+      case 4: try decoder.decodeSingularUInt64Field(value: &self.quantity)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.type != .unit {
+      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
+    }
+    switch self.basis {
+    case .unit(let v)?:
+      try visitor.visitSingularBoolField(value: v, fieldNumber: 2)
+    case .weight(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 3)
+    case nil: break
+    }
+    if self.quantity != 0 {
+      try visitor.visitSingularUInt64Field(value: self.quantity, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Inventory_InventoryAmount, rhs: Opencannabis_Inventory_InventoryAmount) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.basis != rhs.basis {return false}
+    if lhs.quantity != rhs.quantity {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Inventory_InventoryState: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Inventory_InventoryState: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".InventoryState"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "coordinates"),
@@ -692,22 +603,63 @@ extension Opencannabis_Inventory_InventoryState: SwiftProtobuf._MessageImplement
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Inventory_InventoryState) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._coordinates)
+        case 3: try decoder.decodeSingularBoolField(value: &_storage._fitForSale)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._amount)
+        case 98: try decoder.decodeSingularMessageField(value: &_storage._created)
+        case 99: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._status != .unreconciled {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 1)
+      }
+      if let v = _storage._coordinates {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if _storage._fitForSale != false {
+        try visitor.visitSingularBoolField(value: _storage._fitForSale, fieldNumber: 3)
+      }
+      if let v = _storage._amount {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 98)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Inventory_InventoryState, rhs: Opencannabis_Inventory_InventoryState) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._status != other_storage._status {return false}
-        if _storage._coordinates != other_storage._coordinates {return false}
-        if _storage._fitForSale != other_storage._fitForSale {return false}
-        if _storage._amount != other_storage._amount {return false}
-        if _storage._created != other_storage._created {return false}
-        if _storage._modified != other_storage._modified {return false}
+        let rhs_storage = _args.1
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._coordinates != rhs_storage._coordinates {return false}
+        if _storage._fitForSale != rhs_storage._fitForSale {return false}
+        if _storage._amount != rhs_storage._amount {return false}
+        if _storage._created != rhs_storage._created {return false}
+        if _storage._modified != rhs_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -724,7 +676,8 @@ extension Opencannabis_Inventory_InventoryState.Status: SwiftProtobuf._ProtoName
   ]
 }
 
-extension Opencannabis_Inventory_InventoryProduct: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Inventory_InventoryProduct: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".InventoryProduct"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "sku"),
@@ -763,22 +716,63 @@ extension Opencannabis_Inventory_InventoryProduct: SwiftProtobuf._MessageImpleme
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Inventory_InventoryProduct) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeRepeatedStringField(value: &_storage._sku)
+        case 3: try decoder.decodeRepeatedMessageField(value: &_storage._variant)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._state)
+        case 11: try decoder.decodeRepeatedMessageField(value: &_storage._history)
+        case 20: try decoder.decodeSingularMessageField(value: &_storage._item)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._sku.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._sku, fieldNumber: 2)
+      }
+      if !_storage._variant.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._variant, fieldNumber: 3)
+      }
+      if let v = _storage._state {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+      if !_storage._history.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._history, fieldNumber: 11)
+      }
+      if let v = _storage._item {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Inventory_InventoryProduct, rhs: Opencannabis_Inventory_InventoryProduct) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._sku != other_storage._sku {return false}
-        if _storage._variant != other_storage._variant {return false}
-        if _storage._state != other_storage._state {return false}
-        if _storage._history != other_storage._history {return false}
-        if _storage._item != other_storage._item {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._sku != rhs_storage._sku {return false}
+        if _storage._variant != rhs_storage._variant {return false}
+        if _storage._state != rhs_storage._state {return false}
+        if _storage._history != rhs_storage._history {return false}
+        if _storage._item != rhs_storage._item {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

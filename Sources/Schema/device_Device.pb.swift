@@ -67,9 +67,26 @@ public enum Opencannabis_Device_DeviceType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Device_DeviceType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Device_DeviceType] = [
+    .unknownDeviceType,
+    .desktop,
+    .phone,
+    .tablet,
+    .tv,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a structure that describes a known device.
-public struct Opencannabis_Device_Device: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Device"
+public struct Opencannabis_Device_Device {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Universally unique identifier for this device.
   public var uuid: String {
@@ -91,7 +108,7 @@ public struct Opencannabis_Device_Device: SwiftProtobuf.Message {
   /// Returns true if `flags` has been explicitly set.
   public var hasFlags: Bool {return _storage._flags != nil}
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {_storage._flags = nil}
+  public mutating func clearFlags() {_uniqueStorage()._flags = nil}
 
   /// Credentials for this device.
   public var key: Opencannabis_Device_DeviceCredentials {
@@ -101,59 +118,20 @@ public struct Opencannabis_Device_Device: SwiftProtobuf.Message {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
-        case 2: try decoder.decodeSingularEnumField(value: &_storage._type)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._flags)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._key)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._uuid.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
-      }
-      if _storage._type != .unknownDeviceType {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 2)
-      }
-      if let v = _storage._flags {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Stateful flags that may be set on a device.
-public struct Opencannabis_Device_DeviceFlags: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".DeviceFlags"
+public struct Opencannabis_Device_DeviceFlags {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Flag to mark a device as ephemeral, i.e. attached to a disposable identity.
   public var ephemeral: Bool = false
@@ -164,39 +142,13 @@ public struct Opencannabis_Device_DeviceFlags: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.ephemeral)
-      case 2: try decoder.decodeSingularBoolField(value: &self.managed)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.ephemeral != false {
-      try visitor.visitSingularBoolField(value: self.ephemeral, fieldNumber: 1)
-    }
-    if self.managed != false {
-      try visitor.visitSingularBoolField(value: self.managed, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Credentials that assert a device's identity or authorization.
-public struct Opencannabis_Device_DeviceCredentials: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".DeviceCredentials"
+public struct Opencannabis_Device_DeviceCredentials {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Raw bytes for a device's public key.
   public var publicKey: Data = SwiftProtobuf.Internal.emptyData
@@ -216,46 +168,6 @@ public struct Opencannabis_Device_DeviceCredentials: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBytesField(value: &self.publicKey)
-      case 2: try decoder.decodeSingularBytesField(value: &self.privateKey)
-      case 3: try decoder.decodeSingularStringField(value: &self.sha256)
-      case 4: try decoder.decodeSingularStringField(value: &self.identity)
-      case 5: try decoder.decodeRepeatedBytesField(value: &self.authorities)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.publicKey.isEmpty {
-      try visitor.visitSingularBytesField(value: self.publicKey, fieldNumber: 1)
-    }
-    if !self.privateKey.isEmpty {
-      try visitor.visitSingularBytesField(value: self.privateKey, fieldNumber: 2)
-    }
-    if !self.sha256.isEmpty {
-      try visitor.visitSingularStringField(value: self.sha256, fieldNumber: 3)
-    }
-    if !self.identity.isEmpty {
-      try visitor.visitSingularStringField(value: self.identity, fieldNumber: 4)
-    }
-    if !self.authorities.isEmpty {
-      try visitor.visitRepeatedBytesField(value: self.authorities, fieldNumber: 5)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -272,7 +184,8 @@ extension Opencannabis_Device_DeviceType: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Opencannabis_Device_Device: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Device_Device: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Device"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
     2: .same(proto: "type"),
@@ -305,39 +218,94 @@ extension Opencannabis_Device_Device: SwiftProtobuf._MessageImplementationBase, 
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Device_Device) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._flags)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._key)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
+      }
+      if _storage._type != .unknownDeviceType {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 2)
+      }
+      if let v = _storage._flags {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Device_Device, rhs: Opencannabis_Device_Device) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._type != other_storage._type {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._key != other_storage._key {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._key != rhs_storage._key {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Device_DeviceFlags: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Device_DeviceFlags: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DeviceFlags"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "ephemeral"),
     2: .same(proto: "managed"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Device_DeviceFlags) -> Bool {
-    if self.ephemeral != other.ephemeral {return false}
-    if self.managed != other.managed {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.ephemeral)
+      case 2: try decoder.decodeSingularBoolField(value: &self.managed)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.ephemeral != false {
+      try visitor.visitSingularBoolField(value: self.ephemeral, fieldNumber: 1)
+    }
+    if self.managed != false {
+      try visitor.visitSingularBoolField(value: self.managed, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Device_DeviceFlags, rhs: Opencannabis_Device_DeviceFlags) -> Bool {
+    if lhs.ephemeral != rhs.ephemeral {return false}
+    if lhs.managed != rhs.managed {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Device_DeviceCredentials: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Device_DeviceCredentials: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DeviceCredentials"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "public_key"),
     2: .standard(proto: "private_key"),
@@ -346,13 +314,45 @@ extension Opencannabis_Device_DeviceCredentials: SwiftProtobuf._MessageImplement
     5: .same(proto: "authorities"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Device_DeviceCredentials) -> Bool {
-    if self.publicKey != other.publicKey {return false}
-    if self.privateKey != other.privateKey {return false}
-    if self.sha256 != other.sha256 {return false}
-    if self.identity != other.identity {return false}
-    if self.authorities != other.authorities {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBytesField(value: &self.publicKey)
+      case 2: try decoder.decodeSingularBytesField(value: &self.privateKey)
+      case 3: try decoder.decodeSingularStringField(value: &self.sha256)
+      case 4: try decoder.decodeSingularStringField(value: &self.identity)
+      case 5: try decoder.decodeRepeatedBytesField(value: &self.authorities)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.publicKey.isEmpty {
+      try visitor.visitSingularBytesField(value: self.publicKey, fieldNumber: 1)
+    }
+    if !self.privateKey.isEmpty {
+      try visitor.visitSingularBytesField(value: self.privateKey, fieldNumber: 2)
+    }
+    if !self.sha256.isEmpty {
+      try visitor.visitSingularStringField(value: self.sha256, fieldNumber: 3)
+    }
+    if !self.identity.isEmpty {
+      try visitor.visitSingularStringField(value: self.identity, fieldNumber: 4)
+    }
+    if !self.authorities.isEmpty {
+      try visitor.visitRepeatedBytesField(value: self.authorities, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Device_DeviceCredentials, rhs: Opencannabis_Device_DeviceCredentials) -> Bool {
+    if lhs.publicKey != rhs.publicKey {return false}
+    if lhs.privateKey != rhs.privateKey {return false}
+    if lhs.sha256 != rhs.sha256 {return false}
+    if lhs.identity != rhs.identity {return false}
+    if lhs.authorities != rhs.authorities {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

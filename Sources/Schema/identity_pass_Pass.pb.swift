@@ -22,9 +22,80 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Enumerates statuses that a digital pass record may be in.
+public enum Bloombox_Schema_Identity_Pass_PassStatus: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// The pass has been provisioned, but not issued.
+  case provisioned // = 0
+
+  /// The pass has been issued, meaning it has been sent to the user via some means.
+  case issued // = 1
+
+  /// The pass has been activated and is ready for use.
+  case active // = 2
+
+  /// The pass has been decommissioned by the user. This status is terminal.
+  case decommissioned // = 3
+
+  /// The pass has been suspended by the partner or location. It is temporarily not usable.
+  case suspended // = 4
+
+  /// The pass is fully banned by the partner or location. This status is terminal and the pass is no longer usable.
+  case banned // = 5
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .provisioned
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .provisioned
+    case 1: self = .issued
+    case 2: self = .active
+    case 3: self = .decommissioned
+    case 4: self = .suspended
+    case 5: self = .banned
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .provisioned: return 0
+    case .issued: return 1
+    case .active: return 2
+    case .decommissioned: return 3
+    case .suspended: return 4
+    case .banned: return 5
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Identity_Pass_PassStatus: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Identity_Pass_PassStatus] = [
+    .provisioned,
+    .issued,
+    .active,
+    .decommissioned,
+    .suspended,
+    .banned,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the structure of a digital pass record.
-public struct Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Pass"
+public struct Bloombox_Schema_Identity_Pass_Pass {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the key for a digital pass record.
   public var key: Bloombox_Schema_Identity_Pass_PassKey {
@@ -34,7 +105,7 @@ public struct Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Specifies the auth token value for a given digital pass.
   public var token: String {
@@ -54,6 +125,34 @@ public struct Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message {
     set {_uniqueStorage()._active = newValue}
   }
 
+  /// Whether this pass is personalizable.
+  public var personalizable: Bool {
+    get {return _storage._personalizable}
+    set {_uniqueStorage()._personalizable = newValue}
+  }
+
+  /// Whether this pass is personalizable, and has been personalized.
+  public var personalized: Bool {
+    get {return _storage._personalized}
+    set {_uniqueStorage()._personalized = newValue}
+  }
+
+  /// Current status of this pass.
+  public var status: Bloombox_Schema_Identity_Pass_PassStatus {
+    get {return _storage._status}
+    set {_uniqueStorage()._status = newValue}
+  }
+
+  /// Timestamp indicating when this pass was originally provisioned.
+  public var provisioned: Opencannabis_Temporal_Instant {
+    get {return _storage._provisioned ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._provisioned = newValue}
+  }
+  /// Returns true if `provisioned` has been explicitly set.
+  public var hasProvisioned: Bool {return _storage._provisioned != nil}
+  /// Clears the value of `provisioned`. Subsequent reads from it will return its default value.
+  public mutating func clearProvisioned() {_uniqueStorage()._provisioned = nil}
+
   /// Timestamp indicating when this pass was originally issued.
   public var issued: Opencannabis_Temporal_Instant {
     get {return _storage._issued ?? Opencannabis_Temporal_Instant()}
@@ -62,7 +161,17 @@ public struct Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message {
   /// Returns true if `issued` has been explicitly set.
   public var hasIssued: Bool {return _storage._issued != nil}
   /// Clears the value of `issued`. Subsequent reads from it will return its default value.
-  public mutating func clearIssued() {_storage._issued = nil}
+  public mutating func clearIssued() {_uniqueStorage()._issued = nil}
+
+  /// Timestamp indicating when this pass was activated for use.
+  public var activated: Opencannabis_Temporal_Instant {
+    get {return _storage._activated ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._activated = newValue}
+  }
+  /// Returns true if `activated` has been explicitly set.
+  public var hasActivated: Bool {return _storage._activated != nil}
+  /// Clears the value of `activated`. Subsequent reads from it will return its default value.
+  public mutating func clearActivated() {_uniqueStorage()._activated = nil}
 
   /// Timestamp indicating when this pass was suspended, if applicable.
   public var suspended: Opencannabis_Temporal_Instant {
@@ -72,16 +181,137 @@ public struct Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message {
   /// Returns true if `suspended` has been explicitly set.
   public var hasSuspended: Bool {return _storage._suspended != nil}
   /// Clears the value of `suspended`. Subsequent reads from it will return its default value.
-  public mutating func clearSuspended() {_storage._suspended = nil}
+  public mutating func clearSuspended() {_uniqueStorage()._suspended = nil}
+
+  /// Timestamp indicating when this pass was banned, if applicable.
+  public var banned: Opencannabis_Temporal_Instant {
+    get {return _storage._banned ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._banned = newValue}
+  }
+  /// Returns true if `banned` has been explicitly set.
+  public var hasBanned: Bool {return _storage._banned != nil}
+  /// Clears the value of `banned`. Subsequent reads from it will return its default value.
+  public mutating func clearBanned() {_uniqueStorage()._banned = nil}
+
+  /// Timestamp indicating when this pass was last seen.
+  public var seen: Opencannabis_Temporal_Instant {
+    get {return _storage._seen ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._seen = newValue}
+  }
+  /// Returns true if `seen` has been explicitly set.
+  public var hasSeen: Bool {return _storage._seen != nil}
+  /// Clears the value of `seen`. Subsequent reads from it will return its default value.
+  public mutating func clearSeen() {_uniqueStorage()._seen = nil}
+
+  /// Timestamp indicating when this pass was last used to check-in, if applicable.
+  public var checkin: Opencannabis_Temporal_Instant {
+    get {return _storage._checkin ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._checkin = newValue}
+  }
+  /// Returns true if `checkin` has been explicitly set.
+  public var hasCheckin: Bool {return _storage._checkin != nil}
+  /// Clears the value of `checkin`. Subsequent reads from it will return its default value.
+  public mutating func clearCheckin() {_uniqueStorage()._checkin = nil}
+
+  /// Timestamp indicating when this pass was enrolled, if it's a personalizable pass.
+  public var enroll: Opencannabis_Temporal_Instant {
+    get {return _storage._enroll ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._enroll = newValue}
+  }
+  /// Returns true if `enroll` has been explicitly set.
+  public var hasEnroll: Bool {return _storage._enroll != nil}
+  /// Clears the value of `enroll`. Subsequent reads from it will return its default value.
+  public mutating func clearEnroll() {_uniqueStorage()._enroll = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.identity.pass"
+
+extension Bloombox_Schema_Identity_Pass_PassStatus: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "PROVISIONED"),
+    1: .same(proto: "ISSUED"),
+    2: .same(proto: "ACTIVE"),
+    3: .same(proto: "DECOMMISSIONED"),
+    4: .same(proto: "SUSPENDED"),
+    5: .same(proto: "BANNED"),
+  ]
+}
+
+extension Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Pass"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "key"),
+    2: .same(proto: "token"),
+    3: .same(proto: "uri"),
+    4: .same(proto: "active"),
+    5: .same(proto: "personalizable"),
+    6: .same(proto: "personalized"),
+    7: .same(proto: "status"),
+    8: .same(proto: "provisioned"),
+    9: .same(proto: "issued"),
+    10: .same(proto: "activated"),
+    11: .same(proto: "suspended"),
+    12: .same(proto: "banned"),
+    13: .same(proto: "seen"),
+    14: .same(proto: "checkin"),
+    15: .same(proto: "enroll"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _key: Bloombox_Schema_Identity_Pass_PassKey? = nil
+    var _token: String = String()
+    var _uri: String = String()
+    var _active: Bool = false
+    var _personalizable: Bool = false
+    var _personalized: Bool = false
+    var _status: Bloombox_Schema_Identity_Pass_PassStatus = .provisioned
+    var _provisioned: Opencannabis_Temporal_Instant? = nil
+    var _issued: Opencannabis_Temporal_Instant? = nil
+    var _activated: Opencannabis_Temporal_Instant? = nil
+    var _suspended: Opencannabis_Temporal_Instant? = nil
+    var _banned: Opencannabis_Temporal_Instant? = nil
+    var _seen: Opencannabis_Temporal_Instant? = nil
+    var _checkin: Opencannabis_Temporal_Instant? = nil
+    var _enroll: Opencannabis_Temporal_Instant? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _key = source._key
+      _token = source._token
+      _uri = source._uri
+      _active = source._active
+      _personalizable = source._personalizable
+      _personalized = source._personalized
+      _status = source._status
+      _provisioned = source._provisioned
+      _issued = source._issued
+      _activated = source._activated
+      _suspended = source._suspended
+      _banned = source._banned
+      _seen = source._seen
+      _checkin = source._checkin
+      _enroll = source._enroll
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
@@ -91,18 +321,23 @@ public struct Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message {
         case 2: try decoder.decodeSingularStringField(value: &_storage._token)
         case 3: try decoder.decodeSingularStringField(value: &_storage._uri)
         case 4: try decoder.decodeSingularBoolField(value: &_storage._active)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._issued)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._suspended)
+        case 5: try decoder.decodeSingularBoolField(value: &_storage._personalizable)
+        case 6: try decoder.decodeSingularBoolField(value: &_storage._personalized)
+        case 7: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._provisioned)
+        case 9: try decoder.decodeSingularMessageField(value: &_storage._issued)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._activated)
+        case 11: try decoder.decodeSingularMessageField(value: &_storage._suspended)
+        case 12: try decoder.decodeSingularMessageField(value: &_storage._banned)
+        case 13: try decoder.decodeSingularMessageField(value: &_storage._seen)
+        case 14: try decoder.decodeSingularMessageField(value: &_storage._checkin)
+        case 15: try decoder.decodeSingularMessageField(value: &_storage._enroll)
         default: break
         }
       }
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       if let v = _storage._key {
@@ -117,78 +352,68 @@ public struct Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message {
       if _storage._active != false {
         try visitor.visitSingularBoolField(value: _storage._active, fieldNumber: 4)
       }
+      if _storage._personalizable != false {
+        try visitor.visitSingularBoolField(value: _storage._personalizable, fieldNumber: 5)
+      }
+      if _storage._personalized != false {
+        try visitor.visitSingularBoolField(value: _storage._personalized, fieldNumber: 6)
+      }
+      if _storage._status != .provisioned {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 7)
+      }
+      if let v = _storage._provisioned {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
       if let v = _storage._issued {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
+      if let v = _storage._activated {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
       }
       if let v = _storage._suspended {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      }
+      if let v = _storage._banned {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+      }
+      if let v = _storage._seen {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 13)
+      }
+      if let v = _storage._checkin {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
+      }
+      if let v = _storage._enroll {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.identity.pass"
-
-extension Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "key"),
-    2: .same(proto: "token"),
-    3: .same(proto: "uri"),
-    4: .same(proto: "active"),
-    5: .same(proto: "issued"),
-    6: .same(proto: "suspended"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _key: Bloombox_Schema_Identity_Pass_PassKey? = nil
-    var _token: String = String()
-    var _uri: String = String()
-    var _active: Bool = false
-    var _issued: Opencannabis_Temporal_Instant? = nil
-    var _suspended: Opencannabis_Temporal_Instant? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _key = source._key
-      _token = source._token
-      _uri = source._uri
-      _active = source._active
-      _issued = source._issued
-      _suspended = source._suspended
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Pass_Pass) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Identity_Pass_Pass, rhs: Bloombox_Schema_Identity_Pass_Pass) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._token != other_storage._token {return false}
-        if _storage._uri != other_storage._uri {return false}
-        if _storage._active != other_storage._active {return false}
-        if _storage._issued != other_storage._issued {return false}
-        if _storage._suspended != other_storage._suspended {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._token != rhs_storage._token {return false}
+        if _storage._uri != rhs_storage._uri {return false}
+        if _storage._active != rhs_storage._active {return false}
+        if _storage._personalizable != rhs_storage._personalizable {return false}
+        if _storage._personalized != rhs_storage._personalized {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._provisioned != rhs_storage._provisioned {return false}
+        if _storage._issued != rhs_storage._issued {return false}
+        if _storage._activated != rhs_storage._activated {return false}
+        if _storage._suspended != rhs_storage._suspended {return false}
+        if _storage._banned != rhs_storage._banned {return false}
+        if _storage._seen != rhs_storage._seen {return false}
+        if _storage._checkin != rhs_storage._checkin {return false}
+        if _storage._enroll != rhs_storage._enroll {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

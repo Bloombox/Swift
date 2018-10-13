@@ -23,8 +23,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Doctor recommendation to allow a consumer to purchase cannabis in a restricted market.
-public struct Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".UserDoctorRec"
+public struct Bloombox_Schema_Identity_Ids_UserDoctorRec {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// ID number/unique code.
   public var id: String {
@@ -40,7 +42,7 @@ public struct Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message 
   /// Returns true if `expirationDate` has been explicitly set.
   public var hasExpirationDate: Bool {return _storage._expirationDate != nil}
   /// Clears the value of `expirationDate`. Subsequent reads from it will return its default value.
-  public mutating func clearExpirationDate() {_storage._expirationDate = nil}
+  public mutating func clearExpirationDate() {_uniqueStorage()._expirationDate = nil}
 
   /// Raw barcode value.
   public var barcode: String {
@@ -74,64 +76,11 @@ public struct Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message 
   /// Returns true if `doctor` has been explicitly set.
   public var hasDoctor: Bool {return _storage._doctor != nil}
   /// Clears the value of `doctor`. Subsequent reads from it will return its default value.
-  public mutating func clearDoctor() {_storage._doctor = nil}
+  public mutating func clearDoctor() {_uniqueStorage()._doctor = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._expirationDate)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._barcode)
-        case 4: try decoder.decodeSingularEnumField(value: &_storage._state)
-        case 5: try decoder.decodeSingularStringField(value: &_storage._country)
-        case 6: try decoder.decodeSingularStringField(value: &_storage._doctorID)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._doctor)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if let v = _storage._expirationDate {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._barcode.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._barcode, fieldNumber: 3)
-      }
-      if _storage._state != .unspecified {
-        try visitor.visitSingularEnumField(value: _storage._state, fieldNumber: 4)
-      }
-      if !_storage._country.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._country, fieldNumber: 5)
-      }
-      if !_storage._doctorID.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._doctorID, fieldNumber: 6)
-      }
-      if let v = _storage._doctor {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -140,7 +89,8 @@ public struct Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message 
 
 fileprivate let _protobuf_package = "bloombox.schema.identity.ids"
 
-extension Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".UserDoctorRec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .standard(proto: "expiration_date"),
@@ -182,23 +132,68 @@ extension Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf._MessageImpl
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_UserDoctorRec) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._expirationDate)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._barcode)
+        case 4: try decoder.decodeSingularEnumField(value: &_storage._state)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._country)
+        case 6: try decoder.decodeSingularStringField(value: &_storage._doctorID)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._doctor)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if let v = _storage._expirationDate {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._barcode.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._barcode, fieldNumber: 3)
+      }
+      if _storage._state != .unspecified {
+        try visitor.visitSingularEnumField(value: _storage._state, fieldNumber: 4)
+      }
+      if !_storage._country.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._country, fieldNumber: 5)
+      }
+      if !_storage._doctorID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._doctorID, fieldNumber: 6)
+      }
+      if let v = _storage._doctor {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Identity_Ids_UserDoctorRec, rhs: Bloombox_Schema_Identity_Ids_UserDoctorRec) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._expirationDate != other_storage._expirationDate {return false}
-        if _storage._barcode != other_storage._barcode {return false}
-        if _storage._state != other_storage._state {return false}
-        if _storage._country != other_storage._country {return false}
-        if _storage._doctorID != other_storage._doctorID {return false}
-        if _storage._doctor != other_storage._doctor {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._expirationDate != rhs_storage._expirationDate {return false}
+        if _storage._barcode != rhs_storage._barcode {return false}
+        if _storage._state != rhs_storage._state {return false}
+        if _storage._country != rhs_storage._country {return false}
+        if _storage._doctorID != rhs_storage._doctorID {return false}
+        if _storage._doctor != rhs_storage._doctor {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -23,8 +23,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Raster graphic URL reference.
-public struct Opencannabis_Content_RasterGraphic: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".RasterGraphic"
+public struct Opencannabis_Content_RasterGraphic {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Standard-resolution graphic link.
   public var standard: Opencannabis_Media_MediaReference {
@@ -34,7 +36,7 @@ public struct Opencannabis_Content_RasterGraphic: SwiftProtobuf.Message {
   /// Returns true if `standard` has been explicitly set.
   public var hasStandard: Bool {return _storage._standard != nil}
   /// Clears the value of `standard`. Subsequent reads from it will return its default value.
-  public mutating func clearStandard() {_storage._standard = nil}
+  public mutating func clearStandard() {_uniqueStorage()._standard = nil}
 
   /// High-resolution graphic link.
   public var retina: Opencannabis_Media_MediaReference {
@@ -44,51 +46,20 @@ public struct Opencannabis_Content_RasterGraphic: SwiftProtobuf.Message {
   /// Returns true if `retina` has been explicitly set.
   public var hasRetina: Bool {return _storage._retina != nil}
   /// Clears the value of `retina`. Subsequent reads from it will return its default value.
-  public mutating func clearRetina() {_storage._retina = nil}
+  public mutating func clearRetina() {_uniqueStorage()._retina = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._standard)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._retina)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._standard {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._retina {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Individual brand asset.
-public struct Opencannabis_Content_BrandAsset: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".BrandAsset"
+public struct Opencannabis_Content_BrandAsset {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Raster graphic references.
   public var raster: Opencannabis_Content_RasterGraphic {
@@ -98,7 +69,7 @@ public struct Opencannabis_Content_BrandAsset: SwiftProtobuf.Message {
   /// Returns true if `raster` has been explicitly set.
   public var hasRaster: Bool {return _storage._raster != nil}
   /// Clears the value of `raster`. Subsequent reads from it will return its default value.
-  public mutating func clearRaster() {_storage._raster = nil}
+  public mutating func clearRaster() {_uniqueStorage()._raster = nil}
 
   /// Vector graphic reference.
   public var vector: Opencannabis_Media_MediaReference {
@@ -108,51 +79,20 @@ public struct Opencannabis_Content_BrandAsset: SwiftProtobuf.Message {
   /// Returns true if `vector` has been explicitly set.
   public var hasVector: Bool {return _storage._vector != nil}
   /// Clears the value of `vector`. Subsequent reads from it will return its default value.
-  public mutating func clearVector() {_storage._vector = nil}
+  public mutating func clearVector() {_uniqueStorage()._vector = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._raster)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._vector)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._raster {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._vector {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Information about a particular brand or producer of products or materials.
-public struct Opencannabis_Content_Brand: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Brand"
+public struct Opencannabis_Content_Brand {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Naming information for this brand.
   public var name: Opencannabis_Content_Name {
@@ -162,7 +102,7 @@ public struct Opencannabis_Content_Brand: SwiftProtobuf.Message {
   /// Returns true if `name` has been explicitly set.
   public var hasName: Bool {return _storage._name != nil}
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
-  public mutating func clearName() {_storage._name = nil}
+  public mutating func clearName() {_uniqueStorage()._name = nil}
 
   /// Parent/owning brand, if applicable.
   public var parent: Opencannabis_Content_Brand {
@@ -172,7 +112,7 @@ public struct Opencannabis_Content_Brand: SwiftProtobuf.Message {
   /// Returns true if `parent` has been explicitly set.
   public var hasParent: Bool {return _storage._parent != nil}
   /// Clears the value of `parent`. Subsequent reads from it will return its default value.
-  public mutating func clearParent() {_storage._parent = nil}
+  public mutating func clearParent() {_uniqueStorage()._parent = nil}
 
   /// Summary information or content about this brand.
   public var summary: Opencannabis_Content_Content {
@@ -182,7 +122,7 @@ public struct Opencannabis_Content_Brand: SwiftProtobuf.Message {
   /// Returns true if `summary` has been explicitly set.
   public var hasSummary: Bool {return _storage._summary != nil}
   /// Clears the value of `summary`. Subsequent reads from it will return its default value.
-  public mutating func clearSummary() {_storage._summary = nil}
+  public mutating func clearSummary() {_uniqueStorage()._summary = nil}
 
   /// Media items attached to this brand.
   public var media: [Opencannabis_Content_BrandAsset] {
@@ -198,56 +138,11 @@ public struct Opencannabis_Content_Brand: SwiftProtobuf.Message {
   /// Returns true if `theme` has been explicitly set.
   public var hasTheme: Bool {return _storage._theme != nil}
   /// Clears the value of `theme`. Subsequent reads from it will return its default value.
-  public mutating func clearTheme() {_storage._theme = nil}
+  public mutating func clearTheme() {_uniqueStorage()._theme = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._name)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._parent)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._summary)
-        case 20: try decoder.decodeRepeatedMessageField(value: &_storage._media)
-        case 21: try decoder.decodeSingularMessageField(value: &_storage._theme)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._name {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._parent {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._summary {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if !_storage._media.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._media, fieldNumber: 20)
-      }
-      if let v = _storage._theme {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -256,7 +151,8 @@ public struct Opencannabis_Content_Brand: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "opencannabis.content"
 
-extension Opencannabis_Content_RasterGraphic: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_RasterGraphic: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".RasterGraphic"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "standard"),
     2: .same(proto: "retina"),
@@ -283,23 +179,49 @@ extension Opencannabis_Content_RasterGraphic: SwiftProtobuf._MessageImplementati
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_RasterGraphic) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._standard)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._retina)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._standard {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._retina {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_RasterGraphic, rhs: Opencannabis_Content_RasterGraphic) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._standard != other_storage._standard {return false}
-        if _storage._retina != other_storage._retina {return false}
+        let rhs_storage = _args.1
+        if _storage._standard != rhs_storage._standard {return false}
+        if _storage._retina != rhs_storage._retina {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Content_BrandAsset: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_BrandAsset: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BrandAsset"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "raster"),
     2: .same(proto: "vector"),
@@ -326,23 +248,49 @@ extension Opencannabis_Content_BrandAsset: SwiftProtobuf._MessageImplementationB
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_BrandAsset) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._raster)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._vector)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._raster {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._vector {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_BrandAsset, rhs: Opencannabis_Content_BrandAsset) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._raster != other_storage._raster {return false}
-        if _storage._vector != other_storage._vector {return false}
+        let rhs_storage = _args.1
+        if _storage._raster != rhs_storage._raster {return false}
+        if _storage._vector != rhs_storage._vector {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Content_Brand: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_Brand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Brand"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "parent"),
@@ -378,21 +326,58 @@ extension Opencannabis_Content_Brand: SwiftProtobuf._MessageImplementationBase, 
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_Brand) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._name)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._parent)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._summary)
+        case 20: try decoder.decodeRepeatedMessageField(value: &_storage._media)
+        case 21: try decoder.decodeSingularMessageField(value: &_storage._theme)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._name {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._parent {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._summary {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if !_storage._media.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._media, fieldNumber: 20)
+      }
+      if let v = _storage._theme {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_Brand, rhs: Opencannabis_Content_Brand) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._parent != other_storage._parent {return false}
-        if _storage._summary != other_storage._summary {return false}
-        if _storage._media != other_storage._media {return false}
-        if _storage._theme != other_storage._theme {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._parent != rhs_storage._parent {return false}
+        if _storage._summary != rhs_storage._summary {return false}
+        if _storage._media != rhs_storage._media {return false}
+        if _storage._theme != rhs_storage._theme {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

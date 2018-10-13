@@ -24,8 +24,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies an auth token issued to a device, or some other machine-based actor.
-public struct Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".DeviceTicket"
+public struct Bloombox_Schema_Security_DeviceTicket {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Authentication token, usable by this device to authenticate to the API, etc.
   public var token: Bloombox_Schema_Security_AuthToken {
@@ -35,7 +37,7 @@ public struct Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf.Message {
   /// Returns true if `token` has been explicitly set.
   public var hasToken: Bool {return _storage._token != nil}
   /// Clears the value of `token`. Subsequent reads from it will return its default value.
-  public mutating func clearToken() {_storage._token = nil}
+  public mutating func clearToken() {_uniqueStorage()._token = nil}
 
   /// Information passed from the server to this device, including credentials, stateful flags, and so on.
   public var device: Opencannabis_Device_Device {
@@ -45,7 +47,7 @@ public struct Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf.Message {
   /// Returns true if `device` has been explicitly set.
   public var hasDevice: Bool {return _storage._device != nil}
   /// Clears the value of `device`. Subsequent reads from it will return its default value.
-  public mutating func clearDevice() {_storage._device = nil}
+  public mutating func clearDevice() {_uniqueStorage()._device = nil}
 
   /// Issuance timestamp for this device token.
   public var issued: Opencannabis_Temporal_Instant {
@@ -55,7 +57,7 @@ public struct Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf.Message {
   /// Returns true if `issued` has been explicitly set.
   public var hasIssued: Bool {return _storage._issued != nil}
   /// Clears the value of `issued`. Subsequent reads from it will return its default value.
-  public mutating func clearIssued() {_storage._issued = nil}
+  public mutating func clearIssued() {_uniqueStorage()._issued = nil}
 
   /// Expiry timestamp for this device token.
   public var expires: Opencannabis_Temporal_Instant {
@@ -65,52 +67,11 @@ public struct Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf.Message {
   /// Returns true if `expires` has been explicitly set.
   public var hasExpires: Bool {return _storage._expires != nil}
   /// Clears the value of `expires`. Subsequent reads from it will return its default value.
-  public mutating func clearExpires() {_storage._expires = nil}
+  public mutating func clearExpires() {_uniqueStorage()._expires = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._token)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._device)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._issued)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._expires)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._token {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._device {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._issued {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._expires {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -119,7 +80,8 @@ public struct Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "bloombox.schema.security"
 
-extension Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DeviceTicket"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "token"),
     2: .same(proto: "device"),
@@ -152,20 +114,53 @@ extension Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf._MessageImplement
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_DeviceTicket) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._token)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._device)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._issued)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._expires)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._token {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._device {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._issued {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._expires {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Security_DeviceTicket, rhs: Bloombox_Schema_Security_DeviceTicket) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._token != other_storage._token {return false}
-        if _storage._device != other_storage._device {return false}
-        if _storage._issued != other_storage._issued {return false}
-        if _storage._expires != other_storage._expires {return false}
+        let rhs_storage = _args.1
+        if _storage._token != rhs_storage._token {return false}
+        if _storage._device != rhs_storage._device {return false}
+        if _storage._issued != rhs_storage._issued {return false}
+        if _storage._expires != rhs_storage._expires {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

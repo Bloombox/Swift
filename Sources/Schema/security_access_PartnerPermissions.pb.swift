@@ -83,10 +83,29 @@ public enum Bloombox_Schema_Security_Access_PartnerRole: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Security_Access_PartnerRole: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Security_Access_PartnerRole] = [
+    .readonly,
+    .supervisor,
+    .billing,
+    .audit,
+    .employee,
+    .developer,
+    .admin,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the subject account for a given access policy. The subject "account," in this case, is the partner or
 /// partner location for which right are being specified.
-public struct Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".AccessSubject"
+public struct Bloombox_Schema_Security_Access_AccessSubject {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the subject account (partner or location) for this rights subject payload.
   public var account: OneOf_Account? {
@@ -121,6 +140,7 @@ public struct Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Messa
     /// Partner location-level access scope.
     case location(Bloombox_Schema_Partner_LocationKey)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Security_Access_AccessSubject.OneOf_Account, rhs: Bloombox_Schema_Security_Access_AccessSubject.OneOf_Account) -> Bool {
       switch (lhs, rhs) {
       case (.partner(let l), .partner(let r)): return l == r
@@ -128,14 +148,132 @@ public struct Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Messa
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Specifies a policy that grants access to a given security subject (a user or a domain) for a given resource (a kind
+/// of data, login access at all, etc).
+public struct Bloombox_Schema_Security_Access_AccessPolicy {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Unique ID assigned to this access policy.
+  public var uuid: String {
+    get {return _storage._uuid}
+    set {_uniqueStorage()._uuid = newValue}
+  }
+
+  /// Partner account or location that we are specifying access rights for.
+  public var subject: Bloombox_Schema_Security_Access_AccessSubject {
+    get {return _storage._subject ?? Bloombox_Schema_Security_Access_AccessSubject()}
+    set {_uniqueStorage()._subject = newValue}
+  }
+  /// Returns true if `subject` has been explicitly set.
+  public var hasSubject: Bool {return _storage._subject != nil}
+  /// Clears the value of `subject`. Subsequent reads from it will return its default value.
+  public mutating func clearSubject() {_uniqueStorage()._subject = nil}
+
+  /// Roles granted as part of this policy.
+  public var privilege: [Bloombox_Schema_Security_Access_PartnerRole] {
+    get {return _storage._privilege}
+    set {_uniqueStorage()._privilege = newValue}
+  }
+
+  /// User being granted rights as part of this policy.
+  public var user: Bloombox_Schema_Identity_UserKey {
+    get {return _storage._user ?? Bloombox_Schema_Identity_UserKey()}
+    set {_uniqueStorage()._user = newValue}
+  }
+  /// Returns true if `user` has been explicitly set.
+  public var hasUser: Bool {return _storage._user != nil}
+  /// Clears the value of `user`. Subsequent reads from it will return its default value.
+  public mutating func clearUser() {_uniqueStorage()._user = nil}
+
+  /// Permissions grantor.
+  public var grantor: Bloombox_Schema_Identity_UserKey {
+    get {return _storage._grantor ?? Bloombox_Schema_Identity_UserKey()}
+    set {_uniqueStorage()._grantor = newValue}
+  }
+  /// Returns true if `grantor` has been explicitly set.
+  public var hasGrantor: Bool {return _storage._grantor != nil}
+  /// Clears the value of `grantor`. Subsequent reads from it will return its default value.
+  public mutating func clearGrantor() {_uniqueStorage()._grantor = nil}
+
+  /// Modified timestamp for this record.
+  public var modified: Opencannabis_Temporal_Instant {
+    get {return _storage._modified ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._modified = newValue}
+  }
+  /// Returns true if `modified` has been explicitly set.
+  public var hasModified: Bool {return _storage._modified != nil}
+  /// Clears the value of `modified`. Subsequent reads from it will return its default value.
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
+
+  /// Created timestmap for this record.
+  public var created: Opencannabis_Temporal_Instant {
+    get {return _storage._created ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._created = newValue}
+  }
+  /// Returns true if `created` has been explicitly set.
+  public var hasCreated: Bool {return _storage._created != nil}
+  /// Clears the value of `created`. Subsequent reads from it will return its default value.
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.security.access"
+
+extension Bloombox_Schema_Security_Access_PartnerRole: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "READONLY"),
+    1: .same(proto: "SUPERVISOR"),
+    2: .same(proto: "BILLING"),
+    3: .same(proto: "AUDIT"),
+    4: .same(proto: "EMPLOYEE"),
+    5: .same(proto: "DEVELOPER"),
+    6: .same(proto: "ADMIN"),
+  ]
+}
+
+extension Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AccessSubject"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    10: .same(proto: "partner"),
+    20: .same(proto: "location"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _account: Bloombox_Schema_Security_Access_AccessSubject.OneOf_Account?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _account = source._account
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
@@ -163,10 +301,6 @@ public struct Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Messa
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       switch _storage._account {
@@ -180,193 +314,23 @@ public struct Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Specifies a policy that grants access to a given security subject (a user or a domain) for a given resource (a kind
-/// of data, login access at all, etc).
-public struct Bloombox_Schema_Security_Access_AccessPolicy: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".AccessPolicy"
-
-  /// Unique ID assigned to this access policy.
-  public var uuid: String {
-    get {return _storage._uuid}
-    set {_uniqueStorage()._uuid = newValue}
-  }
-
-  /// Partner account or location that we are specifying access rights for.
-  public var subject: Bloombox_Schema_Security_Access_AccessSubject {
-    get {return _storage._subject ?? Bloombox_Schema_Security_Access_AccessSubject()}
-    set {_uniqueStorage()._subject = newValue}
-  }
-  /// Returns true if `subject` has been explicitly set.
-  public var hasSubject: Bool {return _storage._subject != nil}
-  /// Clears the value of `subject`. Subsequent reads from it will return its default value.
-  public mutating func clearSubject() {_storage._subject = nil}
-
-  /// Roles granted as part of this policy.
-  public var privilege: [Bloombox_Schema_Security_Access_PartnerRole] {
-    get {return _storage._privilege}
-    set {_uniqueStorage()._privilege = newValue}
-  }
-
-  /// User being granted rights as part of this policy.
-  public var user: Bloombox_Schema_Identity_UserKey {
-    get {return _storage._user ?? Bloombox_Schema_Identity_UserKey()}
-    set {_uniqueStorage()._user = newValue}
-  }
-  /// Returns true if `user` has been explicitly set.
-  public var hasUser: Bool {return _storage._user != nil}
-  /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  public mutating func clearUser() {_storage._user = nil}
-
-  /// Permissions grantor.
-  public var grantor: Bloombox_Schema_Identity_UserKey {
-    get {return _storage._grantor ?? Bloombox_Schema_Identity_UserKey()}
-    set {_uniqueStorage()._grantor = newValue}
-  }
-  /// Returns true if `grantor` has been explicitly set.
-  public var hasGrantor: Bool {return _storage._grantor != nil}
-  /// Clears the value of `grantor`. Subsequent reads from it will return its default value.
-  public mutating func clearGrantor() {_storage._grantor = nil}
-
-  /// Modified timestamp for this record.
-  public var modified: Opencannabis_Temporal_Instant {
-    get {return _storage._modified ?? Opencannabis_Temporal_Instant()}
-    set {_uniqueStorage()._modified = newValue}
-  }
-  /// Returns true if `modified` has been explicitly set.
-  public var hasModified: Bool {return _storage._modified != nil}
-  /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
-
-  /// Created timestmap for this record.
-  public var created: Opencannabis_Temporal_Instant {
-    get {return _storage._created ?? Opencannabis_Temporal_Instant()}
-    set {_uniqueStorage()._created = newValue}
-  }
-  /// Returns true if `created` has been explicitly set.
-  public var hasCreated: Bool {return _storage._created != nil}
-  /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._subject)
-        case 3: try decoder.decodeRepeatedEnumField(value: &_storage._privilege)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._user)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._grantor)
-        case 98: try decoder.decodeSingularMessageField(value: &_storage._modified)
-        case 99: try decoder.decodeSingularMessageField(value: &_storage._created)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._uuid.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
-      }
-      if let v = _storage._subject {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._privilege.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._privilege, fieldNumber: 3)
-      }
-      if let v = _storage._user {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._grantor {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 98)
-      }
-      if let v = _storage._created {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.security.access"
-
-extension Bloombox_Schema_Security_Access_PartnerRole: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "READONLY"),
-    1: .same(proto: "SUPERVISOR"),
-    2: .same(proto: "BILLING"),
-    3: .same(proto: "AUDIT"),
-    4: .same(proto: "EMPLOYEE"),
-    5: .same(proto: "DEVELOPER"),
-    6: .same(proto: "ADMIN"),
-  ]
-}
-
-extension Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    10: .same(proto: "partner"),
-    20: .same(proto: "location"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _account: Bloombox_Schema_Security_Access_AccessSubject.OneOf_Account?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _account = source._account
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_Access_AccessSubject) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Security_Access_AccessSubject, rhs: Bloombox_Schema_Security_Access_AccessSubject) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._account != other_storage._account {return false}
+        let rhs_storage = _args.1
+        if _storage._account != rhs_storage._account {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Security_Access_AccessPolicy: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Security_Access_AccessPolicy: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AccessPolicy"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
     2: .same(proto: "subject"),
@@ -408,23 +372,68 @@ extension Bloombox_Schema_Security_Access_AccessPolicy: SwiftProtobuf._MessageIm
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_Access_AccessPolicy) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._subject)
+        case 3: try decoder.decodeRepeatedEnumField(value: &_storage._privilege)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._user)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._grantor)
+        case 98: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        case 99: try decoder.decodeSingularMessageField(value: &_storage._created)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
+      }
+      if let v = _storage._subject {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._privilege.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._privilege, fieldNumber: 3)
+      }
+      if let v = _storage._user {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._grantor {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 98)
+      }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Security_Access_AccessPolicy, rhs: Bloombox_Schema_Security_Access_AccessPolicy) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._subject != other_storage._subject {return false}
-        if _storage._privilege != other_storage._privilege {return false}
-        if _storage._user != other_storage._user {return false}
-        if _storage._grantor != other_storage._grantor {return false}
-        if _storage._modified != other_storage._modified {return false}
-        if _storage._created != other_storage._created {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._subject != rhs_storage._subject {return false}
+        if _storage._privilege != rhs_storage._privilege {return false}
+        if _storage._user != rhs_storage._user {return false}
+        if _storage._grantor != rhs_storage._grantor {return false}
+        if _storage._modified != rhs_storage._modified {return false}
+        if _storage._created != rhs_storage._created {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

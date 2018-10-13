@@ -24,8 +24,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies SMS content for a given ad group.
-public struct Bloombox_Schema_Comms_SMSContent: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SMSContent"
+public struct Bloombox_Schema_Comms_SMSContent {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Optional SMS subject line.
   public var subject: String = String()
@@ -39,11 +41,123 @@ public struct Bloombox_Schema_Comms_SMSContent: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+/// Specifies the structure of an individual SMS message.
+public struct Bloombox_Schema_Comms_SMSMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Sender phone number for the message.
+  public var sender: Opencannabis_Contact_PhoneNumber {
+    get {return _storage._sender ?? Opencannabis_Contact_PhoneNumber()}
+    set {_uniqueStorage()._sender = newValue}
+  }
+  /// Returns true if `sender` has been explicitly set.
+  public var hasSender: Bool {return _storage._sender != nil}
+  /// Clears the value of `sender`. Subsequent reads from it will return its default value.
+  public mutating func clearSender() {_uniqueStorage()._sender = nil}
+
+  /// Recipient phone number for the message.
+  public var recipient: Opencannabis_Contact_PhoneNumber {
+    get {return _storage._recipient ?? Opencannabis_Contact_PhoneNumber()}
+    set {_uniqueStorage()._recipient = newValue}
+  }
+  /// Returns true if `recipient` has been explicitly set.
+  public var hasRecipient: Bool {return _storage._recipient != nil}
+  /// Clears the value of `recipient`. Subsequent reads from it will return its default value.
+  public mutating func clearRecipient() {_uniqueStorage()._recipient = nil}
+
+  /// Content for the SMS message.
+  public var content: Bloombox_Schema_Comms_SMSContent {
+    get {return _storage._content ?? Bloombox_Schema_Comms_SMSContent()}
+    set {_uniqueStorage()._content = newValue}
+  }
+  /// Returns true if `content` has been explicitly set.
+  public var hasContent: Bool {return _storage._content != nil}
+  /// Clears the value of `content`. Subsequent reads from it will return its default value.
+  public mutating func clearContent() {_uniqueStorage()._content = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Specifies the structure of a transmission operation for an individual SMS message.
+public struct Bloombox_Schema_Comms_SMSTransmission {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Message payload to transmit in this operation.
+  public var message: Bloombox_Schema_Comms_SMSMessage {
+    get {return _storage._message ?? Bloombox_Schema_Comms_SMSMessage()}
+    set {_uniqueStorage()._message = newValue}
+  }
+  /// Returns true if `message` has been explicitly set.
+  public var hasMessage: Bool {return _storage._message != nil}
+  /// Clears the value of `message`. Subsequent reads from it will return its default value.
+  public mutating func clearMessage() {_uniqueStorage()._message = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Specifies the structure of a batch of SMS transmission operations.
+public struct Bloombox_Schema_Comms_SMSBatch {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Transmission operations for this batch.
+  public var op: [Bloombox_Schema_Comms_SMSTransmission] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// SMS-specific settings.
+public struct Bloombox_Schema_Comms_SMSSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Origin phone number to send the SMS from.
+  public var sender: Opencannabis_Contact_PhoneNumber {
+    get {return _storage._sender ?? Opencannabis_Contact_PhoneNumber()}
+    set {_uniqueStorage()._sender = newValue}
+  }
+  /// Returns true if `sender` has been explicitly set.
+  public var hasSender: Bool {return _storage._sender != nil}
+  /// Clears the value of `sender`. Subsequent reads from it will return its default value.
+  public mutating func clearSender() {_uniqueStorage()._sender = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.comms"
+
+extension Bloombox_Schema_Comms_SMSContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SMSContent"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "subject"),
+    2: .same(proto: "content"),
+    3: .same(proto: "media"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -55,10 +169,6 @@ public struct Bloombox_Schema_Comms_SMSContent: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.subject.isEmpty {
       try visitor.visitSingularStringField(value: self.subject, fieldNumber: 1)
@@ -71,243 +181,18 @@ public struct Bloombox_Schema_Comms_SMSContent: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-/// Specifies the structure of an individual SMS message.
-public struct Bloombox_Schema_Comms_SMSMessage: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SMSMessage"
-
-  /// Sender phone number for the message.
-  public var sender: Opencannabis_Contact_PhoneNumber {
-    get {return _storage._sender ?? Opencannabis_Contact_PhoneNumber()}
-    set {_uniqueStorage()._sender = newValue}
-  }
-  /// Returns true if `sender` has been explicitly set.
-  public var hasSender: Bool {return _storage._sender != nil}
-  /// Clears the value of `sender`. Subsequent reads from it will return its default value.
-  public mutating func clearSender() {_storage._sender = nil}
-
-  /// Recipient phone number for the message.
-  public var recipient: Opencannabis_Contact_PhoneNumber {
-    get {return _storage._recipient ?? Opencannabis_Contact_PhoneNumber()}
-    set {_uniqueStorage()._recipient = newValue}
-  }
-  /// Returns true if `recipient` has been explicitly set.
-  public var hasRecipient: Bool {return _storage._recipient != nil}
-  /// Clears the value of `recipient`. Subsequent reads from it will return its default value.
-  public mutating func clearRecipient() {_storage._recipient = nil}
-
-  /// Content for the SMS message.
-  public var content: Bloombox_Schema_Comms_SMSContent {
-    get {return _storage._content ?? Bloombox_Schema_Comms_SMSContent()}
-    set {_uniqueStorage()._content = newValue}
-  }
-  /// Returns true if `content` has been explicitly set.
-  public var hasContent: Bool {return _storage._content != nil}
-  /// Clears the value of `content`. Subsequent reads from it will return its default value.
-  public mutating func clearContent() {_storage._content = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._sender)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._recipient)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._content)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._sender {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._recipient {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._content {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Specifies the structure of a transmission operation for an individual SMS message.
-public struct Bloombox_Schema_Comms_SMSTransmission: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SMSTransmission"
-
-  /// Message payload to transmit in this operation.
-  public var message: Bloombox_Schema_Comms_SMSMessage {
-    get {return _storage._message ?? Bloombox_Schema_Comms_SMSMessage()}
-    set {_uniqueStorage()._message = newValue}
-  }
-  /// Returns true if `message` has been explicitly set.
-  public var hasMessage: Bool {return _storage._message != nil}
-  /// Clears the value of `message`. Subsequent reads from it will return its default value.
-  public mutating func clearMessage() {_storage._message = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._message)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._message {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Specifies the structure of a batch of SMS transmission operations.
-public struct Bloombox_Schema_Comms_SMSBatch: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SMSBatch"
-
-  /// Transmission operations for this batch.
-  public var op: [Bloombox_Schema_Comms_SMSTransmission] = []
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeRepeatedMessageField(value: &self.op)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.op.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.op, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-}
-
-/// SMS-specific settings.
-public struct Bloombox_Schema_Comms_SMSSettings: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SMSSettings"
-
-  /// Origin phone number to send the SMS from.
-  public var sender: Opencannabis_Contact_PhoneNumber {
-    get {return _storage._sender ?? Opencannabis_Contact_PhoneNumber()}
-    set {_uniqueStorage()._sender = newValue}
-  }
-  /// Returns true if `sender` has been explicitly set.
-  public var hasSender: Bool {return _storage._sender != nil}
-  /// Clears the value of `sender`. Subsequent reads from it will return its default value.
-  public mutating func clearSender() {_storage._sender = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._sender)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._sender {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.comms"
-
-extension Bloombox_Schema_Comms_SMSContent: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "subject"),
-    2: .same(proto: "content"),
-    3: .same(proto: "media"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_SMSContent) -> Bool {
-    if self.subject != other.subject {return false}
-    if self.content != other.content {return false}
-    if self.media != other.media {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Comms_SMSContent, rhs: Bloombox_Schema_Comms_SMSContent) -> Bool {
+    if lhs.subject != rhs.subject {return false}
+    if lhs.content != rhs.content {return false}
+    if lhs.media != rhs.media {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Comms_SMSMessage: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Comms_SMSMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SMSMessage"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "sender"),
     2: .same(proto: "recipient"),
@@ -337,24 +222,54 @@ extension Bloombox_Schema_Comms_SMSMessage: SwiftProtobuf._MessageImplementation
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_SMSMessage) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._sender)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._recipient)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._content)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._sender {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._recipient {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._content {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Comms_SMSMessage, rhs: Bloombox_Schema_Comms_SMSMessage) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._sender != other_storage._sender {return false}
-        if _storage._recipient != other_storage._recipient {return false}
-        if _storage._content != other_storage._content {return false}
+        let rhs_storage = _args.1
+        if _storage._sender != rhs_storage._sender {return false}
+        if _storage._recipient != rhs_storage._recipient {return false}
+        if _storage._content != rhs_storage._content {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Comms_SMSTransmission: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Comms_SMSTransmission: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SMSTransmission"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
   ]
@@ -378,34 +293,73 @@ extension Bloombox_Schema_Comms_SMSTransmission: SwiftProtobuf._MessageImplement
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_SMSTransmission) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._message)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._message {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Comms_SMSTransmission, rhs: Bloombox_Schema_Comms_SMSTransmission) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._message != other_storage._message {return false}
+        let rhs_storage = _args.1
+        if _storage._message != rhs_storage._message {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Comms_SMSBatch: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Comms_SMSBatch: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SMSBatch"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "op"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_SMSBatch) -> Bool {
-    if self.op != other.op {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.op)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.op.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.op, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Comms_SMSBatch, rhs: Bloombox_Schema_Comms_SMSBatch) -> Bool {
+    if lhs.op != rhs.op {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Comms_SMSSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Comms_SMSSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SMSSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "sender"),
   ]
@@ -429,17 +383,38 @@ extension Bloombox_Schema_Comms_SMSSettings: SwiftProtobuf._MessageImplementatio
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_SMSSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._sender)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._sender {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Comms_SMSSettings, rhs: Bloombox_Schema_Comms_SMSSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._sender != other_storage._sender {return false}
+        let rhs_storage = _args.1
+        if _storage._sender != rhs_storage._sender {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

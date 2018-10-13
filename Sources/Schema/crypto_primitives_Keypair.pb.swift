@@ -66,9 +66,25 @@ public enum Opencannabis_Crypto_Primitives_Pki_KeyingScheme: SwiftProtobuf.Enum 
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Crypto_Primitives_Pki_KeyingScheme: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Crypto_Primitives_Pki_KeyingScheme] = [
+    .rsa,
+    .ecc,
+    .dsa,
+    .edDsa,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies parameters used to generate an underlying keypair.
-public struct Opencannabis_Crypto_Primitives_Pki_KeyParameters: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".KeyParameters"
+public struct Opencannabis_Crypto_Primitives_Pki_KeyParameters {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Key type/keying scheme.
   public var scheme: Opencannabis_Crypto_Primitives_Pki_KeyingScheme = .rsa
@@ -85,49 +101,15 @@ public struct Opencannabis_Crypto_Primitives_Pki_KeyParameters: SwiftProtobuf.Me
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.scheme)
-      case 2: try decoder.decodeSingularStringField(value: &self.algorithm)
-      case 3: try decoder.decodeSingularStringField(value: &self.format)
-      case 4: try decoder.decodeSingularUInt32Field(value: &self.bits)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.scheme != .rsa {
-      try visitor.visitSingularEnumField(value: self.scheme, fieldNumber: 1)
-    }
-    if !self.algorithm.isEmpty {
-      try visitor.visitSingularStringField(value: self.algorithm, fieldNumber: 2)
-    }
-    if !self.format.isEmpty {
-      try visitor.visitSingularStringField(value: self.format, fieldNumber: 3)
-    }
-    if self.bits != 0 {
-      try visitor.visitSingularUInt32Field(value: self.bits, fieldNumber: 4)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies raw or encoded key material data, which is to say, the actual public or private keys themselves. Key
 /// material may be specified in raw binary form, encoded PEM form, or simply a cryptographic hash of their contents
 /// (particularly when transmitting a hash of a public key).
-public struct Opencannabis_Crypto_Primitives_Pki_KeyMaterial: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".KeyMaterial"
+public struct Opencannabis_Crypto_Primitives_Pki_KeyMaterial {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Cryptographic hash of the key in question.
   public var fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash {
@@ -137,7 +119,7 @@ public struct Opencannabis_Crypto_Primitives_Pki_KeyMaterial: SwiftProtobuf.Mess
   /// Returns true if `fingerprint` has been explicitly set.
   public var hasFingerprint: Bool {return _storage._fingerprint != nil}
   /// Clears the value of `fingerprint`. Subsequent reads from it will return its default value.
-  public mutating func clearFingerprint() {_storage._fingerprint = nil}
+  public mutating func clearFingerprint() {_uniqueStorage()._fingerprint = nil}
 
   /// Parameters regarding the subject key.
   public var params: Opencannabis_Crypto_Primitives_Pki_KeyParameters {
@@ -147,7 +129,7 @@ public struct Opencannabis_Crypto_Primitives_Pki_KeyMaterial: SwiftProtobuf.Mess
   /// Returns true if `params` has been explicitly set.
   public var hasParams: Bool {return _storage._params != nil}
   /// Clears the value of `params`. Subsequent reads from it will return its default value.
-  public mutating func clearParams() {_storage._params = nil}
+  public mutating func clearParams() {_uniqueStorage()._params = nil}
 
   /// Raw data for the key in question.
   public var data: OneOf_Data? {
@@ -182,6 +164,7 @@ public struct Opencannabis_Crypto_Primitives_Pki_KeyMaterial: SwiftProtobuf.Mess
     /// Key, encoded in PEM format.
     case pem(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Crypto_Primitives_Pki_KeyMaterial.OneOf_Data, rhs: Opencannabis_Crypto_Primitives_Pki_KeyMaterial.OneOf_Data) -> Bool {
       switch (lhs, rhs) {
       case (.raw(let l), .raw(let r)): return l == r
@@ -189,59 +172,10 @@ public struct Opencannabis_Crypto_Primitives_Pki_KeyMaterial: SwiftProtobuf.Mess
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._fingerprint)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._params)
-        case 10:
-          if _storage._data != nil {try decoder.handleConflictingOneOf()}
-          var v: Data?
-          try decoder.decodeSingularBytesField(value: &v)
-          if let v = v {_storage._data = .raw(v)}
-        case 11:
-          if _storage._data != nil {try decoder.handleConflictingOneOf()}
-          var v: String?
-          try decoder.decodeSingularStringField(value: &v)
-          if let v = v {_storage._data = .pem(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._fingerprint {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._params {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      switch _storage._data {
-      case .raw(let v)?:
-        try visitor.visitSingularBytesField(value: v, fieldNumber: 10)
-      case .pem(let v)?:
-        try visitor.visitSingularStringField(value: v, fieldNumber: 11)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -249,8 +183,10 @@ public struct Opencannabis_Crypto_Primitives_Pki_KeyMaterial: SwiftProtobuf.Mess
 /// Specifies key material for a set (pair) of asymmetric keys, which is to say, a public and a private key. This
 /// structure may be used to transmit both keys in full, or just a hash of the public key, depending on the fields that
 /// are filled in or not when the object is constructed.
-public struct Opencannabis_Crypto_Primitives_Pki_Keypair: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Keypair"
+public struct Opencannabis_Crypto_Primitives_Pki_Keypair {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Public key. In PKI, the public key can be used only to encrypt data.
   public var `public`: Opencannabis_Crypto_Primitives_Pki_KeyMaterial {
@@ -260,7 +196,7 @@ public struct Opencannabis_Crypto_Primitives_Pki_Keypair: SwiftProtobuf.Message 
   /// Returns true if ``public`` has been explicitly set.
   public var hasPublic: Bool {return _storage._public != nil}
   /// Clears the value of ``public``. Subsequent reads from it will return its default value.
-  public mutating func clearPublic() {_storage._public = nil}
+  public mutating func clearPublic() {_uniqueStorage()._public = nil}
 
   /// Private key. In PKI, the private key can be used to encrypt or decrypt data.
   public var `private`: Opencannabis_Crypto_Primitives_Pki_KeyMaterial {
@@ -270,44 +206,11 @@ public struct Opencannabis_Crypto_Primitives_Pki_Keypair: SwiftProtobuf.Message 
   /// Returns true if ``private`` has been explicitly set.
   public var hasPrivate: Bool {return _storage._private != nil}
   /// Clears the value of ``private``. Subsequent reads from it will return its default value.
-  public mutating func clearPrivate() {_storage._private = nil}
+  public mutating func clearPrivate() {_uniqueStorage()._private = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._public)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._private)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._public {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._private {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -325,7 +228,8 @@ extension Opencannabis_Crypto_Primitives_Pki_KeyingScheme: SwiftProtobuf._ProtoN
   ]
 }
 
-extension Opencannabis_Crypto_Primitives_Pki_KeyParameters: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Crypto_Primitives_Pki_KeyParameters: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".KeyParameters"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scheme"),
     2: .same(proto: "algorithm"),
@@ -333,17 +237,46 @@ extension Opencannabis_Crypto_Primitives_Pki_KeyParameters: SwiftProtobuf._Messa
     4: .same(proto: "bits"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Crypto_Primitives_Pki_KeyParameters) -> Bool {
-    if self.scheme != other.scheme {return false}
-    if self.algorithm != other.algorithm {return false}
-    if self.format != other.format {return false}
-    if self.bits != other.bits {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.scheme)
+      case 2: try decoder.decodeSingularStringField(value: &self.algorithm)
+      case 3: try decoder.decodeSingularStringField(value: &self.format)
+      case 4: try decoder.decodeSingularUInt32Field(value: &self.bits)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.scheme != .rsa {
+      try visitor.visitSingularEnumField(value: self.scheme, fieldNumber: 1)
+    }
+    if !self.algorithm.isEmpty {
+      try visitor.visitSingularStringField(value: self.algorithm, fieldNumber: 2)
+    }
+    if !self.format.isEmpty {
+      try visitor.visitSingularStringField(value: self.format, fieldNumber: 3)
+    }
+    if self.bits != 0 {
+      try visitor.visitSingularUInt32Field(value: self.bits, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Crypto_Primitives_Pki_KeyParameters, rhs: Opencannabis_Crypto_Primitives_Pki_KeyParameters) -> Bool {
+    if lhs.scheme != rhs.scheme {return false}
+    if lhs.algorithm != rhs.algorithm {return false}
+    if lhs.format != rhs.format {return false}
+    if lhs.bits != rhs.bits {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Crypto_Primitives_Pki_KeyMaterial: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Crypto_Primitives_Pki_KeyMaterial: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".KeyMaterial"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "fingerprint"),
     2: .same(proto: "params"),
@@ -374,24 +307,67 @@ extension Opencannabis_Crypto_Primitives_Pki_KeyMaterial: SwiftProtobuf._Message
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Crypto_Primitives_Pki_KeyMaterial) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._fingerprint)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._params)
+        case 10:
+          if _storage._data != nil {try decoder.handleConflictingOneOf()}
+          var v: Data?
+          try decoder.decodeSingularBytesField(value: &v)
+          if let v = v {_storage._data = .raw(v)}
+        case 11:
+          if _storage._data != nil {try decoder.handleConflictingOneOf()}
+          var v: String?
+          try decoder.decodeSingularStringField(value: &v)
+          if let v = v {_storage._data = .pem(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._fingerprint {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._params {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      switch _storage._data {
+      case .raw(let v)?:
+        try visitor.visitSingularBytesField(value: v, fieldNumber: 10)
+      case .pem(let v)?:
+        try visitor.visitSingularStringField(value: v, fieldNumber: 11)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Crypto_Primitives_Pki_KeyMaterial, rhs: Opencannabis_Crypto_Primitives_Pki_KeyMaterial) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._fingerprint != other_storage._fingerprint {return false}
-        if _storage._params != other_storage._params {return false}
-        if _storage._data != other_storage._data {return false}
+        let rhs_storage = _args.1
+        if _storage._fingerprint != rhs_storage._fingerprint {return false}
+        if _storage._params != rhs_storage._params {return false}
+        if _storage._data != rhs_storage._data {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Crypto_Primitives_Pki_Keypair: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Crypto_Primitives_Pki_Keypair: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Keypair"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "public"),
     2: .same(proto: "private"),
@@ -418,18 +394,43 @@ extension Opencannabis_Crypto_Primitives_Pki_Keypair: SwiftProtobuf._MessageImpl
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Crypto_Primitives_Pki_Keypair) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._public)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._private)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._public {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._private {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Crypto_Primitives_Pki_Keypair, rhs: Opencannabis_Crypto_Primitives_Pki_Keypair) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._public != other_storage._public {return false}
-        if _storage._private != other_storage._private {return false}
+        let rhs_storage = _args.1
+        if _storage._public != rhs_storage._public {return false}
+        if _storage._private != rhs_storage._private {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

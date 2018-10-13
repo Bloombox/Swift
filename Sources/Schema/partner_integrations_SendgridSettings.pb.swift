@@ -23,34 +23,21 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies Sendgrid features that may be enabled or disabled.
-public struct Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SendgridIntegrationFeatures"
+public struct Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies Sendgrid settings for integration with Bloombox.
-public struct Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SendgridSettings"
+public struct Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Flags indicating features that should be enabled or disabled.
   public var features: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures {
@@ -60,40 +47,11 @@ public struct Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings: Sw
   /// Returns true if `features` has been explicitly set.
   public var hasFeatures: Bool {return _storage._features != nil}
   /// Clears the value of `features`. Subsequent reads from it will return its default value.
-  public mutating func clearFeatures() {_storage._features = nil}
+  public mutating func clearFeatures() {_uniqueStorage()._features = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._features)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._features {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -102,16 +60,27 @@ public struct Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings: Sw
 
 fileprivate let _protobuf_package = "bloombox.schema.partner.integrations.sendgrid"
 
-extension Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SendgridIntegrationFeatures"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures, rhs: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SendgridSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     10: .same(proto: "features"),
   ]
@@ -135,17 +104,38 @@ extension Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings: SwiftP
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._features)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._features {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings, rhs: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._features != other_storage._features {return false}
+        let rhs_storage = _args.1
+        if _storage._features != rhs_storage._features {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

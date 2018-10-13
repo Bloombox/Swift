@@ -51,6 +51,19 @@ public enum Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_TestValueType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_TestValueType] = [
+    .milligrams,
+    .percentage,
+    .presence,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the different types of testing error that may be reported: percent error, absolute error, and
 /// relative error.
 public enum Opencannabis_Structs_Labtesting_TestErrorType: SwiftProtobuf.Enum {
@@ -84,6 +97,19 @@ public enum Opencannabis_Structs_Labtesting_TestErrorType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_TestErrorType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_TestErrorType] = [
+    .percent,
+    .absolute,
+    .relative,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 public enum Opencannabis_Structs_Labtesting_TestMediaType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case certificate // = 0
@@ -115,8 +141,23 @@ public enum Opencannabis_Structs_Labtesting_TestMediaType: SwiftProtobuf.Enum {
 
 }
 
-public struct Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".TestValue"
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_TestMediaType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_TestMediaType] = [
+    .certificate,
+    .results,
+    .productImage,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+public struct Opencannabis_Structs_Labtesting_TestValue {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var type: Opencannabis_Structs_Labtesting_TestValueType {
     get {return _storage._type}
@@ -130,7 +171,7 @@ public struct Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf.Message {
   /// Returns true if `error` has been explicitly set.
   public var hasError: Bool {return _storage._error != nil}
   /// Clears the value of `error`. Subsequent reads from it will return its default value.
-  public mutating func clearError() {_storage._error = nil}
+  public mutating func clearError() {_uniqueStorage()._error = nil}
 
   public var value: OneOf_Value? {
     get {return _storage._value}
@@ -159,6 +200,7 @@ public struct Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf.Message {
     case measurement(Double)
     case present(Bool)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Structs_Labtesting_TestValue.OneOf_Value, rhs: Opencannabis_Structs_Labtesting_TestValue.OneOf_Value) -> Bool {
       switch (lhs, rhs) {
       case (.measurement(let l), .measurement(let r)): return l == r
@@ -166,13 +208,16 @@ public struct Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf.Message {
       default: return false
       }
     }
+  #endif
   }
 
   /// Represents the degree of uncertainty that arises during testing and consists of the type of error being reported
   /// along with the error value.  See more information at: 
   /// https://www.nde-ed.org/GeneralResources/ErrorAnalysis/UncertaintyTerms.htm
-  public struct TestError: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Opencannabis_Structs_Labtesting_TestValue.protoMessageName + ".TestError"
+  public struct TestError {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     public var type: Opencannabis_Structs_Labtesting_TestErrorType = .percent
 
@@ -181,93 +226,17 @@ public struct Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf.Message {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &self.type)
-        case 2: try decoder.decodeSingularDoubleField(value: &self.value)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if self.type != .percent {
-        try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
-      }
-      if self.value != 0 {
-        try visitor.visitSingularDoubleField(value: self.value, fieldNumber: 2)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._error)
-        case 10:
-          if _storage._value != nil {try decoder.handleConflictingOneOf()}
-          var v: Double?
-          try decoder.decodeSingularDoubleField(value: &v)
-          if let v = v {_storage._value = .measurement(v)}
-        case 20:
-          if _storage._value != nil {try decoder.handleConflictingOneOf()}
-          var v: Bool?
-          try decoder.decodeSingularBoolField(value: &v)
-          if let v = v {_storage._value = .present(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._type != .milligrams {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
-      }
-      if let v = _storage._error {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      switch _storage._value {
-      case .measurement(let v)?:
-        try visitor.visitSingularDoubleField(value: v, fieldNumber: 10)
-      case .present(let v)?:
-        try visitor.visitSingularBoolField(value: v, fieldNumber: 20)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public struct Opencannabis_Structs_Labtesting_TestMedia: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".TestMedia"
+public struct Opencannabis_Structs_Labtesting_TestMedia {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var type: Opencannabis_Structs_Labtesting_TestMediaType {
     get {return _storage._type}
@@ -281,44 +250,11 @@ public struct Opencannabis_Structs_Labtesting_TestMedia: SwiftProtobuf.Message {
   /// Returns true if `mediaItem` has been explicitly set.
   public var hasMediaItem: Bool {return _storage._mediaItem != nil}
   /// Clears the value of `mediaItem`. Subsequent reads from it will return its default value.
-  public mutating func clearMediaItem() {_storage._mediaItem = nil}
+  public mutating func clearMediaItem() {_uniqueStorage()._mediaItem = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._mediaItem)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._type != .certificate {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
-      }
-      if let v = _storage._mediaItem {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -351,7 +287,8 @@ extension Opencannabis_Structs_Labtesting_TestMediaType: SwiftProtobuf._ProtoNam
   ]
 }
 
-extension Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TestValue"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "error"),
@@ -382,38 +319,102 @@ extension Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf._MessageImple
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestValue) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._error)
+        case 10:
+          if _storage._value != nil {try decoder.handleConflictingOneOf()}
+          var v: Double?
+          try decoder.decodeSingularDoubleField(value: &v)
+          if let v = v {_storage._value = .measurement(v)}
+        case 20:
+          if _storage._value != nil {try decoder.handleConflictingOneOf()}
+          var v: Bool?
+          try decoder.decodeSingularBoolField(value: &v)
+          if let v = v {_storage._value = .present(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._type != .milligrams {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
+      }
+      if let v = _storage._error {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      switch _storage._value {
+      case .measurement(let v)?:
+        try visitor.visitSingularDoubleField(value: v, fieldNumber: 10)
+      case .present(let v)?:
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 20)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_TestValue, rhs: Opencannabis_Structs_Labtesting_TestValue) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._error != other_storage._error {return false}
-        if _storage._value != other_storage._value {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._error != rhs_storage._error {return false}
+        if _storage._value != rhs_storage._value {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Structs_Labtesting_TestValue.TestError: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_TestValue.TestError: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Opencannabis_Structs_Labtesting_TestValue.protoMessageName + ".TestError"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "value"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestValue.TestError) -> Bool {
-    if self.type != other.type {return false}
-    if self.value != other.value {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.type)
+      case 2: try decoder.decodeSingularDoubleField(value: &self.value)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.type != .percent {
+      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
+    }
+    if self.value != 0 {
+      try visitor.visitSingularDoubleField(value: self.value, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_TestValue.TestError, rhs: Opencannabis_Structs_Labtesting_TestValue.TestError) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.value != rhs.value {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Structs_Labtesting_TestMedia: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Labtesting_TestMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TestMedia"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .standard(proto: "media_item"),
@@ -440,18 +441,43 @@ extension Opencannabis_Structs_Labtesting_TestMedia: SwiftProtobuf._MessageImple
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestMedia) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._mediaItem)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._type != .certificate {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
+      }
+      if let v = _storage._mediaItem {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_TestMedia, rhs: Opencannabis_Structs_Labtesting_TestMedia) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._mediaItem != other_storage._mediaItem {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._mediaItem != rhs_storage._mediaItem {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

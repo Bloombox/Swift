@@ -23,8 +23,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a freeform content payload of some kind.
-public struct Opencannabis_Content_Content: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Content"
+public struct Opencannabis_Content_Content {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Format/underlying type of content data.
   public var type: Opencannabis_Content_Content.TypeEnum {
@@ -52,7 +54,7 @@ public struct Opencannabis_Content_Content: SwiftProtobuf.Message {
   /// Returns true if `compression` has been explicitly set.
   public var hasCompression: Bool {return _storage._compression != nil}
   /// Clears the value of `compression`. Subsequent reads from it will return its default value.
-  public mutating func clearCompression() {_storage._compression = nil}
+  public mutating func clearCompression() {_uniqueStorage()._compression = nil}
 
   /// Payload for this content data. Can either be specified as a string, or a set of raw bytes.
   public var payload: OneOf_Payload? {
@@ -87,6 +89,7 @@ public struct Opencannabis_Content_Content: SwiftProtobuf.Message {
     /// Raw data attached to this content blob.
     case raw(Data)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Content_Content.OneOf_Payload, rhs: Opencannabis_Content_Content.OneOf_Payload) -> Bool {
       switch (lhs, rhs) {
       case (.content(let l), .content(let r)): return l == r
@@ -94,6 +97,7 @@ public struct Opencannabis_Content_Content: SwiftProtobuf.Message {
       default: return false
       }
     }
+  #endif
   }
 
   /// Enumerates supported types/formats for content data.
@@ -179,72 +183,38 @@ public struct Opencannabis_Content_Content: SwiftProtobuf.Message {
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
-        case 2: try decoder.decodeSingularEnumField(value: &_storage._encoding)
-        case 3: try decoder.decodeSingularEnumField(value: &_storage._language)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._compression)
-        case 10:
-          if _storage._payload != nil {try decoder.handleConflictingOneOf()}
-          var v: String?
-          try decoder.decodeSingularStringField(value: &v)
-          if let v = v {_storage._payload = .content(v)}
-        case 20:
-          if _storage._payload != nil {try decoder.handleConflictingOneOf()}
-          var v: Data?
-          try decoder.decodeSingularBytesField(value: &v)
-          if let v = v {_storage._payload = .raw(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._type != .text {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
-      }
-      if _storage._encoding != .utf8 {
-        try visitor.visitSingularEnumField(value: _storage._encoding, fieldNumber: 2)
-      }
-      if _storage._language != .unspecified {
-        try visitor.visitSingularEnumField(value: _storage._language, fieldNumber: 3)
-      }
-      if let v = _storage._compression {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      switch _storage._payload {
-      case .content(let v)?:
-        try visitor.visitSingularStringField(value: v, fieldNumber: 10)
-      case .raw(let v)?:
-        try visitor.visitSingularBytesField(value: v, fieldNumber: 20)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Content_Content.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Content_Content.TypeEnum] = [
+    .text,
+    .markdown,
+    .html,
+    .binary,
+  ]
+}
+
+extension Opencannabis_Content_Content.Encoding: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Content_Content.Encoding] = [
+    .utf8,
+    .b64,
+    .b64Ascii,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.content"
 
-extension Opencannabis_Content_Content: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Content_Content: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Content"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "encoding"),
@@ -281,21 +251,71 @@ extension Opencannabis_Content_Content: SwiftProtobuf._MessageImplementationBase
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_Content) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._encoding)
+        case 3: try decoder.decodeSingularEnumField(value: &_storage._language)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._compression)
+        case 10:
+          if _storage._payload != nil {try decoder.handleConflictingOneOf()}
+          var v: String?
+          try decoder.decodeSingularStringField(value: &v)
+          if let v = v {_storage._payload = .content(v)}
+        case 20:
+          if _storage._payload != nil {try decoder.handleConflictingOneOf()}
+          var v: Data?
+          try decoder.decodeSingularBytesField(value: &v)
+          if let v = v {_storage._payload = .raw(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._type != .text {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
+      }
+      if _storage._encoding != .utf8 {
+        try visitor.visitSingularEnumField(value: _storage._encoding, fieldNumber: 2)
+      }
+      if _storage._language != .unspecified {
+        try visitor.visitSingularEnumField(value: _storage._language, fieldNumber: 3)
+      }
+      if let v = _storage._compression {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      switch _storage._payload {
+      case .content(let v)?:
+        try visitor.visitSingularStringField(value: v, fieldNumber: 10)
+      case .raw(let v)?:
+        try visitor.visitSingularBytesField(value: v, fieldNumber: 20)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_Content, rhs: Opencannabis_Content_Content) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._encoding != other_storage._encoding {return false}
-        if _storage._language != other_storage._language {return false}
-        if _storage._compression != other_storage._compression {return false}
-        if _storage._payload != other_storage._payload {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._encoding != rhs_storage._encoding {return false}
+        if _storage._language != rhs_storage._language {return false}
+        if _storage._compression != rhs_storage._compression {return false}
+        if _storage._payload != rhs_storage._payload {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

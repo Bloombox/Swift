@@ -97,6 +97,27 @@ public enum Opencannabis_Products_EdibleType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_EdibleType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_EdibleType] = [
+    .unspecifiedEdible,
+    .chocolate,
+    .bakedGood,
+    .candy,
+    .beverage,
+    .lozenge,
+    .sublingual,
+    .gummy,
+    .butter,
+    .oils,
+    .cereal,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Flags that may be applied specifically to an edible product.
 public enum Opencannabis_Products_EdibleFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -155,9 +176,28 @@ public enum Opencannabis_Products_EdibleFlag: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_EdibleFlag: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_EdibleFlag] = [
+    .noEdibleFlag,
+    .vegan,
+    .glutenFree,
+    .sugarFree,
+    .fairTrade,
+    .organic,
+    .local,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies an ingredient included in an edible.
-public struct Opencannabis_Products_EdibleIngredient: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".EdibleIngredient"
+public struct Opencannabis_Products_EdibleIngredient {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Human-friendly label for the ingredient.
   public var label: String = String()
@@ -168,40 +208,14 @@ public struct Opencannabis_Products_EdibleIngredient: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.label)
-      case 2: try decoder.decodeSingularStringField(value: &self.amount)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.label.isEmpty {
-      try visitor.visitSingularStringField(value: self.label, fieldNumber: 1)
-    }
-    if !self.amount.isEmpty {
-      try visitor.visitSingularStringField(value: self.amount, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies an edible product that may be consumed as a food or beverage, that contains cannabis or cannabinoids in
 /// some quantity.
-public struct Opencannabis_Products_Edible: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Edible"
+public struct Opencannabis_Products_Edible {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Product key that uniquely identifies this edible item.
   public var key: Opencannabis_Base_ProductKey {
@@ -211,7 +225,7 @@ public struct Opencannabis_Products_Edible: SwiftProtobuf.Message {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Specifies the subcategory of this edible product, if known and applicable.
   public var type: Opencannabis_Products_EdibleType {
@@ -233,7 +247,7 @@ public struct Opencannabis_Products_Edible: SwiftProtobuf.Message {
   /// Returns true if `product` has been explicitly set.
   public var hasProduct: Bool {return _storage._product != nil}
   /// Clears the value of `product`. Subsequent reads from it will return its default value.
-  public mutating func clearProduct() {_storage._product = nil}
+  public mutating func clearProduct() {_uniqueStorage()._product = nil}
 
   /// Materials and handling information about this cartridge product.
   public var material: Opencannabis_Content_MaterialsData {
@@ -243,7 +257,7 @@ public struct Opencannabis_Products_Edible: SwiftProtobuf.Message {
   /// Returns true if `material` has been explicitly set.
   public var hasMaterial: Bool {return _storage._material != nil}
   /// Clears the value of `material`. Subsequent reads from it will return its default value.
-  public mutating func clearMaterial() {_storage._material = nil}
+  public mutating func clearMaterial() {_uniqueStorage()._material = nil}
 
   /// Specifies the ingredients for a product, when/if it is composed of ingredients (i.e. edibles).
   public var ingredients: [Opencannabis_Products_EdibleIngredient] {
@@ -254,55 +268,6 @@ public struct Opencannabis_Products_Edible: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 2: try decoder.decodeSingularEnumField(value: &_storage._type)
-        case 3: try decoder.decodeRepeatedEnumField(value: &_storage._flags)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._product)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._material)
-        case 6: try decoder.decodeRepeatedMessageField(value: &_storage._ingredients)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if _storage._type != .unspecifiedEdible {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 2)
-      }
-      if !_storage._flags.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._flags, fieldNumber: 3)
-      }
-      if let v = _storage._product {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._material {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if !_storage._ingredients.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._ingredients, fieldNumber: 6)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -339,21 +304,43 @@ extension Opencannabis_Products_EdibleFlag: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Opencannabis_Products_EdibleIngredient: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_EdibleIngredient: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".EdibleIngredient"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "label"),
     2: .same(proto: "amount"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_EdibleIngredient) -> Bool {
-    if self.label != other.label {return false}
-    if self.amount != other.amount {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.label)
+      case 2: try decoder.decodeSingularStringField(value: &self.amount)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.label.isEmpty {
+      try visitor.visitSingularStringField(value: self.label, fieldNumber: 1)
+    }
+    if !self.amount.isEmpty {
+      try visitor.visitSingularStringField(value: self.amount, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Products_EdibleIngredient, rhs: Opencannabis_Products_EdibleIngredient) -> Bool {
+    if lhs.label != rhs.label {return false}
+    if lhs.amount != rhs.amount {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Products_Edible: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Edible: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Edible"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "type"),
@@ -392,22 +379,63 @@ extension Opencannabis_Products_Edible: SwiftProtobuf._MessageImplementationBase
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Edible) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 3: try decoder.decodeRepeatedEnumField(value: &_storage._flags)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._product)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._material)
+        case 6: try decoder.decodeRepeatedMessageField(value: &_storage._ingredients)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if _storage._type != .unspecifiedEdible {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 2)
+      }
+      if !_storage._flags.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._flags, fieldNumber: 3)
+      }
+      if let v = _storage._product {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._material {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if !_storage._ingredients.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._ingredients, fieldNumber: 6)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Products_Edible, rhs: Opencannabis_Products_Edible) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._type != other_storage._type {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._product != other_storage._product {return false}
-        if _storage._material != other_storage._material {return false}
-        if _storage._ingredients != other_storage._ingredients {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._product != rhs_storage._product {return false}
+        if _storage._material != rhs_storage._material {return false}
+        if _storage._ingredients != rhs_storage._ingredients {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

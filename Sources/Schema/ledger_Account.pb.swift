@@ -58,10 +58,24 @@ public enum Bloombox_Schema_Ledger_SpecialActor: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Ledger_SpecialActor: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Ledger_SpecialActor] = [
+    .system,
+    .sandbox,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Certificate data accompanying an actor key. This is a certificate bound to the ECDSA keypair issued in parallel to
 /// the actor's ledger key, and certified by the ledger actor CA.
-public struct Bloombox_Schema_Ledger_ActorCertificate: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".ActorCertificate"
+public struct Bloombox_Schema_Ledger_ActorCertificate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// ID of the certificate.
   public var id: String {
@@ -83,7 +97,7 @@ public struct Bloombox_Schema_Ledger_ActorCertificate: SwiftProtobuf.Message {
   /// Returns true if `fingerprint` has been explicitly set.
   public var hasFingerprint: Bool {return _storage._fingerprint != nil}
   /// Clears the value of `fingerprint`. Subsequent reads from it will return its default value.
-  public mutating func clearFingerprint() {_storage._fingerprint = nil}
+  public mutating func clearFingerprint() {_uniqueStorage()._fingerprint = nil}
 
   /// Certificate common name.
   public var commonName: String {
@@ -130,6 +144,7 @@ public struct Bloombox_Schema_Ledger_ActorCertificate: SwiftProtobuf.Message {
     /// Base64-encoded certificate data.
     case encoded(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Ledger_ActorCertificate.OneOf_Payload, rhs: Bloombox_Schema_Ledger_ActorCertificate.OneOf_Payload) -> Bool {
       switch (lhs, rhs) {
       case (.data(let l), .data(let r)): return l == r
@@ -137,79 +152,20 @@ public struct Bloombox_Schema_Ledger_ActorCertificate: SwiftProtobuf.Message {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._serial)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._fingerprint)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._commonName)
-        case 5: try decoder.decodeSingularStringField(value: &_storage._issuerName)
-        case 10:
-          if _storage._payload != nil {try decoder.handleConflictingOneOf()}
-          var v: Data?
-          try decoder.decodeSingularBytesField(value: &v)
-          if let v = v {_storage._payload = .data(v)}
-        case 11:
-          if _storage._payload != nil {try decoder.handleConflictingOneOf()}
-          var v: String?
-          try decoder.decodeSingularStringField(value: &v)
-          if let v = v {_storage._payload = .encoded(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if !_storage._serial.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._serial, fieldNumber: 2)
-      }
-      if let v = _storage._fingerprint {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if !_storage._commonName.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._commonName, fieldNumber: 4)
-      }
-      if !_storage._issuerName.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._issuerName, fieldNumber: 5)
-      }
-      switch _storage._payload {
-      case .data(let v)?:
-        try visitor.visitSingularBytesField(value: v, fieldNumber: 10)
-      case .encoded(let v)?:
-        try visitor.visitSingularStringField(value: v, fieldNumber: 11)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies the concept of a ledger "actor," which unifies individuals and organizations under one referential
 /// structure, such that either may easily be the basis for a ledger transaction.
-public struct Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".ActorKey"
+public struct Bloombox_Schema_Ledger_ActorKey {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var actor: OneOf_Actor? {
     get {return _storage._actor}
@@ -264,6 +220,7 @@ public struct Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message {
     /// Specifies a partner location as the identity behind a particular ledger account.
     case location(Bloombox_Schema_Partner_LocationKey)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Ledger_ActorKey.OneOf_Actor, rhs: Bloombox_Schema_Ledger_ActorKey.OneOf_Actor) -> Bool {
       switch (lhs, rhs) {
       case (.known(let l), .known(let r)): return l == r
@@ -273,14 +230,373 @@ public struct Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Specifies the structure of a distributed ledger account, which is usually defined by its public/private keypair. In
+/// particular, the computation of UPPER(SHA3-B58(public_key)) is used to identify an account uniquely in public.
+/// Separately, a user account may be associated with a concrete identity via the `identity` property.
+public struct Bloombox_Schema_Ledger_AccountKey {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// The account key ID is the computed result of UPPER(SHA3-B58(public_key)).
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
+
+  /// Reference to the public/private keypair for this ledger account. In rare cases, the private key may be included
+  /// here (the structure supports it), but usually, it's used for the onboard cryptographic hash of the public key.
+  public var pair: Opencannabis_Crypto_Primitives_Pki_Keypair {
+    get {return _storage._pair ?? Opencannabis_Crypto_Primitives_Pki_Keypair()}
+    set {_uniqueStorage()._pair = newValue}
+  }
+  /// Returns true if `pair` has been explicitly set.
+  public var hasPair: Bool {return _storage._pair != nil}
+  /// Clears the value of `pair`. Subsequent reads from it will return its default value.
+  public mutating func clearPair() {_uniqueStorage()._pair = nil}
+
+  /// Reference to the identity public/private keypair for this actor. Ledger "actors" represent the real-world identity
+  /// behind organizations or individuals who execute transactions on the ledger.
+  public var identity: Opencannabis_Crypto_Primitives_Pki_Keypair {
+    get {return _storage._identity ?? Opencannabis_Crypto_Primitives_Pki_Keypair()}
+    set {_uniqueStorage()._identity = newValue}
+  }
+  /// Returns true if `identity` has been explicitly set.
+  public var hasIdentity: Bool {return _storage._identity != nil}
+  /// Clears the value of `identity`. Subsequent reads from it will return its default value.
+  public mutating func clearIdentity() {_uniqueStorage()._identity = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Specifies the notion of a concrete identity on the ledger. This is essentially the intersection of two items: 1) key
+/// material generated by the actor themselves, and 2) associated identity stored somewhere else, or stored with us.
+public struct Bloombox_Schema_Ledger_LedgerIdentity {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Specifies the key material behind this identity. In rare cases, this may include the private key (the structure
+  /// supports such behavior), but in most cases only a cryptographic fingerprint of the public key is available.
+  public var key: Bloombox_Schema_Ledger_AccountKey {
+    get {return _storage._key ?? Bloombox_Schema_Ledger_AccountKey()}
+    set {_uniqueStorage()._key = newValue}
+  }
+  /// Returns true if `key` has been explicitly set.
+  public var hasKey: Bool {return _storage._key != nil}
+  /// Clears the value of `key`. Subsequent reads from it will return its default value.
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
+
+  /// The actor key links this particular account key to/from a known actor in the system, be it an organization or an
+  /// individual. Actor keys keys may be encrypted.
+  public var actor: Bloombox_Schema_Ledger_ActorKey {
+    get {return _storage._actor ?? Bloombox_Schema_Ledger_ActorKey()}
+    set {_uniqueStorage()._actor = newValue}
+  }
+  /// Returns true if `actor` has been explicitly set.
+  public var hasActor: Bool {return _storage._actor != nil}
+  /// Clears the value of `actor`. Subsequent reads from it will return its default value.
+  public mutating func clearActor() {_uniqueStorage()._actor = nil}
+
+  /// Specifies actual backing certificate information, issued by the central ledger PKI CA.
+  public var certificate: Bloombox_Schema_Ledger_ActorCertificate {
+    get {return _storage._certificate ?? Bloombox_Schema_Ledger_ActorCertificate()}
+    set {_uniqueStorage()._certificate = newValue}
+  }
+  /// Returns true if `certificate` has been explicitly set.
+  public var hasCertificate: Bool {return _storage._certificate != nil}
+  /// Clears the value of `certificate`. Subsequent reads from it will return its default value.
+  public mutating func clearCertificate() {_uniqueStorage()._certificate = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Specifies a structure that stamps a structure with server-side approval, indicating the subject payload was inspected
+/// and cryptographically verified.
+public struct Bloombox_Schema_Ledger_AssertionTicket {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Cryptographic fingerprint of the transmitted certificate data.
+  public var fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash {
+    get {return _storage._fingerprint ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+    set {_uniqueStorage()._fingerprint = newValue}
+  }
+  /// Returns true if `fingerprint` has been explicitly set.
+  public var hasFingerprint: Bool {return _storage._fingerprint != nil}
+  /// Clears the value of `fingerprint`. Subsequent reads from it will return its default value.
+  public mutating func clearFingerprint() {_uniqueStorage()._fingerprint = nil}
+
+  /// Timestamp for when this assertion ticket was deemed valid.
+  public var issued: Opencannabis_Temporal_Instant {
+    get {return _storage._issued ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._issued = newValue}
+  }
+  /// Returns true if `issued` has been explicitly set.
+  public var hasIssued: Bool {return _storage._issued != nil}
+  /// Clears the value of `issued`. Subsequent reads from it will return its default value.
+  public mutating func clearIssued() {_uniqueStorage()._issued = nil}
+
+  /// Signature from a node key assuring the ticket, encoded in hex.
+  public var signature: String {
+    get {return _storage._signature}
+    set {_uniqueStorage()._signature = newValue}
+  }
+
+  /// Key ID of the assuring system node (regular identity reference, i.e. public key hash).
+  public var assurer: String {
+    get {return _storage._assurer}
+    set {_uniqueStorage()._assurer = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Stored record specifying an asserted and certified identity claim on the ledger. Actors are required to register
+/// their identity before transacting, by generating a keypair, obtaining a certificate, and binding their key hashes
+/// and certificate hash to their object identifier, which is the digest of their ledger public key.
+public struct Bloombox_Schema_Ledger_IdentityClaim {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// The account ID is the computed result of UPPER(SHA3-256-B58(public_ledger_key)).
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
+
+  /// Specifies the computed result of UPPER(SHA3-256-B58(public_ec_key)).
+  public var key: String {
+    get {return _storage._key}
+    set {_uniqueStorage()._key = newValue}
+  }
+
+  /// Serial number for the attached actor certificate.
+  public var serial: String {
+    get {return _storage._serial}
+    set {_uniqueStorage()._serial = newValue}
+  }
+
+  /// Specifies the computed result of UPPER(SHA3-256-B58(certificate)).
+  public var fingerprint: String {
+    get {return _storage._fingerprint}
+    set {_uniqueStorage()._fingerprint = newValue}
+  }
+
+  /// Specifies actual backing certificate information, issued by the central ledger PKI CA.
+  public var certificate: Bloombox_Schema_Ledger_ActorCertificate {
+    get {return _storage._certificate ?? Bloombox_Schema_Ledger_ActorCertificate()}
+    set {_uniqueStorage()._certificate = newValue}
+  }
+  /// Returns true if `certificate` has been explicitly set.
+  public var hasCertificate: Bool {return _storage._certificate != nil}
+  /// Clears the value of `certificate`. Subsequent reads from it will return its default value.
+  public mutating func clearCertificate() {_uniqueStorage()._certificate = nil}
+
+  /// The actor key links this particular account key to/from a known actor in the system, be it an organization or an
+  /// individual. Actor keys keys may be encrypted.
+  public var actor: Bloombox_Schema_Ledger_ActorKey {
+    get {return _storage._actor ?? Bloombox_Schema_Ledger_ActorKey()}
+    set {_uniqueStorage()._actor = newValue}
+  }
+  /// Returns true if `actor` has been explicitly set.
+  public var hasActor: Bool {return _storage._actor != nil}
+  /// Clears the value of `actor`. Subsequent reads from it will return its default value.
+  public mutating func clearActor() {_uniqueStorage()._actor = nil}
+
+  /// Assertion ticket, verifying that this was indeed verified by the server upon submission.
+  public var assertion: Bloombox_Schema_Ledger_AssertionTicket {
+    get {return _storage._assertion ?? Bloombox_Schema_Ledger_AssertionTicket()}
+    set {_uniqueStorage()._assertion = newValue}
+  }
+  /// Returns true if `assertion` has been explicitly set.
+  public var hasAssertion: Bool {return _storage._assertion != nil}
+  /// Clears the value of `assertion`. Subsequent reads from it will return its default value.
+  public mutating func clearAssertion() {_uniqueStorage()._assertion = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.ledger"
+
+extension Bloombox_Schema_Ledger_SpecialActor: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "SYSTEM"),
+    1: .same(proto: "SANDBOX"),
+  ]
+}
+
+extension Bloombox_Schema_Ledger_ActorCertificate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ActorCertificate"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "serial"),
+    3: .same(proto: "fingerprint"),
+    4: .standard(proto: "common_name"),
+    5: .standard(proto: "issuer_name"),
+    10: .same(proto: "data"),
+    11: .same(proto: "encoded"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _id: String = String()
+    var _serial: String = String()
+    var _fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
+    var _commonName: String = String()
+    var _issuerName: String = String()
+    var _payload: Bloombox_Schema_Ledger_ActorCertificate.OneOf_Payload?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _id = source._id
+      _serial = source._serial
+      _fingerprint = source._fingerprint
+      _commonName = source._commonName
+      _issuerName = source._issuerName
+      _payload = source._payload
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._serial)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._fingerprint)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._commonName)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._issuerName)
+        case 10:
+          if _storage._payload != nil {try decoder.handleConflictingOneOf()}
+          var v: Data?
+          try decoder.decodeSingularBytesField(value: &v)
+          if let v = v {_storage._payload = .data(v)}
+        case 11:
+          if _storage._payload != nil {try decoder.handleConflictingOneOf()}
+          var v: String?
+          try decoder.decodeSingularStringField(value: &v)
+          if let v = v {_storage._payload = .encoded(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if !_storage._serial.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._serial, fieldNumber: 2)
+      }
+      if let v = _storage._fingerprint {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if !_storage._commonName.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._commonName, fieldNumber: 4)
+      }
+      if !_storage._issuerName.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._issuerName, fieldNumber: 5)
+      }
+      switch _storage._payload {
+      case .data(let v)?:
+        try visitor.visitSingularBytesField(value: v, fieldNumber: 10)
+      case .encoded(let v)?:
+        try visitor.visitSingularStringField(value: v, fieldNumber: 11)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Ledger_ActorCertificate, rhs: Bloombox_Schema_Ledger_ActorCertificate) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._serial != rhs_storage._serial {return false}
+        if _storage._fingerprint != rhs_storage._fingerprint {return false}
+        if _storage._commonName != rhs_storage._commonName {return false}
+        if _storage._issuerName != rhs_storage._issuerName {return false}
+        if _storage._payload != rhs_storage._payload {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ActorKey"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "known"),
+    10: .same(proto: "user"),
+    20: .same(proto: "partner"),
+    30: .same(proto: "location"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _actor: Bloombox_Schema_Ledger_ActorKey.OneOf_Actor?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _actor = source._actor
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
@@ -321,10 +637,6 @@ public struct Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       switch _storage._actor {
@@ -342,488 +654,23 @@ public struct Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message {
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  fileprivate var _storage = _StorageClass.defaultInstance
+  public static func ==(lhs: Bloombox_Schema_Ledger_ActorKey, rhs: Bloombox_Schema_Ledger_ActorKey) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._actor != rhs_storage._actor {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
 }
 
-/// Specifies the structure of a distributed ledger account, which is usually defined by its public/private keypair. In
-/// particular, the computation of UPPER(SHA3-B58(public_key)) is used to identify an account uniquely in public.
-/// Separately, a user account may be associated with a concrete identity via the `identity` property.
-public struct Bloombox_Schema_Ledger_AccountKey: SwiftProtobuf.Message {
+extension Bloombox_Schema_Ledger_AccountKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AccountKey"
-
-  /// The account key ID is the computed result of UPPER(SHA3-B58(public_key)).
-  public var id: String {
-    get {return _storage._id}
-    set {_uniqueStorage()._id = newValue}
-  }
-
-  /// Reference to the public/private keypair for this ledger account. In rare cases, the private key may be included
-  /// here (the structure supports it), but usually, it's used for the onboard cryptographic hash of the public key.
-  public var pair: Opencannabis_Crypto_Primitives_Pki_Keypair {
-    get {return _storage._pair ?? Opencannabis_Crypto_Primitives_Pki_Keypair()}
-    set {_uniqueStorage()._pair = newValue}
-  }
-  /// Returns true if `pair` has been explicitly set.
-  public var hasPair: Bool {return _storage._pair != nil}
-  /// Clears the value of `pair`. Subsequent reads from it will return its default value.
-  public mutating func clearPair() {_storage._pair = nil}
-
-  /// Reference to the identity public/private keypair for this actor. Ledger "actors" represent the real-world identity
-  /// behind organizations or individuals who execute transactions on the ledger.
-  public var identity: Opencannabis_Crypto_Primitives_Pki_Keypair {
-    get {return _storage._identity ?? Opencannabis_Crypto_Primitives_Pki_Keypair()}
-    set {_uniqueStorage()._identity = newValue}
-  }
-  /// Returns true if `identity` has been explicitly set.
-  public var hasIdentity: Bool {return _storage._identity != nil}
-  /// Clears the value of `identity`. Subsequent reads from it will return its default value.
-  public mutating func clearIdentity() {_storage._identity = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._pair)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._identity)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if let v = _storage._pair {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._identity {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Specifies the notion of a concrete identity on the ledger. This is essentially the intersection of two items: 1) key
-/// material generated by the actor themselves, and 2) associated identity stored somewhere else, or stored with us.
-public struct Bloombox_Schema_Ledger_LedgerIdentity: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".LedgerIdentity"
-
-  /// Specifies the key material behind this identity. In rare cases, this may include the private key (the structure
-  /// supports such behavior), but in most cases only a cryptographic fingerprint of the public key is available.
-  public var key: Bloombox_Schema_Ledger_AccountKey {
-    get {return _storage._key ?? Bloombox_Schema_Ledger_AccountKey()}
-    set {_uniqueStorage()._key = newValue}
-  }
-  /// Returns true if `key` has been explicitly set.
-  public var hasKey: Bool {return _storage._key != nil}
-  /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
-
-  /// The actor key links this particular account key to/from a known actor in the system, be it an organization or an
-  /// individual. Actor keys keys may be encrypted.
-  public var actor: Bloombox_Schema_Ledger_ActorKey {
-    get {return _storage._actor ?? Bloombox_Schema_Ledger_ActorKey()}
-    set {_uniqueStorage()._actor = newValue}
-  }
-  /// Returns true if `actor` has been explicitly set.
-  public var hasActor: Bool {return _storage._actor != nil}
-  /// Clears the value of `actor`. Subsequent reads from it will return its default value.
-  public mutating func clearActor() {_storage._actor = nil}
-
-  /// Specifies actual backing certificate information, issued by the central ledger PKI CA.
-  public var certificate: Bloombox_Schema_Ledger_ActorCertificate {
-    get {return _storage._certificate ?? Bloombox_Schema_Ledger_ActorCertificate()}
-    set {_uniqueStorage()._certificate = newValue}
-  }
-  /// Returns true if `certificate` has been explicitly set.
-  public var hasCertificate: Bool {return _storage._certificate != nil}
-  /// Clears the value of `certificate`. Subsequent reads from it will return its default value.
-  public mutating func clearCertificate() {_storage._certificate = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._actor)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._certificate)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._actor {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._certificate {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Specifies a structure that stamps a structure with server-side approval, indicating the subject payload was inspected
-/// and cryptographically verified.
-public struct Bloombox_Schema_Ledger_AssertionTicket: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".AssertionTicket"
-
-  /// Cryptographic fingerprint of the transmitted certificate data.
-  public var fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash {
-    get {return _storage._fingerprint ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
-    set {_uniqueStorage()._fingerprint = newValue}
-  }
-  /// Returns true if `fingerprint` has been explicitly set.
-  public var hasFingerprint: Bool {return _storage._fingerprint != nil}
-  /// Clears the value of `fingerprint`. Subsequent reads from it will return its default value.
-  public mutating func clearFingerprint() {_storage._fingerprint = nil}
-
-  /// Timestamp for when this assertion ticket was deemed valid.
-  public var issued: Opencannabis_Temporal_Instant {
-    get {return _storage._issued ?? Opencannabis_Temporal_Instant()}
-    set {_uniqueStorage()._issued = newValue}
-  }
-  /// Returns true if `issued` has been explicitly set.
-  public var hasIssued: Bool {return _storage._issued != nil}
-  /// Clears the value of `issued`. Subsequent reads from it will return its default value.
-  public mutating func clearIssued() {_storage._issued = nil}
-
-  /// Signature from a node key assuring the ticket, encoded in hex.
-  public var signature: String {
-    get {return _storage._signature}
-    set {_uniqueStorage()._signature = newValue}
-  }
-
-  /// Key ID of the assuring system node (regular identity reference, i.e. public key hash).
-  public var assurer: String {
-    get {return _storage._assurer}
-    set {_uniqueStorage()._assurer = newValue}
-  }
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._fingerprint)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._issued)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._signature)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._assurer)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._fingerprint {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._issued {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._signature.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 3)
-      }
-      if !_storage._assurer.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._assurer, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Stored record specifying an asserted and certified identity claim on the ledger. Actors are required to register
-/// their identity before transacting, by generating a keypair, obtaining a certificate, and binding their key hashes
-/// and certificate hash to their object identifier, which is the digest of their ledger public key.
-public struct Bloombox_Schema_Ledger_IdentityClaim: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".IdentityClaim"
-
-  /// The account ID is the computed result of UPPER(SHA3-256-B58(public_ledger_key)).
-  public var id: String {
-    get {return _storage._id}
-    set {_uniqueStorage()._id = newValue}
-  }
-
-  /// Specifies the computed result of UPPER(SHA3-256-B58(public_ec_key)).
-  public var key: String {
-    get {return _storage._key}
-    set {_uniqueStorage()._key = newValue}
-  }
-
-  /// Serial number for the attached actor certificate.
-  public var serial: String {
-    get {return _storage._serial}
-    set {_uniqueStorage()._serial = newValue}
-  }
-
-  /// Specifies the computed result of UPPER(SHA3-256-B58(certificate)).
-  public var fingerprint: String {
-    get {return _storage._fingerprint}
-    set {_uniqueStorage()._fingerprint = newValue}
-  }
-
-  /// Specifies actual backing certificate information, issued by the central ledger PKI CA.
-  public var certificate: Bloombox_Schema_Ledger_ActorCertificate {
-    get {return _storage._certificate ?? Bloombox_Schema_Ledger_ActorCertificate()}
-    set {_uniqueStorage()._certificate = newValue}
-  }
-  /// Returns true if `certificate` has been explicitly set.
-  public var hasCertificate: Bool {return _storage._certificate != nil}
-  /// Clears the value of `certificate`. Subsequent reads from it will return its default value.
-  public mutating func clearCertificate() {_storage._certificate = nil}
-
-  /// The actor key links this particular account key to/from a known actor in the system, be it an organization or an
-  /// individual. Actor keys keys may be encrypted.
-  public var actor: Bloombox_Schema_Ledger_ActorKey {
-    get {return _storage._actor ?? Bloombox_Schema_Ledger_ActorKey()}
-    set {_uniqueStorage()._actor = newValue}
-  }
-  /// Returns true if `actor` has been explicitly set.
-  public var hasActor: Bool {return _storage._actor != nil}
-  /// Clears the value of `actor`. Subsequent reads from it will return its default value.
-  public mutating func clearActor() {_storage._actor = nil}
-
-  /// Assertion ticket, verifying that this was indeed verified by the server upon submission.
-  public var assertion: Bloombox_Schema_Ledger_AssertionTicket {
-    get {return _storage._assertion ?? Bloombox_Schema_Ledger_AssertionTicket()}
-    set {_uniqueStorage()._assertion = newValue}
-  }
-  /// Returns true if `assertion` has been explicitly set.
-  public var hasAssertion: Bool {return _storage._assertion != nil}
-  /// Clears the value of `assertion`. Subsequent reads from it will return its default value.
-  public mutating func clearAssertion() {_storage._assertion = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._key)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._serial)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._fingerprint)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._certificate)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._actor)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._assertion)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._id.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if !_storage._key.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._key, fieldNumber: 2)
-      }
-      if !_storage._serial.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._serial, fieldNumber: 3)
-      }
-      if !_storage._fingerprint.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._fingerprint, fieldNumber: 4)
-      }
-      if let v = _storage._certificate {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._actor {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if let v = _storage._assertion {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.ledger"
-
-extension Bloombox_Schema_Ledger_SpecialActor: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "SYSTEM"),
-    1: .same(proto: "SANDBOX"),
-  ]
-}
-
-extension Bloombox_Schema_Ledger_ActorCertificate: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-    2: .same(proto: "serial"),
-    3: .same(proto: "fingerprint"),
-    4: .standard(proto: "common_name"),
-    5: .standard(proto: "issuer_name"),
-    10: .same(proto: "data"),
-    11: .same(proto: "encoded"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _id: String = String()
-    var _serial: String = String()
-    var _fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
-    var _commonName: String = String()
-    var _issuerName: String = String()
-    var _payload: Bloombox_Schema_Ledger_ActorCertificate.OneOf_Payload?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _id = source._id
-      _serial = source._serial
-      _fingerprint = source._fingerprint
-      _commonName = source._commonName
-      _issuerName = source._issuerName
-      _payload = source._payload
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Ledger_ActorCertificate) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._serial != other_storage._serial {return false}
-        if _storage._fingerprint != other_storage._fingerprint {return false}
-        if _storage._commonName != other_storage._commonName {return false}
-        if _storage._issuerName != other_storage._issuerName {return false}
-        if _storage._payload != other_storage._payload {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "known"),
-    10: .same(proto: "user"),
-    20: .same(proto: "partner"),
-    30: .same(proto: "location"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _actor: Bloombox_Schema_Ledger_ActorKey.OneOf_Actor?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _actor = source._actor
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Ledger_ActorKey) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._actor != other_storage._actor {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Ledger_AccountKey: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "pair"),
@@ -853,24 +700,54 @@ extension Bloombox_Schema_Ledger_AccountKey: SwiftProtobuf._MessageImplementatio
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Ledger_AccountKey) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._pair)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._identity)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if let v = _storage._pair {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._identity {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Ledger_AccountKey, rhs: Bloombox_Schema_Ledger_AccountKey) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._pair != other_storage._pair {return false}
-        if _storage._identity != other_storage._identity {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._pair != rhs_storage._pair {return false}
+        if _storage._identity != rhs_storage._identity {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Ledger_LedgerIdentity: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Ledger_LedgerIdentity: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LedgerIdentity"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "actor"),
@@ -900,24 +777,54 @@ extension Bloombox_Schema_Ledger_LedgerIdentity: SwiftProtobuf._MessageImplement
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Ledger_LedgerIdentity) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._actor)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._certificate)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._actor {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._certificate {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Ledger_LedgerIdentity, rhs: Bloombox_Schema_Ledger_LedgerIdentity) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._actor != other_storage._actor {return false}
-        if _storage._certificate != other_storage._certificate {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._actor != rhs_storage._actor {return false}
+        if _storage._certificate != rhs_storage._certificate {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Ledger_AssertionTicket: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Ledger_AssertionTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AssertionTicket"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "fingerprint"),
     2: .same(proto: "issued"),
@@ -950,25 +857,59 @@ extension Bloombox_Schema_Ledger_AssertionTicket: SwiftProtobuf._MessageImplemen
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Ledger_AssertionTicket) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._fingerprint)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._issued)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._signature)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._assurer)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._fingerprint {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._issued {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._signature.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._signature, fieldNumber: 3)
+      }
+      if !_storage._assurer.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._assurer, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Ledger_AssertionTicket, rhs: Bloombox_Schema_Ledger_AssertionTicket) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._fingerprint != other_storage._fingerprint {return false}
-        if _storage._issued != other_storage._issued {return false}
-        if _storage._signature != other_storage._signature {return false}
-        if _storage._assurer != other_storage._assurer {return false}
+        let rhs_storage = _args.1
+        if _storage._fingerprint != rhs_storage._fingerprint {return false}
+        if _storage._issued != rhs_storage._issued {return false}
+        if _storage._signature != rhs_storage._signature {return false}
+        if _storage._assurer != rhs_storage._assurer {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Ledger_IdentityClaim: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Ledger_IdentityClaim: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".IdentityClaim"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "key"),
@@ -1010,23 +951,68 @@ extension Bloombox_Schema_Ledger_IdentityClaim: SwiftProtobuf._MessageImplementa
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Ledger_IdentityClaim) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._key)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._serial)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._fingerprint)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._certificate)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._actor)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._assertion)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if !_storage._key.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._key, fieldNumber: 2)
+      }
+      if !_storage._serial.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._serial, fieldNumber: 3)
+      }
+      if !_storage._fingerprint.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._fingerprint, fieldNumber: 4)
+      }
+      if let v = _storage._certificate {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._actor {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._assertion {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Ledger_IdentityClaim, rhs: Bloombox_Schema_Ledger_IdentityClaim) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._key != other_storage._key {return false}
-        if _storage._serial != other_storage._serial {return false}
-        if _storage._fingerprint != other_storage._fingerprint {return false}
-        if _storage._certificate != other_storage._certificate {return false}
-        if _storage._actor != other_storage._actor {return false}
-        if _storage._assertion != other_storage._assertion {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._serial != rhs_storage._serial {return false}
+        if _storage._fingerprint != rhs_storage._fingerprint {return false}
+        if _storage._certificate != rhs_storage._certificate {return false}
+        if _storage._actor != rhs_storage._actor {return false}
+        if _storage._assertion != rhs_storage._assertion {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

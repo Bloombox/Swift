@@ -20,8 +20,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the type of media being attached or described.
-public struct Opencannabis_Media_MediaType: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".MediaType"
+public struct Opencannabis_Media_MediaType {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the generic kind of media being described or attached.
   public var kind: Opencannabis_Media_MediaType.Kind = .link
@@ -67,6 +69,7 @@ public struct Opencannabis_Media_MediaType: SwiftProtobuf.Message {
     /// Specifies content type for a video-based media item.
     case videoType(Opencannabis_Media_MediaType.VideoKind)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Media_MediaType.OneOf_Content, rhs: Opencannabis_Media_MediaType.OneOf_Content) -> Bool {
       switch (lhs, rhs) {
       case (.imageType(let l), .imageType(let r)): return l == r
@@ -75,6 +78,7 @@ public struct Opencannabis_Media_MediaType: SwiftProtobuf.Message {
       default: return false
       }
     }
+  #endif
   }
 
   /// Enumerates, in generic terms, the kinds of media that can be attached or described.
@@ -303,11 +307,77 @@ public struct Opencannabis_Media_MediaType: SwiftProtobuf.Message {
   }
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+#if swift(>=4.2)
+
+extension Opencannabis_Media_MediaType.Kind: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Media_MediaType.Kind] = [
+    .link,
+    .image,
+    .document,
+    .video,
+  ]
+}
+
+extension Opencannabis_Media_MediaType.ImageKind: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Media_MediaType.ImageKind] = [
+    .unspecifiedImageType,
+    .png,
+    .jpg,
+    .gif,
+    .svg,
+    .webp,
+  ]
+}
+
+extension Opencannabis_Media_MediaType.ImageDPI: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Media_MediaType.ImageDPI] = [
+    .x1,
+    .x2,
+    .x3,
+  ]
+}
+
+extension Opencannabis_Media_MediaType.DocumentKind: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Media_MediaType.DocumentKind] = [
+    .unspecifiedDocumentType,
+    .txt,
+    .html,
+    .pdf,
+    .markdown,
+  ]
+}
+
+extension Opencannabis_Media_MediaType.VideoKind: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Media_MediaType.VideoKind] = [
+    .unspecifiedVideoType,
+    .mp4,
+    .flv,
+    .hls,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.media"
+
+extension Opencannabis_Media_MediaType: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MediaType"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "kind"),
+    101: .standard(proto: "image_type"),
+    201: .standard(proto: "document_type"),
+    301: .standard(proto: "video_type"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -332,10 +402,6 @@ public struct Opencannabis_Media_MediaType: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.kind != .link {
       try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
@@ -351,24 +417,11 @@ public struct Opencannabis_Media_MediaType: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.media"
-
-extension Opencannabis_Media_MediaType: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "kind"),
-    101: .standard(proto: "image_type"),
-    201: .standard(proto: "document_type"),
-    301: .standard(proto: "video_type"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_MediaType) -> Bool {
-    if self.kind != other.kind {return false}
-    if self.content != other.content {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Media_MediaType, rhs: Opencannabis_Media_MediaType) -> Bool {
+    if lhs.kind != rhs.kind {return false}
+    if lhs.content != rhs.content {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

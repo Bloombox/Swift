@@ -23,8 +23,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Reference to a nation-issued passport document.
-public struct Bloombox_Schema_Identity_Ids_PassportReference: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PassportReference"
+public struct Bloombox_Schema_Identity_Ids_PassportReference {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Nation that issued the passport.
   public var nation: String = String()
@@ -38,11 +40,37 @@ public struct Bloombox_Schema_Identity_Ids_PassportReference: SwiftProtobuf.Mess
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+/// Specifies a model for a nation-state-issued passport.
+public struct Bloombox_Schema_Identity_Ids_Passport {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Barcode from the passport, if any.
+  public var barcode: Data = SwiftProtobuf.Internal.emptyData
+
+  /// Nation that issued this passport, as an abbreviated string code, like "US" or "UK".
+  public var nation: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.identity.ids"
+
+extension Bloombox_Schema_Identity_Ids_PassportReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PassportReference"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "nation"),
+    2: .standard(proto: "id_number"),
+    3: .same(proto: "barcode"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -54,10 +82,6 @@ public struct Bloombox_Schema_Identity_Ids_PassportReference: SwiftProtobuf.Mess
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.nation.isEmpty {
       try visitor.visitSingularStringField(value: self.nation, fieldNumber: 1)
@@ -70,26 +94,23 @@ public struct Bloombox_Schema_Identity_Ids_PassportReference: SwiftProtobuf.Mess
     }
     try unknownFields.traverse(visitor: &visitor)
   }
+
+  public static func ==(lhs: Bloombox_Schema_Identity_Ids_PassportReference, rhs: Bloombox_Schema_Identity_Ids_PassportReference) -> Bool {
+    if lhs.nation != rhs.nation {return false}
+    if lhs.idNumber != rhs.idNumber {return false}
+    if lhs.barcode != rhs.barcode {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
 }
 
-/// Specifies a model for a nation-state-issued passport.
-public struct Bloombox_Schema_Identity_Ids_Passport: SwiftProtobuf.Message {
+extension Bloombox_Schema_Identity_Ids_Passport: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Passport"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "barcode"),
+    2: .same(proto: "nation"),
+  ]
 
-  /// Barcode from the passport, if any.
-  public var barcode: Data = SwiftProtobuf.Internal.emptyData
-
-  /// Nation that issued this passport, as an abbreviated string code, like "US" or "UK".
-  public var nation: String = String()
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -100,10 +121,6 @@ public struct Bloombox_Schema_Identity_Ids_Passport: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.barcode.isEmpty {
       try visitor.visitSingularBytesField(value: self.barcode, fieldNumber: 1)
@@ -113,38 +130,11 @@ public struct Bloombox_Schema_Identity_Ids_Passport: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.identity.ids"
-
-extension Bloombox_Schema_Identity_Ids_PassportReference: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "nation"),
-    2: .standard(proto: "id_number"),
-    3: .same(proto: "barcode"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_PassportReference) -> Bool {
-    if self.nation != other.nation {return false}
-    if self.idNumber != other.idNumber {return false}
-    if self.barcode != other.barcode {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Identity_Ids_Passport: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "barcode"),
-    2: .same(proto: "nation"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_Passport) -> Bool {
-    if self.barcode != other.barcode {return false}
-    if self.nation != other.nation {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Identity_Ids_Passport, rhs: Bloombox_Schema_Identity_Ids_Passport) -> Bool {
+    if lhs.barcode != rhs.barcode {return false}
+    if lhs.nation != rhs.nation {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

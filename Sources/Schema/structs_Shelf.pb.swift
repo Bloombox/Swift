@@ -64,6 +64,20 @@ public enum Opencannabis_Structs_Shelf: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Shelf: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Shelf] = [
+    .genericShelf,
+    .economy,
+    .midshelf,
+    .topshelf,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Opencannabis_Structs_Shelf: SwiftProtobuf._ProtoNameProviding {

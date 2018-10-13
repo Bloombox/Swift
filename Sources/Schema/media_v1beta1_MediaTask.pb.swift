@@ -60,9 +60,24 @@ public enum Bloombox_Schema_Services_Media_V1beta1_ImageResizeMode: SwiftProtobu
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Media_V1beta1_ImageResizeMode: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Media_V1beta1_ImageResizeMode] = [
+    .noResize,
+    .resize,
+    .crop,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Structure for a generic task dealing with media data.
-public struct Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".MediaTask"
+public struct Bloombox_Schema_Services_Media_V1beta1_MediaTask {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// ID for this particular media task.
   public var uuid: String {
@@ -78,7 +93,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Me
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Metadata for this image item.
   public var media: Opencannabis_Media_MediaItem {
@@ -88,7 +103,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Me
   /// Returns true if `media` has been explicitly set.
   public var hasMedia: Bool {return _storage._media != nil}
   /// Clears the value of `media`. Subsequent reads from it will return its default value.
-  public mutating func clearMedia() {_storage._media = nil}
+  public mutating func clearMedia() {_uniqueStorage()._media = nil}
 
   /// Media task to perform.
   public var task: OneOf_Task? {
@@ -123,6 +138,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Me
     /// Publish an image to specialized serving infrastructure.
     case imagePublish(Bool)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask.OneOf_Task, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask.OneOf_Task) -> Bool {
       switch (lhs, rhs) {
       case (.imageMin(let l), .imageMin(let r)): return l == r
@@ -130,11 +146,14 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Me
       default: return false
       }
     }
+  #endif
   }
 
   /// Structure spec for an image optimization task.
-  public struct ImageOptimization: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_MediaTask.protoMessageName + ".ImageOptimization"
+  public struct ImageOptimization {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Target format to transcode the media to, if applicable.
     public var format: Opencannabis_Media_MediaType.ImageKind = .unspecifiedImageType
@@ -151,102 +170,9 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Me
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &self.format)
-        case 2: try decoder.decodeSingularEnumField(value: &self.dpi)
-        case 3: try decoder.decodeSingularUInt64Field(value: &self.width)
-        case 4: try decoder.decodeSingularUInt64Field(value: &self.height)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if self.format != .unspecifiedImageType {
-        try visitor.visitSingularEnumField(value: self.format, fieldNumber: 1)
-      }
-      if self.dpi != .x1 {
-        try visitor.visitSingularEnumField(value: self.dpi, fieldNumber: 2)
-      }
-      if self.width != 0 {
-        try visitor.visitSingularUInt64Field(value: self.width, fieldNumber: 3)
-      }
-      if self.height != 0 {
-        try visitor.visitSingularUInt64Field(value: self.height, fieldNumber: 4)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._media)
-        case 10:
-          var v: Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization?
-          if let current = _storage._task {
-            try decoder.handleConflictingOneOf()
-            if case .imageMin(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._task = .imageMin(v)}
-        case 11:
-          if _storage._task != nil {try decoder.handleConflictingOneOf()}
-          var v: Bool?
-          try decoder.decodeSingularBoolField(value: &v)
-          if let v = v {_storage._task = .imagePublish(v)}
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._uuid.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
-      }
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._media {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      switch _storage._task {
-      case .imageMin(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-      case .imagePublish(let v)?:
-        try visitor.visitSingularBoolField(value: v, fieldNumber: 11)
-      case nil: break
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -263,7 +189,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_ImageResizeMode: SwiftProtobuf.
   ]
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MediaTask"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
     2: .same(proto: "key"),
@@ -297,25 +224,75 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf._Messa
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_MediaTask) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._media)
+        case 10:
+          var v: Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization?
+          if let current = _storage._task {
+            try decoder.handleConflictingOneOf()
+            if case .imageMin(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._task = .imageMin(v)}
+        case 11:
+          if _storage._task != nil {try decoder.handleConflictingOneOf()}
+          var v: Bool?
+          try decoder.decodeSingularBoolField(value: &v)
+          if let v = v {_storage._task = .imagePublish(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
+      }
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._media {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      switch _storage._task {
+      case .imageMin(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      case .imagePublish(let v)?:
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 11)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._key != other_storage._key {return false}
-        if _storage._media != other_storage._media {return false}
-        if _storage._task != other_storage._task {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._media != rhs_storage._media {return false}
+        if _storage._task != rhs_storage._task {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_MediaTask.protoMessageName + ".ImageOptimization"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "format"),
     2: .same(proto: "dpi"),
@@ -323,12 +300,40 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization: Sw
     4: .same(proto: "height"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization) -> Bool {
-    if self.format != other.format {return false}
-    if self.dpi != other.dpi {return false}
-    if self.width != other.width {return false}
-    if self.height != other.height {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.format)
+      case 2: try decoder.decodeSingularEnumField(value: &self.dpi)
+      case 3: try decoder.decodeSingularUInt64Field(value: &self.width)
+      case 4: try decoder.decodeSingularUInt64Field(value: &self.height)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.format != .unspecifiedImageType {
+      try visitor.visitSingularEnumField(value: self.format, fieldNumber: 1)
+    }
+    if self.dpi != .x1 {
+      try visitor.visitSingularEnumField(value: self.dpi, fieldNumber: 2)
+    }
+    if self.width != 0 {
+      try visitor.visitSingularUInt64Field(value: self.width, fieldNumber: 3)
+    }
+    if self.height != 0 {
+      try visitor.visitSingularUInt64Field(value: self.height, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization) -> Bool {
+    if lhs.format != rhs.format {return false}
+    if lhs.dpi != rhs.dpi {return false}
+    if lhs.width != rhs.width {return false}
+    if lhs.height != rhs.height {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

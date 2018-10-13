@@ -52,6 +52,18 @@ public enum Opencannabis_Products_Menu_Section_SectionFlag: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Menu_Section_SectionFlag: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Menu_Section_SectionFlag] = [
+    .hidden,
+    .featured,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Known sections, that are expected to be included with nearly every menu.
 public enum Opencannabis_Products_Menu_Section_Section: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -120,6 +132,25 @@ public enum Opencannabis_Products_Menu_Section_Section: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Menu_Section_Section: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Menu_Section_Section] = [
+    .unspecified,
+    .flowers,
+    .extracts,
+    .edibles,
+    .cartridges,
+    .apothecary,
+    .prerolls,
+    .plants,
+    .merchandise,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Special filtered sections - commonly used sections based on filters builtin to apps/sites.
 public enum Opencannabis_Products_Menu_Section_FilteredSection: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -163,9 +194,25 @@ public enum Opencannabis_Products_Menu_Section_FilteredSection: SwiftProtobuf.En
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Menu_Section_FilteredSection: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Menu_Section_FilteredSection] = [
+    .onSale,
+    .house,
+    .cbd,
+    .search,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Custom configuration-based menu sections, usually via `FilteredSection`.
-public struct Opencannabis_Products_Menu_Section_CustomSection: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".CustomSection"
+public struct Opencannabis_Products_Menu_Section_CustomSection {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// String ID for a custom section.
   public var id: String = String()
@@ -176,39 +223,13 @@ public struct Opencannabis_Products_Menu_Section_CustomSection: SwiftProtobuf.Me
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.id)
-      case 2: try decoder.decodeSingularEnumField(value: &self.filter)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.id.isEmpty {
-      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
-    }
-    if self.filter != .onSale {
-      try visitor.visitSingularEnumField(value: self.filter, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies media for a section.
-public struct Opencannabis_Products_Menu_Section_SectionMedia: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SectionMedia"
+public struct Opencannabis_Products_Menu_Section_SectionMedia {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies a media item to use as a tablet homescreen tile for this section.
   public var tabletHomescreenMedia: Opencannabis_Media_MediaItem {
@@ -218,47 +239,20 @@ public struct Opencannabis_Products_Menu_Section_SectionMedia: SwiftProtobuf.Mes
   /// Returns true if `tabletHomescreenMedia` has been explicitly set.
   public var hasTabletHomescreenMedia: Bool {return _storage._tabletHomescreenMedia != nil}
   /// Clears the value of `tabletHomescreenMedia`. Subsequent reads from it will return its default value.
-  public mutating func clearTabletHomescreenMedia() {_storage._tabletHomescreenMedia = nil}
+  public mutating func clearTabletHomescreenMedia() {_uniqueStorage()._tabletHomescreenMedia = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._tabletHomescreenMedia)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._tabletHomescreenMedia {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies settings that a menu section may consider.
-public struct Opencannabis_Products_Menu_Section_SectionSettings: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SectionSettings"
+public struct Opencannabis_Products_Menu_Section_SectionSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Presentable name for this section.
   public var name: Opencannabis_Content_Name {
@@ -268,7 +262,7 @@ public struct Opencannabis_Products_Menu_Section_SectionSettings: SwiftProtobuf.
   /// Returns true if `name` has been explicitly set.
   public var hasName: Bool {return _storage._name != nil}
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
-  public mutating func clearName() {_storage._name = nil}
+  public mutating func clearName() {_uniqueStorage()._name = nil}
 
   /// Media to use when presenting this section.
   public var media: Opencannabis_Products_Menu_Section_SectionMedia {
@@ -278,51 +272,20 @@ public struct Opencannabis_Products_Menu_Section_SectionSettings: SwiftProtobuf.
   /// Returns true if `media` has been explicitly set.
   public var hasMedia: Bool {return _storage._media != nil}
   /// Clears the value of `media`. Subsequent reads from it will return its default value.
-  public mutating func clearMedia() {_storage._media = nil}
+  public mutating func clearMedia() {_uniqueStorage()._media = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._name)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._media)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._name {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._media {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies a menu section, along with section configuration (settings and flags).
-public struct Opencannabis_Products_Menu_Section_SectionSpec: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SectionSpec"
+public struct Opencannabis_Products_Menu_Section_SectionSpec {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the subject menu section.
   public var spec: OneOf_Spec? {
@@ -365,7 +328,7 @@ public struct Opencannabis_Products_Menu_Section_SectionSpec: SwiftProtobuf.Mess
   /// Returns true if `settings` has been explicitly set.
   public var hasSettings: Bool {return _storage._settings != nil}
   /// Clears the value of `settings`. Subsequent reads from it will return its default value.
-  public mutating func clearSettings() {_storage._settings = nil}
+  public mutating func clearSettings() {_uniqueStorage()._settings = nil}
 
   /// Current set of flags to apply to the subject section.
   public var flags: [Opencannabis_Products_Menu_Section_SectionFlag] {
@@ -384,6 +347,7 @@ public struct Opencannabis_Products_Menu_Section_SectionSpec: SwiftProtobuf.Mess
     /// Arbitrary name for other types of sections.
     case name(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Products_Menu_Section_SectionSpec.OneOf_Spec, rhs: Opencannabis_Products_Menu_Section_SectionSpec.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.section(let l), .section(let r)): return l == r
@@ -392,69 +356,10 @@ public struct Opencannabis_Products_Menu_Section_SectionSpec: SwiftProtobuf.Mess
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1:
-          if _storage._spec != nil {try decoder.handleConflictingOneOf()}
-          var v: Opencannabis_Products_Menu_Section_Section?
-          try decoder.decodeSingularEnumField(value: &v)
-          if let v = v {_storage._spec = .section(v)}
-        case 2:
-          var v: Opencannabis_Products_Menu_Section_CustomSection?
-          if let current = _storage._spec {
-            try decoder.handleConflictingOneOf()
-            if case .customSection(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._spec = .customSection(v)}
-        case 3:
-          if _storage._spec != nil {try decoder.handleConflictingOneOf()}
-          var v: String?
-          try decoder.decodeSingularStringField(value: &v)
-          if let v = v {_storage._spec = .name(v)}
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._settings)
-        case 5: try decoder.decodeRepeatedEnumField(value: &_storage._flags)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      switch _storage._spec {
-      case .section(let v)?:
-        try visitor.visitSingularEnumField(value: v, fieldNumber: 1)
-      case .customSection(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      case .name(let v)?:
-        try visitor.visitSingularStringField(value: v, fieldNumber: 3)
-      case nil: break
-      }
-      if let v = _storage._settings {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-      if !_storage._flags.isEmpty {
-        try visitor.visitPackedEnumField(value: _storage._flags, fieldNumber: 5)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -493,21 +398,43 @@ extension Opencannabis_Products_Menu_Section_FilteredSection: SwiftProtobuf._Pro
   ]
 }
 
-extension Opencannabis_Products_Menu_Section_CustomSection: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Section_CustomSection: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CustomSection"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "filter"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_CustomSection) -> Bool {
-    if self.id != other.id {return false}
-    if self.filter != other.filter {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularEnumField(value: &self.filter)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if self.filter != .onSale {
+      try visitor.visitSingularEnumField(value: self.filter, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Products_Menu_Section_CustomSection, rhs: Opencannabis_Products_Menu_Section_CustomSection) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.filter != rhs.filter {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Products_Menu_Section_SectionMedia: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Section_SectionMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SectionMedia"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .standard(proto: "tablet_homescreen_media"),
   ]
@@ -531,22 +458,44 @@ extension Opencannabis_Products_Menu_Section_SectionMedia: SwiftProtobuf._Messag
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_SectionMedia) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._tabletHomescreenMedia)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._tabletHomescreenMedia {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Products_Menu_Section_SectionMedia, rhs: Opencannabis_Products_Menu_Section_SectionMedia) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._tabletHomescreenMedia != other_storage._tabletHomescreenMedia {return false}
+        let rhs_storage = _args.1
+        if _storage._tabletHomescreenMedia != rhs_storage._tabletHomescreenMedia {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Products_Menu_Section_SectionSettings: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Section_SectionSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SectionSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "media"),
@@ -573,23 +522,49 @@ extension Opencannabis_Products_Menu_Section_SectionSettings: SwiftProtobuf._Mes
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_SectionSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._name)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._media)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._name {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._media {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Products_Menu_Section_SectionSettings, rhs: Opencannabis_Products_Menu_Section_SectionSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._media != other_storage._media {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._media != rhs_storage._media {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Products_Menu_Section_SectionSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Products_Menu_Section_SectionSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SectionSpec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "section"),
     2: .standard(proto: "custom_section"),
@@ -621,19 +596,71 @@ extension Opencannabis_Products_Menu_Section_SectionSpec: SwiftProtobuf._Message
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_SectionSpec) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1:
+          if _storage._spec != nil {try decoder.handleConflictingOneOf()}
+          var v: Opencannabis_Products_Menu_Section_Section?
+          try decoder.decodeSingularEnumField(value: &v)
+          if let v = v {_storage._spec = .section(v)}
+        case 2:
+          var v: Opencannabis_Products_Menu_Section_CustomSection?
+          if let current = _storage._spec {
+            try decoder.handleConflictingOneOf()
+            if case .customSection(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._spec = .customSection(v)}
+        case 3:
+          if _storage._spec != nil {try decoder.handleConflictingOneOf()}
+          var v: String?
+          try decoder.decodeSingularStringField(value: &v)
+          if let v = v {_storage._spec = .name(v)}
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._settings)
+        case 5: try decoder.decodeRepeatedEnumField(value: &_storage._flags)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      switch _storage._spec {
+      case .section(let v)?:
+        try visitor.visitSingularEnumField(value: v, fieldNumber: 1)
+      case .customSection(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case .name(let v)?:
+        try visitor.visitSingularStringField(value: v, fieldNumber: 3)
+      case nil: break
+      }
+      if let v = _storage._settings {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if !_storage._flags.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._flags, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Products_Menu_Section_SectionSpec, rhs: Opencannabis_Products_Menu_Section_SectionSpec) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._spec != other_storage._spec {return false}
-        if _storage._settings != other_storage._settings {return false}
-        if _storage._flags != other_storage._flags {return false}
+        let rhs_storage = _args.1
+        if _storage._spec != rhs_storage._spec {return false}
+        if _storage._settings != rhs_storage._settings {return false}
+        if _storage._flags != rhs_storage._flags {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

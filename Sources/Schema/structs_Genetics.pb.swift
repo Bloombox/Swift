@@ -20,8 +20,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies genetics for a particular plant or flower item.
-public struct Opencannabis_Structs_Genetics: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Genetics"
+public struct Opencannabis_Structs_Genetics {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the male side of an item's genetics.
   public var male: Opencannabis_Base_ProductReference {
@@ -31,7 +33,7 @@ public struct Opencannabis_Structs_Genetics: SwiftProtobuf.Message {
   /// Returns true if `male` has been explicitly set.
   public var hasMale: Bool {return _storage._male != nil}
   /// Clears the value of `male`. Subsequent reads from it will return its default value.
-  public mutating func clearMale() {_storage._male = nil}
+  public mutating func clearMale() {_uniqueStorage()._male = nil}
 
   /// Specifies the female side of an item's genetics.
   public var female: Opencannabis_Base_ProductReference {
@@ -41,44 +43,11 @@ public struct Opencannabis_Structs_Genetics: SwiftProtobuf.Message {
   /// Returns true if `female` has been explicitly set.
   public var hasFemale: Bool {return _storage._female != nil}
   /// Clears the value of `female`. Subsequent reads from it will return its default value.
-  public mutating func clearFemale() {_storage._female = nil}
+  public mutating func clearFemale() {_uniqueStorage()._female = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._male)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._female)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._male {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._female {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -87,7 +56,8 @@ public struct Opencannabis_Structs_Genetics: SwiftProtobuf.Message {
 
 fileprivate let _protobuf_package = "opencannabis.structs"
 
-extension Opencannabis_Structs_Genetics: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Structs_Genetics: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Genetics"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "male"),
     2: .same(proto: "female"),
@@ -114,18 +84,43 @@ extension Opencannabis_Structs_Genetics: SwiftProtobuf._MessageImplementationBas
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Genetics) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._male)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._female)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._male {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._female {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Structs_Genetics, rhs: Opencannabis_Structs_Genetics) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._male != other_storage._male {return false}
-        if _storage._female != other_storage._female {return false}
+        let rhs_storage = _args.1
+        if _storage._male != rhs_storage._male {return false}
+        if _storage._female != rhs_storage._female {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

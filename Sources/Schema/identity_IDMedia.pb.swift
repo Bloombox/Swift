@@ -60,9 +60,24 @@ public enum Bloombox_Schema_Identity_IDMedia: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Identity_IDMedia: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Identity_IDMedia] = [
+    .documentFront,
+    .documentRear,
+    .portrait,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Media attachment that binds some document media to a particular driver's license.
-public struct Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".IDMediaAttachment"
+public struct Bloombox_Schema_Identity_IDMediaAttachment {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the kind of media being attached.
   public var type: Bloombox_Schema_Identity_IDMedia = .documentFront
@@ -82,11 +97,30 @@ public struct Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf.Message 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.identity"
+
+extension Bloombox_Schema_Identity_IDMedia: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "DOCUMENT_FRONT"),
+    1: .same(proto: "DOCUMENT_REAR"),
+    2: .same(proto: "PORTRAIT"),
+  ]
+}
+
+extension Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".IDMediaAttachment"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "type"),
+    2: .same(proto: "orientation"),
+    3: .same(proto: "data"),
+    4: .standard(proto: "image_type"),
+    5: .same(proto: "quality"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -100,10 +134,6 @@ public struct Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf.Message 
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.type != .documentFront {
       try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
@@ -122,36 +152,14 @@ public struct Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf.Message 
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.identity"
-
-extension Bloombox_Schema_Identity_IDMedia: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "DOCUMENT_FRONT"),
-    1: .same(proto: "DOCUMENT_REAR"),
-    2: .same(proto: "PORTRAIT"),
-  ]
-}
-
-extension Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "type"),
-    2: .same(proto: "orientation"),
-    3: .same(proto: "data"),
-    4: .standard(proto: "image_type"),
-    5: .same(proto: "quality"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_IDMediaAttachment) -> Bool {
-    if self.type != other.type {return false}
-    if self.orientation != other.orientation {return false}
-    if self.data != other.data {return false}
-    if self.imageType != other.imageType {return false}
-    if self.quality != other.quality {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Identity_IDMediaAttachment, rhs: Bloombox_Schema_Identity_IDMediaAttachment) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.orientation != rhs.orientation {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.imageType != rhs.imageType {return false}
+    if lhs.quality != rhs.quality {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

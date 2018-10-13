@@ -23,8 +23,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a particular calendar date.
-public struct Opencannabis_Temporal_Date: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Date"
+public struct Opencannabis_Temporal_Date {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Date specification option.
   public var spec: Opencannabis_Temporal_Date.OneOf_Spec? = nil
@@ -45,19 +47,28 @@ public struct Opencannabis_Temporal_Date: SwiftProtobuf.Message {
     /// ISO8601-formatted calendar date value, like YYYY-MM-DD.
     case iso8601(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Temporal_Date.OneOf_Spec, rhs: Opencannabis_Temporal_Date.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.iso8601(let l), .iso8601(let r)): return l == r
       }
     }
+  #endif
   }
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.temporal"
+
+extension Opencannabis_Temporal_Date: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Date"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "iso8601"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -71,30 +82,16 @@ public struct Opencannabis_Temporal_Date: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if case .iso8601(let v)? = self.spec {
       try visitor.visitSingularStringField(value: v, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.temporal"
-
-extension Opencannabis_Temporal_Date: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "iso8601"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Temporal_Date) -> Bool {
-    if self.spec != other.spec {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Temporal_Date, rhs: Opencannabis_Temporal_Date) -> Bool {
+    if lhs.spec != rhs.spec {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

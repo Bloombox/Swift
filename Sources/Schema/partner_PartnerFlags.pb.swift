@@ -23,8 +23,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies flags that may be set on a partner organization account.
-public struct Bloombox_Schema_Partner_PartnerFlags: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PartnerFlags"
+public struct Bloombox_Schema_Partner_PartnerFlags {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies that the subject partner organization is currently suspended, organization wide, and has had access
   /// revoked to Bloombox systems.
@@ -47,11 +49,22 @@ public struct Bloombox_Schema_Partner_PartnerFlags: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "bloombox.schema.partner"
+
+extension Bloombox_Schema_Partner_PartnerFlags: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PartnerFlags"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "suspended"),
+    2: .same(proto: "pastdue"),
+    3: .same(proto: "beta"),
+    4: .same(proto: "sandbox"),
+    5: .same(proto: "internal"),
+  ]
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -65,10 +78,6 @@ public struct Bloombox_Schema_Partner_PartnerFlags: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.suspended != false {
       try visitor.visitSingularBoolField(value: self.suspended, fieldNumber: 1)
@@ -87,28 +96,14 @@ public struct Bloombox_Schema_Partner_PartnerFlags: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "bloombox.schema.partner"
-
-extension Bloombox_Schema_Partner_PartnerFlags: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "suspended"),
-    2: .same(proto: "pastdue"),
-    3: .same(proto: "beta"),
-    4: .same(proto: "sandbox"),
-    5: .same(proto: "internal"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerFlags) -> Bool {
-    if self.suspended != other.suspended {return false}
-    if self.pastdue != other.pastdue {return false}
-    if self.beta != other.beta {return false}
-    if self.sandbox != other.sandbox {return false}
-    if self.`internal` != other.`internal` {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Partner_PartnerFlags, rhs: Bloombox_Schema_Partner_PartnerFlags) -> Bool {
+    if lhs.suspended != rhs.suspended {return false}
+    if lhs.pastdue != rhs.pastdue {return false}
+    if lhs.beta != rhs.beta {return false}
+    if lhs.sandbox != rhs.sandbox {return false}
+    if lhs.`internal` != rhs.`internal` {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

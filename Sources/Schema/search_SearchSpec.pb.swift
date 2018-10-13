@@ -65,6 +65,20 @@ public enum Bloombox_Schema_Search_SearchableCollection: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Search_SearchableCollection: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Search_SearchableCollection] = [
+    .global,
+    .products,
+    .users,
+    .partners,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies data extensions that may be requested, and returned, with stock search results.
 public enum Bloombox_Schema_Search_SearchResultExtension: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -121,6 +135,22 @@ public enum Bloombox_Schema_Search_SearchResultExtension: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Search_SearchResultExtension: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Search_SearchResultExtension] = [
+    .name,
+    .description_,
+    .media,
+    .labs,
+    .pricing,
+    .related,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies available modes to highlight terms in search results.
 public enum Bloombox_Schema_Search_ResultHighlightMode: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -164,6 +194,20 @@ public enum Bloombox_Schema_Search_ResultHighlightMode: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Search_ResultHighlightMode: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Search_ResultHighlightMode] = [
+    .noHighlighting,
+    .html,
+    .markdown,
+    .snippet,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies modes for sorting search results.
 public enum Bloombox_Schema_Search_SearchSortMode: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -197,9 +241,23 @@ public enum Bloombox_Schema_Search_SearchSortMode: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Search_SearchSortMode: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Search_SearchSortMode] = [
+    .natural,
+    .lexicographic,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies bounds for a search query.
-public struct Bloombox_Schema_Search_SearchBounds: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SearchBounds"
+public struct Bloombox_Schema_Search_SearchBounds {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies a limit on the number of search results desired.
   public var limit: Int32 = 0
@@ -210,39 +268,13 @@ public struct Bloombox_Schema_Search_SearchBounds: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self.limit)
-      case 2: try decoder.decodeSingularInt32Field(value: &self.offset)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.limit != 0 {
-      try visitor.visitSingularInt32Field(value: self.limit, fieldNumber: 1)
-    }
-    if self.offset != 0 {
-      try visitor.visitSingularInt32Field(value: self.offset, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies options for conducting a fulltext search operation.
-public struct Bloombox_Schema_Search_SearchOptions: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SearchOptions"
+public struct Bloombox_Schema_Search_SearchOptions {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Partner and location scope to apply during a search operation.
   public var scope: String = String()
@@ -256,43 +288,13 @@ public struct Bloombox_Schema_Search_SearchOptions: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.scope)
-      case 2: try decoder.decodeRepeatedEnumField(value: &self.section)
-      case 3: try decoder.decodeSingularBoolField(value: &self.hidden)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.scope.isEmpty {
-      try visitor.visitSingularStringField(value: self.scope, fieldNumber: 1)
-    }
-    if !self.section.isEmpty {
-      try visitor.visitPackedEnumField(value: self.section, fieldNumber: 2)
-    }
-    if self.hidden != false {
-      try visitor.visitSingularBoolField(value: self.hidden, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies options for results returned from a search operation.
-public struct Bloombox_Schema_Search_SearchResultOptions: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SearchResultOptions"
+public struct Bloombox_Schema_Search_SearchResultOptions {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Only return matching keys - i.e. don't include other object data, like its name, description, or media asset links.
   public var keysOnly: Bool = false
@@ -306,43 +308,13 @@ public struct Bloombox_Schema_Search_SearchResultOptions: SwiftProtobuf.Message 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.keysOnly)
-      case 2: try decoder.decodeSingularEnumField(value: &self.highlight)
-      case 3: try decoder.decodeRepeatedEnumField(value: &self.include)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.keysOnly != false {
-      try visitor.visitSingularBoolField(value: self.keysOnly, fieldNumber: 1)
-    }
-    if self.highlight != .noHighlighting {
-      try visitor.visitSingularEnumField(value: self.highlight, fieldNumber: 2)
-    }
-    if !self.include.isEmpty {
-      try visitor.visitPackedEnumField(value: self.include, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specification for a search operation.
-public struct Bloombox_Schema_Search_SearchSpec: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SearchSpec"
+public struct Bloombox_Schema_Search_SearchSpec {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Value entered into a search box by a user, usually URL-encoded.
   public var term: String {
@@ -358,51 +330,20 @@ public struct Bloombox_Schema_Search_SearchSpec: SwiftProtobuf.Message {
   /// Returns true if `options` has been explicitly set.
   public var hasOptions: Bool {return _storage._options != nil}
   /// Clears the value of `options`. Subsequent reads from it will return its default value.
-  public mutating func clearOptions() {_storage._options = nil}
+  public mutating func clearOptions() {_uniqueStorage()._options = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._term)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._options)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._term.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._term, fieldNumber: 1)
-      }
-      if let v = _storage._options {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies the count of items in a particular result category included in a search response.
-public struct Bloombox_Schema_Search_ResultsetCategoricalCount: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".ResultsetCategoricalCount"
+public struct Bloombox_Schema_Search_ResultsetCategoricalCount {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the type of record enclosed with this count.
   public var type: Bloombox_Schema_Search_SearchableCollection = .global
@@ -413,39 +354,13 @@ public struct Bloombox_Schema_Search_ResultsetCategoricalCount: SwiftProtobuf.Me
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.type)
-      case 2: try decoder.decodeSingularInt32Field(value: &self.count)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.type != .global {
-      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
-    }
-    if self.count != 0 {
-      try visitor.visitSingularInt32Field(value: self.count, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies the bound calculated for a particular product result.
-public struct Bloombox_Schema_Search_ProductResultBound: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".ProductResultBound"
+public struct Bloombox_Schema_Search_ProductResultBound {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Low value for a given bound.
   public var low: Double = 0
@@ -456,39 +371,13 @@ public struct Bloombox_Schema_Search_ProductResultBound: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularDoubleField(value: &self.low)
-      case 2: try decoder.decodeSingularDoubleField(value: &self.high)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.low != 0 {
-      try visitor.visitSingularDoubleField(value: self.low, fieldNumber: 1)
-    }
-    if self.high != 0 {
-      try visitor.visitSingularDoubleField(value: self.high, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// Specifies result metadata specific to product records.
-public struct Bloombox_Schema_Search_ProductResultMetadata: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".ProductResultMetadata"
+public struct Bloombox_Schema_Search_ProductResultMetadata {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Price bounds.
   public var price: Bloombox_Schema_Search_ProductResultBound {
@@ -498,7 +387,7 @@ public struct Bloombox_Schema_Search_ProductResultMetadata: SwiftProtobuf.Messag
   /// Returns true if `price` has been explicitly set.
   public var hasPrice: Bool {return _storage._price != nil}
   /// Clears the value of `price`. Subsequent reads from it will return its default value.
-  public mutating func clearPrice() {_storage._price = nil}
+  public mutating func clearPrice() {_uniqueStorage()._price = nil}
 
   /// THC bounds.
   public var thc: Bloombox_Schema_Search_ProductResultBound {
@@ -508,7 +397,7 @@ public struct Bloombox_Schema_Search_ProductResultMetadata: SwiftProtobuf.Messag
   /// Returns true if `thc` has been explicitly set.
   public var hasThc: Bool {return _storage._thc != nil}
   /// Clears the value of `thc`. Subsequent reads from it will return its default value.
-  public mutating func clearThc() {_storage._thc = nil}
+  public mutating func clearThc() {_uniqueStorage()._thc = nil}
 
   /// CBD bounds.
   public var cbd: Bloombox_Schema_Search_ProductResultBound {
@@ -518,55 +407,20 @@ public struct Bloombox_Schema_Search_ProductResultMetadata: SwiftProtobuf.Messag
   /// Returns true if `cbd` has been explicitly set.
   public var hasCbd: Bool {return _storage._cbd != nil}
   /// Clears the value of `cbd`. Subsequent reads from it will return its default value.
-  public mutating func clearCbd() {_storage._cbd = nil}
+  public mutating func clearCbd() {_uniqueStorage()._cbd = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._price)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._thc)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._cbd)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._price {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._thc {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._cbd {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies metadata for a search resultset.
-public struct Bloombox_Schema_Search_SearchResultsetMetadata: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SearchResultsetMetadata"
+public struct Bloombox_Schema_Search_SearchResultsetMetadata {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Count of matching records, across all categorical types.
   public var count: [Bloombox_Schema_Search_ResultsetCategoricalCount] {
@@ -582,51 +436,20 @@ public struct Bloombox_Schema_Search_SearchResultsetMetadata: SwiftProtobuf.Mess
   /// Returns true if `products` has been explicitly set.
   public var hasProducts: Bool {return _storage._products != nil}
   /// Clears the value of `products`. Subsequent reads from it will return its default value.
-  public mutating func clearProducts() {_storage._products = nil}
+  public mutating func clearProducts() {_uniqueStorage()._products = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeRepeatedMessageField(value: &_storage._count)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._products)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._count.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._count, fieldNumber: 1)
-      }
-      if let v = _storage._products {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies a set of items returned as results to a search operation.
-public struct Bloombox_Schema_Search_SearchResultset: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SearchResultset"
+public struct Bloombox_Schema_Search_SearchResultset {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies metadata about the resultset.
   public var metadata: Bloombox_Schema_Search_SearchResultsetMetadata {
@@ -636,7 +459,7 @@ public struct Bloombox_Schema_Search_SearchResultset: SwiftProtobuf.Message {
   /// Returns true if `metadata` has been explicitly set.
   public var hasMetadata: Bool {return _storage._metadata != nil}
   /// Clears the value of `metadata`. Subsequent reads from it will return its default value.
-  public mutating func clearMetadata() {_storage._metadata = nil}
+  public mutating func clearMetadata() {_uniqueStorage()._metadata = nil}
 
   /// Search results matching the provided query.
   public var payload: [Bloombox_Schema_Search_SearchResult] {
@@ -647,39 +470,6 @@ public struct Bloombox_Schema_Search_SearchResultset: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._metadata)
-        case 2: try decoder.decodeRepeatedMessageField(value: &_storage._payload)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._metadata {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if !_storage._payload.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._payload, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -724,53 +514,125 @@ extension Bloombox_Schema_Search_SearchSortMode: SwiftProtobuf._ProtoNameProvidi
   ]
 }
 
-extension Bloombox_Schema_Search_SearchBounds: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Search_SearchBounds: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SearchBounds"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "limit"),
     2: .same(proto: "offset"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchBounds) -> Bool {
-    if self.limit != other.limit {return false}
-    if self.offset != other.offset {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.limit)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.offset)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.limit != 0 {
+      try visitor.visitSingularInt32Field(value: self.limit, fieldNumber: 1)
+    }
+    if self.offset != 0 {
+      try visitor.visitSingularInt32Field(value: self.offset, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Search_SearchBounds, rhs: Bloombox_Schema_Search_SearchBounds) -> Bool {
+    if lhs.limit != rhs.limit {return false}
+    if lhs.offset != rhs.offset {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Search_SearchOptions: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Search_SearchOptions: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SearchOptions"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "section"),
     3: .same(proto: "hidden"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchOptions) -> Bool {
-    if self.scope != other.scope {return false}
-    if self.section != other.section {return false}
-    if self.hidden != other.hidden {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.scope)
+      case 2: try decoder.decodeRepeatedEnumField(value: &self.section)
+      case 3: try decoder.decodeSingularBoolField(value: &self.hidden)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.scope.isEmpty {
+      try visitor.visitSingularStringField(value: self.scope, fieldNumber: 1)
+    }
+    if !self.section.isEmpty {
+      try visitor.visitPackedEnumField(value: self.section, fieldNumber: 2)
+    }
+    if self.hidden != false {
+      try visitor.visitSingularBoolField(value: self.hidden, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Search_SearchOptions, rhs: Bloombox_Schema_Search_SearchOptions) -> Bool {
+    if lhs.scope != rhs.scope {return false}
+    if lhs.section != rhs.section {return false}
+    if lhs.hidden != rhs.hidden {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Search_SearchResultOptions: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Search_SearchResultOptions: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SearchResultOptions"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "keys_only"),
     2: .same(proto: "highlight"),
     3: .same(proto: "include"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchResultOptions) -> Bool {
-    if self.keysOnly != other.keysOnly {return false}
-    if self.highlight != other.highlight {return false}
-    if self.include != other.include {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.keysOnly)
+      case 2: try decoder.decodeSingularEnumField(value: &self.highlight)
+      case 3: try decoder.decodeRepeatedEnumField(value: &self.include)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.keysOnly != false {
+      try visitor.visitSingularBoolField(value: self.keysOnly, fieldNumber: 1)
+    }
+    if self.highlight != .noHighlighting {
+      try visitor.visitSingularEnumField(value: self.highlight, fieldNumber: 2)
+    }
+    if !self.include.isEmpty {
+      try visitor.visitPackedEnumField(value: self.include, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Search_SearchResultOptions, rhs: Bloombox_Schema_Search_SearchResultOptions) -> Bool {
+    if lhs.keysOnly != rhs.keysOnly {return false}
+    if lhs.highlight != rhs.highlight {return false}
+    if lhs.include != rhs.include {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Search_SearchSpec: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Search_SearchSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SearchSpec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "term"),
     2: .same(proto: "options"),
@@ -797,51 +659,119 @@ extension Bloombox_Schema_Search_SearchSpec: SwiftProtobuf._MessageImplementatio
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchSpec) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._term)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._options)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._term.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._term, fieldNumber: 1)
+      }
+      if let v = _storage._options {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Search_SearchSpec, rhs: Bloombox_Schema_Search_SearchSpec) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._term != other_storage._term {return false}
-        if _storage._options != other_storage._options {return false}
+        let rhs_storage = _args.1
+        if _storage._term != rhs_storage._term {return false}
+        if _storage._options != rhs_storage._options {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Search_ResultsetCategoricalCount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Search_ResultsetCategoricalCount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ResultsetCategoricalCount"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "count"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_ResultsetCategoricalCount) -> Bool {
-    if self.type != other.type {return false}
-    if self.count != other.count {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.type)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.count)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.type != .global {
+      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
+    }
+    if self.count != 0 {
+      try visitor.visitSingularInt32Field(value: self.count, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Search_ResultsetCategoricalCount, rhs: Bloombox_Schema_Search_ResultsetCategoricalCount) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.count != rhs.count {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Search_ProductResultBound: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Search_ProductResultBound: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ProductResultBound"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "low"),
     2: .same(proto: "high"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_ProductResultBound) -> Bool {
-    if self.low != other.low {return false}
-    if self.high != other.high {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularDoubleField(value: &self.low)
+      case 2: try decoder.decodeSingularDoubleField(value: &self.high)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.low != 0 {
+      try visitor.visitSingularDoubleField(value: self.low, fieldNumber: 1)
+    }
+    if self.high != 0 {
+      try visitor.visitSingularDoubleField(value: self.high, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Search_ProductResultBound, rhs: Bloombox_Schema_Search_ProductResultBound) -> Bool {
+    if lhs.low != rhs.low {return false}
+    if lhs.high != rhs.high {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Search_ProductResultMetadata: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Search_ProductResultMetadata: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ProductResultMetadata"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "price"),
     2: .same(proto: "thc"),
@@ -871,24 +801,54 @@ extension Bloombox_Schema_Search_ProductResultMetadata: SwiftProtobuf._MessageIm
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_ProductResultMetadata) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._price)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._thc)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._cbd)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._price {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._thc {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._cbd {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Search_ProductResultMetadata, rhs: Bloombox_Schema_Search_ProductResultMetadata) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._price != other_storage._price {return false}
-        if _storage._thc != other_storage._thc {return false}
-        if _storage._cbd != other_storage._cbd {return false}
+        let rhs_storage = _args.1
+        if _storage._price != rhs_storage._price {return false}
+        if _storage._thc != rhs_storage._thc {return false}
+        if _storage._cbd != rhs_storage._cbd {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Search_SearchResultsetMetadata: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Search_SearchResultsetMetadata: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SearchResultsetMetadata"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "count"),
     2: .same(proto: "products"),
@@ -915,23 +875,49 @@ extension Bloombox_Schema_Search_SearchResultsetMetadata: SwiftProtobuf._Message
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchResultsetMetadata) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeRepeatedMessageField(value: &_storage._count)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._products)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._count.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._count, fieldNumber: 1)
+      }
+      if let v = _storage._products {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Search_SearchResultsetMetadata, rhs: Bloombox_Schema_Search_SearchResultsetMetadata) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._count != other_storage._count {return false}
-        if _storage._products != other_storage._products {return false}
+        let rhs_storage = _args.1
+        if _storage._count != rhs_storage._count {return false}
+        if _storage._products != rhs_storage._products {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Search_SearchResultset: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Schema_Search_SearchResultset: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SearchResultset"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "metadata"),
     2: .same(proto: "payload"),
@@ -958,18 +944,43 @@ extension Bloombox_Schema_Search_SearchResultset: SwiftProtobuf._MessageImplemen
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchResultset) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._metadata)
+        case 2: try decoder.decodeRepeatedMessageField(value: &_storage._payload)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._metadata {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._payload.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._payload, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Search_SearchResultset, rhs: Bloombox_Schema_Search_SearchResultset) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._metadata != other_storage._metadata {return false}
-        if _storage._payload != other_storage._payload {return false}
+        let rhs_storage = _args.1
+        if _storage._metadata != rhs_storage._metadata {return false}
+        if _storage._payload != rhs_storage._payload {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

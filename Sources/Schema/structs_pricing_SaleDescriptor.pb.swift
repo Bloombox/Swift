@@ -53,42 +53,36 @@ public enum Opencannabis_Structs_Pricing_SaleType: SwiftProtobuf.Enum {
 
 }
 
-public struct Opencannabis_Structs_Pricing_PercentageDiscount: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PercentageDiscount"
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Pricing_SaleType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Pricing_SaleType] = [
+    .percentageReduction,
+    .valueReduction,
+    .bogo,
+    .loyalty,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+public struct Opencannabis_Structs_Pricing_PercentageDiscount {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var discount: UInt32 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 20: try decoder.decodeSingularUInt32Field(value: &self.discount)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.discount != 0 {
-      try visitor.visitSingularUInt32Field(value: self.discount, fieldNumber: 20)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
-public struct Opencannabis_Structs_Pricing_BOGODiscount: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".BOGODiscount"
+public struct Opencannabis_Structs_Pricing_BOGODiscount {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var trigger: UInt32 = 0
 
@@ -97,38 +91,12 @@ public struct Opencannabis_Structs_Pricing_BOGODiscount: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 21: try decoder.decodeSingularUInt32Field(value: &self.trigger)
-      case 22: try decoder.decodeSingularUInt32Field(value: &self.reward)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.trigger != 0 {
-      try visitor.visitSingularUInt32Field(value: self.trigger, fieldNumber: 21)
-    }
-    if self.reward != 0 {
-      try visitor.visitSingularUInt32Field(value: self.reward, fieldNumber: 22)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
-public struct Opencannabis_Structs_Pricing_LoyaltyDiscount: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".LoyaltyDiscount"
+public struct Opencannabis_Structs_Pricing_LoyaltyDiscount {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var trigger: UInt32 = 0
 
@@ -137,38 +105,12 @@ public struct Opencannabis_Structs_Pricing_LoyaltyDiscount: SwiftProtobuf.Messag
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 23: try decoder.decodeSingularUInt32Field(value: &self.trigger)
-      case 24: try decoder.decodeSingularUInt32Field(value: &self.reward)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.trigger != 0 {
-      try visitor.visitSingularUInt32Field(value: self.trigger, fieldNumber: 23)
-    }
-    if self.reward != 0 {
-      try visitor.visitSingularUInt32Field(value: self.reward, fieldNumber: 24)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
-public struct Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".SaleDescriptor"
+public struct Opencannabis_Structs_Pricing_SaleDescriptor {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// sale metadata
   public var type: Opencannabis_Structs_Pricing_SaleType {
@@ -183,7 +125,7 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message
   /// Returns true if `effective` has been explicitly set.
   public var hasEffective: Bool {return _storage._effective != nil}
   /// Clears the value of `effective`. Subsequent reads from it will return its default value.
-  public mutating func clearEffective() {_storage._effective = nil}
+  public mutating func clearEffective() {_uniqueStorage()._effective = nil}
 
   public var expiration: Opencannabis_Temporal_Instant {
     get {return _storage._expiration ?? Opencannabis_Temporal_Instant()}
@@ -192,7 +134,7 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message
   /// Returns true if `expiration` has been explicitly set.
   public var hasExpiration: Bool {return _storage._expiration != nil}
   /// Clears the value of `expiration`. Subsequent reads from it will return its default value.
-  public mutating func clearExpiration() {_storage._expiration = nil}
+  public mutating func clearExpiration() {_uniqueStorage()._expiration = nil}
 
   /// sale amount and trigger properties
   public var sale: OneOf_Sale? {
@@ -232,6 +174,7 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message
     case bogo(Opencannabis_Structs_Pricing_BOGODiscount)
     case loyalty(Opencannabis_Structs_Pricing_LoyaltyDiscount)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Structs_Pricing_SaleDescriptor.OneOf_Sale, rhs: Opencannabis_Structs_Pricing_SaleDescriptor.OneOf_Sale) -> Bool {
       switch (lhs, rhs) {
       case (.percentageOff(let l), .percentageOff(let r)): return l == r
@@ -240,14 +183,162 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "opencannabis.structs.pricing"
+
+extension Opencannabis_Structs_Pricing_SaleType: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "PERCENTAGE_REDUCTION"),
+    1: .same(proto: "VALUE_REDUCTION"),
+    2: .same(proto: "BOGO"),
+    3: .same(proto: "LOYALTY"),
+  ]
+}
+
+extension Opencannabis_Structs_Pricing_PercentageDiscount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PercentageDiscount"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    20: .same(proto: "discount"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 20: try decoder.decodeSingularUInt32Field(value: &self.discount)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.discount != 0 {
+      try visitor.visitSingularUInt32Field(value: self.discount, fieldNumber: 20)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Structs_Pricing_PercentageDiscount, rhs: Opencannabis_Structs_Pricing_PercentageDiscount) -> Bool {
+    if lhs.discount != rhs.discount {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Structs_Pricing_BOGODiscount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BOGODiscount"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    21: .same(proto: "trigger"),
+    22: .same(proto: "reward"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 21: try decoder.decodeSingularUInt32Field(value: &self.trigger)
+      case 22: try decoder.decodeSingularUInt32Field(value: &self.reward)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.trigger != 0 {
+      try visitor.visitSingularUInt32Field(value: self.trigger, fieldNumber: 21)
+    }
+    if self.reward != 0 {
+      try visitor.visitSingularUInt32Field(value: self.reward, fieldNumber: 22)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Structs_Pricing_BOGODiscount, rhs: Opencannabis_Structs_Pricing_BOGODiscount) -> Bool {
+    if lhs.trigger != rhs.trigger {return false}
+    if lhs.reward != rhs.reward {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Structs_Pricing_LoyaltyDiscount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LoyaltyDiscount"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    23: .same(proto: "trigger"),
+    24: .same(proto: "reward"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 23: try decoder.decodeSingularUInt32Field(value: &self.trigger)
+      case 24: try decoder.decodeSingularUInt32Field(value: &self.reward)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.trigger != 0 {
+      try visitor.visitSingularUInt32Field(value: self.trigger, fieldNumber: 23)
+    }
+    if self.reward != 0 {
+      try visitor.visitSingularUInt32Field(value: self.reward, fieldNumber: 24)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Structs_Pricing_LoyaltyDiscount, rhs: Opencannabis_Structs_Pricing_LoyaltyDiscount) -> Bool {
+    if lhs.trigger != rhs.trigger {return false}
+    if lhs.reward != rhs.reward {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SaleDescriptor"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "type"),
+    2: .same(proto: "effective"),
+    3: .same(proto: "expiration"),
+    4: .standard(proto: "percentage_off"),
+    5: .same(proto: "bogo"),
+    6: .same(proto: "loyalty"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _type: Opencannabis_Structs_Pricing_SaleType = .percentageReduction
+    var _effective: Opencannabis_Temporal_Instant? = nil
+    var _expiration: Opencannabis_Temporal_Instant? = nil
+    var _sale: Opencannabis_Structs_Pricing_SaleDescriptor.OneOf_Sale?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _type = source._type
+      _effective = source._effective
+      _expiration = source._expiration
+      _sale = source._sale
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
@@ -286,10 +377,6 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       if _storage._type != .percentageReduction {
@@ -314,111 +401,20 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "opencannabis.structs.pricing"
-
-extension Opencannabis_Structs_Pricing_SaleType: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "PERCENTAGE_REDUCTION"),
-    1: .same(proto: "VALUE_REDUCTION"),
-    2: .same(proto: "BOGO"),
-    3: .same(proto: "LOYALTY"),
-  ]
-}
-
-extension Opencannabis_Structs_Pricing_PercentageDiscount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    20: .same(proto: "discount"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_PercentageDiscount) -> Bool {
-    if self.discount != other.discount {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Opencannabis_Structs_Pricing_BOGODiscount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    21: .same(proto: "trigger"),
-    22: .same(proto: "reward"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_BOGODiscount) -> Bool {
-    if self.trigger != other.trigger {return false}
-    if self.reward != other.reward {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Opencannabis_Structs_Pricing_LoyaltyDiscount: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    23: .same(proto: "trigger"),
-    24: .same(proto: "reward"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_LoyaltyDiscount) -> Bool {
-    if self.trigger != other.trigger {return false}
-    if self.reward != other.reward {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "type"),
-    2: .same(proto: "effective"),
-    3: .same(proto: "expiration"),
-    4: .standard(proto: "percentage_off"),
-    5: .same(proto: "bogo"),
-    6: .same(proto: "loyalty"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _type: Opencannabis_Structs_Pricing_SaleType = .percentageReduction
-    var _effective: Opencannabis_Temporal_Instant? = nil
-    var _expiration: Opencannabis_Temporal_Instant? = nil
-    var _sale: Opencannabis_Structs_Pricing_SaleDescriptor.OneOf_Sale?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _type = source._type
-      _effective = source._effective
-      _expiration = source._expiration
-      _sale = source._sale
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_SaleDescriptor) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Pricing_SaleDescriptor, rhs: Opencannabis_Structs_Pricing_SaleDescriptor) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._effective != other_storage._effective {return false}
-        if _storage._expiration != other_storage._expiration {return false}
-        if _storage._sale != other_storage._sale {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._effective != rhs_storage._effective {return false}
+        if _storage._expiration != rhs_storage._expiration {return false}
+        if _storage._sale != rhs_storage._sale {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

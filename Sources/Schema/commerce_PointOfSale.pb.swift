@@ -75,6 +75,22 @@ public enum Opencannabis_Commerce_SessionStatus: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_SessionStatus: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_SessionStatus] = [
+    .established,
+    .active,
+    .suspended,
+    .expired,
+    .terminated,
+    .lost,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates available point-of-sale device states.
 public enum Opencannabis_Commerce_POSDeviceStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -108,9 +124,23 @@ public enum Opencannabis_Commerce_POSDeviceStatus: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_POSDeviceStatus: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_POSDeviceStatus] = [
+    .idle,
+    .claimed,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies information about the hardware powering a point-of-sale device.
-public struct Opencannabis_Commerce_POSHardware: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".POSHardware"
+public struct Opencannabis_Commerce_POSHardware {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Specifies the type of POS hardware.
   public var type: Opencannabis_Commerce_POSHardware.TypeEnum {
@@ -126,7 +156,7 @@ public struct Opencannabis_Commerce_POSHardware: SwiftProtobuf.Message {
   /// Returns true if `support` has been explicitly set.
   public var hasSupport: Bool {return _storage._support != nil}
   /// Clears the value of `support`. Subsequent reads from it will return its default value.
-  public mutating func clearSupport() {_storage._support = nil}
+  public mutating func clearSupport() {_uniqueStorage()._support = nil}
 
   /// Arbitrary version name string.
   public var version: String {
@@ -223,8 +253,10 @@ public struct Opencannabis_Commerce_POSHardware: SwiftProtobuf.Message {
   }
 
   /// Specifies the features available on a POS device.
-  public struct Features: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Opencannabis_Commerce_POSHardware.protoMessageName + ".Features"
+  public struct Features {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Specifies features supported by the POS hardware.
     public var feature: [Opencannabis_Commerce_POSHardware.Feature] = []
@@ -235,82 +267,43 @@ public struct Opencannabis_Commerce_POSHardware: SwiftProtobuf.Message {
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
-
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeRepeatedEnumField(value: &self.feature)
-        case 2: try decoder.decodeSingularUInt32Field(value: &self.drawers)
-        default: break
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      if !self.feature.isEmpty {
-        try visitor.visitPackedEnumField(value: self.feature, fieldNumber: 1)
-      }
-      if self.drawers != 0 {
-        try visitor.visitSingularUInt32Field(value: self.drawers, fieldNumber: 2)
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
   }
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._support)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._version)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._type != .unspecified {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
-      }
-      if let v = _storage._support {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if !_storage._version.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._version, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_POSHardware.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_POSHardware.TypeEnum] = [
+    .unspecified,
+    .bloombox,
+  ]
+}
+
+extension Opencannabis_Commerce_POSHardware.Feature: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_POSHardware.Feature] = [
+    .printer,
+    .bcs,
+    .msr,
+    .ble,
+    .scale,
+    .labeller,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a point of sale device, co-located at a retailer location, that is suitable for processing retail to
 /// consumer cannabis purchase transactions.
-public struct Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PointOfSaleDevice"
+public struct Opencannabis_Commerce_PointOfSaleDevice {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// UUID assigned to, or gathered from, the device.
   public var uuid: String {
@@ -344,7 +337,7 @@ public struct Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message {
   /// Returns true if `hardware` has been explicitly set.
   public var hasHardware: Bool {return _storage._hardware != nil}
   /// Clears the value of `hardware`. Subsequent reads from it will return its default value.
-  public mutating func clearHardware() {_storage._hardware = nil}
+  public mutating func clearHardware() {_uniqueStorage()._hardware = nil}
 
   /// Information about the last-seen POS app in use.
   public var app: Bloombox_Schema_Analytics_Context_DeviceApplication {
@@ -354,7 +347,7 @@ public struct Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message {
   /// Returns true if `app` has been explicitly set.
   public var hasApp: Bool {return _storage._app != nil}
   /// Clears the value of `app`. Subsequent reads from it will return its default value.
-  public mutating func clearApp() {_storage._app = nil}
+  public mutating func clearApp() {_uniqueStorage()._app = nil}
 
   /// Specifies sessions attached to this point of sale device.
   public var session: [Opencannabis_Commerce_PointOfSaleSession] {
@@ -370,7 +363,7 @@ public struct Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message {
   /// Returns true if `state` has been explicitly set.
   public var hasState: Bool {return _storage._state != nil}
   /// Clears the value of `state`. Subsequent reads from it will return its default value.
-  public mutating func clearState() {_storage._state = nil}
+  public mutating func clearState() {_uniqueStorage()._state = nil}
 
   /// Last time this point-of-sale device was seen.
   public var seen: Opencannabis_Temporal_Instant {
@@ -380,7 +373,7 @@ public struct Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message {
   /// Returns true if `seen` has been explicitly set.
   public var hasSeen: Bool {return _storage._seen != nil}
   /// Clears the value of `seen`. Subsequent reads from it will return its default value.
-  public mutating func clearSeen() {_storage._seen = nil}
+  public mutating func clearSeen() {_uniqueStorage()._seen = nil}
 
   /// Timestamp for when this device was created.
   public var created: Opencannabis_Temporal_Instant {
@@ -390,7 +383,7 @@ public struct Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message {
   /// Returns true if `created` has been explicitly set.
   public var hasCreated: Bool {return _storage._created != nil}
   /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   /// Timestamp for when this device was last modified.
   public var modified: Opencannabis_Temporal_Instant {
@@ -400,87 +393,20 @@ public struct Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
-        case 3: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._claim)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._hardware)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._app)
-        case 7: try decoder.decodeRepeatedMessageField(value: &_storage._session)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._state)
-        case 9: try decoder.decodeSingularMessageField(value: &_storage._seen)
-        case 98: try decoder.decodeSingularMessageField(value: &_storage._created)
-        case 99: try decoder.decodeSingularMessageField(value: &_storage._modified)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._uuid.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
-      }
-      if !_storage._name.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
-      }
-      if _storage._status != .idle {
-        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 3)
-      }
-      if !_storage._claim.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._claim, fieldNumber: 4)
-      }
-      if let v = _storage._hardware {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._app {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if !_storage._session.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._session, fieldNumber: 7)
-      }
-      if let v = _storage._state {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-      }
-      if let v = _storage._seen {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-      }
-      if let v = _storage._created {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 98)
-      }
-      if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies a combined state payload, provided to the point-of-sale unit once a session changes status.
-public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PointOfSaleState"
+public struct Opencannabis_Commerce_PointOfSaleState {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Describes the opening state of a point of sale session.
   public var `open`: Opencannabis_Commerce_PointOfSaleState.SessionOpen {
@@ -490,7 +416,7 @@ public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
   /// Returns true if ``open`` has been explicitly set.
   public var hasOpen: Bool {return _storage._open != nil}
   /// Clears the value of ``open``. Subsequent reads from it will return its default value.
-  public mutating func clearOpen() {_storage._open = nil}
+  public mutating func clearOpen() {_uniqueStorage()._open = nil}
 
   /// Describes all transactions that occurred during a point of sale session.
   public var transaction: [Opencannabis_Commerce_PurchaseKey] {
@@ -506,7 +432,7 @@ public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
   /// Returns true if `current` has been explicitly set.
   public var hasCurrent: Bool {return _storage._current != nil}
   /// Clears the value of `current`. Subsequent reads from it will return its default value.
-  public mutating func clearCurrent() {_storage._current = nil}
+  public mutating func clearCurrent() {_uniqueStorage()._current = nil}
 
   /// Describes the closing state of a point of sale session.
   public var close: Opencannabis_Commerce_PointOfSaleState.SessionClose {
@@ -516,13 +442,15 @@ public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
   /// Returns true if `close` has been explicitly set.
   public var hasClose: Bool {return _storage._close != nil}
   /// Clears the value of `close`. Subsequent reads from it will return its default value.
-  public mutating func clearClose() {_storage._close = nil}
+  public mutating func clearClose() {_uniqueStorage()._close = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Message payload when a session has been opened.
-  public struct SessionOpen: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Opencannabis_Commerce_PointOfSaleState.protoMessageName + ".SessionOpen"
+  public struct SessionOpen {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Opening float value for the cash register. This is the initial cash amount used for change, etc.
     public var openingFloat: Opencannabis_Commerce_CurrencyValue {
@@ -532,7 +460,7 @@ public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
     /// Returns true if `openingFloat` has been explicitly set.
     public var hasOpeningFloat: Bool {return _storage._openingFloat != nil}
     /// Clears the value of `openingFloat`. Subsequent reads from it will return its default value.
-    public mutating func clearOpeningFloat() {_storage._openingFloat = nil}
+    public mutating func clearOpeningFloat() {_uniqueStorage()._openingFloat = nil}
 
     /// Describes the moment the session was actually opened.
     public var occurred: Opencannabis_Temporal_Instant {
@@ -542,51 +470,20 @@ public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
     /// Returns true if `occurred` has been explicitly set.
     public var hasOccurred: Bool {return _storage._occurred != nil}
     /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-    public mutating func clearOccurred() {_storage._occurred = nil}
+    public mutating func clearOccurred() {_uniqueStorage()._occurred = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._openingFloat)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._occurred)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._openingFloat {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._occurred {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   /// Message payload when a session has been closed.
-  public struct SessionClose: SwiftProtobuf.Message {
-    public static let protoMessageName: String = Opencannabis_Commerce_PointOfSaleState.protoMessageName + ".SessionClose"
+  public struct SessionClose {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
     /// Closing cash value for the session. This is the total cash amount in the register upon closing.
     public var closingCount: Opencannabis_Commerce_CurrencyValue {
@@ -596,7 +493,7 @@ public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
     /// Returns true if `closingCount` has been explicitly set.
     public var hasClosingCount: Bool {return _storage._closingCount != nil}
     /// Clears the value of `closingCount`. Subsequent reads from it will return its default value.
-    public mutating func clearClosingCount() {_storage._closingCount = nil}
+    public mutating func clearClosingCount() {_uniqueStorage()._closingCount = nil}
 
     /// Describes the moment the session was actually opened.
     public var occurred: Opencannabis_Temporal_Instant {
@@ -606,90 +503,16 @@ public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
     /// Returns true if `occurred` has been explicitly set.
     public var hasOccurred: Bool {return _storage._occurred != nil}
     /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-    public mutating func clearOccurred() {_storage._occurred = nil}
+    public mutating func clearOccurred() {_uniqueStorage()._occurred = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
-    /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-    /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-    /// initializers are defined in the SwiftProtobuf library. See the Message and
-    /// Message+*Additions` files.
-    public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-      _ = _uniqueStorage()
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        while let fieldNumber = try decoder.nextFieldNumber() {
-          switch fieldNumber {
-          case 1: try decoder.decodeSingularMessageField(value: &_storage._closingCount)
-          case 2: try decoder.decodeSingularMessageField(value: &_storage._occurred)
-          default: break
-          }
-        }
-      }
-    }
-
-    /// Used by the encoding methods of the SwiftProtobuf library, not generally
-    /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-    /// other serializer methods are defined in the SwiftProtobuf library. See the
-    /// `Message` and `Message+*Additions` files.
-    public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-      try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-        if let v = _storage._closingCount {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-        }
-        if let v = _storage._occurred {
-          try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-        }
-      }
-      try unknownFields.traverse(visitor: &visitor)
-    }
-
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._open)
-        case 2: try decoder.decodeRepeatedMessageField(value: &_storage._transaction)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._current)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._close)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._open {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if !_storage._transaction.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._transaction, fieldNumber: 2)
-      }
-      if let v = _storage._current {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._close {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -697,8 +520,10 @@ public struct Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message {
 /// Specifies the notion of a cash register session. All transactions must be conducted under a valid point of sale
 /// session, previously established and then opened by an authorized user on an authorized device. Tickets may only be
 /// part of one POS session, and POS sessions may contain many transactions (or 'purchases').
-public struct Opencannabis_Commerce_PointOfSaleSession: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".PointOfSaleSession"
+public struct Opencannabis_Commerce_PointOfSaleSession {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// UUID generated to address this session.
   public var uuid: String {
@@ -720,7 +545,7 @@ public struct Opencannabis_Commerce_PointOfSaleSession: SwiftProtobuf.Message {
   /// Returns true if `user` has been explicitly set.
   public var hasUser: Bool {return _storage._user != nil}
   /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  public mutating func clearUser() {_storage._user = nil}
+  public mutating func clearUser() {_uniqueStorage()._user = nil}
 
   /// Specifies sessions attached to this point of sale device.
   public var ticket: [Opencannabis_Commerce_PurchaseTicket] {
@@ -736,7 +561,7 @@ public struct Opencannabis_Commerce_PointOfSaleSession: SwiftProtobuf.Message {
   /// Returns true if `state` has been explicitly set.
   public var hasState: Bool {return _storage._state != nil}
   /// Clears the value of `state`. Subsequent reads from it will return its default value.
-  public mutating func clearState() {_storage._state = nil}
+  public mutating func clearState() {_uniqueStorage()._state = nil}
 
   /// Specifies the last moment this session was witnessed on the API.
   public var seen: Opencannabis_Temporal_Instant {
@@ -746,7 +571,7 @@ public struct Opencannabis_Commerce_PointOfSaleSession: SwiftProtobuf.Message {
   /// Returns true if `seen` has been explicitly set.
   public var hasSeen: Bool {return _storage._seen != nil}
   /// Clears the value of `seen`. Subsequent reads from it will return its default value.
-  public mutating func clearSeen() {_storage._seen = nil}
+  public mutating func clearSeen() {_uniqueStorage()._seen = nil}
 
   /// Specifies the moment this session was created on the API.
   public var created: Opencannabis_Temporal_Instant {
@@ -756,7 +581,7 @@ public struct Opencannabis_Commerce_PointOfSaleSession: SwiftProtobuf.Message {
   /// Returns true if `created` has been explicitly set.
   public var hasCreated: Bool {return _storage._created != nil}
   /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   /// Specifies the last time this session was changed, except for `seen` updates.
   public var modified: Opencannabis_Temporal_Instant {
@@ -766,68 +591,11 @@ public struct Opencannabis_Commerce_PointOfSaleSession: SwiftProtobuf.Message {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
-        case 2: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._user)
-        case 4: try decoder.decodeRepeatedMessageField(value: &_storage._ticket)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._state)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._seen)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._created)
-        case 8: try decoder.decodeSingularMessageField(value: &_storage._modified)
-        default: break
-        }
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._uuid.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
-      }
-      if _storage._status != .established {
-        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 2)
-      }
-      if let v = _storage._user {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if !_storage._ticket.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._ticket, fieldNumber: 4)
-      }
-      if let v = _storage._state {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._seen {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if let v = _storage._created {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-      if let v = _storage._modified {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
@@ -854,7 +622,8 @@ extension Opencannabis_Commerce_POSDeviceStatus: SwiftProtobuf._ProtoNameProvidi
   ]
 }
 
-extension Opencannabis_Commerce_POSHardware: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_POSHardware: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".POSHardware"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "support"),
@@ -884,19 +653,48 @@ extension Opencannabis_Commerce_POSHardware: SwiftProtobuf._MessageImplementatio
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_POSHardware) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._support)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._version)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._type != .unspecified {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 1)
+      }
+      if let v = _storage._support {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if !_storage._version.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._version, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Commerce_POSHardware, rhs: Opencannabis_Commerce_POSHardware) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._support != other_storage._support {return false}
-        if _storage._version != other_storage._version {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._support != rhs_storage._support {return false}
+        if _storage._version != rhs_storage._version {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -919,21 +717,43 @@ extension Opencannabis_Commerce_POSHardware.Feature: SwiftProtobuf._ProtoNamePro
   ]
 }
 
-extension Opencannabis_Commerce_POSHardware.Features: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_POSHardware.Features: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Opencannabis_Commerce_POSHardware.protoMessageName + ".Features"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "feature"),
     2: .same(proto: "drawers"),
   ]
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_POSHardware.Features) -> Bool {
-    if self.feature != other.feature {return false}
-    if self.drawers != other.drawers {return false}
-    if unknownFields != other.unknownFields {return false}
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedEnumField(value: &self.feature)
+      case 2: try decoder.decodeSingularUInt32Field(value: &self.drawers)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.feature.isEmpty {
+      try visitor.visitPackedEnumField(value: self.feature, fieldNumber: 1)
+    }
+    if self.drawers != 0 {
+      try visitor.visitSingularUInt32Field(value: self.drawers, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Commerce_POSHardware.Features, rhs: Opencannabis_Commerce_POSHardware.Features) -> Bool {
+    if lhs.feature != rhs.feature {return false}
+    if lhs.drawers != rhs.drawers {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PointOfSaleDevice"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
     2: .same(proto: "name"),
@@ -987,32 +807,94 @@ extension Opencannabis_Commerce_PointOfSaleDevice: SwiftProtobuf._MessageImpleme
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_PointOfSaleDevice) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 3: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._claim)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._hardware)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._app)
+        case 7: try decoder.decodeRepeatedMessageField(value: &_storage._session)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._state)
+        case 9: try decoder.decodeSingularMessageField(value: &_storage._seen)
+        case 98: try decoder.decodeSingularMessageField(value: &_storage._created)
+        case 99: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
+      }
+      if _storage._status != .idle {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 3)
+      }
+      if !_storage._claim.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._claim, fieldNumber: 4)
+      }
+      if let v = _storage._hardware {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._app {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if !_storage._session.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._session, fieldNumber: 7)
+      }
+      if let v = _storage._state {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if let v = _storage._seen {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 98)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Commerce_PointOfSaleDevice, rhs: Opencannabis_Commerce_PointOfSaleDevice) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._name != other_storage._name {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._claim != other_storage._claim {return false}
-        if _storage._hardware != other_storage._hardware {return false}
-        if _storage._app != other_storage._app {return false}
-        if _storage._session != other_storage._session {return false}
-        if _storage._state != other_storage._state {return false}
-        if _storage._seen != other_storage._seen {return false}
-        if _storage._created != other_storage._created {return false}
-        if _storage._modified != other_storage._modified {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._claim != rhs_storage._claim {return false}
+        if _storage._hardware != rhs_storage._hardware {return false}
+        if _storage._app != rhs_storage._app {return false}
+        if _storage._session != rhs_storage._session {return false}
+        if _storage._state != rhs_storage._state {return false}
+        if _storage._seen != rhs_storage._seen {return false}
+        if _storage._created != rhs_storage._created {return false}
+        if _storage._modified != rhs_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PointOfSaleState"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "open"),
     2: .same(proto: "transaction"),
@@ -1045,25 +927,59 @@ extension Opencannabis_Commerce_PointOfSaleState: SwiftProtobuf._MessageImplemen
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_PointOfSaleState) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._open)
+        case 2: try decoder.decodeRepeatedMessageField(value: &_storage._transaction)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._current)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._close)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._open {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._transaction.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._transaction, fieldNumber: 2)
+      }
+      if let v = _storage._current {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._close {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Commerce_PointOfSaleState, rhs: Opencannabis_Commerce_PointOfSaleState) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._open != other_storage._open {return false}
-        if _storage._transaction != other_storage._transaction {return false}
-        if _storage._current != other_storage._current {return false}
-        if _storage._close != other_storage._close {return false}
+        let rhs_storage = _args.1
+        if _storage._open != rhs_storage._open {return false}
+        if _storage._transaction != rhs_storage._transaction {return false}
+        if _storage._current != rhs_storage._current {return false}
+        if _storage._close != rhs_storage._close {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Commerce_PointOfSaleState.SessionOpen: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_PointOfSaleState.SessionOpen: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Opencannabis_Commerce_PointOfSaleState.protoMessageName + ".SessionOpen"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "opening_float"),
     2: .same(proto: "occurred"),
@@ -1090,23 +1006,49 @@ extension Opencannabis_Commerce_PointOfSaleState.SessionOpen: SwiftProtobuf._Mes
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_PointOfSaleState.SessionOpen) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._openingFloat)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._occurred)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._openingFloat {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._occurred {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Commerce_PointOfSaleState.SessionOpen, rhs: Opencannabis_Commerce_PointOfSaleState.SessionOpen) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._openingFloat != other_storage._openingFloat {return false}
-        if _storage._occurred != other_storage._occurred {return false}
+        let rhs_storage = _args.1
+        if _storage._openingFloat != rhs_storage._openingFloat {return false}
+        if _storage._occurred != rhs_storage._occurred {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Commerce_PointOfSaleState.SessionClose: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_PointOfSaleState.SessionClose: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Opencannabis_Commerce_PointOfSaleState.protoMessageName + ".SessionClose"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "closing_count"),
     2: .same(proto: "occurred"),
@@ -1133,23 +1075,49 @@ extension Opencannabis_Commerce_PointOfSaleState.SessionClose: SwiftProtobuf._Me
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_PointOfSaleState.SessionClose) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._closingCount)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._occurred)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._closingCount {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._occurred {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Commerce_PointOfSaleState.SessionClose, rhs: Opencannabis_Commerce_PointOfSaleState.SessionClose) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._closingCount != other_storage._closingCount {return false}
-        if _storage._occurred != other_storage._occurred {return false}
+        let rhs_storage = _args.1
+        if _storage._closingCount != rhs_storage._closingCount {return false}
+        if _storage._occurred != rhs_storage._occurred {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Opencannabis_Commerce_PointOfSaleSession: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Commerce_PointOfSaleSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PointOfSaleSession"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
     2: .same(proto: "status"),
@@ -1194,24 +1162,73 @@ extension Opencannabis_Commerce_PointOfSaleSession: SwiftProtobuf._MessageImplem
     return _storage
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_PointOfSaleSession) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        case 2: try decoder.decodeSingularEnumField(value: &_storage._status)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._user)
+        case 4: try decoder.decodeRepeatedMessageField(value: &_storage._ticket)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._state)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._seen)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._created)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
+      }
+      if _storage._status != .established {
+        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 2)
+      }
+      if let v = _storage._user {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if !_storage._ticket.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._ticket, fieldNumber: 4)
+      }
+      if let v = _storage._state {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._seen {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Commerce_PointOfSaleSession, rhs: Opencannabis_Commerce_PointOfSaleSession) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._user != other_storage._user {return false}
-        if _storage._ticket != other_storage._ticket {return false}
-        if _storage._state != other_storage._state {return false}
-        if _storage._seen != other_storage._seen {return false}
-        if _storage._created != other_storage._created {return false}
-        if _storage._modified != other_storage._modified {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._user != rhs_storage._user {return false}
+        if _storage._ticket != rhs_storage._ticket {return false}
+        if _storage._state != rhs_storage._state {return false}
+        if _storage._seen != rhs_storage._seen {return false}
+        if _storage._created != rhs_storage._created {return false}
+        if _storage._modified != rhs_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

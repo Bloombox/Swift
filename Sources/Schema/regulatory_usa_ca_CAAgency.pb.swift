@@ -70,6 +70,21 @@ public enum Opencannabis_Regulatory_Usa_Ca_CaliforniaAgency: SwiftProtobuf.Enum 
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Regulatory_Usa_Ca_CaliforniaAgency: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Regulatory_Usa_Ca_CaliforniaAgency] = [
+    .unknownAgency,
+    .cdfa,
+    .cbcc,
+    .cdca,
+    .cdph,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Opencannabis_Regulatory_Usa_Ca_CaliforniaAgency: SwiftProtobuf._ProtoNameProviding {

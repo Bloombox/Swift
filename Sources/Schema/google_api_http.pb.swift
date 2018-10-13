@@ -36,8 +36,10 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 /// Defines the HTTP configuration for a service. It contains a list of
 /// [HttpRule][google.api.HttpRule], each specifying the mapping of an RPC method
 /// to one or more HTTP REST API methods.
-public struct Google_Api_Http: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".Http"
+public struct Google_Api_Http {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// A list of HTTP configuration rules that apply to individual API methods.
   ///
@@ -47,30 +49,6 @@ public struct Google_Api_Http: SwiftProtobuf.Message {
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeRepeatedMessageField(value: &self.rules)
-      default: break
-      }
-    }
-  }
-
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.rules.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.rules, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
 }
 
 /// `HttpRule` defines the mapping of an RPC method to one or more HTTP
@@ -279,8 +257,10 @@ public struct Google_Api_Http: SwiftProtobuf.Message {
 /// `pattern` field, such as HEAD, or "*" to leave the HTTP method unspecified for
 /// a given URL path rule. The wild-card rule is useful for services that provide
 /// content to Web (HTML) clients.
-public struct Google_Api_HttpRule: SwiftProtobuf.Message {
-  public static let protoMessageName: String = _protobuf_package + ".HttpRule"
+public struct Google_Api_HttpRule {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   /// Selects methods to which this rule applies.
   ///
@@ -388,6 +368,7 @@ public struct Google_Api_HttpRule: SwiftProtobuf.Message {
     /// Custom pattern is used for defining custom verbs.
     case custom(Google_Api_CustomHttpPattern)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Google_Api_HttpRule.OneOf_Pattern, rhs: Google_Api_HttpRule.OneOf_Pattern) -> Bool {
       switch (lhs, rhs) {
       case (.get(let l), .get(let r)): return l == r
@@ -399,14 +380,103 @@ public struct Google_Api_HttpRule: SwiftProtobuf.Message {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
 
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// A custom pattern is used for defining custom HTTP verb.
+public struct Google_Api_CustomHttpPattern {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// The name of this custom HTTP verb.
+  public var kind: String = String()
+
+  /// The path matched by this custom verb.
+  public var path: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+fileprivate let _protobuf_package = "google.api"
+
+extension Google_Api_Http: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Http"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "rules"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.rules)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.rules.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.rules, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Google_Api_Http, rhs: Google_Api_Http) -> Bool {
+    if lhs.rules != rhs.rules {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Google_Api_HttpRule: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".HttpRule"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "selector"),
+    2: .same(proto: "get"),
+    3: .same(proto: "put"),
+    4: .same(proto: "post"),
+    5: .same(proto: "delete"),
+    6: .same(proto: "patch"),
+    8: .same(proto: "custom"),
+    7: .same(proto: "body"),
+    11: .standard(proto: "additional_bindings"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _selector: String = String()
+    var _pattern: Google_Api_HttpRule.OneOf_Pattern?
+    var _body: String = String()
+    var _additionalBindings: [Google_Api_HttpRule] = []
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _selector = source._selector
+      _pattern = source._pattern
+      _body = source._body
+      _additionalBindings = source._additionalBindings
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
@@ -454,10 +524,6 @@ public struct Google_Api_HttpRule: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       if !_storage._selector.isEmpty {
@@ -490,27 +556,31 @@ public struct Google_Api_HttpRule: SwiftProtobuf.Message {
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  fileprivate var _storage = _StorageClass.defaultInstance
+  public static func ==(lhs: Google_Api_HttpRule, rhs: Google_Api_HttpRule) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._selector != rhs_storage._selector {return false}
+        if _storage._pattern != rhs_storage._pattern {return false}
+        if _storage._body != rhs_storage._body {return false}
+        if _storage._additionalBindings != rhs_storage._additionalBindings {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
 }
 
-/// A custom pattern is used for defining custom HTTP verb.
-public struct Google_Api_CustomHttpPattern: SwiftProtobuf.Message {
+extension Google_Api_CustomHttpPattern: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CustomHttpPattern"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "kind"),
+    2: .same(proto: "path"),
+  ]
 
-  /// The name of this custom HTTP verb.
-  public var kind: String = String()
-
-  /// The path matched by this custom verb.
-  public var path: String = String()
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  /// Used by the decoding initializers in the SwiftProtobuf library, not generally
-  /// used directly. `init(serializedData:)`, `init(jsonUTF8Data:)`, and other decoding
-  /// initializers are defined in the SwiftProtobuf library. See the Message and
-  /// Message+*Additions` files.
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
@@ -521,10 +591,6 @@ public struct Google_Api_CustomHttpPattern: SwiftProtobuf.Message {
     }
   }
 
-  /// Used by the encoding methods of the SwiftProtobuf library, not generally
-  /// used directly. `Message.serializedData()`, `Message.jsonUTF8Data()`, and
-  /// other serializer methods are defined in the SwiftProtobuf library. See the
-  /// `Message` and `Message+*Additions` files.
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.kind.isEmpty {
       try visitor.visitSingularStringField(value: self.kind, fieldNumber: 1)
@@ -534,90 +600,11 @@ public struct Google_Api_CustomHttpPattern: SwiftProtobuf.Message {
     }
     try unknownFields.traverse(visitor: &visitor)
   }
-}
 
-// MARK: - Code below here is support for the SwiftProtobuf runtime.
-
-fileprivate let _protobuf_package = "google.api"
-
-extension Google_Api_Http: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "rules"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Google_Api_Http) -> Bool {
-    if self.rules != other.rules {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Google_Api_HttpRule: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "selector"),
-    2: .same(proto: "get"),
-    3: .same(proto: "put"),
-    4: .same(proto: "post"),
-    5: .same(proto: "delete"),
-    6: .same(proto: "patch"),
-    8: .same(proto: "custom"),
-    7: .same(proto: "body"),
-    11: .standard(proto: "additional_bindings"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _selector: String = String()
-    var _pattern: Google_Api_HttpRule.OneOf_Pattern?
-    var _body: String = String()
-    var _additionalBindings: [Google_Api_HttpRule] = []
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _selector = source._selector
-      _pattern = source._pattern
-      _body = source._body
-      _additionalBindings = source._additionalBindings
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Google_Api_HttpRule) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._selector != other_storage._selector {return false}
-        if _storage._pattern != other_storage._pattern {return false}
-        if _storage._body != other_storage._body {return false}
-        if _storage._additionalBindings != other_storage._additionalBindings {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Google_Api_CustomHttpPattern: SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "kind"),
-    2: .same(proto: "path"),
-  ]
-
-  public func _protobuf_generated_isEqualTo(other: Google_Api_CustomHttpPattern) -> Bool {
-    if self.kind != other.kind {return false}
-    if self.path != other.path {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Google_Api_CustomHttpPattern, rhs: Google_Api_CustomHttpPattern) -> Bool {
+    if lhs.kind != rhs.kind {return false}
+    if lhs.path != rhs.path {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
