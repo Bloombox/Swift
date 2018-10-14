@@ -25,3 +25,4 @@ let package = Package(
         .testTarget(name: "SchemaTests", dependencies: ["Schema"]),
         .testTarget(name: "ClientTests", dependencies: ["Bloombox"])])
 
+
