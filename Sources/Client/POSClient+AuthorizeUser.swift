@@ -64,9 +64,15 @@ public struct POSAuthorizeOptions {
   public let resume: String?
 
   ///
+  public let hardware: POSHardware?
+
+  ///
+  public let app: DeviceApplication?
+
+  ///
   public static var defaults: POSAuthorizeOptions {
     get {
-      return POSAuthorizeOptions(apiKey: nil, messaging: nil, resume: nil)
+      return POSAuthorizeOptions(apiKey: nil, messaging: nil, resume: nil, hardware: nil, app: nil)
     }
   }
 
@@ -74,10 +80,14 @@ public struct POSAuthorizeOptions {
   ///
   public func withOverrides(apiKey: APIKey? = nil,
                             messaging: MessagingOptions? = nil,
-                            resume: String? = nil) -> POSAuthorizeOptions {
+                            resume: String? = nil,
+                            hardware: POSHardware? = nil,
+                            app: DeviceApplication? = nil) -> POSAuthorizeOptions {
     return POSAuthorizeOptions(apiKey: apiKey ?? self.apiKey,
                                messaging: messaging ?? self.messaging,
-                               resume: resume ?? self.resume)
+                               resume: resume ?? self.resume,
+                               hardware: hardware,
+                               app: app)
   }
 }
 
@@ -120,6 +130,15 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
     return try self.authorizeUser(POSAuthorize.Request.with { obj in
       obj.token = token
       obj.register = deviceKey
+      if let resumption = options.resume {
+        obj.session = resumption
+      }
+      if let hw = options.hardware {
+        obj.hardware = hw
+      }
+      if let app = options.app {
+        obj.app = app
+      }
       if let nce = options.messaging?.nonce {
         obj.messaging = MessagingAuth.with { msg in
           msg.nonce = nce
@@ -139,6 +158,15 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
     return try self.authorizeUser(POSAuthorize.Request.with { obj in
       obj.challenge = challenge
       obj.register = deviceKey
+      if let resumption = options.resume {
+        obj.session = resumption
+      }
+      if let hw = options.hardware {
+        obj.hardware = hw
+      }
+      if let app = options.app {
+        obj.app = app
+      }
       if let nce = options.messaging?.nonce {
         obj.messaging = MessagingAuth.with { msg in
           msg.nonce = nce
@@ -159,6 +187,15 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
     return try self.authorizeUser(POSAuthorize.Request.with { obj in
       obj.token = token
       obj.register = deviceKey
+      if let resumption = options.resume {
+        obj.session = resumption
+      }
+      if let hw = options.hardware {
+        obj.hardware = hw
+      }
+      if let app = options.app {
+        obj.app = app
+      }
       if let nce = options.messaging?.nonce {
         obj.messaging = MessagingAuth.with { msg in
           msg.nonce = nce
@@ -179,6 +216,15 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
     return try self.authorizeUser(POSAuthorize.Request.with { obj in
       obj.challenge = challenge
       obj.register = deviceKey
+      if let resumption = options.resume {
+        obj.session = resumption
+      }
+      if let hw = options.hardware {
+        obj.hardware = hw
+      }
+      if let app = options.app {
+        obj.app = app
+      }
       if let nce = options.messaging?.nonce {
         obj.messaging = MessagingAuth.with { msg in
           msg.nonce = nce

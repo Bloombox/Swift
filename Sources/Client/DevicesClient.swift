@@ -75,14 +75,21 @@ public final class DevicesClient: RemoteService {
   /// Activate a device by name.
   ///
   public func activate(deviceSerial name: DeviceSerial,
-                       withFingerprint fingerprint: DeviceFingerprint,
+                       withFingerprint fingerprint: DeviceFingerprint? = nil,
+                       withPublicKey publicKey: DevicePublicKey? = nil,
                        authorizedBy apiKey: APIKey? = nil) throws -> DeviceActivation.Response {
     let service = try self.service(try resolveContext(apiKey))
 
     do {
       return try service.activate(DeviceActivation.Request.with { builder in
         builder.serial = name
-        builder.fingerprint = fingerprint
+
+        if let f = fingerprint {
+          builder.fingerprint = f
+        }
+        if let p = publicKey {
+          builder.publicKey = p
+        }
       })
     } catch {
       print("error: unknown error occurred")
@@ -93,14 +100,21 @@ public final class DevicesClient: RemoteService {
   /// Activate a device by name, asynchronously.
   ///
   public func activate(deviceSerial name: DeviceSerial,
-                       withFingerprint fingerprint: DeviceFingerprint,
+                       withFingerprint fingerprint: DeviceFingerprint? = nil,
+                       withPublicKey publicKey: DevicePublicKey? = nil,
                        authorizedBy apiKey: APIKey? = nil,
                        _ callback: @escaping DeviceActivateCallback) throws -> DeviceActivateCall {
     let service = try self.service(try resolveContext(apiKey))
 
     return try service.activate(DeviceActivation.Request.with { builder in
       builder.serial = name
-      builder.fingerprint = fingerprint
+
+      if let f = fingerprint {
+        builder.fingerprint = f
+      }
+      if let p = publicKey {
+        builder.publicKey = p
+      }
     }) { (response, callResult) in
       callback(callResult, response, nil)
     }

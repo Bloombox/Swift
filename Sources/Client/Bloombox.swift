@@ -21,40 +21,40 @@ public final class Bloombox {
   /// Specifies settings for an instance of Bloombox.
   public struct Settings: EventContextData {
     /// Default API key to use. Identifies the app or project invoking the API.
-    public let apiKey: APIKey?
+    public var apiKey: APIKey?
 
     /// Default partner code to use.
-    public let partner: PartnerCode?
+    public var partner: PartnerCode?
 
     /// Default partner location code to use.
-    public let location: LocationCode?
+    public var location: LocationCode?
 
     /// Default device UUID to use, if known.
-    public let deviceUUID: DeviceUUID?
+    public var deviceUUID: DeviceUUID?
 
     /// Default collection to send events to.
-    public let collection: EventCollection?
+    public var collection: EventCollection?
 
     /// Active order ID, if any.
-    public let order: OrderID?
+    public var order: OrderID?
 
     /// Active user ID, if any.
-    public let user: UserID?
+    public var user: UserID?
 
     /// Menu section to specify, if any.
-    public let section: MenuSection?
+    public var section: MenuSection?
 
     /// Commercial item related to this event, if any.
-    public let item: ItemID?
+    public var item: ItemID?
 
     /// Session or group ID, if applicable, and set.
-    public let group: GroupID?
+    public var group: GroupID?
 
     /// Specifies the iOS application sending events.
-    public let bundleId: String?
+    public var bundleId: String?
 
     /// Produce a default set of settings.
-    static func defaultSettings() -> Settings {
+    public static func defaultSettings() -> Settings {
       return Settings()
     }
 
@@ -86,8 +86,8 @@ public final class Bloombox {
   }
 
   // -- Internals -- //
-  private let _settings: Settings
-  private let _services: Services
+  private var _settings: Settings
+  private var _services: Services
 
   /// Main initializer. Defaults settings to sensible values, if none are provided.
   public init(settings: Settings? = nil) {
@@ -100,6 +100,11 @@ public final class Bloombox {
   }
 
   // -- Public Interface -- //
+
+  func updateSettings(_ settings: Settings) {
+    self._settings = settings
+    self._services = Services(settings: self._settings)
+  }
 
   /// Fetch active settings for this client.
   public var settings: Settings {

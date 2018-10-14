@@ -90,13 +90,13 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
-  func ping() throws -> PlatformPing.Response {
+  public func ping() throws -> PlatformPing.Response {
     return try self.service(self.resolveContext().apiKey).ping(PlatformPing.Request())
   }
 
   ///
   ///
-  func ping(_ callback: @escaping PlatformPingCallback) throws -> PlatformPingCall {
+  public func ping(_ callback: @escaping PlatformPingCallback) throws -> PlatformPingCall {
     return try self.service(self.resolveContext().apiKey).ping(PlatformPing.Request()) { (resp, result) in
       callback(result, resp?.status)
     }
@@ -106,13 +106,13 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
-  func healthcheck() throws -> Empty {
+  public func healthcheck() throws -> Empty {
     return try self.service(self.resolveContext().apiKey).health(Empty())
   }
 
   ///
   ///
-  func healthcheck(_ callback: @escaping HealthcheckCallback) throws -> HealthcheckCall {
+  public func healthcheck(_ callback: @escaping HealthcheckCallback) throws -> HealthcheckCall {
     return try self.service(self.resolveContext().apiKey).health(Empty()) { (_, result) in
       callback(result)
     }
@@ -122,8 +122,8 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
-  func resolve(encodedDomain domain: String,
-               forAPIKey apiKey: APIKey? = nil) throws -> ResolveDomains.Response {
+  public func resolve(encodedDomain domain: String,
+                      forAPIKey apiKey: APIKey? = nil) throws -> ResolveDomains.Response {
     return try self.service(self.resolveContext(apiKey).apiKey)
       .resolve(ResolveDomains.Request.with { req in
         req.origin = domain
@@ -132,9 +132,9 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
-  func resolve(encodedDomain domain: String,
-               forAPIKey apiKey: APIKey? = nil,
-               _ callback: @escaping ResolveCallback) throws -> ResolveDomainsCall {
+  public func resolve(encodedDomain domain: String,
+                      forAPIKey apiKey: APIKey? = nil,
+                      _ callback: @escaping ResolveCallback) throws -> ResolveDomainsCall {
     return try self.service(self.resolveContext(apiKey).apiKey)
       .resolve(ResolveDomains.Request.with { req in
         req.origin = domain
@@ -146,7 +146,7 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
-  func resolve(domain: String) throws -> ResolveDomains.Response {
+  public func resolve(domain: String) throws -> ResolveDomains.Response {
     if let encoded = domain.data(using: .utf8)?
                            .base64EncodedString()
                            .replacingOccurrences(of: "=", with: "") {
@@ -158,7 +158,7 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
-  func resolve(domain: String, _ callback: @escaping ResolveCallback) throws -> ResolveDomainsCall {
+  public func resolve(domain: String, _ callback: @escaping ResolveCallback) throws -> ResolveDomainsCall {
     if let encoded = domain.data(using: .utf8)?
                            .base64EncodedString()
                            .replacingOccurrences(of: "=", with: "") {
@@ -171,9 +171,9 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
-  func domains(forPartner partner: PartnerCode? = nil,
-               withLocation location: LocationCode? = nil,
-               andAPIKey apiKey: APIKey? = nil) throws -> DomainInfo.Response {
+  public func domains(forPartner partner: PartnerCode? = nil,
+                      withLocation location: LocationCode? = nil,
+                      andAPIKey apiKey: APIKey? = nil) throws -> DomainInfo.Response {
     let ctx = try self.resolveContext(partner, location, apiKey)
 
     return try self.service(ctx.apiKey).domains(DomainInfo.Request.with { req in
@@ -184,10 +184,10 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
-  func domains(forPartner partner: PartnerCode? = nil,
-               withLocation location: LocationCode? = nil,
-               andAPIKey apiKey: APIKey? = nil,
-               _ callback: @escaping DomainInfoCallback) throws -> DomainInfoCall {
+  public func domains(forPartner partner: PartnerCode? = nil,
+                      withLocation location: LocationCode? = nil,
+                      andAPIKey apiKey: APIKey? = nil,
+                      _ callback: @escaping DomainInfoCallback) throws -> DomainInfoCall {
     let ctx = try self.resolveContext(partner, location, apiKey)
 
     return try self.service(ctx.apiKey).domains(DomainInfo.Request.with { req in
@@ -203,9 +203,9 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
-  func brand(forPartner partner: PartnerCode? = nil,
-             withLocation location: LocationCode? = nil,
-             andAPIKey apiKey: APIKey? = nil) throws -> BrandInfo.Response {
+  public func brand(forPartner partner: PartnerCode? = nil,
+                    withLocation location: LocationCode? = nil,
+                    andAPIKey apiKey: APIKey? = nil) throws -> BrandInfo.Response {
     let ctx = try self.resolveContext(partner, location, apiKey)
 
     return try self.service(ctx.apiKey).brand(BrandInfo.Request.with { req in
@@ -216,10 +216,10 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
-  func brand(forPartner partner: PartnerCode? = nil,
-             withLocation location: LocationCode? = nil,
-             andAPIKey apiKey: APIKey? = nil,
-             _ callback: @escaping BrandCallback) throws -> BrandInfoCall {
+  public func brand(forPartner partner: PartnerCode? = nil,
+                    withLocation location: LocationCode? = nil,
+                    andAPIKey apiKey: APIKey? = nil,
+                    _ callback: @escaping BrandCallback) throws -> BrandInfoCall {
     let ctx = try self.resolveContext(partner, location, apiKey)
 
     return try self.service(ctx.apiKey).brand(BrandInfo.Request.with { req in

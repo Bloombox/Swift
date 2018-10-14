@@ -87,6 +87,7 @@ public final class MenuClient: RemoteService {
   ///
   public func retrieve(partner: PartnerCode? = nil,
                        location: LocationCode? = nil,
+                       keysOnly: Bool = false,
                        apiKey: APIKey? = nil) throws -> GetMenu.Response {
     let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
     let service = try self.service(apiKey)
@@ -107,6 +108,7 @@ public final class MenuClient: RemoteService {
   ///
   public func retrieve(partner: PartnerCode? = nil,
                        location: LocationCode? = nil,
+                       keysOnly: Bool = false,
                        apiKey: APIKey? = nil,
                        callback: @escaping MenuRetrieveCallback) throws -> GetMenuCall {
     let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)

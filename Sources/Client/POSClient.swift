@@ -9,6 +9,11 @@ import Foundation
 import SwiftGRPC
 
 
+// Types & Enums
+public typealias POSSessionID = String
+public typealias OpenSessionCallback = (CallResult, OpenSession.Response?) -> Void
+
+
 /// Enumerates code-level errors in the POS client.
 public enum POSClientError: Error {
   case notReady
@@ -95,4 +100,24 @@ public final class PointOfSaleClient: RemoteService {
     return (device: device, apiKey: apiKey!)
   }
 
+  // - SESSION STUFF
+  public func openSession(_ sessionID: POSSessionID,
+                          forAuthToken authToken: String,
+                          onDevice deviceKey: PartnerDeviceKey,
+                          withOpenState openState: PointOfSaleState.SessionOpen? = nil) throws -> OpenSession.Response {
+    fatalError("not implemented")
+  }
+
+  public func openSession(_ sessionID: String,
+                          forAuthToken authToken: String,
+                          onDevice deviceKey: PartnerDeviceKey,
+                          withOpenState openState: PointOfSaleState.SessionOpen? = nil,
+                          _ callback: @escaping OpenSessionCallback) throws -> OpenSessionCall {
+    fatalError("not implemented")
+  }
+
+  public func openSession(onDevice deviceKey: PartnerDeviceKey,
+                          withOpenState openState: PointOfSaleState.SessionOpen? = nil) throws -> OpenSession.Response {
+    fatalError("not implemented")
+  }
 }

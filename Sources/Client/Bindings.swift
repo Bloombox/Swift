@@ -161,6 +161,7 @@ public typealias EventTelemetry = Bloombox_Schema_Services_Telemetry_V1beta4_Eve
 
 /// Method: `ping`.
 public typealias TelemetryPing = Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing
+public typealias TelemetryPingCall = Bloombox_Schema_Services_Telemetry_V1beta4_EventTelemetryPingCall
 
 /// Method: `event`.
 public typealias TelemetryEvent = Bloombox_Schema_Services_Telemetry_V1beta4_Event

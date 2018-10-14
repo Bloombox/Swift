@@ -46,4 +46,36 @@ public class TelemetryClient: RemoteService {
     // initialize events service
     events = RPCServiceFactory<EventTelemetry>.factory(forService: Transport.config.services.telemetry)
   }
+
+  // MARK: - Public API -
+
+  // MARK: Ping
+
+  ///
+  ///
+  public func ping() throws -> TelemetryPing.Response {
+    fatalError("not implemented")
+  }
+
+  ///
+  ///
+  public func ping(_ request: TelemetryPing.Request) throws -> TelemetryPing.Response {
+    fatalError("not implemented")
+  }
+
+  ///
+  ///
+  public func ping(_ request: TelemetryPing.Request,
+                   _ callback: () -> Void) throws -> TelemetryPingCall {
+    fatalError("not implemented")
+  }
+
+  // MARK: Events
+
+  ///
+  ///
+  public func event(_ request: TelemetryEvent.Request,
+                    _ callback: (() -> Void)? = nil) throws -> TelemetryEventCall {
+    fatalError("not implemented")
+  }
 }
