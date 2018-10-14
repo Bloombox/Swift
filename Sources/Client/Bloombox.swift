@@ -6,13 +6,14 @@
 //
 
 import Schema
+import SwiftGRPC
 
 
 /// Client variant, or build permutation, of this library.
-public let __BLOOMBOX_VARIANT__ = "full"
+internal let __BLOOMBOX_VARIANT__ = "full"
 
 /// Version of this library.
-public let __BLOOMBOX_VERSION__ = "0.0.7"
+internal let __BLOOMBOX_VERSION__ = "0.0.9"
 
 
 /// Main Bloombox API client class. Provides access to service-specific clients, and initializes basic settings or
@@ -27,7 +28,7 @@ public let __BLOOMBOX_VERSION__ = "0.0.7"
 /// - Telemetry API: Event and device telemetry services.
 public final class Bloombox {
   /// Specifies settings for an instance of Bloombox.
-  public struct Settings: EventContextData {
+  public class Settings: EventContextData {
     /// Default API key to use. Identifies the app or project invoking the API.
     public var apiKey: APIKey?
 
@@ -61,6 +62,9 @@ public final class Bloombox {
     /// Specifies the iOS application sending events.
     public var bundleId: String?
 
+    /// Pre-made gRPC channel to use for service transmissions.
+    public var channel: Channel?
+
     /// Produce a default set of settings.
     public static func defaultSettings() -> Settings {
       return Settings()
@@ -80,6 +84,7 @@ public final class Bloombox {
     /// - Parameter item: Item ID to send with events.
     /// - Parameter group: Group ID to send with events.
     /// - Parameter bundleId: Bundle ID to include with events.
+    /// - Parameter channel: Pre-made gRPC channel to use for service transport.
     public init(apiKey: APIKey? = nil,
                 partner: PartnerCode? = nil,
                 location: LocationCode? = nil,
@@ -90,7 +95,8 @@ public final class Bloombox {
                 section: MenuSection? = nil,
                 item: ItemID? = nil,
                 group: GroupID? = nil,
-                bundleId: String? = nil) {
+                bundleId: String? = nil,
+                channel: Channel? = nil) {
       self.apiKey = apiKey
       self.partner = partner
       self.location = location
@@ -102,6 +108,7 @@ public final class Bloombox {
       self.item = item
       self.group = group
       self.bundleId = bundleId
+      self.channel = channel
     }
   }
 

@@ -42,6 +42,9 @@ public final class ShopClient: RemoteService {
   /// Client-wide settings.
   internal let settings: Bloombox.Settings
 
+  /// Shop service.
+  internal var svc: ShopService?
+
   /// Library-internal initializer.
   ///
   public init(settings: Bloombox.Settings) {
@@ -51,13 +54,19 @@ public final class ShopClient: RemoteService {
   /// Shop service.
   ///
   internal func service(_ apiKey: APIKey) throws -> ShopService {
-    let svc = RPCServiceFactory<ShopService>.factory(forService: Transport.config.services.shop)
+    if let s = self.svc {
+      return s
+    }
+    let svc = RPCServiceFactory<ShopService>.factory(
+      forService: Transport.config.services.shop,
+      withSettings: self.settings)
     do {
       try svc.metadata.add(key: "x-api-key", value: apiKey)
     } catch {
       // unable to mount API key
       throw ShopClientError.invalidApiKey
     }
+    self.svc = svc
     return svc
   }
 

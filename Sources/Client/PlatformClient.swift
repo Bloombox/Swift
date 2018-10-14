@@ -88,6 +88,9 @@ public final class PlatformClient: RemoteService {
   /// Client-wide settings.
   internal let settings: Bloombox.Settings
 
+  /// Platform service.
+  internal var svc: PlatformService?
+
   /// Library-internal initializer.
   ///
   /// - Parameter settings: Client-wide settings to apply.
@@ -102,13 +105,19 @@ public final class PlatformClient: RemoteService {
   /// - Returns: Prepared Platform API service class.
   /// - Throws: `POSClientError` if the API key is not able to be resolved.
   internal func service(_ apiKey: APIKey) throws -> PlatformService {
-    let svc = RPCServiceFactory<PlatformService>.factory(forService: Transport.config.services.platform)
+    if let s = self.svc {
+      return s
+    }
+    let svc = RPCServiceFactory<PlatformService>.factory(
+      forService: Transport.config.services.platform,
+      withSettings: self.settings)
     do {
       try svc.metadata.add(key: "x-api-key", value: apiKey)
     } catch {
       // unable to mount API key
       throw POSClientError.invalidApiKey
     }
+    self.svc = svc
     return svc
   }
 

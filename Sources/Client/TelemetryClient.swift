@@ -44,7 +44,9 @@ public class TelemetryClient: RemoteService {
     self.settings = settings
 
     // initialize events service
-    events = RPCServiceFactory<EventTelemetry>.factory(forService: Transport.config.services.telemetry)
+    events = RPCServiceFactory<EventTelemetry>.factory(
+      forService: Transport.config.services.telemetry,
+      withSettings: self.settings)
   }
 
   // MARK: - Public API -

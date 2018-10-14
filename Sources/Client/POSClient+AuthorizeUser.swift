@@ -11,73 +11,57 @@ import Schema
 
 
 // Callback Types
+
+/// Callback type definition for a point-of-sale session-authorize operation, which authorizes a given POS session
+/// against an authenticated (and, presumably, duly authorized) user account. The callback accepts two parameters and
+/// no return value is expected.
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result object, which includes a status code.
+///    - `POSAuthorize.Response?`: If the call succeeded, a POS authorization response will be provided.
 public typealias POSAuthorizeCallback = (CallResult, POSAuthorize.Response?) -> Void
 
 
-///
-///
-public protocol IPOSAuthorizeUser {
-  /// Authorize: User with Token (Sync)
-  ///
-  func authorize(userToken token: IdentityToken,
-                 forDevice device: PartnerDeviceKey,
-                 withOptions options: POSAuthorizeOptions) throws -> POSAuthorize.Response
-
-  /// Authorize: User with Token (Async)
-  ///
-  func authorize(userToken token: IdentityToken,
-                 forDevice device: PartnerDeviceKey,
-                 withOptions options: POSAuthorizeOptions,
-                 _ callback: @escaping POSAuthorizeCallback) throws -> POSAuthorizeCall
-
-  /// Authorize: User with Challenge (Sync)
-  ///
-  func authorize(withUserChallenge challenge: Hash,
-                 forDevice device: PartnerDeviceKey,
-                 withOptions options: POSAuthorizeOptions) throws -> POSAuthorize.Response
-
-  /// Authorize: User with Challenge (Async)
-  ///
-  func authorize(withUserChallenge challenge: Hash,
-                 forDevice device: PartnerDeviceKey,
-                 withOptions options: POSAuthorizeOptions,
-                 _ callback: @escaping POSAuthorizeCallback) throws -> POSAuthorizeCall
-}
-
-
-///
-///
+/// Specifies options that may be passed to a point-of-sale session authorization call. These may include additional
+/// credential options, such as the messaging nonce or a session ID to resume.
 public struct POSAuthorizeOptions {
-  ///
+  /// Specifies options related to messaging authorization.
   public struct MessagingOptions {
-    ///
+    /// Specifies an authorization nonce for messaging access.
     public let nonce: String
   }
 
-  ///
+  /// Specifies the API key to use when communicating with the remote service.
   public let apiKey: APIKey?  /* Override the default API key. */
 
-  ///
+  /// Specifies options related to messaging access.
   public let messaging: MessagingOptions?
 
-  ///
-  public let resume: String?
+  /// Optionally specifies a session ID to resume.
+  public let resume: POSSessionID?
 
-  ///
+  /// Specifies information about the point-of-sale hardware we're running on.
   public let hardware: POSHardware?
 
-  ///
+  /// Specifies information about the point-of-sale software app we're running.
   public let app: DeviceApplication?
 
-  ///
+  /// Access a generated set of default POS authorization options.
   public static var defaults: POSAuthorizeOptions {
     get {
       return POSAuthorizeOptions(apiKey: nil, messaging: nil, resume: nil, hardware: nil, app: nil)
     }
   }
 
+  /// Specify override values for various POS client settings. For each overridden value, re-write the relevant setting
+  /// entry and return the resulting structure.
   ///
-  ///
+  /// - Parameter apiKey: API key to use when communicating with the remote service.
+  /// - Parameter messaging: Options related to messaging access.
+  /// - Parameter resume: Session ID to resume, if applicable.
+  /// - Parameter hardware: Information about the point-of-sale hardware we're running on.
+  /// - Parameter app: Information about the point-of-sale application we're running.
+  /// - Returns: Point-of-Sale authorize options, with the specified overrides.
   public func withOverrides(apiKey: APIKey? = nil,
                             messaging: MessagingOptions? = nil,
                             resume: String? = nil,
@@ -94,7 +78,7 @@ public struct POSAuthorizeOptions {
 
 // MARK: - Method: Authorize User -
 
-extension PointOfSaleClient: IPOSAuthorizeUser {
+extension PointOfSaleClient {
   // MARK: Internals
 
   private func authorizeUser(_ request: POSAuthorize.Request,

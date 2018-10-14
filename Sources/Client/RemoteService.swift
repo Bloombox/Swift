@@ -18,7 +18,7 @@ internal protocol ClientLogic {
 
 ///
 ///
-extension ClientLogic {
+extension RemoteService {
   ///
   ///
   func prepare() {

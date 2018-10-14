@@ -44,6 +44,9 @@ public final class MenuClient: RemoteService {
   /// Client-wide settings.
   internal let settings: Bloombox.Settings
 
+  /// Service client.
+  internal var svc: MenuService?
+
   /// Library-internal initializer.
   ///
   /// - Parameter settings: Client-wide settings to apply.
@@ -57,13 +60,19 @@ public final class MenuClient: RemoteService {
   /// - Parameter apiKey: API Key to use.
   /// - Returns: Prepared Menu API service class.
   internal func service(_ apiKey: APIKey) throws -> MenuService {
-    let svc = RPCServiceFactory<MenuService>.factory(forService: Transport.config.services.menu)
+    if let s = self.svc {
+      return s
+    }
+    let svc = RPCServiceFactory<MenuService>.factory(
+      forService: Transport.config.services.menu,
+      withSettings: self.settings)
     do {
       try svc.metadata.add(key: "x-api-key", value: apiKey)
     } catch {
       // unable to resolve API key
       throw MenuClientError.invalidApiKey
     }
+    self.svc = svc
     return svc
   }
 

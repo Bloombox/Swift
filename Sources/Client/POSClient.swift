@@ -11,7 +11,6 @@ import SwiftGRPC
 
 // Types & Enums
 public typealias POSSessionID = String
-public typealias OpenSessionCallback = (CallResult, OpenSession.Response?) -> Void
 
 
 /// Enumerates code-level errors in the POS client.
@@ -29,8 +28,17 @@ public enum POSClientError: Error {
 }
 
 
-/// Provides functionality for the Point-of-Sale API, which supports physical in-person transactions between a licensed
-/// cannabis retailer and qualified cannabis consumer.
+/// Provides functionality for the Point-of-Sale API, which supports physical, in-person transactions between a licensed
+/// cannabis retailer and qualified cannabis consumer. Point-of-Sale hardware is usually managed by Bloombox and
+/// provided by our main hardware partner, Elo.
+///
+/// Point-of-Sale services are designed for private use, but integration is possible with custom software. Once a POS
+/// device has activated via the Devices API, the user is authenticated, and an authorized point-of-sale session is
+/// established. With an active session, point-of-sale devices can open and modify purchase tickets owned or claimed by
+/// the logged-in facilitator.
+///
+/// A purchase ticket represents the entirety of a physical transaction, including the items purchased, payments made,
+/// and a breakdown of subtotal/discounts/taxes, etc.
 public final class PointOfSaleClient: RemoteService {
   /// Name of the Point of Sale API, which is "pos".
   let name = "pos"
@@ -50,10 +58,16 @@ public final class PointOfSaleClient: RemoteService {
     self.settings = settings
   }
 
-  /// Point-of-Sale service.
+  /// Point-of-Sale service. Retrieves a prepared copy of the POS service client, initialized with the given API key,
+  /// which will be used to identify this hardware/software to the server.
   ///
+  /// - Parameter apiKey: API key to identify ourselves to the server with.
+  /// - Returns: Prepared point-of-sale service.
+  /// - Throws: `POSClientError`s related to client-side configuration.
   internal func service(_ apiKey: APIKey) throws -> PointOfSaleService {
-    let svc = RPCServiceFactory<PointOfSaleService>.factory(forService: Transport.config.services.pos)
+    let svc = RPCServiceFactory<PointOfSaleService>.factory(
+      forService: Transport.config.services.pos,
+      withSettings: self.settings)
     do {
       try svc.metadata.add(key: "x-api-key", value: apiKey)
     } catch {
@@ -63,8 +77,16 @@ public final class PointOfSaleClient: RemoteService {
     return svc
   }
 
-  /// Resolve partner and location context, throwing an error if it cannot be figured out.
+  /// Resolve partner and location context, throwing an error if it cannot be figured out. If a partner device key or
+  /// API key cannot be resolved via arguments, library defaults are used.
   ///
+  /// - Parameter device: Device key for the point-of-sale device we're running on.
+  /// - Parameter apiKey: Key to identify ourselves to the API with.
+  /// - Returns: Tuple of `(device, apiKey)`.
+  /// - Throws: `POSClientError.invalidDeviceKey` if a device key cannot be resolved.
+  /// - Throws: `POSClientError.invalidApiKey` if a valid API key cannot be resolved.
+  /// - Throws: `POSClientError.invalidPartnerCode` or `POSClientError.invalidLocationCode` if account or location code
+  ///           values are incorrect or could not be resolved.
   internal func resolveContext(_ device: PartnerDeviceKey? = nil,
                                _ apiKey: APIKey? = nil) throws -> (device: PartnerDeviceKey, apiKey: APIKey) {
     let partnerCode: PartnerCode? = device?.location.partner.code ?? settings.partner
@@ -99,27 +121,6 @@ public final class PointOfSaleClient: RemoteService {
       }
     }
     return (device: device, apiKey: apiKey!)
-  }
-
-  // - SESSION STUFF
-  public func openSession(_ sessionID: POSSessionID,
-                          forAuthToken authToken: String,
-                          onDevice deviceKey: PartnerDeviceKey,
-                          withOpenState openState: PointOfSaleState.SessionOpen? = nil) throws -> OpenSession.Response {
-    fatalError("not implemented")
-  }
-
-  public func openSession(_ sessionID: String,
-                          forAuthToken authToken: String,
-                          onDevice deviceKey: PartnerDeviceKey,
-                          withOpenState openState: PointOfSaleState.SessionOpen? = nil,
-                          _ callback: @escaping OpenSessionCallback) throws -> OpenSessionCall {
-    fatalError("not implemented")
-  }
-
-  public func openSession(onDevice deviceKey: PartnerDeviceKey,
-                          withOpenState openState: PointOfSaleState.SessionOpen? = nil) throws -> OpenSession.Response {
-    fatalError("not implemented")
   }
 
 }

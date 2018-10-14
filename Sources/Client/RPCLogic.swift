@@ -113,12 +113,16 @@ internal struct RPCServiceFactory<Service: ServiceClientBase> {
   /// Factory a new instance of the service this factory is specialized to. Given an endpoint spec, initialize the new
   /// service and prepare it for use.
   ///
-  static func factory(endpoint: RPCEndpoint) -> Service {
+  static func factory(endpoint: RPCEndpoint, withSettings settings: Bloombox.Settings) -> Service {
+    if let chan = settings.channel {
+      // pre-existing channel
+      return Service.init(channel: chan)
+    }
     if let secure = endpoint as? SecureRPCEndpoint {
       // connect over TLS
       if let _ = secure.chain {
         return Service.init(
-          address: "\(secure.host):\(secure.port)",
+          address: "\(secure.host):\(endpoint.port)",
           secure: true)
       } else {
         return Service.init(
@@ -134,8 +138,8 @@ internal struct RPCServiceFactory<Service: ServiceClientBase> {
   /// Factory a new instance of the service this factory is specialized to. Given a set of RPC service settings, build
   /// an endpoint spec, and then initialize the new service and prepare it for use.
   ///
-  static func factory(forService service: RPCServiceSettings) -> Service {
-    return factory(endpoint: endpoint(forService: service))
+  static func factory(forService service: RPCServiceSettings, withSettings settings: Bloombox.Settings) -> Service {
+    return factory(endpoint: endpoint(forService: service), withSettings: settings)
   }
 }
 

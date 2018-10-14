@@ -62,6 +62,9 @@ public final class DevicesClient: RemoteService {
   /// Client-wide settings.
   internal let settings: Bloombox.Settings
 
+  /// Low-level devices service.
+  internal var svc: DevicesService?
+
   /// Library-internal initializer.
   ///
   /// - Parameter settings: Client-wide settings to apply.
@@ -73,15 +76,22 @@ public final class DevicesClient: RemoteService {
   /// methods for managing devices.
   ///
   /// - Parameter apiKey: API Key to use.
+  /// - Parameter settings: Combined settings to use.
   /// - Returns: Prepared Devices API service class.
   private func service(_ apiKey: APIKey) throws -> DevicesService {
-    let svc = RPCServiceFactory<DevicesService>.factory(forService: Transport.config.services.devices)
+    if let s = self.svc {
+      return s
+    }
+    let svc = RPCServiceFactory<DevicesService>.factory(
+      forService: Transport.config.services.devices,
+      withSettings: self.settings)
     do {
       try svc.metadata.add(key: "x-api-key", value: apiKey)
     } catch {
       // unable to add API key
       throw DevicesClientError.invalidApiKey
     }
+    self.svc = svc
     return svc
   }
 

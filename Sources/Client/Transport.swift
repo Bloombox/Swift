@@ -130,9 +130,9 @@ internal enum TransportEnvironment {
 /// Production devices service settings.
 internal struct ProductionDevices: RPCServiceSettings {
   let secure = true
-  let host = "devices.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "devices.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -141,9 +141,9 @@ internal struct ProductionDevices: RPCServiceSettings {
 /// Production shop settings.
 internal struct ProductionShop: RPCServiceSettings {
   let secure = true
-  let host = "shop.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "shop.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -152,9 +152,9 @@ internal struct ProductionShop: RPCServiceSettings {
 /// Production telemetry settings.
 internal struct ProductionTelemetry: RPCServiceSettings {
   let secure = true
-  let host = "telemetry.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "telemetry.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -163,9 +163,9 @@ internal struct ProductionTelemetry: RPCServiceSettings {
 /// Production media settings.
 internal struct ProductionMedia: RPCServiceSettings {
   let secure = true
-  let host = "media.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "media.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -174,9 +174,9 @@ internal struct ProductionMedia: RPCServiceSettings {
 /// Production menu settings.
 internal struct ProductionMenu: RPCServiceSettings {
   let secure = true
-  let host = "menu.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "menu.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -185,9 +185,9 @@ internal struct ProductionMenu: RPCServiceSettings {
 /// Production POS settings.
 internal struct ProductionPOS: RPCServiceSettings {
   let secure = true
-  let host = "pos.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "pos.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -196,9 +196,9 @@ internal struct ProductionPOS: RPCServiceSettings {
 /// Production auth settings.
 internal struct ProductionAuth: RPCServiceSettings {
   let secure = true
-  let host = "auth.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "auth.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -207,9 +207,9 @@ internal struct ProductionAuth: RPCServiceSettings {
 /// Production checkin settings.
 internal struct ProductionCheckin: RPCServiceSettings {
   let secure = true
-  let host = "checkin.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "checkin.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -218,9 +218,9 @@ internal struct ProductionCheckin: RPCServiceSettings {
 /// Production platform API settings.
 internal struct ProductionPlatform: RPCServiceSettings {
   let secure = true
-  let host = "platform.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "platform.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
