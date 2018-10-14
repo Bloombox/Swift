@@ -120,4 +120,5 @@ public final class PointOfSaleClient: RemoteService {
                           withOpenState openState: PointOfSaleState.SessionOpen? = nil) throws -> OpenSession.Response {
     fatalError("not implemented")
   }
+
 }

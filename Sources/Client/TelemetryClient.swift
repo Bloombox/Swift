@@ -78,4 +78,5 @@ public class TelemetryClient: RemoteService {
                     _ callback: (() -> Void)? = nil) throws -> TelemetryEventCall {
     fatalError("not implemented")
   }
+
 }
