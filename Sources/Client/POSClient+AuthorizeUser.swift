@@ -96,6 +96,7 @@ public struct POSAuthorizeOptions {
 
 extension PointOfSaleClient: IPOSAuthorizeUser {
   // MARK: Internals
+
   private func authorizeUser(_ request: POSAuthorize.Request,
                              withAPIKey apiKey: APIKey) throws -> POSAuthorize.Response {
     return try self.service(apiKey).authorize(request)

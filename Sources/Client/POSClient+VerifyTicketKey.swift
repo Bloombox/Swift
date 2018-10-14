@@ -25,6 +25,7 @@ public typealias POSVerifyTicketKeyCallback = (CallResult, POSOpenTicket.Respons
 
 extension PointOfSaleClient {
   // MARK: Internals
+
   private func verifyTicketKey(_ request: POSOpenTicket.Request,
                                withAPIKey apiKey: APIKey) throws -> POSOpenTicket.Response {
     return try self.service(apiKey).ticketOpen(request)
