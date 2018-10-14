@@ -1,6 +1,6 @@
 
 import XCTest
-@testable import Client
+@testable import Bloombox
 
 
 class ClientTests: XCTestCase {

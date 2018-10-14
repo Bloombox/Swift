@@ -7,7 +7,7 @@
 
 import Foundation
 import Schema
-import Client
+import Bloombox
 
 
 internal struct ModelTool {

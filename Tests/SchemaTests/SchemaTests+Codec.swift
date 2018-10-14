@@ -8,7 +8,7 @@
 import Foundation
 import Schema
 import XCTest
-@testable import Client
+@testable import Bloombox
 
 
 extension SchemaTests {

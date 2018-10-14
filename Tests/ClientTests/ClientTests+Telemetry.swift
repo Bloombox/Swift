@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import Client
+@testable import Bloombox
 
 
 extension ClientTests {

@@ -8,7 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "Bloombox",
-            targets: ["Client"])],
+            targets: ["Bloombox"])],
 
     dependencies: [
         .package(url: "https://github.com/apple/swift-protobuf.git", .upToNextMinor(from: "1.1.2")),
@@ -16,11 +16,12 @@ let package = Package(
 
     targets: [
         .target(
-            name: "Client",
-            dependencies: ["Schema", "SwiftGRPC"]),
+            name: "Bloombox",
+            dependencies: ["Schema", "SwiftGRPC"],
+            path: "Sources/Client"),
         .target(
             name: "Schema",
             dependencies: ["SwiftProtobuf", "SwiftGRPC"]),
         .testTarget(name: "SchemaTests", dependencies: ["Schema"]),
-        .testTarget(name: "ClientTests", dependencies: ["Client"])])
+        .testTarget(name: "ClientTests", dependencies: ["Bloombox"])])
 

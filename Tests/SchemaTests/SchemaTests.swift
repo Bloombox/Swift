@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import Schema
-import Client
+import Bloombox
 
 
 /// Tests basic schema functionality.

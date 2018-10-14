@@ -7,7 +7,7 @@
 
 import Foundation
 import XCTest
-@testable import Client
+@testable import Bloombox
 
 
 extension ClientTests {
