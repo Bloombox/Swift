@@ -35,6 +35,7 @@ Native Swift client for accessing Bloombox Cloud APIs
   end
 
   s.subspec 'Client' do |cc|
+    cc.dependency 'Bloombox/Schema'
     cc.dependency 'SwiftProtobuf', '~> 1.1.2'
     cc.dependency 'SwiftGRPC', '~> 0.6.0'
     cc.source_files = 'Sources/Client/*.swift'
