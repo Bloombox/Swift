@@ -2,10 +2,11 @@
 Pod::Spec.new do |s|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.name         = "Bloombox"
-  s.version      = "0.0.9"
-  s.summary      = "Client for Bloombox Cloud APIs"
-  s.description  = <<-DESC
+  s.name          = "Bloombox"
+  s.swift_version = "3.2"
+  s.version       = "0.0.9"
+  s.summary       = "Client for Bloombox Cloud APIs"
+  s.description   = <<-DESC
 Native Swift client for accessing Bloombox Cloud APIs
                    DESC
   s.homepage     = "https://github.com/Bloombox/Swift"
@@ -34,12 +35,12 @@ Native Swift client for accessing Bloombox Cloud APIs
     cs.source_files = 'Sources/Schema/*.swift'
   end
 
-  s.subspec 'Client' do |cc|
-    cc.dependency 'Bloombox/Schema'
-    cc.dependency 'SwiftProtobuf', '~> 1.1.2'
-    cc.dependency 'SwiftGRPC', '~> 0.6.0'
-    cc.source_files = 'Sources/Client/*.swift'
-  end
+  #s.subspec 'Client' do |cc|
+  #  cc.dependency 'Bloombox/Schema'
+  #  cc.dependency 'SwiftProtobuf', '~> 1.1.2'
+  #  cc.dependency 'SwiftGRPC', '~> 0.6.0'
+  #  cc.source_files = 'Sources/Client/*.swift'
+  #end
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.frameworks  = "CoreLocation", "CoreBluetooth"
