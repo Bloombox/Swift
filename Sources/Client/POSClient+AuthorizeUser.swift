@@ -94,20 +94,13 @@ public struct POSAuthorizeOptions {
 
 // MARK: - Method: Authorize User -
 
-///
-///
 extension PointOfSaleClient: IPOSAuthorizeUser {
   // MARK: Internals
-
-  ///
-  ///
   private func authorizeUser(_ request: POSAuthorize.Request,
                              withAPIKey apiKey: APIKey) throws -> POSAuthorize.Response {
     return try self.service(apiKey).authorize(request)
   }
 
-  ///
-  ///
   private func authorizeUser(_ request: POSAuthorize.Request,
                              withAPIKey apiKey: APIKey,
                              _ callback: @escaping POSAuthorizeCallback) throws -> POSAuthorizeCall {
@@ -120,8 +113,19 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
   // MARK: Public API
 
   /// Authorize a user account for a staff member to make use of point-of-sale hardware, using an identity token
-  /// provided via user auth, for an account that has never been used on POS before or has lost their passcode.
+  /// provided via user auth, for an account that has never been used on POS before or has lost their passcode. Initial
+  /// account authorization (via this method) is supported for email/password and business-social-based authentication.
   ///
+  /// - Attention: Device activation is required before most operations. Authorization tokens for menu downloads, shop
+  /// operations, and others, are provided by the device activation process.
+  ///
+  /// - SeeAlso: Asynchronous variants of `authorize(userToken:)`.
+  ///
+  /// - Parameter token: User identity token to authorize.
+  /// - Parameter device: Device key for the POS device requesting authorization.
+  /// - Parameter options: Options to apply to the request.
+  /// - Returns: Authorization response. This method is synchronous.
+  /// - Throws: Client-side and server-side errors are both thrown.
   public func authorize(userToken token: IdentityToken,
                         forDevice device: PartnerDeviceKey,
                         withOptions options: POSAuthorizeOptions) throws -> POSAuthorize.Response {
@@ -148,8 +152,20 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
   }
 
   /// Authorize a user account for a staff member to make use of point-of-sale hardware, using their response to an auth
-  /// challenge (usually a passcode).
+  /// challenge (usually a passcode). The challenge value, which is known by the point-of-sale device and server-side
+  /// system ahead of time, is combined with the user's passcode response, hashed, signed, and provided as the "auth
+  /// challenge response," which is validated server-side like a password would be.
   ///
+  /// - Attention: Device activation is required before most operations. Authorization tokens for menu downloads, shop
+  /// operations, and others, are provided by the device activation process.
+  ///
+  /// - SeeAlso: Asynchronous variants of `authorize(withUserChallenge:)`.
+  ///
+  /// - Parameter challenge: Challenge and response, as a signed digest payload.
+  /// - Parameter device: Device key for the POS device requesting authorization.
+  /// - Parameter options: Options to apply to the request.
+  /// - Returns: Authorization response. This method is synchronous.
+  /// - Throws: Client-side and server-side errors are both thrown.
   public func authorize(withUserChallenge challenge: Hash,
                         forDevice device: PartnerDeviceKey,
                         withOptions options: POSAuthorizeOptions) throws -> POSAuthorize.Response {
@@ -176,8 +192,22 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
   }
 
   /// Authorize a user account for a staff member to make use of point-of-sale hardware, using an identity token
-  /// provided via user auth, for an account that has never been used on POS before or has lost their passcode.
+  /// provided via user auth, for an account that has never been used on POS before or has lost their passcode. Initial
+  /// account authorization (via this method) is supported for email/password and business-social-based authentication.
   ///
+  /// This method variant is asynchronous and accepts a callback to continue execution.
+  ///
+  /// - Attention: Device activation is required before most operations. Authorization tokens for menu downloads, shop
+  /// operations, and others, are provided by the device activation process.
+  ///
+  /// - SeeAlso: Synchronous variants of `authorize(userToken:)`.
+  ///
+  /// - Parameter token: User identity token to authorize.
+  /// - Parameter device: Device key for the POS device requesting authorization.
+  /// - Parameter options: Options to apply to the request.
+  /// - Parameter callback: Callable to dispatch once either a terminal error or response are available.
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: Client-side errors are thrown before the request is sent.
   public func authorize(userToken token: IdentityToken,
                         forDevice device: PartnerDeviceKey,
                         withOptions options: POSAuthorizeOptions,
@@ -205,8 +235,22 @@ extension PointOfSaleClient: IPOSAuthorizeUser {
   }
 
   /// Authorize a user account for a staff member to make use of point-of-sale hardware, using their response to an auth
-  /// challenge (usually a passcode).
+  /// challenge (usually a passcode). The challenge value, which is known by the point-of-sale device and server-side
+  /// system ahead of time, is combined with the user's passcode response, hashed, signed, and provided as the "auth
+  /// challenge response," which is validated server-side like a password would be.
   ///
+  /// This method variant is asynchronous and accepts a callback to continue execution.
+  ///
+  /// - Attention: Device activation is required before most operations. Authorization tokens for menu downloads, shop
+  /// operations, and others, are provided by the device activation process.
+  ///
+  /// - SeeAlso: Synchronous variants of `authorize(withUserChallenge:)`.
+  ///
+  /// - Parameter challenge: Challenge and response, as a signed digest payload.
+  /// - Parameter device: Device key for the POS device requesting authorization.
+  /// - Parameter options: Options to apply to the request.
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: Client-side errors are thrown before the request is sent.
   public func authorize(withUserChallenge challenge: Hash,
                         forDevice device: PartnerDeviceKey,
                         withOptions options: POSAuthorizeOptions,

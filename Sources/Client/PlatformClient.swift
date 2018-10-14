@@ -10,25 +10,72 @@ import SwiftGRPC
 import Schema
 
 
-// Callback Types
+// Types & Enums
+
+/// Ping callback specification. Accepts a gRPC call result, and a platform service status, which indicates the status
+/// of the server-side systems that responded to the ping. Two parameters are given and no return value is expected.
+///
+/// - Parameters:
+///    - `CallResult: gRPC call result, carrying the status of the call.
+///    - `PlatformServiceStatus?`: If the call succeeded, the self-reported status of the responder server systems.
 public typealias PlatformPingCallback = (CallResult, PlatformServiceStatus?) -> ()
+
+/// Health check callback specification. Accepts a simple gRPC call result, and no response, because health checks
+/// simply provide an empty success as a response in the case of an all-clear. Just one parameter is given and no return
+/// value is expected.
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result, carrying the status of the call.
 public typealias HealthcheckCallback = (CallResult) -> ()
+
+/// Domain resolution callback specification. Accepts a gRPC call result, and a domain resolution response, if info
+/// could be resolved for the given partner and location account codes. Two parameters are given and no return value is
+/// expected.
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result, carrying the status of the call.
+///    - `ResolveDomains.Response?`: Domain resolution response, if information could be resolved.
 public typealias ResolveCallback = (CallResult, ResolveDomains.Response?) -> ()
+
+/// Domain configuration callback specification. Accepts a gRPC call result, and a domain info manifest, if domain info
+/// could be resolved for the given partner and location account codes. Two parameters are given and no return value is
+/// expected.
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result, carrying the status of the call.
+///    - `DomainInfo.Response?`: Domain info manifest for the given partner/location info, if available.
 public typealias DomainInfoCallback = (CallResult, DomainInfo.Response?) -> ()
+
+/// Brand information callback specification. Accepts a gRPC call result, and a set of branding info for a given partner
+/// and location account code set. Two parameters are given and no return value is expected.
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result, carrying the status of the call.
+///    - `BrandInfo.Response?`: Brand information manifest for the given partner/location info, if available.
 public typealias BrandCallback = (CallResult, BrandInfo.Response?) -> ()
 
 
-/// Enumerates code-level errors in the platform client.
+/// Enumerates code-level errors in the platform client. Client errors occur before a given request is transmitted to
+/// remote services.
 public enum PlatformClientError: Error {
+  /// The provided API key was found to be invalid.
   case invalidApiKey
+
+  /// The provided partner account code was found to be invalid, or none could be resolved.
   case invalidPartnerCode
+
+  /// The provided location account code was found to be invalid, or none could be resolved.
   case invalidLocationCode
+
+  /// The engine failed to base64 encode a given request or request value.
   case cannotBase64Encode
 }
 
 
 /// Provides functionality for the Platform API, which supports general configuration and information support for
-/// cannabis retail partner locations.
+/// cannabis retail partner locations. Domains are resolved through the Platform Service to their respective partner and
+/// location account codes, or domain info can be resolved for a given partner/location pair. Other utility methods are
+/// supported through the Platform Service including healthchecks, pings, and others.
 public final class PlatformClient: RemoteService {
   /// API name. Always 'platform'.
   let name = "platform"
@@ -43,12 +90,17 @@ public final class PlatformClient: RemoteService {
 
   /// Library-internal initializer.
   ///
-  public init(settings: Bloombox.Settings) {
+  /// - Parameter settings: Client-wide settings to apply.
+  internal init(settings: Bloombox.Settings) {
     self.settings = settings
   }
 
-  /// Platform service.
+  /// Platform service. Retrieve an implementation of the platform service, capable of resolving and providing basic,
+  /// system and account configuration info.
   ///
+  /// - Parameter apiKey: API Key to use.
+  /// - Returns: Prepared Platform API service class.
+  /// - Throws: `POSClientError` if the API key is not able to be resolved.
   internal func service(_ apiKey: APIKey) throws -> PlatformService {
     let svc = RPCServiceFactory<PlatformService>.factory(forService: Transport.config.services.platform)
     do {
@@ -60,11 +112,19 @@ public final class PlatformClient: RemoteService {
     return svc
   }
 
-  /// Resolve partner and location context, throwing an error if it cannot be figured out.
+  /// Resolve partner and location context, throwing an error if it cannot be figured out. Partner and location context
+  /// is required for all partner calls, along with an API key.
   ///
+  /// - Parameter partner: Partner account code to use. If unspecified, library defaults will be used.
+  /// - Parameter location: Location account code to use. If unspecified, library defaults will be used.
+  /// - Parameter apiKey: API key to identify ourselves with. If unspecified, library defaults will be used.
+  /// - Returns: Tuple of `(partner, location, apiKey)`.
+  /// - Throws: `MenuClientError` codes if details cannot be resolved.
   private func resolveContext(_ partner: PartnerCode? = nil,
                               _ location: LocationCode? = nil,
-                              _ apiKey: APIKey? = nil) throws -> (partner: PartnerCode, location: LocationCode, apiKey: APIKey) {
+                              _ apiKey: APIKey? = nil) throws -> (partner: PartnerCode,
+                                                                  location: LocationCode,
+                                                                  apiKey: APIKey) {
     let partnerCode: PartnerCode? = partner ?? settings.partner
     let locationCode: LocationCode? = location ?? settings.location
     let apiKey: APIKey? = apiKey ?? settings.apiKey

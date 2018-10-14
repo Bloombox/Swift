@@ -10,6 +10,24 @@ import Schema
 import SwiftProtobuf
 
 
+//// Client Bindings
+
+/// User identifier. Globally unique ID for a given user account.
+public typealias UserID = String
+
+/// API key for communicating to/from remote services.
+public typealias APIKey = String
+
+/// Session or group ID for the current telemetry event session.
+public typealias GroupID = String
+
+/// Partner account code. Accessible via the Bloombox Dashboard.
+public typealias PartnerCode = String
+
+/// Location account code. Accessible via the Bloombox Dashboard.
+public typealias LocationCode = String
+
+
 //// Platform Service
 
 /// Binding to the active PlatformService.

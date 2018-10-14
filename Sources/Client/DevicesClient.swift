@@ -9,10 +9,27 @@ import Foundation
 import SwiftGRPC
 
 
-// Callback Types
+// Type Aliases
+
+/// Device serial number.
 public typealias DeviceSerial = String
+
+/// Device public key, in raw hex-encoded form.
 public typealias DevicePublicKey = String
+
+/// Hardware fingerprint value, usually a UUID.
 public typealias DeviceFingerprint = String
+
+// Callback Types
+
+/// Callback type definition for a device activation operation, where a partner co-located device provides its serial
+/// number and hardware fingerprint, in exchange for an assignment manifest describing the device's partner, location,
+/// and operating role. The callback accepts 3 parameters and no return value is expected.
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result object, which includes a status code.
+///    - `DeviceActivation.Response?`: If the call succeeded, a device activation response, including a manifest.
+///    - `Error?`: If an error occurred before request transmission, or server-side, it is provided here.
 public typealias DeviceActivateCallback = (CallResult?, DeviceActivation.Response?, Error?) -> ()
 
 
@@ -25,7 +42,14 @@ public enum DevicesClientError: Error {
 }
 
 /// Provides functionality for the Device API, which supports operations related to activating, coordinating, managing,
-/// and observing managed or second-party-colocated devices.
+/// and observing managed or second-party-colocated devices. This includes tablet and TV menus, checkin devices, and
+/// point-of-sale devices, from Bloombox's point of view, along with any additional partner-hosted devices eventually
+/// provided to retailers.
+///
+/// The main function of the Devices API is to supply partner-side devices with their "assignment" information, which
+/// consists of a "partner" and "location" code, which combine to reference the retail location for which the device
+/// should boot and begin its work. Menus use this to know which menu catalog to download, checkin uses this to
+/// determine which lobby to check-in users to, and so on.
 public final class DevicesClient: RemoteService {
   /// Name of the Device API, which is "devices".
   let name = "devices"
@@ -40,13 +64,17 @@ public final class DevicesClient: RemoteService {
 
   /// Library-internal initializer.
   ///
-  public init(settings: Bloombox.Settings) {
+  /// - Parameter settings: Client-wide settings to apply.
+  internal init(settings: Bloombox.Settings) {
     self.settings = settings
   }
 
-  /// Devices service.
+  /// Devices service. Retrieve an implementation of the devices service, capable of communicating with server-side
+  /// methods for managing devices.
   ///
-  internal func service(_ apiKey: APIKey) throws -> DevicesService {
+  /// - Parameter apiKey: API Key to use.
+  /// - Returns: Prepared Devices API service class.
+  private func service(_ apiKey: APIKey) throws -> DevicesService {
     let svc = RPCServiceFactory<DevicesService>.factory(forService: Transport.config.services.devices)
     do {
       try svc.metadata.add(key: "x-api-key", value: apiKey)
@@ -57,8 +85,11 @@ public final class DevicesClient: RemoteService {
     return svc
   }
 
-  /// Resolve method context, throwing an error if it cannot be figured out.
+  /// Resolve method context, throwing an error if it cannot be figured out. Where devices are concerned, this only
+  /// includes the API key with which we should connect to the service.
   ///
+  /// - Parameter apiKey: API key to connect to the service with.
+  /// - Returns: API key to use, based either on the override or library-default value.
   private func resolveContext(_ apiKey: APIKey? = nil) throws -> APIKey {
     let apiKey: APIKey? = apiKey ?? settings.apiKey
 
@@ -72,8 +103,16 @@ public final class DevicesClient: RemoteService {
 
   // MARK: Device Activation
 
-  /// Activate a device by name.
+  /// Activate a device by name. Given the device's serial number ("name"), this returns any active assignment
+  /// information, which includes the device's operating role, and the partner and location account codes under which
+  /// the device should operate. How these values are used is determined by the device performing activation.
   ///
+  /// - Parameter name: Device serial number, usually referred to as the "device name."
+  /// - Parameter fingerprint: Unique hardware fingerprint for this device.
+  /// - Parameter publicKey: Device's identity public key, used to authenticate messages received from this device.
+  /// - Parameter apiKey: Override the API key set in library defaults.
+  /// - Returns: Device activation response. This method is synchronous, so a response is returned directly.
+  /// - Throws: `DevicesClientError` codes related to the API key or other circumstances.
   public func activate(deviceSerial name: DeviceSerial,
                        withFingerprint fingerprint: DeviceFingerprint? = nil,
                        withPublicKey publicKey: DevicePublicKey? = nil,
@@ -97,8 +136,18 @@ public final class DevicesClient: RemoteService {
     }
   }
 
-  /// Activate a device by name, asynchronously.
+  /// Activate a device by name, asynchronously. Given the device's serial number ("name"), this returns any active
+  /// assignment information, which includes the device's operating role, and the partner and location account codes
+  /// under which the device should operate. How these values are used is determined by the device performing
+  /// activation.
   ///
+  /// - Parameter name: Device serial number, usually referred to as the "device name."
+  /// - Parameter fingerprint: Unique hardware fingerprint for this device.
+  /// - Parameter publicKey: Device's identity public key, used to authenticate messages received from this device.
+  /// - Parameter apiKey: Override the API key set in library defaults.
+  /// - Parameter callback: Callable to dispatch once either a response or terminal error is available.
+  /// - Returns: RPC call object, which can be observed or cancelled.
+  /// - Throws: `DevicesClientError` codes related to the API key or other circumstances.
   public func activate(deviceSerial name: DeviceSerial,
                        withFingerprint fingerprint: DeviceFingerprint? = nil,
                        withPublicKey publicKey: DevicePublicKey? = nil,

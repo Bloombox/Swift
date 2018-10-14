@@ -10,14 +10,15 @@ import Schema
 
 
 // Typealiases
-public typealias UserID = String
+
+/// Item ID. Product or inventory item to tag a given event with, or all events.
 public typealias ItemID = String
-public typealias APIKey = String
-public typealias GroupID = String
+
+/// Order ID to send along with a given event, or all events.
 public typealias OrderID = String
+
+/// Globally-unique device identifier to send along with a given event, or all events.
 public typealias DeviceUUID = String
-public typealias PartnerCode = String
-public typealias LocationCode = String
 
 
 // Constants
@@ -72,11 +73,11 @@ public protocol EventContextData {
 }
 
 
-///
-///
 extension EventContextData {
-  /// Export an `EventContext` object to its proto counterpart.
+  /// Export an `EventContext` object to its proto counterpart, which can be used in an event to be sent to the remote
+  /// telemetry service.
   ///
+  /// - Returns: Materialized analytics context.
   public func export() -> AnalyticsContext {
     return AnalyticsContext.with { context in
       // handle device fingerprint
@@ -147,9 +148,13 @@ extension EventContextData {
 
 /// Internal protocol for protobuf-related tools.
 internal protocol EventContextProto: EventContextData {
-  /// Merge two objects specifying event context.
+  /// Merge `other` event context and this one, with properties from `other` overriding in the newly-created event
+  /// context (it is copied, not merged in-place).
   ///
-  func merge(other: EventContextProto) -> AnalyticsContext
+  /// - Parameter other: Event context payload to merge into this one.
+  /// - Returns: Merged analytics context object.
+  /// - Throws: If merging the two cannot be performed.
+  func merge(other: EventContextProto) throws -> AnalyticsContext
 }
 
 
@@ -157,6 +162,9 @@ extension EventContextProto {
   /// Merge `other` event context and this one, with properties from `other` overriding in the newly-created event
   /// context (it is copied, not merged in-place).
   ///
+  /// - Parameter other: Event context payload to merge into this one.
+  /// - Returns: Merged analytics context object.
+  /// - Throws: If merging the two cannot be performed.
   public func merge(other: EventContextProto) throws -> AnalyticsContext {
     var exported = self.export()
 

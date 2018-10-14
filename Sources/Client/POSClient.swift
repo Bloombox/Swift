@@ -45,7 +45,8 @@ public final class PointOfSaleClient: RemoteService {
 
   /// Library-internal initializer.
   ///
-  public init(settings: Bloombox.Settings) {
+  /// - Parameter settings: Client-wide settings to apply.
+  internal init(settings: Bloombox.Settings) {
     self.settings = settings
   }
 
