@@ -33,6 +33,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		227F3C882172A8C800481EA5 /* CgRPC.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_694 /* CgRPC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		OBJ_1301 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_1315 /* a_bitstr.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_757 /* a_bitstr.c */; };
 		OBJ_1316 /* a_bool.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_758 /* a_bool.c */; };
@@ -2066,7 +2067,7 @@
 		OBJ_690 /* pb_common.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pb_common.c; sourceTree = "<group>"; };
 		OBJ_691 /* pb_decode.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pb_decode.c; sourceTree = "<group>"; };
 		OBJ_692 /* pb_encode.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pb_encode.c; sourceTree = "<group>"; };
-		OBJ_694 /* cgrpc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cgrpc.h; sourceTree = "<group>"; };
+		OBJ_694 /* CgRPC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CgRPC.h; sourceTree = "<group>"; };
 		OBJ_696 /* grpc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = grpc.h; sourceTree = "<group>"; };
 		OBJ_697 /* status.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = status.h; sourceTree = "<group>"; };
 		OBJ_698 /* census.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = census.h; sourceTree = "<group>"; };
@@ -3578,7 +3579,7 @@
 			path = iomgr;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -3590,7 +3591,6 @@
 				OBJ_217 /* Dependencies */,
 				OBJ_1281 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_548 /* json */ = {
@@ -3949,7 +3949,7 @@
 		OBJ_693 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_694 /* cgrpc.h */,
+				OBJ_694 /* CgRPC.h */,
 				OBJ_695 /* grpc */,
 				OBJ_751 /* module.modulemap */,
 			);
@@ -4900,6 +4900,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		227F3C872172A8C200481EA5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				227F3C882172A8C800481EA5 /* CgRPC.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		"Bloombox::Client" /* Client */ = {
 			isa = PBXNativeTarget;
@@ -5021,6 +5032,7 @@
 			buildPhases = (
 				OBJ_1634 /* Sources */,
 				OBJ_1989 /* Frameworks */,
+				227F3C872172A8C200481EA5 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -5110,7 +5122,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_1281 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -6441,7 +6453,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6474,7 +6486,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6899,6 +6911,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DXcode";
@@ -6915,11 +6928,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				LLVM_LTO = YES_THIN;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
