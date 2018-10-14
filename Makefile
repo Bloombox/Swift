@@ -4,6 +4,7 @@
 #
 
 SCHEMA ?= Schema/
+VERSION ?= 0.0.9
 SCHEMA_BRANCH ?= master
 SWIFT_GRPC ?= SwiftGRPC
 
@@ -12,9 +13,31 @@ SWIFT_PROTOC_OPTIONS ?= --swift_opt=FileNaming=PathToUnderscores --swift_opt=Vis
 all: build test
 	@echo "Swift API client ready."
 
-clean:
+docs: clean-docs docs/
+
+docs/:
+	@echo "Generating docs..."
+	@mkdir -p docs/ && jazzy \
+		--output docs/ \
+		-c --sdk iphone \
+		-a Bloombox \
+		-u "https://bloombox.cloud" \
+		-m Bloombox --module-version=$(VERSION) \
+		--copyright "&copy; 2016-2018, Momentum Ideas Co." \
+		--readme README.md \
+		--podspec Bloombox.podspec \
+		--min-acl public \
+		--github_url https://github.com/bloombox/swift \
+		--theme 'apple' \
+		--include "Sources/Client/*";
+
+clean: clean-docs
 	@echo "Cleaning Swift client for Bloombox..."
 	@rm -frv .build $(SCHEMA)/languages
+
+clean-docs:
+	@echo "Cleaning docs..."
+	@rm -fr docs/
 
 build: dependencies
 	@echo "Building Swift client for Bloombox..."
