@@ -5,8 +5,8 @@
 //  Created by James Clark on 12/13/17.
 //
 
-import Schema
 import SwiftGRPC
+import OpenCannabis
 
 
 /// Client variant, or build permutation, of this library.

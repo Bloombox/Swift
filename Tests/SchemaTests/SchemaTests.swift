@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Schema
+@testable import OpenCannabis
 import Bloombox
 
 

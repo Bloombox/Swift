@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftGRPC
-import Schema
+import OpenCannabis
 
 
 // Callback Types

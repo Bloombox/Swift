@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Schema
+import OpenCannabis
 import SwiftProtobuf
 
 
