@@ -13,7 +13,40 @@ In terms of iOS land, this library client is built in native Swift, and packaged
 
 ### Using the code
 
-Published libs coming soon. In the meantime, see `Building the code`.
+Via CocoaPods:
+```ruby
+project 'YourProject.xcodeproj/'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '8.0'
+inhibit_all_warnings!
+
+target 'YourProject' do
+  use_frameworks!
+
+  pod 'OpenCannabis', '~> 0.1.0'
+  pod 'Bloombox', '~> 0.1.0'
+end
+```
+
+Via Swift Package Manager:
+```swift
+// swift-tools-version:4.0
+  
+import PackageDescription
+
+let package = Package(
+    name: "YourProject",
+
+    /// ...
+
+    dependencies: [
+        .package(url: "https://github.com/bloombox/swift", .upToNextMinor(from: "0.1.0"))]
+
+  )
+
+```
 
 
 ### Building the code
