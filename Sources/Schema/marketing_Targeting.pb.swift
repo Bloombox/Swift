@@ -67,7 +67,7 @@ public struct Bloombox_Schema_Marketing_PreferenceTargeting {
   /// Returns true if `menu` has been explicitly set.
   public var hasMenu: Bool {return _storage._menu != nil}
   /// Clears the value of `menu`. Subsequent reads from it will return its default value.
-  public mutating func clearMenu() {_storage._menu = nil}
+  public mutating func clearMenu() {_uniqueStorage()._menu = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -132,6 +132,7 @@ public struct Bloombox_Schema_Marketing_TargetingPolicy {
     /// Menu-preference-based targeting.
     case preferences(Bloombox_Schema_Marketing_PreferenceTargeting)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Marketing_TargetingPolicy.OneOf_Policy, rhs: Bloombox_Schema_Marketing_TargetingPolicy.OneOf_Policy) -> Bool {
       switch (lhs, rhs) {
       case (.age(let l), .age(let r)): return l == r
@@ -140,6 +141,7 @@ public struct Bloombox_Schema_Marketing_TargetingPolicy {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -183,11 +185,11 @@ extension Bloombox_Schema_Marketing_AgeTargeting: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_AgeTargeting) -> Bool {
-    if self.strict != other.strict {return false}
-    if self.minimum != other.minimum {return false}
-    if self.maximum != other.maximum {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Marketing_AgeTargeting, rhs: Bloombox_Schema_Marketing_AgeTargeting) -> Bool {
+    if lhs.strict != rhs.strict {return false}
+    if lhs.minimum != rhs.minimum {return false}
+    if lhs.maximum != rhs.maximum {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -214,9 +216,9 @@ extension Bloombox_Schema_Marketing_GenderTargeting: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_GenderTargeting) -> Bool {
-    if self.target != other.target {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Marketing_GenderTargeting, rhs: Bloombox_Schema_Marketing_GenderTargeting) -> Bool {
+    if lhs.target != rhs.target {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -267,17 +269,17 @@ extension Bloombox_Schema_Marketing_PreferenceTargeting: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_PreferenceTargeting) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Marketing_PreferenceTargeting, rhs: Bloombox_Schema_Marketing_PreferenceTargeting) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._menu != other_storage._menu {return false}
+        let rhs_storage = _args.1
+        if _storage._menu != rhs_storage._menu {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -366,18 +368,18 @@ extension Bloombox_Schema_Marketing_TargetingPolicy: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_TargetingPolicy) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Marketing_TargetingPolicy, rhs: Bloombox_Schema_Marketing_TargetingPolicy) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._enabled != other_storage._enabled {return false}
-        if _storage._policy != other_storage._policy {return false}
+        let rhs_storage = _args.1
+        if _storage._enabled != rhs_storage._enabled {return false}
+        if _storage._policy != rhs_storage._policy {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

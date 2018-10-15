@@ -62,6 +62,20 @@ public enum Opencannabis_Products_CartridgeType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_CartridgeType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_CartridgeType] = [
+    .unspecifiedCartridge,
+    .cartridge,
+    .battery,
+    .kit,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a vaporizor or cartridge-style product, for instance, vaporizor pens and table units. Vaporizors are
 /// composed of two elements: a battery, or the bottom power unit, and a cartridge, or the top fuel unit, that contains
 /// cannabinoids and is disposable or refillable.
@@ -78,7 +92,7 @@ public struct Opencannabis_Products_Cartridge {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Type of cartridge product being described.
   public var type: Opencannabis_Products_CartridgeType {
@@ -94,7 +108,7 @@ public struct Opencannabis_Products_Cartridge {
   /// Returns true if `product` has been explicitly set.
   public var hasProduct: Bool {return _storage._product != nil}
   /// Clears the value of `product`. Subsequent reads from it will return its default value.
-  public mutating func clearProduct() {_storage._product = nil}
+  public mutating func clearProduct() {_uniqueStorage()._product = nil}
 
   /// Materials and handling information about this cartridge product.
   public var material: Opencannabis_Content_MaterialsData {
@@ -104,7 +118,7 @@ public struct Opencannabis_Products_Cartridge {
   /// Returns true if `material` has been explicitly set.
   public var hasMaterial: Bool {return _storage._material != nil}
   /// Clears the value of `material`. Subsequent reads from it will return its default value.
-  public mutating func clearMaterial() {_storage._material = nil}
+  public mutating func clearMaterial() {_uniqueStorage()._material = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -193,20 +207,20 @@ extension Opencannabis_Products_Cartridge: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Cartridge) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Products_Cartridge, rhs: Opencannabis_Products_Cartridge) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._type != other_storage._type {return false}
-        if _storage._product != other_storage._product {return false}
-        if _storage._material != other_storage._material {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._product != rhs_storage._product {return false}
+        if _storage._material != rhs_storage._material {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

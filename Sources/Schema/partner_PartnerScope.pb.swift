@@ -86,6 +86,24 @@ public enum Bloombox_Schema_Partner_PartnerScope: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Partner_PartnerScope: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Partner_PartnerScope] = [
+    .auth,
+    .contact,
+    .dashboard,
+    .menuDataRead,
+    .menuDataWrite,
+    .settingsRead,
+    .settingsWrite,
+    .admin,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Bloombox_Schema_Partner_PartnerScope: SwiftProtobuf._ProtoNameProviding {

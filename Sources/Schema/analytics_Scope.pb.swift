@@ -79,11 +79,11 @@ extension Bloombox_Schema_Analytics_Scope: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Scope) -> Bool {
-    if self.partner != other.partner {return false}
-    if self.commercial != other.commercial {return false}
-    if self.order != other.order {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Analytics_Scope, rhs: Bloombox_Schema_Analytics_Scope) -> Bool {
+    if lhs.partner != rhs.partner {return false}
+    if lhs.commercial != rhs.commercial {return false}
+    if lhs.order != rhs.order {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

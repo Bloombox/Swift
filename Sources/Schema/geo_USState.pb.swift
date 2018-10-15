@@ -353,6 +353,68 @@ public enum Opencannabis_Geo_Usa_USState: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Geo_Usa_USState: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Geo_Usa_USState] = [
+    .unspecified,
+    .al,
+    .ak,
+    .az,
+    .ar,
+    .ca,
+    .co,
+    .ct,
+    .de,
+    .dc,
+    .fl,
+    .ga,
+    .hi,
+    .id,
+    .il,
+    .in,
+    .ia,
+    .ks,
+    .ky,
+    .la,
+    .me,
+    .md,
+    .ma,
+    .mi,
+    .mn,
+    .ms,
+    .mo,
+    .mt,
+    .ne,
+    .nv,
+    .nh,
+    .nj,
+    .nm,
+    .ny,
+    .nc,
+    .nd,
+    .oh,
+    .ok,
+    .or,
+    .pa,
+    .ri,
+    .sc,
+    .sd,
+    .tn,
+    .tx,
+    .ut,
+    .vt,
+    .va,
+    .wa,
+    .wv,
+    .wi,
+    .wyoming,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Opencannabis_Geo_Usa_USState: SwiftProtobuf._ProtoNameProviding {

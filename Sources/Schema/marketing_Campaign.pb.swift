@@ -73,6 +73,21 @@ public enum Bloombox_Schema_Marketing_CampaignStatus: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Marketing_CampaignStatus: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Marketing_CampaignStatus] = [
+    .pending,
+    .draft,
+    .queued,
+    .sending,
+    .done,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Tags applied to a campaign to organize/group similar marketing efforts.
 public struct Bloombox_Schema_Marketing_CampaignTag {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -141,6 +156,7 @@ public struct Bloombox_Schema_Marketing_ChannelSettings {
     /// Email settings.
     case email(Bloombox_Schema_Comms_EmailSettings)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Marketing_ChannelSettings.OneOf_Settings, rhs: Bloombox_Schema_Marketing_ChannelSettings.OneOf_Settings) -> Bool {
       switch (lhs, rhs) {
       case (.sms(let l), .sms(let r)): return l == r
@@ -148,6 +164,7 @@ public struct Bloombox_Schema_Marketing_ChannelSettings {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -194,6 +211,7 @@ public struct Bloombox_Schema_Marketing_Creative {
     /// Email-specific content.
     case email(Bloombox_Schema_Comms_EmailContent)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Marketing_Creative.OneOf_Content, rhs: Bloombox_Schema_Marketing_Creative.OneOf_Content) -> Bool {
       switch (lhs, rhs) {
       case (.sms(let l), .sms(let r)): return l == r
@@ -201,6 +219,7 @@ public struct Bloombox_Schema_Marketing_Creative {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -228,7 +247,7 @@ public struct Bloombox_Schema_Marketing_AdGroup {
   /// Returns true if `campaign` has been explicitly set.
   public var hasCampaign: Bool {return _storage._campaign != nil}
   /// Clears the value of `campaign`. Subsequent reads from it will return its default value.
-  public mutating func clearCampaign() {_storage._campaign = nil}
+  public mutating func clearCampaign() {_uniqueStorage()._campaign = nil}
 
   /// Channel for this specification.
   public var channel: Bloombox_Schema_Comms_Channel {
@@ -301,7 +320,7 @@ public struct Bloombox_Schema_Marketing_Campaign {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Name/label for the campaign.
   public var name: String {
@@ -335,7 +354,7 @@ public struct Bloombox_Schema_Marketing_Campaign {
   /// Returns true if `targeting` has been explicitly set.
   public var hasTargeting: Bool {return _storage._targeting != nil}
   /// Clears the value of `targeting`. Subsequent reads from it will return its default value.
-  public mutating func clearTargeting() {_storage._targeting = nil}
+  public mutating func clearTargeting() {_uniqueStorage()._targeting = nil}
 
   /// Distribution/channel settings for this campaign.
   public var channel: [Bloombox_Schema_Marketing_ChannelSettings] {
@@ -363,7 +382,7 @@ public struct Bloombox_Schema_Marketing_Campaign {
   /// Returns true if `published` has been explicitly set.
   public var hasPublished: Bool {return _storage._published != nil}
   /// Clears the value of `published`. Subsequent reads from it will return its default value.
-  public mutating func clearPublished() {_storage._published = nil}
+  public mutating func clearPublished() {_uniqueStorage()._published = nil}
 
   /// Timestamp indicating when this campaign was created.
   public var created: Opencannabis_Temporal_Instant {
@@ -373,7 +392,7 @@ public struct Bloombox_Schema_Marketing_Campaign {
   /// Returns true if `created` has been explicitly set.
   public var hasCreated: Bool {return _storage._created != nil}
   /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   /// When this campaign was last modified.
   public var modified: Opencannabis_Temporal_Instant {
@@ -383,7 +402,7 @@ public struct Bloombox_Schema_Marketing_Campaign {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -433,10 +452,10 @@ extension Bloombox_Schema_Marketing_CampaignTag: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_CampaignTag) -> Bool {
-    if self.id != other.id {return false}
-    if self.label != other.label {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Marketing_CampaignTag, rhs: Bloombox_Schema_Marketing_CampaignTag) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.label != rhs.label {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -521,19 +540,19 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_ChannelSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Marketing_ChannelSettings, rhs: Bloombox_Schema_Marketing_ChannelSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._channel != other_storage._channel {return false}
-        if _storage._active != other_storage._active {return false}
-        if _storage._settings != other_storage._settings {return false}
+        let rhs_storage = _args.1
+        if _storage._channel != rhs_storage._channel {return false}
+        if _storage._active != rhs_storage._active {return false}
+        if _storage._settings != rhs_storage._settings {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -604,17 +623,17 @@ extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_Creative) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Marketing_Creative, rhs: Bloombox_Schema_Marketing_Creative) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._content != other_storage._content {return false}
+        let rhs_storage = _args.1
+        if _storage._content != rhs_storage._content {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -686,20 +705,20 @@ extension Bloombox_Schema_Marketing_AdGroup: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_AdGroup) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Marketing_AdGroup, rhs: Bloombox_Schema_Marketing_AdGroup) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._campaign != other_storage._campaign {return false}
-        if _storage._channel != other_storage._channel {return false}
-        if _storage._creative != other_storage._creative {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._campaign != rhs_storage._campaign {return false}
+        if _storage._channel != rhs_storage._channel {return false}
+        if _storage._creative != rhs_storage._creative {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -731,10 +750,10 @@ extension Bloombox_Schema_Marketing_CampaignTargeting: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_CampaignTargeting) -> Bool {
-    if self.strict != other.strict {return false}
-    if self.block != other.block {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Marketing_CampaignTargeting, rhs: Bloombox_Schema_Marketing_CampaignTargeting) -> Bool {
+    if lhs.strict != rhs.strict {return false}
+    if lhs.block != rhs.block {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -771,11 +790,11 @@ extension Bloombox_Schema_Marketing_CampaignKey: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_CampaignKey) -> Bool {
-    if self.id != other.id {return false}
-    if self.partner != other.partner {return false}
-    if self.location != other.location {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Marketing_CampaignKey, rhs: Bloombox_Schema_Marketing_CampaignKey) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.partner != rhs.partner {return false}
+    if lhs.location != rhs.location {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -903,28 +922,28 @@ extension Bloombox_Schema_Marketing_Campaign: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Marketing_Campaign) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Marketing_Campaign, rhs: Bloombox_Schema_Marketing_Campaign) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._name != other_storage._name {return false}
-        if _storage._description_p != other_storage._description_p {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._live != other_storage._live {return false}
-        if _storage._targeting != other_storage._targeting {return false}
-        if _storage._channel != other_storage._channel {return false}
-        if _storage._tag != other_storage._tag {return false}
-        if _storage._group != other_storage._group {return false}
-        if _storage._published != other_storage._published {return false}
-        if _storage._created != other_storage._created {return false}
-        if _storage._modified != other_storage._modified {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._live != rhs_storage._live {return false}
+        if _storage._targeting != rhs_storage._targeting {return false}
+        if _storage._channel != rhs_storage._channel {return false}
+        if _storage._tag != rhs_storage._tag {return false}
+        if _storage._group != rhs_storage._group {return false}
+        if _storage._published != rhs_storage._published {return false}
+        if _storage._created != rhs_storage._created {return false}
+        if _storage._modified != rhs_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

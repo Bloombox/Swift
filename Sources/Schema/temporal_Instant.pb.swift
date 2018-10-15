@@ -58,6 +58,7 @@ public struct Opencannabis_Temporal_Instant {
     /// Unix epoch timestamp, at millisecond resolution.
     case timestamp(UInt64)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Temporal_Instant.OneOf_Spec, rhs: Opencannabis_Temporal_Instant.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.iso8601(let l), .iso8601(let r)): return l == r
@@ -65,6 +66,7 @@ public struct Opencannabis_Temporal_Instant {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -110,9 +112,9 @@ extension Opencannabis_Temporal_Instant: SwiftProtobuf.Message, SwiftProtobuf._M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Temporal_Instant) -> Bool {
-    if self.spec != other.spec {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Temporal_Instant, rhs: Opencannabis_Temporal_Instant) -> Bool {
+    if lhs.spec != rhs.spec {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

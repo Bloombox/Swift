@@ -60,6 +60,19 @@ public enum Bloombox_Schema_Identity_IDMedia: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Identity_IDMedia: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Identity_IDMedia] = [
+    .documentFront,
+    .documentRear,
+    .portrait,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Media attachment that binds some document media to a particular driver's license.
 public struct Bloombox_Schema_Identity_IDMediaAttachment {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -140,13 +153,13 @@ extension Bloombox_Schema_Identity_IDMediaAttachment: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_IDMediaAttachment) -> Bool {
-    if self.type != other.type {return false}
-    if self.orientation != other.orientation {return false}
-    if self.data != other.data {return false}
-    if self.imageType != other.imageType {return false}
-    if self.quality != other.quality {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Identity_IDMediaAttachment, rhs: Bloombox_Schema_Identity_IDMediaAttachment) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.orientation != rhs.orientation {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.imageType != rhs.imageType {return false}
+    if lhs.quality != rhs.quality {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

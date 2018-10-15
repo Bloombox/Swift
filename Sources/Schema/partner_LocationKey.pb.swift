@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies a referencial key that points to a partner location record.
+
 import Foundation
 import SwiftProtobuf
 
@@ -33,7 +36,7 @@ public struct Bloombox_Schema_Partner_LocationKey {
   /// Returns true if `partner` has been explicitly set.
   public var hasPartner: Bool {return _storage._partner != nil}
   /// Clears the value of `partner`. Subsequent reads from it will return its default value.
-  public mutating func clearPartner() {_storage._partner = nil}
+  public mutating func clearPartner() {_uniqueStorage()._partner = nil}
 
   /// Short string that uniquely identifies this location, under a given partner account.
   public var code: String {
@@ -105,18 +108,18 @@ extension Bloombox_Schema_Partner_LocationKey: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_LocationKey) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Partner_LocationKey, rhs: Bloombox_Schema_Partner_LocationKey) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._partner != other_storage._partner {return false}
-        if _storage._code != other_storage._code {return false}
+        let rhs_storage = _args.1
+        if _storage._partner != rhs_storage._partner {return false}
+        if _storage._code != rhs_storage._code {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

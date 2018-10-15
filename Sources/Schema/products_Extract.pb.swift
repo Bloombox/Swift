@@ -97,6 +97,27 @@ public enum Opencannabis_Products_ExtractType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_ExtractType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_ExtractType] = [
+    .unspecifiedExtract,
+    .oil,
+    .wax,
+    .shatter,
+    .kief,
+    .hash,
+    .liveResin,
+    .rosin,
+    .crumble,
+    .sauce,
+    .sugar,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies flags that may specifically be applied to an extracted cannabis product.
 public enum Opencannabis_Products_ExtractFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -130,6 +151,18 @@ public enum Opencannabis_Products_ExtractFlag: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_ExtractFlag: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_ExtractFlag] = [
+    .noExtractFlags,
+    .solventless,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies an extracted cannabis product, whereby cannabis plant material has been reduced to a more potent and
 /// concentrated form by some process.
 public struct Opencannabis_Products_Extract {
@@ -145,7 +178,7 @@ public struct Opencannabis_Products_Extract {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Specific type of extract being described.
   public var type: Opencannabis_Products_ExtractType {
@@ -167,7 +200,7 @@ public struct Opencannabis_Products_Extract {
   /// Returns true if `flower` has been explicitly set.
   public var hasFlower: Bool {return _storage._flower != nil}
   /// Clears the value of `flower`. Subsequent reads from it will return its default value.
-  public mutating func clearFlower() {_storage._flower = nil}
+  public mutating func clearFlower() {_uniqueStorage()._flower = nil}
 
   /// Product content about this extracted cannabis item.
   public var product: Opencannabis_Content_ProductContent {
@@ -177,7 +210,7 @@ public struct Opencannabis_Products_Extract {
   /// Returns true if `product` has been explicitly set.
   public var hasProduct: Bool {return _storage._product != nil}
   /// Clears the value of `product`. Subsequent reads from it will return its default value.
-  public mutating func clearProduct() {_storage._product = nil}
+  public mutating func clearProduct() {_uniqueStorage()._product = nil}
 
   /// Materials and handling data attached to this extracted cannabis item.
   public var material: Opencannabis_Content_MaterialsData {
@@ -187,7 +220,7 @@ public struct Opencannabis_Products_Extract {
   /// Returns true if `material` has been explicitly set.
   public var hasMaterial: Bool {return _storage._material != nil}
   /// Clears the value of `material`. Subsequent reads from it will return its default value.
-  public mutating func clearMaterial() {_storage._material = nil}
+  public mutating func clearMaterial() {_uniqueStorage()._material = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -304,22 +337,22 @@ extension Opencannabis_Products_Extract: SwiftProtobuf.Message, SwiftProtobuf._M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Extract) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Products_Extract, rhs: Opencannabis_Products_Extract) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._type != other_storage._type {return false}
-        if _storage._flag != other_storage._flag {return false}
-        if _storage._flower != other_storage._flower {return false}
-        if _storage._product != other_storage._product {return false}
-        if _storage._material != other_storage._material {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._flag != rhs_storage._flag {return false}
+        if _storage._flower != rhs_storage._flower {return false}
+        if _storage._product != rhs_storage._product {return false}
+        if _storage._material != rhs_storage._material {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

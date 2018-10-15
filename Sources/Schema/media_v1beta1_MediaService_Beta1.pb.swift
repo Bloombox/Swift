@@ -7,7 +7,8 @@
 //   https://github.com/apple/swift-protobuf/
 
 ///*
-/// Provides the media service, which is responsible for uploading/managing media files.
+/// Provides the media service, which is responsible for uploading/managing/resolving media files on behalf of
+/// multitenant partner/location accounts.
 
 import Foundation
 import SwiftProtobuf
@@ -80,6 +81,23 @@ public enum Bloombox_Schema_Services_Media_V1beta1_MediaError: SwiftProtobuf.Enu
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Media_V1beta1_MediaError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Media_V1beta1_MediaError] = [
+    .noError,
+    .partnerInvalid,
+    .locationInvalid,
+    .accessDenied,
+    .mediaNotFound,
+    .mediaInvalid,
+    .internalError,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a payload containing a media file upload.
 public struct Bloombox_Schema_Services_Media_V1beta1_MediaFile {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -103,12 +121,6 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Raw data for the media content being uploaded, if applicable.
-  public var content: Data {
-    get {return _storage._content}
-    set {_uniqueStorage()._content = newValue}
-  }
-
   /// Type specification for the media being uploaded.
   public var type: Opencannabis_Media_MediaType {
     get {return _storage._type ?? Opencannabis_Media_MediaType()}
@@ -117,7 +129,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
   /// Returns true if `type` has been explicitly set.
   public var hasType: Bool {return _storage._type != nil}
   /// Clears the value of `type`. Subsequent reads from it will return its default value.
-  public mutating func clearType() {_storage._type = nil}
+  public mutating func clearType() {_uniqueStorage()._type = nil}
 
   /// Specification for the data to be uploaded. Either a file, in which case, a mime type and/or filename can be
   /// provided, or a blob flag indicating it's just raw data.
@@ -144,6 +156,22 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
     set {_uniqueStorage()._spec = .blob(newValue)}
   }
 
+  /// Raw data for the media content being uploaded, if applicable.
+  public var content: Opencannabis_Content_Content {
+    get {return _storage._content ?? Opencannabis_Content_Content()}
+    set {_uniqueStorage()._content = newValue}
+  }
+  /// Returns true if `content` has been explicitly set.
+  public var hasContent: Bool {return _storage._content != nil}
+  /// Clears the value of `content`. Subsequent reads from it will return its default value.
+  public mutating func clearContent() {_uniqueStorage()._content = nil}
+
+  /// Name to give the media. Optional, and should be a human-readable label. Not usually based on a filename.
+  public var name: String {
+    get {return _storage._name}
+    set {_uniqueStorage()._name = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specification for the data to be uploaded. Either a file, in which case, a mime type and/or filename can be
@@ -154,6 +182,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
     /// Flag indicating the specified/attached content is a raw data blob.
     case blob(Bool)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaContent.OneOf_Spec, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaContent.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.file(let l), .file(let r)): return l == r
@@ -161,6 +190,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -176,15 +206,26 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadTransaction {
   // methods supported on all messages.
 
   /// URI to upload the data to.
-  public var target: String = String()
+  public var target: String {
+    get {return _storage._target}
+    set {_uniqueStorage()._target = newValue}
+  }
 
-  /// Token uniquely identifying this upload transaction, so the resulting media may later be attached after being
-  /// uploaded by the client.
-  public var token: String = String()
+  /// Key provisioned for the media item we are being asked to accept as an upload.
+  public var key: Opencannabis_Media_MediaKey {
+    get {return _storage._key ?? Opencannabis_Media_MediaKey()}
+    set {_uniqueStorage()._key = newValue}
+  }
+  /// Returns true if `key` has been explicitly set.
+  public var hasKey: Bool {return _storage._key != nil}
+  /// Clears the value of `key`. Subsequent reads from it will return its default value.
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Media operation result, when data/operations are performed inline with a request and do not require followup.
@@ -193,15 +234,15 @@ public struct Bloombox_Schema_Services_Media_V1beta1_OperationResult {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Resulting key, provisioned fresh for this media item.
-  public var key: Opencannabis_Media_MediaKey {
-    get {return _storage._key ?? Opencannabis_Media_MediaKey()}
-    set {_uniqueStorage()._key = newValue}
+  /// URI to access this item.
+  public var item: Opencannabis_Media_MediaItem {
+    get {return _storage._item ?? Opencannabis_Media_MediaItem()}
+    set {_uniqueStorage()._item = newValue}
   }
-  /// Returns true if `key` has been explicitly set.
-  public var hasKey: Bool {return _storage._key != nil}
-  /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  /// Returns true if `item` has been explicitly set.
+  public var hasItem: Bool {return _storage._item != nil}
+  /// Clears the value of `item`. Subsequent reads from it will return its default value.
+  public mutating func clearItem() {_uniqueStorage()._item = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -278,7 +319,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_GetMedia {
     /// Returns true if `key` has been explicitly set.
     public var hasKey: Bool {return _storage._key != nil}
     /// Clears the value of `key`. Subsequent reads from it will return its default value.
-    public mutating func clearKey() {_storage._key = nil}
+    public mutating func clearKey() {_uniqueStorage()._key = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -301,7 +342,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_GetMedia {
     /// Returns true if `media` has been explicitly set.
     public var hasMedia: Bool {return _storage._media != nil}
     /// Clears the value of `media`. Subsequent reads from it will return its default value.
-    public mutating func clearMedia() {_storage._media = nil}
+    public mutating func clearMedia() {_uniqueStorage()._media = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -342,7 +383,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
     /// Returns true if `subject` has been explicitly set.
     public var hasSubject: Bool {return _storage._subject != nil}
     /// Clears the value of `subject`. Subsequent reads from it will return its default value.
-    public mutating func clearSubject() {_storage._subject = nil}
+    public mutating func clearSubject() {_uniqueStorage()._subject = nil}
 
     /// Inline media content, if applicable to this request.
     public var content: Bloombox_Schema_Services_Media_V1beta1_MediaContent {
@@ -352,7 +393,19 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
     /// Returns true if `content` has been explicitly set.
     public var hasContent: Bool {return _storage._content != nil}
     /// Clears the value of `content`. Subsequent reads from it will return its default value.
-    public mutating func clearContent() {_storage._content = nil}
+    public mutating func clearContent() {_uniqueStorage()._content = nil}
+
+    /// Whether the content should be exposed publicly, or at some other privacy level.
+    public var privacy: Opencannabis_Media_MediaPrivacy {
+      get {return _storage._privacy}
+      set {_uniqueStorage()._privacy = newValue}
+    }
+
+    /// Origin from which we are uploading data.
+    public var origin: String {
+      get {return _storage._origin}
+      set {_uniqueStorage()._origin = newValue}
+    }
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -406,6 +459,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
       /// required by the client to complete the operation.
       case result(Bloombox_Schema_Services_Media_V1beta1_OperationResult)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response.OneOf_Operation, rhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response.OneOf_Operation) -> Bool {
         switch (lhs, rhs) {
         case (.transaction(let l), .transaction(let r)): return l == r
@@ -413,6 +467,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
@@ -440,14 +495,26 @@ public struct Bloombox_Schema_Services_Media_V1beta1_AttachMedia {
     // methods supported on all messages.
 
     /// Partnership scope for the request, including the partner code and location code.
-    public var scope: String = String()
+    public var scope: String {
+      get {return _storage._scope}
+      set {_uniqueStorage()._scope = newValue}
+    }
 
-    /// Upload transaction token, returned in a request to provision a new media upload.
-    public var token: String = String()
+    /// Key for the media item to attach.
+    public var key: Opencannabis_Media_MediaKey {
+      get {return _storage._key ?? Opencannabis_Media_MediaKey()}
+      set {_uniqueStorage()._key = newValue}
+    }
+    /// Returns true if `key` has been explicitly set.
+    public var hasKey: Bool {return _storage._key != nil}
+    /// Clears the value of `key`. Subsequent reads from it will return its default value.
+    public mutating func clearKey() {_uniqueStorage()._key = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
@@ -496,10 +563,10 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaFile: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_MediaFile) -> Bool {
-    if self.filename != other.filename {return false}
-    if self.mimetype != other.mimetype {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaFile, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaFile) -> Bool {
+    if lhs.filename != rhs.filename {return false}
+    if lhs.mimetype != rhs.mimetype {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -507,25 +574,28 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaFile: SwiftProtobuf.Messag
 extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MediaContent"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "content"),
-    2: .same(proto: "type"),
-    3: .same(proto: "file"),
-    4: .same(proto: "blob"),
+    1: .same(proto: "type"),
+    2: .same(proto: "file"),
+    3: .same(proto: "blob"),
+    4: .same(proto: "content"),
+    5: .same(proto: "name"),
   ]
 
   fileprivate class _StorageClass {
-    var _content: Data = SwiftProtobuf.Internal.emptyData
     var _type: Opencannabis_Media_MediaType? = nil
     var _spec: Bloombox_Schema_Services_Media_V1beta1_MediaContent.OneOf_Spec?
+    var _content: Opencannabis_Content_Content? = nil
+    var _name: String = String()
 
     static let defaultInstance = _StorageClass()
 
     private init() {}
 
     init(copying source: _StorageClass) {
-      _content = source._content
       _type = source._type
       _spec = source._spec
+      _content = source._content
+      _name = source._name
     }
   }
 
@@ -541,9 +611,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Mes
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularBytesField(value: &_storage._content)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._type)
-        case 3:
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._type)
+        case 2:
           var v: Bloombox_Schema_Services_Media_V1beta1_MediaFile?
           if let current = _storage._spec {
             try decoder.handleConflictingOneOf()
@@ -551,11 +620,13 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Mes
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._spec = .file(v)}
-        case 4:
+        case 3:
           if _storage._spec != nil {try decoder.handleConflictingOneOf()}
           var v: Bool?
           try decoder.decodeSingularBoolField(value: &v)
           if let v = v {_storage._spec = .blob(v)}
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._content)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._name)
         default: break
         }
       }
@@ -564,36 +635,40 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Mes
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._content.isEmpty {
-        try visitor.visitSingularBytesField(value: _storage._content, fieldNumber: 1)
-      }
       if let v = _storage._type {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
       }
       switch _storage._spec {
       case .file(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       case .blob(let v)?:
-        try visitor.visitSingularBoolField(value: v, fieldNumber: 4)
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 3)
       case nil: break
+      }
+      if let v = _storage._content {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 5)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_MediaContent) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaContent, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaContent) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._content != other_storage._content {return false}
-        if _storage._type != other_storage._type {return false}
-        if _storage._spec != other_storage._spec {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._spec != rhs_storage._spec {return false}
+        if _storage._content != rhs_storage._content {return false}
+        if _storage._name != rhs_storage._name {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -602,44 +677,11 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadTransaction: SwiftProtobu
   public static let protoMessageName: String = _protobuf_package + ".UploadTransaction"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "target"),
-    2: .same(proto: "token"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.target)
-      case 2: try decoder.decodeSingularStringField(value: &self.token)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.target.isEmpty {
-      try visitor.visitSingularStringField(value: self.target, fieldNumber: 1)
-    }
-    if !self.token.isEmpty {
-      try visitor.visitSingularStringField(value: self.token, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_UploadTransaction) -> Bool {
-    if self.target != other.target {return false}
-    if self.token != other.token {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".OperationResult"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "key"),
+    2: .same(proto: "key"),
   ]
 
   fileprivate class _StorageClass {
+    var _target: String = String()
     var _key: Opencannabis_Media_MediaKey? = nil
 
     static let defaultInstance = _StorageClass()
@@ -647,6 +689,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.
     private init() {}
 
     init(copying source: _StorageClass) {
+      _target = source._target
       _key = source._key
     }
   }
@@ -663,7 +706,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._target)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._key)
         default: break
         }
       }
@@ -672,24 +716,89 @@ extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._target.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._target, fieldNumber: 1)
+      }
       if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_UploadTransaction, rhs: Bloombox_Schema_Services_Media_V1beta1_UploadTransaction) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._target != rhs_storage._target {return false}
+        if _storage._key != rhs_storage._key {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".OperationResult"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "item"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _item: Opencannabis_Media_MediaItem? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _item = source._item
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._item)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._item {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_OperationResult) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_OperationResult, rhs: Bloombox_Schema_Services_Media_V1beta1_OperationResult) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
+        let rhs_storage = _args.1
+        if _storage._item != rhs_storage._item {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -707,8 +816,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_ListMedia: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_ListMedia) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia, rhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -735,9 +844,9 @@ extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request) -> Bool {
-    if self.scope != other.scope {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request, rhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request) -> Bool {
+    if lhs.scope != rhs.scope {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -764,9 +873,9 @@ extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response) -> Bool {
-    if self.media != other.media {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response, rhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response) -> Bool {
+    if lhs.media != rhs.media {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -784,8 +893,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_GetMedia) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia, rhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -843,18 +952,18 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request, rhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._scope != other_storage._scope {return false}
-        if _storage._key != other_storage._key {return false}
+        let rhs_storage = _args.1
+        if _storage._scope != rhs_storage._scope {return false}
+        if _storage._key != rhs_storage._key {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -905,17 +1014,17 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response, rhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._media != other_storage._media {return false}
+        let rhs_storage = _args.1
+        if _storage._media != rhs_storage._media {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -933,8 +1042,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_UploadMedia) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia, rhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -945,12 +1054,16 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProto
     1: .same(proto: "scope"),
     2: .same(proto: "subject"),
     3: .same(proto: "content"),
+    4: .same(proto: "privacy"),
+    5: .same(proto: "origin"),
   ]
 
   fileprivate class _StorageClass {
     var _scope: String = String()
     var _subject: Opencannabis_Media_MediaSubject? = nil
     var _content: Bloombox_Schema_Services_Media_V1beta1_MediaContent? = nil
+    var _privacy: Opencannabis_Media_MediaPrivacy = .defaultPrivacy
+    var _origin: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -960,6 +1073,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProto
       _scope = source._scope
       _subject = source._subject
       _content = source._content
+      _privacy = source._privacy
+      _origin = source._origin
     }
   }
 
@@ -978,6 +1093,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProto
         case 1: try decoder.decodeSingularStringField(value: &_storage._scope)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._subject)
         case 3: try decoder.decodeSingularMessageField(value: &_storage._content)
+        case 4: try decoder.decodeSingularEnumField(value: &_storage._privacy)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._origin)
         default: break
         }
       }
@@ -995,23 +1112,31 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProto
       if let v = _storage._content {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
       }
+      if _storage._privacy != .defaultPrivacy {
+        try visitor.visitSingularEnumField(value: _storage._privacy, fieldNumber: 4)
+      }
+      if !_storage._origin.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._origin, fieldNumber: 5)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request, rhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._scope != other_storage._scope {return false}
-        if _storage._subject != other_storage._subject {return false}
-        if _storage._content != other_storage._content {return false}
+        let rhs_storage = _args.1
+        if _storage._scope != rhs_storage._scope {return false}
+        if _storage._subject != rhs_storage._subject {return false}
+        if _storage._content != rhs_storage._content {return false}
+        if _storage._privacy != rhs_storage._privacy {return false}
+        if _storage._origin != rhs_storage._origin {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1082,17 +1207,17 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response, rhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._operation != other_storage._operation {return false}
+        let rhs_storage = _args.1
+        if _storage._operation != rhs_storage._operation {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1110,8 +1235,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_AttachMedia: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_AttachMedia) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_AttachMedia, rhs: Bloombox_Schema_Services_Media_V1beta1_AttachMedia) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1120,33 +1245,67 @@ extension Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request: SwiftProto
   public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_AttachMedia.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
-    2: .same(proto: "token"),
+    2: .same(proto: "key"),
   ]
 
+  fileprivate class _StorageClass {
+    var _scope: String = String()
+    var _key: Opencannabis_Media_MediaKey? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _scope = source._scope
+      _key = source._key
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.scope)
-      case 2: try decoder.decodeSingularStringField(value: &self.token)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._scope)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._key)
+        default: break
+        }
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.scope.isEmpty {
-      try visitor.visitSingularStringField(value: self.scope, fieldNumber: 1)
-    }
-    if !self.token.isEmpty {
-      try visitor.visitSingularStringField(value: self.token, fieldNumber: 2)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._scope.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._scope, fieldNumber: 1)
+      }
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request) -> Bool {
-    if self.scope != other.scope {return false}
-    if self.token != other.token {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request, rhs: Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._scope != rhs_storage._scope {return false}
+        if _storage._key != rhs_storage._key {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

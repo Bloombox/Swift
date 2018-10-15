@@ -37,7 +37,7 @@ public struct Opencannabis_Commerce_DeliveryDestination {
   /// Returns true if `address` has been explicitly set.
   public var hasAddress: Bool {return _storage._address != nil}
   /// Clears the value of `address`. Subsequent reads from it will return its default value.
-  public mutating func clearAddress() {_storage._address = nil}
+  public mutating func clearAddress() {_uniqueStorage()._address = nil}
 
   /// Special delivery instructions
   public var instructions: String {
@@ -109,18 +109,18 @@ extension Opencannabis_Commerce_DeliveryDestination: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_DeliveryDestination) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Commerce_DeliveryDestination, rhs: Opencannabis_Commerce_DeliveryDestination) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._address != other_storage._address {return false}
-        if _storage._instructions != other_storage._instructions {return false}
+        let rhs_storage = _args.1
+        if _storage._address != rhs_storage._address {return false}
+        if _storage._instructions != rhs_storage._instructions {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

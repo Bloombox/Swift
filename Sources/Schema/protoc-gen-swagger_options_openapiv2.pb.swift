@@ -41,7 +41,7 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_Swagger {
   /// Returns true if `info` has been explicitly set.
   public var hasInfo: Bool {return _storage._info != nil}
   /// Clears the value of `info`. Subsequent reads from it will return its default value.
-  public mutating func clearInfo() {_storage._info = nil}
+  public mutating func clearInfo() {_uniqueStorage()._info = nil}
 
   public var host: String {
     get {return _storage._host}
@@ -75,7 +75,7 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_Swagger {
   /// Returns true if `securityDefinitions` has been explicitly set.
   public var hasSecurityDefinitions: Bool {return _storage._securityDefinitions != nil}
   /// Clears the value of `securityDefinitions`. Subsequent reads from it will return its default value.
-  public mutating func clearSecurityDefinitions() {_storage._securityDefinitions = nil}
+  public mutating func clearSecurityDefinitions() {_uniqueStorage()._securityDefinitions = nil}
 
   public var security: [Grpc_Gateway_ProtocGenSwagger_Options_SecurityRequirement] {
     get {return _storage._security}
@@ -89,7 +89,7 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_Swagger {
   /// Returns true if `externalDocs` has been explicitly set.
   public var hasExternalDocs: Bool {return _storage._externalDocs != nil}
   /// Clears the value of `externalDocs`. Subsequent reads from it will return its default value.
-  public mutating func clearExternalDocs() {_storage._externalDocs = nil}
+  public mutating func clearExternalDocs() {_uniqueStorage()._externalDocs = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -135,6 +135,21 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_Swagger {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=4.2)
+
+extension Grpc_Gateway_ProtocGenSwagger_Options_Swagger.SwaggerScheme: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Grpc_Gateway_ProtocGenSwagger_Options_Swagger.SwaggerScheme] = [
+    .unknown,
+    .http,
+    .https,
+    .ws,
+    .wss,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// `Operation` is a representation of OpenAPI v2 specification's Operation object.
 ///
 /// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#operationObject
@@ -167,7 +182,7 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_Operation {
   /// Returns true if `externalDocs` has been explicitly set.
   public var hasExternalDocs: Bool {return _storage._externalDocs != nil}
   /// Clears the value of `externalDocs`. Subsequent reads from it will return its default value.
-  public mutating func clearExternalDocs() {_storage._externalDocs = nil}
+  public mutating func clearExternalDocs() {_uniqueStorage()._externalDocs = nil}
 
   public var operationID: String {
     get {return _storage._operationID}
@@ -238,7 +253,7 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_Info {
   /// Returns true if `contact` has been explicitly set.
   public var hasContact: Bool {return _storage._contact != nil}
   /// Clears the value of `contact`. Subsequent reads from it will return its default value.
-  public mutating func clearContact() {_storage._contact = nil}
+  public mutating func clearContact() {_uniqueStorage()._contact = nil}
 
   public var version: String {
     get {return _storage._version}
@@ -310,7 +325,7 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_Schema {
   /// Returns true if `jsonSchema` has been explicitly set.
   public var hasJsonSchema: Bool {return _storage._jsonSchema != nil}
   /// Clears the value of `jsonSchema`. Subsequent reads from it will return its default value.
-  public mutating func clearJsonSchema() {_storage._jsonSchema = nil}
+  public mutating func clearJsonSchema() {_uniqueStorage()._jsonSchema = nil}
 
   public var discriminator: String {
     get {return _storage._discriminator}
@@ -329,7 +344,7 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_Schema {
   /// Returns true if `externalDocs` has been explicitly set.
   public var hasExternalDocs: Bool {return _storage._externalDocs != nil}
   /// Clears the value of `externalDocs`. Subsequent reads from it will return its default value.
-  public mutating func clearExternalDocs() {_storage._externalDocs = nil}
+  public mutating func clearExternalDocs() {_uniqueStorage()._externalDocs = nil}
 
   public var example: SwiftProtobuf.Google_Protobuf_Any {
     get {return _storage._example ?? SwiftProtobuf.Google_Protobuf_Any()}
@@ -338,7 +353,7 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_Schema {
   /// Returns true if `example` has been explicitly set.
   public var hasExample: Bool {return _storage._example != nil}
   /// Clears the value of `example`. Subsequent reads from it will return its default value.
-  public mutating func clearExample() {_storage._example = nil}
+  public mutating func clearExample() {_uniqueStorage()._example = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -512,6 +527,24 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_JSONSchema {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=4.2)
+
+extension Grpc_Gateway_ProtocGenSwagger_Options_JSONSchema.JSONSchemaSimpleTypes: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Grpc_Gateway_ProtocGenSwagger_Options_JSONSchema.JSONSchemaSimpleTypes] = [
+    .unknown,
+    .array,
+    .boolean,
+    .integer,
+    .null,
+    .number,
+    .object,
+    .string,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// `Tag` is a representation of OpenAPI v2 specification's Tag object.
 ///
 /// See: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0/versions/2.0.md#tagObject
@@ -536,7 +569,7 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_Tag {
   /// Returns true if `externalDocs` has been explicitly set.
   public var hasExternalDocs: Bool {return _storage._externalDocs != nil}
   /// Clears the value of `externalDocs`. Subsequent reads from it will return its default value.
-  public mutating func clearExternalDocs() {_storage._externalDocs = nil}
+  public mutating func clearExternalDocs() {_uniqueStorage()._externalDocs = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -646,7 +679,7 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme {
   /// Returns true if `scopes` has been explicitly set.
   public var hasScopes: Bool {return _storage._scopes != nil}
   /// Clears the value of `scopes`. Subsequent reads from it will return its default value.
-  public mutating func clearScopes() {_storage._scopes = nil}
+  public mutating func clearScopes() {_uniqueStorage()._scopes = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -761,6 +794,40 @@ public struct Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme {
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
+
+#if swift(>=4.2)
+
+extension Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme.TypeEnum] = [
+    .invalid,
+    .basic,
+    .apiKey,
+    .oauth2,
+  ]
+}
+
+extension Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme.In: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme.In] = [
+    .invalid,
+    .query,
+    .header,
+  ]
+}
+
+extension Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme.Flow: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme.Flow] = [
+    .invalid,
+    .implicit,
+    .password,
+    .application,
+    .accessCode,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// `SecurityRequirement` is a representation of OpenAPI v2 specification's
 /// Security Requirement object.
@@ -936,26 +1003,26 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_Swagger: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_Swagger) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_Swagger, rhs: Grpc_Gateway_ProtocGenSwagger_Options_Swagger) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._swagger != other_storage._swagger {return false}
-        if _storage._info != other_storage._info {return false}
-        if _storage._host != other_storage._host {return false}
-        if _storage._basePath != other_storage._basePath {return false}
-        if _storage._schemes != other_storage._schemes {return false}
-        if _storage._consumes != other_storage._consumes {return false}
-        if _storage._produces != other_storage._produces {return false}
-        if _storage._securityDefinitions != other_storage._securityDefinitions {return false}
-        if _storage._security != other_storage._security {return false}
-        if _storage._externalDocs != other_storage._externalDocs {return false}
+        let rhs_storage = _args.1
+        if _storage._swagger != rhs_storage._swagger {return false}
+        if _storage._info != rhs_storage._info {return false}
+        if _storage._host != rhs_storage._host {return false}
+        if _storage._basePath != rhs_storage._basePath {return false}
+        if _storage._schemes != rhs_storage._schemes {return false}
+        if _storage._consumes != rhs_storage._consumes {return false}
+        if _storage._produces != rhs_storage._produces {return false}
+        if _storage._securityDefinitions != rhs_storage._securityDefinitions {return false}
+        if _storage._security != rhs_storage._security {return false}
+        if _storage._externalDocs != rhs_storage._externalDocs {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1079,26 +1146,26 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_Operation: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_Operation, rhs: Grpc_Gateway_ProtocGenSwagger_Options_Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._tags != other_storage._tags {return false}
-        if _storage._summary != other_storage._summary {return false}
-        if _storage._description_p != other_storage._description_p {return false}
-        if _storage._externalDocs != other_storage._externalDocs {return false}
-        if _storage._operationID != other_storage._operationID {return false}
-        if _storage._consumes != other_storage._consumes {return false}
-        if _storage._produces != other_storage._produces {return false}
-        if _storage._schemes != other_storage._schemes {return false}
-        if _storage._deprecated != other_storage._deprecated {return false}
-        if _storage._security != other_storage._security {return false}
+        let rhs_storage = _args.1
+        if _storage._tags != rhs_storage._tags {return false}
+        if _storage._summary != rhs_storage._summary {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._externalDocs != rhs_storage._externalDocs {return false}
+        if _storage._operationID != rhs_storage._operationID {return false}
+        if _storage._consumes != rhs_storage._consumes {return false}
+        if _storage._produces != rhs_storage._produces {return false}
+        if _storage._schemes != rhs_storage._schemes {return false}
+        if _storage._deprecated != rhs_storage._deprecated {return false}
+        if _storage._security != rhs_storage._security {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1177,21 +1244,21 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_Info: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_Info) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_Info, rhs: Grpc_Gateway_ProtocGenSwagger_Options_Info) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._title != other_storage._title {return false}
-        if _storage._description_p != other_storage._description_p {return false}
-        if _storage._termsOfService != other_storage._termsOfService {return false}
-        if _storage._contact != other_storage._contact {return false}
-        if _storage._version != other_storage._version {return false}
+        let rhs_storage = _args.1
+        if _storage._title != rhs_storage._title {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._termsOfService != rhs_storage._termsOfService {return false}
+        if _storage._contact != rhs_storage._contact {return false}
+        if _storage._version != rhs_storage._version {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1228,11 +1295,11 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_Contact: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_Contact) -> Bool {
-    if self.name != other.name {return false}
-    if self.url != other.url {return false}
-    if self.email != other.email {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_Contact, rhs: Grpc_Gateway_ProtocGenSwagger_Options_Contact) -> Bool {
+    if lhs.name != rhs.name {return false}
+    if lhs.url != rhs.url {return false}
+    if lhs.email != rhs.email {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1264,10 +1331,10 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_ExternalDocumentation: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_ExternalDocumentation) -> Bool {
-    if self.description_p != other.description_p {return false}
-    if self.url != other.url {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_ExternalDocumentation, rhs: Grpc_Gateway_ProtocGenSwagger_Options_ExternalDocumentation) -> Bool {
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.url != rhs.url {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1346,21 +1413,21 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_Schema: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_Schema) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_Schema, rhs: Grpc_Gateway_ProtocGenSwagger_Options_Schema) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._jsonSchema != other_storage._jsonSchema {return false}
-        if _storage._discriminator != other_storage._discriminator {return false}
-        if _storage._readOnly != other_storage._readOnly {return false}
-        if _storage._externalDocs != other_storage._externalDocs {return false}
-        if _storage._example != other_storage._example {return false}
+        let rhs_storage = _args.1
+        if _storage._jsonSchema != rhs_storage._jsonSchema {return false}
+        if _storage._discriminator != rhs_storage._discriminator {return false}
+        if _storage._readOnly != rhs_storage._readOnly {return false}
+        if _storage._externalDocs != rhs_storage._externalDocs {return false}
+        if _storage._example != rhs_storage._example {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1537,35 +1604,35 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_JSONSchema: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_JSONSchema) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_JSONSchema, rhs: Grpc_Gateway_ProtocGenSwagger_Options_JSONSchema) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._title != other_storage._title {return false}
-        if _storage._description_p != other_storage._description_p {return false}
-        if _storage._default != other_storage._default {return false}
-        if _storage._multipleOf != other_storage._multipleOf {return false}
-        if _storage._maximum != other_storage._maximum {return false}
-        if _storage._exclusiveMaximum != other_storage._exclusiveMaximum {return false}
-        if _storage._minimum != other_storage._minimum {return false}
-        if _storage._exclusiveMinimum != other_storage._exclusiveMinimum {return false}
-        if _storage._maxLength != other_storage._maxLength {return false}
-        if _storage._minLength != other_storage._minLength {return false}
-        if _storage._pattern != other_storage._pattern {return false}
-        if _storage._maxItems != other_storage._maxItems {return false}
-        if _storage._minItems != other_storage._minItems {return false}
-        if _storage._uniqueItems != other_storage._uniqueItems {return false}
-        if _storage._maxProperties != other_storage._maxProperties {return false}
-        if _storage._minProperties != other_storage._minProperties {return false}
-        if _storage._required != other_storage._required {return false}
-        if _storage._array != other_storage._array {return false}
-        if _storage._type != other_storage._type {return false}
+        let rhs_storage = _args.1
+        if _storage._title != rhs_storage._title {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._default != rhs_storage._default {return false}
+        if _storage._multipleOf != rhs_storage._multipleOf {return false}
+        if _storage._maximum != rhs_storage._maximum {return false}
+        if _storage._exclusiveMaximum != rhs_storage._exclusiveMaximum {return false}
+        if _storage._minimum != rhs_storage._minimum {return false}
+        if _storage._exclusiveMinimum != rhs_storage._exclusiveMinimum {return false}
+        if _storage._maxLength != rhs_storage._maxLength {return false}
+        if _storage._minLength != rhs_storage._minLength {return false}
+        if _storage._pattern != rhs_storage._pattern {return false}
+        if _storage._maxItems != rhs_storage._maxItems {return false}
+        if _storage._minItems != rhs_storage._minItems {return false}
+        if _storage._uniqueItems != rhs_storage._uniqueItems {return false}
+        if _storage._maxProperties != rhs_storage._maxProperties {return false}
+        if _storage._minProperties != rhs_storage._minProperties {return false}
+        if _storage._required != rhs_storage._required {return false}
+        if _storage._array != rhs_storage._array {return false}
+        if _storage._type != rhs_storage._type {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1636,18 +1703,18 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_Tag: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_Tag) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_Tag, rhs: Grpc_Gateway_ProtocGenSwagger_Options_Tag) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._description_p != other_storage._description_p {return false}
-        if _storage._externalDocs != other_storage._externalDocs {return false}
+        let rhs_storage = _args.1
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._externalDocs != rhs_storage._externalDocs {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1674,9 +1741,9 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_SecurityDefinitions: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_SecurityDefinitions) -> Bool {
-    if self.security != other.security {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_SecurityDefinitions, rhs: Grpc_Gateway_ProtocGenSwagger_Options_SecurityDefinitions) -> Bool {
+    if lhs.security != rhs.security {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1776,24 +1843,24 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme, rhs: Grpc_Gateway_ProtocGenSwagger_Options_SecurityScheme) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._description_p != other_storage._description_p {return false}
-        if _storage._name != other_storage._name {return false}
-        if _storage._in != other_storage._in {return false}
-        if _storage._flow != other_storage._flow {return false}
-        if _storage._authorizationURL != other_storage._authorizationURL {return false}
-        if _storage._tokenURL != other_storage._tokenURL {return false}
-        if _storage._scopes != other_storage._scopes {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._in != rhs_storage._in {return false}
+        if _storage._flow != rhs_storage._flow {return false}
+        if _storage._authorizationURL != rhs_storage._authorizationURL {return false}
+        if _storage._tokenURL != rhs_storage._tokenURL {return false}
+        if _storage._scopes != rhs_storage._scopes {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1847,9 +1914,9 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_SecurityRequirement: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_SecurityRequirement) -> Bool {
-    if self.securityRequirement != other.securityRequirement {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_SecurityRequirement, rhs: Grpc_Gateway_ProtocGenSwagger_Options_SecurityRequirement) -> Bool {
+    if lhs.securityRequirement != rhs.securityRequirement {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1876,9 +1943,9 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_SecurityRequirement.SecurityRequ
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_SecurityRequirement.SecurityRequirementValue) -> Bool {
-    if self.scope != other.scope {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_SecurityRequirement.SecurityRequirementValue, rhs: Grpc_Gateway_ProtocGenSwagger_Options_SecurityRequirement.SecurityRequirementValue) -> Bool {
+    if lhs.scope != rhs.scope {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1905,9 +1972,9 @@ extension Grpc_Gateway_ProtocGenSwagger_Options_Scopes: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Grpc_Gateway_ProtocGenSwagger_Options_Scopes) -> Bool {
-    if self.scope != other.scope {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Grpc_Gateway_ProtocGenSwagger_Options_Scopes, rhs: Grpc_Gateway_ProtocGenSwagger_Options_Scopes) -> Bool {
+    if lhs.scope != rhs.scope {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

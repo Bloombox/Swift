@@ -72,6 +72,22 @@ public enum Bloombox_Schema_Analytics_Context_BrowserType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Analytics_Context_BrowserType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Analytics_Context_BrowserType] = [
+    .browserUnknown,
+    .chrome,
+    .safari,
+    .firefox,
+    .opera,
+    .ieOrEdge,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a structure describing JavaScript code running in a web browser of some kind.
 public struct Bloombox_Schema_Analytics_Context_BrowserDeviceContext {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -92,7 +108,7 @@ public struct Bloombox_Schema_Analytics_Context_BrowserDeviceContext {
   /// Returns true if `version` has been explicitly set.
   public var hasVersion: Bool {return _storage._version != nil}
   /// Clears the value of `version`. Subsequent reads from it will return its default value.
-  public mutating func clearVersion() {_storage._version = nil}
+  public mutating func clearVersion() {_uniqueStorage()._version = nil}
 
   /// Active language, as reported by the browser.
   public var language: String {
@@ -234,23 +250,23 @@ extension Bloombox_Schema_Analytics_Context_BrowserDeviceContext: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_BrowserDeviceContext) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Context_BrowserDeviceContext, rhs: Bloombox_Schema_Analytics_Context_BrowserDeviceContext) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._browserType != other_storage._browserType {return false}
-        if _storage._version != other_storage._version {return false}
-        if _storage._language != other_storage._language {return false}
-        if _storage._userAgent != other_storage._userAgent {return false}
-        if _storage._touchpoints != other_storage._touchpoints {return false}
-        if _storage._hardwareConcurrency != other_storage._hardwareConcurrency {return false}
-        if _storage._colorDepth != other_storage._colorDepth {return false}
+        let rhs_storage = _args.1
+        if _storage._browserType != rhs_storage._browserType {return false}
+        if _storage._version != rhs_storage._version {return false}
+        if _storage._language != rhs_storage._language {return false}
+        if _storage._userAgent != rhs_storage._userAgent {return false}
+        if _storage._touchpoints != rhs_storage._touchpoints {return false}
+        if _storage._hardwareConcurrency != rhs_storage._hardwareConcurrency {return false}
+        if _storage._colorDepth != rhs_storage._colorDepth {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

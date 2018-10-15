@@ -57,7 +57,7 @@ public struct Bloombox_Schema_Comms_SMSMessage {
   /// Returns true if `sender` has been explicitly set.
   public var hasSender: Bool {return _storage._sender != nil}
   /// Clears the value of `sender`. Subsequent reads from it will return its default value.
-  public mutating func clearSender() {_storage._sender = nil}
+  public mutating func clearSender() {_uniqueStorage()._sender = nil}
 
   /// Recipient phone number for the message.
   public var recipient: Opencannabis_Contact_PhoneNumber {
@@ -67,7 +67,7 @@ public struct Bloombox_Schema_Comms_SMSMessage {
   /// Returns true if `recipient` has been explicitly set.
   public var hasRecipient: Bool {return _storage._recipient != nil}
   /// Clears the value of `recipient`. Subsequent reads from it will return its default value.
-  public mutating func clearRecipient() {_storage._recipient = nil}
+  public mutating func clearRecipient() {_uniqueStorage()._recipient = nil}
 
   /// Content for the SMS message.
   public var content: Bloombox_Schema_Comms_SMSContent {
@@ -77,7 +77,7 @@ public struct Bloombox_Schema_Comms_SMSMessage {
   /// Returns true if `content` has been explicitly set.
   public var hasContent: Bool {return _storage._content != nil}
   /// Clears the value of `content`. Subsequent reads from it will return its default value.
-  public mutating func clearContent() {_storage._content = nil}
+  public mutating func clearContent() {_uniqueStorage()._content = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -100,7 +100,7 @@ public struct Bloombox_Schema_Comms_SMSTransmission {
   /// Returns true if `message` has been explicitly set.
   public var hasMessage: Bool {return _storage._message != nil}
   /// Clears the value of `message`. Subsequent reads from it will return its default value.
-  public mutating func clearMessage() {_storage._message = nil}
+  public mutating func clearMessage() {_uniqueStorage()._message = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -137,7 +137,7 @@ public struct Bloombox_Schema_Comms_SMSSettings {
   /// Returns true if `sender` has been explicitly set.
   public var hasSender: Bool {return _storage._sender != nil}
   /// Clears the value of `sender`. Subsequent reads from it will return its default value.
-  public mutating func clearSender() {_storage._sender = nil}
+  public mutating func clearSender() {_uniqueStorage()._sender = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -182,11 +182,11 @@ extension Bloombox_Schema_Comms_SMSContent: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_SMSContent) -> Bool {
-    if self.subject != other.subject {return false}
-    if self.content != other.content {return false}
-    if self.media != other.media {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Comms_SMSContent, rhs: Bloombox_Schema_Comms_SMSContent) -> Bool {
+    if lhs.subject != rhs.subject {return false}
+    if lhs.content != rhs.content {return false}
+    if lhs.media != rhs.media {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -251,19 +251,19 @@ extension Bloombox_Schema_Comms_SMSMessage: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_SMSMessage) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_SMSMessage, rhs: Bloombox_Schema_Comms_SMSMessage) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._sender != other_storage._sender {return false}
-        if _storage._recipient != other_storage._recipient {return false}
-        if _storage._content != other_storage._content {return false}
+        let rhs_storage = _args.1
+        if _storage._sender != rhs_storage._sender {return false}
+        if _storage._recipient != rhs_storage._recipient {return false}
+        if _storage._content != rhs_storage._content {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -314,17 +314,17 @@ extension Bloombox_Schema_Comms_SMSTransmission: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_SMSTransmission) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_SMSTransmission, rhs: Bloombox_Schema_Comms_SMSTransmission) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._message != other_storage._message {return false}
+        let rhs_storage = _args.1
+        if _storage._message != rhs_storage._message {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -351,9 +351,9 @@ extension Bloombox_Schema_Comms_SMSBatch: SwiftProtobuf.Message, SwiftProtobuf._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_SMSBatch) -> Bool {
-    if self.op != other.op {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Comms_SMSBatch, rhs: Bloombox_Schema_Comms_SMSBatch) -> Bool {
+    if lhs.op != rhs.op {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -404,17 +404,17 @@ extension Bloombox_Schema_Comms_SMSSettings: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_SMSSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_SMSSettings, rhs: Bloombox_Schema_Comms_SMSSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._sender != other_storage._sender {return false}
+        let rhs_storage = _args.1
+        if _storage._sender != rhs_storage._sender {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

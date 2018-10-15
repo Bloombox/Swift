@@ -52,6 +52,18 @@ public enum Bloombox_Schema_Analytics_Context_ApplicationType: SwiftProtobuf.Enu
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Analytics_Context_ApplicationType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Analytics_Context_ApplicationType] = [
+    .internal,
+    .partner,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies information about a web application reporting information to the telemetry service.
 public struct Bloombox_Schema_Analytics_Context_WebApplication {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -101,7 +113,7 @@ public struct Bloombox_Schema_Analytics_Context_DeviceApplication {
   /// Returns true if `version` has been explicitly set.
   public var hasVersion: Bool {return _storage._version != nil}
   /// Clears the value of `version`. Subsequent reads from it will return its default value.
-  public mutating func clearVersion() {_storage._version = nil}
+  public mutating func clearVersion() {_uniqueStorage()._version = nil}
 
   /// Specifies which application is running. How that is specified depends on the architecture behind the application.
   public var spec: OneOf_Spec? {
@@ -147,6 +159,7 @@ public struct Bloombox_Schema_Analytics_Context_DeviceApplication {
     /// Specifies an application ID for an Android application.
     case androidPackageID(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Analytics_Context_DeviceApplication.OneOf_Spec, rhs: Bloombox_Schema_Analytics_Context_DeviceApplication.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.web(let l), .web(let r)): return l == r
@@ -155,6 +168,7 @@ public struct Bloombox_Schema_Analytics_Context_DeviceApplication {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -220,14 +234,14 @@ extension Bloombox_Schema_Analytics_Context_WebApplication: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_WebApplication) -> Bool {
-    if self.origin != other.origin {return false}
-    if self.location != other.location {return false}
-    if self.anchor != other.anchor {return false}
-    if self.title != other.title {return false}
-    if self.referrer != other.referrer {return false}
-    if self.`protocol` != other.`protocol` {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Analytics_Context_WebApplication, rhs: Bloombox_Schema_Analytics_Context_WebApplication) -> Bool {
+    if lhs.origin != rhs.origin {return false}
+    if lhs.location != rhs.location {return false}
+    if lhs.anchor != rhs.anchor {return false}
+    if lhs.title != rhs.title {return false}
+    if lhs.referrer != rhs.referrer {return false}
+    if lhs.`protocol` != rhs.`protocol` {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -317,19 +331,19 @@ extension Bloombox_Schema_Analytics_Context_DeviceApplication: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_DeviceApplication) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Context_DeviceApplication, rhs: Bloombox_Schema_Analytics_Context_DeviceApplication) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._version != other_storage._version {return false}
-        if _storage._spec != other_storage._spec {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._version != rhs_storage._version {return false}
+        if _storage._spec != rhs_storage._spec {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -62,6 +62,19 @@ public enum Opencannabis_Commerce_ProductVariant: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_ProductVariant: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_ProductVariant] = [
+    .weight,
+    .color,
+    .size,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies if it is a weighted product or a unit priced product and attaches that to item.
 public struct Opencannabis_Commerce_VariantSpec {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -110,6 +123,7 @@ public struct Opencannabis_Commerce_VariantSpec {
     /// Specifies a color option for the product.
     case color(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Commerce_VariantSpec.OneOf_Spec, rhs: Opencannabis_Commerce_VariantSpec.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.weight(let l), .weight(let r)): return l == r
@@ -118,6 +132,7 @@ public struct Opencannabis_Commerce_VariantSpec {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -137,7 +152,7 @@ public struct Opencannabis_Commerce_Item {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Variance specifications for this item.
   public var variant: [Opencannabis_Commerce_VariantSpec] {
@@ -231,10 +246,10 @@ extension Opencannabis_Commerce_VariantSpec: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_VariantSpec) -> Bool {
-    if self.variant != other.variant {return false}
-    if self.spec != other.spec {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Commerce_VariantSpec, rhs: Opencannabis_Commerce_VariantSpec) -> Bool {
+    if lhs.variant != rhs.variant {return false}
+    if lhs.spec != rhs.spec {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -313,21 +328,21 @@ extension Opencannabis_Commerce_Item: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_Item) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Commerce_Item, rhs: Opencannabis_Commerce_Item) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._variant != other_storage._variant {return false}
-        if _storage._count != other_storage._count {return false}
-        if _storage._uri != other_storage._uri {return false}
-        if _storage._imageUri != other_storage._imageUri {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._variant != rhs_storage._variant {return false}
+        if _storage._count != rhs_storage._count {return false}
+        if _storage._uri != rhs_storage._uri {return false}
+        if _storage._imageUri != rhs_storage._imageUri {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

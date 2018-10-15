@@ -87,6 +87,7 @@ public struct Bloombox_Schema_Security_IDToken {
     /// Parsed identity JWT payload.
     case data(Bloombox_Schema_Security_IDTokenPayload)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Security_IDToken.OneOf_Payload, rhs: Bloombox_Schema_Security_IDToken.OneOf_Payload) -> Bool {
       switch (lhs, rhs) {
       case (.encoded(let l), .encoded(let r)): return l == r
@@ -94,6 +95,7 @@ public struct Bloombox_Schema_Security_IDToken {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -161,6 +163,7 @@ public struct Bloombox_Schema_Security_AuthToken {
     /// Parsed and structured authorization ticket.
     case ticket(Bloombox_Schema_Security_TokenPayload)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Security_AuthToken.OneOf_Payload, rhs: Bloombox_Schema_Security_AuthToken.OneOf_Payload) -> Bool {
       switch (lhs, rhs) {
       case (.encoded(let l), .encoded(let r)): return l == r
@@ -168,6 +171,7 @@ public struct Bloombox_Schema_Security_AuthToken {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -190,7 +194,7 @@ public struct Bloombox_Schema_Security_AuthPayload {
   /// Returns true if `id` has been explicitly set.
   public var hasID: Bool {return _storage._id != nil}
   /// Clears the value of `id`. Subsequent reads from it will return its default value.
-  public mutating func clearID() {_storage._id = nil}
+  public mutating func clearID() {_uniqueStorage()._id = nil}
 
   /// Authorization token, asserting completed consent and authorization status.
   public var auth: Bloombox_Schema_Security_AuthToken {
@@ -200,7 +204,7 @@ public struct Bloombox_Schema_Security_AuthPayload {
   /// Returns true if `auth` has been explicitly set.
   public var hasAuth: Bool {return _storage._auth != nil}
   /// Clears the value of `auth`. Subsequent reads from it will return its default value.
-  public mutating func clearAuth() {_storage._auth = nil}
+  public mutating func clearAuth() {_uniqueStorage()._auth = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -255,13 +259,13 @@ extension Bloombox_Schema_Security_IDTokenPayload: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_IDTokenPayload) -> Bool {
-    if self.token != other.token {return false}
-    if self.expiration != other.expiration {return false}
-    if self.issuance != other.issuance {return false}
-    if self.subject != other.subject {return false}
-    if self.audience != other.audience {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Security_IDTokenPayload, rhs: Bloombox_Schema_Security_IDTokenPayload) -> Bool {
+    if lhs.token != rhs.token {return false}
+    if lhs.expiration != rhs.expiration {return false}
+    if lhs.issuance != rhs.issuance {return false}
+    if lhs.subject != rhs.subject {return false}
+    if lhs.audience != rhs.audience {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -329,17 +333,17 @@ extension Bloombox_Schema_Security_IDToken: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_IDToken) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Security_IDToken, rhs: Bloombox_Schema_Security_IDToken) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._payload != other_storage._payload {return false}
+        let rhs_storage = _args.1
+        if _storage._payload != rhs_storage._payload {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -381,12 +385,12 @@ extension Bloombox_Schema_Security_TokenPayload: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_TokenPayload) -> Bool {
-    if self.token != other.token {return false}
-    if self.expiration != other.expiration {return false}
-    if self.issuance != other.issuance {return false}
-    if self.scope != other.scope {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Security_TokenPayload, rhs: Bloombox_Schema_Security_TokenPayload) -> Bool {
+    if lhs.token != rhs.token {return false}
+    if lhs.expiration != rhs.expiration {return false}
+    if lhs.issuance != rhs.issuance {return false}
+    if lhs.scope != rhs.scope {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -454,17 +458,17 @@ extension Bloombox_Schema_Security_AuthToken: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_AuthToken) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Security_AuthToken, rhs: Bloombox_Schema_Security_AuthToken) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._payload != other_storage._payload {return false}
+        let rhs_storage = _args.1
+        if _storage._payload != rhs_storage._payload {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -522,18 +526,18 @@ extension Bloombox_Schema_Security_AuthPayload: SwiftProtobuf.Message, SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_AuthPayload) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Security_AuthPayload, rhs: Bloombox_Schema_Security_AuthPayload) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._auth != other_storage._auth {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._auth != rhs_storage._auth {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

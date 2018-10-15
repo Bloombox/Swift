@@ -103,6 +103,26 @@ public enum Opencannabis_Structs_ProductFlag: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_ProductFlag: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_ProductFlag] = [
+    .visible,
+    .hidden,
+    .premium,
+    .featured,
+    .exclusive,
+    .inHouse,
+    .lastChance,
+    .limitedTime,
+    .local,
+    .onSale,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Opencannabis_Structs_ProductFlag: SwiftProtobuf._ProtoNameProviding {

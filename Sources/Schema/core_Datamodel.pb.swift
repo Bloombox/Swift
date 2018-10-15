@@ -57,6 +57,19 @@ public enum Core_CollectionMode: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Core_CollectionMode: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Core_CollectionMode] = [
+    .nested,
+    .collection,
+    .group,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates field handling special-cases. Fields may be annotated with these special types to change the way they are
 /// handled by the model mapping layer.
 public enum Core_FieldType: SwiftProtobuf.Enum {
@@ -105,6 +118,21 @@ public enum Core_FieldType: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Core_FieldType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Core_FieldType] = [
+    .standard,
+    .key,
+    .id,
+    .tags,
+    .flags,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies options related to persistence of underlying model data associated with this particular message type. This
 /// includes settings related to Firestore and other data engines.
@@ -380,10 +408,10 @@ extension Core_PersistenceOptions: SwiftProtobuf.Message, SwiftProtobuf._Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Core_PersistenceOptions) -> Bool {
-    if self.mode != other.mode {return false}
-    if self.path != other.path {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Core_PersistenceOptions, rhs: Core_PersistenceOptions) -> Bool {
+    if lhs.mode != rhs.mode {return false}
+    if lhs.path != rhs.path {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -415,10 +443,10 @@ extension Core_TableOptions: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Core_TableOptions) -> Bool {
-    if self.name != other.name {return false}
-    if self.description_p != other.description_p {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Core_TableOptions, rhs: Core_TableOptions) -> Bool {
+    if lhs.name != rhs.name {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -450,10 +478,10 @@ extension Core_SubmessageOptions: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Core_SubmessageOptions) -> Bool {
-    if self.mode != other.mode {return false}
-    if self.path != other.path {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Core_SubmessageOptions, rhs: Core_SubmessageOptions) -> Bool {
+    if lhs.mode != rhs.mode {return false}
+    if lhs.path != rhs.path {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -485,10 +513,10 @@ extension Core_FieldPersistenceOptions: SwiftProtobuf.Message, SwiftProtobuf._Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Core_FieldPersistenceOptions) -> Bool {
-    if self.type != other.type {return false}
-    if self.description_p != other.description_p {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Core_FieldPersistenceOptions, rhs: Core_FieldPersistenceOptions) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -525,11 +553,11 @@ extension Core_TableFieldOptions: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Core_TableFieldOptions) -> Bool {
-    if self.require != other.require {return false}
-    if self.ignore != other.ignore {return false}
-    if self.bqtype != other.bqtype {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Core_TableFieldOptions, rhs: Core_TableFieldOptions) -> Bool {
+    if lhs.require != rhs.require {return false}
+    if lhs.ignore != rhs.ignore {return false}
+    if lhs.bqtype != rhs.bqtype {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

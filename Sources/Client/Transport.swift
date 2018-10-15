@@ -36,57 +36,60 @@ CAUw7C29C79Fv1C5qfPrmAESrciIxpg0X40KPMbp1ZWVbd4=
 
 // MARK: - Configuration
 
-/**
- * Main library transport settings.
- */
+/// Main library transport settings.
 internal struct Transport {
-  /**
-   * Selected environment to use.
-   */
-  static let environment: TransportEnvironment = .sandbox
+  /// Selected environment to use.
+  static let environment: TransportEnvironment = .production
 
-  /**
-   * Configuration resolved from the above transport environment.
-   */
+  /// Configuration resolved from the above transport environment.
   static let config: TransportSettings = Transport.environment.config
 
   // MARK: Configuration Profiles
   #if DEBUG
-  /**
-   * Sandbox transport profile.
-   */
+  /// Sandbox transport profile.
   internal struct Sandbox: TransportSettings {
     let data: DataEnvironment = .sandbox
     let services: ServiceSettings = RPCServicesConfig(
+      auth: ProductionAuth(),
       devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
-      menu: ProductionMenu())
+      menu: ProductionMenu(),
+      media: ProductionMedia(),
+      pos: ProductionPOS(),
+      platform: ProductionPlatform(),
+      checkin: ProductionCheckin())
   }
 
-  /**
-   * Staging transport profile.
-   */
+  /// Staging transport profile.
   internal struct Staging: TransportSettings {
     let data: DataEnvironment = .v1
     let services: ServiceSettings = RPCServicesConfig(
+      auth: ProductionAuth(),
       devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
-      menu: ProductionMenu())
+      menu: ProductionMenu(),
+      media: ProductionMedia(),
+      pos: ProductionPOS(),
+      platform: ProductionPlatform(),
+      checkin: ProductionCheckin())
   }
   #endif
 
-  /**
-   * Production transport profile.
-   */
+  /// Production transport profile.
   internal struct Production: TransportSettings {
     let data: DataEnvironment = .v1
     let services: ServiceSettings = RPCServicesConfig(
+      auth: ProductionAuth(),
       devices: ProductionDevices(),
       shop: ProductionShop(),
       telemetry: ProductionTelemetry(),
-      menu: ProductionMenu())
+      menu: ProductionMenu(),
+      media: ProductionMedia(),
+      pos: ProductionPOS(),
+      platform: ProductionPlatform(),
+      checkin: ProductionCheckin())
   }
 }
 
@@ -99,29 +102,18 @@ fileprivate let __staging = Transport.Staging()
 fileprivate let __production = Transport.Production()
 
 
-/**
- * Specifies known transport environments to which RPC service settings may be
- * bound/associated.
- */
+/// Specifies known transport environments to which RPC service settings may be bound/associated.
 internal enum TransportEnvironment {
-  /**
-   * Sandbox: Environment for testing and development.
-   */
+  /// Sandbox: Environment for testing and development.
   case sandbox
 
-  /**
-   * Staging: Production release testing.
-   */
+  /// Staging: Production release testing.
   case staging
 
-  /**
-   * Production: Live services.
-   */
+  /// Production: Live services.
   case production
 
-  /**
-   * Retrieve the configuration singleton for a particular transport environment.
-   */
+  /// Retrieve the configuration singleton for a particular transport environment.
   var config: TransportSettings {
     #if DEBUG
       switch self {
@@ -135,93 +127,139 @@ internal enum TransportEnvironment {
   }
 }
 
-/**
- * Production devices service settings.
- */
+/// Production devices service settings.
 internal struct ProductionDevices: RPCServiceSettings {
   let secure = true
-  let host = "devices.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "devices.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
 }
 
-/**
- * Production shop settings.
- */
+/// Production shop settings.
 internal struct ProductionShop: RPCServiceSettings {
   let secure = true
-  let host = "shop.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "shop.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
 }
 
-/**
- * Production telemetry settings.
- */
+/// Production telemetry settings.
 internal struct ProductionTelemetry: RPCServiceSettings {
   let secure = true
-  let host = "telemetry.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "telemetry.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
 }
 
-/**
- * Production menu settings.
- */
+/// Production media settings.
+internal struct ProductionMedia: RPCServiceSettings {
+  let secure = true
+  let host = "api.bloombox.cloud"
+  let port = 443
+  let hostname: String? = "api.bloombox.cloud"
+  let chain: String? = authorityChain
+  let cert: String? = nil
+  let key: String? = nil
+}
+
+/// Production menu settings.
 internal struct ProductionMenu: RPCServiceSettings {
   let secure = true
-  let host = "menu.api.bloombox.cloud"
+  let host = "api.bloombox.cloud"
   let port = 443
-  let hostname: String? = "menu.api.bloombox.cloud"
+  let hostname: String? = "api.bloombox.cloud"
+  let chain: String? = authorityChain
+  let cert: String? = nil
+  let key: String? = nil
+}
+
+/// Production POS settings.
+internal struct ProductionPOS: RPCServiceSettings {
+  let secure = true
+  let host = "api.bloombox.cloud"
+  let port = 443
+  let hostname: String? = "api.bloombox.cloud"
+  let chain: String? = authorityChain
+  let cert: String? = nil
+  let key: String? = nil
+}
+
+/// Production auth settings.
+internal struct ProductionAuth: RPCServiceSettings {
+  let secure = true
+  let host = "api.bloombox.cloud"
+  let port = 443
+  let hostname: String? = "api.bloombox.cloud"
+  let chain: String? = authorityChain
+  let cert: String? = nil
+  let key: String? = nil
+}
+
+/// Production checkin settings.
+internal struct ProductionCheckin: RPCServiceSettings {
+  let secure = true
+  let host = "api.bloombox.cloud"
+  let port = 443
+  let hostname: String? = "api.bloombox.cloud"
+  let chain: String? = authorityChain
+  let cert: String? = nil
+  let key: String? = nil
+}
+
+/// Production platform API settings.
+internal struct ProductionPlatform: RPCServiceSettings {
+  let secure = true
+  let host = "api.bloombox.cloud"
+  let port = 443
+  let hostname: String? = "api.bloombox.cloud"
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
 }
 
 #if DEBUG
-  /**
-   * Local shop settings.
-   */
+  /// Local shop settings.
   internal struct LocalShop: RPCServiceSettings {
     let secure = false
     let host = "127.0.0.1"
     let port = 1091
   }
 
-  /**
-   * Local telemetry settings.
-   */
+  /// Local telemetry settings.
   internal struct LocalTelemetry: RPCServiceSettings {
     let secure = false
     let host = "127.0.0.1"
     let port = 1090
   }
 
-  /**
-   * Local menu settings.
-   */
+  /// Local menu settings.
   internal struct LocalMenu: RPCServiceSettings {
     let secure = false
     let host = "127.0.0.1"
     let port = 1094
+  }
+
+  /// Local POS settings.
+  internal struct LocalPOS: RPCServiceSettings {
+    let secure = false
+    let host = "127.0.0.1"
+    let port = 1105
   }
 #endif
 
 
 // MARK: - Structural Specification
 
-/**
- * Specifies gathered transport-layer settings.
- */
+/// Specifies gathered transport-layer settings.
 internal protocol TransportSettings {
   var data: DataEnvironment { get }
   var services: ServiceSettings { get }
@@ -229,20 +267,20 @@ internal protocol TransportSettings {
 
 // MARK: RPC Services
 
-/**
- * Specifies a configuration set for supported RPC services.
- */
+/// Specifies a configuration set for supported RPC services.
 internal struct RPCServicesConfig: ServiceSettings {
+  let auth: RPCServiceSettings
   let devices: RPCServiceSettings
   let shop: RPCServiceSettings
   let telemetry: RPCServiceSettings
   let menu: RPCServiceSettings
+  let media: RPCServiceSettings
+  let pos: RPCServiceSettings
+  let platform: RPCServiceSettings
+  let checkin: RPCServiceSettings
 }
 
-/**
- * Specifies a structure for a block of settings for an individual RPC
- * service.
- */
+/// Specifies a structure for a block of settings for an individual RPC service.
 internal protocol RPCServiceSettings {
   var secure: Bool { get }
   var host: String { get }
@@ -253,21 +291,21 @@ internal protocol RPCServiceSettings {
   var chain: String? { get }
 }
 
-/**
- * Specifies a full set of service settings.
- */
+/// Specifies a full set of service settings.
 internal protocol ServiceSettings {
   var devices: RPCServiceSettings { get }
   var shop: RPCServiceSettings { get }
   var telemetry: RPCServiceSettings { get }
   var menu: RPCServiceSettings { get }
+  var pos: RPCServiceSettings { get }
+  var auth: RPCServiceSettings { get }
+  var platform: RPCServiceSettings { get }
+  var checkin: RPCServiceSettings { get }
 }
 
 // MARK: Data Services
 
-/**
- * Specifies known data environments.
- */
+/// Specifies known data environments.
 internal enum DataEnvironment: String {
   case sandbox = "sandbox"
   case v1 = "v1"

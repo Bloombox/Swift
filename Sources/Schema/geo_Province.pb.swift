@@ -53,6 +53,7 @@ public struct Opencannabis_Geo_Province {
     /// Generic province reference, by name.
     case province(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Geo_Province.OneOf_Spec, rhs: Opencannabis_Geo_Province.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.state(let l), .state(let r)): return l == r
@@ -60,6 +61,7 @@ public struct Opencannabis_Geo_Province {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -105,9 +107,9 @@ extension Opencannabis_Geo_Province: SwiftProtobuf.Message, SwiftProtobuf._Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Province) -> Bool {
-    if self.spec != other.spec {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Geo_Province, rhs: Opencannabis_Geo_Province) -> Bool {
+    if lhs.spec != rhs.spec {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

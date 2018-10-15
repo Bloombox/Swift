@@ -53,6 +53,20 @@ public enum Opencannabis_Structs_Pricing_SaleType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Pricing_SaleType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Pricing_SaleType] = [
+    .percentageReduction,
+    .valueReduction,
+    .bogo,
+    .loyalty,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 public struct Opencannabis_Structs_Pricing_PercentageDiscount {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -111,7 +125,7 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor {
   /// Returns true if `effective` has been explicitly set.
   public var hasEffective: Bool {return _storage._effective != nil}
   /// Clears the value of `effective`. Subsequent reads from it will return its default value.
-  public mutating func clearEffective() {_storage._effective = nil}
+  public mutating func clearEffective() {_uniqueStorage()._effective = nil}
 
   public var expiration: Opencannabis_Temporal_Instant {
     get {return _storage._expiration ?? Opencannabis_Temporal_Instant()}
@@ -120,7 +134,7 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor {
   /// Returns true if `expiration` has been explicitly set.
   public var hasExpiration: Bool {return _storage._expiration != nil}
   /// Clears the value of `expiration`. Subsequent reads from it will return its default value.
-  public mutating func clearExpiration() {_storage._expiration = nil}
+  public mutating func clearExpiration() {_uniqueStorage()._expiration = nil}
 
   /// sale amount and trigger properties
   public var sale: OneOf_Sale? {
@@ -160,6 +174,7 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor {
     case bogo(Opencannabis_Structs_Pricing_BOGODiscount)
     case loyalty(Opencannabis_Structs_Pricing_LoyaltyDiscount)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Structs_Pricing_SaleDescriptor.OneOf_Sale, rhs: Opencannabis_Structs_Pricing_SaleDescriptor.OneOf_Sale) -> Bool {
       switch (lhs, rhs) {
       case (.percentageOff(let l), .percentageOff(let r)): return l == r
@@ -168,6 +183,7 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -210,9 +226,9 @@ extension Opencannabis_Structs_Pricing_PercentageDiscount: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_PercentageDiscount) -> Bool {
-    if self.discount != other.discount {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Pricing_PercentageDiscount, rhs: Opencannabis_Structs_Pricing_PercentageDiscount) -> Bool {
+    if lhs.discount != rhs.discount {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -244,10 +260,10 @@ extension Opencannabis_Structs_Pricing_BOGODiscount: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_BOGODiscount) -> Bool {
-    if self.trigger != other.trigger {return false}
-    if self.reward != other.reward {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Pricing_BOGODiscount, rhs: Opencannabis_Structs_Pricing_BOGODiscount) -> Bool {
+    if lhs.trigger != rhs.trigger {return false}
+    if lhs.reward != rhs.reward {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -279,10 +295,10 @@ extension Opencannabis_Structs_Pricing_LoyaltyDiscount: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_LoyaltyDiscount) -> Bool {
-    if self.trigger != other.trigger {return false}
-    if self.reward != other.reward {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Pricing_LoyaltyDiscount, rhs: Opencannabis_Structs_Pricing_LoyaltyDiscount) -> Bool {
+    if lhs.trigger != rhs.trigger {return false}
+    if lhs.reward != rhs.reward {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -385,20 +401,20 @@ extension Opencannabis_Structs_Pricing_SaleDescriptor: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_SaleDescriptor) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Pricing_SaleDescriptor, rhs: Opencannabis_Structs_Pricing_SaleDescriptor) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._effective != other_storage._effective {return false}
-        if _storage._expiration != other_storage._expiration {return false}
-        if _storage._sale != other_storage._sale {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._effective != rhs_storage._effective {return false}
+        if _storage._expiration != rhs_storage._expiration {return false}
+        if _storage._sale != rhs_storage._sale {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

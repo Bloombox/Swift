@@ -78,11 +78,11 @@ extension Opencannabis_Contact_Website: SwiftProtobuf.Message, SwiftProtobuf._Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Contact_Website) -> Bool {
-    if self.uri != other.uri {return false}
-    if self.title != other.title {return false}
-    if self.icon != other.icon {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Contact_Website, rhs: Opencannabis_Contact_Website) -> Bool {
+    if lhs.uri != rhs.uri {return false}
+    if lhs.title != rhs.title {return false}
+    if lhs.icon != rhs.icon {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

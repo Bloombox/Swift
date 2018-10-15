@@ -26,55 +26,50 @@ public struct Opencannabis_Media_MediaType {
   // methods supported on all messages.
 
   /// Specifies the generic kind of media being described or attached.
-  public var kind: Opencannabis_Media_MediaType.Kind {
-    get {return _storage._kind}
-    set {_uniqueStorage()._kind = newValue}
-  }
+  public var kind: Opencannabis_Media_MediaType.Kind = .link
 
-  /// Specifies the content for the media item.
-  public var content: OneOf_Content? {
-    get {return _storage._content}
-    set {_uniqueStorage()._content = newValue}
-  }
+  /// Specifies the content type for the media item.
+  public var content: Opencannabis_Media_MediaType.OneOf_Content? = nil
 
-  /// Specifies content for an image-based media item.
-  public var imageType: Opencannabis_Media_ImageType {
+  /// Specifies content type for an image-based media item.
+  public var imageType: Opencannabis_Media_MediaType.ImageKind {
     get {
-      if case .imageType(let v)? = _storage._content {return v}
-      return Opencannabis_Media_ImageType()
+      if case .imageType(let v)? = content {return v}
+      return .unspecifiedImageType
     }
-    set {_uniqueStorage()._content = .imageType(newValue)}
+    set {content = .imageType(newValue)}
   }
 
-  /// Specifies content for a document-based media item.
-  public var documentType: Opencannabis_Media_DocumentType {
+  /// Specifies content type for a document-based media item.
+  public var documentType: Opencannabis_Media_MediaType.DocumentKind {
     get {
-      if case .documentType(let v)? = _storage._content {return v}
-      return Opencannabis_Media_DocumentType()
+      if case .documentType(let v)? = content {return v}
+      return .unspecifiedDocumentType
     }
-    set {_uniqueStorage()._content = .documentType(newValue)}
+    set {content = .documentType(newValue)}
   }
 
-  /// Specifies content for a video-based media item.
-  public var videoType: Opencannabis_Media_VideoType {
+  /// Specifies content type for a video-based media item.
+  public var videoType: Opencannabis_Media_MediaType.VideoKind {
     get {
-      if case .videoType(let v)? = _storage._content {return v}
-      return Opencannabis_Media_VideoType()
+      if case .videoType(let v)? = content {return v}
+      return .unspecifiedVideoType
     }
-    set {_uniqueStorage()._content = .videoType(newValue)}
+    set {content = .videoType(newValue)}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  /// Specifies the content for the media item.
+  /// Specifies the content type for the media item.
   public enum OneOf_Content: Equatable {
-    /// Specifies content for an image-based media item.
-    case imageType(Opencannabis_Media_ImageType)
-    /// Specifies content for a document-based media item.
-    case documentType(Opencannabis_Media_DocumentType)
-    /// Specifies content for a video-based media item.
-    case videoType(Opencannabis_Media_VideoType)
+    /// Specifies content type for an image-based media item.
+    case imageType(Opencannabis_Media_MediaType.ImageKind)
+    /// Specifies content type for a document-based media item.
+    case documentType(Opencannabis_Media_MediaType.DocumentKind)
+    /// Specifies content type for a video-based media item.
+    case videoType(Opencannabis_Media_MediaType.VideoKind)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Media_MediaType.OneOf_Content, rhs: Opencannabis_Media_MediaType.OneOf_Content) -> Bool {
       switch (lhs, rhs) {
       case (.imageType(let l), .imageType(let r)): return l == r
@@ -83,6 +78,7 @@ public struct Opencannabis_Media_MediaType {
       default: return false
       }
     }
+  #endif
   }
 
   /// Enumerates, in generic terms, the kinds of media that can be attached or described.
@@ -128,176 +124,182 @@ public struct Opencannabis_Media_MediaType {
 
   }
 
-  public init() {}
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Specifies image type information.
-public struct Opencannabis_Media_ImageType {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Specifies the format of the attached or described image.
-  public var kind: Opencannabis_Media_ImageType.ImageKind = .png
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
   /// Specifies kinds of images that may be attached or described.
   public enum ImageKind: SwiftProtobuf.Enum {
     public typealias RawValue = Int
 
+    /// Unspecified image type.
+    case unspecifiedImageType // = 0
+
     /// PNG image.
-    case png // = 0
+    case png // = 1
 
     /// JPG image.
-    case jpg // = 1
+    case jpg // = 2
 
     /// GIF image.
-    case gif // = 2
+    case gif // = 3
 
     /// SVG image.
-    case svg // = 3
+    case svg // = 4
 
     /// WEBP image.
-    case webp // = 4
+    case webp // = 5
     case UNRECOGNIZED(Int)
 
     public init() {
-      self = .png
+      self = .unspecifiedImageType
     }
 
     public init?(rawValue: Int) {
       switch rawValue {
-      case 0: self = .png
-      case 1: self = .jpg
-      case 2: self = .gif
-      case 3: self = .svg
-      case 4: self = .webp
+      case 0: self = .unspecifiedImageType
+      case 1: self = .png
+      case 2: self = .jpg
+      case 3: self = .gif
+      case 4: self = .svg
+      case 5: self = .webp
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
 
     public var rawValue: Int {
       switch self {
-      case .png: return 0
-      case .jpg: return 1
-      case .gif: return 2
-      case .svg: return 3
-      case .webp: return 4
+      case .unspecifiedImageType: return 0
+      case .png: return 1
+      case .jpg: return 2
+      case .gif: return 3
+      case .svg: return 4
+      case .webp: return 5
       case .UNRECOGNIZED(let i): return i
       }
     }
 
   }
 
-  public init() {}
-}
+  /// Specifies the pixel density setting for an image.
+  public enum ImageDPI: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
 
-/// Specifies document type information.
-public struct Opencannabis_Media_DocumentType {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
+    /// The image has normal, 1:1 pixel density.
+    case x1 // = 0
 
-  /// Specifies the kind of document being attached or described.
-  public var kind: Opencannabis_Media_DocumentType.DocumentKind = .txt
+    /// The image has double pixel density.
+    case x2 // = 1
 
-  /// Specifies whether the attached document is compressed or not.
-  public var compressed: Bool = false
+    /// The image has triple pixel density.
+    case x3 // = 2
+    case UNRECOGNIZED(Int)
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+    public init() {
+      self = .x1
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .x1
+      case 1: self = .x2
+      case 2: self = .x3
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .x1: return 0
+      case .x2: return 1
+      case .x3: return 2
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
 
   /// Specifies kinds of documents that may be attached or described.
   public enum DocumentKind: SwiftProtobuf.Enum {
     public typealias RawValue = Int
 
+    /// Unspecified document type.
+    case unspecifiedDocumentType // = 0
+
     /// Plaintext format.
-    case txt // = 0
+    case txt // = 1
 
     /// HTML format.
-    case html // = 1
+    case html // = 2
 
     /// PDF format.
-    case pdf // = 2
+    case pdf // = 3
 
     /// Markdown format.
-    case markdown // = 3
+    case markdown // = 4
     case UNRECOGNIZED(Int)
 
     public init() {
-      self = .txt
+      self = .unspecifiedDocumentType
     }
 
     public init?(rawValue: Int) {
       switch rawValue {
-      case 0: self = .txt
-      case 1: self = .html
-      case 2: self = .pdf
-      case 3: self = .markdown
+      case 0: self = .unspecifiedDocumentType
+      case 1: self = .txt
+      case 2: self = .html
+      case 3: self = .pdf
+      case 4: self = .markdown
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
 
     public var rawValue: Int {
       switch self {
-      case .txt: return 0
-      case .html: return 1
-      case .pdf: return 2
-      case .markdown: return 3
+      case .unspecifiedDocumentType: return 0
+      case .txt: return 1
+      case .html: return 2
+      case .pdf: return 3
+      case .markdown: return 4
       case .UNRECOGNIZED(let i): return i
       }
     }
 
   }
-
-  public init() {}
-}
-
-/// Specifies video type information.
-public struct Opencannabis_Media_VideoType {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Specifies the kind of video being attached or described.
-  public var kind: Opencannabis_Media_VideoType.VideoKind = .mp4
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies kinds of videos that may be attached or described.
   public enum VideoKind: SwiftProtobuf.Enum {
     public typealias RawValue = Int
 
+    /// Unspecified video type.
+    case unspecifiedVideoType // = 0
+
     /// MP4 video.
-    case mp4 // = 0
+    case mp4 // = 1
 
     /// Flash video.
-    case flv // = 1
+    case flv // = 2
 
     /// HTTP Live Streaming video.
-    case hls // = 2
+    case hls // = 3
     case UNRECOGNIZED(Int)
 
     public init() {
-      self = .mp4
+      self = .unspecifiedVideoType
     }
 
     public init?(rawValue: Int) {
       switch rawValue {
-      case 0: self = .mp4
-      case 1: self = .flv
-      case 2: self = .hls
+      case 0: self = .unspecifiedVideoType
+      case 1: self = .mp4
+      case 2: self = .flv
+      case 3: self = .hls
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
 
     public var rawValue: Int {
       switch self {
-      case .mp4: return 0
-      case .flv: return 1
-      case .hls: return 2
+      case .unspecifiedVideoType: return 0
+      case .mp4: return 1
+      case .flv: return 2
+      case .hls: return 3
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -306,6 +308,62 @@ public struct Opencannabis_Media_VideoType {
 
   public init() {}
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Media_MediaType.Kind: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Media_MediaType.Kind] = [
+    .link,
+    .image,
+    .document,
+    .video,
+  ]
+}
+
+extension Opencannabis_Media_MediaType.ImageKind: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Media_MediaType.ImageKind] = [
+    .unspecifiedImageType,
+    .png,
+    .jpg,
+    .gif,
+    .svg,
+    .webp,
+  ]
+}
+
+extension Opencannabis_Media_MediaType.ImageDPI: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Media_MediaType.ImageDPI] = [
+    .x1,
+    .x2,
+    .x3,
+  ]
+}
+
+extension Opencannabis_Media_MediaType.DocumentKind: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Media_MediaType.DocumentKind] = [
+    .unspecifiedDocumentType,
+    .txt,
+    .html,
+    .pdf,
+    .markdown,
+  ]
+}
+
+extension Opencannabis_Media_MediaType.VideoKind: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Media_MediaType.VideoKind] = [
+    .unspecifiedVideoType,
+    .mp4,
+    .flv,
+    .hls,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
@@ -320,93 +378,50 @@ extension Opencannabis_Media_MediaType: SwiftProtobuf.Message, SwiftProtobuf._Me
     301: .standard(proto: "video_type"),
   ]
 
-  fileprivate class _StorageClass {
-    var _kind: Opencannabis_Media_MediaType.Kind = .link
-    var _content: Opencannabis_Media_MediaType.OneOf_Content?
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _kind = source._kind
-      _content = source._content
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._kind)
-        case 101:
-          var v: Opencannabis_Media_ImageType?
-          if let current = _storage._content {
-            try decoder.handleConflictingOneOf()
-            if case .imageType(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._content = .imageType(v)}
-        case 201:
-          var v: Opencannabis_Media_DocumentType?
-          if let current = _storage._content {
-            try decoder.handleConflictingOneOf()
-            if case .documentType(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._content = .documentType(v)}
-        case 301:
-          var v: Opencannabis_Media_VideoType?
-          if let current = _storage._content {
-            try decoder.handleConflictingOneOf()
-            if case .videoType(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._content = .videoType(v)}
-        default: break
-        }
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.kind)
+      case 101:
+        if self.content != nil {try decoder.handleConflictingOneOf()}
+        var v: Opencannabis_Media_MediaType.ImageKind?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.content = .imageType(v)}
+      case 201:
+        if self.content != nil {try decoder.handleConflictingOneOf()}
+        var v: Opencannabis_Media_MediaType.DocumentKind?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.content = .documentType(v)}
+      case 301:
+        if self.content != nil {try decoder.handleConflictingOneOf()}
+        var v: Opencannabis_Media_MediaType.VideoKind?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.content = .videoType(v)}
+      default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._kind != .link {
-        try visitor.visitSingularEnumField(value: _storage._kind, fieldNumber: 1)
-      }
-      switch _storage._content {
-      case .imageType(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 101)
-      case .documentType(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 201)
-      case .videoType(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 301)
-      case nil: break
-      }
+    if self.kind != .link {
+      try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
+    }
+    switch self.content {
+    case .imageType(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 101)
+    case .documentType(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 201)
+    case .videoType(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 301)
+    case nil: break
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_MediaType) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._kind != other_storage._kind {return false}
-        if _storage._content != other_storage._content {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Media_MediaType, rhs: Opencannabis_Media_MediaType) -> Bool {
+    if lhs.kind != rhs.kind {return false}
+    if lhs.content != rhs.content {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -420,122 +435,40 @@ extension Opencannabis_Media_MediaType.Kind: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Opencannabis_Media_ImageType: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ImageType"
+extension Opencannabis_Media_MediaType.ImageKind: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "kind"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.kind)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.kind != .png {
-      try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_ImageType) -> Bool {
-    if self.kind != other.kind {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Opencannabis_Media_ImageType.ImageKind: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "PNG"),
-    1: .same(proto: "JPG"),
-    2: .same(proto: "GIF"),
-    3: .same(proto: "SVG"),
-    4: .same(proto: "WEBP"),
+    0: .same(proto: "UNSPECIFIED_IMAGE_TYPE"),
+    1: .same(proto: "PNG"),
+    2: .same(proto: "JPG"),
+    3: .same(proto: "GIF"),
+    4: .same(proto: "SVG"),
+    5: .same(proto: "WEBP"),
   ]
 }
 
-extension Opencannabis_Media_DocumentType: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".DocumentType"
+extension Opencannabis_Media_MediaType.ImageDPI: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "kind"),
-    2: .same(proto: "compressed"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.kind)
-      case 2: try decoder.decodeSingularBoolField(value: &self.compressed)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.kind != .txt {
-      try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
-    }
-    if self.compressed != false {
-      try visitor.visitSingularBoolField(value: self.compressed, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_DocumentType) -> Bool {
-    if self.kind != other.kind {return false}
-    if self.compressed != other.compressed {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Opencannabis_Media_DocumentType.DocumentKind: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "TXT"),
-    1: .same(proto: "HTML"),
-    2: .same(proto: "PDF"),
-    3: .same(proto: "MARKDOWN"),
+    0: .same(proto: "X1"),
+    1: .same(proto: "X2"),
+    2: .same(proto: "X3"),
   ]
 }
 
-extension Opencannabis_Media_VideoType: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".VideoType"
+extension Opencannabis_Media_MediaType.DocumentKind: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "kind"),
+    0: .same(proto: "UNSPECIFIED_DOCUMENT_TYPE"),
+    1: .same(proto: "TXT"),
+    2: .same(proto: "HTML"),
+    3: .same(proto: "PDF"),
+    4: .same(proto: "MARKDOWN"),
   ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.kind)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.kind != .mp4 {
-      try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Media_VideoType) -> Bool {
-    if self.kind != other.kind {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
 }
 
-extension Opencannabis_Media_VideoType.VideoKind: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Media_MediaType.VideoKind: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "MP4"),
-    1: .same(proto: "FLV"),
-    2: .same(proto: "HLS"),
+    0: .same(proto: "UNSPECIFIED_VIDEO_TYPE"),
+    1: .same(proto: "MP4"),
+    2: .same(proto: "FLV"),
+    3: .same(proto: "HLS"),
   ]
 }

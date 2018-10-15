@@ -232,6 +232,53 @@ public enum Bloombox_Schema_Identity_Ids_USDLField: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Identity_Ids_USDLField: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Identity_Ids_USDLField] = [
+    .backBarcode,
+    .familyName,
+    .givenName,
+    .middleName,
+    .fullName,
+    .namePrefix,
+    .nameSuffix,
+    .dateOfBirth,
+    .sex,
+    .height,
+    .weight,
+    .eyeColor,
+    .hairColor,
+    .fullAddress,
+    .addressLine,
+    .addressLine2,
+    .addressCity,
+    .postalCode,
+    .stateJurisdiction,
+    .licenseID,
+    .licenseIssueDate,
+    .licenseExpiryDate,
+    .issuerJurisdiction,
+    .issuerJurisdictionFormatVersion,
+    .uniqueDocumentCode,
+    .inventoryControlCode,
+    .under18Date,
+    .under19Date,
+    .under21Date,
+    .under18,
+    .under19,
+    .under21,
+    .organDonor,
+    .veteran,
+    .nonresident,
+    .raceEthnicity,
+    .complianceType,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies an individual raw field value read or scanned from a United States Driver's License.
 public struct Bloombox_Schema_Identity_Ids_USDLFieldValue {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -269,6 +316,7 @@ public struct Bloombox_Schema_Identity_Ids_USDLFieldValue {
     /// Byte data for this field.
     case rawValue(Data)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Identity_Ids_USDLFieldValue.OneOf_Data, rhs: Bloombox_Schema_Identity_Ids_USDLFieldValue.OneOf_Data) -> Bool {
       switch (lhs, rhs) {
       case (.value(let l), .value(let r)): return l == r
@@ -276,6 +324,60 @@ public struct Bloombox_Schema_Identity_Ids_USDLFieldValue {
       default: return false
       }
     }
+  #endif
+  }
+
+  public init() {}
+}
+
+/// Reference to a US Driver's License.
+public struct Bloombox_Schema_Identity_Ids_USDLReference {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Driver's license number.
+  public var number: String = String()
+
+  /// Raw data, in base64 form.
+  public var data: Bloombox_Schema_Identity_Ids_USDLReference.OneOf_Data? = nil
+
+  /// PDF417 back-side barcode.
+  public var barcode: String {
+    get {
+      if case .barcode(let v)? = data {return v}
+      return String()
+    }
+    set {data = .barcode(newValue)}
+  }
+
+  /// Magnetic stripe data.
+  public var magstripe: String {
+    get {
+      if case .magstripe(let v)? = data {return v}
+      return String()
+    }
+    set {data = .magstripe(newValue)}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Raw data, in base64 form.
+  public enum OneOf_Data: Equatable {
+    /// PDF417 back-side barcode.
+    case barcode(String)
+    /// Magnetic stripe data.
+    case magstripe(String)
+
+  #if !swift(>=4.1)
+    public static func ==(lhs: Bloombox_Schema_Identity_Ids_USDLReference.OneOf_Data, rhs: Bloombox_Schema_Identity_Ids_USDLReference.OneOf_Data) -> Bool {
+      switch (lhs, rhs) {
+      case (.barcode(let l), .barcode(let r)): return l == r
+      case (.magstripe(let l), .magstripe(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
   }
 
   public init() {}
@@ -394,10 +496,59 @@ extension Bloombox_Schema_Identity_Ids_USDLFieldValue: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_USDLFieldValue) -> Bool {
-    if self.field != other.field {return false}
-    if self.data != other.data {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Identity_Ids_USDLFieldValue, rhs: Bloombox_Schema_Identity_Ids_USDLFieldValue) -> Bool {
+    if lhs.field != rhs.field {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Identity_Ids_USDLReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".USDLReference"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "number"),
+    2: .same(proto: "barcode"),
+    3: .same(proto: "magstripe"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.number)
+      case 2:
+        if self.data != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.data = .barcode(v)}
+      case 3:
+        if self.data != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.data = .magstripe(v)}
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.number.isEmpty {
+      try visitor.visitSingularStringField(value: self.number, fieldNumber: 1)
+    }
+    switch self.data {
+    case .barcode(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 2)
+    case .magstripe(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 3)
+    case nil: break
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Identity_Ids_USDLReference, rhs: Bloombox_Schema_Identity_Ids_USDLReference) -> Bool {
+    if lhs.number != rhs.number {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -444,13 +595,13 @@ extension Bloombox_Schema_Identity_Ids_USDL: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_USDL) -> Bool {
-    if self.barcode != other.barcode {return false}
-    if self.magstripe != other.magstripe {return false}
-    if self.jurisdiction != other.jurisdiction {return false}
-    if self.identificationCard != other.identificationCard {return false}
-    if self.fields != other.fields {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Identity_Ids_USDL, rhs: Bloombox_Schema_Identity_Ids_USDL) -> Bool {
+    if lhs.barcode != rhs.barcode {return false}
+    if lhs.magstripe != rhs.magstripe {return false}
+    if lhs.jurisdiction != rhs.jurisdiction {return false}
+    if lhs.identificationCard != rhs.identificationCard {return false}
+    if lhs.fields != rhs.fields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

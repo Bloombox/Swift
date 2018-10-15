@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the Platform API, which provides core functionality that is either used broadly or across different
+/// product offerings.
+
 import Foundation
 import SwiftProtobuf
 
@@ -62,6 +66,20 @@ public enum Bloombox_Schema_Services_Platform_V1_PlatformError: SwiftProtobuf.En
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Platform_V1_PlatformError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Platform_V1_PlatformError] = [
+    .noError,
+    .searchNotAvailable,
+    .originInvalid,
+    .originNotFound,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the status of this service in PING responses.
 public enum Bloombox_Schema_Services_Platform_V1_PlatformServiceStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -104,6 +122,20 @@ public enum Bloombox_Schema_Services_Platform_V1_PlatformServiceStatus: SwiftPro
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Platform_V1_PlatformServiceStatus: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Platform_V1_PlatformServiceStatus] = [
+    .unknown,
+    .up,
+    .down,
+    .maintenance,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies an RPC operation to retrieve status information for the Checkin API.
 public struct Bloombox_Schema_Services_Platform_V1_Ping {
@@ -260,9 +292,63 @@ public struct Bloombox_Schema_Services_Platform_V1_DomainInfo {
     /// Embedded/email link domain.
     public var link: String = String()
 
+    /// Internal/store website for the partner location.
+    public var website: String = String()
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
+  }
+
+  public init() {}
+}
+
+/// Specifies an operation to retrieve brand information for a given partner location.
+public struct Bloombox_Schema_Services_Platform_V1_BrandInfo {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Specifies a request for branding information.
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Partner code identifying the partner organization owning the location for which branding is being requested.
+    public var partner: String = String()
+
+    /// Location code for which branding is being requested.
+    public var location: String = String()
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  /// Specifies a response to a request for branding information.
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Branding information returned to the callee, assuming it could be located.
+    public var brand: Opencannabis_Content_Brand {
+      get {return _storage._brand ?? Opencannabis_Content_Brand()}
+      set {_uniqueStorage()._brand = newValue}
+    }
+    /// Returns true if `brand` has been explicitly set.
+    public var hasBrand: Bool {return _storage._brand != nil}
+    /// Clears the value of `brand`. Subsequent reads from it will return its default value.
+    public mutating func clearBrand() {_uniqueStorage()._brand = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
   }
 
   public init() {}
@@ -303,8 +389,8 @@ extension Bloombox_Schema_Services_Platform_V1_Ping: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_Ping) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_Ping, rhs: Bloombox_Schema_Services_Platform_V1_Ping) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -322,8 +408,8 @@ extension Bloombox_Schema_Services_Platform_V1_Ping.Request: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_Ping.Request) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_Ping.Request, rhs: Bloombox_Schema_Services_Platform_V1_Ping.Request) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -350,9 +436,9 @@ extension Bloombox_Schema_Services_Platform_V1_Ping.Response: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_Ping.Response) -> Bool {
-    if self.status != other.status {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_Ping.Response, rhs: Bloombox_Schema_Services_Platform_V1_Ping.Response) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -370,8 +456,8 @@ extension Bloombox_Schema_Services_Platform_V1_Healthcheck: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_Healthcheck) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_Healthcheck, rhs: Bloombox_Schema_Services_Platform_V1_Healthcheck) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -398,9 +484,9 @@ extension Bloombox_Schema_Services_Platform_V1_Healthcheck.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_Healthcheck.Request) -> Bool {
-    if self.probe != other.probe {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_Healthcheck.Request, rhs: Bloombox_Schema_Services_Platform_V1_Healthcheck.Request) -> Bool {
+    if lhs.probe != rhs.probe {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -418,8 +504,8 @@ extension Bloombox_Schema_Services_Platform_V1_DomainResolve: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainResolve) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_DomainResolve, rhs: Bloombox_Schema_Services_Platform_V1_DomainResolve) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -446,9 +532,9 @@ extension Bloombox_Schema_Services_Platform_V1_DomainResolve.Request: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainResolve.Request) -> Bool {
-    if self.origin != other.origin {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_DomainResolve.Request, rhs: Bloombox_Schema_Services_Platform_V1_DomainResolve.Request) -> Bool {
+    if lhs.origin != rhs.origin {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -490,12 +576,12 @@ extension Bloombox_Schema_Services_Platform_V1_DomainResolve.Response: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainResolve.Response) -> Bool {
-    if self.partner != other.partner {return false}
-    if self.location != other.location {return false}
-    if self.apikey != other.apikey {return false}
-    if self.clientID != other.clientID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_DomainResolve.Response, rhs: Bloombox_Schema_Services_Platform_V1_DomainResolve.Response) -> Bool {
+    if lhs.partner != rhs.partner {return false}
+    if lhs.location != rhs.location {return false}
+    if lhs.apikey != rhs.apikey {return false}
+    if lhs.clientID != rhs.clientID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -513,8 +599,8 @@ extension Bloombox_Schema_Services_Platform_V1_DomainInfo: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainInfo) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_DomainInfo, rhs: Bloombox_Schema_Services_Platform_V1_DomainInfo) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -546,10 +632,10 @@ extension Bloombox_Schema_Services_Platform_V1_DomainInfo.Request: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainInfo.Request) -> Bool {
-    if self.partnerID != other.partnerID {return false}
-    if self.locationID != other.locationID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_DomainInfo.Request, rhs: Bloombox_Schema_Services_Platform_V1_DomainInfo.Request) -> Bool {
+    if lhs.partnerID != rhs.partnerID {return false}
+    if lhs.locationID != rhs.locationID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -562,6 +648,7 @@ extension Bloombox_Schema_Services_Platform_V1_DomainInfo.Response: SwiftProtobu
     3: .same(proto: "dashboard"),
     4: .same(proto: "tv"),
     5: .same(proto: "link"),
+    6: .same(proto: "website"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -572,6 +659,7 @@ extension Bloombox_Schema_Services_Platform_V1_DomainInfo.Response: SwiftProtobu
       case 3: try decoder.decodeSingularStringField(value: &self.dashboard)
       case 4: try decoder.decodeSingularStringField(value: &self.tv)
       case 5: try decoder.decodeSingularStringField(value: &self.link)
+      case 6: try decoder.decodeSingularStringField(value: &self.website)
       default: break
       }
     }
@@ -593,16 +681,135 @@ extension Bloombox_Schema_Services_Platform_V1_DomainInfo.Response: SwiftProtobu
     if !self.link.isEmpty {
       try visitor.visitSingularStringField(value: self.link, fieldNumber: 5)
     }
+    if !self.website.isEmpty {
+      try visitor.visitSingularStringField(value: self.website, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Platform_V1_DomainInfo.Response) -> Bool {
-    if self.shop != other.shop {return false}
-    if self.menu != other.menu {return false}
-    if self.dashboard != other.dashboard {return false}
-    if self.tv != other.tv {return false}
-    if self.link != other.link {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_DomainInfo.Response, rhs: Bloombox_Schema_Services_Platform_V1_DomainInfo.Response) -> Bool {
+    if lhs.shop != rhs.shop {return false}
+    if lhs.menu != rhs.menu {return false}
+    if lhs.dashboard != rhs.dashboard {return false}
+    if lhs.tv != rhs.tv {return false}
+    if lhs.link != rhs.link {return false}
+    if lhs.website != rhs.website {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_BrandInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BrandInfo"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_BrandInfo, rhs: Bloombox_Schema_Services_Platform_V1_BrandInfo) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_BrandInfo.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Platform_V1_BrandInfo.protoMessageName + ".Request"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "partner"),
+    2: .same(proto: "location"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.partner)
+      case 2: try decoder.decodeSingularStringField(value: &self.location)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.partner.isEmpty {
+      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 1)
+    }
+    if !self.location.isEmpty {
+      try visitor.visitSingularStringField(value: self.location, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_BrandInfo.Request, rhs: Bloombox_Schema_Services_Platform_V1_BrandInfo.Request) -> Bool {
+    if lhs.partner != rhs.partner {return false}
+    if lhs.location != rhs.location {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Platform_V1_BrandInfo.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Platform_V1_BrandInfo.protoMessageName + ".Response"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "brand"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _brand: Opencannabis_Content_Brand? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _brand = source._brand
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._brand)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._brand {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Platform_V1_BrandInfo.Response, rhs: Bloombox_Schema_Services_Platform_V1_BrandInfo.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._brand != rhs_storage._brand {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

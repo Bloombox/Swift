@@ -52,6 +52,18 @@ public enum Opencannabis_Products_Menu_Section_SectionFlag: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Menu_Section_SectionFlag: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Menu_Section_SectionFlag] = [
+    .hidden,
+    .featured,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Known sections, that are expected to be included with nearly every menu.
 public enum Opencannabis_Products_Menu_Section_Section: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -120,6 +132,25 @@ public enum Opencannabis_Products_Menu_Section_Section: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Menu_Section_Section: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Menu_Section_Section] = [
+    .unspecified,
+    .flowers,
+    .extracts,
+    .edibles,
+    .cartridges,
+    .apothecary,
+    .prerolls,
+    .plants,
+    .merchandise,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Special filtered sections - commonly used sections based on filters builtin to apps/sites.
 public enum Opencannabis_Products_Menu_Section_FilteredSection: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -163,6 +194,20 @@ public enum Opencannabis_Products_Menu_Section_FilteredSection: SwiftProtobuf.En
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Menu_Section_FilteredSection: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Menu_Section_FilteredSection] = [
+    .onSale,
+    .house,
+    .cbd,
+    .search,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Custom configuration-based menu sections, usually via `FilteredSection`.
 public struct Opencannabis_Products_Menu_Section_CustomSection {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -194,7 +239,7 @@ public struct Opencannabis_Products_Menu_Section_SectionMedia {
   /// Returns true if `tabletHomescreenMedia` has been explicitly set.
   public var hasTabletHomescreenMedia: Bool {return _storage._tabletHomescreenMedia != nil}
   /// Clears the value of `tabletHomescreenMedia`. Subsequent reads from it will return its default value.
-  public mutating func clearTabletHomescreenMedia() {_storage._tabletHomescreenMedia = nil}
+  public mutating func clearTabletHomescreenMedia() {_uniqueStorage()._tabletHomescreenMedia = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -217,7 +262,7 @@ public struct Opencannabis_Products_Menu_Section_SectionSettings {
   /// Returns true if `name` has been explicitly set.
   public var hasName: Bool {return _storage._name != nil}
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
-  public mutating func clearName() {_storage._name = nil}
+  public mutating func clearName() {_uniqueStorage()._name = nil}
 
   /// Media to use when presenting this section.
   public var media: Opencannabis_Products_Menu_Section_SectionMedia {
@@ -227,7 +272,7 @@ public struct Opencannabis_Products_Menu_Section_SectionSettings {
   /// Returns true if `media` has been explicitly set.
   public var hasMedia: Bool {return _storage._media != nil}
   /// Clears the value of `media`. Subsequent reads from it will return its default value.
-  public mutating func clearMedia() {_storage._media = nil}
+  public mutating func clearMedia() {_uniqueStorage()._media = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -283,7 +328,7 @@ public struct Opencannabis_Products_Menu_Section_SectionSpec {
   /// Returns true if `settings` has been explicitly set.
   public var hasSettings: Bool {return _storage._settings != nil}
   /// Clears the value of `settings`. Subsequent reads from it will return its default value.
-  public mutating func clearSettings() {_storage._settings = nil}
+  public mutating func clearSettings() {_uniqueStorage()._settings = nil}
 
   /// Current set of flags to apply to the subject section.
   public var flags: [Opencannabis_Products_Menu_Section_SectionFlag] {
@@ -302,6 +347,7 @@ public struct Opencannabis_Products_Menu_Section_SectionSpec {
     /// Arbitrary name for other types of sections.
     case name(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Products_Menu_Section_SectionSpec.OneOf_Spec, rhs: Opencannabis_Products_Menu_Section_SectionSpec.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.section(let l), .section(let r)): return l == r
@@ -310,6 +356,7 @@ public struct Opencannabis_Products_Menu_Section_SectionSpec {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -378,10 +425,10 @@ extension Opencannabis_Products_Menu_Section_CustomSection: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_CustomSection) -> Bool {
-    if self.id != other.id {return false}
-    if self.filter != other.filter {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Products_Menu_Section_CustomSection, rhs: Opencannabis_Products_Menu_Section_CustomSection) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.filter != rhs.filter {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -432,17 +479,17 @@ extension Opencannabis_Products_Menu_Section_SectionMedia: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_SectionMedia) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Products_Menu_Section_SectionMedia, rhs: Opencannabis_Products_Menu_Section_SectionMedia) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._tabletHomescreenMedia != other_storage._tabletHomescreenMedia {return false}
+        let rhs_storage = _args.1
+        if _storage._tabletHomescreenMedia != rhs_storage._tabletHomescreenMedia {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -500,18 +547,18 @@ extension Opencannabis_Products_Menu_Section_SectionSettings: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_SectionSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Products_Menu_Section_SectionSettings, rhs: Opencannabis_Products_Menu_Section_SectionSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._media != other_storage._media {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._media != rhs_storage._media {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -601,19 +648,19 @@ extension Opencannabis_Products_Menu_Section_SectionSpec: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Section_SectionSpec) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Products_Menu_Section_SectionSpec, rhs: Opencannabis_Products_Menu_Section_SectionSpec) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._spec != other_storage._spec {return false}
-        if _storage._settings != other_storage._settings {return false}
-        if _storage._flags != other_storage._flags {return false}
+        let rhs_storage = _args.1
+        if _storage._spec != rhs_storage._spec {return false}
+        if _storage._settings != rhs_storage._settings {return false}
+        if _storage._flags != rhs_storage._flags {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

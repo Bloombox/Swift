@@ -56,7 +56,7 @@ public struct Bloombox_Schema_Partner_Integrations_Treez_TreezSettings {
   /// Returns true if `syncInterval` has been explicitly set.
   public var hasSyncInterval: Bool {return _storage._syncInterval != nil}
   /// Clears the value of `syncInterval`. Subsequent reads from it will return its default value.
-  public mutating func clearSyncInterval() {_storage._syncInterval = nil}
+  public mutating func clearSyncInterval() {_uniqueStorage()._syncInterval = nil}
 
   /// Flags indicating features that should be enabled or disabled.
   public var features: Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures {
@@ -66,7 +66,7 @@ public struct Bloombox_Schema_Partner_Integrations_Treez_TreezSettings {
   /// Returns true if `features` has been explicitly set.
   public var hasFeatures: Bool {return _storage._features != nil}
   /// Clears the value of `features`. Subsequent reads from it will return its default value.
-  public mutating func clearFeatures() {_storage._features = nil}
+  public mutating func clearFeatures() {_uniqueStorage()._features = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -101,9 +101,9 @@ extension Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures: S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures) -> Bool {
-    if self.menuRead != other.menuRead {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures, rhs: Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures) -> Bool {
+    if lhs.menuRead != rhs.menuRead {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -168,19 +168,19 @@ extension Bloombox_Schema_Partner_Integrations_Treez_TreezSettings: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Treez_TreezSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Treez_TreezSettings, rhs: Bloombox_Schema_Partner_Integrations_Treez_TreezSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._accountID != other_storage._accountID {return false}
-        if _storage._syncInterval != other_storage._syncInterval {return false}
-        if _storage._features != other_storage._features {return false}
+        let rhs_storage = _args.1
+        if _storage._accountID != rhs_storage._accountID {return false}
+        if _storage._syncInterval != rhs_storage._syncInterval {return false}
+        if _storage._features != rhs_storage._features {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

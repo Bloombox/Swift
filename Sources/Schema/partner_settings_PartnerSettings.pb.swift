@@ -67,6 +67,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerNotificationTarget {
     /// Email address contact target.
     case email(Opencannabis_Contact_EmailAddress)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Partner_Settings_PartnerNotificationTarget.OneOf_Contact, rhs: Bloombox_Schema_Partner_Settings_PartnerNotificationTarget.OneOf_Contact) -> Bool {
       switch (lhs, rhs) {
       case (.phone(let l), .phone(let r)): return l == r
@@ -74,6 +75,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerNotificationTarget {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -115,7 +117,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerAlertSettings {
   /// Returns true if `events` has been explicitly set.
   public var hasEvents: Bool {return _storage._events != nil}
   /// Clears the value of `events`. Subsequent reads from it will return its default value.
-  public mutating func clearEvents() {_storage._events = nil}
+  public mutating func clearEvents() {_uniqueStorage()._events = nil}
 
   /// Notification targets/recipients.
   public var recipients: [Bloombox_Schema_Partner_Settings_PartnerNotificationTarget] {
@@ -204,7 +206,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
   /// Returns true if `alerts` has been explicitly set.
   public var hasAlerts: Bool {return _storage._alerts != nil}
   /// Clears the value of `alerts`. Subsequent reads from it will return its default value.
-  public mutating func clearAlerts() {_storage._alerts = nil}
+  public mutating func clearAlerts() {_uniqueStorage()._alerts = nil}
 
   /// Beta and sandbox settings.
   public var beta: Bloombox_Schema_Partner_Settings_BetaSettings {
@@ -214,7 +216,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
   /// Returns true if `beta` has been explicitly set.
   public var hasBeta: Bool {return _storage._beta != nil}
   /// Clears the value of `beta`. Subsequent reads from it will return its default value.
-  public mutating func clearBeta() {_storage._beta = nil}
+  public mutating func clearBeta() {_uniqueStorage()._beta = nil}
 
   /// Feature activation flags.
   public var features: Bloombox_Schema_Partner_Settings_FeatureStatus {
@@ -224,7 +226,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
   /// Returns true if `features` has been explicitly set.
   public var hasFeatures: Bool {return _storage._features != nil}
   /// Clears the value of `features`. Subsequent reads from it will return its default value.
-  public mutating func clearFeatures() {_storage._features = nil}
+  public mutating func clearFeatures() {_uniqueStorage()._features = nil}
 
   /// Search settings.
   public var search: Bloombox_Schema_Partner_Settings_SearchSettings {
@@ -234,7 +236,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
   /// Returns true if `search` has been explicitly set.
   public var hasSearch: Bool {return _storage._search != nil}
   /// Clears the value of `search`. Subsequent reads from it will return its default value.
-  public mutating func clearSearch() {_storage._search = nil}
+  public mutating func clearSearch() {_uniqueStorage()._search = nil}
 
   /// Integration settings for this location.
   public var integration: Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings {
@@ -244,7 +246,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
   /// Returns true if `integration` has been explicitly set.
   public var hasIntegration: Bool {return _storage._integration != nil}
   /// Clears the value of `integration`. Subsequent reads from it will return its default value.
-  public mutating func clearIntegration() {_storage._integration = nil}
+  public mutating func clearIntegration() {_uniqueStorage()._integration = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -330,18 +332,18 @@ extension Bloombox_Schema_Partner_Settings_PartnerNotificationTarget: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Settings_PartnerNotificationTarget) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Partner_Settings_PartnerNotificationTarget, rhs: Bloombox_Schema_Partner_Settings_PartnerNotificationTarget) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._disabled != other_storage._disabled {return false}
-        if _storage._contact != other_storage._contact {return false}
+        let rhs_storage = _args.1
+        if _storage._disabled != rhs_storage._disabled {return false}
+        if _storage._contact != rhs_storage._contact {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -378,11 +380,11 @@ extension Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings) -> Bool {
-    if self.promo != other.promo {return false}
-    if self.security != other.security {return false}
-    if self.volume != other.volume {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings, rhs: Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings) -> Bool {
+    if lhs.promo != rhs.promo {return false}
+    if lhs.security != rhs.security {return false}
+    if lhs.volume != rhs.volume {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -440,18 +442,18 @@ extension Bloombox_Schema_Partner_Settings_PartnerAlertSettings: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Settings_PartnerAlertSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Partner_Settings_PartnerAlertSettings, rhs: Bloombox_Schema_Partner_Settings_PartnerAlertSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._events != other_storage._events {return false}
-        if _storage._recipients != other_storage._recipients {return false}
+        let rhs_storage = _args.1
+        if _storage._events != rhs_storage._events {return false}
+        if _storage._recipients != rhs_storage._recipients {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -483,10 +485,10 @@ extension Bloombox_Schema_Partner_Settings_BetaSettings: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Settings_BetaSettings) -> Bool {
-    if self.enable != other.enable {return false}
-    if self.sandbox != other.sandbox {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Partner_Settings_BetaSettings, rhs: Bloombox_Schema_Partner_Settings_BetaSettings) -> Bool {
+    if lhs.enable != rhs.enable {return false}
+    if lhs.sandbox != rhs.sandbox {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -533,13 +535,13 @@ extension Bloombox_Schema_Partner_Settings_FeatureStatus: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Settings_FeatureStatus) -> Bool {
-    if self.analytics != other.analytics {return false}
-    if self.beta != other.beta {return false}
-    if self.offline != other.offline {return false}
-    if self.shop != other.shop {return false}
-    if self.checkin != other.checkin {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Partner_Settings_FeatureStatus, rhs: Bloombox_Schema_Partner_Settings_FeatureStatus) -> Bool {
+    if lhs.analytics != rhs.analytics {return false}
+    if lhs.beta != rhs.beta {return false}
+    if lhs.offline != rhs.offline {return false}
+    if lhs.shop != rhs.shop {return false}
+    if lhs.checkin != rhs.checkin {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -571,10 +573,10 @@ extension Bloombox_Schema_Partner_Settings_SearchSettings: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Settings_SearchSettings) -> Bool {
-    if self.enabled != other.enabled {return false}
-    if self.media != other.media {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Partner_Settings_SearchSettings, rhs: Bloombox_Schema_Partner_Settings_SearchSettings) -> Bool {
+    if lhs.enabled != rhs.enabled {return false}
+    if lhs.media != rhs.media {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -653,21 +655,21 @@ extension Bloombox_Schema_Partner_Settings_PartnerSettings: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Settings_PartnerSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Partner_Settings_PartnerSettings, rhs: Bloombox_Schema_Partner_Settings_PartnerSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._alerts != other_storage._alerts {return false}
-        if _storage._beta != other_storage._beta {return false}
-        if _storage._features != other_storage._features {return false}
-        if _storage._search != other_storage._search {return false}
-        if _storage._integration != other_storage._integration {return false}
+        let rhs_storage = _args.1
+        if _storage._alerts != rhs_storage._alerts {return false}
+        if _storage._beta != rhs_storage._beta {return false}
+        if _storage._features != rhs_storage._features {return false}
+        if _storage._search != rhs_storage._search {return false}
+        if _storage._integration != rhs_storage._integration {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

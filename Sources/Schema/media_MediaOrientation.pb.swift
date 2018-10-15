@@ -83,6 +83,24 @@ public enum Opencannabis_Media_MediaOrientation: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Media_MediaOrientation: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Media_MediaOrientation] = [
+    .up,
+    .down,
+    .left,
+    .right,
+    .upMirrored,
+    .downMirrored,
+    .leftMirrored,
+    .rightMirrored,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Opencannabis_Media_MediaOrientation: SwiftProtobuf._ProtoNameProviding {

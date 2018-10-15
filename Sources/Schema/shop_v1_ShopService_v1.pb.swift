@@ -6,6 +6,12 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Defines the Shop API, which provides the ability to submit digital orders in e-commerce or build-a-bag circumstances.
+/// Additionally provides the ability to resolve shop/storefront hours, check delivery minimums, check user account and
+/// membership status, and enroll new members. Basically includes all the functionality needed to facilitate a retail
+/// e-commerce experience for cannabis.
+
 import Foundation
 import SwiftProtobuf
 
@@ -66,6 +72,21 @@ public enum Bloombox_Schema_Services_Shop_V1_VerifyError: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Shop_V1_VerifyError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Shop_V1_VerifyError] = [
+    .notFound,
+    .recExpired,
+    .idExpired,
+    .invalidPayload,
+    .notEligible,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Enumerates errors that may prevent a user from submitting an order for pickup or delivery.
 public enum Bloombox_Schema_Services_Shop_V1_OrderError: SwiftProtobuf.Enum {
@@ -159,6 +180,30 @@ public enum Bloombox_Schema_Services_Shop_V1_OrderError: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Shop_V1_OrderError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Shop_V1_OrderError] = [
+    .noError,
+    .invalidOrder,
+    .userNotEligible,
+    .zipcodeNotEligible,
+    .zipcodeNotActive,
+    .zipcodeMinimumNotMet,
+    .invalidPartner,
+    .invalidLocation,
+    .invalidCustomer,
+    .missingDestination,
+    .shopNotOpen,
+    .globalMinimumNotMet,
+    .membershipNotFound,
+    .duplicateOrder,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies errors that may be encountered during enrollment of a new user.
 public enum Bloombox_Schema_Services_Shop_V1_EnrollmentError: SwiftProtobuf.Enum {
@@ -263,6 +308,32 @@ public enum Bloombox_Schema_Services_Shop_V1_EnrollmentError: SwiftProtobuf.Enum
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Shop_V1_EnrollmentError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Shop_V1_EnrollmentError] = [
+    .noEnrollmentError,
+    .invalidEmail,
+    .invalidName,
+    .invalidPhone,
+    .invalidDateOfBirth,
+    .invalidRecID,
+    .invalidRecExpiration,
+    .invalidRecDoctorName,
+    .invalidRecDoctorPhone,
+    .invalidUsdlID,
+    .invalidUsdlExpiration,
+    .invalidUsdlJurisdiction,
+    .accountConflict,
+    .accountConflictEmail,
+    .accountConflictPhone,
+    .invalidEnrollmentPayload,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies errors that may be encountered during the sharing of a receipt
 public enum Bloombox_Schema_Services_Shop_V1_ShareError: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -290,6 +361,17 @@ public enum Bloombox_Schema_Services_Shop_V1_ShareError: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Shop_V1_ShareError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Shop_V1_ShareError] = [
+    .noShareError,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies an RPC operation to retrieve status information for the Shop API.
 public struct Bloombox_Schema_Services_Shop_V1_Ping {
@@ -335,7 +417,7 @@ public struct Bloombox_Schema_Services_Shop_V1_Ping {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response for member verification.
     public var response: Bloombox_Schema_Services_Shop_V1_Ping.Response {
@@ -345,7 +427,7 @@ public struct Bloombox_Schema_Services_Shop_V1_Ping {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -378,7 +460,7 @@ public struct Bloombox_Schema_Services_Shop_V1_ShopInfo {
     /// Returns true if `location` has been explicitly set.
     public var hasLocation: Bool {return _storage._location != nil}
     /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_storage._location = nil}
+    public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -413,7 +495,7 @@ public struct Bloombox_Schema_Services_Shop_V1_ShopInfo {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request for shop status.
     public var response: Bloombox_Schema_Services_Shop_V1_ShopInfo.Response {
@@ -423,7 +505,7 @@ public struct Bloombox_Schema_Services_Shop_V1_ShopInfo {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -456,7 +538,7 @@ public struct Bloombox_Schema_Services_Shop_V1_EnrollMember {
     /// Returns true if `person` has been explicitly set.
     public var hasPerson: Bool {return _storage._person != nil}
     /// Clears the value of `person`. Subsequent reads from it will return its default value.
-    public mutating func clearPerson() {_storage._person = nil}
+    public mutating func clearPerson() {_uniqueStorage()._person = nil}
 
     /// Source for this enrollment.
     public var source: Bloombox_Schema_Identity_EnrollmentSource {
@@ -478,7 +560,7 @@ public struct Bloombox_Schema_Services_Shop_V1_EnrollMember {
     /// Returns true if `doctorRec` has been explicitly set.
     public var hasDoctorRec: Bool {return _storage._doctorRec != nil}
     /// Clears the value of `doctorRec`. Subsequent reads from it will return its default value.
-    public mutating func clearDoctorRec() {_storage._doctorRec = nil}
+    public mutating func clearDoctorRec() {_uniqueStorage()._doctorRec = nil}
 
     /// Holds information about the user's driver's license.
     public var governmentID: Bloombox_Schema_Identity_ID {
@@ -488,7 +570,7 @@ public struct Bloombox_Schema_Services_Shop_V1_EnrollMember {
     /// Returns true if `governmentID` has been explicitly set.
     public var hasGovernmentID: Bool {return _storage._governmentID != nil}
     /// Clears the value of `governmentID`. Subsequent reads from it will return its default value.
-    public mutating func clearGovernmentID() {_storage._governmentID = nil}
+    public mutating func clearGovernmentID() {_uniqueStorage()._governmentID = nil}
 
     /// Specifies the partner we are enrolling to.
     public var location: Bloombox_Schema_Partner_LocationKey {
@@ -498,7 +580,7 @@ public struct Bloombox_Schema_Services_Shop_V1_EnrollMember {
     /// Returns true if `location` has been explicitly set.
     public var hasLocation: Bool {return _storage._location != nil}
     /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_storage._location = nil}
+    public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
     /// Base64-encoded password. This is for transmission ONLY - do NOT store this value without first either encrypting
     /// it strongly, or perfoming a subsequent salt-and-SHA routine.
@@ -522,7 +604,7 @@ public struct Bloombox_Schema_Services_Shop_V1_EnrollMember {
     /// Returns true if `consumerProfile` has been explicitly set.
     public var hasConsumerProfile: Bool {return _storage._consumerProfile != nil}
     /// Clears the value of `consumerProfile`. Subsequent reads from it will return its default value.
-    public mutating func clearConsumerProfile() {_storage._consumerProfile = nil}
+    public mutating func clearConsumerProfile() {_uniqueStorage()._consumerProfile = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -569,6 +651,7 @@ public struct Bloombox_Schema_Services_Shop_V1_EnrollMember {
       /// Error that prevented a successful response.
       case error(Bloombox_Schema_Services_Shop_V1_EnrollmentError)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_EnrollMember.Response.OneOf_Result, rhs: Bloombox_Schema_Services_Shop_V1_EnrollMember.Response.OneOf_Result) -> Bool {
         switch (lhs, rhs) {
         case (.foreignID(let l), .foreignID(let r)): return l == r
@@ -576,6 +659,7 @@ public struct Bloombox_Schema_Services_Shop_V1_EnrollMember {
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
@@ -594,7 +678,7 @@ public struct Bloombox_Schema_Services_Shop_V1_EnrollMember {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request for member enrollment.
     public var response: Bloombox_Schema_Services_Shop_V1_EnrollMember.Response {
@@ -604,7 +688,7 @@ public struct Bloombox_Schema_Services_Shop_V1_EnrollMember {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -643,7 +727,7 @@ public struct Bloombox_Schema_Services_Shop_V1_VerifyMember {
     /// Returns true if `location` has been explicitly set.
     public var hasLocation: Bool {return _storage._location != nil}
     /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_storage._location = nil}
+    public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -694,6 +778,7 @@ public struct Bloombox_Schema_Services_Shop_V1_VerifyMember {
       /// Error that prevented verification, if any.
       case error(Bloombox_Schema_Services_Shop_V1_VerifyError)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_VerifyMember.Response.OneOf_Result, rhs: Bloombox_Schema_Services_Shop_V1_VerifyMember.Response.OneOf_Result) -> Bool {
         switch (lhs, rhs) {
         case (.customer(let l), .customer(let r)): return l == r
@@ -701,6 +786,7 @@ public struct Bloombox_Schema_Services_Shop_V1_VerifyMember {
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
@@ -721,7 +807,7 @@ public struct Bloombox_Schema_Services_Shop_V1_VerifyMember {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response for member verification.
     public var response: Bloombox_Schema_Services_Shop_V1_VerifyMember.Response {
@@ -731,7 +817,7 @@ public struct Bloombox_Schema_Services_Shop_V1_VerifyMember {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -770,7 +856,7 @@ public struct Bloombox_Schema_Services_Shop_V1_CheckZipcode {
     /// Returns true if `location` has been explicitly set.
     public var hasLocation: Bool {return _storage._location != nil}
     /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_storage._location = nil}
+    public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -808,7 +894,7 @@ public struct Bloombox_Schema_Services_Shop_V1_CheckZipcode {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request for zipcode eligibility verification.
     public var response: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response {
@@ -818,7 +904,7 @@ public struct Bloombox_Schema_Services_Shop_V1_CheckZipcode {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -851,7 +937,7 @@ public struct Bloombox_Schema_Services_Shop_V1_ShareOrder {
     /// Returns true if `emailAddress` has been explicitly set.
     public var hasEmailAddress: Bool {return _storage._emailAddress != nil}
     /// Clears the value of `emailAddress`. Subsequent reads from it will return its default value.
-    public mutating func clearEmailAddress() {_storage._emailAddress = nil}
+    public mutating func clearEmailAddress() {_uniqueStorage()._emailAddress = nil}
 
     /// Phone Number string.
     public var phoneNumber: Opencannabis_Contact_PhoneNumber {
@@ -861,7 +947,7 @@ public struct Bloombox_Schema_Services_Shop_V1_ShareOrder {
     /// Returns true if `phoneNumber` has been explicitly set.
     public var hasPhoneNumber: Bool {return _storage._phoneNumber != nil}
     /// Clears the value of `phoneNumber`. Subsequent reads from it will return its default value.
-    public mutating func clearPhoneNumber() {_storage._phoneNumber = nil}
+    public mutating func clearPhoneNumber() {_uniqueStorage()._phoneNumber = nil}
 
     /// Order to submit. 
     public var order: Opencannabis_Commerce_Order {
@@ -871,7 +957,7 @@ public struct Bloombox_Schema_Services_Shop_V1_ShareOrder {
     /// Returns true if `order` has been explicitly set.
     public var hasOrder: Bool {return _storage._order != nil}
     /// Clears the value of `order`. Subsequent reads from it will return its default value.
-    public mutating func clearOrder() {_storage._order = nil}
+    public mutating func clearOrder() {_uniqueStorage()._order = nil}
 
     /// Location to check.
     public var location: Bloombox_Schema_Partner_LocationKey {
@@ -881,7 +967,7 @@ public struct Bloombox_Schema_Services_Shop_V1_ShareOrder {
     /// Returns true if `location` has been explicitly set.
     public var hasLocation: Bool {return _storage._location != nil}
     /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_storage._location = nil}
+    public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -916,7 +1002,7 @@ public struct Bloombox_Schema_Services_Shop_V1_ShareOrder {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response for share submit.
     public var response: Bloombox_Schema_Services_Shop_V1_ShareOrder.Response {
@@ -926,7 +1012,7 @@ public struct Bloombox_Schema_Services_Shop_V1_ShareOrder {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -959,7 +1045,7 @@ public struct Bloombox_Schema_Services_Shop_V1_SubmitOrder {
     /// Returns true if `order` has been explicitly set.
     public var hasOrder: Bool {return _storage._order != nil}
     /// Clears the value of `order`. Subsequent reads from it will return its default value.
-    public mutating func clearOrder() {_storage._order = nil}
+    public mutating func clearOrder() {_uniqueStorage()._order = nil}
 
     /// Location to check.
     public var location: Bloombox_Schema_Partner_LocationKey {
@@ -969,7 +1055,7 @@ public struct Bloombox_Schema_Services_Shop_V1_SubmitOrder {
     /// Returns true if `location` has been explicitly set.
     public var hasLocation: Bool {return _storage._location != nil}
     /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_storage._location = nil}
+    public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1007,7 +1093,7 @@ public struct Bloombox_Schema_Services_Shop_V1_SubmitOrder {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response from order submission.
     public var response: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response {
@@ -1017,7 +1103,7 @@ public struct Bloombox_Schema_Services_Shop_V1_SubmitOrder {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1056,7 +1142,7 @@ public struct Bloombox_Schema_Services_Shop_V1_GetOrder {
     /// Returns true if `location` has been explicitly set.
     public var hasLocation: Bool {return _storage._location != nil}
     /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_storage._location = nil}
+    public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1084,7 +1170,7 @@ public struct Bloombox_Schema_Services_Shop_V1_GetOrder {
     /// Returns true if `order` has been explicitly set.
     public var hasOrder: Bool {return _storage._order != nil}
     /// Clears the value of `order`. Subsequent reads from it will return its default value.
-    public mutating func clearOrder() {_storage._order = nil}
+    public mutating func clearOrder() {_uniqueStorage()._order = nil}
 
     /// Error, if any.
     public var error: Bloombox_Schema_Services_Shop_V1_OrderError {
@@ -1112,7 +1198,7 @@ public struct Bloombox_Schema_Services_Shop_V1_GetOrder {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response describing order status.
     public var response: Bloombox_Schema_Services_Shop_V1_GetOrder.Response {
@@ -1122,7 +1208,7 @@ public struct Bloombox_Schema_Services_Shop_V1_GetOrder {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1207,8 +1293,8 @@ extension Bloombox_Schema_Services_Shop_V1_Ping: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_Ping) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_Ping, rhs: Bloombox_Schema_Services_Shop_V1_Ping) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1226,8 +1312,8 @@ extension Bloombox_Schema_Services_Shop_V1_Ping.Request: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_Ping.Request) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_Ping.Request, rhs: Bloombox_Schema_Services_Shop_V1_Ping.Request) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1254,9 +1340,9 @@ extension Bloombox_Schema_Services_Shop_V1_Ping.Response: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_Ping.Response) -> Bool {
-    if self.status != other.status {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_Ping.Response, rhs: Bloombox_Schema_Services_Shop_V1_Ping.Response) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1314,18 +1400,18 @@ extension Bloombox_Schema_Services_Shop_V1_Ping.Operation: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_Ping.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_Ping.Operation, rhs: Bloombox_Schema_Services_Shop_V1_Ping.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1343,8 +1429,8 @@ extension Bloombox_Schema_Services_Shop_V1_ShopInfo: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_ShopInfo) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_ShopInfo, rhs: Bloombox_Schema_Services_Shop_V1_ShopInfo) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1395,17 +1481,17 @@ extension Bloombox_Schema_Services_Shop_V1_ShopInfo.Request: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_ShopInfo.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_ShopInfo.Request, rhs: Bloombox_Schema_Services_Shop_V1_ShopInfo.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._location != other_storage._location {return false}
+        let rhs_storage = _args.1
+        if _storage._location != rhs_storage._location {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1432,9 +1518,9 @@ extension Bloombox_Schema_Services_Shop_V1_ShopInfo.Response: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_ShopInfo.Response) -> Bool {
-    if self.shopStatus != other.shopStatus {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_ShopInfo.Response, rhs: Bloombox_Schema_Services_Shop_V1_ShopInfo.Response) -> Bool {
+    if lhs.shopStatus != rhs.shopStatus {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1492,18 +1578,18 @@ extension Bloombox_Schema_Services_Shop_V1_ShopInfo.Operation: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_ShopInfo.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_ShopInfo.Operation, rhs: Bloombox_Schema_Services_Shop_V1_ShopInfo.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1521,8 +1607,8 @@ extension Bloombox_Schema_Services_Shop_V1_EnrollMember: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_EnrollMember) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_EnrollMember, rhs: Bloombox_Schema_Services_Shop_V1_EnrollMember) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1629,25 +1715,25 @@ extension Bloombox_Schema_Services_Shop_V1_EnrollMember.Request: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_EnrollMember.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_EnrollMember.Request, rhs: Bloombox_Schema_Services_Shop_V1_EnrollMember.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._person != other_storage._person {return false}
-        if _storage._source != other_storage._source {return false}
-        if _storage._channel != other_storage._channel {return false}
-        if _storage._doctorRec != other_storage._doctorRec {return false}
-        if _storage._governmentID != other_storage._governmentID {return false}
-        if _storage._location != other_storage._location {return false}
-        if _storage._password != other_storage._password {return false}
-        if _storage._dryRun != other_storage._dryRun {return false}
-        if _storage._consumerProfile != other_storage._consumerProfile {return false}
+        let rhs_storage = _args.1
+        if _storage._person != rhs_storage._person {return false}
+        if _storage._source != rhs_storage._source {return false}
+        if _storage._channel != rhs_storage._channel {return false}
+        if _storage._doctorRec != rhs_storage._doctorRec {return false}
+        if _storage._governmentID != rhs_storage._governmentID {return false}
+        if _storage._location != rhs_storage._location {return false}
+        if _storage._password != rhs_storage._password {return false}
+        if _storage._dryRun != rhs_storage._dryRun {return false}
+        if _storage._consumerProfile != rhs_storage._consumerProfile {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1693,10 +1779,10 @@ extension Bloombox_Schema_Services_Shop_V1_EnrollMember.Response: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_EnrollMember.Response) -> Bool {
-    if self.id != other.id {return false}
-    if self.result != other.result {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_EnrollMember.Response, rhs: Bloombox_Schema_Services_Shop_V1_EnrollMember.Response) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.result != rhs.result {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1754,18 +1840,18 @@ extension Bloombox_Schema_Services_Shop_V1_EnrollMember.Operation: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_EnrollMember.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_EnrollMember.Operation, rhs: Bloombox_Schema_Services_Shop_V1_EnrollMember.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1783,8 +1869,8 @@ extension Bloombox_Schema_Services_Shop_V1_VerifyMember: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_VerifyMember) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_VerifyMember, rhs: Bloombox_Schema_Services_Shop_V1_VerifyMember) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1842,18 +1928,18 @@ extension Bloombox_Schema_Services_Shop_V1_VerifyMember.Request: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_VerifyMember.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_VerifyMember.Request, rhs: Bloombox_Schema_Services_Shop_V1_VerifyMember.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._emailAddress != other_storage._emailAddress {return false}
-        if _storage._location != other_storage._location {return false}
+        let rhs_storage = _args.1
+        if _storage._emailAddress != rhs_storage._emailAddress {return false}
+        if _storage._location != rhs_storage._location {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1928,18 +2014,18 @@ extension Bloombox_Schema_Services_Shop_V1_VerifyMember.Response: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_VerifyMember.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_VerifyMember.Response, rhs: Bloombox_Schema_Services_Shop_V1_VerifyMember.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._verified != other_storage._verified {return false}
-        if _storage._result != other_storage._result {return false}
+        let rhs_storage = _args.1
+        if _storage._verified != rhs_storage._verified {return false}
+        if _storage._result != rhs_storage._result {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1997,18 +2083,18 @@ extension Bloombox_Schema_Services_Shop_V1_VerifyMember.Operation: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_VerifyMember.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_VerifyMember.Operation, rhs: Bloombox_Schema_Services_Shop_V1_VerifyMember.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2026,8 +2112,8 @@ extension Bloombox_Schema_Services_Shop_V1_CheckZipcode: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_CheckZipcode) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_CheckZipcode, rhs: Bloombox_Schema_Services_Shop_V1_CheckZipcode) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2085,18 +2171,18 @@ extension Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request, rhs: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._zipcode != other_storage._zipcode {return false}
-        if _storage._location != other_storage._location {return false}
+        let rhs_storage = _args.1
+        if _storage._zipcode != rhs_storage._zipcode {return false}
+        if _storage._location != rhs_storage._location {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2128,10 +2214,10 @@ extension Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response) -> Bool {
-    if self.supported != other.supported {return false}
-    if self.deliveryMinimum != other.deliveryMinimum {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response, rhs: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response) -> Bool {
+    if lhs.supported != rhs.supported {return false}
+    if lhs.deliveryMinimum != rhs.deliveryMinimum {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2189,18 +2275,18 @@ extension Bloombox_Schema_Services_Shop_V1_CheckZipcode.Operation: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Operation, rhs: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2218,8 +2304,8 @@ extension Bloombox_Schema_Services_Shop_V1_ShareOrder: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_ShareOrder) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_ShareOrder, rhs: Bloombox_Schema_Services_Shop_V1_ShareOrder) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2291,20 +2377,20 @@ extension Bloombox_Schema_Services_Shop_V1_ShareOrder.Request: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request, rhs: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._emailAddress != other_storage._emailAddress {return false}
-        if _storage._phoneNumber != other_storage._phoneNumber {return false}
-        if _storage._order != other_storage._order {return false}
-        if _storage._location != other_storage._location {return false}
+        let rhs_storage = _args.1
+        if _storage._emailAddress != rhs_storage._emailAddress {return false}
+        if _storage._phoneNumber != rhs_storage._phoneNumber {return false}
+        if _storage._order != rhs_storage._order {return false}
+        if _storage._location != rhs_storage._location {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2331,9 +2417,9 @@ extension Bloombox_Schema_Services_Shop_V1_ShareOrder.Response: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_ShareOrder.Response) -> Bool {
-    if self.error != other.error {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_ShareOrder.Response, rhs: Bloombox_Schema_Services_Shop_V1_ShareOrder.Response) -> Bool {
+    if lhs.error != rhs.error {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2391,18 +2477,18 @@ extension Bloombox_Schema_Services_Shop_V1_ShareOrder.Operation: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_ShareOrder.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_ShareOrder.Operation, rhs: Bloombox_Schema_Services_Shop_V1_ShareOrder.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2420,8 +2506,8 @@ extension Bloombox_Schema_Services_Shop_V1_SubmitOrder: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_SubmitOrder) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_SubmitOrder, rhs: Bloombox_Schema_Services_Shop_V1_SubmitOrder) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2479,18 +2565,18 @@ extension Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request, rhs: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._order != other_storage._order {return false}
-        if _storage._location != other_storage._location {return false}
+        let rhs_storage = _args.1
+        if _storage._order != rhs_storage._order {return false}
+        if _storage._location != rhs_storage._location {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2522,10 +2608,10 @@ extension Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response) -> Bool {
-    if self.error != other.error {return false}
-    if self.orderID != other.orderID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response, rhs: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response) -> Bool {
+    if lhs.error != rhs.error {return false}
+    if lhs.orderID != rhs.orderID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2583,18 +2669,18 @@ extension Bloombox_Schema_Services_Shop_V1_SubmitOrder.Operation: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Operation, rhs: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2612,8 +2698,8 @@ extension Bloombox_Schema_Services_Shop_V1_GetOrder: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_GetOrder) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_GetOrder, rhs: Bloombox_Schema_Services_Shop_V1_GetOrder) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2671,18 +2757,18 @@ extension Bloombox_Schema_Services_Shop_V1_GetOrder.Request: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_GetOrder.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_GetOrder.Request, rhs: Bloombox_Schema_Services_Shop_V1_GetOrder.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._orderID != other_storage._orderID {return false}
-        if _storage._location != other_storage._location {return false}
+        let rhs_storage = _args.1
+        if _storage._orderID != rhs_storage._orderID {return false}
+        if _storage._location != rhs_storage._location {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2747,19 +2833,19 @@ extension Bloombox_Schema_Services_Shop_V1_GetOrder.Response: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_GetOrder.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_GetOrder.Response, rhs: Bloombox_Schema_Services_Shop_V1_GetOrder.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._success != other_storage._success {return false}
-        if _storage._order != other_storage._order {return false}
-        if _storage._error != other_storage._error {return false}
+        let rhs_storage = _args.1
+        if _storage._success != rhs_storage._success {return false}
+        if _storage._order != rhs_storage._order {return false}
+        if _storage._error != rhs_storage._error {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2817,18 +2903,18 @@ extension Bloombox_Schema_Services_Shop_V1_GetOrder.Operation: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Shop_V1_GetOrder.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Shop_V1_GetOrder.Operation, rhs: Bloombox_Schema_Services_Shop_V1_GetOrder.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

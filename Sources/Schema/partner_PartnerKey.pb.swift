@@ -62,9 +62,9 @@ extension Bloombox_Schema_Partner_PartnerKey: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerKey) -> Bool {
-    if self.code != other.code {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Partner_PartnerKey, rhs: Bloombox_Schema_Partner_PartnerKey) -> Bool {
+    if lhs.code != rhs.code {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -65,6 +65,20 @@ public enum Bloombox_Schema_Search_SearchableCollection: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Search_SearchableCollection: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Search_SearchableCollection] = [
+    .global,
+    .products,
+    .users,
+    .partners,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies data extensions that may be requested, and returned, with stock search results.
 public enum Bloombox_Schema_Search_SearchResultExtension: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -121,6 +135,22 @@ public enum Bloombox_Schema_Search_SearchResultExtension: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Search_SearchResultExtension: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Search_SearchResultExtension] = [
+    .name,
+    .description_,
+    .media,
+    .labs,
+    .pricing,
+    .related,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies available modes to highlight terms in search results.
 public enum Bloombox_Schema_Search_ResultHighlightMode: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -164,6 +194,20 @@ public enum Bloombox_Schema_Search_ResultHighlightMode: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Search_ResultHighlightMode: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Search_ResultHighlightMode] = [
+    .noHighlighting,
+    .html,
+    .markdown,
+    .snippet,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies modes for sorting search results.
 public enum Bloombox_Schema_Search_SearchSortMode: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -196,6 +240,18 @@ public enum Bloombox_Schema_Search_SearchSortMode: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Search_SearchSortMode: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Search_SearchSortMode] = [
+    .natural,
+    .lexicographic,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies bounds for a search query.
 public struct Bloombox_Schema_Search_SearchBounds {
@@ -274,7 +330,7 @@ public struct Bloombox_Schema_Search_SearchSpec {
   /// Returns true if `options` has been explicitly set.
   public var hasOptions: Bool {return _storage._options != nil}
   /// Clears the value of `options`. Subsequent reads from it will return its default value.
-  public mutating func clearOptions() {_storage._options = nil}
+  public mutating func clearOptions() {_uniqueStorage()._options = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -331,7 +387,7 @@ public struct Bloombox_Schema_Search_ProductResultMetadata {
   /// Returns true if `price` has been explicitly set.
   public var hasPrice: Bool {return _storage._price != nil}
   /// Clears the value of `price`. Subsequent reads from it will return its default value.
-  public mutating func clearPrice() {_storage._price = nil}
+  public mutating func clearPrice() {_uniqueStorage()._price = nil}
 
   /// THC bounds.
   public var thc: Bloombox_Schema_Search_ProductResultBound {
@@ -341,7 +397,7 @@ public struct Bloombox_Schema_Search_ProductResultMetadata {
   /// Returns true if `thc` has been explicitly set.
   public var hasThc: Bool {return _storage._thc != nil}
   /// Clears the value of `thc`. Subsequent reads from it will return its default value.
-  public mutating func clearThc() {_storage._thc = nil}
+  public mutating func clearThc() {_uniqueStorage()._thc = nil}
 
   /// CBD bounds.
   public var cbd: Bloombox_Schema_Search_ProductResultBound {
@@ -351,7 +407,7 @@ public struct Bloombox_Schema_Search_ProductResultMetadata {
   /// Returns true if `cbd` has been explicitly set.
   public var hasCbd: Bool {return _storage._cbd != nil}
   /// Clears the value of `cbd`. Subsequent reads from it will return its default value.
-  public mutating func clearCbd() {_storage._cbd = nil}
+  public mutating func clearCbd() {_uniqueStorage()._cbd = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -380,7 +436,7 @@ public struct Bloombox_Schema_Search_SearchResultsetMetadata {
   /// Returns true if `products` has been explicitly set.
   public var hasProducts: Bool {return _storage._products != nil}
   /// Clears the value of `products`. Subsequent reads from it will return its default value.
-  public mutating func clearProducts() {_storage._products = nil}
+  public mutating func clearProducts() {_uniqueStorage()._products = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -403,7 +459,7 @@ public struct Bloombox_Schema_Search_SearchResultset {
   /// Returns true if `metadata` has been explicitly set.
   public var hasMetadata: Bool {return _storage._metadata != nil}
   /// Clears the value of `metadata`. Subsequent reads from it will return its default value.
-  public mutating func clearMetadata() {_storage._metadata = nil}
+  public mutating func clearMetadata() {_uniqueStorage()._metadata = nil}
 
   /// Search results matching the provided query.
   public var payload: [Bloombox_Schema_Search_SearchResult] {
@@ -485,10 +541,10 @@ extension Bloombox_Schema_Search_SearchBounds: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchBounds) -> Bool {
-    if self.limit != other.limit {return false}
-    if self.offset != other.offset {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Search_SearchBounds, rhs: Bloombox_Schema_Search_SearchBounds) -> Bool {
+    if lhs.limit != rhs.limit {return false}
+    if lhs.offset != rhs.offset {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -525,11 +581,11 @@ extension Bloombox_Schema_Search_SearchOptions: SwiftProtobuf.Message, SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchOptions) -> Bool {
-    if self.scope != other.scope {return false}
-    if self.section != other.section {return false}
-    if self.hidden != other.hidden {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Search_SearchOptions, rhs: Bloombox_Schema_Search_SearchOptions) -> Bool {
+    if lhs.scope != rhs.scope {return false}
+    if lhs.section != rhs.section {return false}
+    if lhs.hidden != rhs.hidden {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -566,11 +622,11 @@ extension Bloombox_Schema_Search_SearchResultOptions: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchResultOptions) -> Bool {
-    if self.keysOnly != other.keysOnly {return false}
-    if self.highlight != other.highlight {return false}
-    if self.include != other.include {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Search_SearchResultOptions, rhs: Bloombox_Schema_Search_SearchResultOptions) -> Bool {
+    if lhs.keysOnly != rhs.keysOnly {return false}
+    if lhs.highlight != rhs.highlight {return false}
+    if lhs.include != rhs.include {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -628,18 +684,18 @@ extension Bloombox_Schema_Search_SearchSpec: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchSpec) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Search_SearchSpec, rhs: Bloombox_Schema_Search_SearchSpec) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._term != other_storage._term {return false}
-        if _storage._options != other_storage._options {return false}
+        let rhs_storage = _args.1
+        if _storage._term != rhs_storage._term {return false}
+        if _storage._options != rhs_storage._options {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -671,10 +727,10 @@ extension Bloombox_Schema_Search_ResultsetCategoricalCount: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_ResultsetCategoricalCount) -> Bool {
-    if self.type != other.type {return false}
-    if self.count != other.count {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Search_ResultsetCategoricalCount, rhs: Bloombox_Schema_Search_ResultsetCategoricalCount) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.count != rhs.count {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -706,10 +762,10 @@ extension Bloombox_Schema_Search_ProductResultBound: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_ProductResultBound) -> Bool {
-    if self.low != other.low {return false}
-    if self.high != other.high {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Search_ProductResultBound, rhs: Bloombox_Schema_Search_ProductResultBound) -> Bool {
+    if lhs.low != rhs.low {return false}
+    if lhs.high != rhs.high {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -774,19 +830,19 @@ extension Bloombox_Schema_Search_ProductResultMetadata: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_ProductResultMetadata) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Search_ProductResultMetadata, rhs: Bloombox_Schema_Search_ProductResultMetadata) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._price != other_storage._price {return false}
-        if _storage._thc != other_storage._thc {return false}
-        if _storage._cbd != other_storage._cbd {return false}
+        let rhs_storage = _args.1
+        if _storage._price != rhs_storage._price {return false}
+        if _storage._thc != rhs_storage._thc {return false}
+        if _storage._cbd != rhs_storage._cbd {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -844,18 +900,18 @@ extension Bloombox_Schema_Search_SearchResultsetMetadata: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchResultsetMetadata) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Search_SearchResultsetMetadata, rhs: Bloombox_Schema_Search_SearchResultsetMetadata) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._count != other_storage._count {return false}
-        if _storage._products != other_storage._products {return false}
+        let rhs_storage = _args.1
+        if _storage._count != rhs_storage._count {return false}
+        if _storage._products != rhs_storage._products {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -913,18 +969,18 @@ extension Bloombox_Schema_Search_SearchResultset: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchResultset) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Search_SearchResultset, rhs: Bloombox_Schema_Search_SearchResultset) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._metadata != other_storage._metadata {return false}
-        if _storage._payload != other_storage._payload {return false}
+        let rhs_storage = _args.1
+        if _storage._metadata != rhs_storage._metadata {return false}
+        if _storage._payload != rhs_storage._payload {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

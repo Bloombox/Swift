@@ -80,11 +80,11 @@ extension Opencannabis_Contact_PhoneNumber: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Contact_PhoneNumber) -> Bool {
-    if self.e164 != other.e164 {return false}
-    if self.validated != other.validated {return false}
-    if self.display != other.display {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Contact_PhoneNumber, rhs: Opencannabis_Contact_PhoneNumber) -> Bool {
+    if lhs.e164 != rhs.e164 {return false}
+    if lhs.validated != rhs.validated {return false}
+    if lhs.display != rhs.display {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -60,12 +60,31 @@ public enum Opencannabis_Commerce_CurrencyType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_CurrencyType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_CurrencyType] = [
+    .fiat,
+    .real,
+    .crypto,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies known or explicitly supported fiat currencies.
 public enum Opencannabis_Commerce_FiatCurrency: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies 'US Dollar' as a currency.
   case usd // = 0
+
+  /// Specifies 'Canadian Dollar' as a currency.
+  case cad // = 1
+
+  /// Specifies 'Euro' as a currency.
+  case eur // = 2
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -75,6 +94,8 @@ public enum Opencannabis_Commerce_FiatCurrency: SwiftProtobuf.Enum {
   public init?(rawValue: Int) {
     switch rawValue {
     case 0: self = .usd
+    case 1: self = .cad
+    case 2: self = .eur
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -82,11 +103,26 @@ public enum Opencannabis_Commerce_FiatCurrency: SwiftProtobuf.Enum {
   public var rawValue: Int {
     switch self {
     case .usd: return 0
+    case .cad: return 1
+    case .eur: return 2
     case .UNRECOGNIZED(let i): return i
     }
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_FiatCurrency: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_FiatCurrency] = [
+    .usd,
+    .cad,
+    .eur,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies a value, with a particular currency specification as the unit.
 public struct Opencannabis_Commerce_CurrencyValue {
@@ -130,6 +166,7 @@ public struct Opencannabis_Commerce_CurrencyValue {
     /// Custom currency, by name or symbol, for a given currency value.
     case custom(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Commerce_CurrencyValue.OneOf_Spec, rhs: Opencannabis_Commerce_CurrencyValue.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.fiat(let l), .fiat(let r)): return l == r
@@ -137,6 +174,7 @@ public struct Opencannabis_Commerce_CurrencyValue {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -157,6 +195,8 @@ extension Opencannabis_Commerce_CurrencyType: SwiftProtobuf._ProtoNameProviding 
 extension Opencannabis_Commerce_FiatCurrency: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "USD"),
+    1: .same(proto: "CAD"),
+    2: .same(proto: "EUR"),
   ]
 }
 
@@ -206,11 +246,11 @@ extension Opencannabis_Commerce_CurrencyValue: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_CurrencyValue) -> Bool {
-    if self.value != other.value {return false}
-    if self.type != other.type {return false}
-    if self.spec != other.spec {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Commerce_CurrencyValue, rhs: Opencannabis_Commerce_CurrencyValue) -> Bool {
+    if lhs.value != rhs.value {return false}
+    if lhs.type != rhs.type {return false}
+    if lhs.spec != rhs.spec {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

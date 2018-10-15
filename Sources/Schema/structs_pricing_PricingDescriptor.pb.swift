@@ -54,6 +54,18 @@ public enum Opencannabis_Structs_Pricing_PricingType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Pricing_PricingType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Pricing_PricingType] = [
+    .unit,
+    .weighted,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates supported pricing tiers, when the 'WEIGHTED' pricing scheme is in effect. Each known tier is enumerated,
 /// with an additional defaulted option for 'OTHER,' which would allow a custom weight to be assigned via some other
 /// property or metric.
@@ -146,6 +158,29 @@ public enum Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Pricing_PricingWeightTier: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Pricing_PricingWeightTier] = [
+    .noWeight,
+    .gram,
+    .halfgram,
+    .quartergram,
+    .dub,
+    .eighth,
+    .quarter,
+    .half,
+    .ounce,
+    .pound,
+    .kilo,
+    .ton,
+    .other,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies availability and stock status flags for a particular pricing tier.
 public struct Opencannabis_Structs_Pricing_PricingTierAvailability {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -180,7 +215,7 @@ public struct Opencannabis_Structs_Pricing_UnitPricingDescriptor {
   /// Returns true if `price` has been explicitly set.
   public var hasPrice: Bool {return _storage._price != nil}
   /// Clears the value of `price`. Subsequent reads from it will return its default value.
-  public mutating func clearPrice() {_storage._price = nil}
+  public mutating func clearPrice() {_uniqueStorage()._price = nil}
 
   /// Availability flags for this unit-priced tier.
   public var status: Opencannabis_Structs_Pricing_PricingTierAvailability {
@@ -190,7 +225,7 @@ public struct Opencannabis_Structs_Pricing_UnitPricingDescriptor {
   /// Returns true if `status` has been explicitly set.
   public var hasStatus: Bool {return _storage._status != nil}
   /// Clears the value of `status`. Subsequent reads from it will return its default value.
-  public mutating func clearStatus() {_storage._status = nil}
+  public mutating func clearStatus() {_uniqueStorage()._status = nil}
 
   /// Discounts that should apply to this tier.
   public var discounts: [Opencannabis_Structs_Pricing_SaleDescriptor] {
@@ -226,7 +261,7 @@ public struct Opencannabis_Structs_Pricing_WeightedPricingDescriptor {
   /// Returns true if `tier` has been explicitly set.
   public var hasTier: Bool {return _storage._tier != nil}
   /// Clears the value of `tier`. Subsequent reads from it will return its default value.
-  public mutating func clearTier() {_storage._tier = nil}
+  public mutating func clearTier() {_uniqueStorage()._tier = nil}
 
   /// Custom weight in grams, if any.
   public var weightInGrams: Float {
@@ -287,6 +322,7 @@ public struct Opencannabis_Structs_Pricing_PricingDescriptor {
     /// Weight-based pricing information, with prices assgined to specific or known weights.
     case weighted(Opencannabis_Structs_Pricing_WeightedPricingDescriptor)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Structs_Pricing_PricingDescriptor.OneOf_Tier, rhs: Opencannabis_Structs_Pricing_PricingDescriptor.OneOf_Tier) -> Bool {
       switch (lhs, rhs) {
       case (.unit(let l), .unit(let r)): return l == r
@@ -294,6 +330,7 @@ public struct Opencannabis_Structs_Pricing_PricingDescriptor {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -375,10 +412,10 @@ extension Opencannabis_Structs_Pricing_PricingTierAvailability: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_PricingTierAvailability) -> Bool {
-    if self.offered != other.offered {return false}
-    if self.available != other.available {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Pricing_PricingTierAvailability, rhs: Opencannabis_Structs_Pricing_PricingTierAvailability) -> Bool {
+    if lhs.offered != rhs.offered {return false}
+    if lhs.available != rhs.available {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -443,19 +480,19 @@ extension Opencannabis_Structs_Pricing_UnitPricingDescriptor: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_UnitPricingDescriptor) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Pricing_UnitPricingDescriptor, rhs: Opencannabis_Structs_Pricing_UnitPricingDescriptor) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._price != other_storage._price {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._discounts != other_storage._discounts {return false}
+        let rhs_storage = _args.1
+        if _storage._price != rhs_storage._price {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._discounts != rhs_storage._discounts {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -520,19 +557,19 @@ extension Opencannabis_Structs_Pricing_WeightedPricingDescriptor: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_WeightedPricingDescriptor) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Pricing_WeightedPricingDescriptor, rhs: Opencannabis_Structs_Pricing_WeightedPricingDescriptor) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._weight != other_storage._weight {return false}
-        if _storage._tier != other_storage._tier {return false}
-        if _storage._weightInGrams != other_storage._weightInGrams {return false}
+        let rhs_storage = _args.1
+        if _storage._weight != rhs_storage._weight {return false}
+        if _storage._tier != rhs_storage._tier {return false}
+        if _storage._weightInGrams != rhs_storage._weightInGrams {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -610,18 +647,18 @@ extension Opencannabis_Structs_Pricing_PricingDescriptor: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_PricingDescriptor) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Pricing_PricingDescriptor, rhs: Opencannabis_Structs_Pricing_PricingDescriptor) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._tier != other_storage._tier {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._tier != rhs_storage._tier {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -653,10 +690,10 @@ extension Opencannabis_Structs_Pricing_ProductPricing: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Pricing_ProductPricing) -> Bool {
-    if self.discounts != other.discounts {return false}
-    if self.manifest != other.manifest {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Pricing_ProductPricing, rhs: Opencannabis_Structs_Pricing_ProductPricing) -> Bool {
+    if lhs.discounts != rhs.discounts {return false}
+    if lhs.manifest != rhs.manifest {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

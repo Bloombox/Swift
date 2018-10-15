@@ -83,6 +83,20 @@ public struct Opencannabis_Base_Compression {
   public init() {}
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Base_Compression.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Base_Compression.TypeEnum] = [
+    .noCompression,
+    .gzip,
+    .brotli,
+    .snappy,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.base"
@@ -114,10 +128,10 @@ extension Opencannabis_Base_Compression: SwiftProtobuf.Message, SwiftProtobuf._M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Base_Compression) -> Bool {
-    if self.enabled != other.enabled {return false}
-    if self.type != other.type {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Base_Compression, rhs: Opencannabis_Base_Compression) -> Bool {
+    if lhs.enabled != rhs.enabled {return false}
+    if lhs.type != rhs.type {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

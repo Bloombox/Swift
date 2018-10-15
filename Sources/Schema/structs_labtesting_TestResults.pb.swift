@@ -80,6 +80,22 @@ public enum Opencannabis_Structs_Labtesting_TestMethod: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_TestMethod: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_TestMethod] = [
+    .unspecifiedMethod,
+    .gcms,
+    .lcms,
+    .classicPcr,
+    .qPcr,
+    .elisa,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates available cannabinoid compounds, that generally show up in test results related to cannabis.
 public enum Opencannabis_Structs_Labtesting_Cannabinoid: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -168,6 +184,29 @@ public enum Opencannabis_Structs_Labtesting_Cannabinoid: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_Cannabinoid: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_Cannabinoid] = [
+    .thc,
+    .thcA,
+    .thcV,
+    .cbd,
+    .cbdA,
+    .cbdV,
+    .cbdVa,
+    .cbc,
+    .cbg,
+    .cbgA,
+    .cbn,
+    .cbv,
+    .cbvA,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates available cannabinoid ratio states. This value is computed from the THC and CBD test results, if
 /// available, and expresses the general (low-resolution) ratio between those two values, which are the most important in
 /// cannabis test result data.
@@ -222,6 +261,22 @@ public enum Opencannabis_Structs_Labtesting_CannabinoidRatio: SwiftProtobuf.Enum
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_CannabinoidRatio: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_CannabinoidRatio] = [
+    .noCannabinoidPreference,
+    .thcOnly,
+    .thcOverCbd,
+    .equal,
+    .cbdOverThc,
+    .cbdOnly,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Enumerates symptomatic/experiential feeling results from subjective product testing. Feeling states are not designed
 /// to be scientific or interpreted as medical advice.
@@ -286,6 +341,24 @@ public enum Opencannabis_Structs_Labtesting_Feeling: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_Feeling: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_Feeling] = [
+    .noFeelingPreference,
+    .grounding,
+    .sleep,
+    .calming,
+    .stimulating,
+    .funny,
+    .focus,
+    .passion,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Enumerates taste or aroma notes, either based on subjective product testing or quantitative/empirical terpene
 /// compound testing.
@@ -371,6 +444,28 @@ public enum Opencannabis_Structs_Labtesting_TasteNote: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_TasteNote: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_TasteNote] = [
+    .noTastePreference,
+    .sweet,
+    .sour,
+    .spice,
+    .smooth,
+    .citrus,
+    .pine,
+    .fruit,
+    .tropics,
+    .floral,
+    .herb,
+    .earth,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Generic potency estimate enumeration, either based on subjective product testing or calculated against some metric
 /// for the user's tolerance level.
 public enum Opencannabis_Structs_Labtesting_PotencyEstimate: SwiftProtobuf.Enum {
@@ -414,6 +509,20 @@ public enum Opencannabis_Structs_Labtesting_PotencyEstimate: SwiftProtobuf.Enum 
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_PotencyEstimate: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_PotencyEstimate] = [
+    .light,
+    .medium,
+    .heavy,
+    .super,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Enumerates known terpene compounds. Terpenes are volatile chemical compounds that define the taste and aroma (flavor,
 /// smell, etc), and in some manners, the psychokinetic experience of cannabis in flower, concentrate, edible, preroll or
@@ -650,6 +759,58 @@ public enum Opencannabis_Structs_Labtesting_Terpene: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_Terpene: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_Terpene] = [
+    .camphene,
+    .carene,
+    .betaCaryophyllene,
+    .caryophylleneOxide,
+    .eucalyptol,
+    .fenchol,
+    .alphaHumulene,
+    .limonene,
+    .linalool,
+    .myrcene,
+    .alphaOcimene,
+    .betaOcimene,
+    .alphaPhellandrene,
+    .alphaPinene,
+    .betaPinene,
+    .alphaTerpineol,
+    .alphaTerpinine,
+    .gammaTerpinine,
+    .terpinolene,
+    .valencene,
+    .geraniol,
+    .phellandrene,
+    .borneol,
+    .isoborneol,
+    .bisabolol,
+    .phytol,
+    .sabinene,
+    .camphor,
+    .menthol,
+    .cedrene,
+    .nerol,
+    .nerolidol,
+    .guaiol,
+    .isopulegol,
+    .geranylAcetate,
+    .cymene,
+    .pulegone,
+    .cineole,
+    .fenchone,
+    .terpinene,
+    .citronellol,
+    .delta3Carene,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Test results for contaminants which indicate presense/absense of a compound along with a value (if available)
 public struct Opencannabis_Structs_Labtesting_Contaminants {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -664,7 +825,7 @@ public struct Opencannabis_Structs_Labtesting_Contaminants {
   /// Returns true if `pesticides` has been explicitly set.
   public var hasPesticides: Bool {return _storage._pesticides != nil}
   /// Clears the value of `pesticides`. Subsequent reads from it will return its default value.
-  public mutating func clearPesticides() {_storage._pesticides = nil}
+  public mutating func clearPesticides() {_uniqueStorage()._pesticides = nil}
 
   /// Heavy metal specific test results. Indicates a heavy metal reading, by chemical compound name, along with a 
   /// reading value.
@@ -675,7 +836,7 @@ public struct Opencannabis_Structs_Labtesting_Contaminants {
   /// Returns true if `metals` has been explicitly set.
   public var hasMetals: Bool {return _storage._metals != nil}
   /// Clears the value of `metals`. Subsequent reads from it will return its default value.
-  public mutating func clearMetals() {_storage._metals = nil}
+  public mutating func clearMetals() {_uniqueStorage()._metals = nil}
 
   /// Mold and mildew specific test results. Indicates a mold or mildew reading, by species name, along with a reading
   /// value.
@@ -686,7 +847,7 @@ public struct Opencannabis_Structs_Labtesting_Contaminants {
   /// Returns true if `moldMildew` has been explicitly set.
   public var hasMoldMildew: Bool {return _storage._moldMildew != nil}
   /// Clears the value of `moldMildew`. Subsequent reads from it will return its default value.
-  public mutating func clearMoldMildew() {_storage._moldMildew = nil}
+  public mutating func clearMoldMildew() {_uniqueStorage()._moldMildew = nil}
 
   /// Place to store other contaminants that may be found in cannabis, including, but not limited to: glass, sand,
   /// detergents, etc.
@@ -697,7 +858,7 @@ public struct Opencannabis_Structs_Labtesting_Contaminants {
   /// Returns true if `otherContaminants` has been explicitly set.
   public var hasOtherContaminants: Bool {return _storage._otherContaminants != nil}
   /// Clears the value of `otherContaminants`. Subsequent reads from it will return its default value.
-  public mutating func clearOtherContaminants() {_storage._otherContaminants = nil}
+  public mutating func clearOtherContaminants() {_uniqueStorage()._otherContaminants = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -727,7 +888,7 @@ public struct Opencannabis_Structs_Labtesting_TestSuite {
   /// Returns true if `results` has been explicitly set.
   public var hasResults: Bool {return _storage._results != nil}
   /// Clears the value of `results`. Subsequent reads from it will return its default value.
-  public mutating func clearResults() {_storage._results = nil}
+  public mutating func clearResults() {_uniqueStorage()._results = nil}
 
   /// String containing any comments about the test.
   public var comments: String {
@@ -770,7 +931,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Returns true if `lastUpdated` has been explicitly set.
   public var hasLastUpdated: Bool {return _storage._lastUpdated != nil}
   /// Clears the value of `lastUpdated`. Subsequent reads from it will return its default value.
-  public mutating func clearLastUpdated() {_storage._lastUpdated = nil}
+  public mutating func clearLastUpdated() {_uniqueStorage()._lastUpdated = nil}
 
   /// Precise moment that these results were considered 'sealed' and returned. Once this timestamp is set, a given set of
   /// test results (unique by their coordinates) is considered immutable.
@@ -781,7 +942,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Returns true if `sealed` has been explicitly set.
   public var hasSealed: Bool {return _storage._sealed != nil}
   /// Clears the value of `sealed`. Subsequent reads from it will return its default value.
-  public mutating func clearSealed() {_storage._sealed = nil}
+  public mutating func clearSealed() {_uniqueStorage()._sealed = nil}
 
   /// Coordinate, or ID values, for this set of test results. When specified at the top-level of a set of lab tests,
   /// indicates the coordinates for the active set of test results.
@@ -792,7 +953,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Returns true if `coordinates` has been explicitly set.
   public var hasCoordinates: Bool {return _storage._coordinates != nil}
   /// Clears the value of `coordinates`. Subsequent reads from it will return its default value.
-  public mutating func clearCoordinates() {_storage._coordinates = nil}
+  public mutating func clearCoordinates() {_uniqueStorage()._coordinates = nil}
 
   /// Standard cannabinoid testing, with reading results at least for THC and CBD, and optionally additional cannabinoid
   /// compounds.
@@ -803,7 +964,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Returns true if `cannabinoids` has been explicitly set.
   public var hasCannabinoids: Bool {return _storage._cannabinoids != nil}
   /// Clears the value of `cannabinoids`. Subsequent reads from it will return its default value.
-  public mutating func clearCannabinoids() {_storage._cannabinoids = nil}
+  public mutating func clearCannabinoids() {_uniqueStorage()._cannabinoids = nil}
 
   /// Testing for terpene volatiles, which might indicate aroma or flavor notes.
   public var terpenes: Opencannabis_Structs_Labtesting_Terpenes {
@@ -813,7 +974,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Returns true if `terpenes` has been explicitly set.
   public var hasTerpenes: Bool {return _storage._terpenes != nil}
   /// Clears the value of `terpenes`. Subsequent reads from it will return its default value.
-  public mutating func clearTerpenes() {_storage._terpenes = nil}
+  public mutating func clearTerpenes() {_uniqueStorage()._terpenes = nil}
 
   /// Contaminants that may be present within the sample.
   public var contaminants: Opencannabis_Structs_Labtesting_Contaminants {
@@ -823,7 +984,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Returns true if `contaminants` has been explicitly set.
   public var hasContaminants: Bool {return _storage._contaminants != nil}
   /// Clears the value of `contaminants`. Subsequent reads from it will return its default value.
-  public mutating func clearContaminants() {_storage._contaminants = nil}
+  public mutating func clearContaminants() {_uniqueStorage()._contaminants = nil}
 
   /// Moisture rating and test results.
   public var moisture: Opencannabis_Structs_Labtesting_Moisture {
@@ -833,7 +994,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Returns true if `moisture` has been explicitly set.
   public var hasMoisture: Bool {return _storage._moisture != nil}
   /// Clears the value of `moisture`. Subsequent reads from it will return its default value.
-  public mutating func clearMoisture() {_storage._moisture = nil}
+  public mutating func clearMoisture() {_uniqueStorage()._moisture = nil}
 
   /// Results from subjective testing - i.e, opinionated human evaluation.
   public var subjective: Opencannabis_Structs_Labtesting_Subjective {
@@ -843,7 +1004,7 @@ public struct Opencannabis_Structs_Labtesting_TestResults {
   /// Returns true if `subjective` has been explicitly set.
   public var hasSubjective: Bool {return _storage._subjective != nil}
   /// Clears the value of `subjective`. Subsequent reads from it will return its default value.
-  public mutating func clearSubjective() {_storage._subjective = nil}
+  public mutating func clearSubjective() {_uniqueStorage()._subjective = nil}
 
   /// Computed taste notes for this product, based on the combination of terpene testing and subjective testing, if
   /// available.
@@ -906,7 +1067,7 @@ public struct Opencannabis_Structs_Labtesting_Cannabinoids {
   /// Returns true if `thc` has been explicitly set.
   public var hasThc: Bool {return _storage._thc != nil}
   /// Clears the value of `thc`. Subsequent reads from it will return its default value.
-  public mutating func clearThc() {_storage._thc = nil}
+  public mutating func clearThc() {_uniqueStorage()._thc = nil}
 
   /// CBD testing value.
   public var cbd: Opencannabis_Structs_Labtesting_TestValue {
@@ -916,7 +1077,7 @@ public struct Opencannabis_Structs_Labtesting_Cannabinoids {
   /// Returns true if `cbd` has been explicitly set.
   public var hasCbd: Bool {return _storage._cbd != nil}
   /// Clears the value of `cbd`. Subsequent reads from it will return its default value.
-  public mutating func clearCbd() {_storage._cbd = nil}
+  public mutating func clearCbd() {_uniqueStorage()._cbd = nil}
 
   /// Individual results payloads for other cannabinoids.
   public var results: [Opencannabis_Structs_Labtesting_Cannabinoids.Result] {
@@ -958,7 +1119,7 @@ public struct Opencannabis_Structs_Labtesting_Cannabinoids {
     /// Returns true if `measurement` has been explicitly set.
     public var hasMeasurement: Bool {return _storage._measurement != nil}
     /// Clears the value of `measurement`. Subsequent reads from it will return its default value.
-    public mutating func clearMeasurement() {_storage._measurement = nil}
+    public mutating func clearMeasurement() {_uniqueStorage()._measurement = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -987,7 +1148,7 @@ public struct Opencannabis_Structs_Labtesting_Subjective {
   /// Returns true if `description_p` has been explicitly set.
   public var hasDescription_p: Bool {return _storage._description_p != nil}
   /// Clears the value of `description_p`. Subsequent reads from it will return its default value.
-  public mutating func clearDescription_p() {_storage._description_p = nil}
+  public mutating func clearDescription_p() {_uniqueStorage()._description_p = nil}
 
   /// Subjective description of the taste of this product.
   public var taste: Opencannabis_Content_Content {
@@ -997,7 +1158,7 @@ public struct Opencannabis_Structs_Labtesting_Subjective {
   /// Returns true if `taste` has been explicitly set.
   public var hasTaste: Bool {return _storage._taste != nil}
   /// Clears the value of `taste`. Subsequent reads from it will return its default value.
-  public mutating func clearTaste() {_storage._taste = nil}
+  public mutating func clearTaste() {_uniqueStorage()._taste = nil}
 
   /// Subjective potency estimate for this product.
   public var potency: Opencannabis_Structs_Labtesting_PotencyEstimate {
@@ -1103,7 +1264,7 @@ public struct Opencannabis_Structs_Labtesting_Moisture {
   /// Returns true if `measurement` has been explicitly set.
   public var hasMeasurement: Bool {return _storage._measurement != nil}
   /// Clears the value of `measurement`. Subsequent reads from it will return its default value.
-  public mutating func clearMeasurement() {_storage._measurement = nil}
+  public mutating func clearMeasurement() {_uniqueStorage()._measurement = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1153,7 +1314,7 @@ public struct Opencannabis_Structs_Labtesting_Terpenes {
     /// Returns true if `measurement` has been explicitly set.
     public var hasMeasurement: Bool {return _storage._measurement != nil}
     /// Clears the value of `measurement`. Subsequent reads from it will return its default value.
-    public mutating func clearMeasurement() {_storage._measurement = nil}
+    public mutating func clearMeasurement() {_uniqueStorage()._measurement = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1362,20 +1523,20 @@ extension Opencannabis_Structs_Labtesting_Contaminants: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Contaminants) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_Contaminants, rhs: Opencannabis_Structs_Labtesting_Contaminants) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._pesticides != other_storage._pesticides {return false}
-        if _storage._metals != other_storage._metals {return false}
-        if _storage._moldMildew != other_storage._moldMildew {return false}
-        if _storage._otherContaminants != other_storage._otherContaminants {return false}
+        let rhs_storage = _args.1
+        if _storage._pesticides != rhs_storage._pesticides {return false}
+        if _storage._metals != rhs_storage._metals {return false}
+        if _storage._moldMildew != rhs_storage._moldMildew {return false}
+        if _storage._otherContaminants != rhs_storage._otherContaminants {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1440,19 +1601,19 @@ extension Opencannabis_Structs_Labtesting_TestSuite: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestSuite) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_TestSuite, rhs: Opencannabis_Structs_Labtesting_TestSuite) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._method != other_storage._method {return false}
-        if _storage._results != other_storage._results {return false}
-        if _storage._comments != other_storage._comments {return false}
+        let rhs_storage = _args.1
+        if _storage._method != rhs_storage._method {return false}
+        if _storage._results != rhs_storage._results {return false}
+        if _storage._comments != rhs_storage._comments {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1580,28 +1741,28 @@ extension Opencannabis_Structs_Labtesting_TestResults: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestResults) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_TestResults, rhs: Opencannabis_Structs_Labtesting_TestResults) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._available != other_storage._available {return false}
-        if _storage._media != other_storage._media {return false}
-        if _storage._lastUpdated != other_storage._lastUpdated {return false}
-        if _storage._sealed != other_storage._sealed {return false}
-        if _storage._coordinates != other_storage._coordinates {return false}
-        if _storage._cannabinoids != other_storage._cannabinoids {return false}
-        if _storage._terpenes != other_storage._terpenes {return false}
-        if _storage._contaminants != other_storage._contaminants {return false}
-        if _storage._moisture != other_storage._moisture {return false}
-        if _storage._subjective != other_storage._subjective {return false}
-        if _storage._aroma != other_storage._aroma {return false}
-        if _storage._data != other_storage._data {return false}
+        let rhs_storage = _args.1
+        if _storage._available != rhs_storage._available {return false}
+        if _storage._media != rhs_storage._media {return false}
+        if _storage._lastUpdated != rhs_storage._lastUpdated {return false}
+        if _storage._sealed != rhs_storage._sealed {return false}
+        if _storage._coordinates != rhs_storage._coordinates {return false}
+        if _storage._cannabinoids != rhs_storage._cannabinoids {return false}
+        if _storage._terpenes != rhs_storage._terpenes {return false}
+        if _storage._contaminants != rhs_storage._contaminants {return false}
+        if _storage._moisture != rhs_storage._moisture {return false}
+        if _storage._subjective != rhs_storage._subjective {return false}
+        if _storage._aroma != rhs_storage._aroma {return false}
+        if _storage._data != rhs_storage._data {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1643,12 +1804,12 @@ extension Opencannabis_Structs_Labtesting_TestCoordinates: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestCoordinates) -> Bool {
-    if self.zone != other.zone {return false}
-    if self.lot != other.lot {return false}
-    if self.batch != other.batch {return false}
-    if self.sampleID != other.sampleID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_TestCoordinates, rhs: Opencannabis_Structs_Labtesting_TestCoordinates) -> Bool {
+    if lhs.zone != rhs.zone {return false}
+    if lhs.lot != rhs.lot {return false}
+    if lhs.batch != rhs.batch {return false}
+    if lhs.sampleID != rhs.sampleID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1727,21 +1888,21 @@ extension Opencannabis_Structs_Labtesting_Cannabinoids: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Cannabinoids) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_Cannabinoids, rhs: Opencannabis_Structs_Labtesting_Cannabinoids) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._thc != other_storage._thc {return false}
-        if _storage._cbd != other_storage._cbd {return false}
-        if _storage._results != other_storage._results {return false}
-        if _storage._ratio != other_storage._ratio {return false}
-        if _storage._potency != other_storage._potency {return false}
+        let rhs_storage = _args.1
+        if _storage._thc != rhs_storage._thc {return false}
+        if _storage._cbd != rhs_storage._cbd {return false}
+        if _storage._results != rhs_storage._results {return false}
+        if _storage._ratio != rhs_storage._ratio {return false}
+        if _storage._potency != rhs_storage._potency {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1799,18 +1960,18 @@ extension Opencannabis_Structs_Labtesting_Cannabinoids.Result: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Cannabinoids.Result) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_Cannabinoids.Result, rhs: Opencannabis_Structs_Labtesting_Cannabinoids.Result) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._cannabinoid != other_storage._cannabinoid {return false}
-        if _storage._measurement != other_storage._measurement {return false}
+        let rhs_storage = _args.1
+        if _storage._cannabinoid != rhs_storage._cannabinoid {return false}
+        if _storage._measurement != rhs_storage._measurement {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1889,21 +2050,21 @@ extension Opencannabis_Structs_Labtesting_Subjective: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Subjective) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_Subjective, rhs: Opencannabis_Structs_Labtesting_Subjective) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._description_p != other_storage._description_p {return false}
-        if _storage._taste != other_storage._taste {return false}
-        if _storage._potency != other_storage._potency {return false}
-        if _storage._feeling != other_storage._feeling {return false}
-        if _storage._aroma != other_storage._aroma {return false}
+        let rhs_storage = _args.1
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._taste != rhs_storage._taste {return false}
+        if _storage._potency != rhs_storage._potency {return false}
+        if _storage._feeling != rhs_storage._feeling {return false}
+        if _storage._aroma != rhs_storage._aroma {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1935,10 +2096,10 @@ extension Opencannabis_Structs_Labtesting_Pesticides: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Pesticides) -> Bool {
-    if self.pesticideFree != other.pesticideFree {return false}
-    if self.measurements != other.measurements {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_Pesticides, rhs: Opencannabis_Structs_Labtesting_Pesticides) -> Bool {
+    if lhs.pesticideFree != rhs.pesticideFree {return false}
+    if lhs.measurements != rhs.measurements {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1970,10 +2131,10 @@ extension Opencannabis_Structs_Labtesting_Metals: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Metals) -> Bool {
-    if self.metalFree != other.metalFree {return false}
-    if self.measurements != other.measurements {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_Metals, rhs: Opencannabis_Structs_Labtesting_Metals) -> Bool {
+    if lhs.metalFree != rhs.metalFree {return false}
+    if lhs.measurements != rhs.measurements {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2005,10 +2166,10 @@ extension Opencannabis_Structs_Labtesting_MoldMildew: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_MoldMildew) -> Bool {
-    if self.moldMildewFree != other.moldMildewFree {return false}
-    if self.measurements != other.measurements {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_MoldMildew, rhs: Opencannabis_Structs_Labtesting_MoldMildew) -> Bool {
+    if lhs.moldMildewFree != rhs.moldMildewFree {return false}
+    if lhs.measurements != rhs.measurements {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2035,9 +2196,9 @@ extension Opencannabis_Structs_Labtesting_OtherContaminants: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_OtherContaminants) -> Bool {
-    if self.measurements != other.measurements {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_OtherContaminants, rhs: Opencannabis_Structs_Labtesting_OtherContaminants) -> Bool {
+    if lhs.measurements != rhs.measurements {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2088,17 +2249,17 @@ extension Opencannabis_Structs_Labtesting_Moisture: SwiftProtobuf.Message, Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Moisture) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_Moisture, rhs: Opencannabis_Structs_Labtesting_Moisture) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._measurement != other_storage._measurement {return false}
+        let rhs_storage = _args.1
+        if _storage._measurement != rhs_storage._measurement {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2140,12 +2301,12 @@ extension Opencannabis_Structs_Labtesting_Terpenes: SwiftProtobuf.Message, Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Terpenes) -> Bool {
-    if self.available != other.available {return false}
-    if self.terpene != other.terpene {return false}
-    if self.feeling != other.feeling {return false}
-    if self.aroma != other.aroma {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_Terpenes, rhs: Opencannabis_Structs_Labtesting_Terpenes) -> Bool {
+    if lhs.available != rhs.available {return false}
+    if lhs.terpene != rhs.terpene {return false}
+    if lhs.feeling != rhs.feeling {return false}
+    if lhs.aroma != rhs.aroma {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -2203,18 +2364,18 @@ extension Opencannabis_Structs_Labtesting_Terpenes.Result: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_Terpenes.Result) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_Terpenes.Result, rhs: Opencannabis_Structs_Labtesting_Terpenes.Result) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._terpene != other_storage._terpene {return false}
-        if _storage._measurement != other_storage._measurement {return false}
+        let rhs_storage = _args.1
+        if _storage._terpene != rhs_storage._terpene {return false}
+        if _storage._measurement != rhs_storage._measurement {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

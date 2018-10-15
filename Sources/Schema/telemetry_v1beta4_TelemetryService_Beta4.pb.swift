@@ -6,6 +6,11 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides the Telemetry API, which accepts arbitrary event payloads and records them as telemetry data. Various forms
+/// of specialized telemetry data may be sent, such as error or timing payloads. User conversion and interest events are
+/// also enumerated explicitly for easier analytics calculations and more efficient event transmission.
+
 import Foundation
 import SwiftProtobuf
 
@@ -51,6 +56,18 @@ public enum Bloombox_Schema_Services_Telemetry_V1beta4_OperationStatus: SwiftPro
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Telemetry_V1beta4_OperationStatus: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Telemetry_V1beta4_OperationStatus] = [
+    .ok,
+    .error,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies known errors that may be emitted in exceptional processing cases.
 public enum Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryError: SwiftProtobuf.Enum {
@@ -125,6 +142,26 @@ public enum Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryError: SwiftProt
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryError] = [
+    .unknown,
+    .invalidCollection,
+    .invalidPartner,
+    .invalidLocation,
+    .invalidDevice,
+    .invalidUser,
+    .invalidClient,
+    .partnerNotFound,
+    .locationNotFound,
+    .invalidPayload,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a response to a request to submit telemetry data.
 public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -192,7 +229,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request for service status.
     public var response: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response {
@@ -202,7 +239,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -236,7 +273,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     /// Returns true if `context` has been explicitly set.
     public var hasContext: Bool {return _storage._context != nil}
     /// Clears the value of `context`. Subsequent reads from it will return its default value.
-    public mutating func clearContext() {_storage._context = nil}
+    public mutating func clearContext() {_uniqueStorage()._context = nil}
 
     /// Event being reported in this transaction.
     public var event: OneOf_Event? {
@@ -282,6 +319,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
       /// Impression event for a commercial shop.
       case shop(Bloombox_Schema_Analytics_Shop_Impression)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression.OneOf_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression.OneOf_Event) -> Bool {
         switch (lhs, rhs) {
         case (.section(let l), .section(let r)): return l == r
@@ -290,6 +328,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
@@ -311,7 +350,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     /// Returns true if `context` has been explicitly set.
     public var hasContext: Bool {return _storage._context != nil}
     /// Clears the value of `context`. Subsequent reads from it will return its default value.
-    public mutating func clearContext() {_storage._context = nil}
+    public mutating func clearContext() {_uniqueStorage()._context = nil}
 
     /// Event being reported in this transaction.
     public var event: OneOf_Event? {
@@ -357,6 +396,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
       /// View event for a commercial shop.
       case shop(Bloombox_Schema_Analytics_Shop_View)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View.OneOf_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View.OneOf_Event) -> Bool {
         switch (lhs, rhs) {
         case (.section(let l), .section(let r)): return l == r
@@ -365,6 +405,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
@@ -392,7 +433,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     /// Returns true if `context` has been explicitly set.
     public var hasContext: Bool {return _storage._context != nil}
     /// Clears the value of `context`. Subsequent reads from it will return its default value.
-    public mutating func clearContext() {_storage._context = nil}
+    public mutating func clearContext() {_uniqueStorage()._context = nil}
 
     /// Event being reported in this transaction.
     public var event: OneOf_Event? {
@@ -449,6 +490,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
       /// Action event on a user order.
       case order(Bloombox_Schema_Analytics_Order_Action)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action.OneOf_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action.OneOf_Event) -> Bool {
         switch (lhs, rhs) {
         case (.section(let l), .section(let r)): return l == r
@@ -458,6 +500,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
@@ -497,7 +540,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent {
     /// Returns true if `context` has been explicitly set.
     public var hasContext: Bool {return _storage._context != nil}
     /// Clears the value of `context`. Subsequent reads from it will return its default value.
-    public mutating func clearContext() {_storage._context = nil}
+    public mutating func clearContext() {_uniqueStorage()._context = nil}
 
     public var event: OneOf_Event? {
       get {return _storage._event}
@@ -519,11 +562,13 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent {
       /// Action taken by or on a user.
       case action(Bloombox_Schema_Analytics_Identity_Action)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action.OneOf_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action.OneOf_Event) -> Bool {
         switch (lhs, rhs) {
         case (.action(let l), .action(let r)): return l == r
         }
       }
+    #endif
     }
 
     public init() {}
@@ -563,7 +608,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent {
     /// Returns true if `context` has been explicitly set.
     public var hasContext: Bool {return _storage._context != nil}
     /// Clears the value of `context`. Subsequent reads from it will return its default value.
-    public mutating func clearContext() {_storage._context = nil}
+    public mutating func clearContext() {_uniqueStorage()._context = nil}
 
     /// Digital property from which this search originated.
     public var property: Bloombox_Schema_Analytics_Search_SearchProperty {
@@ -604,7 +649,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent {
     /// Returns true if `context` has been explicitly set.
     public var hasContext: Bool {return _storage._context != nil}
     /// Clears the value of `context`. Subsequent reads from it will return its default value.
-    public mutating func clearContext() {_storage._context = nil}
+    public mutating func clearContext() {_uniqueStorage()._context = nil}
 
     /// Digital property from which this search originated.
     public var property: Bloombox_Schema_Analytics_Search_SearchProperty {
@@ -632,7 +677,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent {
     /// Returns true if `key` has been explicitly set.
     public var hasKey: Bool {return _storage._key != nil}
     /// Clears the value of `key`. Subsequent reads from it will return its default value.
-    public mutating func clearKey() {_storage._key = nil}
+    public mutating func clearKey() {_uniqueStorage()._key = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -702,11 +747,11 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse) -> Bool {
-    if self.status != other.status {return false}
-    if self.count != other.count {return false}
-    if self.service != other.service {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.count != rhs.count {return false}
+    if lhs.service != rhs.service {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -724,8 +769,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -743,8 +788,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Request: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Request) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Request, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Request) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -771,9 +816,9 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response: Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response) -> Bool {
-    if self.status != other.status {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -831,18 +876,18 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Operation: Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Operation, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -860,8 +905,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -950,18 +995,18 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression:
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._context != other_storage._context {return false}
-        if _storage._event != other_storage._event {return false}
+        let rhs_storage = _args.1
+        if _storage._context != rhs_storage._context {return false}
+        if _storage._event != rhs_storage._event {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1050,18 +1095,18 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View: Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._context != other_storage._context {return false}
-        if _storage._event != other_storage._event {return false}
+        let rhs_storage = _args.1
+        if _storage._context != rhs_storage._context {return false}
+        if _storage._event != rhs_storage._event {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1168,19 +1213,19 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action: Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._context != other_storage._context {return false}
-        if _storage._event != other_storage._event {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._context != rhs_storage._context {return false}
+        if _storage._event != rhs_storage._event {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1198,8 +1243,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1271,19 +1316,19 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action: Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._context != other_storage._context {return false}
-        if _storage._event != other_storage._event {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._context != rhs_storage._context {return false}
+        if _storage._event != rhs_storage._event {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1301,8 +1346,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1374,20 +1419,20 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._term != other_storage._term {return false}
-        if _storage._context != other_storage._context {return false}
-        if _storage._property != other_storage._property {return false}
-        if _storage._totalResults != other_storage._totalResults {return false}
+        let rhs_storage = _args.1
+        if _storage._term != rhs_storage._term {return false}
+        if _storage._context != rhs_storage._context {return false}
+        if _storage._property != rhs_storage._property {return false}
+        if _storage._totalResults != rhs_storage._totalResults {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1473,22 +1518,22 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._term != other_storage._term {return false}
-        if _storage._context != other_storage._context {return false}
-        if _storage._property != other_storage._property {return false}
-        if _storage._totalResults != other_storage._totalResults {return false}
-        if _storage._selectedResult != other_storage._selectedResult {return false}
-        if _storage._key != other_storage._key {return false}
+        let rhs_storage = _args.1
+        if _storage._term != rhs_storage._term {return false}
+        if _storage._context != rhs_storage._context {return false}
+        if _storage._property != rhs_storage._property {return false}
+        if _storage._totalResults != rhs_storage._totalResults {return false}
+        if _storage._selectedResult != rhs_storage._selectedResult {return false}
+        if _storage._key != rhs_storage._key {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

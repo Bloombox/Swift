@@ -37,7 +37,7 @@ public struct Opencannabis_Content_ProductTimestamps {
   /// Returns true if `created` has been explicitly set.
   public var hasCreated: Bool {return _storage._created != nil}
   /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   /// When the subject product was last modified.
   public var modified: Opencannabis_Temporal_Instant {
@@ -47,7 +47,7 @@ public struct Opencannabis_Content_ProductTimestamps {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   /// When the subject product was last or first published.
   public var published: Opencannabis_Temporal_Instant {
@@ -57,7 +57,7 @@ public struct Opencannabis_Content_ProductTimestamps {
   /// Returns true if `published` has been explicitly set.
   public var hasPublished: Bool {return _storage._published != nil}
   /// Clears the value of `published`. Subsequent reads from it will return its default value.
-  public mutating func clearPublished() {_storage._published = nil}
+  public mutating func clearPublished() {_uniqueStorage()._published = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -81,7 +81,7 @@ public struct Opencannabis_Content_ProductContent {
   /// Returns true if `name` has been explicitly set.
   public var hasName: Bool {return _storage._name != nil}
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
-  public mutating func clearName() {_storage._name = nil}
+  public mutating func clearName() {_uniqueStorage()._name = nil}
 
   /// Brand information for this product.
   public var brand: Opencannabis_Content_Brand {
@@ -91,7 +91,7 @@ public struct Opencannabis_Content_ProductContent {
   /// Returns true if `brand` has been explicitly set.
   public var hasBrand: Bool {return _storage._brand != nil}
   /// Clears the value of `brand`. Subsequent reads from it will return its default value.
-  public mutating func clearBrand() {_storage._brand = nil}
+  public mutating func clearBrand() {_uniqueStorage()._brand = nil}
 
   /// Description or narrative-style content about this product.
   public var summary: Opencannabis_Content_Content {
@@ -101,7 +101,7 @@ public struct Opencannabis_Content_ProductContent {
   /// Returns true if `summary` has been explicitly set.
   public var hasSummary: Bool {return _storage._summary != nil}
   /// Clears the value of `summary`. Subsequent reads from it will return its default value.
-  public mutating func clearSummary() {_storage._summary = nil}
+  public mutating func clearSummary() {_uniqueStorage()._summary = nil}
 
   /// Content about how this product is best used, or recommended to be used, either from the manufacturer or retailer.
   public var usage: Opencannabis_Content_Content {
@@ -111,7 +111,7 @@ public struct Opencannabis_Content_ProductContent {
   /// Returns true if `usage` has been explicitly set.
   public var hasUsage: Bool {return _storage._usage != nil}
   /// Clears the value of `usage`. Subsequent reads from it will return its default value.
-  public mutating func clearUsage() {_storage._usage = nil}
+  public mutating func clearUsage() {_uniqueStorage()._usage = nil}
 
   /// Dosage advice about this product, either from the manufacturer or retailer.
   public var dosage: Opencannabis_Content_Content {
@@ -121,10 +121,10 @@ public struct Opencannabis_Content_ProductContent {
   /// Returns true if `dosage` has been explicitly set.
   public var hasDosage: Bool {return _storage._dosage != nil}
   /// Clears the value of `dosage`. Subsequent reads from it will return its default value.
-  public mutating func clearDosage() {_storage._dosage = nil}
+  public mutating func clearDosage() {_uniqueStorage()._dosage = nil}
 
   /// Product media, including images, videos, and so on.
-  public var media: [Opencannabis_Media_MediaItem] {
+  public var media: [Opencannabis_Media_MediaReference] {
     get {return _storage._media}
     set {_uniqueStorage()._media = newValue}
   }
@@ -137,7 +137,7 @@ public struct Opencannabis_Content_ProductContent {
   /// Returns true if `pricing` has been explicitly set.
   public var hasPricing: Bool {return _storage._pricing != nil}
   /// Clears the value of `pricing`. Subsequent reads from it will return its default value.
-  public mutating func clearPricing() {_storage._pricing = nil}
+  public mutating func clearPricing() {_uniqueStorage()._pricing = nil}
 
   /// Lab testing information concerning this product.
   public var tests: Opencannabis_Structs_Labtesting_TestResults {
@@ -147,7 +147,7 @@ public struct Opencannabis_Content_ProductContent {
   /// Returns true if `tests` has been explicitly set.
   public var hasTests: Bool {return _storage._tests != nil}
   /// Clears the value of `tests`. Subsequent reads from it will return its default value.
-  public mutating func clearTests() {_storage._tests = nil}
+  public mutating func clearTests() {_uniqueStorage()._tests = nil}
 
   /// Product flags attached to this content.
   public var flags: [Opencannabis_Structs_ProductFlag] {
@@ -163,7 +163,7 @@ public struct Opencannabis_Content_ProductContent {
   /// Returns true if `ts` has been explicitly set.
   public var hasTs: Bool {return _storage._ts != nil}
   /// Clears the value of `ts`. Subsequent reads from it will return its default value.
-  public mutating func clearTs() {_storage._ts = nil}
+  public mutating func clearTs() {_uniqueStorage()._ts = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -236,19 +236,19 @@ extension Opencannabis_Content_ProductTimestamps: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_ProductTimestamps) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Content_ProductTimestamps, rhs: Opencannabis_Content_ProductTimestamps) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._created != other_storage._created {return false}
-        if _storage._modified != other_storage._modified {return false}
-        if _storage._published != other_storage._published {return false}
+        let rhs_storage = _args.1
+        if _storage._created != rhs_storage._created {return false}
+        if _storage._modified != rhs_storage._modified {return false}
+        if _storage._published != rhs_storage._published {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -274,7 +274,7 @@ extension Opencannabis_Content_ProductContent: SwiftProtobuf.Message, SwiftProto
     var _summary: Opencannabis_Content_Content? = nil
     var _usage: Opencannabis_Content_Content? = nil
     var _dosage: Opencannabis_Content_Content? = nil
-    var _media: [Opencannabis_Media_MediaItem] = []
+    var _media: [Opencannabis_Media_MediaReference] = []
     var _pricing: Opencannabis_Structs_Pricing_ProductPricing? = nil
     var _tests: Opencannabis_Structs_Labtesting_TestResults? = nil
     var _flags: [Opencannabis_Structs_ProductFlag] = []
@@ -362,26 +362,26 @@ extension Opencannabis_Content_ProductContent: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_ProductContent) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Content_ProductContent, rhs: Opencannabis_Content_ProductContent) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._brand != other_storage._brand {return false}
-        if _storage._summary != other_storage._summary {return false}
-        if _storage._usage != other_storage._usage {return false}
-        if _storage._dosage != other_storage._dosage {return false}
-        if _storage._media != other_storage._media {return false}
-        if _storage._pricing != other_storage._pricing {return false}
-        if _storage._tests != other_storage._tests {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._ts != other_storage._ts {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._brand != rhs_storage._brand {return false}
+        if _storage._summary != rhs_storage._summary {return false}
+        if _storage._usage != rhs_storage._usage {return false}
+        if _storage._dosage != rhs_storage._dosage {return false}
+        if _storage._media != rhs_storage._media {return false}
+        if _storage._pricing != rhs_storage._pricing {return false}
+        if _storage._tests != rhs_storage._tests {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._ts != rhs_storage._ts {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

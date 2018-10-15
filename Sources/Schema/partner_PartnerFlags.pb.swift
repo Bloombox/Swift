@@ -97,13 +97,13 @@ extension Bloombox_Schema_Partner_PartnerFlags: SwiftProtobuf.Message, SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerFlags) -> Bool {
-    if self.suspended != other.suspended {return false}
-    if self.pastdue != other.pastdue {return false}
-    if self.beta != other.beta {return false}
-    if self.sandbox != other.sandbox {return false}
-    if self.`internal` != other.`internal` {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Partner_PartnerFlags, rhs: Bloombox_Schema_Partner_PartnerFlags) -> Bool {
+    if lhs.suspended != rhs.suspended {return false}
+    if lhs.pastdue != rhs.pastdue {return false}
+    if lhs.beta != rhs.beta {return false}
+    if lhs.sandbox != rhs.sandbox {return false}
+    if lhs.`internal` != rhs.`internal` {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

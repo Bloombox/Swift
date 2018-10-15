@@ -8,19 +8,22 @@ let package = Package(
     products: [
         .library(
             name: "Bloombox",
-            targets: ["Client"])],
+            targets: ["Bloombox"])],
 
     dependencies: [
-        .package(url: "https://github.com/apple/swift-protobuf.git", .branch("master")),
-        .package(url: "https://github.com/bloombox/grpc-swift.git", .branch("master"))],
+        .package(url: "https://github.com/apple/swift-protobuf.git", .upToNextMinor(from: "1.1.2")),
+        .package(url: "https://github.com/bloombox/grpc-swift.git", .branch("update-0-6-0"))],
 
     targets: [
         .target(
-            name: "Client",
-            dependencies: ["Schema"]),
+            name: "Bloombox",
+            dependencies: ["OpenCannabis", "SwiftGRPC"],
+            path: "Sources/Client"),
         .target(
-            name: "Schema",
-            dependencies: ["SwiftProtobuf", "SwiftGRPC"]),
-        .testTarget(
-            name: "ClientTests",
-            dependencies: ["Client"])])
+            name: "OpenCannabis",
+            dependencies: ["SwiftProtobuf", "SwiftGRPC"],
+            path: "Sources/Schema"),
+        .testTarget(name: "SchemaTests", dependencies: ["OpenCannabis"]),
+        .testTarget(name: "ClientTests", dependencies: ["Bloombox"])])
+
+

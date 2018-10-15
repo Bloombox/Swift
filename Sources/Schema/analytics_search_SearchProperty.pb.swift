@@ -58,6 +58,19 @@ public enum Bloombox_Schema_Analytics_Search_SearchProperty: SwiftProtobuf.Enum 
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Analytics_Search_SearchProperty: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Analytics_Search_SearchProperty] = [
+    .propertyUnspecified,
+    .web,
+    .tablet,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Bloombox_Schema_Analytics_Search_SearchProperty: SwiftProtobuf._ProtoNameProviding {

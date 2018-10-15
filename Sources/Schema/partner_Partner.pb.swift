@@ -52,6 +52,17 @@ public enum Bloombox_Schema_Partner_PartnerChannel: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Partner_PartnerChannel: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Partner_PartnerChannel] = [
+    .direct,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies information about a partner organization that has an account opened with Bloombox. A partner can own/manage
 /// multiple `Location`s, and is identified uniquely by a short `code`, which is a lowercase string suitable for use in
 /// a URL as a slug.
@@ -80,7 +91,7 @@ public struct Bloombox_Schema_Partner_Partner {
   /// Returns true if `flags` has been explicitly set.
   public var hasFlags: Bool {return _storage._flags != nil}
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {_storage._flags = nil}
+  public mutating func clearFlags() {_uniqueStorage()._flags = nil}
 
   /// Legal name of the partner organization.
   public var legalName: String {
@@ -96,7 +107,7 @@ public struct Bloombox_Schema_Partner_Partner {
   /// Returns true if `contact` has been explicitly set.
   public var hasContact: Bool {return _storage._contact != nil}
   /// Clears the value of `contact`. Subsequent reads from it will return its default value.
-  public mutating func clearContact() {_storage._contact = nil}
+  public mutating func clearContact() {_uniqueStorage()._contact = nil}
 
   /// Branding information for this organization.
   public var branding: Opencannabis_Media_MediaItem {
@@ -106,7 +117,7 @@ public struct Bloombox_Schema_Partner_Partner {
   /// Returns true if `branding` has been explicitly set.
   public var hasBranding: Bool {return _storage._branding != nil}
   /// Clears the value of `branding`. Subsequent reads from it will return its default value.
-  public mutating func clearBranding() {_storage._branding = nil}
+  public mutating func clearBranding() {_uniqueStorage()._branding = nil}
 
   /// Channel through which this partner organization interacts with Bloombox.
   public var channel: Bloombox_Schema_Partner_PartnerChannel {
@@ -122,7 +133,7 @@ public struct Bloombox_Schema_Partner_Partner {
   /// Returns true if `settings` has been explicitly set.
   public var hasSettings: Bool {return _storage._settings != nil}
   /// Clears the value of `settings`. Subsequent reads from it will return its default value.
-  public mutating func clearSettings() {_storage._settings = nil}
+  public mutating func clearSettings() {_uniqueStorage()._settings = nil}
 
   /// Location records attached to this partner.
   public var location: [Bloombox_Schema_Partner_PartnerLocation] {
@@ -144,7 +155,7 @@ public struct Bloombox_Schema_Partner_Partner {
   /// Returns true if `created` has been explicitly set.
   public var hasCreated: Bool {return _storage._created != nil}
   /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   /// Timestamp for when this record was last modified.
   public var modified: Opencannabis_Temporal_Instant {
@@ -154,7 +165,7 @@ public struct Bloombox_Schema_Partner_Partner {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -296,28 +307,28 @@ extension Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Partner) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Partner_Partner, rhs: Bloombox_Schema_Partner_Partner) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._code != other_storage._code {return false}
-        if _storage._name != other_storage._name {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._legalName != other_storage._legalName {return false}
-        if _storage._contact != other_storage._contact {return false}
-        if _storage._branding != other_storage._branding {return false}
-        if _storage._channel != other_storage._channel {return false}
-        if _storage._settings != other_storage._settings {return false}
-        if _storage._location != other_storage._location {return false}
-        if _storage._policy != other_storage._policy {return false}
-        if _storage._created != other_storage._created {return false}
-        if _storage._modified != other_storage._modified {return false}
+        let rhs_storage = _args.1
+        if _storage._code != rhs_storage._code {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._legalName != rhs_storage._legalName {return false}
+        if _storage._contact != rhs_storage._contact {return false}
+        if _storage._branding != rhs_storage._branding {return false}
+        if _storage._channel != rhs_storage._channel {return false}
+        if _storage._settings != rhs_storage._settings {return false}
+        if _storage._location != rhs_storage._location {return false}
+        if _storage._policy != rhs_storage._policy {return false}
+        if _storage._created != rhs_storage._created {return false}
+        if _storage._modified != rhs_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

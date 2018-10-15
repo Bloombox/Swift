@@ -44,11 +44,13 @@ public struct Opencannabis_Structs_VersionSpec {
     /// Version specified by arbitrary name.
     case name(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Structs_VersionSpec.OneOf_Spec, rhs: Opencannabis_Structs_VersionSpec.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.name(let l), .name(let r)): return l == r
       }
     }
+  #endif
   }
 
   public init() {}
@@ -84,9 +86,9 @@ extension Opencannabis_Structs_VersionSpec: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_VersionSpec) -> Bool {
-    if self.spec != other.spec {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_VersionSpec, rhs: Opencannabis_Structs_VersionSpec) -> Bool {
+    if lhs.spec != rhs.spec {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

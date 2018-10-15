@@ -102,6 +102,28 @@ public enum Bloombox_Schema_Analytics_Order_OrderAction: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Analytics_Order_OrderAction: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Analytics_Order_OrderAction] = [
+    .addToCart,
+    .removeFromCart,
+    .restoreCart,
+    .verifyMember,
+    .orderSubmit,
+    .orderStatus,
+    .orderCancel,
+    .orderAccepted,
+    .orderRejected,
+    .orderInProgerss,
+    .orderOutForDelivery,
+    .orderFulfilled,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies an order action event, wherein a user or backoffice admin has affirmatively taken some action upon or
 /// regarding a commercial order to be submitted or previously submitted by an end user.
 public struct Bloombox_Schema_Analytics_Order_Action {
@@ -117,7 +139,7 @@ public struct Bloombox_Schema_Analytics_Order_Action {
   /// Returns true if `orderKey` has been explicitly set.
   public var hasOrderKey: Bool {return _storage._orderKey != nil}
   /// Clears the value of `orderKey`. Subsequent reads from it will return its default value.
-  public mutating func clearOrderKey() {_storage._orderKey = nil}
+  public mutating func clearOrderKey() {_uniqueStorage()._orderKey = nil}
 
   /// Action that was taken upon or regarding the order.
   public var verb: Bloombox_Schema_Analytics_Order_OrderAction {
@@ -133,7 +155,7 @@ public struct Bloombox_Schema_Analytics_Order_Action {
   /// Returns true if `customer` has been explicitly set.
   public var hasCustomer: Bool {return _storage._customer != nil}
   /// Clears the value of `customer`. Subsequent reads from it will return its default value.
-  public mutating func clearCustomer() {_storage._customer = nil}
+  public mutating func clearCustomer() {_uniqueStorage()._customer = nil}
 
   /// Specifies when this view event occurred.
   public var occurred: Opencannabis_Temporal_Instant {
@@ -143,7 +165,7 @@ public struct Bloombox_Schema_Analytics_Order_Action {
   /// Returns true if `occurred` has been explicitly set.
   public var hasOccurred: Bool {return _storage._occurred != nil}
   /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-  public mutating func clearOccurred() {_storage._occurred = nil}
+  public mutating func clearOccurred() {_uniqueStorage()._occurred = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -240,20 +262,20 @@ extension Bloombox_Schema_Analytics_Order_Action: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Order_Action) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Order_Action, rhs: Bloombox_Schema_Analytics_Order_Action) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._orderKey != other_storage._orderKey {return false}
-        if _storage._verb != other_storage._verb {return false}
-        if _storage._customer != other_storage._customer {return false}
-        if _storage._occurred != other_storage._occurred {return false}
+        let rhs_storage = _args.1
+        if _storage._orderKey != rhs_storage._orderKey {return false}
+        if _storage._verb != rhs_storage._verb {return false}
+        if _storage._customer != rhs_storage._customer {return false}
+        if _storage._occurred != rhs_storage._occurred {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

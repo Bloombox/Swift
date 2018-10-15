@@ -59,9 +59,9 @@ extension Opencannabis_Geo_Country: SwiftProtobuf.Message, SwiftProtobuf._Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Country) -> Bool {
-    if self.code != other.code {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Geo_Country, rhs: Opencannabis_Geo_Country) -> Bool {
+    if lhs.code != rhs.code {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

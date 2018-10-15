@@ -51,6 +51,19 @@ public enum Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_TestValueType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_TestValueType] = [
+    .milligrams,
+    .percentage,
+    .presence,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the different types of testing error that may be reported: percent error, absolute error, and
 /// relative error.
 public enum Opencannabis_Structs_Labtesting_TestErrorType: SwiftProtobuf.Enum {
@@ -84,6 +97,19 @@ public enum Opencannabis_Structs_Labtesting_TestErrorType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_TestErrorType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_TestErrorType] = [
+    .percent,
+    .absolute,
+    .relative,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 public enum Opencannabis_Structs_Labtesting_TestMediaType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
   case certificate // = 0
@@ -115,6 +141,19 @@ public enum Opencannabis_Structs_Labtesting_TestMediaType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Labtesting_TestMediaType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Labtesting_TestMediaType] = [
+    .certificate,
+    .results,
+    .productImage,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 public struct Opencannabis_Structs_Labtesting_TestValue {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -132,7 +171,7 @@ public struct Opencannabis_Structs_Labtesting_TestValue {
   /// Returns true if `error` has been explicitly set.
   public var hasError: Bool {return _storage._error != nil}
   /// Clears the value of `error`. Subsequent reads from it will return its default value.
-  public mutating func clearError() {_storage._error = nil}
+  public mutating func clearError() {_uniqueStorage()._error = nil}
 
   public var value: OneOf_Value? {
     get {return _storage._value}
@@ -161,6 +200,7 @@ public struct Opencannabis_Structs_Labtesting_TestValue {
     case measurement(Double)
     case present(Bool)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Structs_Labtesting_TestValue.OneOf_Value, rhs: Opencannabis_Structs_Labtesting_TestValue.OneOf_Value) -> Bool {
       switch (lhs, rhs) {
       case (.measurement(let l), .measurement(let r)): return l == r
@@ -168,6 +208,7 @@ public struct Opencannabis_Structs_Labtesting_TestValue {
       default: return false
       }
     }
+  #endif
   }
 
   /// Represents the degree of uncertainty that arises during testing and consists of the type of error being reported
@@ -209,7 +250,7 @@ public struct Opencannabis_Structs_Labtesting_TestMedia {
   /// Returns true if `mediaItem` has been explicitly set.
   public var hasMediaItem: Bool {return _storage._mediaItem != nil}
   /// Clears the value of `mediaItem`. Subsequent reads from it will return its default value.
-  public mutating func clearMediaItem() {_storage._mediaItem = nil}
+  public mutating func clearMediaItem() {_uniqueStorage()._mediaItem = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -320,19 +361,19 @@ extension Opencannabis_Structs_Labtesting_TestValue: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestValue) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_TestValue, rhs: Opencannabis_Structs_Labtesting_TestValue) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._error != other_storage._error {return false}
-        if _storage._value != other_storage._value {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._error != rhs_storage._error {return false}
+        if _storage._value != rhs_storage._value {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -364,10 +405,10 @@ extension Opencannabis_Structs_Labtesting_TestValue.TestError: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestValue.TestError) -> Bool {
-    if self.type != other.type {return false}
-    if self.value != other.value {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_TestValue.TestError, rhs: Opencannabis_Structs_Labtesting_TestValue.TestError) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.value != rhs.value {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -425,18 +466,18 @@ extension Opencannabis_Structs_Labtesting_TestMedia: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Labtesting_TestMedia) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Labtesting_TestMedia, rhs: Opencannabis_Structs_Labtesting_TestMedia) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._mediaItem != other_storage._mediaItem {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._mediaItem != rhs_storage._mediaItem {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

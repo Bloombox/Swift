@@ -33,7 +33,7 @@ public struct Opencannabis_Structs_Genetics {
   /// Returns true if `male` has been explicitly set.
   public var hasMale: Bool {return _storage._male != nil}
   /// Clears the value of `male`. Subsequent reads from it will return its default value.
-  public mutating func clearMale() {_storage._male = nil}
+  public mutating func clearMale() {_uniqueStorage()._male = nil}
 
   /// Specifies the female side of an item's genetics.
   public var female: Opencannabis_Base_ProductReference {
@@ -43,7 +43,7 @@ public struct Opencannabis_Structs_Genetics {
   /// Returns true if `female` has been explicitly set.
   public var hasFemale: Bool {return _storage._female != nil}
   /// Clears the value of `female`. Subsequent reads from it will return its default value.
-  public mutating func clearFemale() {_storage._female = nil}
+  public mutating func clearFemale() {_uniqueStorage()._female = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -109,18 +109,18 @@ extension Opencannabis_Structs_Genetics: SwiftProtobuf.Message, SwiftProtobuf._M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Structs_Genetics) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Structs_Genetics, rhs: Opencannabis_Structs_Genetics) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._male != other_storage._male {return false}
-        if _storage._female != other_storage._female {return false}
+        let rhs_storage = _args.1
+        if _storage._male != rhs_storage._male {return false}
+        if _storage._female != rhs_storage._female {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

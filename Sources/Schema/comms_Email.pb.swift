@@ -57,7 +57,7 @@ public struct Bloombox_Schema_Comms_EmailMessage {
   /// Returns true if `sender` has been explicitly set.
   public var hasSender: Bool {return _storage._sender != nil}
   /// Clears the value of `sender`. Subsequent reads from it will return its default value.
-  public mutating func clearSender() {_storage._sender = nil}
+  public mutating func clearSender() {_uniqueStorage()._sender = nil}
 
   /// Sender for the email recipient.
   public var recipient: Opencannabis_Contact_EmailAddress {
@@ -67,7 +67,7 @@ public struct Bloombox_Schema_Comms_EmailMessage {
   /// Returns true if `recipient` has been explicitly set.
   public var hasRecipient: Bool {return _storage._recipient != nil}
   /// Clears the value of `recipient`. Subsequent reads from it will return its default value.
-  public mutating func clearRecipient() {_storage._recipient = nil}
+  public mutating func clearRecipient() {_uniqueStorage()._recipient = nil}
 
   /// Content for the email message.
   public var content: Bloombox_Schema_Comms_EmailContent {
@@ -77,7 +77,7 @@ public struct Bloombox_Schema_Comms_EmailMessage {
   /// Returns true if `content` has been explicitly set.
   public var hasContent: Bool {return _storage._content != nil}
   /// Clears the value of `content`. Subsequent reads from it will return its default value.
-  public mutating func clearContent() {_storage._content = nil}
+  public mutating func clearContent() {_uniqueStorage()._content = nil}
 
   /// Reply-to email address, if applicable.
   public var replyTo: Opencannabis_Contact_EmailAddress {
@@ -87,7 +87,7 @@ public struct Bloombox_Schema_Comms_EmailMessage {
   /// Returns true if `replyTo` has been explicitly set.
   public var hasReplyTo: Bool {return _storage._replyTo != nil}
   /// Clears the value of `replyTo`. Subsequent reads from it will return its default value.
-  public mutating func clearReplyTo() {_storage._replyTo = nil}
+  public mutating func clearReplyTo() {_uniqueStorage()._replyTo = nil}
 
   /// Email addresses to add on CC.
   public var cc: [Opencannabis_Contact_EmailAddress] {
@@ -211,7 +211,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     /// Returns true if `publisher` has been explicitly set.
     public var hasPublisher: Bool {return _storage._publisher != nil}
     /// Clears the value of `publisher`. Subsequent reads from it will return its default value.
-    public mutating func clearPublisher() {_storage._publisher = nil}
+    public mutating func clearPublisher() {_uniqueStorage()._publisher = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -234,7 +234,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     /// Returns true if `deliveryAddress` has been explicitly set.
     public var hasDeliveryAddress: Bool {return _storage._deliveryAddress != nil}
     /// Clears the value of `deliveryAddress`. Subsequent reads from it will return its default value.
-    public mutating func clearDeliveryAddress() {_storage._deliveryAddress = nil}
+    public mutating func clearDeliveryAddress() {_uniqueStorage()._deliveryAddress = nil}
 
     /// Estimated departure of a delivery order, or availability of a pickup order.
     public var estimatedReady: Opencannabis_Temporal_Instant {
@@ -244,7 +244,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     /// Returns true if `estimatedReady` has been explicitly set.
     public var hasEstimatedReady: Bool {return _storage._estimatedReady != nil}
     /// Clears the value of `estimatedReady`. Subsequent reads from it will return its default value.
-    public mutating func clearEstimatedReady() {_storage._estimatedReady = nil}
+    public mutating func clearEstimatedReady() {_uniqueStorage()._estimatedReady = nil}
 
     /// Estimated arrival of a delivery order.
     public var estimatedArrival: Opencannabis_Temporal_Instant {
@@ -254,7 +254,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     /// Returns true if `estimatedArrival` has been explicitly set.
     public var hasEstimatedArrival: Bool {return _storage._estimatedArrival != nil}
     /// Clears the value of `estimatedArrival`. Subsequent reads from it will return its default value.
-    public mutating func clearEstimatedArrival() {_storage._estimatedArrival = nil}
+    public mutating func clearEstimatedArrival() {_uniqueStorage()._estimatedArrival = nil}
 
     /// Specifies info about the partner fulfilling the order.
     public var partner: Bloombox_Schema_Partner_Partner {
@@ -264,7 +264,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     /// Returns true if `partner` has been explicitly set.
     public var hasPartner: Bool {return _storage._partner != nil}
     /// Clears the value of `partner`. Subsequent reads from it will return its default value.
-    public mutating func clearPartner() {_storage._partner = nil}
+    public mutating func clearPartner() {_uniqueStorage()._partner = nil}
 
     /// Specifies the order attached to this notification.
     public var order: Opencannabis_Commerce_Order {
@@ -274,7 +274,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     /// Returns true if `order` has been explicitly set.
     public var hasOrder: Bool {return _storage._order != nil}
     /// Clears the value of `order`. Subsequent reads from it will return its default value.
-    public mutating func clearOrder() {_storage._order = nil}
+    public mutating func clearOrder() {_uniqueStorage()._order = nil}
 
     /// Order status/tracking URL.
     public var trackingURL: String {
@@ -364,7 +364,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     /// Returns true if `partner` has been explicitly set.
     public var hasPartner: Bool {return _storage._partner != nil}
     /// Clears the value of `partner`. Subsequent reads from it will return its default value.
-    public mutating func clearPartner() {_storage._partner = nil}
+    public mutating func clearPartner() {_uniqueStorage()._partner = nil}
 
     /// Specifies the order attached to this notification.
     public var order: Opencannabis_Commerce_Order {
@@ -374,7 +374,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     /// Returns true if `order` has been explicitly set.
     public var hasOrder: Bool {return _storage._order != nil}
     /// Clears the value of `order`. Subsequent reads from it will return its default value.
-    public mutating func clearOrder() {_storage._order = nil}
+    public mutating func clearOrder() {_uniqueStorage()._order = nil}
 
     /// Type of currency for this metadata.
     public var currency: String {
@@ -474,6 +474,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
       /// Specifies a block for order metadata.
       case order(Bloombox_Schema_Comms_EmailMetadata.OrderMetadata)
 
+    #if !swift(>=4.1)
       public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.SchemaBlock.OneOf_Block, rhs: Bloombox_Schema_Comms_EmailMetadata.SchemaBlock.OneOf_Block) -> Bool {
         switch (lhs, rhs) {
         case (.view(let l), .view(let r)): return l == r
@@ -483,6 +484,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
         default: return false
         }
       }
+    #endif
     }
 
     public init() {}
@@ -492,6 +494,20 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
 
   public init() {}
 }
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Comms_EmailMetadata.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Comms_EmailMetadata.TypeEnum] = [
+    .view,
+    .track,
+    .oneClick,
+    .order,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies the structure of a transmission operation for an individual email message.
 public struct Bloombox_Schema_Comms_EmailTransmission {
@@ -507,7 +523,7 @@ public struct Bloombox_Schema_Comms_EmailTransmission {
   /// Returns true if `message` has been explicitly set.
   public var hasMessage: Bool {return _storage._message != nil}
   /// Clears the value of `message`. Subsequent reads from it will return its default value.
-  public mutating func clearMessage() {_storage._message = nil}
+  public mutating func clearMessage() {_uniqueStorage()._message = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -550,7 +566,7 @@ public struct Bloombox_Schema_Comms_EmailSender {
   /// Returns true if `contact` has been explicitly set.
   public var hasContact: Bool {return _storage._contact != nil}
   /// Clears the value of `contact`. Subsequent reads from it will return its default value.
-  public mutating func clearContact() {_storage._contact = nil}
+  public mutating func clearContact() {_uniqueStorage()._contact = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -601,6 +617,20 @@ public struct Bloombox_Schema_Comms_EmailSender {
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Comms_EmailSender.Role: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Comms_EmailSender.Role] = [
+    .sender,
+    .cc,
+    .bcc,
+    .replyTo,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Email-specific settings.
 public struct Bloombox_Schema_Comms_EmailSettings {
@@ -661,11 +691,11 @@ extension Bloombox_Schema_Comms_EmailContent: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailContent) -> Bool {
-    if self.subject != other.subject {return false}
-    if self.content != other.content {return false}
-    if self.attachment != other.attachment {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailContent, rhs: Bloombox_Schema_Comms_EmailContent) -> Bool {
+    if lhs.subject != rhs.subject {return false}
+    if lhs.content != rhs.content {return false}
+    if lhs.attachment != rhs.attachment {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -751,22 +781,22 @@ extension Bloombox_Schema_Comms_EmailMessage: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailMessage) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailMessage, rhs: Bloombox_Schema_Comms_EmailMessage) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._sender != other_storage._sender {return false}
-        if _storage._recipient != other_storage._recipient {return false}
-        if _storage._content != other_storage._content {return false}
-        if _storage._replyTo != other_storage._replyTo {return false}
-        if _storage._cc != other_storage._cc {return false}
-        if _storage._bcc != other_storage._bcc {return false}
+        let rhs_storage = _args.1
+        if _storage._sender != rhs_storage._sender {return false}
+        if _storage._recipient != rhs_storage._recipient {return false}
+        if _storage._content != rhs_storage._content {return false}
+        if _storage._replyTo != rhs_storage._replyTo {return false}
+        if _storage._cc != rhs_storage._cc {return false}
+        if _storage._bcc != rhs_storage._bcc {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -813,13 +843,13 @@ extension Bloombox_Schema_Comms_PublisherMetadata: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_PublisherMetadata) -> Bool {
-    if self.name != other.name {return false}
-    if self.url != other.url {return false}
-    if self.googlePlus != other.googlePlus {return false}
-    if self.twitter != other.twitter {return false}
-    if self.facebook != other.facebook {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Comms_PublisherMetadata, rhs: Bloombox_Schema_Comms_PublisherMetadata) -> Bool {
+    if lhs.name != rhs.name {return false}
+    if lhs.url != rhs.url {return false}
+    if lhs.googlePlus != rhs.googlePlus {return false}
+    if lhs.twitter != rhs.twitter {return false}
+    if lhs.facebook != rhs.facebook {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -837,8 +867,8 @@ extension Bloombox_Schema_Comms_EmailMetadata: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailMetadata) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata, rhs: Bloombox_Schema_Comms_EmailMetadata) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -912,19 +942,19 @@ extension Bloombox_Schema_Comms_EmailMetadata.GoToView: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailMetadata.GoToView) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.GoToView, rhs: Bloombox_Schema_Comms_EmailMetadata.GoToView) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._target != other_storage._target {return false}
-        if _storage._publisher != other_storage._publisher {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._target != rhs_storage._target {return false}
+        if _storage._publisher != rhs_storage._publisher {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1010,22 +1040,22 @@ extension Bloombox_Schema_Comms_EmailMetadata.GoToTrack: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailMetadata.GoToTrack) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.GoToTrack, rhs: Bloombox_Schema_Comms_EmailMetadata.GoToTrack) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._deliveryAddress != other_storage._deliveryAddress {return false}
-        if _storage._estimatedReady != other_storage._estimatedReady {return false}
-        if _storage._estimatedArrival != other_storage._estimatedArrival {return false}
-        if _storage._partner != other_storage._partner {return false}
-        if _storage._order != other_storage._order {return false}
-        if _storage._trackingURL != other_storage._trackingURL {return false}
+        let rhs_storage = _args.1
+        if _storage._deliveryAddress != rhs_storage._deliveryAddress {return false}
+        if _storage._estimatedReady != rhs_storage._estimatedReady {return false}
+        if _storage._estimatedArrival != rhs_storage._estimatedArrival {return false}
+        if _storage._partner != rhs_storage._partner {return false}
+        if _storage._order != rhs_storage._order {return false}
+        if _storage._trackingURL != rhs_storage._trackingURL {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1067,12 +1097,12 @@ extension Bloombox_Schema_Comms_EmailMetadata.OneClickAction: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailMetadata.OneClickAction) -> Bool {
-    if self.type != other.type {return false}
-    if self.name != other.name {return false}
-    if self.target != other.target {return false}
-    if self.description_p != other.description_p {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.OneClickAction, rhs: Bloombox_Schema_Comms_EmailMetadata.OneClickAction) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.target != rhs.target {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1166,22 +1196,22 @@ extension Bloombox_Schema_Comms_EmailMetadata.OrderMetadata: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailMetadata.OrderMetadata) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.OrderMetadata, rhs: Bloombox_Schema_Comms_EmailMetadata.OrderMetadata) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._partner != other_storage._partner {return false}
-        if _storage._order != other_storage._order {return false}
-        if _storage._currency != other_storage._currency {return false}
-        if _storage._subtotal != other_storage._subtotal {return false}
-        if _storage._statusURL != other_storage._statusURL {return false}
-        if _storage._mobileURL != other_storage._mobileURL {return false}
+        let rhs_storage = _args.1
+        if _storage._partner != rhs_storage._partner {return false}
+        if _storage._order != rhs_storage._order {return false}
+        if _storage._currency != rhs_storage._currency {return false}
+        if _storage._subtotal != rhs_storage._subtotal {return false}
+        if _storage._statusURL != rhs_storage._statusURL {return false}
+        if _storage._mobileURL != rhs_storage._mobileURL {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1281,18 +1311,18 @@ extension Bloombox_Schema_Comms_EmailMetadata.SchemaBlock: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailMetadata.SchemaBlock) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.SchemaBlock, rhs: Bloombox_Schema_Comms_EmailMetadata.SchemaBlock) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._block != other_storage._block {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._block != rhs_storage._block {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1343,17 +1373,17 @@ extension Bloombox_Schema_Comms_EmailTransmission: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailTransmission) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailTransmission, rhs: Bloombox_Schema_Comms_EmailTransmission) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._message != other_storage._message {return false}
+        let rhs_storage = _args.1
+        if _storage._message != rhs_storage._message {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1380,9 +1410,9 @@ extension Bloombox_Schema_Comms_EmailBatch: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailBatch) -> Bool {
-    if self.op != other.op {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailBatch, rhs: Bloombox_Schema_Comms_EmailBatch) -> Bool {
+    if lhs.op != rhs.op {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1440,18 +1470,18 @@ extension Bloombox_Schema_Comms_EmailSender: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailSender) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailSender, rhs: Bloombox_Schema_Comms_EmailSender) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._role != other_storage._role {return false}
-        if _storage._contact != other_storage._contact {return false}
+        let rhs_storage = _args.1
+        if _storage._role != rhs_storage._role {return false}
+        if _storage._contact != rhs_storage._contact {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1502,12 +1532,12 @@ extension Bloombox_Schema_Comms_EmailSettings: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_EmailSettings) -> Bool {
-    if self.sender != other.sender {return false}
-    if self.enableText != other.enableText {return false}
-    if self.enableHtml != other.enableHtml {return false}
-    if self.asmGroup != other.asmGroup {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Comms_EmailSettings, rhs: Bloombox_Schema_Comms_EmailSettings) -> Bool {
+    if lhs.sender != rhs.sender {return false}
+    if lhs.enableText != rhs.enableText {return false}
+    if lhs.enableHtml != rhs.enableHtml {return false}
+    if lhs.asmGroup != rhs.asmGroup {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -52,6 +52,18 @@ public enum Bloombox_Schema_Analytics_Context_DeviceRole: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Analytics_Context_DeviceRole: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Analytics_Context_DeviceRole] = [
+    .client,
+    .server,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the screen orientation at the time an event was captured.
 public enum Bloombox_Schema_Analytics_Context_ScreenOrientation: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -90,6 +102,19 @@ public enum Bloombox_Schema_Analytics_Context_ScreenOrientation: SwiftProtobuf.E
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Analytics_Context_ScreenOrientation: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Analytics_Context_ScreenOrientation] = [
+    .unspecifiedOrientation,
+    .portrait,
+    .landscape,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Carries information about a device display, including resolution, pixel density, and viewport size, if applicable.
 public struct Bloombox_Schema_Analytics_Context_PixelSize {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -121,7 +146,7 @@ public struct Bloombox_Schema_Analytics_Context_DeviceScreen {
   /// Returns true if `screen` has been explicitly set.
   public var hasScreen: Bool {return _storage._screen != nil}
   /// Clears the value of `screen`. Subsequent reads from it will return its default value.
-  public mutating func clearScreen() {_storage._screen = nil}
+  public mutating func clearScreen() {_uniqueStorage()._screen = nil}
 
   /// Size of the viewport.
   public var viewport: Bloombox_Schema_Analytics_Context_PixelSize {
@@ -131,7 +156,7 @@ public struct Bloombox_Schema_Analytics_Context_DeviceScreen {
   /// Returns true if `viewport` has been explicitly set.
   public var hasViewport: Bool {return _storage._viewport != nil}
   /// Clears the value of `viewport`. Subsequent reads from it will return its default value.
-  public mutating func clearViewport() {_storage._viewport = nil}
+  public mutating func clearViewport() {_uniqueStorage()._viewport = nil}
 
   /// Specifies the pixel density of the screen.
   public var density: UInt32 {
@@ -178,7 +203,7 @@ public struct Bloombox_Schema_Analytics_Context_NativeDeviceContext {
   /// Returns true if `os` has been explicitly set.
   public var hasOs: Bool {return _storage._os != nil}
   /// Clears the value of `os`. Subsequent reads from it will return its default value.
-  public mutating func clearOs() {_storage._os = nil}
+  public mutating func clearOs() {_uniqueStorage()._os = nil}
 
   /// Bluetooth Low Energy broadcast being emitted by this device.
   public var beacon: Opencannabis_Proximity_BluetoothBeacon {
@@ -188,7 +213,7 @@ public struct Bloombox_Schema_Analytics_Context_NativeDeviceContext {
   /// Returns true if `beacon` has been explicitly set.
   public var hasBeacon: Bool {return _storage._beacon != nil}
   /// Clears the value of `beacon`. Subsequent reads from it will return its default value.
-  public mutating func clearBeacon() {_storage._beacon = nil}
+  public mutating func clearBeacon() {_uniqueStorage()._beacon = nil}
 
   /// BLE signals witnessed by this device.
   public var witnessed: [Opencannabis_Proximity_BluetoothBeacon] {
@@ -204,7 +229,7 @@ public struct Bloombox_Schema_Analytics_Context_NativeDeviceContext {
   /// Returns true if `screen` has been explicitly set.
   public var hasScreen: Bool {return _storage._screen != nil}
   /// Clears the value of `screen`. Subsequent reads from it will return its default value.
-  public mutating func clearScreen() {_storage._screen = nil}
+  public mutating func clearScreen() {_uniqueStorage()._screen = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -259,10 +284,10 @@ extension Bloombox_Schema_Analytics_Context_PixelSize: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_PixelSize) -> Bool {
-    if self.width != other.width {return false}
-    if self.height != other.height {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Analytics_Context_PixelSize, rhs: Bloombox_Schema_Analytics_Context_PixelSize) -> Bool {
+    if lhs.width != rhs.width {return false}
+    if lhs.height != rhs.height {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -334,20 +359,20 @@ extension Bloombox_Schema_Analytics_Context_DeviceScreen: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_DeviceScreen) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Context_DeviceScreen, rhs: Bloombox_Schema_Analytics_Context_DeviceScreen) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._screen != other_storage._screen {return false}
-        if _storage._viewport != other_storage._viewport {return false}
-        if _storage._density != other_storage._density {return false}
-        if _storage._orientation != other_storage._orientation {return false}
+        let rhs_storage = _args.1
+        if _storage._screen != rhs_storage._screen {return false}
+        if _storage._viewport != rhs_storage._viewport {return false}
+        if _storage._density != rhs_storage._density {return false}
+        if _storage._orientation != rhs_storage._orientation {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -433,22 +458,22 @@ extension Bloombox_Schema_Analytics_Context_NativeDeviceContext: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_NativeDeviceContext) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Context_NativeDeviceContext, rhs: Bloombox_Schema_Analytics_Context_NativeDeviceContext) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._role != other_storage._role {return false}
-        if _storage._os != other_storage._os {return false}
-        if _storage._beacon != other_storage._beacon {return false}
-        if _storage._witnessed != other_storage._witnessed {return false}
-        if _storage._screen != other_storage._screen {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._role != rhs_storage._role {return false}
+        if _storage._os != rhs_storage._os {return false}
+        if _storage._beacon != rhs_storage._beacon {return false}
+        if _storage._witnessed != rhs_storage._witnessed {return false}
+        if _storage._screen != rhs_storage._screen {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

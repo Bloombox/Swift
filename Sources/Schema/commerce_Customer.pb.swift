@@ -37,7 +37,7 @@ public struct Opencannabis_Commerce_Customer {
   /// Returns true if `person` has been explicitly set.
   public var hasPerson: Bool {return _storage._person != nil}
   /// Clears the value of `person`. Subsequent reads from it will return its default value.
-  public mutating func clearPerson() {_storage._person = nil}
+  public mutating func clearPerson() {_uniqueStorage()._person = nil}
 
   /// Partner-scoped foreign system ID.
   public var foreignID: String {
@@ -122,19 +122,19 @@ extension Opencannabis_Commerce_Customer: SwiftProtobuf.Message, SwiftProtobuf._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_Customer) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Commerce_Customer, rhs: Opencannabis_Commerce_Customer) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._person != other_storage._person {return false}
-        if _storage._foreignID != other_storage._foreignID {return false}
-        if _storage._userKey != other_storage._userKey {return false}
+        let rhs_storage = _args.1
+        if _storage._person != rhs_storage._person {return false}
+        if _storage._foreignID != rhs_storage._foreignID {return false}
+        if _storage._userKey != rhs_storage._userKey {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

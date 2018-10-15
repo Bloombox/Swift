@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the Auth API, which provides features for authenticating/authorizing users, managing consent status, and
+/// the issuance/management of digital ID cards.
+
 import Foundation
 import SwiftProtobuf
 
@@ -167,6 +171,41 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Auth_V1beta1_AuthError] = [
+    .noError,
+    .accountSuspended,
+    .profileNotFound,
+    .invalidUserKey,
+    .invalidAssertion,
+    .unsupportedLoginType,
+    .invalidAuthToken,
+    .invalidTicket,
+    .clientNotFound,
+    .invalidConsentID,
+    .invalidIDToken,
+    .invalidAccessToken,
+    .expiredIDToken,
+    .expiredAccessToken,
+    .invalidClient,
+    .invalidOrigin,
+    .accessDenied,
+    .invalidSession,
+    .expiredSession,
+    .invalidFingerprint,
+    .invalidCaptcha,
+    .captchaRejected,
+    .consentNotFound,
+    .expiredConsent,
+    .internalError,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a message payload wherein a user is asserting their identity via an email-based username and a regular
 /// string password, encoded and potentially encrypted by the frontend agent.
 public struct Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion {
@@ -242,6 +281,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion {
     /// Firebase account login.
     case firebase(Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion.OneOf_Assertion, rhs: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion.OneOf_Assertion) -> Bool {
       switch (lhs, rhs) {
       case (.emailPassword(let l), .emailPassword(let r)): return l == r
@@ -249,6 +289,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -284,7 +325,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser {
     /// Returns true if `assertion` has been explicitly set.
     public var hasAssertion: Bool {return _storage._assertion != nil}
     /// Clears the value of `assertion`. Subsequent reads from it will return its default value.
-    public mutating func clearAssertion() {_storage._assertion = nil}
+    public mutating func clearAssertion() {_uniqueStorage()._assertion = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -375,7 +416,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_ResolveToken {
     /// Returns true if `auth` has been explicitly set.
     public var hasAuth: Bool {return _storage._auth != nil}
     /// Clears the value of `auth`. Subsequent reads from it will return its default value.
-    public mutating func clearAuth() {_storage._auth = nil}
+    public mutating func clearAuth() {_uniqueStorage()._auth = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -390,8 +431,11 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_ResolveToken {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
-    /// Resulting JSON web token.
-    public var jwt: String = String()
+    /// Resulting JSON web token, for main application use.
+    public var app: String = String()
+
+    /// Resulting JSON web token, for DB use.
+    public var db: String = String()
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -495,12 +539,6 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_UserContext {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
-    /// Resulting JSON web token.
-    public var jwt: String {
-      get {return _storage._jwt}
-      set {_uniqueStorage()._jwt = newValue}
-    }
-
     /// User profile key.
     public var key: String {
       get {return _storage._key}
@@ -515,7 +553,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_UserContext {
     /// Returns true if `profile` has been explicitly set.
     public var hasProfile: Bool {return _storage._profile != nil}
     /// Clears the value of `profile`. Subsequent reads from it will return its default value.
-    public mutating func clearProfile() {_storage._profile = nil}
+    public mutating func clearProfile() {_uniqueStorage()._profile = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -563,7 +601,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_GetProfile {
     /// Returns true if `profile` has been explicitly set.
     public var hasProfile: Bool {return _storage._profile != nil}
     /// Clears the value of `profile`. Subsequent reads from it will return its default value.
-    public mutating func clearProfile() {_storage._profile = nil}
+    public mutating func clearProfile() {_uniqueStorage()._profile = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -611,7 +649,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow {
     /// Returns true if `ticket` has been explicitly set.
     public var hasTicket: Bool {return _storage._ticket != nil}
     /// Clears the value of `ticket`. Subsequent reads from it will return its default value.
-    public mutating func clearTicket() {_storage._ticket = nil}
+    public mutating func clearTicket() {_uniqueStorage()._ticket = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -684,10 +722,10 @@ extension Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion) -> Bool {
-    if self.email != other.email {return false}
-    if self.password != other.password {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion, rhs: Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion) -> Bool {
+    if lhs.email != rhs.email {return false}
+    if lhs.password != rhs.password {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -719,10 +757,10 @@ extension Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion) -> Bool {
-    if self.token != other.token {return false}
-    if self.uid != other.uid {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion, rhs: Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion) -> Bool {
+    if lhs.token != rhs.token {return false}
+    if lhs.uid != rhs.uid {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -793,17 +831,17 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion, rhs: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._assertion != other_storage._assertion {return false}
+        let rhs_storage = _args.1
+        if _storage._assertion != rhs_storage._assertion {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -821,8 +859,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser, rhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -880,18 +918,18 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._provider != other_storage._provider {return false}
-        if _storage._assertion != other_storage._assertion {return false}
+        let rhs_storage = _args.1
+        if _storage._provider != rhs_storage._provider {return false}
+        if _storage._assertion != rhs_storage._assertion {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -928,11 +966,11 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response: Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response) -> Bool {
-    if self.uid != other.uid {return false}
-    if self.key != other.key {return false}
-    if self.token != other.token {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response) -> Bool {
+    if lhs.uid != rhs.uid {return false}
+    if lhs.key != rhs.key {return false}
+    if lhs.token != rhs.token {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -950,8 +988,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken, rhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1044,23 +1082,23 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._clientID != other_storage._clientID {return false}
-        if _storage._origin != other_storage._origin {return false}
-        if _storage._state != other_storage._state {return false}
-        if _storage._captcha != other_storage._captcha {return false}
-        if _storage._session != other_storage._session {return false}
-        if _storage._fingerprint != other_storage._fingerprint {return false}
-        if _storage._auth != other_storage._auth {return false}
+        let rhs_storage = _args.1
+        if _storage._clientID != rhs_storage._clientID {return false}
+        if _storage._origin != rhs_storage._origin {return false}
+        if _storage._state != rhs_storage._state {return false}
+        if _storage._captcha != rhs_storage._captcha {return false}
+        if _storage._session != rhs_storage._session {return false}
+        if _storage._fingerprint != rhs_storage._fingerprint {return false}
+        if _storage._auth != rhs_storage._auth {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1068,28 +1106,34 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request: SwiftProto
 extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "jwt"),
+    1: .same(proto: "app"),
+    2: .same(proto: "db"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.jwt)
+      case 1: try decoder.decodeSingularStringField(value: &self.app)
+      case 2: try decoder.decodeSingularStringField(value: &self.db)
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.jwt.isEmpty {
-      try visitor.visitSingularStringField(value: self.jwt, fieldNumber: 1)
+    if !self.app.isEmpty {
+      try visitor.visitSingularStringField(value: self.app, fieldNumber: 1)
+    }
+    if !self.db.isEmpty {
+      try visitor.visitSingularStringField(value: self.db, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response) -> Bool {
-    if self.jwt != other.jwt {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response) -> Bool {
+    if lhs.app != rhs.app {return false}
+    if lhs.db != rhs.db {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1107,8 +1151,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1145,11 +1189,11 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept) -> Bool {
-    if self.uid != other.uid {return false}
-    if self.consent != other.consent {return false}
-    if self.scope != other.scope {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept) -> Bool {
+    if lhs.uid != rhs.uid {return false}
+    if lhs.consent != rhs.consent {return false}
+    if lhs.scope != rhs.scope {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1181,10 +1225,10 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject) -> Bool {
-    if self.uid != other.uid {return false}
-    if self.consent != other.consent {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject) -> Bool {
+    if lhs.uid != rhs.uid {return false}
+    if lhs.consent != rhs.consent {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1202,8 +1246,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Response: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Response) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Response) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1221,8 +1265,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_UserContext) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext, rhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1254,10 +1298,10 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request) -> Bool {
-    if self.uid != other.uid {return false}
-    if self.session != other.session {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request) -> Bool {
+    if lhs.uid != rhs.uid {return false}
+    if lhs.session != rhs.session {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1265,13 +1309,11 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request: SwiftProtob
 extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_UserContext.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "jwt"),
-    2: .same(proto: "key"),
-    3: .same(proto: "profile"),
+    1: .same(proto: "key"),
+    2: .same(proto: "profile"),
   ]
 
   fileprivate class _StorageClass {
-    var _jwt: String = String()
     var _key: String = String()
     var _profile: Bloombox_Schema_Identity_User? = nil
 
@@ -1280,7 +1322,6 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response: SwiftProto
     private init() {}
 
     init(copying source: _StorageClass) {
-      _jwt = source._jwt
       _key = source._key
       _profile = source._profile
     }
@@ -1298,9 +1339,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response: SwiftProto
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._jwt)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._key)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._profile)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._key)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._profile)
         default: break
         }
       }
@@ -1309,32 +1349,28 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response: SwiftProto
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._jwt.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._jwt, fieldNumber: 1)
-      }
       if !_storage._key.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._key, fieldNumber: 2)
+        try visitor.visitSingularStringField(value: _storage._key, fieldNumber: 1)
       }
       if let v = _storage._profile {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._jwt != other_storage._jwt {return false}
-        if _storage._key != other_storage._key {return false}
-        if _storage._profile != other_storage._profile {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._profile != rhs_storage._profile {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1352,8 +1388,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_GetProfile) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile, rhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1380,9 +1416,9 @@ extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request) -> Bool {
-    if self.user != other.user {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request) -> Bool {
+    if lhs.user != rhs.user {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1433,17 +1469,17 @@ extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._profile != other_storage._profile {return false}
+        let rhs_storage = _args.1
+        if _storage._profile != rhs_storage._profile {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1461,8 +1497,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1489,9 +1525,9 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request) -> Bool {
-    if self.consent != other.consent {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request) -> Bool {
+    if lhs.consent != rhs.consent {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1542,17 +1578,17 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._ticket != other_storage._ticket {return false}
+        let rhs_storage = _args.1
+        if _storage._ticket != rhs_storage._ticket {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

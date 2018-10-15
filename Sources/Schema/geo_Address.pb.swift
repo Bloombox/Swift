@@ -100,14 +100,14 @@ extension Opencannabis_Geo_Address: SwiftProtobuf.Message, SwiftProtobuf._Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Address) -> Bool {
-    if self.firstLine != other.firstLine {return false}
-    if self.secondLine != other.secondLine {return false}
-    if self.city != other.city {return false}
-    if self.state != other.state {return false}
-    if self.zipcode != other.zipcode {return false}
-    if self.country != other.country {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Geo_Address, rhs: Opencannabis_Geo_Address) -> Bool {
+    if lhs.firstLine != rhs.firstLine {return false}
+    if lhs.secondLine != rhs.secondLine {return false}
+    if lhs.city != rhs.city {return false}
+    if lhs.state != rhs.state {return false}
+    if lhs.zipcode != rhs.zipcode {return false}
+    if lhs.country != rhs.country {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

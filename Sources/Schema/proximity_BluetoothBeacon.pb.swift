@@ -51,7 +51,7 @@ public struct Opencannabis_Proximity_BluetoothBeacon {
   /// Returns true if `seen` has been explicitly set.
   public var hasSeen: Bool {return _storage._seen != nil}
   /// Clears the value of `seen`. Subsequent reads from it will return its default value.
-  public mutating func clearSeen() {_storage._seen = nil}
+  public mutating func clearSeen() {_uniqueStorage()._seen = nil}
 
   /// Location of the emitting or reporting (receiving) beacon.
   public var location: Opencannabis_Geo_Location {
@@ -61,7 +61,7 @@ public struct Opencannabis_Proximity_BluetoothBeacon {
   /// Returns true if `location` has been explicitly set.
   public var hasLocation: Bool {return _storage._location != nil}
   /// Clears the value of `location`. Subsequent reads from it will return its default value.
-  public mutating func clearLocation() {_storage._location = nil}
+  public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
   /// Estimate as to the distance accuracy of this beacon.
   public var accuracy: Opencannabis_Geo_LocationAccuracy {
@@ -71,7 +71,7 @@ public struct Opencannabis_Proximity_BluetoothBeacon {
   /// Returns true if `accuracy` has been explicitly set.
   public var hasAccuracy: Bool {return _storage._accuracy != nil}
   /// Clears the value of `accuracy`. Subsequent reads from it will return its default value.
-  public mutating func clearAccuracy() {_storage._accuracy = nil}
+  public mutating func clearAccuracy() {_uniqueStorage()._accuracy = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -165,22 +165,22 @@ extension Opencannabis_Proximity_BluetoothBeacon: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Proximity_BluetoothBeacon) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Proximity_BluetoothBeacon, rhs: Opencannabis_Proximity_BluetoothBeacon) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._major != other_storage._major {return false}
-        if _storage._minor != other_storage._minor {return false}
-        if _storage._seen != other_storage._seen {return false}
-        if _storage._location != other_storage._location {return false}
-        if _storage._accuracy != other_storage._accuracy {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._major != rhs_storage._major {return false}
+        if _storage._minor != rhs_storage._minor {return false}
+        if _storage._seen != rhs_storage._seen {return false}
+        if _storage._location != rhs_storage._location {return false}
+        if _storage._accuracy != rhs_storage._accuracy {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

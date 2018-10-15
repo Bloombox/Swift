@@ -22,6 +22,72 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Raster graphic URL reference.
+public struct Opencannabis_Content_RasterGraphic {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Standard-resolution graphic link.
+  public var standard: Opencannabis_Media_MediaReference {
+    get {return _storage._standard ?? Opencannabis_Media_MediaReference()}
+    set {_uniqueStorage()._standard = newValue}
+  }
+  /// Returns true if `standard` has been explicitly set.
+  public var hasStandard: Bool {return _storage._standard != nil}
+  /// Clears the value of `standard`. Subsequent reads from it will return its default value.
+  public mutating func clearStandard() {_uniqueStorage()._standard = nil}
+
+  /// High-resolution graphic link.
+  public var retina: Opencannabis_Media_MediaReference {
+    get {return _storage._retina ?? Opencannabis_Media_MediaReference()}
+    set {_uniqueStorage()._retina = newValue}
+  }
+  /// Returns true if `retina` has been explicitly set.
+  public var hasRetina: Bool {return _storage._retina != nil}
+  /// Clears the value of `retina`. Subsequent reads from it will return its default value.
+  public mutating func clearRetina() {_uniqueStorage()._retina = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Individual brand asset.
+public struct Opencannabis_Content_BrandAsset {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Raster graphic references.
+  public var raster: Opencannabis_Content_RasterGraphic {
+    get {return _storage._raster ?? Opencannabis_Content_RasterGraphic()}
+    set {_uniqueStorage()._raster = newValue}
+  }
+  /// Returns true if `raster` has been explicitly set.
+  public var hasRaster: Bool {return _storage._raster != nil}
+  /// Clears the value of `raster`. Subsequent reads from it will return its default value.
+  public mutating func clearRaster() {_uniqueStorage()._raster = nil}
+
+  /// Vector graphic reference.
+  public var vector: Opencannabis_Media_MediaReference {
+    get {return _storage._vector ?? Opencannabis_Media_MediaReference()}
+    set {_uniqueStorage()._vector = newValue}
+  }
+  /// Returns true if `vector` has been explicitly set.
+  public var hasVector: Bool {return _storage._vector != nil}
+  /// Clears the value of `vector`. Subsequent reads from it will return its default value.
+  public mutating func clearVector() {_uniqueStorage()._vector = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 /// Information about a particular brand or producer of products or materials.
 public struct Opencannabis_Content_Brand {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -36,7 +102,7 @@ public struct Opencannabis_Content_Brand {
   /// Returns true if `name` has been explicitly set.
   public var hasName: Bool {return _storage._name != nil}
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
-  public mutating func clearName() {_storage._name = nil}
+  public mutating func clearName() {_uniqueStorage()._name = nil}
 
   /// Parent/owning brand, if applicable.
   public var parent: Opencannabis_Content_Brand {
@@ -46,7 +112,7 @@ public struct Opencannabis_Content_Brand {
   /// Returns true if `parent` has been explicitly set.
   public var hasParent: Bool {return _storage._parent != nil}
   /// Clears the value of `parent`. Subsequent reads from it will return its default value.
-  public mutating func clearParent() {_storage._parent = nil}
+  public mutating func clearParent() {_uniqueStorage()._parent = nil}
 
   /// Summary information or content about this brand.
   public var summary: Opencannabis_Content_Content {
@@ -56,13 +122,23 @@ public struct Opencannabis_Content_Brand {
   /// Returns true if `summary` has been explicitly set.
   public var hasSummary: Bool {return _storage._summary != nil}
   /// Clears the value of `summary`. Subsequent reads from it will return its default value.
-  public mutating func clearSummary() {_storage._summary = nil}
+  public mutating func clearSummary() {_uniqueStorage()._summary = nil}
 
   /// Media items attached to this brand.
-  public var media: [Opencannabis_Media_MediaItem] {
+  public var media: [Opencannabis_Content_BrandAsset] {
     get {return _storage._media}
     set {_uniqueStorage()._media = newValue}
   }
+
+  /// Specifies color scheme and app theme values.
+  public var theme: Opencannabis_Content_ColorScheme {
+    get {return _storage._theme ?? Opencannabis_Content_ColorScheme()}
+    set {_uniqueStorage()._theme = newValue}
+  }
+  /// Returns true if `theme` has been explicitly set.
+  public var hasTheme: Bool {return _storage._theme != nil}
+  /// Clears the value of `theme`. Subsequent reads from it will return its default value.
+  public mutating func clearTheme() {_uniqueStorage()._theme = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -75,6 +151,144 @@ public struct Opencannabis_Content_Brand {
 
 fileprivate let _protobuf_package = "opencannabis.content"
 
+extension Opencannabis_Content_RasterGraphic: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".RasterGraphic"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "standard"),
+    2: .same(proto: "retina"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _standard: Opencannabis_Media_MediaReference? = nil
+    var _retina: Opencannabis_Media_MediaReference? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _standard = source._standard
+      _retina = source._retina
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._standard)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._retina)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._standard {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._retina {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_RasterGraphic, rhs: Opencannabis_Content_RasterGraphic) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._standard != rhs_storage._standard {return false}
+        if _storage._retina != rhs_storage._retina {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Content_BrandAsset: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".BrandAsset"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "raster"),
+    2: .same(proto: "vector"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _raster: Opencannabis_Content_RasterGraphic? = nil
+    var _vector: Opencannabis_Media_MediaReference? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _raster = source._raster
+      _vector = source._vector
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._raster)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._vector)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._raster {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._vector {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Content_BrandAsset, rhs: Opencannabis_Content_BrandAsset) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._raster != rhs_storage._raster {return false}
+        if _storage._vector != rhs_storage._vector {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Opencannabis_Content_Brand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Brand"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -82,13 +296,15 @@ extension Opencannabis_Content_Brand: SwiftProtobuf.Message, SwiftProtobuf._Mess
     2: .same(proto: "parent"),
     3: .same(proto: "summary"),
     20: .same(proto: "media"),
+    21: .same(proto: "theme"),
   ]
 
   fileprivate class _StorageClass {
     var _name: Opencannabis_Content_Name? = nil
     var _parent: Opencannabis_Content_Brand? = nil
     var _summary: Opencannabis_Content_Content? = nil
-    var _media: [Opencannabis_Media_MediaItem] = []
+    var _media: [Opencannabis_Content_BrandAsset] = []
+    var _theme: Opencannabis_Content_ColorScheme? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -99,6 +315,7 @@ extension Opencannabis_Content_Brand: SwiftProtobuf.Message, SwiftProtobuf._Mess
       _parent = source._parent
       _summary = source._summary
       _media = source._media
+      _theme = source._theme
     }
   }
 
@@ -118,6 +335,7 @@ extension Opencannabis_Content_Brand: SwiftProtobuf.Message, SwiftProtobuf._Mess
         case 2: try decoder.decodeSingularMessageField(value: &_storage._parent)
         case 3: try decoder.decodeSingularMessageField(value: &_storage._summary)
         case 20: try decoder.decodeRepeatedMessageField(value: &_storage._media)
+        case 21: try decoder.decodeSingularMessageField(value: &_storage._theme)
         default: break
         }
       }
@@ -138,24 +356,28 @@ extension Opencannabis_Content_Brand: SwiftProtobuf.Message, SwiftProtobuf._Mess
       if !_storage._media.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._media, fieldNumber: 20)
       }
+      if let v = _storage._theme {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_Brand) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Content_Brand, rhs: Opencannabis_Content_Brand) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._parent != other_storage._parent {return false}
-        if _storage._summary != other_storage._summary {return false}
-        if _storage._media != other_storage._media {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._parent != rhs_storage._parent {return false}
+        if _storage._summary != rhs_storage._summary {return false}
+        if _storage._media != rhs_storage._media {return false}
+        if _storage._theme != rhs_storage._theme {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

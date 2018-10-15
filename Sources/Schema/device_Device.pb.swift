@@ -67,6 +67,21 @@ public enum Opencannabis_Device_DeviceType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Device_DeviceType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Device_DeviceType] = [
+    .unknownDeviceType,
+    .desktop,
+    .phone,
+    .tablet,
+    .tv,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a structure that describes a known device.
 public struct Opencannabis_Device_Device {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -93,7 +108,7 @@ public struct Opencannabis_Device_Device {
   /// Returns true if `flags` has been explicitly set.
   public var hasFlags: Bool {return _storage._flags != nil}
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {_storage._flags = nil}
+  public mutating func clearFlags() {_uniqueStorage()._flags = nil}
 
   /// Credentials for this device.
   public var key: Opencannabis_Device_DeviceCredentials {
@@ -103,7 +118,7 @@ public struct Opencannabis_Device_Device {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -236,20 +251,20 @@ extension Opencannabis_Device_Device: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Device_Device) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Device_Device, rhs: Opencannabis_Device_Device) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._type != other_storage._type {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._key != other_storage._key {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._key != rhs_storage._key {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -281,10 +296,10 @@ extension Opencannabis_Device_DeviceFlags: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Device_DeviceFlags) -> Bool {
-    if self.ephemeral != other.ephemeral {return false}
-    if self.managed != other.managed {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Device_DeviceFlags, rhs: Opencannabis_Device_DeviceFlags) -> Bool {
+    if lhs.ephemeral != rhs.ephemeral {return false}
+    if lhs.managed != rhs.managed {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -331,13 +346,13 @@ extension Opencannabis_Device_DeviceCredentials: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Device_DeviceCredentials) -> Bool {
-    if self.publicKey != other.publicKey {return false}
-    if self.privateKey != other.privateKey {return false}
-    if self.sha256 != other.sha256 {return false}
-    if self.identity != other.identity {return false}
-    if self.authorities != other.authorities {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Device_DeviceCredentials, rhs: Opencannabis_Device_DeviceCredentials) -> Bool {
+    if lhs.publicKey != rhs.publicKey {return false}
+    if lhs.privateKey != rhs.privateKey {return false}
+    if lhs.sha256 != rhs.sha256 {return false}
+    if lhs.identity != rhs.identity {return false}
+    if lhs.authorities != rhs.authorities {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -47,11 +47,13 @@ public struct Opencannabis_Temporal_Date {
     /// ISO8601-formatted calendar date value, like YYYY-MM-DD.
     case iso8601(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Temporal_Date.OneOf_Spec, rhs: Opencannabis_Temporal_Date.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.iso8601(let l), .iso8601(let r)): return l == r
       }
     }
+  #endif
   }
 
   public init() {}
@@ -87,9 +89,9 @@ extension Opencannabis_Temporal_Date: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Temporal_Date) -> Bool {
-    if self.spec != other.spec {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Temporal_Date, rhs: Opencannabis_Temporal_Date) -> Bool {
+    if lhs.spec != rhs.spec {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

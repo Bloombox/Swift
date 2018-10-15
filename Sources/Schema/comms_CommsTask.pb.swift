@@ -85,6 +85,7 @@ public struct Bloombox_Schema_Comms_SendOperation {
     /// Batch of email send operations.
     case email(Bloombox_Schema_Comms_EmailTransmission)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Comms_SendOperation.OneOf_Operation, rhs: Bloombox_Schema_Comms_SendOperation.OneOf_Operation) -> Bool {
       switch (lhs, rhs) {
       case (.sms(let l), .sms(let r)): return l == r
@@ -92,6 +93,7 @@ public struct Bloombox_Schema_Comms_SendOperation {
       default: return false
       }
     }
+  #endif
   }
 
   /// Statuses that a send operation may assume.
@@ -142,6 +144,20 @@ public struct Bloombox_Schema_Comms_SendOperation {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Comms_SendOperation.Status: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Comms_SendOperation.Status] = [
+    .pending,
+    .sending,
+    .error,
+    .done,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies an operation to merge campaign targeting parameters and trigger execution.
 public struct Bloombox_Schema_Comms_TriggerOperation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -180,7 +196,7 @@ public struct Bloombox_Schema_Comms_TriggerOperation {
   /// Returns true if `submitted` has been explicitly set.
   public var hasSubmitted: Bool {return _storage._submitted != nil}
   /// Clears the value of `submitted`. Subsequent reads from it will return its default value.
-  public mutating func clearSubmitted() {_storage._submitted = nil}
+  public mutating func clearSubmitted() {_uniqueStorage()._submitted = nil}
 
   /// Timestamp for the minimum limit for beginning campaign execution.
   public var notBefore: Opencannabis_Temporal_Instant {
@@ -190,7 +206,7 @@ public struct Bloombox_Schema_Comms_TriggerOperation {
   /// Returns true if `notBefore` has been explicitly set.
   public var hasNotBefore: Bool {return _storage._notBefore != nil}
   /// Clears the value of `notBefore`. Subsequent reads from it will return its default value.
-  public mutating func clearNotBefore() {_storage._notBefore = nil}
+  public mutating func clearNotBefore() {_uniqueStorage()._notBefore = nil}
 
   /// Communication channels to execute for the subject campaign.
   public var channel: [Bloombox_Schema_Comms_Channel] {
@@ -238,7 +254,7 @@ public struct Bloombox_Schema_Comms_AdEngineOperation {
   /// Returns true if `campaign` has been explicitly set.
   public var hasCampaign: Bool {return _storage._campaign != nil}
   /// Clears the value of `campaign`. Subsequent reads from it will return its default value.
-  public mutating func clearCampaign() {_storage._campaign = nil}
+  public mutating func clearCampaign() {_uniqueStorage()._campaign = nil}
 
   /// Communication channels to execute for the subject campaign.
   public var channel: [Bloombox_Schema_Comms_Channel] {
@@ -254,7 +270,7 @@ public struct Bloombox_Schema_Comms_AdEngineOperation {
   /// Returns true if `membership` has been explicitly set.
   public var hasMembership: Bool {return _storage._membership != nil}
   /// Clears the value of `membership`. Subsequent reads from it will return its default value.
-  public mutating func clearMembership() {_storage._membership = nil}
+  public mutating func clearMembership() {_uniqueStorage()._membership = nil}
 
   /// Key for the user's account.
   public var user: Bloombox_Schema_Identity_UserKey {
@@ -264,7 +280,7 @@ public struct Bloombox_Schema_Comms_AdEngineOperation {
   /// Returns true if `user` has been explicitly set.
   public var hasUser: Bool {return _storage._user != nil}
   /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  public mutating func clearUser() {_storage._user = nil}
+  public mutating func clearUser() {_uniqueStorage()._user = nil}
 
   /// Timestamp for the minimum limit for beginning campaign execution.
   public var notBefore: Opencannabis_Temporal_Instant {
@@ -274,7 +290,7 @@ public struct Bloombox_Schema_Comms_AdEngineOperation {
   /// Returns true if `notBefore` has been explicitly set.
   public var hasNotBefore: Bool {return _storage._notBefore != nil}
   /// Clears the value of `notBefore`. Subsequent reads from it will return its default value.
-  public mutating func clearNotBefore() {_storage._notBefore = nil}
+  public mutating func clearNotBefore() {_uniqueStorage()._notBefore = nil}
 
   /// Dry-run debug flag.
   public var dryRun: Bool {
@@ -387,21 +403,21 @@ extension Bloombox_Schema_Comms_SendOperation: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_SendOperation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_SendOperation, rhs: Bloombox_Schema_Comms_SendOperation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._channel != other_storage._channel {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._dryRun != other_storage._dryRun {return false}
-        if _storage._operation != other_storage._operation {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._channel != rhs_storage._channel {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._dryRun != rhs_storage._dryRun {return false}
+        if _storage._operation != rhs_storage._operation {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -517,25 +533,25 @@ extension Bloombox_Schema_Comms_TriggerOperation: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_TriggerOperation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_TriggerOperation, rhs: Bloombox_Schema_Comms_TriggerOperation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._partner != other_storage._partner {return false}
-        if _storage._location != other_storage._location {return false}
-        if _storage._campaign != other_storage._campaign {return false}
-        if _storage._submitted != other_storage._submitted {return false}
-        if _storage._notBefore != other_storage._notBefore {return false}
-        if _storage._channel != other_storage._channel {return false}
-        if _storage._op != other_storage._op {return false}
-        if _storage._dryRun != other_storage._dryRun {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._partner != rhs_storage._partner {return false}
+        if _storage._location != rhs_storage._location {return false}
+        if _storage._campaign != rhs_storage._campaign {return false}
+        if _storage._submitted != rhs_storage._submitted {return false}
+        if _storage._notBefore != rhs_storage._notBefore {return false}
+        if _storage._channel != rhs_storage._channel {return false}
+        if _storage._op != rhs_storage._op {return false}
+        if _storage._dryRun != rhs_storage._dryRun {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -628,23 +644,23 @@ extension Bloombox_Schema_Comms_AdEngineOperation: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Comms_AdEngineOperation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Comms_AdEngineOperation, rhs: Bloombox_Schema_Comms_AdEngineOperation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._execution != other_storage._execution {return false}
-        if _storage._campaign != other_storage._campaign {return false}
-        if _storage._channel != other_storage._channel {return false}
-        if _storage._membership != other_storage._membership {return false}
-        if _storage._user != other_storage._user {return false}
-        if _storage._notBefore != other_storage._notBefore {return false}
-        if _storage._dryRun != other_storage._dryRun {return false}
+        let rhs_storage = _args.1
+        if _storage._execution != rhs_storage._execution {return false}
+        if _storage._campaign != rhs_storage._campaign {return false}
+        if _storage._channel != rhs_storage._channel {return false}
+        if _storage._membership != rhs_storage._membership {return false}
+        if _storage._user != rhs_storage._user {return false}
+        if _storage._notBefore != rhs_storage._notBefore {return false}
+        if _storage._dryRun != rhs_storage._dryRun {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

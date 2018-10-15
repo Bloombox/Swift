@@ -29,7 +29,7 @@ public struct Bloombox_Schema_Identity_Pass_PassKey {
   // methods supported on all messages.
 
   /// Specifies the entire encoded ID.
-  public var encoded: String = String()
+  public var uuid: String = String()
 
   /// Specifies the serial number for a pass.
   public var serial: String = String()
@@ -37,9 +37,68 @@ public struct Bloombox_Schema_Identity_Pass_PassKey {
   /// Specifies the user ID that owns the pass.
   public var uid: String = String()
 
+  /// Partner code that issued this pass/owns this pass.
+  public var partner: String = String()
+
+  /// Location code that issued this pass/owns this pass.
+  public var location: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+}
+
+/// Specifies a reference to a digital pass.
+public struct Bloombox_Schema_Identity_Pass_DigitalPassKey {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var reference: OneOf_Reference? {
+    get {return _storage._reference}
+    set {_uniqueStorage()._reference = newValue}
+  }
+
+  /// Specifies a barcode value that was scanned.
+  public var barcode: String {
+    get {
+      if case .barcode(let v)? = _storage._reference {return v}
+      return String()
+    }
+    set {_uniqueStorage()._reference = .barcode(newValue)}
+  }
+
+  /// Specifies a BLE signal received referencing a card.
+  public var beacon: Opencannabis_Proximity_BluetoothBeacon {
+    get {
+      if case .beacon(let v)? = _storage._reference {return v}
+      return Opencannabis_Proximity_BluetoothBeacon()
+    }
+    set {_uniqueStorage()._reference = .beacon(newValue)}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public enum OneOf_Reference: Equatable {
+    /// Specifies a barcode value that was scanned.
+    case barcode(String)
+    /// Specifies a BLE signal received referencing a card.
+    case beacon(Opencannabis_Proximity_BluetoothBeacon)
+
+  #if !swift(>=4.1)
+    public static func ==(lhs: Bloombox_Schema_Identity_Pass_DigitalPassKey.OneOf_Reference, rhs: Bloombox_Schema_Identity_Pass_DigitalPassKey.OneOf_Reference) -> Bool {
+      switch (lhs, rhs) {
+      case (.barcode(let l), .barcode(let r)): return l == r
+      case (.beacon(let l), .beacon(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
+  }
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -49,25 +108,29 @@ fileprivate let _protobuf_package = "bloombox.schema.identity.pass"
 extension Bloombox_Schema_Identity_Pass_PassKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PassKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "encoded"),
+    1: .same(proto: "uuid"),
     2: .same(proto: "serial"),
     3: .same(proto: "uid"),
+    4: .same(proto: "partner"),
+    5: .same(proto: "location"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.encoded)
+      case 1: try decoder.decodeSingularStringField(value: &self.uuid)
       case 2: try decoder.decodeSingularStringField(value: &self.serial)
       case 3: try decoder.decodeSingularStringField(value: &self.uid)
+      case 4: try decoder.decodeSingularStringField(value: &self.partner)
+      case 5: try decoder.decodeSingularStringField(value: &self.location)
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.encoded.isEmpty {
-      try visitor.visitSingularStringField(value: self.encoded, fieldNumber: 1)
+    if !self.uuid.isEmpty {
+      try visitor.visitSingularStringField(value: self.uuid, fieldNumber: 1)
     }
     if !self.serial.isEmpty {
       try visitor.visitSingularStringField(value: self.serial, fieldNumber: 2)
@@ -75,14 +138,100 @@ extension Bloombox_Schema_Identity_Pass_PassKey: SwiftProtobuf.Message, SwiftPro
     if !self.uid.isEmpty {
       try visitor.visitSingularStringField(value: self.uid, fieldNumber: 3)
     }
+    if !self.partner.isEmpty {
+      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 4)
+    }
+    if !self.location.isEmpty {
+      try visitor.visitSingularStringField(value: self.location, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Pass_PassKey) -> Bool {
-    if self.encoded != other.encoded {return false}
-    if self.serial != other.serial {return false}
-    if self.uid != other.uid {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Identity_Pass_PassKey, rhs: Bloombox_Schema_Identity_Pass_PassKey) -> Bool {
+    if lhs.uuid != rhs.uuid {return false}
+    if lhs.serial != rhs.serial {return false}
+    if lhs.uid != rhs.uid {return false}
+    if lhs.partner != rhs.partner {return false}
+    if lhs.location != rhs.location {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Identity_Pass_DigitalPassKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DigitalPassKey"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "barcode"),
+    2: .same(proto: "beacon"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _reference: Bloombox_Schema_Identity_Pass_DigitalPassKey.OneOf_Reference?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _reference = source._reference
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1:
+          if _storage._reference != nil {try decoder.handleConflictingOneOf()}
+          var v: String?
+          try decoder.decodeSingularStringField(value: &v)
+          if let v = v {_storage._reference = .barcode(v)}
+        case 2:
+          var v: Opencannabis_Proximity_BluetoothBeacon?
+          if let current = _storage._reference {
+            try decoder.handleConflictingOneOf()
+            if case .beacon(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._reference = .beacon(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      switch _storage._reference {
+      case .barcode(let v)?:
+        try visitor.visitSingularStringField(value: v, fieldNumber: 1)
+      case .beacon(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Identity_Pass_DigitalPassKey, rhs: Bloombox_Schema_Identity_Pass_DigitalPassKey) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._reference != rhs_storage._reference {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

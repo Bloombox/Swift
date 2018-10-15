@@ -87,6 +87,7 @@ public struct Bloombox_Schema_Analytics_Generic_SourceLocation {
     /// Raw byte offset in a source code file.
     case offset(Int64)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Analytics_Generic_SourceLocation.OneOf_Pinpoint, rhs: Bloombox_Schema_Analytics_Generic_SourceLocation.OneOf_Pinpoint) -> Bool {
       switch (lhs, rhs) {
       case (.lineref(let l), .lineref(let r)): return l == r
@@ -94,6 +95,7 @@ public struct Bloombox_Schema_Analytics_Generic_SourceLocation {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -127,7 +129,7 @@ public struct Bloombox_Schema_Analytics_Generic_Exception {
   /// Returns true if `location` has been explicitly set.
   public var hasLocation: Bool {return _storage._location != nil}
   /// Clears the value of `location`. Subsequent reads from it will return its default value.
-  public mutating func clearLocation() {_storage._location = nil}
+  public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
   /// Occurrence timestamp.
   public var occurred: Opencannabis_Temporal_Instant {
@@ -137,7 +139,7 @@ public struct Bloombox_Schema_Analytics_Generic_Exception {
   /// Returns true if `occurred` has been explicitly set.
   public var hasOccurred: Bool {return _storage._occurred != nil}
   /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-  public mutating func clearOccurred() {_storage._occurred = nil}
+  public mutating func clearOccurred() {_uniqueStorage()._occurred = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -177,10 +179,10 @@ extension Bloombox_Schema_Analytics_Generic_SourceLineReference: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_SourceLineReference) -> Bool {
-    if self.line != other.line {return false}
-    if self.column != other.column {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Analytics_Generic_SourceLineReference, rhs: Bloombox_Schema_Analytics_Generic_SourceLineReference) -> Bool {
+    if lhs.line != rhs.line {return false}
+    if lhs.column != rhs.column {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -262,19 +264,19 @@ extension Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_SourceLocation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Generic_SourceLocation, rhs: Bloombox_Schema_Analytics_Generic_SourceLocation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._module != other_storage._module {return false}
-        if _storage._filepath != other_storage._filepath {return false}
-        if _storage._pinpoint != other_storage._pinpoint {return false}
+        let rhs_storage = _args.1
+        if _storage._module != rhs_storage._module {return false}
+        if _storage._filepath != rhs_storage._filepath {return false}
+        if _storage._pinpoint != rhs_storage._pinpoint {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -346,20 +348,20 @@ extension Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_Exception) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Generic_Exception, rhs: Bloombox_Schema_Analytics_Generic_Exception) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._domain != other_storage._domain {return false}
-        if _storage._code != other_storage._code {return false}
-        if _storage._location != other_storage._location {return false}
-        if _storage._occurred != other_storage._occurred {return false}
+        let rhs_storage = _args.1
+        if _storage._domain != rhs_storage._domain {return false}
+        if _storage._code != rhs_storage._code {return false}
+        if _storage._location != rhs_storage._location {return false}
+        if _storage._occurred != rhs_storage._occurred {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -51,7 +51,7 @@ public struct Bloombox_Schema_Analytics_Stats_SessionStats {
   /// Returns true if `begin` has been explicitly set.
   public var hasBegin: Bool {return _storage._begin != nil}
   /// Clears the value of `begin`. Subsequent reads from it will return its default value.
-  public mutating func clearBegin() {_storage._begin = nil}
+  public mutating func clearBegin() {_uniqueStorage()._begin = nil}
 
   /// Timestamp representing the last event seen in this session.
   public var end: Opencannabis_Temporal_Instant {
@@ -61,7 +61,7 @@ public struct Bloombox_Schema_Analytics_Stats_SessionStats {
   /// Returns true if `end` has been explicitly set.
   public var hasEnd: Bool {return _storage._end != nil}
   /// Clears the value of `end`. Subsequent reads from it will return its default value.
-  public mutating func clearEnd() {_storage._end = nil}
+  public mutating func clearEnd() {_uniqueStorage()._end = nil}
 
   /// Device ID seen as associated with this session.
   public var deviceID: String {
@@ -174,23 +174,23 @@ extension Bloombox_Schema_Analytics_Stats_SessionStats: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Stats_SessionStats) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Stats_SessionStats, rhs: Bloombox_Schema_Analytics_Stats_SessionStats) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._sid != other_storage._sid {return false}
-        if _storage._partnerScope != other_storage._partnerScope {return false}
-        if _storage._eventCount != other_storage._eventCount {return false}
-        if _storage._begin != other_storage._begin {return false}
-        if _storage._end != other_storage._end {return false}
-        if _storage._deviceID != other_storage._deviceID {return false}
-        if _storage._userID != other_storage._userID {return false}
+        let rhs_storage = _args.1
+        if _storage._sid != rhs_storage._sid {return false}
+        if _storage._partnerScope != rhs_storage._partnerScope {return false}
+        if _storage._eventCount != rhs_storage._eventCount {return false}
+        if _storage._begin != rhs_storage._begin {return false}
+        if _storage._end != rhs_storage._end {return false}
+        if _storage._deviceID != rhs_storage._deviceID {return false}
+        if _storage._userID != rhs_storage._userID {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

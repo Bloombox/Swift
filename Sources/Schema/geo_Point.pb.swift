@@ -84,12 +84,12 @@ extension Opencannabis_Geo_Point: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Point) -> Bool {
-    if self.latitude != other.latitude {return false}
-    if self.longitude != other.longitude {return false}
-    if self.elevation != other.elevation {return false}
-    if self.accuracy != other.accuracy {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Geo_Point, rhs: Opencannabis_Geo_Point) -> Bool {
+    if lhs.latitude != rhs.latitude {return false}
+    if lhs.longitude != rhs.longitude {return false}
+    if lhs.elevation != rhs.elevation {return false}
+    if lhs.accuracy != rhs.accuracy {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

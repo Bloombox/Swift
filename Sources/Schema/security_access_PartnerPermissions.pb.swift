@@ -83,6 +83,23 @@ public enum Bloombox_Schema_Security_Access_PartnerRole: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Security_Access_PartnerRole: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Security_Access_PartnerRole] = [
+    .readonly,
+    .supervisor,
+    .billing,
+    .audit,
+    .employee,
+    .developer,
+    .admin,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the subject account for a given access policy. The subject "account," in this case, is the partner or
 /// partner location for which right are being specified.
 public struct Bloombox_Schema_Security_Access_AccessSubject {
@@ -123,6 +140,7 @@ public struct Bloombox_Schema_Security_Access_AccessSubject {
     /// Partner location-level access scope.
     case location(Bloombox_Schema_Partner_LocationKey)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Security_Access_AccessSubject.OneOf_Account, rhs: Bloombox_Schema_Security_Access_AccessSubject.OneOf_Account) -> Bool {
       switch (lhs, rhs) {
       case (.partner(let l), .partner(let r)): return l == r
@@ -130,6 +148,7 @@ public struct Bloombox_Schema_Security_Access_AccessSubject {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -158,7 +177,7 @@ public struct Bloombox_Schema_Security_Access_AccessPolicy {
   /// Returns true if `subject` has been explicitly set.
   public var hasSubject: Bool {return _storage._subject != nil}
   /// Clears the value of `subject`. Subsequent reads from it will return its default value.
-  public mutating func clearSubject() {_storage._subject = nil}
+  public mutating func clearSubject() {_uniqueStorage()._subject = nil}
 
   /// Roles granted as part of this policy.
   public var privilege: [Bloombox_Schema_Security_Access_PartnerRole] {
@@ -174,7 +193,7 @@ public struct Bloombox_Schema_Security_Access_AccessPolicy {
   /// Returns true if `user` has been explicitly set.
   public var hasUser: Bool {return _storage._user != nil}
   /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  public mutating func clearUser() {_storage._user = nil}
+  public mutating func clearUser() {_uniqueStorage()._user = nil}
 
   /// Permissions grantor.
   public var grantor: Bloombox_Schema_Identity_UserKey {
@@ -184,7 +203,7 @@ public struct Bloombox_Schema_Security_Access_AccessPolicy {
   /// Returns true if `grantor` has been explicitly set.
   public var hasGrantor: Bool {return _storage._grantor != nil}
   /// Clears the value of `grantor`. Subsequent reads from it will return its default value.
-  public mutating func clearGrantor() {_storage._grantor = nil}
+  public mutating func clearGrantor() {_uniqueStorage()._grantor = nil}
 
   /// Modified timestamp for this record.
   public var modified: Opencannabis_Temporal_Instant {
@@ -194,7 +213,7 @@ public struct Bloombox_Schema_Security_Access_AccessPolicy {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   /// Created timestmap for this record.
   public var created: Opencannabis_Temporal_Instant {
@@ -204,7 +223,7 @@ public struct Bloombox_Schema_Security_Access_AccessPolicy {
   /// Returns true if `created` has been explicitly set.
   public var hasCreated: Bool {return _storage._created != nil}
   /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -295,17 +314,17 @@ extension Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_Access_AccessSubject) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Security_Access_AccessSubject, rhs: Bloombox_Schema_Security_Access_AccessSubject) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._account != other_storage._account {return false}
+        let rhs_storage = _args.1
+        if _storage._account != rhs_storage._account {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -398,23 +417,23 @@ extension Bloombox_Schema_Security_Access_AccessPolicy: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Security_Access_AccessPolicy) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Security_Access_AccessPolicy, rhs: Bloombox_Schema_Security_Access_AccessPolicy) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._subject != other_storage._subject {return false}
-        if _storage._privilege != other_storage._privilege {return false}
-        if _storage._user != other_storage._user {return false}
-        if _storage._grantor != other_storage._grantor {return false}
-        if _storage._modified != other_storage._modified {return false}
-        if _storage._created != other_storage._created {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._subject != rhs_storage._subject {return false}
+        if _storage._privilege != rhs_storage._privilege {return false}
+        if _storage._user != rhs_storage._user {return false}
+        if _storage._grantor != rhs_storage._grantor {return false}
+        if _storage._modified != rhs_storage._modified {return false}
+        if _storage._created != rhs_storage._created {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

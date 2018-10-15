@@ -77,6 +77,23 @@ public enum Opencannabis_Geo_DistanceUnit: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Geo_DistanceUnit: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Geo_DistanceUnit] = [
+    .meters,
+    .inches,
+    .feet,
+    .millimeters,
+    .centimeters,
+    .kilometers,
+    .miles,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a single distance value.
 public struct Opencannabis_Geo_DistanceValue {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -114,7 +131,7 @@ public struct Opencannabis_Geo_LocationAccuracy {
   /// Returns true if `value` has been explicitly set.
   public var hasValue: Bool {return _storage._value != nil}
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
-  public mutating func clearValue() {_storage._value = nil}
+  public mutating func clearValue() {_uniqueStorage()._value = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -137,7 +154,7 @@ public struct Opencannabis_Geo_Location {
   /// Returns true if `name` has been explicitly set.
   public var hasName: Bool {return _storage._name != nil}
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
-  public mutating func clearName() {_storage._name = nil}
+  public mutating func clearName() {_uniqueStorage()._name = nil}
 
   /// Address for this location, if applicable.
   public var address: Opencannabis_Geo_Address {
@@ -147,7 +164,7 @@ public struct Opencannabis_Geo_Location {
   /// Returns true if `address` has been explicitly set.
   public var hasAddress: Bool {return _storage._address != nil}
   /// Clears the value of `address`. Subsequent reads from it will return its default value.
-  public mutating func clearAddress() {_storage._address = nil}
+  public mutating func clearAddress() {_uniqueStorage()._address = nil}
 
   /// Geopoint (latitude/longitude) for this location.
   public var point: Opencannabis_Geo_Point {
@@ -157,7 +174,7 @@ public struct Opencannabis_Geo_Location {
   /// Returns true if `point` has been explicitly set.
   public var hasPoint: Bool {return _storage._point != nil}
   /// Clears the value of `point`. Subsequent reads from it will return its default value.
-  public mutating func clearPoint() {_storage._point = nil}
+  public mutating func clearPoint() {_uniqueStorage()._point = nil}
 
   /// Specifies the accuracy estimate, if known.
   public var accuracy: Opencannabis_Geo_LocationAccuracy {
@@ -167,7 +184,7 @@ public struct Opencannabis_Geo_Location {
   /// Returns true if `accuracy` has been explicitly set.
   public var hasAccuracy: Bool {return _storage._accuracy != nil}
   /// Clears the value of `accuracy`. Subsequent reads from it will return its default value.
-  public mutating func clearAccuracy() {_storage._accuracy = nil}
+  public mutating func clearAccuracy() {_uniqueStorage()._accuracy = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -196,7 +213,7 @@ public struct Opencannabis_Geo_Distance {
   /// Returns true if `accuracy` has been explicitly set.
   public var hasAccuracy: Bool {return _storage._accuracy != nil}
   /// Clears the value of `accuracy`. Subsequent reads from it will return its default value.
-  public mutating func clearAccuracy() {_storage._accuracy = nil}
+  public mutating func clearAccuracy() {_uniqueStorage()._accuracy = nil}
 
   /// Specifies the unit of measurement for a location accuracy estimate.
   public var unit: Opencannabis_Geo_DistanceUnit {
@@ -212,7 +229,7 @@ public struct Opencannabis_Geo_Distance {
   /// Returns true if `start` has been explicitly set.
   public var hasStart: Bool {return _storage._start != nil}
   /// Clears the value of `start`. Subsequent reads from it will return its default value.
-  public mutating func clearStart() {_storage._start = nil}
+  public mutating func clearStart() {_uniqueStorage()._start = nil}
 
   /// Specifies the terminating location for a distance span.
   public var end: Opencannabis_Geo_Location {
@@ -222,7 +239,7 @@ public struct Opencannabis_Geo_Distance {
   /// Returns true if `end` has been explicitly set.
   public var hasEnd: Bool {return _storage._end != nil}
   /// Clears the value of `end`. Subsequent reads from it will return its default value.
-  public mutating func clearEnd() {_storage._end = nil}
+  public mutating func clearEnd() {_uniqueStorage()._end = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -274,10 +291,10 @@ extension Opencannabis_Geo_DistanceValue: SwiftProtobuf.Message, SwiftProtobuf._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_DistanceValue) -> Bool {
-    if self.unit != other.unit {return false}
-    if self.value != other.value {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Geo_DistanceValue, rhs: Opencannabis_Geo_DistanceValue) -> Bool {
+    if lhs.unit != rhs.unit {return false}
+    if lhs.value != rhs.value {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -335,18 +352,18 @@ extension Opencannabis_Geo_LocationAccuracy: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_LocationAccuracy) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Geo_LocationAccuracy, rhs: Opencannabis_Geo_LocationAccuracy) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._estimate != other_storage._estimate {return false}
-        if _storage._value != other_storage._value {return false}
+        let rhs_storage = _args.1
+        if _storage._estimate != rhs_storage._estimate {return false}
+        if _storage._value != rhs_storage._value {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -418,20 +435,20 @@ extension Opencannabis_Geo_Location: SwiftProtobuf.Message, SwiftProtobuf._Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Location) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Geo_Location, rhs: Opencannabis_Geo_Location) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._address != other_storage._address {return false}
-        if _storage._point != other_storage._point {return false}
-        if _storage._accuracy != other_storage._accuracy {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._address != rhs_storage._address {return false}
+        if _storage._point != rhs_storage._point {return false}
+        if _storage._accuracy != rhs_storage._accuracy {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -510,21 +527,21 @@ extension Opencannabis_Geo_Distance: SwiftProtobuf.Message, SwiftProtobuf._Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Geo_Distance) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Geo_Distance, rhs: Opencannabis_Geo_Distance) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._estimate != other_storage._estimate {return false}
-        if _storage._accuracy != other_storage._accuracy {return false}
-        if _storage._unit != other_storage._unit {return false}
-        if _storage._start != other_storage._start {return false}
-        if _storage._end != other_storage._end {return false}
+        let rhs_storage = _args.1
+        if _storage._estimate != rhs_storage._estimate {return false}
+        if _storage._accuracy != rhs_storage._accuracy {return false}
+        if _storage._unit != rhs_storage._unit {return false}
+        if _storage._start != rhs_storage._start {return false}
+        if _storage._end != rhs_storage._end {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -85,6 +85,24 @@ public enum Opencannabis_Base_ProductKind: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Base_ProductKind: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Base_ProductKind] = [
+    .flowers,
+    .edibles,
+    .extracts,
+    .prerolls,
+    .apothecary,
+    .cartridges,
+    .plants,
+    .merchandise,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Opencannabis_Base_ProductKind: SwiftProtobuf._ProtoNameProviding {

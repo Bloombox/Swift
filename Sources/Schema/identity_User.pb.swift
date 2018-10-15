@@ -63,6 +63,19 @@ public enum Bloombox_Schema_Identity_UserMediaType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Identity_UserMediaType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Identity_UserMediaType] = [
+    .picture,
+    .driversLicense,
+    .doctorRec,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates providers through which users may authenticate.
 public enum Bloombox_Schema_Identity_IdentityProvider: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -78,6 +91,9 @@ public enum Bloombox_Schema_Identity_IdentityProvider: SwiftProtobuf.Enum {
 
   /// OAuth2 account authentication via Twitter.
   case twitter // = 3
+
+  /// Phone-based authentication.
+  case phone // = 4
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -90,6 +106,7 @@ public enum Bloombox_Schema_Identity_IdentityProvider: SwiftProtobuf.Enum {
     case 1: self = .google
     case 2: self = .facebook
     case 3: self = .twitter
+    case 4: self = .phone
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -100,11 +117,27 @@ public enum Bloombox_Schema_Identity_IdentityProvider: SwiftProtobuf.Enum {
     case .google: return 1
     case .facebook: return 2
     case .twitter: return 3
+    case .phone: return 4
     case .UNRECOGNIZED(let i): return i
     }
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Identity_IdentityProvider: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Identity_IdentityProvider] = [
+    .email,
+    .google,
+    .facebook,
+    .twitter,
+    .phone,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Enumerates sources for user enrollments.
 public enum Bloombox_Schema_Identity_EnrollmentSource: SwiftProtobuf.Enum {
@@ -159,6 +192,22 @@ public enum Bloombox_Schema_Identity_EnrollmentSource: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Identity_EnrollmentSource: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Identity_EnrollmentSource] = [
+    .unspecified,
+    .online,
+    .internalApp,
+    .partnerApp,
+    .inStore,
+    .import,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates sources for user referrals
 public enum Bloombox_Schema_Identity_ReferralSource: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -207,6 +256,21 @@ public enum Bloombox_Schema_Identity_ReferralSource: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Identity_ReferralSource: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Identity_ReferralSource] = [
+    .unknown,
+    .outdoor,
+    .digital,
+    .socialMedia,
+    .friend,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the type of consumer profile in use for an account.
 public enum Bloombox_Schema_Identity_ConsumerType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -216,6 +280,9 @@ public enum Bloombox_Schema_Identity_ConsumerType: SwiftProtobuf.Enum {
 
   /// The consumer is a recreational user.
   case recreational // = 1
+
+  /// Specifies the alternate name for recreational-use.
+  public static let adultUse = recreational
 
   /// The consumer is a validated medical user. Considered a superset of 'RECREATIONAL'.
   case medical // = 2
@@ -245,6 +312,19 @@ public enum Bloombox_Schema_Identity_ConsumerType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Identity_ConsumerType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Identity_ConsumerType] = [
+    .unvalidated,
+    .recreational,
+    .medical,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Represents an individual who uses software.
 public struct Bloombox_Schema_Identity_User {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -265,7 +345,7 @@ public struct Bloombox_Schema_Identity_User {
   /// Returns true if `flags` has been explicitly set.
   public var hasFlags: Bool {return _storage._flags != nil}
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {_storage._flags = nil}
+  public mutating func clearFlags() {_uniqueStorage()._flags = nil}
 
   /// Person's information that backs this user.
   public var person: Opencannabis_Person_Person {
@@ -275,7 +355,7 @@ public struct Bloombox_Schema_Identity_User {
   /// Returns true if `person` has been explicitly set.
   public var hasPerson: Bool {return _storage._person != nil}
   /// Clears the value of `person`. Subsequent reads from it will return its default value.
-  public mutating func clearPerson() {_storage._person = nil}
+  public mutating func clearPerson() {_uniqueStorage()._person = nil}
 
   /// Government ID associated with this user.
   public var identification: [Bloombox_Schema_Identity_ID] {
@@ -297,7 +377,7 @@ public struct Bloombox_Schema_Identity_User {
   /// Returns true if `seen` has been explicitly set.
   public var hasSeen: Bool {return _storage._seen != nil}
   /// Clears the value of `seen`. Subsequent reads from it will return its default value.
-  public mutating func clearSeen() {_storage._seen = nil}
+  public mutating func clearSeen() {_uniqueStorage()._seen = nil}
 
   /// Timestamp for when this user was created.
   public var signup: Opencannabis_Temporal_Instant {
@@ -307,7 +387,7 @@ public struct Bloombox_Schema_Identity_User {
   /// Returns true if `signup` has been explicitly set.
   public var hasSignup: Bool {return _storage._signup != nil}
   /// Clears the value of `signup`. Subsequent reads from it will return its default value.
-  public mutating func clearSignup() {_storage._signup = nil}
+  public mutating func clearSignup() {_uniqueStorage()._signup = nil}
 
   /// Identities associated with this user.
   public var identities: Dictionary<String,Bloombox_Schema_Identity_UserIdentity> {
@@ -329,7 +409,7 @@ public struct Bloombox_Schema_Identity_User {
   /// Returns true if `consumer` has been explicitly set.
   public var hasConsumer: Bool {return _storage._consumer != nil}
   /// Clears the value of `consumer`. Subsequent reads from it will return its default value.
-  public mutating func clearConsumer() {_storage._consumer = nil}
+  public mutating func clearConsumer() {_uniqueStorage()._consumer = nil}
 
   /// Industry profile for this user.
   public var industry: Bloombox_Schema_Identity_IndustryProfile {
@@ -339,7 +419,7 @@ public struct Bloombox_Schema_Identity_User {
   /// Returns true if `industry` has been explicitly set.
   public var hasIndustry: Bool {return _storage._industry != nil}
   /// Clears the value of `industry`. Subsequent reads from it will return its default value.
-  public mutating func clearIndustry() {_storage._industry = nil}
+  public mutating func clearIndustry() {_uniqueStorage()._industry = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -400,7 +480,7 @@ public struct Bloombox_Schema_Identity_UserIdentity {
   /// Returns true if `seen` has been explicitly set.
   public var hasSeen: Bool {return _storage._seen != nil}
   /// Clears the value of `seen`. Subsequent reads from it will return its default value.
-  public mutating func clearSeen() {_storage._seen = nil}
+  public mutating func clearSeen() {_uniqueStorage()._seen = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -447,7 +527,7 @@ public struct Bloombox_Schema_Identity_ConsumerProfile {
   /// Returns true if `preferences` has been explicitly set.
   public var hasPreferences: Bool {return _storage._preferences != nil}
   /// Clears the value of `preferences`. Subsequent reads from it will return its default value.
-  public mutating func clearPreferences() {_storage._preferences = nil}
+  public mutating func clearPreferences() {_uniqueStorage()._preferences = nil}
 
   /// Specifies the primary consumer type for this account.
   public var type: Bloombox_Schema_Identity_ConsumerType {
@@ -520,7 +600,7 @@ public struct Bloombox_Schema_Identity_ConsumerPreferences {
   /// Returns true if `menu` has been explicitly set.
   public var hasMenu: Bool {return _storage._menu != nil}
   /// Clears the value of `menu`. Subsequent reads from it will return its default value.
-  public mutating func clearMenu() {_storage._menu = nil}
+  public mutating func clearMenu() {_uniqueStorage()._menu = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -555,7 +635,7 @@ public struct Bloombox_Schema_Identity_ConsumerMembership {
   /// Returns true if `signedUpAt` has been explicitly set.
   public var hasSignedUpAt: Bool {return _storage._signedUpAt != nil}
   /// Clears the value of `signedUpAt`. Subsequent reads from it will return its default value.
-  public mutating func clearSignedUpAt() {_storage._signedUpAt = nil}
+  public mutating func clearSignedUpAt() {_uniqueStorage()._signedUpAt = nil}
 
   /// Timestamp for when this profile was last seen.
   public var seen: Opencannabis_Temporal_Instant {
@@ -565,13 +645,23 @@ public struct Bloombox_Schema_Identity_ConsumerMembership {
   /// Returns true if `seen` has been explicitly set.
   public var hasSeen: Bool {return _storage._seen != nil}
   /// Clears the value of `seen`. Subsequent reads from it will return its default value.
-  public mutating func clearSeen() {_storage._seen = nil}
+  public mutating func clearSeen() {_uniqueStorage()._seen = nil}
 
   /// Foreign ID for this membership, in the partner-colocated membership system.
   public var foreignID: String {
     get {return _storage._foreignID}
     set {_uniqueStorage()._foreignID = newValue}
   }
+
+  /// Key representing this user's membership at this location.
+  public var key: Bloombox_Schema_Identity_MembershipKey {
+    get {return _storage._key ?? Bloombox_Schema_Identity_MembershipKey()}
+    set {_uniqueStorage()._key = newValue}
+  }
+  /// Returns true if `key` has been explicitly set.
+  public var hasKey: Bool {return _storage._key != nil}
+  /// Clears the value of `key`. Subsequent reads from it will return its default value.
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -587,14 +677,32 @@ public struct Bloombox_Schema_Identity_IndustryProfile {
   // methods supported on all messages.
 
   /// Profile inactive/active status.
-  public var active: Bool = false
+  public var active: Bool {
+    get {return _storage._active}
+    set {_uniqueStorage()._active = newValue}
+  }
 
   /// Map of partner accesses levels to partner codes.
-  public var partners: Dictionary<String,Bloombox_Schema_Security_Access_AccessPolicy> = [:]
+  public var partners: Dictionary<String,Bloombox_Schema_Security_Access_AccessPolicy> {
+    get {return _storage._partners}
+    set {_uniqueStorage()._partners = newValue}
+  }
+
+  /// Settings for the user's industry profile.
+  public var settings: Bloombox_Schema_Identity_Industry_StaffSettings {
+    get {return _storage._settings ?? Bloombox_Schema_Identity_Industry_StaffSettings()}
+    set {_uniqueStorage()._settings = newValue}
+  }
+  /// Returns true if `settings` has been explicitly set.
+  public var hasSettings: Bool {return _storage._settings != nil}
+  /// Clears the value of `settings`. Subsequent reads from it will return its default value.
+  public mutating func clearSettings() {_uniqueStorage()._settings = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -615,6 +723,7 @@ extension Bloombox_Schema_Identity_IdentityProvider: SwiftProtobuf._ProtoNamePro
     1: .same(proto: "GOOGLE"),
     2: .same(proto: "FACEBOOK"),
     3: .same(proto: "TWITTER"),
+    4: .same(proto: "PHONE"),
   ]
 }
 
@@ -642,7 +751,7 @@ extension Bloombox_Schema_Identity_ReferralSource: SwiftProtobuf._ProtoNameProvi
 extension Bloombox_Schema_Identity_ConsumerType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNVALIDATED"),
-    1: .same(proto: "RECREATIONAL"),
+    1: .aliased(proto: "RECREATIONAL", aliases: ["ADULT_USE"]),
     2: .same(proto: "MEDICAL"),
   ]
 }
@@ -763,27 +872,27 @@ extension Bloombox_Schema_Identity_User: SwiftProtobuf.Message, SwiftProtobuf._M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_User) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Identity_User, rhs: Bloombox_Schema_Identity_User) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uid != other_storage._uid {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._person != other_storage._person {return false}
-        if _storage._identification != other_storage._identification {return false}
-        if _storage._doctorRec != other_storage._doctorRec {return false}
-        if _storage._seen != other_storage._seen {return false}
-        if _storage._signup != other_storage._signup {return false}
-        if _storage._identities != other_storage._identities {return false}
-        if _storage._media != other_storage._media {return false}
-        if _storage._consumer != other_storage._consumer {return false}
-        if _storage._industry != other_storage._industry {return false}
+        let rhs_storage = _args.1
+        if _storage._uid != rhs_storage._uid {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._person != rhs_storage._person {return false}
+        if _storage._identification != rhs_storage._identification {return false}
+        if _storage._doctorRec != rhs_storage._doctorRec {return false}
+        if _storage._seen != rhs_storage._seen {return false}
+        if _storage._signup != rhs_storage._signup {return false}
+        if _storage._identities != rhs_storage._identities {return false}
+        if _storage._media != rhs_storage._media {return false}
+        if _storage._consumer != rhs_storage._consumer {return false}
+        if _storage._industry != rhs_storage._industry {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -830,13 +939,13 @@ extension Bloombox_Schema_Identity_UserFlags: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_UserFlags) -> Bool {
-    if self.validated != other.validated {return false}
-    if self.suspended != other.suspended {return false}
-    if self.admin != other.admin {return false}
-    if self.beta != other.beta {return false}
-    if self.sandbox != other.sandbox {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Identity_UserFlags, rhs: Bloombox_Schema_Identity_UserFlags) -> Bool {
+    if lhs.validated != rhs.validated {return false}
+    if lhs.suspended != rhs.suspended {return false}
+    if lhs.admin != rhs.admin {return false}
+    if lhs.beta != rhs.beta {return false}
+    if lhs.sandbox != rhs.sandbox {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -901,19 +1010,19 @@ extension Bloombox_Schema_Identity_UserIdentity: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_UserIdentity) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Identity_UserIdentity, rhs: Bloombox_Schema_Identity_UserIdentity) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._provider != other_storage._provider {return false}
-        if _storage._id != other_storage._id {return false}
-        if _storage._seen != other_storage._seen {return false}
+        let rhs_storage = _args.1
+        if _storage._provider != rhs_storage._provider {return false}
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._seen != rhs_storage._seen {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1013,24 +1122,24 @@ extension Bloombox_Schema_Identity_ConsumerProfile: SwiftProtobuf.Message, Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_ConsumerProfile) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Identity_ConsumerProfile, rhs: Bloombox_Schema_Identity_ConsumerProfile) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._active != other_storage._active {return false}
-        if _storage._favoriteDispensaries != other_storage._favoriteDispensaries {return false}
-        if _storage._enrollmentSource != other_storage._enrollmentSource {return false}
-        if _storage._enrollmentChannel != other_storage._enrollmentChannel {return false}
-        if _storage._preferences != other_storage._preferences {return false}
-        if _storage._type != other_storage._type {return false}
-        if _storage._referralSource != other_storage._referralSource {return false}
-        if _storage._referralDetail != other_storage._referralDetail {return false}
+        let rhs_storage = _args.1
+        if _storage._active != rhs_storage._active {return false}
+        if _storage._favoriteDispensaries != rhs_storage._favoriteDispensaries {return false}
+        if _storage._enrollmentSource != rhs_storage._enrollmentSource {return false}
+        if _storage._enrollmentChannel != rhs_storage._enrollmentChannel {return false}
+        if _storage._preferences != rhs_storage._preferences {return false}
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._referralSource != rhs_storage._referralSource {return false}
+        if _storage._referralDetail != rhs_storage._referralDetail {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1087,15 +1196,15 @@ extension Bloombox_Schema_Identity_MenuPreferences: SwiftProtobuf.Message, Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_MenuPreferences) -> Bool {
-    if self.section != other.section {return false}
-    if self.feeling != other.feeling {return false}
-    if self.tasteNote != other.tasteNote {return false}
-    if self.desiredPotency != other.desiredPotency {return false}
-    if self.cannabinoidRatio != other.cannabinoidRatio {return false}
-    if self.species != other.species {return false}
-    if self.grow != other.grow {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Identity_MenuPreferences, rhs: Bloombox_Schema_Identity_MenuPreferences) -> Bool {
+    if lhs.section != rhs.section {return false}
+    if lhs.feeling != rhs.feeling {return false}
+    if lhs.tasteNote != rhs.tasteNote {return false}
+    if lhs.desiredPotency != rhs.desiredPotency {return false}
+    if lhs.cannabinoidRatio != rhs.cannabinoidRatio {return false}
+    if lhs.species != rhs.species {return false}
+    if lhs.grow != rhs.grow {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1146,17 +1255,17 @@ extension Bloombox_Schema_Identity_ConsumerPreferences: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_ConsumerPreferences) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Identity_ConsumerPreferences, rhs: Bloombox_Schema_Identity_ConsumerPreferences) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._menu != other_storage._menu {return false}
+        let rhs_storage = _args.1
+        if _storage._menu != rhs_storage._menu {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1169,6 +1278,7 @@ extension Bloombox_Schema_Identity_ConsumerMembership: SwiftProtobuf.Message, Sw
     3: .standard(proto: "signed_up_at"),
     4: .same(proto: "seen"),
     5: .standard(proto: "foreign_id"),
+    6: .same(proto: "key"),
   ]
 
   fileprivate class _StorageClass {
@@ -1177,6 +1287,7 @@ extension Bloombox_Schema_Identity_ConsumerMembership: SwiftProtobuf.Message, Sw
     var _signedUpAt: Opencannabis_Temporal_Instant? = nil
     var _seen: Opencannabis_Temporal_Instant? = nil
     var _foreignID: String = String()
+    var _key: Bloombox_Schema_Identity_MembershipKey? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1188,6 +1299,7 @@ extension Bloombox_Schema_Identity_ConsumerMembership: SwiftProtobuf.Message, Sw
       _signedUpAt = source._signedUpAt
       _seen = source._seen
       _foreignID = source._foreignID
+      _key = source._key
     }
   }
 
@@ -1208,6 +1320,7 @@ extension Bloombox_Schema_Identity_ConsumerMembership: SwiftProtobuf.Message, Sw
         case 3: try decoder.decodeSingularMessageField(value: &_storage._signedUpAt)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._seen)
         case 5: try decoder.decodeSingularStringField(value: &_storage._foreignID)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._key)
         default: break
         }
       }
@@ -1231,25 +1344,29 @@ extension Bloombox_Schema_Identity_ConsumerMembership: SwiftProtobuf.Message, Sw
       if !_storage._foreignID.isEmpty {
         try visitor.visitSingularStringField(value: _storage._foreignID, fieldNumber: 5)
       }
+      if let v = _storage._key {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_ConsumerMembership) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Identity_ConsumerMembership, rhs: Bloombox_Schema_Identity_ConsumerMembership) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._referralSource != other_storage._referralSource {return false}
-        if _storage._referralChannel != other_storage._referralChannel {return false}
-        if _storage._signedUpAt != other_storage._signedUpAt {return false}
-        if _storage._seen != other_storage._seen {return false}
-        if _storage._foreignID != other_storage._foreignID {return false}
+        let rhs_storage = _args.1
+        if _storage._referralSource != rhs_storage._referralSource {return false}
+        if _storage._referralChannel != rhs_storage._referralChannel {return false}
+        if _storage._signedUpAt != rhs_storage._signedUpAt {return false}
+        if _storage._seen != rhs_storage._seen {return false}
+        if _storage._foreignID != rhs_storage._foreignID {return false}
+        if _storage._key != rhs_storage._key {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1259,32 +1376,74 @@ extension Bloombox_Schema_Identity_IndustryProfile: SwiftProtobuf.Message, Swift
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "active"),
     2: .same(proto: "partners"),
+    3: .same(proto: "settings"),
   ]
 
+  fileprivate class _StorageClass {
+    var _active: Bool = false
+    var _partners: Dictionary<String,Bloombox_Schema_Security_Access_AccessPolicy> = [:]
+    var _settings: Bloombox_Schema_Identity_Industry_StaffSettings? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _active = source._active
+      _partners = source._partners
+      _settings = source._settings
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.active)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_AccessPolicy>.self, value: &self.partners)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularBoolField(value: &_storage._active)
+        case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_AccessPolicy>.self, value: &_storage._partners)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._settings)
+        default: break
+        }
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.active != false {
-      try visitor.visitSingularBoolField(value: self.active, fieldNumber: 1)
-    }
-    if !self.partners.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_AccessPolicy>.self, value: self.partners, fieldNumber: 2)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._active != false {
+        try visitor.visitSingularBoolField(value: _storage._active, fieldNumber: 1)
+      }
+      if !_storage._partners.isEmpty {
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Security_Access_AccessPolicy>.self, value: _storage._partners, fieldNumber: 2)
+      }
+      if let v = _storage._settings {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_IndustryProfile) -> Bool {
-    if self.active != other.active {return false}
-    if self.partners != other.partners {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Identity_IndustryProfile, rhs: Bloombox_Schema_Identity_IndustryProfile) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._active != rhs_storage._active {return false}
+        if _storage._partners != rhs_storage._partners {return false}
+        if _storage._settings != rhs_storage._settings {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

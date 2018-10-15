@@ -32,12 +32,6 @@ public enum Opencannabis_Commerce_OrderType: SwiftProtobuf.Enum {
 
   /// Delivery order.
   case delivery // = 1
-
-  /// On-site orders, placed on-premises.
-  case onsite // = 2
-
-  /// Remote orders, placed with the help of a salesman.
-  case remote // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -48,8 +42,6 @@ public enum Opencannabis_Commerce_OrderType: SwiftProtobuf.Enum {
     switch rawValue {
     case 0: self = .pickup
     case 1: self = .delivery
-    case 2: self = .onsite
-    case 3: self = .remote
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -58,13 +50,23 @@ public enum Opencannabis_Commerce_OrderType: SwiftProtobuf.Enum {
     switch self {
     case .pickup: return 0
     case .delivery: return 1
-    case .onsite: return 2
-    case .remote: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_OrderType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_OrderType] = [
+    .pickup,
+    .delivery,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies the types of delivery timing.
 public enum Opencannabis_Commerce_SchedulingType: SwiftProtobuf.Enum {
@@ -98,6 +100,18 @@ public enum Opencannabis_Commerce_SchedulingType: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_SchedulingType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_SchedulingType] = [
+    .asap,
+    .timed,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Enumeration for current status of order
 public enum Opencannabis_Commerce_OrderStatus: SwiftProtobuf.Enum {
@@ -152,63 +166,21 @@ public enum Opencannabis_Commerce_OrderStatus: SwiftProtobuf.Enum {
 
 }
 
-/// Enumeration for payment status of an order.
-public enum Opencannabis_Commerce_OrderPaymentStatus: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
+#if swift(>=4.2)
 
-  /// Payment information is not applicable to this order.
-  case notApplicable // = 0
-
-  /// Charge is pending fulfillment.
-  case waiting // = 1
-
-  /// The user's card has been pre-authorized, pending fulfillment.
-  case preauthorized // = 2
-
-  /// The user has paid partially for this order.
-  case partial // = 3
-
-  /// The user has settled payment for this order in full.
-  case settled // = 4
-
-  /// Payment for this order did not go through.
-  case bounced // = 5
-
-  /// Payment for this order did not go through, and was retried.
-  case retried // = 6
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .notApplicable
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .notApplicable
-    case 1: self = .waiting
-    case 2: self = .preauthorized
-    case 3: self = .partial
-    case 4: self = .settled
-    case 5: self = .bounced
-    case 6: self = .retried
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .notApplicable: return 0
-    case .waiting: return 1
-    case .preauthorized: return 2
-    case .partial: return 3
-    case .settled: return 4
-    case .bounced: return 5
-    case .retried: return 6
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
+extension Opencannabis_Commerce_OrderStatus: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_OrderStatus] = [
+    .pending,
+    .approved,
+    .rejected,
+    .assigned,
+    .enRoute,
+    .fulfilled,
+  ]
 }
+
+#endif  // swift(>=4.2)
 
 /// Specifies the desired timing of the delivery order.
 public struct Opencannabis_Commerce_OrderScheduling {
@@ -230,7 +202,7 @@ public struct Opencannabis_Commerce_OrderScheduling {
   /// Returns true if `desiredTime` has been explicitly set.
   public var hasDesiredTime: Bool {return _storage._desiredTime != nil}
   /// Clears the value of `desiredTime`. Subsequent reads from it will return its default value.
-  public mutating func clearDesiredTime() {_storage._desiredTime = nil}
+  public mutating func clearDesiredTime() {_uniqueStorage()._desiredTime = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -246,7 +218,7 @@ public struct Opencannabis_Commerce_OrderPayment {
   // methods supported on all messages.
 
   /// Status of payment for this order.
-  public var status: Opencannabis_Commerce_OrderPaymentStatus = .notApplicable
+  public var status: Opencannabis_Commerce_PaymentStatus = .notApplicable
 
   /// Method of payment used on this order.
   public var method: Opencannabis_Commerce_PaymentMethod = .cash
@@ -282,7 +254,7 @@ public struct Opencannabis_Commerce_StatusCheckin {
   /// Returns true if `instant` has been explicitly set.
   public var hasInstant: Bool {return _storage._instant != nil}
   /// Clears the value of `instant`. Subsequent reads from it will return its default value.
-  public mutating func clearInstant() {_storage._instant = nil}
+  public mutating func clearInstant() {_uniqueStorage()._instant = nil}
 
   /// Message or reason given for this status change, if any.
   public var message: String {
@@ -343,7 +315,7 @@ public struct Opencannabis_Commerce_Order {
   /// Returns true if `customer` has been explicitly set.
   public var hasCustomer: Bool {return _storage._customer != nil}
   /// Clears the value of `customer`. Subsequent reads from it will return its default value.
-  public mutating func clearCustomer() {_storage._customer = nil}
+  public mutating func clearCustomer() {_uniqueStorage()._customer = nil}
 
   /// Scheduling spec for this order.
   public var scheduling: Opencannabis_Commerce_OrderScheduling {
@@ -353,7 +325,7 @@ public struct Opencannabis_Commerce_Order {
   /// Returns true if `scheduling` has been explicitly set.
   public var hasScheduling: Bool {return _storage._scheduling != nil}
   /// Clears the value of `scheduling`. Subsequent reads from it will return its default value.
-  public mutating func clearScheduling() {_storage._scheduling = nil}
+  public mutating func clearScheduling() {_uniqueStorage()._scheduling = nil}
 
   /// Location for delivery, if applicable.
   public var destination: Opencannabis_Commerce_DeliveryDestination {
@@ -363,7 +335,7 @@ public struct Opencannabis_Commerce_Order {
   /// Returns true if `destination` has been explicitly set.
   public var hasDestination: Bool {return _storage._destination != nil}
   /// Clears the value of `destination`. Subsequent reads from it will return its default value.
-  public mutating func clearDestination() {_storage._destination = nil}
+  public mutating func clearDestination() {_uniqueStorage()._destination = nil}
 
   /// User-provided notes or questions, if any.
   public var notes: String {
@@ -391,7 +363,7 @@ public struct Opencannabis_Commerce_Order {
   /// Returns true if `createdAt` has been explicitly set.
   public var hasCreatedAt: Bool {return _storage._createdAt != nil}
   /// Clears the value of `createdAt`. Subsequent reads from it will return its default value.
-  public mutating func clearCreatedAt() {_storage._createdAt = nil}
+  public mutating func clearCreatedAt() {_uniqueStorage()._createdAt = nil}
 
   /// Order subtotal.
   public var subtotal: Double {
@@ -407,7 +379,7 @@ public struct Opencannabis_Commerce_Order {
   /// Returns true if `updatedAt` has been explicitly set.
   public var hasUpdatedAt: Bool {return _storage._updatedAt != nil}
   /// Clears the value of `updatedAt`. Subsequent reads from it will return its default value.
-  public mutating func clearUpdatedAt() {_storage._updatedAt = nil}
+  public mutating func clearUpdatedAt() {_uniqueStorage()._updatedAt = nil}
 
   /// Session ID that was active when this order was submitted.
   public var sid: String {
@@ -423,7 +395,7 @@ public struct Opencannabis_Commerce_Order {
   /// Returns true if `payment` has been explicitly set.
   public var hasPayment: Bool {return _storage._payment != nil}
   /// Clears the value of `payment`. Subsequent reads from it will return its default value.
-  public mutating func clearPayment() {_storage._payment = nil}
+  public mutating func clearPayment() {_uniqueStorage()._payment = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -440,8 +412,6 @@ extension Opencannabis_Commerce_OrderType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PICKUP"),
     1: .same(proto: "DELIVERY"),
-    2: .same(proto: "ONSITE"),
-    3: .same(proto: "REMOTE"),
   ]
 }
 
@@ -460,18 +430,6 @@ extension Opencannabis_Commerce_OrderStatus: SwiftProtobuf._ProtoNameProviding {
     3: .same(proto: "ASSIGNED"),
     4: .same(proto: "EN_ROUTE"),
     5: .same(proto: "FULFILLED"),
-  ]
-}
-
-extension Opencannabis_Commerce_OrderPaymentStatus: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "NOT_APPLICABLE"),
-    1: .same(proto: "WAITING"),
-    2: .same(proto: "PREAUTHORIZED"),
-    3: .same(proto: "PARTIAL"),
-    4: .same(proto: "SETTLED"),
-    5: .same(proto: "BOUNCED"),
-    6: .same(proto: "RETRIED"),
   ]
 }
 
@@ -528,18 +486,18 @@ extension Opencannabis_Commerce_OrderScheduling: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_OrderScheduling) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Commerce_OrderScheduling, rhs: Opencannabis_Commerce_OrderScheduling) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._scheduling != other_storage._scheduling {return false}
-        if _storage._desiredTime != other_storage._desiredTime {return false}
+        let rhs_storage = _args.1
+        if _storage._scheduling != rhs_storage._scheduling {return false}
+        if _storage._desiredTime != rhs_storage._desiredTime {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -581,12 +539,12 @@ extension Opencannabis_Commerce_OrderPayment: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_OrderPayment) -> Bool {
-    if self.status != other.status {return false}
-    if self.method != other.method {return false}
-    if self.tax != other.tax {return false}
-    if self.paid != other.paid {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Commerce_OrderPayment, rhs: Opencannabis_Commerce_OrderPayment) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.method != rhs.method {return false}
+    if lhs.tax != rhs.tax {return false}
+    if lhs.paid != rhs.paid {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -651,19 +609,19 @@ extension Opencannabis_Commerce_StatusCheckin: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_StatusCheckin) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Commerce_StatusCheckin, rhs: Opencannabis_Commerce_StatusCheckin) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._status != other_storage._status {return false}
-        if _storage._instant != other_storage._instant {return false}
-        if _storage._message != other_storage._message {return false}
+        let rhs_storage = _args.1
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._instant != rhs_storage._instant {return false}
+        if _storage._message != rhs_storage._message {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -690,9 +648,9 @@ extension Opencannabis_Commerce_OrderKey: SwiftProtobuf.Message, SwiftProtobuf._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_OrderKey) -> Bool {
-    if self.id != other.id {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Commerce_OrderKey, rhs: Opencannabis_Commerce_OrderKey) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -834,30 +792,30 @@ extension Opencannabis_Commerce_Order: SwiftProtobuf.Message, SwiftProtobuf._Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_Order) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Commerce_Order, rhs: Opencannabis_Commerce_Order) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._type != other_storage._type {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._customer != other_storage._customer {return false}
-        if _storage._scheduling != other_storage._scheduling {return false}
-        if _storage._destination != other_storage._destination {return false}
-        if _storage._notes != other_storage._notes {return false}
-        if _storage._item != other_storage._item {return false}
-        if _storage._actionLog != other_storage._actionLog {return false}
-        if _storage._createdAt != other_storage._createdAt {return false}
-        if _storage._subtotal != other_storage._subtotal {return false}
-        if _storage._updatedAt != other_storage._updatedAt {return false}
-        if _storage._sid != other_storage._sid {return false}
-        if _storage._payment != other_storage._payment {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._customer != rhs_storage._customer {return false}
+        if _storage._scheduling != rhs_storage._scheduling {return false}
+        if _storage._destination != rhs_storage._destination {return false}
+        if _storage._notes != rhs_storage._notes {return false}
+        if _storage._item != rhs_storage._item {return false}
+        if _storage._actionLog != rhs_storage._actionLog {return false}
+        if _storage._createdAt != rhs_storage._createdAt {return false}
+        if _storage._subtotal != rhs_storage._subtotal {return false}
+        if _storage._updatedAt != rhs_storage._updatedAt {return false}
+        if _storage._sid != rhs_storage._sid {return false}
+        if _storage._payment != rhs_storage._payment {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

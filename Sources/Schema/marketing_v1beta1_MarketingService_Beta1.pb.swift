@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides the Marketing API, which supports the creation, management, and execution of SMS and email marketing
+/// campaigns, based on product data made available by the Menu API.
+
 import Foundation
 import SwiftProtobuf
 
@@ -122,6 +126,32 @@ public enum Bloombox_Schema_Services_Marketing_V1beta1_MarketingError: SwiftProt
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Marketing_V1beta1_MarketingError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Marketing_V1beta1_MarketingError] = [
+    .noError,
+    .partnerInvalid,
+    .locationInvalid,
+    .idInvalid,
+    .nameInvalid,
+    .campaignNotFound,
+    .accessDenied,
+    .settingsInvalid,
+    .channelInvalid,
+    .adgroupInvalid,
+    .settingsMismatch,
+    .creativeInvalid,
+    .smsCreativeInvalid,
+    .emailCreativeInvalid,
+    .updateInvalid,
+    .internalError,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Campaign summary payload for listing campaigns, given a particular scope.
 public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -136,7 +166,7 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Name for the campaign object.
   public var name: String {
@@ -188,7 +218,7 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -275,7 +305,7 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet {
     /// Returns true if `campaign` has been explicitly set.
     public var hasCampaign: Bool {return _storage._campaign != nil}
     /// Clears the value of `campaign`. Subsequent reads from it will return its default value.
-    public mutating func clearCampaign() {_storage._campaign = nil}
+    public mutating func clearCampaign() {_uniqueStorage()._campaign = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -516,7 +546,7 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate {
     /// Returns true if `creative` has been explicitly set.
     public var hasCreative: Bool {return _storage._creative != nil}
     /// Clears the value of `creative`. Subsequent reads from it will return its default value.
-    public mutating func clearCreative() {_storage._creative = nil}
+    public mutating func clearCreative() {_uniqueStorage()._creative = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -582,7 +612,7 @@ public struct Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet {
     /// Returns true if `adgroup` has been explicitly set.
     public var hasAdgroup: Bool {return _storage._adgroup != nil}
     /// Clears the value of `adgroup`. Subsequent reads from it will return its default value.
-    public mutating func clearAdgroup() {_storage._adgroup = nil}
+    public mutating func clearAdgroup() {_uniqueStorage()._adgroup = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -752,25 +782,25 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSummary) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._name != other_storage._name {return false}
-        if _storage._description_p != other_storage._description_p {return false}
-        if _storage._live != other_storage._live {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._sms != other_storage._sms {return false}
-        if _storage._email != other_storage._email {return false}
-        if _storage._tag != other_storage._tag {return false}
-        if _storage._modified != other_storage._modified {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._live != rhs_storage._live {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._sms != rhs_storage._sms {return false}
+        if _storage._email != rhs_storage._email {return false}
+        if _storage._tag != rhs_storage._tag {return false}
+        if _storage._modified != rhs_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -788,8 +818,8 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignList: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -821,10 +851,10 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Request: Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Request) -> Bool {
-    if self.partner != other.partner {return false}
-    if self.location != other.location {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Request) -> Bool {
+    if lhs.partner != rhs.partner {return false}
+    if lhs.location != rhs.location {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -851,9 +881,9 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Response: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Response) -> Bool {
-    if self.campaign != other.campaign {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignList.Response) -> Bool {
+    if lhs.campaign != rhs.campaign {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -871,8 +901,8 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -899,9 +929,9 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Request: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -952,17 +982,17 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Response: Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignGet.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._campaign != other_storage._campaign {return false}
+        let rhs_storage = _args.1
+        if _storage._campaign != rhs_storage._campaign {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -980,8 +1010,8 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1028,13 +1058,13 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Request: Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Request) -> Bool {
-    if self.partner != other.partner {return false}
-    if self.location != other.location {return false}
-    if self.name != other.name {return false}
-    if self.description_p != other.description_p {return false}
-    if self.channel != other.channel {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Request) -> Bool {
+    if lhs.partner != rhs.partner {return false}
+    if lhs.location != rhs.location {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.channel != rhs.channel {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1061,9 +1091,9 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Response: Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Response) -> Bool {
-    if self.id != other.id {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignCreate.Response) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1081,8 +1111,8 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1129,13 +1159,13 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.Request: Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if self.name != other.name {return false}
-    if self.description_p != other.description_p {return false}
-    if self.status != other.status {return false}
-    if self.channel != other.channel {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignUpdate.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.status != rhs.status {return false}
+    if lhs.channel != rhs.channel {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1153,8 +1183,8 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1181,9 +1211,9 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Request: S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1210,9 +1240,9 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Response: 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Response) -> Bool {
-    if self.err != other.err {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignValidate.Response) -> Bool {
+    if lhs.err != rhs.err {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1230,8 +1260,8 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1263,10 +1293,10 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request: Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if self.dryRun != other.dryRun {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_CampaignSend.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.dryRun != rhs.dryRun {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1284,8 +1314,8 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1312,9 +1342,9 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Request: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1341,9 +1371,9 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Response: Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Response) -> Bool {
-    if self.adgroup != other.adgroup {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupList.Response) -> Bool {
+    if lhs.adgroup != rhs.adgroup {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1361,8 +1391,8 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1427,19 +1457,19 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Request: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._campaignID != other_storage._campaignID {return false}
-        if _storage._channel != other_storage._channel {return false}
-        if _storage._creative != other_storage._creative {return false}
+        let rhs_storage = _args.1
+        if _storage._campaignID != rhs_storage._campaignID {return false}
+        if _storage._channel != rhs_storage._channel {return false}
+        if _storage._creative != rhs_storage._creative {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1466,9 +1496,9 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Response: Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Response) -> Bool {
-    if self.adgroupID != other.adgroupID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupCreate.Response) -> Bool {
+    if lhs.adgroupID != rhs.adgroupID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1486,8 +1516,8 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1519,10 +1549,10 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Request: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if self.adgroupID != other.adgroupID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.adgroupID != rhs.adgroupID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1573,17 +1603,17 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Response: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Response, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupGet.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._adgroup != other_storage._adgroup {return false}
+        let rhs_storage = _args.1
+        if _storage._adgroup != rhs_storage._adgroup {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1601,8 +1631,8 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1639,11 +1669,11 @@ extension Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate.Request: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate.Request) -> Bool {
-    if self.campaignID != other.campaignID {return false}
-    if self.adgroupID != other.adgroupID {return false}
-    if self.creative != other.creative {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate.Request, rhs: Bloombox_Schema_Services_Marketing_V1beta1_AdGroupUpdate.Request) -> Bool {
+    if lhs.campaignID != rhs.campaignID {return false}
+    if lhs.adgroupID != rhs.adgroupID {return false}
+    if lhs.creative != rhs.creative {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -368,6 +368,7 @@ public struct Google_Api_HttpRule {
     /// Custom pattern is used for defining custom verbs.
     case custom(Google_Api_CustomHttpPattern)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Google_Api_HttpRule.OneOf_Pattern, rhs: Google_Api_HttpRule.OneOf_Pattern) -> Bool {
       switch (lhs, rhs) {
       case (.get(let l), .get(let r)): return l == r
@@ -379,6 +380,7 @@ public struct Google_Api_HttpRule {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -429,9 +431,9 @@ extension Google_Api_Http: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Google_Api_Http) -> Bool {
-    if self.rules != other.rules {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Google_Api_Http, rhs: Google_Api_Http) -> Bool {
+    if lhs.rules != rhs.rules {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -554,20 +556,20 @@ extension Google_Api_HttpRule: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Google_Api_HttpRule) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Google_Api_HttpRule, rhs: Google_Api_HttpRule) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._selector != other_storage._selector {return false}
-        if _storage._pattern != other_storage._pattern {return false}
-        if _storage._body != other_storage._body {return false}
-        if _storage._additionalBindings != other_storage._additionalBindings {return false}
+        let rhs_storage = _args.1
+        if _storage._selector != rhs_storage._selector {return false}
+        if _storage._pattern != rhs_storage._pattern {return false}
+        if _storage._body != rhs_storage._body {return false}
+        if _storage._additionalBindings != rhs_storage._additionalBindings {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -599,10 +601,10 @@ extension Google_Api_CustomHttpPattern: SwiftProtobuf.Message, SwiftProtobuf._Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Google_Api_CustomHttpPattern) -> Bool {
-    if self.kind != other.kind {return false}
-    if self.path != other.path {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Google_Api_CustomHttpPattern, rhs: Google_Api_CustomHttpPattern) -> Bool {
+    if lhs.kind != rhs.kind {return false}
+    if lhs.path != rhs.path {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

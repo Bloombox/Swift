@@ -6,6 +6,11 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies structures that, together, form a composed menu product catalog, which is defined as a payload that
+/// specifies individual product entries, enumerated by type or section. Usually, catalog structures are used to present
+/// menu data in one way or another, but are also employed for synchronizing data between systems.
+
 import Foundation
 import SwiftProtobuf
 
@@ -52,6 +57,18 @@ public enum Opencannabis_Products_Menu_Status: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Menu_Status: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Menu_Status] = [
+    .unpublished,
+    .live,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates flags that can be set on a menu.
 public enum Opencannabis_Products_Menu_Flag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -90,6 +107,19 @@ public enum Opencannabis_Products_Menu_Flag: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Menu_Flag: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Menu_Flag] = [
+    .draft,
+    .private,
+    .outOfDate,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies settings used to generate a menu, or used as input when generating menus.
 public struct Opencannabis_Products_Menu_MenuSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -116,7 +146,7 @@ public struct Opencannabis_Products_Menu_MenuSettings {
   /// Returns true if `snapshot` has been explicitly set.
   public var hasSnapshot: Bool {return _storage._snapshot != nil}
   /// Clears the value of `snapshot`. Subsequent reads from it will return its default value.
-  public mutating func clearSnapshot() {_storage._snapshot = nil}
+  public mutating func clearSnapshot() {_uniqueStorage()._snapshot = nil}
 
   /// Bloom filter to consider when returning or processing menu items.
   public var fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash {
@@ -126,7 +156,7 @@ public struct Opencannabis_Products_Menu_MenuSettings {
   /// Returns true if `fingerprint` has been explicitly set.
   public var hasFingerprint: Bool {return _storage._fingerprint != nil}
   /// Clears the value of `fingerprint`. Subsequent reads from it will return its default value.
-  public mutating func clearFingerprint() {_storage._fingerprint = nil}
+  public mutating func clearFingerprint() {_uniqueStorage()._fingerprint = nil}
 
   /// Sections to include in the menu. If unspecified, include all sections.
   public var section: [Opencannabis_Products_Menu_Section_Section] {
@@ -185,7 +215,7 @@ public struct Opencannabis_Products_Menu_Metadata {
   /// Returns true if `published` has been explicitly set.
   public var hasPublished: Bool {return _storage._published != nil}
   /// Clears the value of `published`. Subsequent reads from it will return its default value.
-  public mutating func clearPublished() {_storage._published = nil}
+  public mutating func clearPublished() {_uniqueStorage()._published = nil}
 
   /// Settings that produced this menu data.
   public var settings: Opencannabis_Products_Menu_MenuSettings {
@@ -195,7 +225,7 @@ public struct Opencannabis_Products_Menu_Metadata {
   /// Returns true if `settings` has been explicitly set.
   public var hasSettings: Bool {return _storage._settings != nil}
   /// Clears the value of `settings`. Subsequent reads from it will return its default value.
-  public mutating func clearSettings() {_storage._settings = nil}
+  public mutating func clearSettings() {_uniqueStorage()._settings = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -204,13 +234,94 @@ public struct Opencannabis_Products_Menu_Metadata {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-/// Menu product payload stanza. Specifies a single product as a member of a menu section.
+/// Specifies the concept of a tag that may be arbitrarily created and attached to menu products, in a many-to-many-style
+/// relationship, for the purpose of categorically sorting/managing items.
+public struct Opencannabis_Products_Menu_ProductTag {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// ID for the tag. Usually a slug-ified version of the display name.
+  public var id: String = String()
+
+  /// Display text for the tag.
+  public var display: String = String()
+
+  /// Color code, in hex, for the tag.
+  public var color: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// Specifies a foreign reference for a given menu product. A foreign reference is a unique ID or link between a product
+/// and that same product in some foreign computer system.
+public struct Opencannabis_Products_Menu_ForeignReference {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Foreign key value for a reference between an in-network product and an out-of-network representation of that same
+  /// product in a different computer system.
+  public var key: String {
+    get {return _storage._key}
+    set {_uniqueStorage()._key = newValue}
+  }
+
+  /// Domain for the integrating system. This is usually set to a unique domain value that corresponds to the foreign
+  /// system, and can be used to identify it later.
+  public var domain: String {
+    get {return _storage._domain}
+    set {_uniqueStorage()._domain = newValue}
+  }
+
+  /// URL to this product in the foreign system, if applicable. Can also be a link to a RESTful URL payload representing
+  /// this product's data in the foreign system.
+  public var link: String {
+    get {return _storage._link}
+    set {_uniqueStorage()._link = newValue}
+  }
+
+  /// Timestamp for when this foreign reference was attached to a given menu product. This timestamp should only be set
+  /// once, upon original creation/linking of the foreign reference.
+  public var attached: Opencannabis_Temporal_Instant {
+    get {return _storage._attached ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._attached = newValue}
+  }
+  /// Returns true if `attached` has been explicitly set.
+  public var hasAttached: Bool {return _storage._attached != nil}
+  /// Clears the value of `attached`. Subsequent reads from it will return its default value.
+  public mutating func clearAttached() {_uniqueStorage()._attached = nil}
+
+  /// Timestamp indicating when this foreign product reference was last validated with the foreign system. Each time an
+  /// item is fetched or otherwise synchronized, this should be updated.
+  public var validated: Opencannabis_Temporal_Instant {
+    get {return _storage._validated ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._validated = newValue}
+  }
+  /// Returns true if `validated` has been explicitly set.
+  public var hasValidated: Bool {return _storage._validated != nil}
+  /// Clears the value of `validated`. Subsequent reads from it will return its default value.
+  public mutating func clearValidated() {_uniqueStorage()._validated = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Menu product payload stanza. Specifies a single product as a member of a menu section. This generic record is used to
+/// wrap concrete menu product structures to make them generically usable. In V2 data stores, menu products are stored
+/// generically as a top-level entity (as opposed to V1, in which this model is synthesized from raw map data).
 public struct Opencannabis_Products_Menu_MenuProduct {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Section that this data is attached to.
+  /// Key record uniquely identifying this menu product. Keys for saved items are lifted to this property from the
+  /// attached concrete record below.
   public var key: Opencannabis_Base_ProductKey {
     get {return _storage._key ?? Opencannabis_Base_ProductKey()}
     set {_uniqueStorage()._key = newValue}
@@ -218,7 +329,21 @@ public struct Opencannabis_Products_Menu_MenuProduct {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
+
+  /// Product tags attached to this entry. Product tags are arbitrary phrases or strings that may be attached to product
+  /// records to help categorize them or facilitate their management. They are not generally end-user-visible.
+  public var tag: [Opencannabis_Products_Menu_ProductTag] {
+    get {return _storage._tag}
+    set {_uniqueStorage()._tag = newValue}
+  }
+
+  /// Set of foreign references for this product, or, instances in which this product exists in an out-of-network system,
+  /// in a uniquely identifiable way.
+  public var ref: [Opencannabis_Products_Menu_ForeignReference] {
+    get {return _storage._ref}
+    set {_uniqueStorage()._ref = newValue}
+  }
 
   /// Content and materials data for this menu product.
   public var product: OneOf_Product? {
@@ -319,6 +444,7 @@ public struct Opencannabis_Products_Menu_MenuProduct {
     /// Preroll product.
     case preroll(Opencannabis_Products_Preroll)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Products_Menu_MenuProduct.OneOf_Product, rhs: Opencannabis_Products_Menu_MenuProduct.OneOf_Product) -> Bool {
       switch (lhs, rhs) {
       case (.apothecary(let l), .apothecary(let r)): return l == r
@@ -332,6 +458,7 @@ public struct Opencannabis_Products_Menu_MenuProduct {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -359,7 +486,7 @@ public struct Opencannabis_Products_Menu_SectionData {
   /// Returns true if `section` has been explicitly set.
   public var hasSection: Bool {return _storage._section != nil}
   /// Clears the value of `section`. Subsequent reads from it will return its default value.
-  public mutating func clearSection() {_storage._section = nil}
+  public mutating func clearSection() {_uniqueStorage()._section = nil}
 
   /// Menu products attached to this section.
   public var product: [Opencannabis_Products_Menu_MenuProduct] {
@@ -442,7 +569,7 @@ public struct Opencannabis_Products_Menu_Menu {
   /// Returns true if `metadata` has been explicitly set.
   public var hasMetadata: Bool {return _storage._metadata != nil}
   /// Clears the value of `metadata`. Subsequent reads from it will return its default value.
-  public mutating func clearMetadata() {_storage._metadata = nil}
+  public mutating func clearMetadata() {_uniqueStorage()._metadata = nil}
 
   /// Specifies menu content, either in repeated section data, or with a static map.
   public var content: OneOf_Content? {
@@ -477,6 +604,7 @@ public struct Opencannabis_Products_Menu_Menu {
     /// Specifies a static menu, where each section is specified as a typed map, with keys mapped to products.
     case menu(Opencannabis_Products_Menu_StaticMenu)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Products_Menu_Menu.OneOf_Content, rhs: Opencannabis_Products_Menu_Menu.OneOf_Content) -> Bool {
       switch (lhs, rhs) {
       case (.payload(let l), .payload(let r)): return l == r
@@ -484,6 +612,7 @@ public struct Opencannabis_Products_Menu_Menu {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -591,22 +720,22 @@ extension Opencannabis_Products_Menu_MenuSettings: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_MenuSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Products_Menu_MenuSettings, rhs: Opencannabis_Products_Menu_MenuSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._full != other_storage._full {return false}
-        if _storage._keysOnly != other_storage._keysOnly {return false}
-        if _storage._snapshot != other_storage._snapshot {return false}
-        if _storage._fingerprint != other_storage._fingerprint {return false}
-        if _storage._section != other_storage._section {return false}
-        if _storage._availableSection != other_storage._availableSection {return false}
+        let rhs_storage = _args.1
+        if _storage._full != rhs_storage._full {return false}
+        if _storage._keysOnly != rhs_storage._keysOnly {return false}
+        if _storage._snapshot != rhs_storage._snapshot {return false}
+        if _storage._fingerprint != rhs_storage._fingerprint {return false}
+        if _storage._section != rhs_storage._section {return false}
+        if _storage._availableSection != rhs_storage._availableSection {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -692,22 +821,156 @@ extension Opencannabis_Products_Menu_Metadata: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Metadata) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Products_Menu_Metadata, rhs: Opencannabis_Products_Menu_Metadata) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._scope != other_storage._scope {return false}
-        if _storage._version != other_storage._version {return false}
-        if _storage._status != other_storage._status {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._published != other_storage._published {return false}
-        if _storage._settings != other_storage._settings {return false}
+        let rhs_storage = _args.1
+        if _storage._scope != rhs_storage._scope {return false}
+        if _storage._version != rhs_storage._version {return false}
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._published != rhs_storage._published {return false}
+        if _storage._settings != rhs_storage._settings {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Products_Menu_ProductTag: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ProductTag"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "display"),
+    3: .same(proto: "color"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.display)
+      case 3: try decoder.decodeSingularStringField(value: &self.color)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.display.isEmpty {
+      try visitor.visitSingularStringField(value: self.display, fieldNumber: 2)
+    }
+    if !self.color.isEmpty {
+      try visitor.visitSingularStringField(value: self.color, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Products_Menu_ProductTag, rhs: Opencannabis_Products_Menu_ProductTag) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.display != rhs.display {return false}
+    if lhs.color != rhs.color {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Products_Menu_ForeignReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ForeignReference"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "key"),
+    2: .same(proto: "domain"),
+    3: .same(proto: "link"),
+    4: .same(proto: "attached"),
+    5: .same(proto: "validated"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _key: String = String()
+    var _domain: String = String()
+    var _link: String = String()
+    var _attached: Opencannabis_Temporal_Instant? = nil
+    var _validated: Opencannabis_Temporal_Instant? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _key = source._key
+      _domain = source._domain
+      _link = source._link
+      _attached = source._attached
+      _validated = source._validated
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._key)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._domain)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._link)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._attached)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._validated)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._key.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._key, fieldNumber: 1)
+      }
+      if !_storage._domain.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._domain, fieldNumber: 2)
+      }
+      if !_storage._link.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._link, fieldNumber: 3)
+      }
+      if let v = _storage._attached {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._validated {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Products_Menu_ForeignReference, rhs: Opencannabis_Products_Menu_ForeignReference) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._domain != rhs_storage._domain {return false}
+        if _storage._link != rhs_storage._link {return false}
+        if _storage._attached != rhs_storage._attached {return false}
+        if _storage._validated != rhs_storage._validated {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -716,6 +979,8 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
   public static let protoMessageName: String = _protobuf_package + ".MenuProduct"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
+    2: .same(proto: "tag"),
+    3: .same(proto: "ref"),
     10: .same(proto: "apothecary"),
     11: .same(proto: "cartridge"),
     12: .same(proto: "edible"),
@@ -728,6 +993,8 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
+    var _tag: [Opencannabis_Products_Menu_ProductTag] = []
+    var _ref: [Opencannabis_Products_Menu_ForeignReference] = []
     var _product: Opencannabis_Products_Menu_MenuProduct.OneOf_Product?
 
     static let defaultInstance = _StorageClass()
@@ -736,6 +1003,8 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
 
     init(copying source: _StorageClass) {
       _key = source._key
+      _tag = source._tag
+      _ref = source._ref
       _product = source._product
     }
   }
@@ -753,6 +1022,8 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeRepeatedMessageField(value: &_storage._tag)
+        case 3: try decoder.decodeRepeatedMessageField(value: &_storage._ref)
         case 10:
           var v: Opencannabis_Products_Apothecary?
           if let current = _storage._product {
@@ -828,6 +1099,12 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
       if let v = _storage._key {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
       }
+      if !_storage._tag.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._tag, fieldNumber: 2)
+      }
+      if !_storage._ref.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._ref, fieldNumber: 3)
+      }
       switch _storage._product {
       case .apothecary(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
@@ -851,18 +1128,20 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_MenuProduct) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Products_Menu_MenuProduct, rhs: Opencannabis_Products_Menu_MenuProduct) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._product != other_storage._product {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._tag != rhs_storage._tag {return false}
+        if _storage._ref != rhs_storage._ref {return false}
+        if _storage._product != rhs_storage._product {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -927,19 +1206,19 @@ extension Opencannabis_Products_Menu_SectionData: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_SectionData) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Products_Menu_SectionData, rhs: Opencannabis_Products_Menu_SectionData) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._count != other_storage._count {return false}
-        if _storage._section != other_storage._section {return false}
-        if _storage._product != other_storage._product {return false}
+        let rhs_storage = _args.1
+        if _storage._count != rhs_storage._count {return false}
+        if _storage._section != rhs_storage._section {return false}
+        if _storage._product != rhs_storage._product {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -971,10 +1250,10 @@ extension Opencannabis_Products_Menu_SectionedMenu: SwiftProtobuf.Message, Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_SectionedMenu) -> Bool {
-    if self.count != other.count {return false}
-    if self.payload != other.payload {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Products_Menu_SectionedMenu, rhs: Opencannabis_Products_Menu_SectionedMenu) -> Bool {
+    if lhs.count != rhs.count {return false}
+    if lhs.payload != rhs.payload {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1036,16 +1315,16 @@ extension Opencannabis_Products_Menu_StaticMenu: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_StaticMenu) -> Bool {
-    if self.apothecary != other.apothecary {return false}
-    if self.cartridges != other.cartridges {return false}
-    if self.edibles != other.edibles {return false}
-    if self.extracts != other.extracts {return false}
-    if self.flowers != other.flowers {return false}
-    if self.merchandise != other.merchandise {return false}
-    if self.plants != other.plants {return false}
-    if self.prerolls != other.prerolls {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Products_Menu_StaticMenu, rhs: Opencannabis_Products_Menu_StaticMenu) -> Bool {
+    if lhs.apothecary != rhs.apothecary {return false}
+    if lhs.cartridges != rhs.cartridges {return false}
+    if lhs.edibles != rhs.edibles {return false}
+    if lhs.extracts != rhs.extracts {return false}
+    if lhs.flowers != rhs.flowers {return false}
+    if lhs.merchandise != rhs.merchandise {return false}
+    if lhs.plants != rhs.plants {return false}
+    if lhs.prerolls != rhs.prerolls {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1123,18 +1402,18 @@ extension Opencannabis_Products_Menu_Menu: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Menu_Menu) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Products_Menu_Menu, rhs: Opencannabis_Products_Menu_Menu) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._metadata != other_storage._metadata {return false}
-        if _storage._content != other_storage._content {return false}
+        let rhs_storage = _args.1
+        if _storage._metadata != rhs_storage._metadata {return false}
+        if _storage._content != rhs_storage._content {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

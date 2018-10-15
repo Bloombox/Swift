@@ -62,6 +62,20 @@ public enum Opencannabis_Products_Distribution_Channel: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Distribution_Channel: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Distribution_Channel] = [
+    .unspecifiedChannel,
+    .retail,
+    .wholesale,
+    .bulk,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the supertypes of channels that may be used to categorize channels applied to product distribution
 /// policies.
 public enum Opencannabis_Products_Distribution_ChannelType: SwiftProtobuf.Enum {
@@ -101,6 +115,19 @@ public enum Opencannabis_Products_Distribution_ChannelType: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Distribution_ChannelType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Distribution_ChannelType] = [
+    .unspecifiedChannelType,
+    .direct,
+    .marketplace,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies information required to note a channel and its settings for a given datapoint. Presence of this record
 /// indicates an affirmative setting to distribute it to the specified channel, unless `suppress` is set.
@@ -185,12 +212,12 @@ extension Opencannabis_Products_Distribution_DistributionPolicy: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Distribution_DistributionPolicy) -> Bool {
-    if self.enabled != other.enabled {return false}
-    if self.channel != other.channel {return false}
-    if self.type != other.type {return false}
-    if self.suppress != other.suppress {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Products_Distribution_DistributionPolicy, rhs: Opencannabis_Products_Distribution_DistributionPolicy) -> Bool {
+    if lhs.enabled != rhs.enabled {return false}
+    if lhs.channel != rhs.channel {return false}
+    if lhs.type != rhs.type {return false}
+    if lhs.suppress != rhs.suppress {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

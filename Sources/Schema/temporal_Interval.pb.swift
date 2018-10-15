@@ -70,6 +70,21 @@ public enum Opencannabis_Temporal_Interval: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Temporal_Interval: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Temporal_Interval] = [
+    .minutely,
+    .hourly,
+    .daily,
+    .weekly,
+    .monthly,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies time interval information.
 public struct Opencannabis_Temporal_TimeInterval {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -128,10 +143,10 @@ extension Opencannabis_Temporal_TimeInterval: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Temporal_TimeInterval) -> Bool {
-    if self.interval != other.interval {return false}
-    if self.every != other.every {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Temporal_TimeInterval, rhs: Opencannabis_Temporal_TimeInterval) -> Bool {
+    if lhs.interval != rhs.interval {return false}
+    if lhs.every != rhs.every {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

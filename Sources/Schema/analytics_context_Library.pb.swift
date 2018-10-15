@@ -62,6 +62,20 @@ public enum Bloombox_Schema_Analytics_Context_APIClient: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Analytics_Context_APIClient: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Analytics_Context_APIClient] = [
+    .unidentified,
+    .javaScript,
+    .swift,
+    .java,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies information about the library being used to transmit data.
 public struct Bloombox_Schema_Analytics_Context_DeviceLibrary {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -82,7 +96,7 @@ public struct Bloombox_Schema_Analytics_Context_DeviceLibrary {
   /// Returns true if `version` has been explicitly set.
   public var hasVersion: Bool {return _storage._version != nil}
   /// Clears the value of `version`. Subsequent reads from it will return its default value.
-  public mutating func clearVersion() {_storage._version = nil}
+  public mutating func clearVersion() {_uniqueStorage()._version = nil}
 
   /// Specifies, if applicable, the internally-produced client library in use.
   public var client: Bloombox_Schema_Analytics_Context_APIClient {
@@ -170,19 +184,19 @@ extension Bloombox_Schema_Analytics_Context_DeviceLibrary: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_DeviceLibrary) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Context_DeviceLibrary, rhs: Bloombox_Schema_Analytics_Context_DeviceLibrary) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._variant != other_storage._variant {return false}
-        if _storage._version != other_storage._version {return false}
-        if _storage._client != other_storage._client {return false}
+        let rhs_storage = _args.1
+        if _storage._variant != rhs_storage._variant {return false}
+        if _storage._version != rhs_storage._version {return false}
+        if _storage._client != rhs_storage._client {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

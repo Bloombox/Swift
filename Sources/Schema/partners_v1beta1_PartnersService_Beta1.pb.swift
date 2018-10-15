@@ -7,7 +7,8 @@
 //   https://github.com/apple/swift-protobuf/
 
 ///*
-/// Specifies the partner service, which enables management of partner and partner location records.
+/// Specifies the partners service, which enables querying, creation and management of Bloombox partner accounts and
+/// associated location records.
 
 import Foundation
 import SwiftProtobuf
@@ -94,7 +95,7 @@ public struct Bloombox_Schema_Services_Partners_V1beta1_PartnerGet {
     /// Returns true if `partner` has been explicitly set.
     public var hasPartner: Bool {return _storage._partner != nil}
     /// Clears the value of `partner`. Subsequent reads from it will return its default value.
-    public mutating func clearPartner() {_storage._partner = nil}
+    public mutating func clearPartner() {_uniqueStorage()._partner = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -184,7 +185,7 @@ public struct Bloombox_Schema_Services_Partners_V1beta1_LocationGet {
     /// Returns true if `location` has been explicitly set.
     public var hasLocation: Bool {return _storage._location != nil}
     /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_storage._location = nil}
+    public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -213,8 +214,8 @@ extension Bloombox_Schema_Services_Partners_V1beta1_PartnerList: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_PartnerList) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerList, rhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerList) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -232,8 +233,8 @@ extension Bloombox_Schema_Services_Partners_V1beta1_PartnerList.Request: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_PartnerList.Request) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerList.Request, rhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerList.Request) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -260,9 +261,9 @@ extension Bloombox_Schema_Services_Partners_V1beta1_PartnerList.Response: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_PartnerList.Response) -> Bool {
-    if self.partners != other.partners {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerList.Response, rhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerList.Response) -> Bool {
+    if lhs.partners != rhs.partners {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -280,8 +281,8 @@ extension Bloombox_Schema_Services_Partners_V1beta1_PartnerGet: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_PartnerGet) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerGet, rhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerGet) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -308,9 +309,9 @@ extension Bloombox_Schema_Services_Partners_V1beta1_PartnerGet.Request: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_PartnerGet.Request) -> Bool {
-    if self.partnerID != other.partnerID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerGet.Request, rhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerGet.Request) -> Bool {
+    if lhs.partnerID != rhs.partnerID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -361,17 +362,17 @@ extension Bloombox_Schema_Services_Partners_V1beta1_PartnerGet.Response: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_PartnerGet.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerGet.Response, rhs: Bloombox_Schema_Services_Partners_V1beta1_PartnerGet.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._partner != other_storage._partner {return false}
+        let rhs_storage = _args.1
+        if _storage._partner != rhs_storage._partner {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -389,8 +390,8 @@ extension Bloombox_Schema_Services_Partners_V1beta1_LocationList: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_LocationList) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_LocationList, rhs: Bloombox_Schema_Services_Partners_V1beta1_LocationList) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -417,9 +418,9 @@ extension Bloombox_Schema_Services_Partners_V1beta1_LocationList.Request: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_LocationList.Request) -> Bool {
-    if self.partnerID != other.partnerID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_LocationList.Request, rhs: Bloombox_Schema_Services_Partners_V1beta1_LocationList.Request) -> Bool {
+    if lhs.partnerID != rhs.partnerID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -446,9 +447,9 @@ extension Bloombox_Schema_Services_Partners_V1beta1_LocationList.Response: Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_LocationList.Response) -> Bool {
-    if self.locations != other.locations {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_LocationList.Response, rhs: Bloombox_Schema_Services_Partners_V1beta1_LocationList.Response) -> Bool {
+    if lhs.locations != rhs.locations {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -466,8 +467,8 @@ extension Bloombox_Schema_Services_Partners_V1beta1_LocationGet: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_LocationGet) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_LocationGet, rhs: Bloombox_Schema_Services_Partners_V1beta1_LocationGet) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -499,10 +500,10 @@ extension Bloombox_Schema_Services_Partners_V1beta1_LocationGet.Request: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_LocationGet.Request) -> Bool {
-    if self.partnerID != other.partnerID {return false}
-    if self.locationID != other.locationID {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_LocationGet.Request, rhs: Bloombox_Schema_Services_Partners_V1beta1_LocationGet.Request) -> Bool {
+    if lhs.partnerID != rhs.partnerID {return false}
+    if lhs.locationID != rhs.locationID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -553,17 +554,17 @@ extension Bloombox_Schema_Services_Partners_V1beta1_LocationGet.Response: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Partners_V1beta1_LocationGet.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Partners_V1beta1_LocationGet.Response, rhs: Bloombox_Schema_Services_Partners_V1beta1_LocationGet.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._location != other_storage._location {return false}
+        let rhs_storage = _args.1
+        if _storage._location != rhs_storage._location {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

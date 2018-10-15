@@ -62,6 +62,20 @@ public enum Opencannabis_Person_Gender: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Person_Gender: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Person_Gender] = [
+    .unspecified,
+    .male,
+    .female,
+    .other,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// A person/patint and their name, legal name, nickname, etc.
 public struct Opencannabis_Person_Person {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -76,7 +90,7 @@ public struct Opencannabis_Person_Person {
   /// Returns true if `name` has been explicitly set.
   public var hasName: Bool {return _storage._name != nil}
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
-  public mutating func clearName() {_storage._name = nil}
+  public mutating func clearName() {_uniqueStorage()._name = nil}
 
   /// Person's legal name, if it differs from their primary name.
   public var legalName: Opencannabis_Person_Name {
@@ -86,7 +100,7 @@ public struct Opencannabis_Person_Person {
   /// Returns true if `legalName` has been explicitly set.
   public var hasLegalName: Bool {return _storage._legalName != nil}
   /// Clears the value of `legalName`. Subsequent reads from it will return its default value.
-  public mutating func clearLegalName() {_storage._legalName = nil}
+  public mutating func clearLegalName() {_uniqueStorage()._legalName = nil}
 
   /// Person's optional alternate name.
   public var alternateName: Opencannabis_Person_Name {
@@ -96,7 +110,7 @@ public struct Opencannabis_Person_Person {
   /// Returns true if `alternateName` has been explicitly set.
   public var hasAlternateName: Bool {return _storage._alternateName != nil}
   /// Clears the value of `alternateName`. Subsequent reads from it will return its default value.
-  public mutating func clearAlternateName() {_storage._alternateName = nil}
+  public mutating func clearAlternateName() {_uniqueStorage()._alternateName = nil}
 
   /// Person's contact information.
   public var contact: Opencannabis_Contact_ContactInfo {
@@ -106,7 +120,7 @@ public struct Opencannabis_Person_Person {
   /// Returns true if `contact` has been explicitly set.
   public var hasContact: Bool {return _storage._contact != nil}
   /// Clears the value of `contact`. Subsequent reads from it will return its default value.
-  public mutating func clearContact() {_storage._contact = nil}
+  public mutating func clearContact() {_uniqueStorage()._contact = nil}
 
   /// Date of birth.
   public var dateOfBirth: Opencannabis_Temporal_Date {
@@ -116,7 +130,7 @@ public struct Opencannabis_Person_Person {
   /// Returns true if `dateOfBirth` has been explicitly set.
   public var hasDateOfBirth: Bool {return _storage._dateOfBirth != nil}
   /// Clears the value of `dateOfBirth`. Subsequent reads from it will return its default value.
-  public mutating func clearDateOfBirth() {_storage._dateOfBirth = nil}
+  public mutating func clearDateOfBirth() {_uniqueStorage()._dateOfBirth = nil}
 
   public var gender: Opencannabis_Person_Gender {
     get {return _storage._gender}
@@ -224,22 +238,22 @@ extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Person_Person) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Person_Person, rhs: Opencannabis_Person_Person) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._name != other_storage._name {return false}
-        if _storage._legalName != other_storage._legalName {return false}
-        if _storage._alternateName != other_storage._alternateName {return false}
-        if _storage._contact != other_storage._contact {return false}
-        if _storage._dateOfBirth != other_storage._dateOfBirth {return false}
-        if _storage._gender != other_storage._gender {return false}
+        let rhs_storage = _args.1
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._legalName != rhs_storage._legalName {return false}
+        if _storage._alternateName != rhs_storage._alternateName {return false}
+        if _storage._contact != rhs_storage._contact {return false}
+        if _storage._dateOfBirth != rhs_storage._dateOfBirth {return false}
+        if _storage._gender != rhs_storage._gender {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -100,14 +100,14 @@ extension Opencannabis_Person_Name: SwiftProtobuf.Message, SwiftProtobuf._Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Person_Name) -> Bool {
-    if self.fullName != other.fullName {return false}
-    if self.firstName != other.firstName {return false}
-    if self.lastName != other.lastName {return false}
-    if self.middleName != other.middleName {return false}
-    if self.prefix != other.prefix {return false}
-    if self.postfix != other.postfix {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Person_Name, rhs: Opencannabis_Person_Name) -> Bool {
+    if lhs.fullName != rhs.fullName {return false}
+    if lhs.firstName != rhs.firstName {return false}
+    if lhs.lastName != rhs.lastName {return false}
+    if lhs.middleName != rhs.middleName {return false}
+    if lhs.prefix != rhs.prefix {return false}
+    if lhs.postfix != rhs.postfix {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

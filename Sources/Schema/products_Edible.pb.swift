@@ -97,6 +97,27 @@ public enum Opencannabis_Products_EdibleType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_EdibleType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_EdibleType] = [
+    .unspecifiedEdible,
+    .chocolate,
+    .bakedGood,
+    .candy,
+    .beverage,
+    .lozenge,
+    .sublingual,
+    .gummy,
+    .butter,
+    .oils,
+    .cereal,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Flags that may be applied specifically to an edible product.
 public enum Opencannabis_Products_EdibleFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -155,6 +176,23 @@ public enum Opencannabis_Products_EdibleFlag: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_EdibleFlag: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_EdibleFlag] = [
+    .noEdibleFlag,
+    .vegan,
+    .glutenFree,
+    .sugarFree,
+    .fairTrade,
+    .organic,
+    .local,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies an ingredient included in an edible.
 public struct Opencannabis_Products_EdibleIngredient {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -187,7 +225,7 @@ public struct Opencannabis_Products_Edible {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Specifies the subcategory of this edible product, if known and applicable.
   public var type: Opencannabis_Products_EdibleType {
@@ -209,7 +247,7 @@ public struct Opencannabis_Products_Edible {
   /// Returns true if `product` has been explicitly set.
   public var hasProduct: Bool {return _storage._product != nil}
   /// Clears the value of `product`. Subsequent reads from it will return its default value.
-  public mutating func clearProduct() {_storage._product = nil}
+  public mutating func clearProduct() {_uniqueStorage()._product = nil}
 
   /// Materials and handling information about this cartridge product.
   public var material: Opencannabis_Content_MaterialsData {
@@ -219,7 +257,7 @@ public struct Opencannabis_Products_Edible {
   /// Returns true if `material` has been explicitly set.
   public var hasMaterial: Bool {return _storage._material != nil}
   /// Clears the value of `material`. Subsequent reads from it will return its default value.
-  public mutating func clearMaterial() {_storage._material = nil}
+  public mutating func clearMaterial() {_uniqueStorage()._material = nil}
 
   /// Specifies the ingredients for a product, when/if it is composed of ingredients (i.e. edibles).
   public var ingredients: [Opencannabis_Products_EdibleIngredient] {
@@ -293,10 +331,10 @@ extension Opencannabis_Products_EdibleIngredient: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_EdibleIngredient) -> Bool {
-    if self.label != other.label {return false}
-    if self.amount != other.amount {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Products_EdibleIngredient, rhs: Opencannabis_Products_EdibleIngredient) -> Bool {
+    if lhs.label != rhs.label {return false}
+    if lhs.amount != rhs.amount {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -382,22 +420,22 @@ extension Opencannabis_Products_Edible: SwiftProtobuf.Message, SwiftProtobuf._Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Products_Edible) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Products_Edible, rhs: Opencannabis_Products_Edible) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._type != other_storage._type {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._product != other_storage._product {return false}
-        if _storage._material != other_storage._material {return false}
-        if _storage._ingredients != other_storage._ingredients {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._product != rhs_storage._product {return false}
+        if _storage._material != rhs_storage._material {return false}
+        if _storage._ingredients != rhs_storage._ingredients {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

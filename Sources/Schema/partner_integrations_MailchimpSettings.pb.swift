@@ -79,7 +79,7 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings {
   /// Returns true if `features` has been explicitly set.
   public var hasFeatures: Bool {return _storage._features != nil}
   /// Clears the value of `features`. Subsequent reads from it will return its default value.
-  public mutating func clearFeatures() {_storage._features = nil}
+  public mutating func clearFeatures() {_uniqueStorage()._features = nil}
 
   /// Lists to use for various bindings in MailChimp.
   public var lists: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists {
@@ -89,7 +89,7 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings {
   /// Returns true if `lists` has been explicitly set.
   public var hasLists: Bool {return _storage._lists != nil}
   /// Clears the value of `lists`. Subsequent reads from it will return its default value.
-  public mutating func clearLists() {_storage._lists = nil}
+  public mutating func clearLists() {_uniqueStorage()._lists = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -134,11 +134,11 @@ extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFea
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures) -> Bool {
-    if self.signups != other.signups {return false}
-    if self.segments != other.segments {return false}
-    if self.ordering != other.ordering {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures, rhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures) -> Bool {
+    if lhs.signups != rhs.signups {return false}
+    if lhs.segments != rhs.segments {return false}
+    if lhs.ordering != rhs.ordering {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -170,10 +170,10 @@ extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists) -> Bool {
-    if self.comms != other.comms {return false}
-    if self.marketing != other.marketing {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists, rhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists) -> Bool {
+    if lhs.comms != rhs.comms {return false}
+    if lhs.marketing != rhs.marketing {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -238,19 +238,19 @@ extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings, rhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._apiKey != other_storage._apiKey {return false}
-        if _storage._features != other_storage._features {return false}
-        if _storage._lists != other_storage._lists {return false}
+        let rhs_storage = _args.1
+        if _storage._apiKey != rhs_storage._apiKey {return false}
+        if _storage._features != rhs_storage._features {return false}
+        if _storage._lists != rhs_storage._lists {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

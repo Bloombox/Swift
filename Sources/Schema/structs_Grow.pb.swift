@@ -65,6 +65,20 @@ public enum Opencannabis_Structs_Grow: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Structs_Grow: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Structs_Grow] = [
+    .generic,
+    .indoor,
+    .greenhouse,
+    .outdoor,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Opencannabis_Structs_Grow: SwiftProtobuf._ProtoNameProviding {

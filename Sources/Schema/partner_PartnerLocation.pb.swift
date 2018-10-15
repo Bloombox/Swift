@@ -44,7 +44,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation {
   /// Returns true if `partner` has been explicitly set.
   public var hasPartner: Bool {return _storage._partner != nil}
   /// Clears the value of `partner`. Subsequent reads from it will return its default value.
-  public mutating func clearPartner() {_storage._partner = nil}
+  public mutating func clearPartner() {_uniqueStorage()._partner = nil}
 
   /// Name of this location, in human-readable verbose form.
   public var name: String {
@@ -66,7 +66,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation {
   /// Returns true if `flags` has been explicitly set.
   public var hasFlags: Bool {return _storage._flags != nil}
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {_storage._flags = nil}
+  public mutating func clearFlags() {_uniqueStorage()._flags = nil}
 
   /// Contact information for this location.
   public var contact: Opencannabis_Contact_ContactInfo {
@@ -76,7 +76,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation {
   /// Returns true if `contact` has been explicitly set.
   public var hasContact: Bool {return _storage._contact != nil}
   /// Clears the value of `contact`. Subsequent reads from it will return its default value.
-  public mutating func clearContact() {_storage._contact = nil}
+  public mutating func clearContact() {_uniqueStorage()._contact = nil}
 
   /// Branding specific to this location. Partner-level branding is used if this is left unspecified.
   public var branding: Opencannabis_Media_MediaKey {
@@ -86,7 +86,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation {
   /// Returns true if `branding` has been explicitly set.
   public var hasBranding: Bool {return _storage._branding != nil}
   /// Clears the value of `branding`. Subsequent reads from it will return its default value.
-  public mutating func clearBranding() {_storage._branding = nil}
+  public mutating func clearBranding() {_uniqueStorage()._branding = nil}
 
   /// Settings for this partner location.
   public var settings: Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
@@ -96,7 +96,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation {
   /// Returns true if `settings` has been explicitly set.
   public var hasSettings: Bool {return _storage._settings != nil}
   /// Clears the value of `settings`. Subsequent reads from it will return its default value.
-  public mutating func clearSettings() {_storage._settings = nil}
+  public mutating func clearSettings() {_uniqueStorage()._settings = nil}
 
   /// Timestamp for when this record was created.
   public var created: Opencannabis_Temporal_Instant {
@@ -106,7 +106,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation {
   /// Returns true if `created` has been explicitly set.
   public var hasCreated: Bool {return _storage._created != nil}
   /// Clears the value of `created`. Subsequent reads from it will return its default value.
-  public mutating func clearCreated() {_storage._created = nil}
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   /// Timestamp for when this record was last modified.
   public var modified: Opencannabis_Temporal_Instant {
@@ -116,7 +116,7 @@ public struct Bloombox_Schema_Partner_PartnerLocation {
   /// Returns true if `modified` has been explicitly set.
   public var hasModified: Bool {return _storage._modified != nil}
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
-  public mutating func clearModified() {_storage._modified = nil}
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -238,26 +238,26 @@ extension Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Partner_PartnerLocation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Partner_PartnerLocation, rhs: Bloombox_Schema_Partner_PartnerLocation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._code != other_storage._code {return false}
-        if _storage._partner != other_storage._partner {return false}
-        if _storage._name != other_storage._name {return false}
-        if _storage._label != other_storage._label {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._contact != other_storage._contact {return false}
-        if _storage._branding != other_storage._branding {return false}
-        if _storage._settings != other_storage._settings {return false}
-        if _storage._created != other_storage._created {return false}
-        if _storage._modified != other_storage._modified {return false}
+        let rhs_storage = _args.1
+        if _storage._code != rhs_storage._code {return false}
+        if _storage._partner != rhs_storage._partner {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._label != rhs_storage._label {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._contact != rhs_storage._contact {return false}
+        if _storage._branding != rhs_storage._branding {return false}
+        if _storage._settings != rhs_storage._settings {return false}
+        if _storage._created != rhs_storage._created {return false}
+        if _storage._modified != rhs_storage._modified {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

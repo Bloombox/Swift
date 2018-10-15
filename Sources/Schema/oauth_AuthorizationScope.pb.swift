@@ -84,12 +84,12 @@ extension Opencannabis_Oauth_AuthorizationScope: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Oauth_AuthorizationScope) -> Bool {
-    if self.id != other.id {return false}
-    if self.label != other.label {return false}
-    if self.uri != other.uri {return false}
-    if self.icon != other.icon {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Oauth_AuthorizationScope, rhs: Opencannabis_Oauth_AuthorizationScope) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.label != rhs.label {return false}
+    if lhs.uri != rhs.uri {return false}
+    if lhs.icon != rhs.icon {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

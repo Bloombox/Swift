@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the Menu API, which provides synthesized product catalog information from available inventory/stock data.
+/// This interface is specifically designed to showcase products that are currently available for sale.
+
 import Foundation
 import SwiftProtobuf
 
@@ -107,6 +111,29 @@ public enum Bloombox_Schema_Services_Menu_V1beta1_MenuError: SwiftProtobuf.Enum 
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Menu_V1beta1_MenuError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Menu_V1beta1_MenuError] = [
+    .noError,
+    .partnerInvalid,
+    .locationInvalid,
+    .sectionInvalid,
+    .sectionNotFound,
+    .menuNotFound,
+    .searchUnavailable,
+    .productNotFound,
+    .accessDenied,
+    .keyInvalid,
+    .updateInvalid,
+    .conflict,
+    .internalError,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies an RPC operation to retrieve status information for the Menu API.
 public struct Bloombox_Schema_Services_Menu_V1beta1_Ping {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -199,7 +226,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_GetMenu {
     /// Returns true if `catalog` has been explicitly set.
     public var hasCatalog: Bool {return _storage._catalog != nil}
     /// Clears the value of `catalog`. Subsequent reads from it will return its default value.
-    public mutating func clearCatalog() {_storage._catalog = nil}
+    public mutating func clearCatalog() {_uniqueStorage()._catalog = nil}
 
     /// Whether the returned menu was cached or not.
     public var cached: Bool {
@@ -305,7 +332,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_GetProduct {
     /// Returns true if `key` has been explicitly set.
     public var hasKey: Bool {return _storage._key != nil}
     /// Clears the value of `key`. Subsequent reads from it will return its default value.
-    public mutating func clearKey() {_storage._key = nil}
+    public mutating func clearKey() {_uniqueStorage()._key = nil}
 
     /// Request a potentially-cached or forced-uncached copy of the specified product data.
     public var fresh: Bool {
@@ -379,7 +406,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_CreateProduct {
     /// Returns true if `product` has been explicitly set.
     public var hasProduct: Bool {return _storage._product != nil}
     /// Clears the value of `product`. Subsequent reads from it will return its default value.
-    public mutating func clearProduct() {_storage._product = nil}
+    public mutating func clearProduct() {_uniqueStorage()._product = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -402,7 +429,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_CreateProduct {
     /// Returns true if `key` has been explicitly set.
     public var hasKey: Bool {return _storage._key != nil}
     /// Clears the value of `key`. Subsequent reads from it will return its default value.
-    public mutating func clearKey() {_storage._key = nil}
+    public mutating func clearKey() {_uniqueStorage()._key = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -442,7 +469,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct {
     /// Returns true if `product` has been explicitly set.
     public var hasProduct: Bool {return _storage._product != nil}
     /// Clears the value of `product`. Subsequent reads from it will return its default value.
-    public mutating func clearProduct() {_storage._product = nil}
+    public mutating func clearProduct() {_uniqueStorage()._product = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -476,7 +503,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_SearchMenu {
     /// Returns true if `search` has been explicitly set.
     public var hasSearch: Bool {return _storage._search != nil}
     /// Clears the value of `search`. Subsequent reads from it will return its default value.
-    public mutating func clearSearch() {_storage._search = nil}
+    public mutating func clearSearch() {_uniqueStorage()._search = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -499,7 +526,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_SearchMenu {
     /// Returns true if `resulset` has been explicitly set.
     public var hasResulset: Bool {return _storage._resulset != nil}
     /// Clears the value of `resulset`. Subsequent reads from it will return its default value.
-    public mutating func clearResulset() {_storage._resulset = nil}
+    public mutating func clearResulset() {_uniqueStorage()._resulset = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -540,7 +567,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_ProductStock {
     /// Returns true if `key` has been explicitly set.
     public var hasKey: Bool {return _storage._key != nil}
     /// Clears the value of `key`. Subsequent reads from it will return its default value.
-    public mutating func clearKey() {_storage._key = nil}
+    public mutating func clearKey() {_uniqueStorage()._key = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -580,7 +607,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct {
     /// Returns true if `key` has been explicitly set.
     public var hasKey: Bool {return _storage._key != nil}
     /// Clears the value of `key`. Subsequent reads from it will return its default value.
-    public mutating func clearKey() {_storage._key = nil}
+    public mutating func clearKey() {_uniqueStorage()._key = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -627,8 +654,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_Ping: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_Ping) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_Ping, rhs: Bloombox_Schema_Services_Menu_V1beta1_Ping) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -646,8 +673,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_Ping.Request: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -674,9 +701,9 @@ extension Bloombox_Schema_Services_Menu_V1beta1_Ping.Response: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_Ping.Response) -> Bool {
-    if self.status != other.status {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_Ping.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_Ping.Response) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -694,8 +721,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetMenu) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -752,15 +779,15 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request) -> Bool {
-    if self.scope != other.scope {return false}
-    if self.full != other.full {return false}
-    if self.keysOnly != other.keysOnly {return false}
-    if self.snapshot != other.snapshot {return false}
-    if self.fingerprint != other.fingerprint {return false}
-    if self.section != other.section {return false}
-    if self.fresh != other.fresh {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request) -> Bool {
+    if lhs.scope != rhs.scope {return false}
+    if lhs.full != rhs.full {return false}
+    if lhs.keysOnly != rhs.keysOnly {return false}
+    if lhs.snapshot != rhs.snapshot {return false}
+    if lhs.fingerprint != rhs.fingerprint {return false}
+    if lhs.section != rhs.section {return false}
+    if lhs.fresh != rhs.fresh {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -818,18 +845,18 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._catalog != other_storage._catalog {return false}
-        if _storage._cached != other_storage._cached {return false}
+        let rhs_storage = _args.1
+        if _storage._catalog != rhs_storage._catalog {return false}
+        if _storage._cached != rhs_storage._cached {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -847,8 +874,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetFeatured: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -885,11 +912,11 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request) -> Bool {
-    if self.scope != other.scope {return false}
-    if self.keysOnly != other.keysOnly {return false}
-    if self.section != other.section {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request) -> Bool {
+    if lhs.scope != rhs.scope {return false}
+    if lhs.keysOnly != rhs.keysOnly {return false}
+    if lhs.section != rhs.section {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -916,9 +943,9 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response) -> Bool {
-    if self.featured != other.featured {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response) -> Bool {
+    if lhs.featured != rhs.featured {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -945,9 +972,9 @@ extension Bloombox_Schema_Services_Menu_V1beta1_ProductKeyset: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_ProductKeyset) -> Bool {
-    if self.key != other.key {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_ProductKeyset, rhs: Bloombox_Schema_Services_Menu_V1beta1_ProductKeyset) -> Bool {
+    if lhs.key != rhs.key {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -965,8 +992,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetProduct: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetProduct) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1038,20 +1065,20 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._scope != other_storage._scope {return false}
-        if _storage._key != other_storage._key {return false}
-        if _storage._fresh != other_storage._fresh {return false}
-        if _storage._fingerprint != other_storage._fingerprint {return false}
+        let rhs_storage = _args.1
+        if _storage._scope != rhs_storage._scope {return false}
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._fresh != rhs_storage._fresh {return false}
+        if _storage._fingerprint != rhs_storage._fingerprint {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1088,11 +1115,11 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response) -> Bool {
-    if self.product != other.product {return false}
-    if self.cached != other.cached {return false}
-    if self.unchanged != other.unchanged {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response) -> Bool {
+    if lhs.product != rhs.product {return false}
+    if lhs.cached != rhs.cached {return false}
+    if lhs.unchanged != rhs.unchanged {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1110,8 +1137,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_CreateProduct: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct, rhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1169,18 +1196,18 @@ extension Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._scope != other_storage._scope {return false}
-        if _storage._product != other_storage._product {return false}
+        let rhs_storage = _args.1
+        if _storage._scope != rhs_storage._scope {return false}
+        if _storage._product != rhs_storage._product {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1231,17 +1258,17 @@ extension Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1259,8 +1286,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct, rhs: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1318,18 +1345,18 @@ extension Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._scope != other_storage._scope {return false}
-        if _storage._product != other_storage._product {return false}
+        let rhs_storage = _args.1
+        if _storage._scope != rhs_storage._scope {return false}
+        if _storage._product != rhs_storage._product {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1347,8 +1374,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_SearchMenu: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu, rhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1399,17 +1426,17 @@ extension Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._search != other_storage._search {return false}
+        let rhs_storage = _args.1
+        if _storage._search != rhs_storage._search {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1460,17 +1487,17 @@ extension Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._resulset != other_storage._resulset {return false}
+        let rhs_storage = _args.1
+        if _storage._resulset != rhs_storage._resulset {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1488,8 +1515,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_ProductStock: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_ProductStock) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_ProductStock, rhs: Bloombox_Schema_Services_Menu_V1beta1_ProductStock) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1547,18 +1574,18 @@ extension Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._scope != other_storage._scope {return false}
-        if _storage._key != other_storage._key {return false}
+        let rhs_storage = _args.1
+        if _storage._scope != rhs_storage._scope {return false}
+        if _storage._key != rhs_storage._key {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1576,8 +1603,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct, rhs: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1635,18 +1662,18 @@ extension Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._scope != other_storage._scope {return false}
-        if _storage._key != other_storage._key {return false}
+        let rhs_storage = _args.1
+        if _storage._scope != rhs_storage._scope {return false}
+        if _storage._key != rhs_storage._key {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

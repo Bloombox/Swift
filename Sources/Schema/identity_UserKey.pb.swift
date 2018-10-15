@@ -67,10 +67,10 @@ extension Bloombox_Schema_Identity_UserKey: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_UserKey) -> Bool {
-    if self.uid != other.uid {return false}
-    if self.identity != other.identity {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Identity_UserKey, rhs: Bloombox_Schema_Identity_UserKey) -> Bool {
+    if lhs.uid != rhs.uid {return false}
+    if lhs.identity != rhs.identity {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

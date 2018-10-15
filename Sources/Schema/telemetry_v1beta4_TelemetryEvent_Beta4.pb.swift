@@ -52,7 +52,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
   /// Returns true if `timing` has been explicitly set.
   public var hasTiming: Bool {return _storage._timing != nil}
   /// Clears the value of `timing`. Subsequent reads from it will return its default value.
-  public mutating func clearTiming() {_storage._timing = nil}
+  public mutating func clearTiming() {_uniqueStorage()._timing = nil}
 
   /// Event context.
   public var context: Bloombox_Schema_Analytics_Context {
@@ -62,7 +62,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
   /// Returns true if `context` has been explicitly set.
   public var hasContext: Bool {return _storage._context != nil}
   /// Clears the value of `context`. Subsequent reads from it will return its default value.
-  public mutating func clearContext() {_storage._context = nil}
+  public mutating func clearContext() {_uniqueStorage()._context = nil}
 
   /// Full event actor records.
   public var actors: Bloombox_Schema_Analytics_EventActors {
@@ -72,7 +72,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
   /// Returns true if `actors` has been explicitly set.
   public var hasActors: Bool {return _storage._actors != nil}
   /// Clears the value of `actors`. Subsequent reads from it will return its default value.
-  public mutating func clearActors() {_storage._actors = nil}
+  public mutating func clearActors() {_uniqueStorage()._actors = nil}
 
   /// Event data payload.
   public var event: OneOf_Event? {
@@ -173,6 +173,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
     /// Search: Result.
     case searchResult(Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event) -> Bool {
       switch (lhs, rhs) {
       case (.generic(let l), .generic(let r)): return l == r
@@ -186,6 +187,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -371,23 +373,23 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._uuid != other_storage._uuid {return false}
-        if _storage._parent != other_storage._parent {return false}
-        if _storage._internal != other_storage._internal {return false}
-        if _storage._timing != other_storage._timing {return false}
-        if _storage._context != other_storage._context {return false}
-        if _storage._actors != other_storage._actors {return false}
-        if _storage._event != other_storage._event {return false}
+        let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._parent != rhs_storage._parent {return false}
+        if _storage._internal != rhs_storage._internal {return false}
+        if _storage._timing != rhs_storage._timing {return false}
+        if _storage._context != rhs_storage._context {return false}
+        if _storage._actors != rhs_storage._actors {return false}
+        if _storage._event != rhs_storage._event {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

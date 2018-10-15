@@ -33,7 +33,7 @@ public struct Bloombox_Schema_Analytics_Generic_Event {
   /// Returns true if `payload` has been explicitly set.
   public var hasPayload: Bool {return _storage._payload != nil}
   /// Clears the value of `payload`. Subsequent reads from it will return its default value.
-  public mutating func clearPayload() {_storage._payload = nil}
+  public mutating func clearPayload() {_uniqueStorage()._payload = nil}
 
   /// Occurrence timestamp.
   public var occurred: Opencannabis_Temporal_Instant {
@@ -43,7 +43,7 @@ public struct Bloombox_Schema_Analytics_Generic_Event {
   /// Returns true if `occurred` has been explicitly set.
   public var hasOccurred: Bool {return _storage._occurred != nil}
   /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-  public mutating func clearOccurred() {_storage._occurred = nil}
+  public mutating func clearOccurred() {_uniqueStorage()._occurred = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -109,18 +109,18 @@ extension Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Generic_Event) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Generic_Event, rhs: Bloombox_Schema_Analytics_Generic_Event) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._payload != other_storage._payload {return false}
-        if _storage._occurred != other_storage._occurred {return false}
+        let rhs_storage = _args.1
+        if _storage._payload != rhs_storage._payload {return false}
+        if _storage._occurred != rhs_storage._occurred {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

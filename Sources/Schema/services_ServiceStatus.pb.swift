@@ -62,6 +62,20 @@ public enum Bloombox_Schema_Services_ServiceStatus: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_ServiceStatus: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_ServiceStatus] = [
+    .unknown,
+    .up,
+    .down,
+    .maintenance,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 extension Bloombox_Schema_Services_ServiceStatus: SwiftProtobuf._ProtoNameProviding {

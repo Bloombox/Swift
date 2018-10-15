@@ -79,11 +79,11 @@ extension Opencannabis_Contact_EmailAddress: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Contact_EmailAddress) -> Bool {
-    if self.address != other.address {return false}
-    if self.validated != other.validated {return false}
-    if self.name != other.name {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Contact_EmailAddress, rhs: Opencannabis_Contact_EmailAddress) -> Bool {
+    if lhs.address != rhs.address {return false}
+    if lhs.validated != rhs.validated {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

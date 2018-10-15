@@ -36,7 +36,7 @@ public struct Opencannabis_Contact_ContactInfo {
   /// Returns true if `location` has been explicitly set.
   public var hasLocation: Bool {return _storage._location != nil}
   /// Clears the value of `location`. Subsequent reads from it will return its default value.
-  public mutating func clearLocation() {_storage._location = nil}
+  public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
   /// Telephone contact information.
   public var phone: Opencannabis_Contact_PhoneNumber {
@@ -46,7 +46,7 @@ public struct Opencannabis_Contact_ContactInfo {
   /// Returns true if `phone` has been explicitly set.
   public var hasPhone: Bool {return _storage._phone != nil}
   /// Clears the value of `phone`. Subsequent reads from it will return its default value.
-  public mutating func clearPhone() {_storage._phone = nil}
+  public mutating func clearPhone() {_uniqueStorage()._phone = nil}
 
   /// Electronic mail contact information.
   public var email: Opencannabis_Contact_EmailAddress {
@@ -56,7 +56,7 @@ public struct Opencannabis_Contact_ContactInfo {
   /// Returns true if `email` has been explicitly set.
   public var hasEmail: Bool {return _storage._email != nil}
   /// Clears the value of `email`. Subsequent reads from it will return its default value.
-  public mutating func clearEmail() {_storage._email = nil}
+  public mutating func clearEmail() {_uniqueStorage()._email = nil}
 
   /// Website contact information.
   public var website: Opencannabis_Contact_Website {
@@ -66,7 +66,7 @@ public struct Opencannabis_Contact_ContactInfo {
   /// Returns true if `website` has been explicitly set.
   public var hasWebsite: Bool {return _storage._website != nil}
   /// Clears the value of `website`. Subsequent reads from it will return its default value.
-  public mutating func clearWebsite() {_storage._website = nil}
+  public mutating func clearWebsite() {_uniqueStorage()._website = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -146,20 +146,20 @@ extension Opencannabis_Contact_ContactInfo: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Contact_ContactInfo) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Contact_ContactInfo, rhs: Opencannabis_Contact_ContactInfo) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._location != other_storage._location {return false}
-        if _storage._phone != other_storage._phone {return false}
-        if _storage._email != other_storage._email {return false}
-        if _storage._website != other_storage._website {return false}
+        let rhs_storage = _args.1
+        if _storage._location != rhs_storage._location {return false}
+        if _storage._phone != rhs_storage._phone {return false}
+        if _storage._email != rhs_storage._email {return false}
+        if _storage._website != rhs_storage._website {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -93,6 +93,26 @@ public enum Bloombox_Schema_Analytics_Context_OSType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Analytics_Context_OSType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Analytics_Context_OSType] = [
+    .osUnknown,
+    .iOs,
+    .macOs,
+    .tvOs,
+    .watchOs,
+    .android,
+    .androidWear,
+    .windows,
+    .windowsPhone,
+    .linux,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Structure describing a device's operating system, including type and version.
 public struct Bloombox_Schema_Analytics_Context_DeviceOS {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -113,7 +133,7 @@ public struct Bloombox_Schema_Analytics_Context_DeviceOS {
   /// Returns true if `version` has been explicitly set.
   public var hasVersion: Bool {return _storage._version != nil}
   /// Clears the value of `version`. Subsequent reads from it will return its default value.
-  public mutating func clearVersion() {_storage._version = nil}
+  public mutating func clearVersion() {_uniqueStorage()._version = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -194,18 +214,18 @@ extension Bloombox_Schema_Analytics_Context_DeviceOS: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_DeviceOS) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Context_DeviceOS, rhs: Bloombox_Schema_Analytics_Context_DeviceOS) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._type != other_storage._type {return false}
-        if _storage._version != other_storage._version {return false}
+        let rhs_storage = _args.1
+        if _storage._type != rhs_storage._type {return false}
+        if _storage._version != rhs_storage._version {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

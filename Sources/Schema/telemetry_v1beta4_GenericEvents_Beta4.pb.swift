@@ -41,7 +41,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_Event {
     /// Returns true if `context` has been explicitly set.
     public var hasContext: Bool {return _storage._context != nil}
     /// Clears the value of `context`. Subsequent reads from it will return its default value.
-    public mutating func clearContext() {_storage._context = nil}
+    public mutating func clearContext() {_uniqueStorage()._context = nil}
 
     /// Generic event to submit.
     public var event: Bloombox_Schema_Analytics_Generic_Event {
@@ -51,7 +51,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_Event {
     /// Returns true if `event` has been explicitly set.
     public var hasEvent: Bool {return _storage._event != nil}
     /// Clears the value of `event`. Subsequent reads from it will return its default value.
-    public mutating func clearEvent() {_storage._event = nil}
+    public mutating func clearEvent() {_uniqueStorage()._event = nil}
 
     /// UUID generated for this event, or provided from invoking callers.
     public var uuid: String {
@@ -94,7 +94,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_Event {
     /// Returns true if `context` has been explicitly set.
     public var hasContext: Bool {return _storage._context != nil}
     /// Clears the value of `context`. Subsequent reads from it will return its default value.
-    public mutating func clearContext() {_storage._context = nil}
+    public mutating func clearContext() {_uniqueStorage()._context = nil}
 
     /// Event batch.
     public var batch: [Bloombox_Schema_Services_Telemetry_V1beta4_Event.Batch] {
@@ -126,7 +126,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_Exception {
   /// Returns true if `context` has been explicitly set.
   public var hasContext: Bool {return _storage._context != nil}
   /// Clears the value of `context`. Subsequent reads from it will return its default value.
-  public mutating func clearContext() {_storage._context = nil}
+  public mutating func clearContext() {_uniqueStorage()._context = nil}
 
   /// Error to submit.
   public var error: Bloombox_Schema_Analytics_Generic_Exception {
@@ -136,7 +136,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_Exception {
   /// Returns true if `error` has been explicitly set.
   public var hasError: Bool {return _storage._error != nil}
   /// Clears the value of `error`. Subsequent reads from it will return its default value.
-  public mutating func clearError() {_storage._error = nil}
+  public mutating func clearError() {_uniqueStorage()._error = nil}
 
   /// UUID generated for this event, or provided from invoking callers.
   public var uuid: String {
@@ -168,8 +168,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_Event: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_Event) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_Event) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -234,19 +234,19 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_Event.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_Event.Request) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_Event.Request, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_Event.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._context != other_storage._context {return false}
-        if _storage._event != other_storage._event {return false}
-        if _storage._uuid != other_storage._uuid {return false}
+        let rhs_storage = _args.1
+        if _storage._context != rhs_storage._context {return false}
+        if _storage._event != rhs_storage._event {return false}
+        if _storage._uuid != rhs_storage._uuid {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -273,9 +273,9 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_Event.Batch: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_Event.Batch) -> Bool {
-    if self.event != other.event {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_Event.Batch, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_Event.Batch) -> Bool {
+    if lhs.event != rhs.event {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -333,18 +333,18 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_Event.BatchRequest: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_Event.BatchRequest) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_Event.BatchRequest, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_Event.BatchRequest) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._context != other_storage._context {return false}
-        if _storage._batch != other_storage._batch {return false}
+        let rhs_storage = _args.1
+        if _storage._context != rhs_storage._context {return false}
+        if _storage._batch != rhs_storage._batch {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -409,19 +409,19 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_Exception: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Telemetry_V1beta4_Exception) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_Exception, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_Exception) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._context != other_storage._context {return false}
-        if _storage._error != other_storage._error {return false}
-        if _storage._uuid != other_storage._uuid {return false}
+        let rhs_storage = _args.1
+        if _storage._context != rhs_storage._context {return false}
+        if _storage._error != rhs_storage._error {return false}
+        if _storage._uuid != rhs_storage._uuid {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

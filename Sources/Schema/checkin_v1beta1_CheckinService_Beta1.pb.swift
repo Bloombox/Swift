@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the Checkin API, which provides features for checking customers in to a retail dispensary, usually from the
+/// dispensary lobby. Checkin happens via checkin hardware stations, or manually via the Bloombox Dashboard.
+
 import Foundation
 import SwiftProtobuf
 
@@ -118,6 +122,31 @@ public enum Bloombox_Schema_Services_Checkin_V1beta1_CheckinError: SwiftProtobuf
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Services_Checkin_V1beta1_CheckinError: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Services_Checkin_V1beta1_CheckinError] = [
+    .noError,
+    .idNotFound,
+    .idExpired,
+    .idInvalid,
+    .idTypeUnsupported,
+    .cardTypeInvalid,
+    .cardExpired,
+    .cardSuspended,
+    .userSuspended,
+    .partnerSuspended,
+    .partnerInvalid,
+    .locationInvalid,
+    .jurisdictionInvalid,
+    .jurisdictionUnsupported,
+    .userUnderage,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies an RPC operation to retrieve status information for the Checkin API.
 public struct Bloombox_Schema_Services_Checkin_V1beta1_Ping {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -165,7 +194,7 @@ public struct Bloombox_Schema_Services_Checkin_V1beta1_Ping {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to ping.
     public var response: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Response {
@@ -175,7 +204,7 @@ public struct Bloombox_Schema_Services_Checkin_V1beta1_Ping {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -202,7 +231,7 @@ public struct Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Active account flags.
   public var flags: Bloombox_Schema_Identity_UserFlags {
@@ -212,7 +241,7 @@ public struct Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser {
   /// Returns true if `flags` has been explicitly set.
   public var hasFlags: Bool {return _storage._flags != nil}
   /// Clears the value of `flags`. Subsequent reads from it will return its default value.
-  public mutating func clearFlags() {_storage._flags = nil}
+  public mutating func clearFlags() {_uniqueStorage()._flags = nil}
 
   /// Person's name information, for display purposes.
   public var name: Opencannabis_Person_Name {
@@ -222,7 +251,7 @@ public struct Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser {
   /// Returns true if `name` has been explicitly set.
   public var hasName: Bool {return _storage._name != nil}
   /// Clears the value of `name`. Subsequent reads from it will return its default value.
-  public mutating func clearName() {_storage._name = nil}
+  public mutating func clearName() {_uniqueStorage()._name = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -278,7 +307,7 @@ public struct Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse {
   /// Returns true if `user` has been explicitly set.
   public var hasUser: Bool {return _storage._user != nil}
   /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  public mutating func clearUser() {_storage._user = nil}
+  public mutating func clearUser() {_uniqueStorage()._user = nil}
 
   /// Information related to the user's next enrollment action, if required.
   public var enrollment: Bloombox_Schema_Services_Checkin_V1beta1_CheckinEnrollment {
@@ -288,7 +317,7 @@ public struct Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse {
   /// Returns true if `enrollment` has been explicitly set.
   public var hasEnrollment: Bool {return _storage._enrollment != nil}
   /// Clears the value of `enrollment`. Subsequent reads from it will return its default value.
-  public mutating func clearEnrollment() {_storage._enrollment = nil}
+  public mutating func clearEnrollment() {_uniqueStorage()._enrollment = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -343,7 +372,7 @@ public struct Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Generic checkin response.
     public var response: Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse {
@@ -353,7 +382,7 @@ public struct Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -414,7 +443,7 @@ public struct Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin {
     /// Returns true if `request` has been explicitly set.
     public var hasRequest: Bool {return _storage._request != nil}
     /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_storage._request = nil}
+    public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Generic checkin response.
     public var response: Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse {
@@ -424,7 +453,7 @@ public struct Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin {
     /// Returns true if `response` has been explicitly set.
     public var hasResponse: Bool {return _storage._response != nil}
     /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_storage._response = nil}
+    public mutating func clearResponse() {_uniqueStorage()._response = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -473,8 +502,8 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_Ping: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_Ping) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_Ping, rhs: Bloombox_Schema_Services_Checkin_V1beta1_Ping) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -492,8 +521,8 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_Ping.Request: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Request) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Request, rhs: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Request) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -520,9 +549,9 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_Ping.Response: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Response) -> Bool {
-    if self.status != other.status {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Response, rhs: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Response) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -580,18 +609,18 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_Ping.Operation: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Operation, rhs: Bloombox_Schema_Services_Checkin_V1beta1_Ping.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -656,19 +685,19 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser, rhs: Bloombox_Schema_Services_Checkin_V1beta1_CheckinUser) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._flags != other_storage._flags {return false}
-        if _storage._name != other_storage._name {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._flags != rhs_storage._flags {return false}
+        if _storage._name != rhs_storage._name {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -695,9 +724,9 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_CheckinEnrollment: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CheckinEnrollment) -> Bool {
-    if self.code != other.code {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_CheckinEnrollment, rhs: Bloombox_Schema_Services_Checkin_V1beta1_CheckinEnrollment) -> Bool {
+    if lhs.code != rhs.code {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -776,21 +805,21 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse, rhs: Bloombox_Schema_Services_Checkin_V1beta1_CheckinResponse) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._success != other_storage._success {return false}
-        if _storage._mustEnroll != other_storage._mustEnroll {return false}
-        if _storage._error != other_storage._error {return false}
-        if _storage._user != other_storage._user {return false}
-        if _storage._enrollment != other_storage._enrollment {return false}
+        let rhs_storage = _args.1
+        if _storage._success != rhs_storage._success {return false}
+        if _storage._mustEnroll != rhs_storage._mustEnroll {return false}
+        if _storage._error != rhs_storage._error {return false}
+        if _storage._user != rhs_storage._user {return false}
+        if _storage._enrollment != rhs_storage._enrollment {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -808,8 +837,8 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin, rhs: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -851,12 +880,12 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Request: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Request) -> Bool {
-    if self.raw != other.raw {return false}
-    if self.scope != other.scope {return false}
-    if self.serialNumber != other.serialNumber {return false}
-    if self.fingerprint != other.fingerprint {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Request, rhs: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Request) -> Bool {
+    if lhs.raw != rhs.raw {return false}
+    if lhs.scope != rhs.scope {return false}
+    if lhs.serialNumber != rhs.serialNumber {return false}
+    if lhs.fingerprint != rhs.fingerprint {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -914,18 +943,18 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Operation: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Operation, rhs: Bloombox_Schema_Services_Checkin_V1beta1_IDCheckin.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -943,8 +972,8 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin, rhs: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -991,13 +1020,13 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Request: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Request) -> Bool {
-    if self.cardType != other.cardType {return false}
-    if self.payload != other.payload {return false}
-    if self.signature != other.signature {return false}
-    if self.agent != other.agent {return false}
-    if self.scope != other.scope {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Request, rhs: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Request) -> Bool {
+    if lhs.cardType != rhs.cardType {return false}
+    if lhs.payload != rhs.payload {return false}
+    if lhs.signature != rhs.signature {return false}
+    if lhs.agent != rhs.agent {return false}
+    if lhs.scope != rhs.scope {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1055,18 +1084,18 @@ extension Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Operation: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Operation) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Operation, rhs: Bloombox_Schema_Services_Checkin_V1beta1_CardCheckin.Operation) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._request != other_storage._request {return false}
-        if _storage._response != other_storage._response {return false}
+        let rhs_storage = _args.1
+        if _storage._request != rhs_storage._request {return false}
+        if _storage._response != rhs_storage._response {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

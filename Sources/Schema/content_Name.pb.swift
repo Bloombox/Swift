@@ -70,10 +70,10 @@ extension Opencannabis_Content_Name: SwiftProtobuf.Message, SwiftProtobuf._Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Content_Name) -> Bool {
-    if self.primary != other.primary {return false}
-    if self.display != other.display {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Content_Name, rhs: Opencannabis_Content_Name) -> Bool {
+    if lhs.primary != rhs.primary {return false}
+    if lhs.display != rhs.display {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -60,6 +60,19 @@ public enum Opencannabis_Commerce_DiscountType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_DiscountType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_DiscountType] = [
+    .custom,
+    .statutory,
+    .commercial,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates operational calculation modes for discounts.
 public enum Opencannabis_Commerce_DiscountBasis: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -97,6 +110,19 @@ public enum Opencannabis_Commerce_DiscountBasis: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Commerce_DiscountBasis: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Commerce_DiscountBasis] = [
+    .item,
+    .orderSubtotal,
+    .orderTotal,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies the concept of a discount, and how it is set to behave.
 public struct Opencannabis_Commerce_DiscountSpec {
@@ -140,6 +166,7 @@ public struct Opencannabis_Commerce_DiscountSpec {
     /// Flat rate for the discount.
     case staticValue(Double)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Commerce_DiscountSpec.OneOf_Rate, rhs: Opencannabis_Commerce_DiscountSpec.OneOf_Rate) -> Bool {
       switch (lhs, rhs) {
       case (.percentage(let l), .percentage(let r)): return l == r
@@ -147,6 +174,7 @@ public struct Opencannabis_Commerce_DiscountSpec {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -172,7 +200,7 @@ public struct Opencannabis_Commerce_Discount {
   /// Returns true if `spec` has been explicitly set.
   public var hasSpec: Bool {return _storage._spec != nil}
   /// Clears the value of `spec`. Subsequent reads from it will return its default value.
-  public mutating func clearSpec() {_storage._spec = nil}
+  public mutating func clearSpec() {_uniqueStorage()._spec = nil}
 
   /// Back-office name for this tax.
   public var name: String {
@@ -201,7 +229,7 @@ public struct Opencannabis_Commerce_Discount {
   /// Returns true if `modifiedAt` has been explicitly set.
   public var hasModifiedAt: Bool {return _storage._modifiedAt != nil}
   /// Clears the value of `modifiedAt`. Subsequent reads from it will return its default value.
-  public mutating func clearModifiedAt() {_storage._modifiedAt = nil}
+  public mutating func clearModifiedAt() {_uniqueStorage()._modifiedAt = nil}
 
   /// When this discount was created.
   public var createdAt: Opencannabis_Temporal_Instant {
@@ -211,7 +239,7 @@ public struct Opencannabis_Commerce_Discount {
   /// Returns true if `createdAt` has been explicitly set.
   public var hasCreatedAt: Bool {return _storage._createdAt != nil}
   /// Clears the value of `createdAt`. Subsequent reads from it will return its default value.
-  public mutating func clearCreatedAt() {_storage._createdAt = nil}
+  public mutating func clearCreatedAt() {_uniqueStorage()._createdAt = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -286,11 +314,11 @@ extension Opencannabis_Commerce_DiscountSpec: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_DiscountSpec) -> Bool {
-    if self.type != other.type {return false}
-    if self.basis != other.basis {return false}
-    if self.rate != other.rate {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Commerce_DiscountSpec, rhs: Opencannabis_Commerce_DiscountSpec) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.basis != rhs.basis {return false}
+    if lhs.rate != rhs.rate {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -383,23 +411,23 @@ extension Opencannabis_Commerce_Discount: SwiftProtobuf.Message, SwiftProtobuf._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Commerce_Discount) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Commerce_Discount, rhs: Opencannabis_Commerce_Discount) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._spec != other_storage._spec {return false}
-        if _storage._name != other_storage._name {return false}
-        if _storage._label != other_storage._label {return false}
-        if _storage._description_p != other_storage._description_p {return false}
-        if _storage._modifiedAt != other_storage._modifiedAt {return false}
-        if _storage._createdAt != other_storage._createdAt {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._spec != rhs_storage._spec {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._label != rhs_storage._label {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._modifiedAt != rhs_storage._modifiedAt {return false}
+        if _storage._createdAt != rhs_storage._createdAt {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

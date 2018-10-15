@@ -99,6 +99,27 @@ public enum Bloombox_Schema_Analytics_Identity_UserAction: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Analytics_Identity_UserAction: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Analytics_Identity_UserAction] = [
+    .engage,
+    .enroll,
+    .activate,
+    .join,
+    .verify,
+    .checkin,
+    .preferences,
+    .purchase,
+    .order,
+    .optIn,
+    .optOut,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a user action event, wherein a user has taken some affirmative action related to themselves, their identity
 /// with regards to a particular system, or their account or preferences.
 public struct Bloombox_Schema_Analytics_Identity_Action {
@@ -126,7 +147,7 @@ public struct Bloombox_Schema_Analytics_Identity_Action {
   /// Returns true if `occurred` has been explicitly set.
   public var hasOccurred: Bool {return _storage._occurred != nil}
   /// Clears the value of `occurred`. Subsequent reads from it will return its default value.
-  public mutating func clearOccurred() {_storage._occurred = nil}
+  public mutating func clearOccurred() {_uniqueStorage()._occurred = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -215,19 +236,19 @@ extension Bloombox_Schema_Analytics_Identity_Action: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Identity_Action) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Analytics_Identity_Action, rhs: Bloombox_Schema_Analytics_Identity_Action) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._identity != other_storage._identity {return false}
-        if _storage._verb != other_storage._verb {return false}
-        if _storage._occurred != other_storage._occurred {return false}
+        let rhs_storage = _args.1
+        if _storage._identity != rhs_storage._identity {return false}
+        if _storage._verb != rhs_storage._verb {return false}
+        if _storage._occurred != rhs_storage._occurred {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

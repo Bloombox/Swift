@@ -62,6 +62,20 @@ public enum Opencannabis_Oauth_ResponseType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Oauth_ResponseType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Oauth_ResponseType] = [
+    .unspecifiedResponseType,
+    .token,
+    .code,
+    .idToken,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Enumerates OAuth2 grant types supportable by clients.
 public enum Opencannabis_Oauth_GrantType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -104,6 +118,20 @@ public enum Opencannabis_Oauth_GrantType: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Oauth_GrantType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Oauth_GrantType] = [
+    .unspecifiedGrantType,
+    .authorizationCode,
+    .refreshToken,
+    .clientCredentials,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 /// Specifies an OAuth2-client that can perform authorization operations in certain circumstances.
 public struct Opencannabis_Oauth_Client {
@@ -149,7 +177,7 @@ public struct Opencannabis_Oauth_Client {
   /// Returns true if `branding` has been explicitly set.
   public var hasBranding: Bool {return _storage._branding != nil}
   /// Clears the value of `branding`. Subsequent reads from it will return its default value.
-  public mutating func clearBranding() {_storage._branding = nil}
+  public mutating func clearBranding() {_uniqueStorage()._branding = nil}
 
   /// Owner information for this client.
   public var owner: String {
@@ -165,7 +193,7 @@ public struct Opencannabis_Oauth_Client {
   /// Returns true if `policy` has been explicitly set.
   public var hasPolicy: Bool {return _storage._policy != nil}
   /// Clears the value of `policy`. Subsequent reads from it will return its default value.
-  public mutating func clearPolicy() {_storage._policy = nil}
+  public mutating func clearPolicy() {_uniqueStorage()._policy = nil}
 
   /// Terms of Service URI.
   public var terms: Opencannabis_Media_MediaItem {
@@ -175,7 +203,7 @@ public struct Opencannabis_Oauth_Client {
   /// Returns true if `terms` has been explicitly set.
   public var hasTerms: Bool {return _storage._terms != nil}
   /// Clears the value of `terms`. Subsequent reads from it will return its default value.
-  public mutating func clearTerms() {_storage._terms = nil}
+  public mutating func clearTerms() {_uniqueStorage()._terms = nil}
 
   /// Whether this client is public or not.
   public var `public`: Bool {
@@ -234,7 +262,7 @@ public struct Opencannabis_Oauth_Consent {
   /// Returns true if `expiresAt` has been explicitly set.
   public var hasExpiresAt: Bool {return _storage._expiresAt != nil}
   /// Clears the value of `expiresAt`. Subsequent reads from it will return its default value.
-  public mutating func clearExpiresAt() {_storage._expiresAt = nil}
+  public mutating func clearExpiresAt() {_uniqueStorage()._expiresAt = nil}
 
   /// Redirect URI.
   public var redirectUri: String {
@@ -269,7 +297,7 @@ public struct Opencannabis_Oauth_ConsentTicket {
   /// Returns true if `client` has been explicitly set.
   public var hasClient: Bool {return _storage._client != nil}
   /// Clears the value of `client`. Subsequent reads from it will return its default value.
-  public mutating func clearClient() {_storage._client = nil}
+  public mutating func clearClient() {_uniqueStorage()._client = nil}
 
   /// Specifies consent information for this flow.
   public var consent: Opencannabis_Oauth_Consent {
@@ -279,7 +307,7 @@ public struct Opencannabis_Oauth_ConsentTicket {
   /// Returns true if `consent` has been explicitly set.
   public var hasConsent: Bool {return _storage._consent != nil}
   /// Clears the value of `consent`. Subsequent reads from it will return its default value.
-  public mutating func clearConsent() {_storage._consent = nil}
+  public mutating func clearConsent() {_uniqueStorage()._consent = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -440,29 +468,29 @@ extension Opencannabis_Oauth_Client: SwiftProtobuf.Message, SwiftProtobuf._Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Oauth_Client) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Oauth_Client, rhs: Opencannabis_Oauth_Client) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._secret != other_storage._secret {return false}
-        if _storage._name != other_storage._name {return false}
-        if _storage._contact != other_storage._contact {return false}
-        if _storage._grantTypes != other_storage._grantTypes {return false}
-        if _storage._branding != other_storage._branding {return false}
-        if _storage._owner != other_storage._owner {return false}
-        if _storage._policy != other_storage._policy {return false}
-        if _storage._terms != other_storage._terms {return false}
-        if _storage._public != other_storage._public {return false}
-        if _storage._redirectUri != other_storage._redirectUri {return false}
-        if _storage._responseType != other_storage._responseType {return false}
-        if _storage._scope != other_storage._scope {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._secret != rhs_storage._secret {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._contact != rhs_storage._contact {return false}
+        if _storage._grantTypes != rhs_storage._grantTypes {return false}
+        if _storage._branding != rhs_storage._branding {return false}
+        if _storage._owner != rhs_storage._owner {return false}
+        if _storage._policy != rhs_storage._policy {return false}
+        if _storage._terms != rhs_storage._terms {return false}
+        if _storage._public != rhs_storage._public {return false}
+        if _storage._redirectUri != rhs_storage._redirectUri {return false}
+        if _storage._responseType != rhs_storage._responseType {return false}
+        if _storage._scope != rhs_storage._scope {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -541,21 +569,21 @@ extension Opencannabis_Oauth_Consent: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Oauth_Consent) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Oauth_Consent, rhs: Opencannabis_Oauth_Consent) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._clientID != other_storage._clientID {return false}
-        if _storage._expiresAt != other_storage._expiresAt {return false}
-        if _storage._redirectUri != other_storage._redirectUri {return false}
-        if _storage._requestedScope != other_storage._requestedScope {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._clientID != rhs_storage._clientID {return false}
+        if _storage._expiresAt != rhs_storage._expiresAt {return false}
+        if _storage._redirectUri != rhs_storage._redirectUri {return false}
+        if _storage._requestedScope != rhs_storage._requestedScope {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -613,18 +641,18 @@ extension Opencannabis_Oauth_ConsentTicket: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Oauth_ConsentTicket) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Oauth_ConsentTicket, rhs: Opencannabis_Oauth_ConsentTicket) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._client != other_storage._client {return false}
-        if _storage._consent != other_storage._consent {return false}
+        let rhs_storage = _args.1
+        if _storage._client != rhs_storage._client {return false}
+        if _storage._consent != rhs_storage._consent {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

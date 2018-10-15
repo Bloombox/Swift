@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies cryptographic structures related to integrity protection and verification.
+
 import Foundation
 import SwiftProtobuf
 
@@ -72,6 +75,22 @@ public enum Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm: SwiftProtobu
 
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm] = [
+    .sha1,
+    .md5,
+    .sha256,
+    .sha384,
+    .sha512,
+    .murmur,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies the hash portion of hashed data, along with the algorithm used to calculate the digest enclosed. This
 /// particular container does not specify or otherwise contain the original referenced data.
 public struct Opencannabis_Crypto_Primitives_Integrity_Hash {
@@ -123,6 +142,7 @@ public struct Opencannabis_Crypto_Primitives_Integrity_Hash {
     /// Base64-encoded digest value.
     case b64(String)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Opencannabis_Crypto_Primitives_Integrity_Hash.OneOf_Digest, rhs: Opencannabis_Crypto_Primitives_Integrity_Hash.OneOf_Digest) -> Bool {
       switch (lhs, rhs) {
       case (.raw(let l), .raw(let r)): return l == r
@@ -131,6 +151,7 @@ public struct Opencannabis_Crypto_Primitives_Integrity_Hash {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -157,7 +178,7 @@ public struct Opencannabis_Crypto_Primitives_Integrity_HashedData {
   /// Returns true if `hash` has been explicitly set.
   public var hasHash: Bool {return _storage._hash != nil}
   /// Clears the value of `hash`. Subsequent reads from it will return its default value.
-  public mutating func clearHash() {_storage._hash = nil}
+  public mutating func clearHash() {_uniqueStorage()._hash = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -230,10 +251,10 @@ extension Opencannabis_Crypto_Primitives_Integrity_Hash: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Crypto_Primitives_Integrity_Hash) -> Bool {
-    if self.algorithm != other.algorithm {return false}
-    if self.digest != other.digest {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Opencannabis_Crypto_Primitives_Integrity_Hash, rhs: Opencannabis_Crypto_Primitives_Integrity_Hash) -> Bool {
+    if lhs.algorithm != rhs.algorithm {return false}
+    if lhs.digest != rhs.digest {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -291,18 +312,18 @@ extension Opencannabis_Crypto_Primitives_Integrity_HashedData: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Opencannabis_Crypto_Primitives_Integrity_HashedData) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Opencannabis_Crypto_Primitives_Integrity_HashedData, rhs: Opencannabis_Crypto_Primitives_Integrity_HashedData) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._data != other_storage._data {return false}
-        if _storage._hash != other_storage._hash {return false}
+        let rhs_storage = _args.1
+        if _storage._data != rhs_storage._data {return false}
+        if _storage._hash != rhs_storage._hash {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

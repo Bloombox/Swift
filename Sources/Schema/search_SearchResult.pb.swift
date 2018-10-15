@@ -36,7 +36,7 @@ public struct Bloombox_Schema_Search_ProductSearchResult {
   /// Returns true if `item` has been explicitly set.
   public var hasItem: Bool {return _storage._item != nil}
   /// Clears the value of `item`. Subsequent reads from it will return its default value.
-  public mutating func clearItem() {_storage._item = nil}
+  public mutating func clearItem() {_uniqueStorage()._item = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -59,7 +59,7 @@ public struct Bloombox_Schema_Search_UserSearchResult {
   /// Returns true if `key` has been explicitly set.
   public var hasKey: Bool {return _storage._key != nil}
   /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_storage._key = nil}
+  public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// User profile record.
   public var user: Bloombox_Schema_Identity_User {
@@ -69,7 +69,7 @@ public struct Bloombox_Schema_Search_UserSearchResult {
   /// Returns true if `user` has been explicitly set.
   public var hasUser: Bool {return _storage._user != nil}
   /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  public mutating func clearUser() {_storage._user = nil}
+  public mutating func clearUser() {_uniqueStorage()._user = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -119,7 +119,7 @@ public struct Bloombox_Schema_Search_SearchResult {
   /// Returns true if `fields` has been explicitly set.
   public var hasFields: Bool {return _storage._fields != nil}
   /// Clears the value of `fields`. Subsequent reads from it will return its default value.
-  public mutating func clearFields() {_storage._fields = nil}
+  public mutating func clearFields() {_uniqueStorage()._fields = nil}
 
   /// Result data, according to its categorical type.
   public var result: OneOf_Result? {
@@ -165,6 +165,7 @@ public struct Bloombox_Schema_Search_SearchResult {
     /// Resulting data that is a partner or partner location profile.
     case partner(Bloombox_Schema_Search_PartnerSearchResult)
 
+  #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Schema_Search_SearchResult.OneOf_Result, rhs: Bloombox_Schema_Search_SearchResult.OneOf_Result) -> Bool {
       switch (lhs, rhs) {
       case (.product(let l), .product(let r)): return l == r
@@ -173,6 +174,7 @@ public struct Bloombox_Schema_Search_SearchResult {
       default: return false
       }
     }
+  #endif
   }
 
   public init() {}
@@ -230,17 +232,17 @@ extension Bloombox_Schema_Search_ProductSearchResult: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_ProductSearchResult) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Search_ProductSearchResult, rhs: Bloombox_Schema_Search_ProductSearchResult) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._item != other_storage._item {return false}
+        let rhs_storage = _args.1
+        if _storage._item != rhs_storage._item {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -298,18 +300,18 @@ extension Bloombox_Schema_Search_UserSearchResult: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_UserSearchResult) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Search_UserSearchResult, rhs: Bloombox_Schema_Search_UserSearchResult) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._key != other_storage._key {return false}
-        if _storage._user != other_storage._user {return false}
+        let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._user != rhs_storage._user {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -336,9 +338,9 @@ extension Bloombox_Schema_Search_PartnerSearchResult: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_PartnerSearchResult) -> Bool {
-    if self.scope != other.scope {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Search_PartnerSearchResult, rhs: Bloombox_Schema_Search_PartnerSearchResult) -> Bool {
+    if lhs.scope != rhs.scope {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -441,20 +443,20 @@ extension Bloombox_Schema_Search_SearchResult: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Search_SearchResult) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Search_SearchResult, rhs: Bloombox_Schema_Search_SearchResult) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._rank != other_storage._rank {return false}
-        if _storage._relevance != other_storage._relevance {return false}
-        if _storage._fields != other_storage._fields {return false}
-        if _storage._result != other_storage._result {return false}
+        let rhs_storage = _args.1
+        if _storage._rank != rhs_storage._rank {return false}
+        if _storage._relevance != rhs_storage._relevance {return false}
+        if _storage._fields != rhs_storage._fields {return false}
+        if _storage._result != rhs_storage._result {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

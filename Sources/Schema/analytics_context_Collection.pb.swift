@@ -67,6 +67,21 @@ public enum Bloombox_Schema_Analytics_Context_EventType: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Bloombox_Schema_Analytics_Context_EventType: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Schema_Analytics_Context_EventType] = [
+    .generic,
+    .commercial,
+    .identity,
+    .experience,
+    .operational,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Represents a specification for an analytics event collection.
 public struct Bloombox_Schema_Analytics_Context_Collection {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -133,11 +148,11 @@ extension Bloombox_Schema_Analytics_Context_Collection: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Analytics_Context_Collection) -> Bool {
-    if self.name != other.name {return false}
-    if self.`internal` != other.`internal` {return false}
-    if self.type != other.type {return false}
-    if unknownFields != other.unknownFields {return false}
+  public static func ==(lhs: Bloombox_Schema_Analytics_Context_Collection, rhs: Bloombox_Schema_Analytics_Context_Collection) -> Bool {
+    if lhs.name != rhs.name {return false}
+    if lhs.`internal` != rhs.`internal` {return false}
+    if lhs.type != rhs.type {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

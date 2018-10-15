@@ -42,7 +42,7 @@ public struct Bloombox_Schema_Identity_Ids_UserDoctorRec {
   /// Returns true if `expirationDate` has been explicitly set.
   public var hasExpirationDate: Bool {return _storage._expirationDate != nil}
   /// Clears the value of `expirationDate`. Subsequent reads from it will return its default value.
-  public mutating func clearExpirationDate() {_storage._expirationDate = nil}
+  public mutating func clearExpirationDate() {_uniqueStorage()._expirationDate = nil}
 
   /// Raw barcode value.
   public var barcode: String {
@@ -76,7 +76,7 @@ public struct Bloombox_Schema_Identity_Ids_UserDoctorRec {
   /// Returns true if `doctor` has been explicitly set.
   public var hasDoctor: Bool {return _storage._doctor != nil}
   /// Clears the value of `doctor`. Subsequent reads from it will return its default value.
-  public mutating func clearDoctor() {_storage._doctor = nil}
+  public mutating func clearDoctor() {_uniqueStorage()._doctor = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -177,23 +177,23 @@ extension Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public func _protobuf_generated_isEqualTo(other: Bloombox_Schema_Identity_Ids_UserDoctorRec) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  public static func ==(lhs: Bloombox_Schema_Identity_Ids_UserDoctorRec, rhs: Bloombox_Schema_Identity_Ids_UserDoctorRec) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._expirationDate != other_storage._expirationDate {return false}
-        if _storage._barcode != other_storage._barcode {return false}
-        if _storage._state != other_storage._state {return false}
-        if _storage._country != other_storage._country {return false}
-        if _storage._doctorID != other_storage._doctorID {return false}
-        if _storage._doctor != other_storage._doctor {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._expirationDate != rhs_storage._expirationDate {return false}
+        if _storage._barcode != rhs_storage._barcode {return false}
+        if _storage._state != rhs_storage._state {return false}
+        if _storage._country != rhs_storage._country {return false}
+        if _storage._doctorID != rhs_storage._doctorID {return false}
+        if _storage._doctor != rhs_storage._doctor {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
