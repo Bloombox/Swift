@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Bloombox/Swift.svg?branch=master)](https://travis-ci.org/Bloombox/Swift) [![Maintainability](https://api.codeclimate.com/v1/badges/726f360df7dbf653931f/maintainability)](https://codeclimate.com/github/Bloombox/Swift/maintainability)
 
-Latest Version: `0.0.9`
+Latest Version: `0.1.0`
 
 This Swift package provides an API client for [Bloombox](https://bloombox.io) Cloud APIs. Bloombox APIs are built and served using [gRPC](https://grpc.io) and exposed in client libraries like this one with a more fluid interface to work with.
 
@@ -20,8 +20,8 @@ Published libs coming soon. In the meantime, see `Building the code`.
 
 Building the code is easy and follows standard Swift packaging conventions. There is also a `Makefile` packaged with various useful routines - you'll use `make` if you are developing on the code.
 
-**Required tools:**
-- XCode/Swift 9
+**Tooling:**
+- Xcode 10/Swift 4.2 (for version `0.1.0` and above, previously Xcode 9 / Swift 3.2)
 - `make` and other CLI tools for XCode
 - Code access to private schema repos for Bloombox
 
@@ -31,7 +31,22 @@ Building the code is easy and follows standard Swift packaging conventions. Ther
 
 ### Shop API
 
-The Shop API allows interaction with ordering, user enrollment and verification, and other tools. Demo code coming soon.
+The Shop API allows interaction with ordering, user enrollment and verification, and other tools.
+
+
+### Devices API
+
+Description coming soon.
+
+
+### Menu API
+
+Description coming soon.
+
+
+### Platform API
+
+Description coming soon.
 
 
 ### Telemetry API
@@ -41,7 +56,7 @@ The Telemetry API allows you to relay events as they happen, so they may be attr
 
 ## Licensing
 
-Copyright © 2017 Bloombox, LLC.
+Copyright © 2018 Momentum Ideas Co.
 
 A copy of the Apache 2.0 license is enclosed at `LICENSE.txt`, along with additional notices in `NOTICE.txt`. Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

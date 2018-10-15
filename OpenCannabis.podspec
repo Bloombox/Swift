@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name          = "OpenCannabis"
   s.swift_version = "3.2"
-  s.version       = "0.0.9"
+  s.version       = "0.1.0"
   s.summary       = "OpenCannabis for Swift"
   s.description   = <<-DESC
 Native Swift codegen and bindings for OpenCannabis
@@ -21,7 +21,9 @@ Native Swift codegen and bindings for OpenCannabis
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.10"
+  s.osx.deployment_target = "10.9"
+  s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '2.0'
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.source       = { :git => "https://github.com/bloombox/Swift.git", :tag => "#{s.version}" }
@@ -35,7 +37,6 @@ Native Swift codegen and bindings for OpenCannabis
   s.dependency 'SwiftGRPC', '~> 0.6.0'
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.frameworks  = "CoreLocation", "CoreBluetooth"
   s.libraries   = "z"
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

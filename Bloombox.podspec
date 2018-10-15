@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name          = "Bloombox"
   s.swift_version = "3.2"
-  s.version       = "0.0.9"
+  s.version       = "0.1.0"
   s.summary       = "Client for Bloombox Cloud APIs"
   s.description   = <<-DESC
 Native Swift client for accessing Bloombox Cloud APIs

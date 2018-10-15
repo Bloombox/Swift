@@ -24,6 +24,7 @@ import Foundation
 import Dispatch
 import SwiftGRPC
 import SwiftProtobuf
+import OpenCannabis
 
 public protocol Bloombox_Schema_Services_Ledger_V1beta1_LedgerGetAssetCall: ClientCallUnary {}
 

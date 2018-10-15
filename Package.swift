@@ -17,11 +17,11 @@ let package = Package(
     targets: [
         .target(
             name: "Bloombox",
-            dependencies: ["OpenCannabis", "SwiftGRPC"],
+            dependencies: ["OpenCannabis", "SwiftProtobuf", "SwiftGRPC"],
             path: "Sources/Client"),
         .target(
             name: "OpenCannabis",
-            dependencies: ["SwiftProtobuf", "SwiftGRPC"],
+            dependencies: ["SwiftProtobuf"],
             path: "Sources/Schema"),
         .testTarget(name: "SchemaTests", dependencies: ["OpenCannabis"]),
         .testTarget(name: "ClientTests", dependencies: ["Bloombox"])])
