@@ -36,3 +36,5 @@ Sources/Client/swiftgrpc.log
 Sources/Schema/swiftgrpc.log
 docs
 Package.resolved
+Example/Pods
+Example/Podfile.lock
