@@ -22,25 +22,17 @@ Native Swift client for accessing Bloombox Cloud APIs
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.10"
-  #s.watchos.deployment_target = "2.0"
-  #s.tvos.deployment_target = "9.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.source       = { :git => "https://github.com/bloombox/Swift.git", :tag => "#{s.version}" }
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.subspec 'Schema' do |cs|
-    cs.dependency 'SwiftProtobuf', '~> 1.1.2'
-    cs.dependency 'SwiftGRPC', '~> 0.6.0'
-    cs.source_files = 'Sources/Schema/*.swift'
-  end
+  s.source_files = 'Sources/Client/*.swift'
 
-  s.subspec 'Client' do |cc|
-    cc.dependency 'Bloombox/Schema'
-    cc.dependency 'SwiftProtobuf', '~> 1.1.2'
-    cc.dependency 'SwiftGRPC', '~> 0.6.0'
-    cc.source_files = 'Sources/Client/*.swift'
-  end
+  # ――― Dependencies ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  s.dependency 'OpenCannabis'
+  s.dependency 'SwiftProtobuf', '~> 1.1.2'
+  s.dependency 'SwiftGRPC', '~> 0.6.0'
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.frameworks  = "CoreLocation", "CoreBluetooth"
