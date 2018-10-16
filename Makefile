@@ -70,8 +70,8 @@ release-package:
 
 pods-publish: pods
 	@echo "Publishing pods to trunk..."
-	@pod trunk push --allow-warnings --verbose OpenCannabis.podspec
-	@pod trunk push --allow-warnings --verbose BloomboxServices.podspec
+	@#pod trunk push --allow-warnings --verbose OpenCannabis.podspec
+	@#pod trunk push --allow-warnings --verbose BloomboxServices.podspec
 	@pod trunk push --allow-warnings --verbose Bloombox.podspec
 	@echo "Pods published as version $VERSION."
 
