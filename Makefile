@@ -33,7 +33,17 @@ docs/:
 
 clean: clean-docs
 	@echo "Cleaning Swift client for Bloombox..."
+	@-swift package clean
+
+distclean: clean
+	@echo "Cleaning distributions..."
 	@rm -frv .build $(SCHEMA)/languages
+	@echo "Resetting codebase..."
+	@git reset --hard
+
+forceclean: distclean
+	@echo "Sanitizing codebase..."
+	@git clean -xdf
 
 clean-docs:
 	@echo "Cleaning docs..."
