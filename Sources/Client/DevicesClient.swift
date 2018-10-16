@@ -35,9 +35,16 @@ public typealias DeviceActivateCallback = (CallResult?, DeviceActivation.Respons
 
 /// Enumerates code-level errors in the device client.
 public enum DevicesClientError: Error {
+  /// No partner code could be resolved, or the given partner code was invalid.
   case invalidPartnerCode
+
+  /// No location code could be resolved, or the given location code was invalid.
   case invalidLocationCode
+
+  /// No API key could be resolved, or the given API key was invalid.
   case invalidApiKey
+
+  /// An unknown client-side error occurred.
   case unknown
 }
 
@@ -78,6 +85,7 @@ public final class DevicesClient: RemoteService {
   /// - Parameter apiKey: API Key to use.
   /// - Parameter settings: Combined settings to use.
   /// - Returns: Prepared Devices API service class.
+  /// - Throws: Client-side errors. See: `DevicesClientError`.
   private func service(_ apiKey: APIKey) throws -> DevicesService {
     if let s = self.svc {
       return s
@@ -100,6 +108,7 @@ public final class DevicesClient: RemoteService {
   ///
   /// - Parameter apiKey: API key to connect to the service with.
   /// - Returns: API key to use, based either on the override or library-default value.
+  /// - Throws: Client-side errors. See: `DevicesClientError`.
   private func resolveContext(_ apiKey: APIKey? = nil) throws -> APIKey {
     let apiKey: APIKey? = apiKey ?? settings.apiKey
 
@@ -158,6 +167,7 @@ public final class DevicesClient: RemoteService {
   /// - Parameter callback: Callable to dispatch once either a response or terminal error is available.
   /// - Returns: RPC call object, which can be observed or cancelled.
   /// - Throws: `DevicesClientError` codes related to the API key or other circumstances.
+  @discardableResult
   public func activate(deviceSerial name: DeviceSerial,
                        withFingerprint fingerprint: DeviceFingerprint? = nil,
                        withPublicKey publicKey: DevicePublicKey? = nil,

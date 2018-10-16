@@ -90,7 +90,7 @@ public final class ShopClient: RemoteService {
       if partnerCode == nil {
         throw ShopClientError.invalidPartnerCode
       }
-      throw ShopClientError.invalidPartnerCode
+      throw ShopClientError.invalidLocationCode
     }
     return (partner: partnerCode!, location: locationCode!, apiKey: apiKey!)
   }
@@ -119,6 +119,7 @@ public final class ShopClient: RemoteService {
   /// Retrieve info, asynchronously, about a particular storefront, specifically, its open/closed status, hours, and
   /// metadata.
   ///
+  @discardableResult
   public func info(partner: PartnerCode? = nil,
                    location: LocationCode? = nil,
                    apiKey: APIKey? = nil,
@@ -161,6 +162,7 @@ public final class ShopClient: RemoteService {
   /// Check a zipcode, asynchronously, for delivery eligibility, including any order minimum required, if specified by
   /// the server.
   ///
+  @discardableResult
   public func checkZipcode(zipcode: String,
                            partner: PartnerCode? = nil,
                            location: LocationCode? = nil,
@@ -212,6 +214,7 @@ public final class ShopClient: RemoteService {
   /// valid account, membership with the partner/location in question, and have no expired documents, like medical
   /// recommendations and IDs.
   ///
+  @discardableResult
   public func verifyMember(email: String,
                            partner: PartnerCode? = nil,
                            location: LocationCode? = nil,
@@ -249,6 +252,7 @@ public final class ShopClient: RemoteService {
   /// Enroll a member for a new account, asynchronously, and have them auto-join the enrolling partner location. Under
   /// the hood, this creates an account, writes it to the partner systems, and then auto-creates a membership.
   ///
+  @discardableResult
   public func enrollMember(enrollment: EnrollMember.Request,
                            apiKey: APIKey? = nil,
                            callback: @escaping EnrollMemberCallback) throws -> EnrollMemberCall {
@@ -286,6 +290,7 @@ public final class ShopClient: RemoteService {
   /// Retrieve information, asynchronously, about a previously-submitted pickup or delivery order. Includes status
   /// information and an action log.
   ///
+  @discardableResult
   public func getOrder(id: OrderID,
                        partner: PartnerCode? = nil,
                        location: LocationCode? = nil,
@@ -332,6 +337,7 @@ public final class ShopClient: RemoteService {
   /// Submit a new order, asynchronously, for pickup or delivery. Requires an existing member account, acquireable via
   /// `enrollMember`, and valid item keys for each item desired as part of the order.
   ///
+  @discardableResult
   public func submitOrder(order: Order,
                           orderID id: OrderID? = nil,
                           partner: PartnerCode? = nil,

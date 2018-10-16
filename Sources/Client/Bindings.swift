@@ -6,8 +6,9 @@
 //
 
 import Foundation
-import OpenCannabis
 import SwiftProtobuf
+import OpenCannabis
+import BloomboxServices
 
 
 //// Client Bindings
