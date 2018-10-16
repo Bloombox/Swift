@@ -49,7 +49,7 @@ let package = Package(
 The Bloombox Swift SDK is broken into three pods, to make lower-level structures usable directly with a hand-rolled gRPC implementation. They are laid out like so (roughly in reverse-abstraction-order):
 
 | Pod | Version | Platforms | Description |
-| --- | ----- | ------- | --------- | ----------- |
+| --- | ------- | --------- | ----------- |
 | `Bloombox` | ![Version](https://img.shields.io/cocoapods/v/Bloombox.svg?style=flat-square) | ![Platforms](https://img.shields.io/cocoapods/p/Bloombox.svg?style=flat-square) | Full client-library facade, example apps, documentation and guides. |
 | `BloomboxServices` | ![Version](https://img.shields.io/cocoapods/v/BloomboxServices.svg?style=flat-square) | ![Platforms](https://img.shields.io/cocoapods/p/BloomboxServices.svg?style=flat-square) | Low-level gRPC services for interacting with Bloombox APIs. |
 | `OpenCannabis` | ![Version](https://img.shields.io/cocoapods/v/OpenCannabis.svg?style=flat-square) | ![Platforms](https://img.shields.io/cocoapods/p/OpenCannabis.svg?style=flat-square) | [OpenCannabis](https://rfc.opencannabis.info)-compatible object tree in Swift. |
