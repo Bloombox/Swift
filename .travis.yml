@@ -21,5 +21,5 @@ before_install: rvm use $RVM_RUBY_VERSION
 install: bundle install --without=documentation --path ../travis_bundle_dir
 after_success: bundle exec slather
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura --prefix /Users/sam/Workspace/Client/Swift/.build
 
