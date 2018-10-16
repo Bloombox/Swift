@@ -1,5 +1,5 @@
 //
-//  ClientTests+Telemetry.swift
+//  TelemetryClientTests.swift
 //  Bloombox
 //
 //  Created by Sam Gammon on 10/13/18.
@@ -9,7 +9,11 @@ import Foundation
 @testable import Bloombox
 
 
-extension ClientTests {
+internal final class TelemetryClientTests: BaseClientTests {
+  static var allTests = [
+    ("testSendEvent", testSendEvent)
+  ]
+
   // MARK: - Telemetry Tests
   func testSendEvent() throws {
     let _ = try client.telemetry.event(

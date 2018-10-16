@@ -1,5 +1,5 @@
 //
-//  ClientTests+Menu.swift
+//  MenuClientTests.swift
 //  Bloombox
 //
 //  Created by Sam Gammon on 10/13/18.
@@ -10,7 +10,15 @@ import XCTest
 @testable import Bloombox
 
 
-extension ClientTests {
+internal final class MenuClientTests: BaseClientTests {
+  static var allTests = [
+    // Menu Tests
+    ("testMenuDownload", testMenuDownload),
+    ("testMenuInvalidApiKey", testMenuInvalidApiKey),
+    ("testMenuInvalidPartner", testMenuInvalidPartner),
+    ("testMenuInvalidLocation", testMenuInvalidLocation)
+  ]
+
   // MARK: - Menu Tests
   func testMenuDownload() throws {
     let menu = try client.menu.retrieve()

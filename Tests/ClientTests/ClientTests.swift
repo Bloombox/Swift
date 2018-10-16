@@ -3,24 +3,7 @@ import XCTest
 @testable import Bloombox
 
 
-class ClientTests: XCTestCase {
-  static var allTests = [
-    ("testClientConstruct", testClientConstruct),
-
-    // Shop Tests
-    ("testShopInfo", testShopInfo),
-    ("testMemberVerify", testMemberVerify),
-
-    // Telemetry Tests
-    ("testSendEvent", testSendEvent),
-
-    // Menu Tests
-    ("testMenuDownload", testMenuDownload),
-    ("testMenuInvalidApiKey", testMenuInvalidApiKey),
-    ("testMenuInvalidPartner", testMenuInvalidPartner),
-    ("testMenuInvalidLocation", testMenuInvalidLocation)
-  ]
-
+internal class BaseClientTests: XCTestCase {
   let client: Bloombox = Bloombox(settings:
     Bloombox.Settings(
       apiKey: "AIzaSyA17mIw4tWGe-GsqRhdpUDfLAn_KZ_zbcM",
@@ -39,6 +22,14 @@ class ClientTests: XCTestCase {
   func emptyClient() -> Bloombox {
     return client(apiKey: nil, partner: nil, location: nil)
   }
+}
+
+
+class ClientTests: BaseClientTests {
+  static var allTests = [
+    ("testClientConstruct", testClientConstruct),
+    ("testClientDefaults", testClientDefaults)
+  ]
 
   // MARK: - Basic Tests
   func testClientConstruct() {
