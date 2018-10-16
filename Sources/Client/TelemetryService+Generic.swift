@@ -119,13 +119,16 @@ extension TelemetryClient {
   /// Method `ping`. Send a message to the Telemetry service, and receive a message back. This function is intended to
   /// warm the connection and measure latency.
   ///
-  func ping(callback: PingCallback? = nil) throws {
+  @discardableResult
+  func ping(callback: PingCallback? = nil) throws -> TelemetryPingCall {
     let request = TelemetryPing.Request()
     let ts = (Date().timeIntervalSinceReferenceDate * 1000)
-    let _ = try events.ping(request)
-    let tsEnd = (Date().timeIntervalSinceReferenceDate * 1000)
-    let diff = Double(round((tsEnd - ts)*1000)/1000)
-    callback?(diff)
+    let call = try events.ping(request) { callResult, response in
+      let tsEnd = (Date().timeIntervalSinceReferenceDate * 1000)
+      let diff = Double(round((tsEnd - ts)*1000)/1000)
+      callback?(diff)
+    }
+    return call
   }
 
   /// Method `event`. Submit a generic event to the Telemetry service. Can be used for any visibility instrumentation

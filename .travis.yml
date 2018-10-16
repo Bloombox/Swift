@@ -19,7 +19,8 @@ script:
   - swift package generate-xcodeproj
   - swift build
 test:
-  - echo "Skipping tests."
+  - swift test
 after_script:
+  - bundle exec slather
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 

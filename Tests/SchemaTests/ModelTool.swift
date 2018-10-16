@@ -7,6 +7,7 @@
 
 import Foundation
 import OpenCannabis
+import BloomboxServices
 import Bloombox
 
 

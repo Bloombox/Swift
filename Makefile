@@ -4,7 +4,7 @@
 #
 
 SCHEMA ?= Schema/
-VERSION ?= 0.0.9
+VERSION ?= 0.1.0
 SCHEMA_BRANCH ?= master
 SWIFT_GRPC ?= SwiftGRPC
 
@@ -33,11 +33,60 @@ docs/:
 
 clean: clean-docs
 	@echo "Cleaning Swift client for Bloombox..."
+	@-swift package clean
+
+distclean: clean
+	@echo "Cleaning distributions..."
 	@rm -frv .build $(SCHEMA)/languages
+	@echo "Resetting codebase..."
+	@git reset --hard
+
+forceclean: distclean
+	@echo "Sanitizing codebase..."
+	@git clean -xdf
 
 clean-docs:
 	@echo "Cleaning docs..."
 	@rm -fr docs/
+
+pods: pod-opencannabis pod-services pod-client
+	@echo "Pod work done."
+
+check-local:
+	@echo "Checking local state for releaseability..."
+	@git diff-index --quiet HEAD --
+
+release: check-local pods release-begin release-package pods-package
+	@echo "Release complete for version $(VERSION)."
+
+release-begin:
+	@echo "Performing release..."
+
+release-package:
+	@echo "Releasing Swift package (version: $(VERSION))..."
+	@git tag -s -a $(VERSION) -m "Release: $(VERSION)"
+	@git push origin --tags
+	@echo "Release $(VERSION) is live."
+
+pods-publish: pods
+	@echo "Publishing pods to trunk..."
+	@pod trunk push --allow-warnings --verbose OpenCannabis.podspec
+	@pod trunk push --allow-warnings --verbose BloomboxServices.podspec
+	@pod trunk push --allow-warnings --verbose Bloombox.podspec
+	@echo "Pods published as version $VERSION."
+
+pod-opencannabis:
+	@echo "Linting OpenCannabis pod..."
+	@pod lib lint --allow-warnings --quick --fail-fast --verbose OpenCannabis.podspec
+
+pod-services:
+	@echo "Linting Bloombox services pod..."
+	@pod lib lint --allow-warnings --quick --fail-fast --verbose BloomboxServices.podspec
+
+pod-client:
+	@echo "Linting Bloombox client pod..."
+	@pod lib lint --allow-warnings --quick --fail-fast --verbose Bloombox.podspec
+
 
 build: dependencies
 	@echo "Building Swift client for Bloombox..."
@@ -61,7 +110,12 @@ $(SCHEMA):
 
 $(SCHEMA)languages/swift: $(SCHEMA)
 	@echo "Building schema..."
-	@$(MAKE) -C Schema LANGUAGES="swift swiftgrpc" PROTO_FLAGS="--plugin=$(PWD)/SwiftGRPC/protoc-gen-swift --plugin=$(PWD)/SwiftGRPC/protoc-gen-swiftgrpc --swiftgrpc_out=languages/swiftgrpc" SERVICES=yes TABLES=no INCLUDE_DESCRIPTOR=yes
+	@mkdir -p Schema/languages/swiftgrpc
+	@$(MAKE) -C Schema LANGUAGES="swift swiftgrpc" PROTO_FLAGS="--plugin=$(PWD)/SwiftGRPC/protoc-gen-swift --plugin=$(PWD)/SwiftGRPC/protoc-gen-swiftgrpc --swiftgrpc_out=languages/swiftgrpc" SERVICES=yes TABLES=no INCLUDE_DESCRIPTOR=yes build
+
+update-schema:
+	@echo "Updating schemas..."
+	@git submodule update --init --remote Schema
 
 sync-schema: $(SCHEMA)languages/swift
 	@echo "Syncing Swift schemas..."
@@ -70,7 +124,8 @@ sync-schema: $(SCHEMA)languages/swift
 	@cp -fr $(SCHEMA)languages/swift/*.swift Sources/Schema/
 	@cp -fr $(SCHEMA)languages/swift/*/*/*.swift Sources/Schema/
 	@cp -fr $(SCHEMA)languages/swiftgrpc/*/*/*.swift Sources/Schema/
-	@rm -f Sources/Schema/*v1beta2*
+	@cp -fr Sources/Schema/*.grpc.swift Sources/Client/
+	@rm -fv Sources/Schema/*.grpc.swift
 	@rm -f Sources/Schema/*.server.pb.swift
 	@rm -f Sources/Schema/bq*
 

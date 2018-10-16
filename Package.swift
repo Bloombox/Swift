@@ -17,13 +17,22 @@ let package = Package(
     targets: [
         .target(
             name: "Bloombox",
-            dependencies: ["OpenCannabis", "SwiftGRPC"],
+            dependencies: ["OpenCannabis", "BloomboxServices", "SwiftProtobuf", "SwiftGRPC"],
             path: "Sources/Client"),
+
+        .target(
+            name: "BloomboxServices",
+            dependencies: ["OpenCannabis", "SwiftProtobuf", "SwiftGRPC"],
+            path: "Sources/Services"),
+
         .target(
             name: "OpenCannabis",
-            dependencies: ["SwiftProtobuf", "SwiftGRPC"],
+            dependencies: ["SwiftProtobuf"],
             path: "Sources/Schema"),
-        .testTarget(name: "SchemaTests", dependencies: ["OpenCannabis"]),
-        .testTarget(name: "ClientTests", dependencies: ["Bloombox"])])
 
+        .testTarget(name: "SchemaTests", dependencies: ["OpenCannabis", "BloomboxServices"]),
+        .testTarget(name: "ClientTests", dependencies: ["Bloombox"])],
 
+    swiftLanguageVersions: [3, 4],
+    cLanguageStandard: .c11,
+    cxxLanguageStandard: .cxx11)

@@ -77,6 +77,7 @@ extension PointOfSaleClient {
   /// - Parameter callback: Callable to dispatch once either a terminal error or response are available.
   /// - Returns: Response detailing the session that was opened, and any resulting state.
   /// - Throws: Client and server-side errors are thrown. This method is synchronous.
+  @discardableResult
   public func openSession(_ sessionID: String,
                           forAuthToken authToken: String,
                           onDevice deviceKey: PartnerDeviceKey,

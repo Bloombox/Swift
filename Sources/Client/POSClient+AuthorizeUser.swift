@@ -193,6 +193,7 @@ extension PointOfSaleClient {
   /// - Parameter callback: Callable to dispatch once either a terminal error or response are available.
   /// - Returns: RPC call object, which can be used to observe state or cancel the call.
   /// - Throws: Client-side errors are thrown before the request is sent.
+  @discardableResult
   public func authorize(userToken token: IdentityToken,
                         forDevice device: PartnerDeviceKey,
                         withOptions options: POSAuthorizeOptions,
@@ -236,6 +237,7 @@ extension PointOfSaleClient {
   /// - Parameter options: Options to apply to the request.
   /// - Returns: RPC call object, which can be used to observe state or cancel the call.
   /// - Throws: Client-side errors are thrown before the request is sent.
+  @discardableResult
   public func authorize(withUserChallenge challenge: Hash,
                         forDevice device: PartnerDeviceKey,
                         withOptions options: POSAuthorizeOptions,

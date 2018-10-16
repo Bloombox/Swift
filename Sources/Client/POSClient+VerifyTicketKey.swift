@@ -71,6 +71,7 @@ extension PointOfSaleClient {
   /// - Parameter callback: Callable to dispatch once either a terminal error or response are available.
   /// - Returns: RPC call object, that can be used to observe status or cancel the call.
   /// - Throws: Client-side errors only. This method is asynchronous.
+  @discardableResult
   public func verify(ticketKey key: PurchaseKey,
                      forDevice device: PartnerDeviceKey,
                      _ callback: @escaping POSVerifyTicketKeyCallback) throws -> POSOpenTicketCall {

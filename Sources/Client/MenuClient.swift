@@ -155,6 +155,7 @@ public final class MenuClient: RemoteService {
   /// - Parameter callback: Callable to dispatch once a result or terminal error is available.
   /// - Returns: RPC call object, which can be observed to track call status, or used to cancel the call.
   /// - Throws: Client-side errors only. Server-side errors are surfaced in the callback.
+  @discardableResult
   public func retrieve(partner: PartnerCode? = nil,
                        location: LocationCode? = nil,
                        keysOnly: Bool = false,

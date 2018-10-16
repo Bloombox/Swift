@@ -165,6 +165,7 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
+  @discardableResult
   public func ping(_ callback: @escaping PlatformPingCallback) throws -> PlatformPingCall {
     return try self.service(self.resolveContext().apiKey).ping(PlatformPing.Request()) { (resp, result) in
       callback(result, resp?.status)
@@ -181,6 +182,7 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
+  @discardableResult
   public func healthcheck(_ callback: @escaping HealthcheckCallback) throws -> HealthcheckCall {
     return try self.service(self.resolveContext().apiKey).health(Empty()) { (_, result) in
       callback(result)
@@ -201,6 +203,7 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
+  @discardableResult
   public func resolve(encodedDomain domain: String,
                       forAPIKey apiKey: APIKey? = nil,
                       _ callback: @escaping ResolveCallback) throws -> ResolveDomainsCall {
@@ -227,6 +230,7 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
+  @discardableResult
   public func resolve(domain: String, _ callback: @escaping ResolveCallback) throws -> ResolveDomainsCall {
     if let encoded = domain.data(using: .utf8)?
                            .base64EncodedString()
@@ -253,6 +257,7 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
+  @discardableResult
   public func domains(forPartner partner: PartnerCode? = nil,
                       withLocation location: LocationCode? = nil,
                       andAPIKey apiKey: APIKey? = nil,
@@ -285,6 +290,7 @@ public final class PlatformClient: RemoteService {
 
   ///
   ///
+  @discardableResult
   public func brand(forPartner partner: PartnerCode? = nil,
                     withLocation location: LocationCode? = nil,
                     andAPIKey apiKey: APIKey? = nil,
