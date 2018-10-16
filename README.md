@@ -115,7 +115,7 @@ Synchronous:
 Asynchronous:
 ```swift
   do {
-    let call: ShopInfoCall = try client.shop.info() { result, response in
+    try client.shop.info() { result, response in
       // result is the call result from gRPC, response is the RPC response, if available
       if let info = response {
         // we have shop info, asynchronously
@@ -128,10 +128,6 @@ Asynchronous:
         fatalError("some error happened: \(result.statusCode)")
       }
     }
-
-    // the call can be observed or cancelled in async mode
-    call.cancel()
-
   } catch {
     // only client-side errors will show up here (i.e. missing API key, or unresolved partner ID)
     fatalError("client-side error")
@@ -161,7 +157,7 @@ Synchronous:
 Asynchronous:
 ```swift
   do {
-    let manifest: DeviceActivateCall = try client.devices.activate(
+    try client.devices.activate(
         deviceSerial: "ABC-123",
         withFingerprint: "[device-hardware-fingerprint]",
         withPublicKey: "[device-public-key]") { callResult, response in
@@ -181,7 +177,41 @@ Asynchronous:
 
 ### Menu API
 
-Description coming soon.
+The Menu API provides tools for interacting with product data, in a read-only manner, with an eye towards showcasing/selling products. This is distinguished from more detailed product catalog solutions and Bloombox APIs, in that:
+
+- Items that are out-of-stock or currently not-offered at a given location are withheld by default
+- Items without pricing, or marked as not-fit-for-sale, are withheld by default
+- Items marked for suppressed distribution on retail channels are withheld by default
+
+Some Menu API methods provide flags for overriding the above behavior, but, by and large, the Menu API is designed to provide product catalog data that is then showcased to a potential retail customer.
+
+The simplest example of using the Menu API is retrieving an entire menu for a given partner location:
+
+Synchronous:
+```swift
+  do {
+    let menu: GetMenu.Response = try client.menu.retrieve()
+
+  } catch {
+    fatalError("some client-side or server-side error occurred: \(error)")
+  }
+```
+
+Asynchronous:
+```swift
+  do {
+    try client.menu.retrieve() { callResult, response in
+      // handle the call result and response
+      if let menu = response {
+        // the catalog will be at `menu.catalog`
+      } else {
+        fatalError("unable to fetch the menu: \(call.statusCode)")
+      }
+    }
+  } catch {
+    fatalError("some client-side error occurred: \(error)")
+  }
+```
 
 
 ### Platform API
