@@ -1,0 +1,8 @@
+coverage_service: cobertura_xml
+xcodeproj: Bloombox.xcodeproj
+scheme: Bloombox-Package
+source_directory: Sources
+output_directory: .
+ignore:
+  - Sources/Schema
+  - Sources/Services
