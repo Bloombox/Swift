@@ -49,18 +49,13 @@
 		OBJ_1341 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_1354 /* AuthService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* AuthService_Beta1.grpc.swift */; };
 		OBJ_1355 /* CheckinService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* CheckinService_Beta1.grpc.swift */; };
-		OBJ_1356 /* DashService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* DashService_Beta1.grpc.swift */; };
 		OBJ_1357 /* DevicesService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* DevicesService_Beta1.grpc.swift */; };
-		OBJ_1358 /* LedgerService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* LedgerService_Beta1.grpc.swift */; };
-		OBJ_1359 /* MarketingService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* MarketingService_Beta1.grpc.swift */; };
 		OBJ_1360 /* MediaService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* MediaService_Beta1.grpc.swift */; };
 		OBJ_1361 /* MenuService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* MenuService_Beta1.grpc.swift */; };
 		OBJ_1362 /* POSService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* POSService_Beta1.grpc.swift */; };
-		OBJ_1363 /* PartnersService_Beta1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* PartnersService_Beta1.grpc.swift */; };
 		OBJ_1364 /* PlatformService_v1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* PlatformService_v1.grpc.swift */; };
 		OBJ_1365 /* ShopService_v1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* ShopService_v1.grpc.swift */; };
 		OBJ_1366 /* TelemetryService_Beta4.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* TelemetryService_Beta4.grpc.swift */; };
-		OBJ_1367 /* WalletService_v1.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* WalletService_v1.grpc.swift */; };
 		OBJ_1369 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftGRPC::SwiftGRPC::Product" /* SwiftGRPC.framework */; };
 		OBJ_1370 /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftGRPC::CgRPC::Product" /* CgRPC.framework */; };
 		OBJ_1371 /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftGRPC::BoringSSL::Product" /* BoringSSL.framework */; };
@@ -1727,7 +1722,6 @@
 		OBJ_293 /* grpclb_channel_secure.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = grpclb_channel_secure.cc; sourceTree = "<group>"; };
 		OBJ_294 /* grpclb_client_stats.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = grpclb_client_stats.cc; sourceTree = "<group>"; };
 		OBJ_295 /* load_balancer_api.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load_balancer_api.cc; sourceTree = "<group>"; };
-		OBJ_30 /* DashService_Beta1.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashService_Beta1.grpc.swift; sourceTree = "<group>"; };
 		OBJ_300 /* load_balancer.pb.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = load_balancer.pb.c; sourceTree = "<group>"; };
 		OBJ_302 /* pick_first.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pick_first.cc; sourceTree = "<group>"; };
 		OBJ_304 /* round_robin.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = round_robin.cc; sourceTree = "<group>"; };
@@ -1743,7 +1737,6 @@
 		OBJ_316 /* grpc_ares_ev_driver_posix.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = grpc_ares_ev_driver_posix.cc; sourceTree = "<group>"; };
 		OBJ_317 /* grpc_ares_wrapper.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = grpc_ares_wrapper.cc; sourceTree = "<group>"; };
 		OBJ_318 /* grpc_ares_wrapper_fallback.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = grpc_ares_wrapper_fallback.cc; sourceTree = "<group>"; };
-		OBJ_32 /* LedgerService_Beta1.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerService_Beta1.grpc.swift; sourceTree = "<group>"; };
 		OBJ_320 /* dns_resolver.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dns_resolver.cc; sourceTree = "<group>"; };
 		OBJ_322 /* fake_resolver.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fake_resolver.cc; sourceTree = "<group>"; };
 		OBJ_324 /* sockaddr_resolver.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sockaddr_resolver.cc; sourceTree = "<group>"; };
@@ -1752,7 +1745,6 @@
 		OBJ_327 /* subchannel.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = subchannel.cc; sourceTree = "<group>"; };
 		OBJ_328 /* subchannel_index.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = subchannel_index.cc; sourceTree = "<group>"; };
 		OBJ_329 /* uri_parser.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = uri_parser.cc; sourceTree = "<group>"; };
-		OBJ_33 /* MarketingService_Beta1.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketingService_Beta1.grpc.swift; sourceTree = "<group>"; };
 		OBJ_331 /* deadline_filter.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = deadline_filter.cc; sourceTree = "<group>"; };
 		OBJ_334 /* http_client_filter.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = http_client_filter.cc; sourceTree = "<group>"; };
 		OBJ_335 /* client_authority_filter.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = client_authority_filter.cc; sourceTree = "<group>"; };
@@ -1778,7 +1770,6 @@
 		OBJ_366 /* server_chttp2.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = server_chttp2.cc; sourceTree = "<group>"; };
 		OBJ_367 /* server_chttp2_posix.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = server_chttp2_posix.cc; sourceTree = "<group>"; };
 		OBJ_369 /* server_secure_chttp2.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = server_secure_chttp2.cc; sourceTree = "<group>"; };
-		OBJ_37 /* PartnersService_Beta1.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersService_Beta1.grpc.swift; sourceTree = "<group>"; };
 		OBJ_371 /* bin_decoder.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bin_decoder.cc; sourceTree = "<group>"; };
 		OBJ_372 /* bin_encoder.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = bin_encoder.cc; sourceTree = "<group>"; };
 		OBJ_373 /* chttp2_plugin.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chttp2_plugin.cc; sourceTree = "<group>"; };
@@ -1816,7 +1807,6 @@
 		OBJ_407 /* connected_channel.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = connected_channel.cc; sourceTree = "<group>"; };
 		OBJ_408 /* handshaker.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = handshaker.cc; sourceTree = "<group>"; };
 		OBJ_409 /* handshaker_factory.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = handshaker_factory.cc; sourceTree = "<group>"; };
-		OBJ_41 /* WalletService_v1.grpc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService_v1.grpc.swift; sourceTree = "<group>"; };
 		OBJ_410 /* handshaker_registry.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = handshaker_registry.cc; sourceTree = "<group>"; };
 		OBJ_411 /* status_util.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = status_util.cc; sourceTree = "<group>"; };
 		OBJ_413 /* compression.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = compression.cc; sourceTree = "<group>"; };
@@ -3018,18 +3008,13 @@
 			children = (
 				OBJ_28 /* AuthService_Beta1.grpc.swift */,
 				OBJ_29 /* CheckinService_Beta1.grpc.swift */,
-				OBJ_30 /* DashService_Beta1.grpc.swift */,
 				OBJ_31 /* DevicesService_Beta1.grpc.swift */,
-				OBJ_32 /* LedgerService_Beta1.grpc.swift */,
-				OBJ_33 /* MarketingService_Beta1.grpc.swift */,
 				OBJ_34 /* MediaService_Beta1.grpc.swift */,
 				OBJ_35 /* MenuService_Beta1.grpc.swift */,
 				OBJ_36 /* POSService_Beta1.grpc.swift */,
-				OBJ_37 /* PartnersService_Beta1.grpc.swift */,
 				OBJ_38 /* PlatformService_v1.grpc.swift */,
 				OBJ_39 /* ShopService_v1.grpc.swift */,
 				OBJ_40 /* TelemetryService_Beta4.grpc.swift */,
-				OBJ_41 /* WalletService_v1.grpc.swift */,
 			);
 			name = BloomboxServices;
 			path = Sources/Services;
@@ -5243,18 +5228,13 @@
 			files = (
 				OBJ_1354 /* AuthService_Beta1.grpc.swift in Sources */,
 				OBJ_1355 /* CheckinService_Beta1.grpc.swift in Sources */,
-				OBJ_1356 /* DashService_Beta1.grpc.swift in Sources */,
 				OBJ_1357 /* DevicesService_Beta1.grpc.swift in Sources */,
-				OBJ_1358 /* LedgerService_Beta1.grpc.swift in Sources */,
-				OBJ_1359 /* MarketingService_Beta1.grpc.swift in Sources */,
 				OBJ_1360 /* MediaService_Beta1.grpc.swift in Sources */,
 				OBJ_1361 /* MenuService_Beta1.grpc.swift in Sources */,
 				OBJ_1362 /* POSService_Beta1.grpc.swift in Sources */,
-				OBJ_1363 /* PartnersService_Beta1.grpc.swift in Sources */,
 				OBJ_1364 /* PlatformService_v1.grpc.swift in Sources */,
 				OBJ_1365 /* ShopService_v1.grpc.swift in Sources */,
 				OBJ_1366 /* TelemetryService_Beta4.grpc.swift in Sources */,
-				OBJ_1367 /* WalletService_v1.grpc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
