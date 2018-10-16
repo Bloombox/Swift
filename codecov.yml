@@ -6,6 +6,7 @@ ignore:
   - "Sources/Schema/**/*"
   - "Sources/Services/*"
   - "Sources/Services/**/*"
+  - "Tests/**/*"
   - "Pods/**/*"
   - "Example/**/*"
 
