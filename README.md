@@ -134,17 +134,41 @@ Synchronous:
   }
 ```
 
+
+### Platform API
+
+| Property  | Value |
+| ------------- | ------------- |
+| Service  | `platform` |
+| Version  | `v1` |
+| Endpoint | `api.bloombox.cloud` |
+| Domain   | `platform.rpc.bloombox.cloud` |
+
+The Platform API provides basic account and domain lookup methods, in addition to miscellaneous methods unrelated to any specific partner or location account. This includes health checks, system pings, domain resolution, and domain info fetching:
+
+- `ping`: Send a simple message to the server asking it to respond.
+- `healthcheck`: Ask the system to report its current status.
+- `resolve`: Resolve a partner account code and location code for a given domain.
+- `domains`: Resolve a set of domains for a given partner account code and location code.
+- `brand`: Retrieve branding information for a given partner account code and location code.
+
+Synchronous:
+```swift
+  do {
+    let assignment: ResolveDomains.Response = try client.platform.resolve("domain.com:443")
+
+  } catch {
+    fatalError("some client-side or server-side error occurred: \(error)")
+  }
+```
+
 Asynchronous:
 ```swift
   do {
-    try client.shop.info() { result, response in
+    try client.platform.resolve("domain.com:443") { result, response in
       // result is the call result from gRPC, response is the RPC response, if available
-      if let info = response {
-        // we have shop info, asynchronously
-        switch info.shopStatus {
-          // ...
-        }
-
+      if let assignment = response {
+        // assignment.partner and assignment.location
       } else {
         // do something about the error state
         fatalError("some error happened: \(result.statusCode)")
@@ -157,7 +181,7 @@ Asynchronous:
 ```
 
 
-### Devices API
+### Devices API  ![Beta](https://img.shields.io/badge/status-BETA-yellow.svg?style=flat-square)
 
 | Property  | Value |
 | ------------- | ------------- |
@@ -204,7 +228,7 @@ Asynchronous:
 ```
 
 
-### Menu API
+### Menu API  ![Beta](https://img.shields.io/badge/status-BETA-yellow.svg?style=flat-square)
 
 | Property  | Value |
 | ------------- | ------------- |
@@ -263,19 +287,7 @@ Asynchronous:
 ```
 
 
-### Platform API
-
-| Property  | Value |
-| ------------- | ------------- |
-| Service  | `platform` |
-| Version  | `v1` |
-| Endpoint | `api.bloombox.cloud` |
-| Domain   | `platform.rpc.bloombox.cloud` |
-
-Description coming soon.
-
-
-### Telemetry API
+### Telemetry API  ![Beta](https://img.shields.io/badge/status-BETA-yellow.svg?style=flat-square)
 
 | Property  | Value |
 | ------------- | ------------- |
@@ -292,7 +304,47 @@ Bloombox telemetry systems distinguish events by category, with three major cate
 - `CommercialTelemetry`: Retail-style funnel-compatible telemetry, broken into *impressions*, *views*, and *actions*.
 - `IdentityTelemetry`: User-identity-related telemetry events. Not directly usable by partners, but consumable in analytics flows.
 
-*A full enumeration and guide for use of these methods is coming soon.*
+*Full enumeration and guide for use of these methods is coming soon.*
+
+
+### Auth API  ![Coming Soon](https://img.shields.io/badge/status-Coming%20Soon-lightgray.svg?style=flat-square)
+
+| Property  | Value |
+| ------------- | ------------- |
+| Service  | `auth` |
+| Version  | `v1beta1` |
+| Endpoint | `api.bloombox.cloud` |
+| Domain   | `auth.rpc.bloombox.cloud` |
+
+
+*Full docs and guide coming soon.*
+
+
+### Checkin API  ![Coming Soon](https://img.shields.io/badge/status-Coming%20Soon-lightgray.svg?style=flat-square)
+
+| Property  | Value |
+| ------------- | ------------- |
+| Service  | `checkin` |
+| Version  | `v1beta1` |
+| Endpoint | `api.bloombox.cloud` |
+| Domain   | `checkin.rpc.bloombox.cloud` |
+
+
+*Full docs and guide coming soon.*
+
+
+### Media API  ![Coming Soon](https://img.shields.io/badge/status-Coming%20Soon-lightgray.svg?style=flat-square)
+
+| Property  | Value |
+| ------------- | ------------- |
+| Service  | `media` |
+| Version  | `v1beta1` |
+| Endpoint | `api.bloombox.cloud` |
+| Domain   | `media.rpc.bloombox.cloud` |
+
+
+*Full docs and guide coming soon.*
+
 
 ## Licensing
 
