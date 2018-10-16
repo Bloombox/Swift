@@ -43,10 +43,7 @@ let package = Package(
     /// ...
 
     dependencies: [
-        .package(url: "https://github.com/bloombox/swift", .upToNextMinor(from: "0.1.0"))]
-
-  )
-
+        .package(url: "https://github.com/bloombox/swift", .upToNextMinor(from: "0.1.0"))])
 ```
 
 
@@ -77,12 +74,16 @@ Information about these settings, in detail:
 - *Partner ID*: Identifies your partner account by a short string code. Can be found in your Bloombox Dashboard.
 - *Location ID*: Identifies the partner location for which you want to transact/interact. Can also be found in your Bloombox Dashboard, under the location you wish to use.
 
-For nearly every method in the SDK, there is an async variant that responds via callback rather than returning a response directly. When using the synchronous API, errors are thro
-wn, whether they are encountered on the client-side (for instance, a missing API key), or on the server-side (e.g. an authorization failure). The async API, by comparison, only th
-rows client-side errors, and reports server-side errors via the provided callback.
-
-
 *NOTE:* Make sure you retain the `Bloombox` client instance somewhere, or you risk the client (and associated callbacks, etc) getting de-allocated in the middle of a request:
+
+
+#### Architecture
+
+For nearly every method in the SDK, there is both a sync variant which returns its response directly, and an async variant that responds via callback rather than returning a response directly. When using the synchronous API, errors are thrown, whether they are encountered on the client-side (for instance, a missing API key), or on the server-side (e.g. an authorization failure). The async API, by comparison, only throws client-side errors, and reports server-side errors via the provided callback.
+
+Each service has an accompanying client-side error enumeration, which provides each error that may be thrown for a request before it leaves for the server.
+
+To make cross-location usage easy, most, if not all, methods support overriding the partner, location, or API key on a per-call basis. If you choose not to provide these override values, they're gathered from the `Bloombox.Settings` object instead.
 
 
 ### Shop API
@@ -114,10 +115,7 @@ Synchronous:
 Asynchronous:
 ```swift
   do {
-    let call: ShopInfoCall = try client.shop.info(
-        partner: "[optional-override-partner-id]",
-        location: "[optional-override-location-id]") { result, response in
-
+    let call: ShopInfoCall = try client.shop.info() { result, response in
       // result is the call result from gRPC, response is the RPC response, if available
       if let info = response {
         // we have shop info, asynchronously
@@ -143,7 +141,42 @@ Asynchronous:
 
 ### Devices API
 
-Description coming soon.
+Performs activation of partner-side devices. For menu tablets and other items, the Devices API provides tools to reach out and discover any assignment and role information bound to the invoking device.
+
+In some circumstances (usually goverened by the assigned device role), a `fingerprint` or `publicKey` value may be required. Device activation may be restricted based on the value of these properties, or, they may need to match the first activation that ever took place for the device in question. Other restrictions may apply to device activation, again, by role, such as enforcement of client-side certificates, IP restrictions, and more.
+
+Synchronous:
+```swift
+  do {
+    let manifest: DeviceActivation.Response = try client.devices.activate(
+        deviceSerial: "ABC-123",
+        withFingerprint: "[device-hardware-fingerprint]",
+        withPublicKey: "[device-public-key]")
+
+  } catch {
+    fatalError("some client-side or server-side error occurred: \(error)")
+  }
+```
+
+Asynchronous:
+```swift
+  do {
+    let manifest: DeviceActivateCall = try client.devices.activate(
+        deviceSerial: "ABC-123",
+        withFingerprint: "[device-hardware-fingerprint]",
+        withPublicKey: "[device-public-key]") { callResult, response in
+
+      // handle the call result and response
+      if let manifest = response {
+        // the device was able to activate
+      } else {
+        fatalError("the device was not able to activate: \(call.statusCode)")
+      }
+    } 
+  } catch {
+    fatalError("some client-side error occurred: \(error)")
+  }
+```
 
 
 ### Menu API
