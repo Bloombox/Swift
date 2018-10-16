@@ -1,0 +1,16 @@
+
+ignore:
+  - ".build/*"
+  - ".build/**/*"
+  - "Sources/Schema/*"
+  - "Sources/Schema/**/*"
+  - "Sources/Services/*"
+  - "Sources/Services/**/*"
+  - "Pods/**/*"
+  - "Example/**/*"
+
+coverage:
+  range: 50..100
+  round: down
+  precision: 2
+
