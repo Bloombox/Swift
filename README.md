@@ -181,7 +181,7 @@ Asynchronous:
 ```
 
 
-### Devices API  ![Beta](https://img.shields.io/badge/status-BETA-yellow.svg?style=flat-square)
+### Devices API  ![Beta](https://img.shields.io/badge/BETA-yellow.svg?style=flat-square)
 
 | Property  | Value |
 | ------------- | ------------- |
@@ -228,7 +228,7 @@ Asynchronous:
 ```
 
 
-### Menu API  ![Beta](https://img.shields.io/badge/status-BETA-yellow.svg?style=flat-square)
+### Menu API  ![Beta](https://img.shields.io/badge/BETA-yellow.svg?style=flat-square)
 
 | Property  | Value |
 | ------------- | ------------- |
@@ -287,7 +287,7 @@ Asynchronous:
 ```
 
 
-### Telemetry API  ![Beta](https://img.shields.io/badge/status-BETA-yellow.svg?style=flat-square)
+### Telemetry API  ![Beta](https://img.shields.io/badge/BETA-yellow.svg?style=flat-square)
 
 | Property  | Value |
 | ------------- | ------------- |
@@ -307,7 +307,7 @@ Bloombox telemetry systems distinguish events by category, with three major cate
 *Full enumeration and guide for use of these methods is coming soon.*
 
 
-### Auth API  ![Coming Soon](https://img.shields.io/badge/status-Coming%20Soon-lightgray.svg?style=flat-square)
+### Auth API  ![Coming Soon](https://img.shields.io/badge/Coming%20Soon-lightgray.svg?style=flat-square)
 
 | Property  | Value |
 | ------------- | ------------- |
@@ -320,7 +320,7 @@ Bloombox telemetry systems distinguish events by category, with three major cate
 *Full docs and guide coming soon.*
 
 
-### Checkin API  ![Coming Soon](https://img.shields.io/badge/status-Coming%20Soon-lightgray.svg?style=flat-square)
+### Checkin API  ![Coming Soon](https://img.shields.io/badge/Coming%20Soon-lightgray.svg?style=flat-square)
 
 | Property  | Value |
 | ------------- | ------------- |
@@ -333,7 +333,7 @@ Bloombox telemetry systems distinguish events by category, with three major cate
 *Full docs and guide coming soon.*
 
 
-### Media API  ![Coming Soon](https://img.shields.io/badge/status-Coming%20Soon-lightgray.svg?style=flat-square)
+### Media API  ![Coming Soon](https://img.shields.io/badges/Coming%20Soon-lightgray.svg?style=flat-square)
 
 | Property  | Value |
 | ------------- | ------------- |
