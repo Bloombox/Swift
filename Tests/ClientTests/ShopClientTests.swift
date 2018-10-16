@@ -10,13 +10,7 @@ import XCTest
 @testable import Bloombox
 
 
-let testPartner = "abatin"
-let testLocation = "sacramento"
-let testAccount = "sam@bloombox.io"
-let testApiKey = "AIzaSyA17mIw4tWGe-GsqRhdpUDfLAn_KZ_zbcM"
-
-
-internal final class ShopClientTests: BaseClientTests {
+internal final class ShopClientTests: XCTestCase {
   static var allTests = [
     // Shop Tests
     ("testShopInfoInvalidApiKey", testShopInfoInvalidApiKey),
@@ -36,7 +30,7 @@ internal final class ShopClientTests: BaseClientTests {
   func testShopInfoInvalidApiKey() throws {
     var caught = false
     do {
-      let _ = try emptyClient().shop.info(partner: testPartner, location: testLocation, apiKey: nil)
+      let _ = try ClientTools.emptyClient().shop.info(partner: testPartner, location: testLocation, apiKey: nil)
     } catch ShopClientError.invalidApiKey {
       // it worked
       caught = true
@@ -47,7 +41,7 @@ internal final class ShopClientTests: BaseClientTests {
   func testShopInfoInvalidPartner() throws {
     var caught = false
     do {
-      let _ = try emptyClient().shop.info(partner: nil, location: testLocation, apiKey: testApiKey)
+      let _ = try ClientTools.emptyClient().shop.info(partner: nil, location: testLocation, apiKey: testApiKey)
     } catch ShopClientError.invalidPartnerCode {
       // it worked
       caught = true
@@ -58,7 +52,7 @@ internal final class ShopClientTests: BaseClientTests {
   func testShopInfoInvalidLocation() throws {
     var caught = false
     do {
-      let _ = try emptyClient().shop.info(partner: "abc123", location: nil, apiKey: testApiKey)
+      let _ = try ClientTools.emptyClient().shop.info(partner: "abc123", location: nil, apiKey: testApiKey)
     } catch ShopClientError.invalidLocationCode {
       // it worked
       caught = true
@@ -96,10 +90,10 @@ internal final class ShopClientTests: BaseClientTests {
   func testMemberVerifyInvalidApiKey() throws {
     var caught = false
     do {
-      let _ = try emptyClient().shop.verifyMember(email: testAccount,
-                                                  partner: testPartner,
-                                                  location: testLocation,
-                                                  apiKey: nil)
+      let _ = try ClientTools.emptyClient().shop.verifyMember(email: testAccount,
+                                                              partner: testPartner,
+                                                              location: testLocation,
+                                                              apiKey: nil)
     } catch ShopClientError.invalidApiKey {
       // it worked
       caught = true
@@ -110,10 +104,10 @@ internal final class ShopClientTests: BaseClientTests {
   func testMemberVerifyInvalidPartner() throws {
     var caught = false
     do {
-      let _ = try emptyClient().shop.verifyMember(email: testAccount,
-                                                  partner: nil,
-                                                  location: testPartner,
-                                                  apiKey: testApiKey)
+      let _ = try ClientTools.emptyClient().shop.verifyMember(email: testAccount,
+                                                              partner: nil,
+                                                              location: testPartner,
+                                                              apiKey: testApiKey)
     } catch ShopClientError.invalidPartnerCode {
       // it worked
       caught = true
@@ -124,10 +118,10 @@ internal final class ShopClientTests: BaseClientTests {
   func testMemberVerifyInvalidLocation() throws {
     var caught = false
     do {
-      let _ = try emptyClient().shop.verifyMember(email: testAccount,
-                                                  partner: testPartner,
-                                                  location: nil,
-                                                  apiKey: testApiKey)
+      let _ = try ClientTools.emptyClient().shop.verifyMember(email: testAccount,
+                                                              partner: testPartner,
+                                                              location: nil,
+                                                              apiKey: testApiKey)
     } catch ShopClientError.invalidLocationCode {
       // it worked
       caught = true

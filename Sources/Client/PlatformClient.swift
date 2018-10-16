@@ -111,12 +111,8 @@ public final class PlatformClient: RemoteService {
     let svc = RPCServiceFactory<PlatformService>.factory(
       forService: Transport.config.services.platform,
       withSettings: self.settings)
-    do {
-      try svc.metadata.add(key: "x-api-key", value: apiKey)
-    } catch {
-      // unable to mount API key
-      throw POSClientError.invalidApiKey
-    }
+
+    try svc.metadata.add(key: "x-api-key", value: apiKey)
     self.svc = svc
     return svc
   }
@@ -139,16 +135,16 @@ public final class PlatformClient: RemoteService {
     let apiKey: APIKey? = apiKey ?? settings.apiKey
 
     guard apiKey != nil else {
-      throw MenuClientError.invalidApiKey
+      throw PlatformClientError.invalidApiKey
     }
 
     // validate partner and location codes
     guard partnerCode != nil, locationCode != nil else {
       // throw error: we require a partner or location code from somewhere
       if partnerCode == nil {
-        throw MenuClientError.invalidPartnerCode
+        throw PlatformClientError.invalidPartnerCode
       }
-      throw MenuClientError.invalidLocationCode
+      throw PlatformClientError.invalidLocationCode
     }
     return (partner: partnerCode!, location: locationCode!, apiKey: apiKey!)
   }

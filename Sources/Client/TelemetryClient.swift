@@ -29,7 +29,7 @@ public class TelemetryClient: RemoteService {
   let name = "telemetry"
 
   /// Version of this service with which we intend to communicate.
-  let version = "v1beta3"
+  let version = "v1beta4"
 
   // MARK: Internals
 

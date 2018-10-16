@@ -60,12 +60,8 @@ public final class ShopClient: RemoteService {
     let svc = RPCServiceFactory<ShopService>.factory(
       forService: Transport.config.services.shop,
       withSettings: self.settings)
-    do {
-      try svc.metadata.add(key: "x-api-key", value: apiKey)
-    } catch {
-      // unable to mount API key
-      throw ShopClientError.invalidApiKey
-    }
+
+    try svc.metadata.add(key: "x-api-key", value: apiKey)
     self.svc = svc
     return svc
   }

@@ -66,12 +66,8 @@ public final class MenuClient: RemoteService {
     let svc = RPCServiceFactory<MenuService>.factory(
       forService: Transport.config.services.menu,
       withSettings: self.settings)
-    do {
-      try svc.metadata.add(key: "x-api-key", value: apiKey)
-    } catch {
-      // unable to resolve API key
-      throw MenuClientError.invalidApiKey
-    }
+
+    try svc.metadata.add(key: "x-api-key", value: apiKey)
     self.svc = svc
     return svc
   }
@@ -128,15 +124,9 @@ public final class MenuClient: RemoteService {
     let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
     let service = try self.service(apiKey)
 
-    do {
-      return try service.retrieve(GetMenu.Request.with { builder in
-        builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
-      })
-    } catch {
-      // some other error occurred
-      print("error: unknown error occurred")
-      throw MenuClientError.unknown
-    }
+    return try service.retrieve(GetMenu.Request.with { builder in
+      builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
+    })
   }
 
   /// Retrieve the active product catalog (menu) for a given partner/location, asynchronously. Menus are essentially

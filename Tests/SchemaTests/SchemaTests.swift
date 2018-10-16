@@ -26,8 +26,7 @@ class SchemaTests: XCTestCase {
     ("testEncodeDecodeJSON", testEncodeDecodeJSON),
     ("testJSONStringPerformance", testJSONStringPerformance),
     ("testJSONDataPerformance", testJSONDataPerformance),
-    ("testEncodeDecodeText", testEncodeDecodeText),
-    ("testTextPerformance", testTextPerformance)
+    ("testEncodeDecodeText", testEncodeDecodeText)
   ]
 
   func testEquatable() throws {

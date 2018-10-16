@@ -10,7 +10,7 @@ import XCTest
 @testable import Bloombox
 
 
-internal final class MenuClientTests: BaseClientTests {
+internal final class MenuClientTests: XCTestCase {
   static var allTests = [
     // Menu Tests
     ("testMenuDownload", testMenuDownload),
@@ -21,13 +21,13 @@ internal final class MenuClientTests: BaseClientTests {
 
   // MARK: - Menu Tests
   func testMenuDownload() throws {
-    let menu = try client.menu.retrieve()
+    let menu = try ClientTools.client.menu.retrieve()
     assert(menu.hasCatalog, "downloaded menu should have a product catalog")
   }
 
   func testMenuDownloadPerformance() throws {
     self.measure {
-      if let _ = try? client.menu.retrieve() {
+      if let _ = try? ClientTools.client.menu.retrieve() {
         // got a menu response
       } else {
         XCTFail("failed to retrieve menu: cannot test performance")
@@ -38,7 +38,7 @@ internal final class MenuClientTests: BaseClientTests {
   func testMenuInvalidApiKey() throws {
     var caught = false
     do {
-      let _ = try emptyClient().menu.retrieve(partner: "mm", location: "sacramento", apiKey: nil)
+      let _ = try ClientTools.emptyClient().menu.retrieve(partner: "mm", location: "sacramento", apiKey: nil)
     } catch MenuClientError.invalidApiKey {
       // it worked
       caught = true
@@ -49,7 +49,7 @@ internal final class MenuClientTests: BaseClientTests {
   func testMenuInvalidPartner() throws {
     var caught = false
     do {
-      let _ = try emptyClient().menu.retrieve(partner: nil, location: "sacramento", apiKey: "abc123")
+      let _ = try ClientTools.emptyClient().menu.retrieve(partner: nil, location: "sacramento", apiKey: "abc123")
     } catch MenuClientError.invalidPartnerCode {
       // it worked
       caught = true
@@ -60,7 +60,7 @@ internal final class MenuClientTests: BaseClientTests {
   func testMenuInvalidLocation() throws {
     var caught = false
     do {
-      let _ = try emptyClient().menu.retrieve(partner: "abc123", location: nil, apiKey: "abc123")
+      let _ = try ClientTools.emptyClient().menu.retrieve(partner: "abc123", location: nil, apiKey: "abc123")
     } catch MenuClientError.invalidLocationCode {
       // it worked
       caught = true
