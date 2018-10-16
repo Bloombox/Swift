@@ -18,6 +18,6 @@ before_script:
   - swift build
   - swift test
 after_script:
-  - slather
+  - slather || (gem install slather && slather)
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura
 
