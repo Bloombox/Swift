@@ -1,3 +1,9 @@
+//
+//  ClientTests.swift
+//  Bloombox
+//
+//  Created by Sam Gammon on 10/16/18.
+//
 
 import XCTest
 @testable import Bloombox

@@ -119,8 +119,8 @@ public final class Bloombox {
   /// ahead of time and handed in - see `Bloombox.Settings`.
   ///
   /// - Parameter settings: Settings to use for the desired client object.
-  public init(settings: Settings? = nil) {
-    self._services = Services(settings: settings ?? Settings.defaultSettings())
+  public init(settings: Settings = Settings.defaultSettings()) {
+    self._services = Services(settings: settings)
     self._services.prepare()
   }
 

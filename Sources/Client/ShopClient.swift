@@ -140,8 +140,8 @@ public final class ShopClient: RemoteService {
   ///
   public func checkZipcode(zipcode: String,
                            partner: PartnerCode? = nil,
-                           apiKey: APIKey? = nil,
-                           location: LocationCode? = nil) throws -> CheckZipcode.Response {
+                           location: LocationCode? = nil,
+                           apiKey: APIKey? = nil) throws -> CheckZipcode.Response {
     let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
 
     return try self.service(apiKey).checkZipcode(CheckZipcode.Request.with { builder in

@@ -32,6 +32,11 @@ internal final class PlatformClientTests: XCTestCase {
     ("testRetrieveBrandingKnownValid", testRetrieveBrandingKnownValid)
   ]
 
+  // MARK: - Healthcheck
+  func testHealthcheck() throws {
+    try ClientTools.client.platform.healthcheck()
+  }
+
   // MARK: - Resolve Domain
   func testResolveDomainInvalidAPIKey() throws {
     var caught = false

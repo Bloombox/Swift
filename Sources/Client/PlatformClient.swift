@@ -151,27 +151,11 @@ public final class PlatformClient: RemoteService {
 
   // MARK: - Public API -
 
-  // MARK: Method: Ping
-
-  ///
-  ///
-  public func ping() throws -> PlatformPing.Response {
-    return try self.service(self.resolveContext().apiKey).ping(PlatformPing.Request())
-  }
-
-  ///
-  ///
-  @discardableResult
-  public func ping(_ callback: @escaping PlatformPingCallback) throws -> PlatformPingCall {
-    return try self.service(self.resolveContext().apiKey).ping(PlatformPing.Request()) { (resp, result) in
-      callback(result, resp?.status)
-    }
-  }
-
   // MARK: Method: Healthcheck
 
   ///
   ///
+  @discardableResult
   public func healthcheck() throws -> Empty {
     return try self.service(self.resolveContext().apiKey).health(Empty())
   }

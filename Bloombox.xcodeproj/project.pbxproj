@@ -23,6 +23,7 @@
 
 /* Begin PBXBuildFile section */
 		220DFB6B2176732400BA4EAA /* PlatformClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DFB692176724A00BA4EAA /* PlatformClientTests.swift */; };
+		220DFB6E2176894700BA4EAA /* DeviceClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DFB6C2176891000BA4EAA /* DeviceClientTests.swift */; };
 		OBJ_1293 /* Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Bindings.swift */; };
 		OBJ_1294 /* Bloombox.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Bloombox.swift */; };
 		OBJ_1295 /* DevicesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* DevicesClient.swift */; };
@@ -1252,6 +1253,7 @@
 
 /* Begin PBXFileReference section */
 		220DFB692176724A00BA4EAA /* PlatformClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformClientTests.swift; sourceTree = "<group>"; };
+		220DFB6C2176891000BA4EAA /* DeviceClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceClientTests.swift; sourceTree = "<group>"; };
 		"Bloombox::Bloombox::Product" /* Bloombox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bloombox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Bloombox::BloomboxServices::Product" /* BloomboxServices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BloomboxServices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Bloombox::ClientTests::Product" /* ClientTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = ClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2817,6 +2819,7 @@
 				OBJ_209 /* ShopClientTests.swift */,
 				OBJ_210 /* TelemetryClientTests.swift */,
 				220DFB692176724A00BA4EAA /* PlatformClientTests.swift */,
+				220DFB6C2176891000BA4EAA /* DeviceClientTests.swift */,
 			);
 			name = ClientTests;
 			path = Tests/ClientTests;
@@ -5929,6 +5932,7 @@
 				OBJ_2053 /* MenuClientTests.swift in Sources */,
 				OBJ_2054 /* ShopClientTests.swift in Sources */,
 				OBJ_2055 /* TelemetryClientTests.swift in Sources */,
+				220DFB6E2176894700BA4EAA /* DeviceClientTests.swift in Sources */,
 				220DFB6B2176732400BA4EAA /* PlatformClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

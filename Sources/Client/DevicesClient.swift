@@ -93,12 +93,8 @@ public final class DevicesClient: RemoteService {
     let svc = RPCServiceFactory<DevicesService>.factory(
       forService: Transport.config.services.devices,
       withSettings: self.settings)
-    do {
-      try svc.metadata.add(key: "x-api-key", value: apiKey)
-    } catch {
-      // unable to add API key
-      throw DevicesClientError.invalidApiKey
-    }
+
+    try svc.metadata.add(key: "x-api-key", value: apiKey)
     self.svc = svc
     return svc
   }
@@ -138,21 +134,16 @@ public final class DevicesClient: RemoteService {
                        authorizedBy apiKey: APIKey? = nil) throws -> DeviceActivation.Response {
     let service = try self.service(try resolveContext(apiKey))
 
-    do {
-      return try service.activate(DeviceActivation.Request.with { builder in
-        builder.serial = name
+    return try service.activate(DeviceActivation.Request.with { builder in
+      builder.serial = name
 
-        if let f = fingerprint {
-          builder.fingerprint = f
-        }
-        if let p = publicKey {
-          builder.publicKey = p
-        }
-      })
-    } catch {
-      print("error: unknown error occurred")
-      throw DevicesClientError.unknown
-    }
+      if let f = fingerprint {
+        builder.fingerprint = f
+      }
+      if let p = publicKey {
+        builder.publicKey = p
+      }
+    })
   }
 
   /// Activate a device by name, asynchronously. Given the device's serial number ("name"), this returns any active

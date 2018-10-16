@@ -10,6 +10,9 @@ import XCTest
 @testable import Bloombox
 
 
+let testZipcode = "95125"
+
+
 internal final class ShopClientTests: XCTestCase {
   static var allTests = [
     // Shop Tests
@@ -162,6 +165,65 @@ internal final class ShopClientTests: XCTestCase {
         XCTFail("failed to retrieve shop info: cannot measure performance")
       }
     }
+  }
+
+  // MARK: - Zipcode Check
+  func testZipcheckInvalidAPIKey() throws {
+    var caught = false
+    do {
+      let _ = try ClientTools.emptyClient().shop.checkZipcode(zipcode: testZipcode,
+                                                              partner: testPartner,
+                                                              location: testLocation,
+                                                              apiKey: nil)
+    } catch ShopClientError.invalidApiKey {
+      // it worked
+      caught = true
+    }
+    assert(caught, "didn't error with 'invalid API key'")
+  }
+
+  func testZipcheckInvalidPartner() throws {
+    var caught = false
+    do {
+      let _ = try ClientTools.emptyClient().shop.checkZipcode(zipcode: testZipcode,
+                                                              partner: nil,
+                                                              location: testPartner,
+                                                              apiKey: testApiKey)
+    } catch ShopClientError.invalidPartnerCode {
+      // it worked
+      caught = true
+    }
+    assert(caught, "didn't error with 'invalid partner'")
+  }
+
+  func testZipcheckInvalidLocation() throws {
+    var caught = false
+    do {
+      let _ = try ClientTools.emptyClient().shop.checkZipcode(zipcode: testZipcode,
+                                                              partner: testPartner,
+                                                              location: nil,
+                                                              apiKey: testApiKey)
+    } catch ShopClientError.invalidLocationCode {
+      // it worked
+      caught = true
+    }
+    assert(caught, "didn't error with 'invalid location'")
+  }
+
+  func testZipcheckKnownEligible() throws {
+    let result = try ClientTools.client.shop.checkZipcode(zipcode: testZipcode)
+    XCTAssertTrue(result.supported, "known-eligible zipcode should report 'supported' as true")
+  }
+
+  func testZipcheckKnownMinimum() throws {
+    let result = try ClientTools.client.shop.checkZipcode(zipcode: testZipcode)
+    XCTAssertTrue(result.supported, "known-eligible zipcode should report 'supported' as true")
+    XCTAssertEqual(result.deliveryMinimum, 50.0, "known-delivery-minimum should match")
+  }
+
+  func testZipcheckKnownIneligible() throws {
+    let result = try ClientTools.client.shop.checkZipcode(zipcode: "12345")
+    XCTAssertFalse(result.supported, "should indicate unsupported zipcode is unsupported")
   }
 }
 
