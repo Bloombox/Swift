@@ -1,0 +1,4 @@
+- Client/Services/*
+- Client/Schema/*
+- .build/checkouts/*
+
