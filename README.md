@@ -333,7 +333,7 @@ Bloombox telemetry systems distinguish events by category, with three major cate
 *Full docs and guide coming soon.*
 
 
-### Media API  ![Coming Soon](https://img.shields.io/badges/Coming%20Soon-lightgray.svg?style=flat-square)
+### Media API  ![Coming Soon](https://img.shields.io/badge/Coming%20Soon-lightgray.svg?style=flat-square)
 
 | Property  | Value |
 | ------------- | ------------- |
