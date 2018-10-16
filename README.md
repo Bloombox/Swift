@@ -11,7 +11,7 @@ In terms of iOS land, this library client is built in native Swift, and packaged
 
 ### Using the code
 
-Via CocoaPods:
+Via **CocoaPods**:
 ```ruby
 project 'YourProject.xcodeproj/'
 
@@ -28,7 +28,7 @@ target 'YourProject' do
 end
 ```
 
-Via Swift Package Manager:
+Via **Swift Package Manager**:
 ```swift
 // swift-tools-version:4.0
   
@@ -41,6 +41,11 @@ let package = Package(
 
     dependencies: [
         .package(url: "https://github.com/bloombox/swift", .upToNextMinor(from: "0.1.0"))])
+```
+
+Via **Carthage**:
+```
+github "bloombox/swift" ~> 0.1.0
 ```
 
 
