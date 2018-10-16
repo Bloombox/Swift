@@ -147,15 +147,4 @@ extension SchemaTests {
     XCTAssertEqual(complex, try Flower(textFormatString: complex.textFormatString()),
                    "inflated text format string from a complex model should yield an identical model")
   }
-
-  func testTextPerformance() throws {
-    // package it in a big ol' inventory response
-    let response = POSInventoryQuery.Response.with { resp in
-      resp.item = ModelTool.generateInventory(SchemaTests.itemPerformanceTestCount)
-    }
-
-    self.measure {
-      let _ = response.textFormatString()
-    }
-  }
 }

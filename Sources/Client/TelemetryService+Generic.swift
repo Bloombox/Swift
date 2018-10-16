@@ -104,33 +104,6 @@ fileprivate func convertToStruct(dict: [String: Any]) throws -> ProtobufStruct {
 extension TelemetryClient {
   // MARK: Event Telemetry
 
-  /// Method `ping`. Send a message to the Telemetry service, and receive a message back. This function is intended to
-  /// warm the connection and measure latency.
-  ///
-  func ping() throws -> Double {
-    let request = TelemetryPing.Request()
-    let ts = (Date().timeIntervalSinceReferenceDate * 1000)
-    let _ = try events.ping(request)
-    let tsEnd = (Date().timeIntervalSinceReferenceDate * 1000)
-    let diff = Double(round((tsEnd - ts)*1000)/1000)
-    return diff
-  }
-
-  /// Method `ping`. Send a message to the Telemetry service, and receive a message back. This function is intended to
-  /// warm the connection and measure latency.
-  ///
-  @discardableResult
-  func ping(callback: PingCallback? = nil) throws -> TelemetryPingCall {
-    let request = TelemetryPing.Request()
-    let ts = (Date().timeIntervalSinceReferenceDate * 1000)
-    let call = try events.ping(request) { callResult, response in
-      let tsEnd = (Date().timeIntervalSinceReferenceDate * 1000)
-      let diff = Double(round((tsEnd - ts)*1000)/1000)
-      callback?(diff)
-    }
-    return call
-  }
-
   /// Method `event`. Submit a generic event to the Telemetry service. Can be used for any visibility instrumentation
   /// desired and supports arbitrary JSON payloads. This variant offers a simpler interface for simpler events.
   ///
@@ -142,48 +115,7 @@ extension TelemetryClient {
       uuid: nil,
       payload: payload,
       occurred: nil,
-      context: nil) { (result) in
-        // do nothing, we don't care
-    }
-  }
-
-  /// Method `event`. Submit a generic event to the Telemetry service. Can be used for any visibility instrumentation
-  /// desired and supports arbitrary JSON payloads. This variant offers a simpler interface for simpler events, along
-  /// with a callback.
-  ///
-  @discardableResult
-  func event(collection: EventCollection,
-             payload: [String: Any],
-             context: EventContext,
-             callback: GenericEventCallback? = nil) throws -> TelemetryEventCall {
-    return try self.event(
-      collection: collection,
-      uuid: nil,
-      payload: payload,
-      occurred: nil,
-      context: context) { (result) in
-        // do nothing, we don't care
-        callback?(result)
-    }
-  }
-
-  /// Method `event`. Submit a generic event to the Telemetry service. Can be used for any visibility instrumentation
-  /// desired and supports arbitrary JSON payloads.
-  ///
-  @discardableResult
-  func event(collection: EventCollection,
-             uuid: String,
-             payload: [String: Any],
-             occurred: Double? = nil,
-             context: EventContext? = nil) throws -> TelemetryEventCall {
-    return try self.event(
-      collection: collection,
-      uuid: uuid,
-      payload: payload,
-      occurred: occurred,
-      context: context) { (result) in
-        // do nothing, we don't care
-    }
+      context: nil)
   }
 
   /// Method `event`. Submit a generic event to the Telemetry service asynchronously. Can be used for any visibility

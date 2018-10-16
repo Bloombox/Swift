@@ -81,14 +81,6 @@ public protocol RPCService {
 }
 
 
-/// Interface compliance defaults for RPCService.
-extension RPCService {
-  ///
-  ///
-  func prepare() {}
-
-}
-
 /// Generic factory that is capable of creating new instances of RPC service logic classes. Given settings, this class
 /// initializes and prepares an individual RPC service for use.
 internal struct RPCServiceFactory<Service: ServiceClientBase> {

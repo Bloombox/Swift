@@ -13,7 +13,7 @@ import OpenCannabis
 internal let __BLOOMBOX_VARIANT__ = "full"
 
 /// Version of this library.
-internal let __BLOOMBOX_VERSION__ = "0.0.9"
+internal let __BLOOMBOX_VERSION__ = "0.1.1"
 
 
 /// Main Bloombox API client class. Provides access to service-specific clients, and initializes basic settings or
@@ -113,20 +113,15 @@ public final class Bloombox {
   }
 
   // -- Internals -- //
-  private var _settings: Settings
   private var _services: Services
 
   /// Main initializer. Defaults settings to sensible values, if none are provided. Explicit settings can be prepared
   /// ahead of time and handed in - see `Bloombox.Settings`.
   ///
   /// - Parameter settings: Settings to use for the desired client object.
-  public init(settings: Settings? = nil) {
-    if let s = settings {
-      self._settings = s
-    } else {
-      self._settings = Settings.defaultSettings()
-    }
-    self._services = Services(settings: self._settings)
+  public init(settings: Settings = Settings.defaultSettings()) {
+    self._services = Services(settings: settings)
+    self._services.prepare()
   }
 
   // -- Public Interface -- //
@@ -137,13 +132,13 @@ public final class Bloombox {
   ///
   /// - Parameter settings: Updated settings object.
   func updateSettings(_ settings: Settings) {
-    self._settings = settings
-    self._services = Services(settings: self._settings)
+    self._services = Services(settings: settings)
+    self._services.prepare()
   }
 
   /// Fetch active settings for this client.
   public var settings: Settings {
-    return _settings
+    return _services.settings
   }
 
   /// Public access to the mounted services.
