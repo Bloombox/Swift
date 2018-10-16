@@ -34,7 +34,6 @@ Native Swift codegen and bindings for OpenCannabis
 
   # --- Dependencies -----------------―――――――――――――――――――――――――――――――――――――――――――- #
   s.dependency 'SwiftProtobuf', '~> 1.1.2'
-  s.dependency 'SwiftGRPC', '~> 0.6.0'
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.libraries   = "z"
