@@ -2,9 +2,6 @@
 
 [![Build Status](https://travis-ci.org/Bloombox/Swift.svg?branch=master)](https://travis-ci.org/Bloombox/Swift) [![Maintainability](https://api.codeclimate.com/v1/badges/726f360df7dbf653931f/maintainability)](https://codeclimate.com/github/Bloombox/Swift/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/726f360df7dbf653931f/test_coverage)](https://codeclimate.com/github/Bloombox/Swift/test_coverage) ![Version](https://img.shields.io/cocoapods/v/Bloombox.svg?style=flat-square) ![Support](https://img.shields.io/cocoapods/p/Bloombox.svg?style=flat-square) ![GitHub](https://img.shields.io/github/license/bloombox/swift.svg?style=flat-square)
 
-
-Latest Version: `0.1.0`
-
 This Swift package provides an API client for [Bloombox](https://bloombox.io) Cloud APIs. Bloombox APIs are built and served using [gRPC](https://grpc.io) and exposed in client libraries like this one with a more fluid interface to work with. Bloombox systems are [OpenCannabis](https://rfc.opencannabis.info)-compliant, and expose, for instance, an `OpenCannabis` pod that can be used independent of the API client.
 
 You can always opt to use the lower level APIs instead of the client libraries, either via [gRPC+protobuf or JSON-REST](https://console.api.bloombox.cloud).
@@ -45,6 +42,17 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/bloombox/swift", .upToNextMinor(from: "0.1.0"))])
 ```
+
+
+### Schema Pods
+
+The Bloombox Swift SDK is broken into three pods, to make lower-level structures usable directly with a hand-rolled gRPC implementation. They are laid out like so (roughly in reverse-abstraction-order):
+
+| Pod | Version | Platforms | Description |
+| --- | ----- | ------- | --------- | ----------- |
+| `Bloombox` | ![Version](https://img.shields.io/cocoapods/v/Bloombox.svg?style=flat-square) | ![Platforms](https://img.shields.io/cocoapods/p/Bloombox.svg?style=flat-square) | Full client-library facade, example apps, documentation and guides. |
+| `BloomboxServices` | ![Version](https://img.shields.io/cocoapods/v/BloomboxServices.svg?style=flat-square) | ![Platforms](https://img.shields.io/cocoapods/p/BloomboxServices.svg?style=flat-square) | Low-level gRPC services for interacting with Bloombox APIs. |
+| `OpenCannabis` | ![Version](https://img.shields.io/cocoapods/v/OpenCannabis.svg?style=flat-square) | ![Platforms](https://img.shields.io/cocoapods/p/OpenCannabis.svg?style=flat-square) | [OpenCannabis](https://rfc.opencannabis.info)-compatible object tree in Swift. |
 
 
 ### Building the code
@@ -88,7 +96,21 @@ To make cross-location usage easy, most, if not all, methods support overriding 
 
 ### Shop API
 
-Bloombox Shop services allow interaction with ordering, user enrollment and verification, and more. Here is a sample of checking a shop's "info," which includes its open/closed status, and a few other top-of-the-fold details.
+| Property  | Value |
+| ------------- | ------------- |
+| Service  | `shop` |
+| Version  | `v1` |
+| Endpoint | `api.bloombox.cloud` |
+| Domain   | `shop.rpc.bloombox.cloud` |
+
+Bloombox Shop services allow interaction with ordering, user enrollment and verification, and more. The included sample checks a shop's "info," which includes its open/closed status, and a few other top-of-the-fold details. The full set of available shop methods includes:
+
+- `info`: Retrieve `OPEN`/`CLOSED` status and other top-of-the-fold details.
+- `verifyMember`: Perform membership verification on a given user account.
+- `enrollMember`: Enroll a user as a member of a dispensary location, and potentially for a new account.
+- `zipcheck`: Check a given USPS zipcode for delivery eligibility (and applicable minimums).
+- `submitOrder`: Submit an online/commercial order, for `PICKUP` or `DELIVERY`.
+- `getOrder`: Retrieve an existing online/commercial order. 
 
 Synchronous:
 ```swift
@@ -137,6 +159,13 @@ Asynchronous:
 
 ### Devices API
 
+| Property  | Value |
+| ------------- | ------------- |
+| Service  | `devices` |
+| Version  | `v1beta1` |
+| Endpoint | `api.bloombox.cloud` |
+| Domain   | `devices.rpc.bloombox.cloud` |
+
 Performs activation of partner-side devices. For menu tablets and other items, the Devices API provides tools to reach out and discover any assignment and role information bound to the invoking device.
 
 In some circumstances (usually goverened by the assigned device role), a `fingerprint` or `publicKey` value may be required. Device activation may be restricted based on the value of these properties, or, they may need to match the first activation that ever took place for the device in question. Other restrictions may apply to device activation, again, by role, such as enforcement of client-side certificates, IP restrictions, and more.
@@ -177,6 +206,13 @@ Asynchronous:
 
 ### Menu API
 
+| Property  | Value |
+| ------------- | ------------- |
+| Service  | `menu` |
+| Version  | `v1beta1` |
+| Endpoint | `api.bloombox.cloud` |
+| Domain   | `menu.rpc.bloombox.cloud` |
+
 The Menu API provides tools for interacting with product data, in a read-only manner, with an eye towards showcasing/selling products. This is distinguished from more detailed product catalog solutions and Bloombox APIs, in that:
 
 - Items that are out-of-stock or currently not-offered at a given location are withheld by default
@@ -185,7 +221,20 @@ The Menu API provides tools for interacting with product data, in a read-only ma
 
 Some Menu API methods provide flags for overriding the above behavior, but, by and large, the Menu API is designed to provide product catalog data that is then showcased to a potential retail customer.
 
-The simplest example of using the Menu API is retrieving an entire menu for a given partner location:
+The simplest example (shown below) of using the Menu API is retrieving an entire menu for a given partner location. The full set of methods includs:
+
+- `retrieve`: Retrieve the entire menu catalog for a given partner location.
+- `section`: Retrieve a single section of a given location's menu. Menus are sectioned by `ProductKind`.
+- `featured`: Retrieve the current set of featured products on a given location's menu.
+- `products`: Retrieve one or more product data records.
+- `search`: Perform a fulltext search over products currently listed on a given location's menu.
+- `create`: Create a new product record from scratch.
+- `update`: Update an existing product record with new data.
+- `remove`: Remove an existing product record from a location's menu.
+- `productStatus`: Retrieve the current status of a given product record on a location's menu.
+- `inStock`: Mark an existing product record as currently-in-stock on a given location's menu.
+- `outOfStock`: Mark an existing product record as currently-out-of-stock on a given location's menu.
+
 
 Synchronous:
 ```swift
@@ -216,13 +265,34 @@ Asynchronous:
 
 ### Platform API
 
+| Property  | Value |
+| ------------- | ------------- |
+| Service  | `platform` |
+| Version  | `v1` |
+| Endpoint | `api.bloombox.cloud` |
+| Domain   | `platform.rpc.bloombox.cloud` |
+
 Description coming soon.
 
 
 ### Telemetry API
 
-The Telemetry API allows you to relay events as they happen, so they may be attributed in user flows and other Bloombox-provided metrics.
+| Property  | Value |
+| ------------- | ------------- |
+| Service  | `telemetry` |
+| Version  | `v1beta4` |
+| Endpoint | `api.bloombox.cloud` |
+| Domain   | `telemetry.rpc.bloombox.cloud` |
 
+The Telemetry API allows you to relay events as they happen, so they may be attributed in user flows and other Bloombox-provided metrics. Bloombox partners may also record arbitrary events with their own meaning, and optionally have these included in built-in event flows.
+
+Bloombox telemetry systems distinguish events by category, with three major categories supported for external use:
+
+- `EventTelemetry`: Generic event-based telemetry, with arbitrary event payloads.
+- `CommercialTelemetry`: Retail-style funnel-compatible telemetry, broken into *impressions*, *views*, and *actions*.
+- `IdentityTelemetry`: User-identity-related telemetry events. Not directly usable by partners, but consumable in analytics flows.
+
+*A full enumeration and guide for use of these methods is coming soon.*
 
 ## Licensing
 
