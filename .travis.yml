@@ -21,6 +21,6 @@ script:
 test:
   - swift test
 after_script:
-  - bundle exec slather
+  - gem install slather && slather
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
