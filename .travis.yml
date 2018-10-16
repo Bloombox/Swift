@@ -5,7 +5,7 @@ env:
     - CC_TEST_REPORTER_ID=a6aef1a4ab6ca369c8f1845a8ee3697f0841a42a81db527b3948a595fb2b9c22
 language: swift
 xcode_project: Bloombox.xcodeproj
-xcode_scheme: Bloombox
+xcode_scheme: Bloombox-Package
 git:
   submodules: false
 cache:
@@ -15,12 +15,9 @@ before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-script:
-  - swift package generate-xcodeproj
   - swift build
-test:
   - swift test
 after_script:
   - gem install slather && slather
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura
 
