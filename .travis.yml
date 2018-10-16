@@ -24,6 +24,6 @@ install:
   - bundle exec slather setup Bloombox.xcodeproj
 after_success: bundle exec slather
 after_script:
-  - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X xcode
+  - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X xcode -J 'Bloombox'
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura --prefix /Users/sam/Workspace/Client/Swift/.build
 
