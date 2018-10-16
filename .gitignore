@@ -38,3 +38,4 @@ docs
 Package.resolved
 Example/Pods
 Example/Podfile.lock
+cobertura.xml
