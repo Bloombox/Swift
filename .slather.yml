@@ -1,8 +1,14 @@
 coverage_service: cobertura_xml
+travis: true
 xcodeproj: Bloombox.xcodeproj
 scheme: Bloombox-Package
-source_directory: Sources
+source_directory: Sources/Client
 output_directory: .
 ignore:
   - Sources/Schema
   - Sources/Services
+  - \.build
+  - .build
+  - \.build/checkouts
+  - .build/checkouts
+
