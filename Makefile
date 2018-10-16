@@ -39,7 +39,7 @@ clean-docs:
 	@echo "Cleaning docs..."
 	@rm -fr docs/
 
-pods: pod-opencannabis pod-client
+pods: pod-opencannabis pod-services pod-client
 	@echo "Pod work done."
 
 check-local:
@@ -61,12 +61,17 @@ release-package:
 pods-publish: pods
 	@echo "Publishing pods to trunk..."
 	@pod trunk push --allow-warnings --verbose OpenCannabis.podspec
+	@pod trunk push --allow-warnings --verbose BloomboxServices.podspec
 	@pod trunk push --allow-warnings --verbose Bloombox.podspec
 	@echo "Pods published as version $VERSION."
 
 pod-opencannabis:
 	@echo "Linting OpenCannabis pod..."
 	@pod lib lint --allow-warnings --quick --fail-fast --verbose OpenCannabis.podspec
+
+pod-services:
+	@echo "Linting Bloombox services pod..."
+	@pod lib lint --allow-warnings --quick --fail-fast --verbose BloomboxServices.podspec
 
 pod-client:
 	@echo "Linting Bloombox client pod..."
