@@ -17,7 +17,9 @@ before_script:
   - ./cc-test-reporter before-build
   - swift build
   - swift test
+before_install: rvm use $RVM_RUBY_VERSION
+install: bundle install --without=documentation --path ../travis_bundle_dir
+after_success: slather
 after_script:
-  - slather || (gem install slather && slather)
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura
 
