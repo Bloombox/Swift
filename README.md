@@ -1,6 +1,6 @@
 # Bloombox for Swift
 
-[![Build Status](https://travis-ci.org/Bloombox/Swift.svg?branch=master)](https://travis-ci.org/Bloombox/Swift) [![Maintainability](https://api.codeclimate.com/v1/badges/726f360df7dbf653931f/maintainability)](https://codeclimate.com/github/Bloombox/Swift/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/726f360df7dbf653931f/test_coverage)](https://codeclimate.com/github/Bloombox/Swift/test_coverage) ![Version](https://img.shields.io/cocoapods/v/Bloombox.svg?style=flat-square) ![Support](https://img.shields.io/cocoapods/p/Bloombox.svg?style=flat-square) ![GitHub](https://img.shields.io/github/license/bloombox/swift.svg?style=flat-square)
+[![Build Status](https://travis-ci.org/Bloombox/Swift.svg?branch=master)](https://travis-ci.org/Bloombox/Swift) [![Maintainability](https://api.codeclimate.com/v1/badges/726f360df7dbf653931f/maintainability)](https://codeclimate.com/github/Bloombox/Swift/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/726f360df7dbf653931f/test_coverage)](https://codeclimate.com/github/Bloombox/Swift/test_coverage) ![Version](https://img.shields.io/cocoapods/v/Bloombox.svg?style=flat-square) ![Support](https://img.shields.io/cocoapods/p/Bloombox.svg?style=flat-square) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) ![License](https://img.shields.io/github/license/bloombox/swift.svg?style=flat-square)
 
 This Swift package provides an API client for [Bloombox](https://bloombox.io) Cloud APIs. Bloombox APIs are built and served using [gRPC](https://grpc.io) and exposed in client libraries like this one with a more fluid interface to work with. Bloombox systems are [OpenCannabis](https://rfc.opencannabis.info)-compliant, and expose, for instance, an `OpenCannabis` pod that can be used independent of the API client.
 
@@ -101,6 +101,8 @@ To make cross-location usage easy, most, if not all, methods support overriding 
 
 ### Shop API
 
+> [Try this API or browse the docs in the API console](https://console.api.bloombox.cloud/docs/shop.api.bloombox.cloud/g/introduction)
+
 | Property  | Value |
 | ------------- | ------------- |
 | Service  | `shop` |
@@ -141,6 +143,8 @@ Synchronous:
 
 
 ### Platform API
+
+> [Try this API or browse the docs in the API console](https://console.api.bloombox.cloud/docs/platform.api.bloombox.cloud/g/introduction)
 
 | Property  | Value |
 | ------------- | ------------- |
@@ -188,6 +192,8 @@ Asynchronous:
 
 ### Devices API  ![Beta](https://img.shields.io/badge/BETA-yellow.svg?style=flat-square)
 
+> [Try this API or browse the docs in the API console](https://console.api.bloombox.cloud/docs/devices.api.bloombox.cloud/g/introduction)
+
 | Property  | Value |
 | ------------- | ------------- |
 | Service  | `devices` |
@@ -234,6 +240,8 @@ Asynchronous:
 
 
 ### Menu API  ![Beta](https://img.shields.io/badge/BETA-yellow.svg?style=flat-square)
+
+> [Try this API or browse the docs in the API console](https://console.api.bloombox.cloud/docs/menu.api.bloombox.cloud/g/introduction)
 
 | Property  | Value |
 | ------------- | ------------- |
@@ -293,6 +301,8 @@ Asynchronous:
 
 
 ### Telemetry API  ![Beta](https://img.shields.io/badge/BETA-yellow.svg?style=flat-square)
+
+> [Try this API or browse the docs in the API console](https://console.api.bloombox.cloud/docs/telemetry.api.bloombox.cloud/g/introduction)
 
 | Property  | Value |
 | ------------- | ------------- |
