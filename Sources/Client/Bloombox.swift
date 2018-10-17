@@ -13,7 +13,7 @@ import OpenCannabis
 internal let __BLOOMBOX_VARIANT__ = "full"
 
 /// Version of this library.
-internal let __BLOOMBOX_VERSION__ = "0.1.1"
+internal let __BLOOMBOX_VERSION__ = "0.1.2"
 
 
 /// Main Bloombox API client class. Provides access to service-specific clients, and initializes basic settings or
