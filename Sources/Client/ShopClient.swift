@@ -11,19 +11,62 @@ import OpenCannabis
 
 
 // Callback Types
+
+/// Shop callback specificaion. Accepts a gRPC call result, and a shop info response which indicates the  status of an
+/// online store.Two parameters are given and no return value is expected.
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result, carrying the status of the call.
+///    - `ShopInfo.Response?`: If the call succeeded, the self reported status of the online shop
 public typealias ShopInfoCallback = (CallResult, ShopInfo.Response?) -> ()
+
+/// Check Zipcode callback specification. Accepts a gRPC call result, and a Zipcode to be validated
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result, carrying the status of the call.
+///    - `CheckZipcode.Response?`: If the call succeeded, the minimum order for the zipcode and if it's supported or not
 public typealias CheckZipcodeCallback = (CallResult, CheckZipcode.Response?) -> ()
+
+/// Verify Member callback specification. Accepts a gRPC call result, and a membership to be validated
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result, carrying the status of the call.
+///    - `VerifyMember.Response`: If the call succeeded, The verification status of the member
 public typealias VerifyMemberCallback = (CallResult, VerifyMember.Response?) -> ()
+
+/// Enroll Member callback specification. Accepts a gRPC call result, and a member to be enrolled
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result, carrying the status of the call.
+///    - `EnrollMember.Response`: If the call succeeded, the current enrollment status of the member
 public typealias EnrollMemberCallback = (CallResult, EnrollMember.Response?) -> ()
+
+/// Get Order callback specification. Accepts a gRPC call result, and an order ID to retrieve
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result, carrying the status of the call.
+///    - `GetOrder.Response`:  If the call succeeded, retrieves the order
 public typealias GetOrderCallback = (CallResult, GetOrder.Response?) -> ()
+
+/// Submit order callback specification. Accepts gRPC call result, and an order to be submitted
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result, carrying the status of the call.
+///    - `SubmitOrder.Response`:  If the call succeeded, submits the order
 public typealias SubmitOrderCallback = (CallResult, SubmitOrder.Response?) -> ()
 
 
 /// Enumerates code-level errors in the Shop client.
 public enum ShopClientError: Error {
+  /// The provided API key was found to be invalid.
   case invalidApiKey
+
+  /// The provided partner account code was found to be invalid, or none could be resolved.
   case invalidPartnerCode
+  /// The provided location account code was found to be invalid, or none could be resolved.
   case invalidLocationCode
+
+  /// An internal error happened during a given request or request value.
   case internalError
 }
 
@@ -46,13 +89,13 @@ public final class ShopClient: RemoteService {
   internal var svc: ShopService?
 
   /// Library-internal initializer.
-  ///
+  /// - Parameter settings: settings to initialize with.
   public init(settings: Bloombox.Settings) {
     self.settings = settings
   }
 
   /// Shop service.
-  ///
+  /// - Parameter apiKey: API key to use when invoking API calls.
   internal func service(_ apiKey: APIKey) throws -> ShopService {
     if let s = self.svc {
       return s
@@ -68,6 +111,11 @@ public final class ShopClient: RemoteService {
 
   /// Resolve partner and location context, throwing an error if it cannot be figured out.
   ///
+  /// - Parameter partner: Partner account code to use.
+  /// - Parameter location: Partner location account code to invoke under.
+  /// - Parameter apikey: API key to use when invoking API calls.
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: `ShopClientError` codes related to the API or the circumstances of the order
   private func resolveContext(_ partner: PartnerCode? = nil,
                               _ location: LocationCode? = nil,
                               _ apiKey: APIKey? = nil) throws -> (partner: PartnerCode, location: LocationCode, apiKey: APIKey) {
@@ -97,6 +145,11 @@ public final class ShopClient: RemoteService {
 
   /// Retrieve info about a particular storefront, specifically, its open/closed status, hours, and metadata.
   ///
+  /// - Parameter partner: Partner account code to use.
+  /// - Parameter location: Partner location account code to invoke under.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: `ShopClientError` codes related to the API or the circumstances of the order
   public func info(partner: PartnerCode? = nil,
                    location: LocationCode? = nil,
                    apiKey: APIKey? = nil) throws -> ShopInfo.Response {
@@ -115,6 +168,12 @@ public final class ShopClient: RemoteService {
   /// Retrieve info, asynchronously, about a particular storefront, specifically, its open/closed status, hours, and
   /// metadata.
   ///
+  /// - Parameter partner: Partner account code to use.
+  /// - Parameter location: Partner location account code to invoke under.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Parameter callback:
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: Client side errors. see: `ShopClientError`
   @discardableResult
   public func info(partner: PartnerCode? = nil,
                    location: LocationCode? = nil,
@@ -138,6 +197,12 @@ public final class ShopClient: RemoteService {
 
   /// Check a zipcode for delivery eligibility, including any order minimum required, if specified by the server.
   ///
+  /// - Parameter zipcode: US postal zipcode.
+  /// - Parameter partner: Partner account code to use.
+  /// - Parameter location: Partner location account code to invoke under.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: `ShopClientError` codes related to the API or the circumstances of the order
   public func checkZipcode(zipcode: String,
                            partner: PartnerCode? = nil,
                            location: LocationCode? = nil,
@@ -158,6 +223,13 @@ public final class ShopClient: RemoteService {
   /// Check a zipcode, asynchronously, for delivery eligibility, including any order minimum required, if specified by
   /// the server.
   ///
+  /// - Parameter zipcode: US postal zipcode.
+  /// - Parameter partner: Partner account code to use.
+  /// - Parameter location: Partner location account code to invoke under.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Parameter callback:
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: Client side errors. see: `ShopClientError`
   @discardableResult
   public func checkZipcode(zipcode: String,
                            partner: PartnerCode? = nil,
@@ -185,6 +257,12 @@ public final class ShopClient: RemoteService {
   /// membership with the partner/location in question, and have no expired documents, like medical recommendations and
   /// IDs.
   ///
+  /// - Parameter email: Consumer email address
+  /// - Parameter partner: Partner account code to use.
+  /// - Parameter location: Partner location account code to invoke under.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: `ShopClientError` codes related to the API or the circumstances of the order
   public func verifyMember(email: String,
                            partner: PartnerCode? = nil,
                            location: LocationCode? = nil,
@@ -210,6 +288,13 @@ public final class ShopClient: RemoteService {
   /// valid account, membership with the partner/location in question, and have no expired documents, like medical
   /// recommendations and IDs.
   ///
+  /// - Parameter email: Consumer email address
+  /// - Parameter partner: Partner account code to use.
+  /// - Parameter location: Partner location account code to invoke under.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Parameter callback:
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: Client side errors. see: `ShopClientError`
   @discardableResult
   public func verifyMember(email: String,
                            partner: PartnerCode? = nil,
@@ -236,6 +321,11 @@ public final class ShopClient: RemoteService {
   /// Enroll a member for a new account, and have them auto-join the enrolling partner location. Under the hood, this
   /// creates an account, writes it to the partner systems, and then auto-creates a membership.
   ///
+  /// - Parameter enrollment: Information required in order to enroll/onboard a new user as a member of a retail
+  /// dispensary.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: `ShopClientError` codes related to the API or the circumstances of the order
   public func enrollMember(enrollment: EnrollMember.Request,
                            apiKey: APIKey? = nil) throws -> EnrollMember.Response {
     let apiKey = apiKey ?? settings.apiKey
@@ -248,6 +338,12 @@ public final class ShopClient: RemoteService {
   /// Enroll a member for a new account, asynchronously, and have them auto-join the enrolling partner location. Under
   /// the hood, this creates an account, writes it to the partner systems, and then auto-creates a membership.
   ///
+  /// - Parameter enrollment: Information required in order to enroll/onboard a new user as a member of a retail
+  /// dispensary.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Parameter callback: Callable to dispatch once either a terminal error or response are available.
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: Client side errors. see: `ShopClientError`
   @discardableResult
   public func enrollMember(enrollment: EnrollMember.Request,
                            apiKey: APIKey? = nil,
@@ -266,6 +362,12 @@ public final class ShopClient: RemoteService {
   /// Retrieve information about a previously-submitted pickup or delivery order. Includes status information and an
   /// action log.
   ///
+  /// - Parameter id: Order ID to send with events
+  /// - Parameter partner: Partner account code to use.
+  /// - Parameter location: Partner location account code to invoke under.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Returns: Information about an existing express pickup or delivery order
+  /// - Throws: `ShopClientError` codes related to the API or the circumstances of the order
   public func getOrder(id: OrderID,
                        partner: PartnerCode? = nil,
                        location: LocationCode? = nil,
@@ -286,6 +388,13 @@ public final class ShopClient: RemoteService {
   /// Retrieve information, asynchronously, about a previously-submitted pickup or delivery order. Includes status
   /// information and an action log.
   ///
+  /// - Parameter id: Order ID to send with events
+  /// - Parameter partner: Partner account code to use.
+  /// - Parameter location: Partner location account code to invoke under.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Parameter callback: Callable to dispatch once either a terminal error or response are available.
+  /// - Returns: RPC call object, which can be used to observe state or cancel the call.
+  /// - Throws: Client side errors. see: `ShopClientError`
   @discardableResult
   public func getOrder(id: OrderID,
                        partner: PartnerCode? = nil,
@@ -312,6 +421,13 @@ public final class ShopClient: RemoteService {
   /// Submit a new order for pickup or delivery. Requires an existing member account, acquireable via `enrollMember`,
   /// and valid item keys for each item desired as part of the order.
   ///
+  /// - Parameter order: Represents a full order submitted to the server for fulfillment
+  /// - Parameter orderID: Order ID to send with events
+  /// - Parameter partner: Partner account code to use.
+  /// - Parameter location: Partner location account code to invoke under.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Returns: Confirmation of submission of an express pickup or delivery order.
+  /// - Throws: `ShopClientError` codes related to the API or the circumstances of the order
   public func submitOrder(order: Order,
                           orderID id: OrderID? = nil,
                           partner: PartnerCode? = nil,
@@ -333,6 +449,14 @@ public final class ShopClient: RemoteService {
   /// Submit a new order, asynchronously, for pickup or delivery. Requires an existing member account, acquireable via
   /// `enrollMember`, and valid item keys for each item desired as part of the order.
   ///
+  /// - Parameter order: Represents a full order submitted to the server for fulfillment
+  /// - Parameter orderID: Order ID to send with events
+  /// - Parameter partner: Partner account code to use.
+  /// - Parameter location: Partner location account code to invoke under.
+  /// - Parameter apiKey: API key to use when invoking API calls.
+  /// - Parameter callback: Callable to dispatch once either a terminal error or response are available.
+  /// - Returns: Confirmation of submission of an express pickup or delivery order.
+  /// - Throws: Client side errors. see: `ShopClientError`
   @discardableResult
   public func submitOrder(order: Order,
                           orderID id: OrderID? = nil,
