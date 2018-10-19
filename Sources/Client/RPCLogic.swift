@@ -71,12 +71,16 @@ internal struct TLSEndpoint: SecureRPCEndpoint {
 
 /// Main protocol for a remotely-supported RPC service.
 public protocol RPCService {
+  /// Initializes the channel for gRPC operatons.
   ///
-  ///
+  /// - Parameter channel: A gRPC Channel
   init(channel: Channel)
 
+  /// Initialize the gRPC address, security status and its settings.
   ///
-  ///
+  /// - Parameter address: the address of the server to be called
+  /// - Parameter secure: if true, use TLS
+  /// - Parameter arguments: list of channel configuration options
   init(address: String, secure: Bool, arguments: [Channel.Argument])
 }
 
@@ -86,6 +90,7 @@ public protocol RPCService {
 internal struct RPCServiceFactory<Service: ServiceClientBase> {
   /// Produce an RPC endpoint spec from a set of RPC service settings.
   ///
+  /// - Parameter settings: settings to initialize the service with.
   static func endpoint(forService settings: RPCServiceSettings) -> RPCEndpoint {
     if settings.secure {
       return TLSEndpoint(
@@ -105,6 +110,8 @@ internal struct RPCServiceFactory<Service: ServiceClientBase> {
   /// Factory a new instance of the service this factory is specialized to. Given an endpoint spec, initialize the new
   /// service and prepare it for use.
   ///
+  /// - Parameter endpoint: The information to connect to a remote RPC endpoint
+  /// - Parameter settings: Settings to initialize with.
   static func factory(endpoint: RPCEndpoint, withSettings settings: Bloombox.Settings) -> Service {
     if let chan = settings.channel {
       // pre-existing channel
@@ -130,6 +137,8 @@ internal struct RPCServiceFactory<Service: ServiceClientBase> {
   /// Factory a new instance of the service this factory is specialized to. Given a set of RPC service settings, build
   /// an endpoint spec, and then initialize the new service and prepare it for use.
   ///
+  /// - Parameter endpoint: The information to connect to a remote RPC endpoint
+  /// - Parameter settings: Settings to initialize with.
   static func factory(forService service: RPCServiceSettings, withSettings settings: Bloombox.Settings) -> Service {
     return factory(endpoint: endpoint(forService: service), withSettings: settings)
   }
@@ -146,6 +155,7 @@ internal final class RPCLogic: ClientLogic {
 
   /// Initialize this RPC logic with client settings.
   ///
+  /// - Parameter settings: settings to initialize with.
   init(settings: Bloombox.Settings) {
     self.settings = settings
   }
