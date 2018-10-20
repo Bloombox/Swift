@@ -269,14 +269,38 @@ internal protocol TransportSettings {
 
 /// Specifies a configuration set for supported RPC services.
 internal struct RPCServicesConfig: ServiceSettings {
+
+  /// Auth service. Provides methods that resolve authorizing a member of a dispensary.
   let auth: RPCServiceSettings
+
+  /// Devices service. Provides methods that deal with partner co-located, or 2nd party, hardware devices, including
+  /// pings, activations, and so on.
   let devices: RPCServiceSettings
+
+  /// Shop service. Provides information about a dispensary, and the ability to verify/enroll members. Also provides
+  /// order submission and status methods.
   let shop: RPCServiceSettings
+
+  /// Telemetry service. Provides the ability to submit event analytics data as it happens, and have it attributed and
+  /// placed in the larger flow.
   let telemetry: RPCServiceSettings
+
+  /// Menu service. Provides the ability to download menu data, update product inventory or content, and filter and sort
+  /// items.
   let menu: RPCServiceSettings
+
+  /// Media service. Provides the ability to submit media.
   let media: RPCServiceSettings
+
+  /// Point-of-Sale service. Provides supporting logic for physical, in-person purchases at brick and mortar retailer
+  /// locations.
   let pos: RPCServiceSettings
+
+  /// Platform service. Provides methods that resolve basic info, map info to other info, and so on. Healthchecks and
+  /// cloud platform pings happen here, too.
   let platform: RPCServiceSettings
+
+  /// Check-in service. Provides methods to verify members and queue or track their visit inside a dispensary.
   let checkin: RPCServiceSettings
 }
 

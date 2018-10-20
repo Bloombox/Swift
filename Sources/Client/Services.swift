@@ -21,6 +21,7 @@ public final class Services: ClientLogic {
 
   /// Main initializer, used by the library.
   ///
+  /// - Parameter settings: settings to initialize with.
   internal init(settings: Bloombox.Settings) {
     self.settings = settings
     self.rpc = RPCLogic(settings: self.settings)

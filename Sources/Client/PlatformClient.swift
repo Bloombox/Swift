@@ -161,7 +161,7 @@ public final class PlatformClient: RemoteService {
   }
 
   ///
-  ///
+  /// - Parameter callback:
   @discardableResult
   public func healthcheck(_ callback: @escaping HealthcheckCallback) throws -> HealthcheckCall {
     return try self.service(self.resolveContext().apiKey).health(Empty()) { (_, result) in
@@ -172,7 +172,8 @@ public final class PlatformClient: RemoteService {
   // MARK: Method: Resolve
 
   ///
-  ///
+  /// - Parameter domain: Base64-encoded domain origin to resolve.
+  /// - Parameter apikey: API key to use when invoking API calls.
   public func resolve(encodedDomain domain: String,
                       forAPIKey apiKey: APIKey? = nil) throws -> ResolveDomains.Response {
     return try self.service(self.resolveContext(apiKey).apiKey)
@@ -182,7 +183,8 @@ public final class PlatformClient: RemoteService {
   }
 
   ///
-  ///
+  /// - Parameter domain: Base64-encoded domain origin to resolve.
+  /// - Parameter apikey: API key to use when invoking API calls.
   @discardableResult
   public func resolve(encodedDomain domain: String,
                       forAPIKey apiKey: APIKey? = nil,
@@ -197,7 +199,7 @@ public final class PlatformClient: RemoteService {
   }
 
   ///
-  ///
+  /// - Parameter domain: Domain origin to encode.
   public func resolve(domain: String) throws -> ResolveDomains.Response {
     if let encoded = domain.data(using: .utf8)?
                            .base64EncodedString()
