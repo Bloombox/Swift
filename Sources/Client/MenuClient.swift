@@ -121,7 +121,7 @@ public final class MenuClient: RemoteService {
                        location: LocationCode? = nil,
                        keysOnly: Bool = false,
                        apiKey: APIKey? = nil) throws -> GetMenu.Response {
-    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
+    let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
     let service = try self.service(apiKey)
 
     return try service.retrieve(GetMenu.Request.with { builder in
@@ -151,7 +151,7 @@ public final class MenuClient: RemoteService {
                        keysOnly: Bool = false,
                        apiKey: APIKey? = nil,
                        callback: @escaping MenuRetrieveCallback) throws -> GetMenuCall {
-    let (locationCode, partnerCode, apiKey) = try resolveContext(partner, location, apiKey)
+    let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
     let service = try self.service(apiKey)
 
     return try service.retrieve(GetMenu.Request.with { builder in

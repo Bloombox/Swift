@@ -45,7 +45,7 @@ internal struct Transport {
   static let config: TransportSettings = Transport.environment.config
 
   // MARK: Configuration Profiles
-  #if DEBUG
+  #if DEBUG_BBX_CLIENT
   /// Sandbox transport profile.
   internal struct Sandbox: TransportSettings {
     let data: DataEnvironment = .sandbox
@@ -95,7 +95,7 @@ internal struct Transport {
 
 
 // MARK: - Singletons
-#if DEBUG
+#if DEBUG_BBX_CLIENT
 fileprivate let __sandbox = Transport.Sandbox()
 fileprivate let __staging = Transport.Staging()
 #endif
@@ -115,7 +115,7 @@ internal enum TransportEnvironment {
 
   /// Retrieve the configuration singleton for a particular transport environment.
   var config: TransportSettings {
-    #if DEBUG
+    #if DEBUG_BBX_CLIENT
       switch self {
       case .sandbox: return __sandbox
       case .staging: return __staging
@@ -226,7 +226,7 @@ internal struct ProductionPlatform: RPCServiceSettings {
   let key: String? = nil
 }
 
-#if DEBUG
+#if DEBUG_BBX_CLIENT
   /// Local shop settings.
   internal struct LocalShop: RPCServiceSettings {
     let secure = false
