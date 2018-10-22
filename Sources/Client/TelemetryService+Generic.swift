@@ -99,8 +99,8 @@ fileprivate func convertToStruct(dict: [String: Any]) throws -> ProtobufStruct {
 }
 
 
-///
-///
+/// Extends functionality for the telemetry client API which supports operations for submitting events for
+/// telemetry, analytics events, and error reporting.
 extension TelemetryClient {
   // MARK: Event Telemetry
 
