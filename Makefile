@@ -64,7 +64,7 @@ check-local:
 	@echo "Checking local state for releaseability..."
 	@git diff-index --quiet HEAD --
 
-release: check-local pods release-begin release-package pods-publish
+release: check-local pods release-begin release-package pods-publish update-docs
 	@echo "Release complete for version $(VERSION)."
 
 release-begin:
