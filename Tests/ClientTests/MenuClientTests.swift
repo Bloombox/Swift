@@ -25,16 +25,6 @@ internal final class MenuClientTests: XCTestCase {
     assert(menu.hasCatalog, "downloaded menu should have a product catalog")
   }
 
-  func testMenuDownloadPerformance() throws {
-    self.measure {
-      if let _ = try? ClientTools.client.menu.retrieve() {
-        // got a menu response
-      } else {
-        XCTFail("failed to retrieve menu: cannot test performance")
-      }
-    }
-  }
-
   func testMenuInvalidApiKey() throws {
     var caught = false
     do {

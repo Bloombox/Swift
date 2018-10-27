@@ -126,7 +126,7 @@ public final class MenuClient: RemoteService {
     let service = try self.service(apiKey)
 
     return try service.retrieve(GetMenu.Request.with { builder in
-      builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
+      builder.scope = "partners/\(partnerCode)/locations/\(locationCode)"
     })
   }
 
@@ -156,7 +156,7 @@ public final class MenuClient: RemoteService {
     let service = try self.service(apiKey)
 
     return try service.retrieve(GetMenu.Request.with { builder in
-      builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
+      builder.scope = "partners/\(partnerCode)/locations/\(locationCode)"
     }) { (response, callResult) in
       callback(callResult, response)
     }
