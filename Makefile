@@ -4,7 +4,7 @@
 #
 
 SCHEMA ?= Schema/
-VERSION ?= 0.1.4
+VERSION ?= 0.1.5
 SCHEMA_BRANCH ?= master
 SWIFT_GRPC ?= SwiftGRPC
 
@@ -30,6 +30,14 @@ docs/:
 		--github_url https://github.com/bloombox/swift \
 		--theme 'apple' \
 		--include "Sources/Client/*";
+
+update-docs: clean-docs docs/
+	@echo "Updating docs..."
+	@cd docs/ && git init && git add . && git commit -m "Update docs" && \
+		git checkout -b gh-pages && \
+		git remote add pages git@github.com:bloombox/swift.git && \
+		git push pages gh-pages --force;
+	@echo "Docs update done."
 
 clean: clean-docs
 	@echo "Cleaning Swift client for Bloombox..."

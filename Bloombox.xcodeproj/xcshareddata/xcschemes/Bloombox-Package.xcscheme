@@ -14,65 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Bloombox::BloomboxServices"
+               BuildableName = "BloomboxServices.framework"
+               BlueprintName = "BloomboxServices"
+               ReferencedContainer = "container:Bloombox.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "Bloombox::OpenCannabis"
                BuildableName = "OpenCannabis.framework"
                BlueprintName = "OpenCannabis"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftGRPC::BoringSSL"
-               BuildableName = "BoringSSL.framework"
-               BlueprintName = "BoringSSL"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftGRPC::SwiftGRPC"
-               BuildableName = "SwiftGRPC.framework"
-               BlueprintName = "SwiftGRPC"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftProtobuf::SwiftProtobuf"
-               BuildableName = "SwiftProtobuf.framework"
-               BlueprintName = "SwiftProtobuf"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "SwiftGRPC::CgRPC"
-               BuildableName = "CgRPC.framework"
-               BlueprintName = "CgRPC"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -90,49 +48,14 @@
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::BloomboxServices"
-               BuildableName = "BloomboxServices.framework"
-               BlueprintName = "BloomboxServices"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <CodeCoverageTargets>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Bloombox::Bloombox"
-            BuildableName = "Bloombox.framework"
-            BlueprintName = "Bloombox"
-            ReferencedContainer = "container:Bloombox.xcodeproj">
-         </BuildableReference>
-      </CodeCoverageTargets>
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::ClientTests"
-               BuildableName = "ClientTests.xctest"
-               BlueprintName = "ClientTests"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -140,6 +63,16 @@
                BlueprintIdentifier = "Bloombox::SchemaTests"
                BuildableName = "SchemaTests.xctest"
                BlueprintName = "SchemaTests"
+               ReferencedContainer = "container:Bloombox.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Bloombox::ClientTests"
+               BuildableName = "ClientTests.xctest"
+               BlueprintName = "ClientTests"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -160,9 +93,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Bloombox::OpenCannabis"
-            BuildableName = "OpenCannabis.framework"
-            BlueprintName = "OpenCannabis"
+            BlueprintIdentifier = "Bloombox::BloomboxServices"
+            BuildableName = "BloomboxServices.framework"
+            BlueprintName = "BloomboxServices"
             ReferencedContainer = "container:Bloombox.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
