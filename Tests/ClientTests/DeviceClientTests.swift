@@ -16,7 +16,9 @@ internal final class DeviceClientTests: XCTestCase {
     // Device Tests
     ("testActivateInvalidAPIKey", testActivateInvalidAPIKey),
     ("testActivateUnknownDevice", testActivateUnknownDevice),
-    ("testActivateDeviceKnownGood", testActivateDeviceKnownGood)
+    ("testActivateUnknownDeviceAsync", testActivateUnknownDeviceAsync),
+    ("testActivateDeviceKnownGood", testActivateDeviceKnownGood),
+    ("testActivateKnownGoodAsync", testActivateKnownGoodAsync)
   ]
 
   // MARK: - Device Tests
@@ -35,15 +37,49 @@ internal final class DeviceClientTests: XCTestCase {
   func testActivateUnknownDevice() throws {
     var caught = false
     do {
-      let _: DeviceActivation.Response = try ClientTools.client.devices.activate(deviceSerial: "NO-SUCH-DEVICE-123")
+      let _: DeviceActivation.Response = try ClientTools.client.devices.activate(
+        deviceSerial: "NO-SUCH-DEVICE-123",
+        withFingerprint: "ABC123",
+        withPublicKey: "asdlkajsdlaskj")
     } catch {
       caught = true
     }
     XCTAssertTrue(caught, "should throw server-side error for unknown device")
   }
 
+  func testActivateUnknownDeviceAsync() throws {
+    let expectation = XCTestExpectation(description: "Activate unknown device")
+
+    do {
+      let _: DeviceActivateCall = try ClientTools.client.devices.activate(
+        deviceSerial: "NO-SUCH-DEVICE-123",
+        withFingerprint: "ABC123",
+        withPublicKey: "asldkjasldkjsaldj") { (result, response, err) in
+          // handle response
+          XCTAssertNil(response, "response should be nil when no device could be found")
+          expectation.fulfill()
+      }
+    }
+
+    wait(for: [expectation], timeout: 15.0)
+  }
+
   func testActivateDeviceKnownGood() throws {
     let resp: DeviceActivation.Response = try ClientTools.client.devices.activate(deviceSerial: testDevice)
     XCTAssertTrue(resp.active, "should allow activation of known-good device")
+  }
+
+  func testActivateKnownGoodAsync() throws {
+    let expectation = XCTestExpectation(description: "Activate known-good device")
+
+    do {
+      let _: DeviceActivateCall = try ClientTools.client.devices.activate(deviceSerial: testDevice) { (result, response, err) in
+          // handle response
+          XCTAssertNotNil(response, "response should be available for a valid device")
+          expectation.fulfill()
+      }
+    }
+
+    wait(for: [expectation], timeout: 15.0)
   }
 }
