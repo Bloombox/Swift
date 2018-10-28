@@ -1,0 +1,30 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Test the client"
+  lane :testsuite do
+    scan(project: "Bloombox.xcodeproj",
+         scheme: "Client",
+         code_coverage: true,
+         skip_build: true,
+         devices: ["iPhone X"],
+         output_directory: "./tests-out")
+
+    slather(proj: "Bloombox.xcodeproj",
+            scheme: "Client",
+            cobertura_xml: true,
+            output_directory: "./coverage-out")
+  end
+end
