@@ -6,12 +6,9 @@ env:
     - CODECOV_TOKEN=5f05c93b-cde4-421b-b1a7-7da0b91d9c67
 language: swift
 xcode_project: Bloombox.xcodeproj
-xcode_scheme: Bloombox-Package
+xcode_scheme: Client
 git:
   submodules: false
-cache:
-  directories:
-    - ./.build
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
