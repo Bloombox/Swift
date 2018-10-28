@@ -13,6 +13,8 @@ before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
+  - swift package resolve
+  - swift package generate-xcodeproj
   - swift build
   - swift test
 before_install: rvm use $RVM_RUBY_VERSION
