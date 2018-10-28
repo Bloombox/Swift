@@ -13,7 +13,6 @@ before_script:
 before_install: rvm use $RVM_RUBY_VERSION
 install:
   - bundle install --without=documentation --path ../travis_bundle_dir
-  - setup_travis
 script: fastlane testsuite
 after_script:
   - bash <(curl -s https://codecov.io/bash) -f ./coverage-out/cobertura.xml -X xcode -J 'Bloombox'
