@@ -190,10 +190,7 @@ public final class ShopClient: RemoteService {
                            location: LocationCode? = nil,
                            apiKey: APIKey? = nil) throws -> VerifyMember.Response {
     let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
-
-    guard let base64EncodedEmail = email.data(using: .utf8)?.base64EncodedString() else {
-      throw ShopClientError.internalError
-    }
+    let base64EncodedEmail = email.data(using: .utf8)!.base64EncodedString()
 
     return try self.service(apiKey).verifyMember(VerifyMember.Request.with { builder in
       builder.emailAddress = base64EncodedEmail.replacingOccurrences(of: "=", with: "")
@@ -228,36 +225,6 @@ public final class ShopClient: RemoteService {
       }
       }) { (response, callResult) in
         callback(callResult, response)
-    }
-  }
-
-  // MARK: - Enroll Member
-
-  /// Enroll a member for a new account, and have them auto-join the enrolling partner location. Under the hood, this
-  /// creates an account, writes it to the partner systems, and then auto-creates a membership.
-  ///
-  public func enrollMember(enrollment: EnrollMember.Request,
-                           apiKey: APIKey? = nil) throws -> EnrollMember.Response {
-    let apiKey = apiKey ?? settings.apiKey
-    guard apiKey != nil else {
-      throw ShopClientError.invalidApiKey
-    }
-    return try self.service(apiKey!).enrollMember(enrollment)
-  }
-
-  /// Enroll a member for a new account, asynchronously, and have them auto-join the enrolling partner location. Under
-  /// the hood, this creates an account, writes it to the partner systems, and then auto-creates a membership.
-  ///
-  @discardableResult
-  public func enrollMember(enrollment: EnrollMember.Request,
-                           apiKey: APIKey? = nil,
-                           callback: @escaping EnrollMemberCallback) throws -> EnrollMemberCall {
-    let apiKey = apiKey ?? settings.apiKey
-    guard apiKey != nil else {
-      throw ShopClientError.invalidApiKey
-    }
-    return try self.service(apiKey!).enrollMember(enrollment) { (response, callResult) in
-      callback(callResult, response)
     }
   }
 
@@ -304,54 +271,6 @@ public final class ShopClient: RemoteService {
       }
     }) { (response, callResult) in
       callback(callResult, response)
-    }
-  }
-
-  // MARK: - Submit Order
-
-  /// Submit a new order for pickup or delivery. Requires an existing member account, acquireable via `enrollMember`,
-  /// and valid item keys for each item desired as part of the order.
-  ///
-  public func submitOrder(order: Order,
-                          orderID id: OrderID? = nil,
-                          partner: PartnerCode? = nil,
-                          location: LocationCode? = nil,
-                          apiKey: APIKey? = nil) throws -> SubmitOrder.Response {
-    let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
-
-    return try self.service(apiKey).submitOrder(SubmitOrder.Request.with { builder in
-      builder.order = order
-      builder.location = LocationKey.with { builder in
-        builder.code = locationCode
-        builder.partner = PartnerKey.with { builder in
-          builder.code = partnerCode
-        }
-      }
-    })
-  }
-
-  /// Submit a new order, asynchronously, for pickup or delivery. Requires an existing member account, acquireable via
-  /// `enrollMember`, and valid item keys for each item desired as part of the order.
-  ///
-  @discardableResult
-  public func submitOrder(order: Order,
-                          orderID id: OrderID? = nil,
-                          partner: PartnerCode? = nil,
-                          location: LocationCode? = nil,
-                          apiKey: APIKey? = nil,
-                          callback: @escaping SubmitOrderCallback) throws -> SubmitOrderCall {
-    let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
-
-    return try self.service(apiKey).submitOrder(SubmitOrder.Request.with { builder in
-      builder.order = order
-      builder.location = LocationKey.with { builder in
-        builder.code = locationCode
-        builder.partner = PartnerKey.with { builder in
-          builder.code = partnerCode
-        }
-      }
-      }) { (response, callResult) in
-        callback(callResult, response)
     }
   }
 

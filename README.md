@@ -23,8 +23,8 @@ inhibit_all_warnings!
 target 'YourProject' do
   use_frameworks!
 
-  pod 'OpenCannabis', '~> 0.1.0'
-  pod 'Bloombox', '~> 0.1.0'
+  pod 'OpenCannabis', '~> 0.1.5'
+  pod 'Bloombox', '~> 0.1.5'
 end
 ```
 
@@ -40,12 +40,12 @@ let package = Package(
     /// ...
 
     dependencies: [
-        .package(url: "https://github.com/bloombox/swift", .upToNextMinor(from: "0.1.0"))])
+        .package(url: "https://github.com/bloombox/swift", .upToNextMinor(from: "0.1.5"))])
 ```
 
 Via **Carthage**:
 ```
-github "bloombox/swift" ~> 0.1.0
+github "bloombox/swift" ~> 0.1.5
 ```
 
 
@@ -65,7 +65,7 @@ The Bloombox Swift SDK is broken into three pods, to make lower-level structures
 Building the code is easy and follows standard Swift packaging conventions. There is also a `Makefile` packaged with various useful routines - you'll use `make` if you are developing on the code.
 
 **Tooling:**
-- Xcode 10/Swift 4.2 (for version `0.1.0` and above, previously Xcode 9 / Swift 3.2)
+- Xcode 10/Swift 4.2 (for version `0.1.5` and above, previously Xcode 9 / Swift 3.2)
 - `make` and other CLI tools for XCode
 - Code access to private schema repos for Bloombox
 

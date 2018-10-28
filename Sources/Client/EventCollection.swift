@@ -24,11 +24,7 @@ public enum EventCollection {
   case identity(IdentityEvent)
 
   fileprivate static func encodeCollectionName(_ name: String) -> String? {
-    guard let data = Data(base64Encoded: name) else {
-      // failed to encode collection name
-      return nil
-    }
-    return String(data: data, encoding: .utf8)
+    return name.data(using: .utf8)?.base64EncodedString()
   }
 
   internal func export() -> AnalyticsCollection {

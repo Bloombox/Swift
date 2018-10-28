@@ -1,30 +1,19 @@
 os: osx
-osx_image: xcode9.4
+osx_image: xcode10
 env:
   global:
-    - CC_TEST_REPORTER_ID=a6aef1a4ab6ca369c8f1845a8ee3697f0841a42a81db527b3948a595fb2b9c22
     - CODECOV_TOKEN=5f05c93b-cde4-421b-b1a7-7da0b91d9c67
 language: swift
 xcode_project: Bloombox.xcodeproj
-xcode_scheme: Bloombox-Package
+xcode_scheme: Client
 git:
   submodules: false
-cache:
-  directories:
-    - ./.build
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-  - swift build
-  - swift test
+  - rm -fr .build && swift package resolve && swift package generate-xcodeproj
 before_install: rvm use $RVM_RUBY_VERSION
 install:
   - bundle install --without=documentation --path ../travis_bundle_dir
-  - bundle exec slather setup Bloombox.xcodeproj
-  - make pods
-after_success: bundle exec slather
+script: fastlane testsuite
 after_script:
-  - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X xcode -J 'Bloombox'
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT --coverage-input-type cobertura --prefix /Users/sam/Workspace/Client/Swift/.build
+  - bash <(curl -s https://codecov.io/bash) -f ./coverage-out/cobertura.xml -X xcode -J 'Bloombox'
 

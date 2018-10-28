@@ -4,7 +4,7 @@
 #
 
 SCHEMA ?= Schema/
-VERSION ?= 0.1.4
+VERSION ?= 0.1.5
 SCHEMA_BRANCH ?= master
 SWIFT_GRPC ?= SwiftGRPC
 
@@ -27,9 +27,18 @@ docs/:
 		--readme README.md \
 		--podspec Bloombox.podspec \
 		--min-acl public \
+		--swift-version 4.2 \
 		--github_url https://github.com/bloombox/swift \
 		--theme 'apple' \
 		--include "Sources/Client/*";
+
+update-docs: clean-docs docs/
+	@echo "Updating docs..."
+	@cd docs/ && git init && git add . && git commit -m "Update docs" && \
+		git checkout -b gh-pages && \
+		git remote add pages git@github.com:bloombox/swift.git && \
+		git push pages gh-pages --force;
+	@echo "Docs update done."
 
 clean: clean-docs
 	@echo "Cleaning Swift client for Bloombox..."
@@ -56,7 +65,7 @@ check-local:
 	@echo "Checking local state for releaseability..."
 	@git diff-index --quiet HEAD --
 
-release: check-local pods release-begin release-package pods-publish
+release: check-local pods release-begin release-package pods-publish update-docs
 	@echo "Release complete for version $(VERSION)."
 
 release-begin:
@@ -77,15 +86,15 @@ pods-publish: pods
 
 pod-opencannabis:
 	@echo "Linting OpenCannabis pod..."
-	@pod lib lint --allow-warnings --quick --fail-fast --verbose OpenCannabis.podspec
+	@pod lib lint --allow-warnings --fail-fast --verbose OpenCannabis.podspec
 
 pod-services:
 	@echo "Linting Bloombox services pod..."
-	@pod lib lint --allow-warnings --quick --fail-fast --verbose BloomboxServices.podspec
+	@pod lib lint --allow-warnings --fail-fast --verbose BloomboxServices.podspec
 
 pod-client:
 	@echo "Linting Bloombox client pod..."
-	@pod lib lint --allow-warnings --quick --fail-fast --verbose Bloombox.podspec
+	@pod lib lint --allow-warnings --fail-fast --verbose Bloombox.podspec
 
 
 build: dependencies

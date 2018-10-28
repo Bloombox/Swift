@@ -15,18 +15,34 @@ let testZipcode = "95125"
 
 internal final class ShopClientTests: XCTestCase {
   static var allTests = [
-    // Shop Tests
+    // Shop Info
     ("testShopInfoInvalidApiKey", testShopInfoInvalidApiKey),
     ("testShopInfoInvalidPartner", testShopInfoInvalidPartner),
     ("testShopInfoInvalidLocation", testShopInfoInvalidLocation),
     ("testShopInfo", testShopInfo),
-    ("testShopInfoPerformance", testShopInfoPerformance),
+    ("testShopInfoAsync", testShopInfoAsync),
+
+    // Member Verify
     ("testMemberVerifyInvalidApiKey", testMemberVerifyInvalidApiKey),
     ("testMemberVerifyInvalidPartner", testMemberVerifyInvalidPartner),
     ("testMemberVerifyInvalidLocation", testMemberVerifyInvalidLocation),
     ("testMemberVerifyKnownGood", testMemberVerifyKnownGood),
+    ("testMemberVerifyKnownGoodAsync", testMemberVerifyKnownGoodAsync),
     ("testMemberVerifyKnownBad", testMemberVerifyKnownBad),
-    ("testMemberVerifyPerformance", testMemberVerifyPerformance)
+
+    // Zip Check
+    ("testZipcheckInvalidAPIKey", testZipcheckInvalidAPIKey),
+    ("testZipcheckInvalidPartner", testZipcheckInvalidPartner),
+    ("testZipcheckInvalidLocation", testZipcheckInvalidLocation),
+    ("testZipcheckKnownEligible", testZipcheckKnownEligible),
+    ("testZipcheckKnownEligibleAsync", testZipcheckKnownEligibleAsync),
+    ("testZipcheckKnownMinimum", testZipcheckKnownMinimum),
+    ("testZipcheckKnownMinimum", testZipcheckKnownMinimum),
+    ("testZipcheckKnownIneligible", testZipcheckKnownIneligible),
+
+    // Get Order
+    ("testGetOrder", testGetOrder),
+    ("testGetOrderAsync", testGetOrderAsync)
   ]
 
   // MARK: - Shop Info
@@ -73,19 +89,20 @@ internal final class ShopClientTests: XCTestCase {
     assert(status.isInitialized, "we should get a shop info response")
   }
 
-  func testShopInfoPerformance() throws {
+  func testShopInfoAsync() throws {
     let client: Bloombox = Bloombox(settings: Bloombox.Settings(
       apiKey: testApiKey,
       partner: testPartner,
       location: testLocation))
 
-    self.measure {
-      if let _ = try? client.shop.info() {
-        // we're good
-      } else {
-        XCTFail("failed to retrieve shop info: cannot measure performance")
-      }
+    let expectation = XCTestExpectation(description: "Fetch shop info")
+
+    try client.shop.info() { result, response in
+      assert(response?.isInitialized ?? false, "we should get a shop info response")
+      expectation.fulfill()
     }
+
+    wait(for: [expectation], timeout: 30.0)
   }
 
   // MARK: - Member Verify
@@ -142,6 +159,22 @@ internal final class ShopClientTests: XCTestCase {
     assert(result.verified, "valid customer should verify")
   }
 
+  func testMemberVerifyKnownGoodAsync() throws {
+    let client: Bloombox = Bloombox(settings: Bloombox.Settings(
+      apiKey: testApiKey,
+      partner: testPartner,
+      location: testLocation))
+
+    let expectation = XCTestExpectation(description: "Fetch member verification")
+
+    try client.shop.verifyMember(email: "sam@bloombox.io") { result, resp in
+      assert(resp!.verified, "valid customer should verify")
+      expectation.fulfill()
+    }
+
+    wait(for: [expectation], timeout: 30.0)
+  }
+
   func testMemberVerifyKnownBad() throws {
     let client: Bloombox = Bloombox(settings: Bloombox.Settings(
       apiKey: testApiKey,
@@ -149,22 +182,23 @@ internal final class ShopClientTests: XCTestCase {
       location: testLocation))
 
     let result = try client.shop.verifyMember(email: "does-not-exist@nosuchdomain.com")
-    assert(!result.verified, "valid customer should verify")
+    assert(!result.verified, "invalid customer should not verify")
   }
 
-  func testMemberVerifyPerformance() throws {
+  func testMemberVerifyKnownBadAsync() throws {
     let client: Bloombox = Bloombox(settings: Bloombox.Settings(
       apiKey: testApiKey,
       partner: testPartner,
       location: testLocation))
 
-    self.measure {
-      if let _ = try? client.shop.verifyMember(email: "sam@bloombox.io") {
-        // we're good
-      } else {
-        XCTFail("failed to retrieve shop info: cannot measure performance")
-      }
+    let expectation = XCTestExpectation(description: "Fetch member verification: known bad")
+
+    try client.shop.verifyMember(email: "does-not-exist@nosuchdomain.com") { result, resp in
+      assert(!resp!.verified, "invalid customer should not verify")
+      expectation.fulfill()
     }
+
+    wait(for: [expectation], timeout: 30.0)
   }
 
   // MARK: - Zipcode Check
@@ -215,6 +249,18 @@ internal final class ShopClientTests: XCTestCase {
     XCTAssertTrue(result.supported, "known-eligible zipcode should report 'supported' as true")
   }
 
+  func testZipcheckKnownEligibleAsync() throws {
+    let expectation = XCTestExpectation(description: "Check known-eligible zipcode")
+
+    try ClientTools.client.shop.checkZipcode(zipcode: testZipcode) { result, response in
+      XCTAssertNotNil(response, "response should not be nil for supported zipcode")
+      XCTAssertTrue(response?.supported ?? false, "known-eligible zipcode should report 'supported' as true")
+      expectation.fulfill()
+    }
+
+    wait(for: [expectation], timeout: 15.0)
+  }
+
   func testZipcheckKnownMinimum() throws {
     let result = try ClientTools.client.shop.checkZipcode(zipcode: testZipcode)
     XCTAssertTrue(result.supported, "known-eligible zipcode should report 'supported' as true")
@@ -224,6 +270,26 @@ internal final class ShopClientTests: XCTestCase {
   func testZipcheckKnownIneligible() throws {
     let result = try ClientTools.client.shop.checkZipcode(zipcode: "12345")
     XCTAssertFalse(result.supported, "should indicate unsupported zipcode is unsupported")
+  }
+
+  // MARK: - Get Order
+  func testGetOrder() throws {
+    let order = try ClientTools.client.shop.getOrder(id: "abc123")
+    XCTAssertTrue(order.success, "get-order for known order should be successful")
+    XCTAssertTrue(order.hasOrder, "get-order should contain order data")
+  }
+
+  func testGetOrderAsync() throws {
+    let expectation = XCTestExpectation(description: "Fetch order async")
+
+    try ClientTools.client.shop.getOrder(id: "abc123") { result, response in
+      XCTAssertNotNil(response, "should get a response when fetching an order")
+      XCTAssertTrue(response!.success, "get-order for known order should be successful")
+      XCTAssertTrue(response!.hasOrder, "get-order should contain order data")
+      expectation.fulfill()
+    }
+
+    wait(for: [expectation], timeout: 30.0)
   }
 }
 

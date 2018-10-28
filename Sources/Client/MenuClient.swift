@@ -9,8 +9,9 @@ import Foundation
 import SwiftGRPC
 
 
-// Callback Types
+// Type Definitions
 public typealias MenuRetrieveCallback = (CallResult, GetMenu.Response?) -> ()
+public typealias MenuAPIContext = (partner: PartnerCode, location: LocationCode, apiKey: APIKey)
 
 
 /// Enumerates code-level errors in the menu client. The errors occur before requests hit the server, and deal with
@@ -82,7 +83,7 @@ public final class MenuClient: RemoteService {
   /// - Throws: `MenuClientError` codes if items cannot be resolved.
   private func resolveContext(_ partner: PartnerCode? = nil,
                               _ location: LocationCode? = nil,
-                              _ apiKey: APIKey? = nil) throws -> (partner: PartnerCode, location: LocationCode, apiKey: APIKey) {
+                              _ apiKey: APIKey? = nil) throws -> MenuAPIContext {
     let partnerCode: PartnerCode? = partner ?? settings.partner
     let locationCode: LocationCode? = location ?? settings.location
     let apiKey: APIKey? = apiKey ?? settings.apiKey
@@ -125,7 +126,7 @@ public final class MenuClient: RemoteService {
     let service = try self.service(apiKey)
 
     return try service.retrieve(GetMenu.Request.with { builder in
-      builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
+      builder.scope = "partners/\(partnerCode)/locations/\(locationCode)"
     })
   }
 
@@ -155,7 +156,7 @@ public final class MenuClient: RemoteService {
     let service = try self.service(apiKey)
 
     return try service.retrieve(GetMenu.Request.with { builder in
-      builder.scope = "partners/\(locationCode)/locations/\(partnerCode)"
+      builder.scope = "partners/\(partnerCode)/locations/\(locationCode)"
     }) { (response, callResult) in
       callback(callResult, response)
     }

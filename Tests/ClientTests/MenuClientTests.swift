@@ -14,6 +14,9 @@ internal final class MenuClientTests: XCTestCase {
   static var allTests = [
     // Menu Tests
     ("testMenuDownload", testMenuDownload),
+    ("testMenuDownloadAsync", testMenuDownloadAsync),
+    ("testMenuNotFound", testMenuNotFound),
+    ("testMenuNotFoundAsync", testMenuNotFoundAsync),
     ("testMenuInvalidApiKey", testMenuInvalidApiKey),
     ("testMenuInvalidPartner", testMenuInvalidPartner),
     ("testMenuInvalidLocation", testMenuInvalidLocation)
@@ -23,16 +26,6 @@ internal final class MenuClientTests: XCTestCase {
   func testMenuDownload() throws {
     let menu = try ClientTools.client.menu.retrieve()
     assert(menu.hasCatalog, "downloaded menu should have a product catalog")
-  }
-
-  func testMenuDownloadPerformance() throws {
-    self.measure {
-      if let _ = try? ClientTools.client.menu.retrieve() {
-        // got a menu response
-      } else {
-        XCTFail("failed to retrieve menu: cannot test performance")
-      }
-    }
   }
 
   func testMenuInvalidApiKey() throws {
@@ -66,5 +59,44 @@ internal final class MenuClientTests: XCTestCase {
       caught = true
     }
     assert(caught, "didn't error with 'invalid location'")
+  }
+
+  func testMenuDownloadAsync() throws {
+    let expectation = XCTestExpectation(description: "Fetch menu for test partner")
+
+    do {
+      let _: GetMenuCall = try ClientTools.client.menu.retrieve() { (result, response) in
+          // handle response
+          XCTAssertNotNil(response, "should be able to fetch valid menu in async mode")
+          expectation.fulfill()
+      }
+    }
+
+    wait(for: [expectation], timeout: 30.0)
+  }
+
+  func testMenuNotFound() throws {
+    var caught = false
+    do {
+      let menu = try ClientTools.client.menu.retrieve(location: "abc123")
+      assert(menu.hasCatalog, "downloaded menu should have a product catalog")
+    } catch {
+      caught = true
+    }
+    XCTAssertTrue(caught, "should throw error when a menu cannot be found")
+  }
+
+  func testMenuNotFoundAsync() throws {
+    let expectation = XCTestExpectation(description: "Fetch unknown menu")
+
+    do {
+      let _: GetMenuCall = try ClientTools.client.menu.retrieve(location: "abc123") { (result, response) in
+        // handle response
+        XCTAssertNil(response, "should get a nil response when a menu cannot be found")
+        expectation.fulfill()
+      }
+    }
+
+    wait(for: [expectation], timeout: 30.0)
   }
 }
