@@ -38,3 +38,5 @@ Package.resolved
 Example/Pods
 Example/Podfile.lock
 cobertura.xml
+tests-out/
+fastlane/report.xml
