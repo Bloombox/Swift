@@ -2,7 +2,6 @@ os: osx
 osx_image: xcode10
 env:
   global:
-    - CC_TEST_REPORTER_ID=a6aef1a4ab6ca369c8f1845a8ee3697f0841a42a81db527b3948a595fb2b9c22
     - CODECOV_TOKEN=5f05c93b-cde4-421b-b1a7-7da0b91d9c67
 language: swift
 xcode_project: Bloombox.xcodeproj
@@ -16,7 +15,7 @@ install:
   - bundle install --without=documentation --path ../travis_bundle_dir
   - bundle exec slather setup Bloombox.xcodeproj
 after_success: bundle exec slather
-script: set -o pipefail && xcodebuild -project Bloombox.xcodeproj -scheme Client -enableCodeCoverage YES -parallelizeTargets build test | xcpretty
+script: fastlane scan --code_coverage --scheme Client
 after_script:
   - bash <(curl -s https://codecov.io/bash) -f cobertura.xml -X xcode -J 'Bloombox'
 
