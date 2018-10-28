@@ -30,7 +30,7 @@ let package = Package(
             dependencies: ["SwiftProtobuf"],
             path: "Sources/Schema"),
 
-        .testTarget(name: "SchemaTests", dependencies: ["OpenCannabis", "BloomboxServices"]),
+        .testTarget(name: "SchemaTests", dependencies: ["OpenCannabis", "BloomboxServices", "Bloombox"]),
         .testTarget(name: "ClientTests", dependencies: ["Bloombox"])],
 
     swiftLanguageVersions: [3, 4],
