@@ -29,6 +29,25 @@ public typealias PartnerCode = String
 public typealias LocationCode = String
 
 
+//// Auth Service
+
+/// Binding to the active AuthService.
+public typealias AuthService = Bloombox_Schema_Services_Auth_V1beta1_AuthService
+public typealias AuthError = Bloombox_Schema_Services_Auth_V1beta1_AuthError
+public typealias AuthProvider = Bloombox_Schema_Services_Auth_V1beta1_AuthProvider
+public typealias EmailPasswordAssertion = Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion
+public typealias FirebaseTokenAssertion = Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion
+public typealias AccountAssertion = Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion
+
+/// Method: `nonce`
+public typealias AuthNonce = Bloombox_Schema_Services_Auth_V1beta1_AuthNonce
+public typealias AuthNonceCall = Bloombox_Schema_Services_Auth_V1beta1_AuthNonceCall
+
+/// Method: `authenticate`
+public typealias AuthenticateUser = Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser
+public typealias AuthenticateUserCall = Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateCall
+
+
 //// Platform Service
 
 /// Binding to the active PlatformService.
