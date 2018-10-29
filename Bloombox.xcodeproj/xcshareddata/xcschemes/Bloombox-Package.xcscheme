@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::OpenCannabis"
-               BuildableName = "OpenCannabis.framework"
-               BlueprintName = "OpenCannabis"
+               BlueprintIdentifier = "Bloombox::Bloombox"
+               BuildableName = "Bloombox.framework"
+               BlueprintName = "Bloombox"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::Bloombox"
-               BuildableName = "Bloombox.framework"
-               BlueprintName = "Bloombox"
+               BlueprintIdentifier = "Bloombox::OpenCannabis"
+               BuildableName = "OpenCannabis.framework"
+               BlueprintName = "OpenCannabis"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

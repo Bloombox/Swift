@@ -1,4 +1,4 @@
 module BoringSSL {
-    umbrella "/Users/sam/Workspace/Client/Swift/.build/checkouts/grpc-swift.git-426454570402768368/Sources/BoringSSL/include"
+    umbrella "/Users/sam/Workspace/Client/Swift/.build/checkouts/grpc-swift.git-4344344153461059904/Sources/BoringSSL/include"
     export *
 }
