@@ -146,6 +146,11 @@ public final class Bloombox {
     return _services
   }
 
+  /// Public access to the Auth service client.
+  public var auth: AuthClient {
+    return _services.auth
+  }
+
   /// Public access to the Devices service client.
   public var devices: DevicesClient {
     return _services.devices

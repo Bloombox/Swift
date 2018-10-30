@@ -32,7 +32,7 @@ public typealias LocationCode = String
 //// Auth Service
 
 /// Binding to the active AuthService.
-public typealias AuthService = Bloombox_Schema_Services_Auth_V1beta1_AuthService
+public typealias AuthService = Bloombox_Schema_Services_Auth_V1beta1_AuthServiceClient
 public typealias AuthError = Bloombox_Schema_Services_Auth_V1beta1_AuthError
 public typealias AuthProvider = Bloombox_Schema_Services_Auth_V1beta1_AuthProvider
 public typealias EmailPasswordAssertion = Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion
@@ -46,6 +46,10 @@ public typealias AuthNonceCall = Bloombox_Schema_Services_Auth_V1beta1_AuthNonce
 /// Method: `authenticate`
 public typealias AuthenticateUser = Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser
 public typealias AuthenticateUserCall = Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateCall
+
+/// Method: `connect`
+public typealias IdentityConnect = Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect
+public typealias IdentityConnectCall = Bloombox_Schema_Services_Auth_V1beta1_AuthConnectCall
 
 
 //// Platform Service

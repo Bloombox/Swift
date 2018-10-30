@@ -25,6 +25,7 @@ public final class Services: ClientLogic {
     self.settings = settings
     self.rpc = RPCLogic(settings: self.settings)
 
+    self.auth = AuthClient(settings: settings)
     self.devices = DevicesClient(settings: settings)
     self.shop = ShopClient(settings: settings)
     self.telemetry = TelemetryClient(settings: settings)
@@ -36,6 +37,7 @@ public final class Services: ClientLogic {
   /// Holds a reference to each supported remote service.
   fileprivate var all: [RemoteService] {
     return [
+      auth,
       shop,
       telemetry,
       menu,
@@ -55,6 +57,10 @@ public final class Services: ClientLogic {
   }
 
   // MARK: - Services
+
+  /// Auth services. Authenticates user credentials, authorizes permissions, conducts consent operations, and provides
+  /// write/read access to user profiles.
+  public let auth: AuthClient
 
   /// Shop service. Provides information about a dispensary, and the ability to verify/enroll members. Also provides
   /// order submission and status methods.
