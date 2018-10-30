@@ -39,7 +39,7 @@ public typealias AuthAPIContext = (partner: PartnerCode?, location: LocationCode
 /// - Parameters:
 ///    - `CallResult`: gRPC call result object, which includes a status code.
 ///    - `AuthNonce?`: Resulting authorization nonce, if once could be generated.
-public typealias AuthNonceCallback = (CallResult, AuthNonce?) -> ()
+public typealias AuthNonceCallback = (CallResult, NonceValue?) -> ()
 
 /// Defines a callback interface for completing an identity connection flow, wherein, a verified user identity
 /// is asserted to the backend platform, verified, and used to initialize a consumer-side user account. Whether
@@ -245,7 +245,7 @@ public final class AuthClient: RemoteService {
   public func nonce(apiKey: APIKey? = nil, _ callback: @escaping AuthNonceCallback) throws -> AuthNonceCall {
     let (_, _, apiKey) = try resolveContext(nil, nil, apiKey, enforcePartnerLocation: false)
     return try self.service(apiKey).nonce(Empty()) { response, callResult in
-      callback(callResult, response)
+      callback(callResult, response?.nonce)
     }
   }
 
