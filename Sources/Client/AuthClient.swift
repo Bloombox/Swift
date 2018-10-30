@@ -307,4 +307,5 @@ public final class AuthClient: RemoteService {
       callback(response, callResult)
     }
   }
+
 }
