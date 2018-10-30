@@ -4,7 +4,7 @@
 #
 
 SCHEMA ?= Schema/
-VERSION ?= 0.1.5
+VERSION ?= 0.1.6
 SCHEMA_BRANCH ?= master
 SWIFT_GRPC ?= SwiftGRPC
 
@@ -65,7 +65,7 @@ check-local:
 	@echo "Checking local state for releaseability..."
 	@git diff-index --quiet HEAD --
 
-release: check-local pods release-begin release-package pods-publish update-docs
+release: check-local release-begin release-package pods-publish update-docs
 	@echo "Release complete for version $(VERSION)."
 
 release-begin:
@@ -77,7 +77,7 @@ release-package:
 	@git push origin --tags
 	@echo "Release $(VERSION) is live."
 
-pods-publish: pods
+pods-publish:
 	@echo "Publishing pods to trunk..."
 	@pod trunk push --allow-warnings --verbose OpenCannabis.podspec
 	@pod trunk push --allow-warnings --verbose BloomboxServices.podspec

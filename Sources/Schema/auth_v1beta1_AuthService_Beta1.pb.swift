@@ -99,6 +99,9 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
   /// Consent operation or consent record has expired.
   case expiredConsent // = 23
 
+  /// The specified nonce was missing, invalid, or already used.
+  case invalidNonce // = 24
+
   /// An internal error was encountered.
   case internalError // = 99
   case UNRECOGNIZED(Int)
@@ -133,6 +136,7 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
     case 21: self = .captchaRejected
     case 22: self = .consentNotFound
     case 23: self = .expiredConsent
+    case 24: self = .invalidNonce
     case 99: self = .internalError
     default: self = .UNRECOGNIZED(rawValue)
     }
@@ -164,6 +168,7 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
     case .captchaRejected: return 21
     case .consentNotFound: return 22
     case .expiredConsent: return 23
+    case .invalidNonce: return 24
     case .internalError: return 99
     case .UNRECOGNIZED(let i): return i
     }
@@ -200,6 +205,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: CaseIterable {
     .captchaRejected,
     .consentNotFound,
     .expiredConsent,
+    .invalidNonce,
     .internalError,
   ]
 }
@@ -661,6 +667,166 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow {
   public init() {}
 }
 
+/// Specifies a one-time use "nonce," or, "number-used-once," which can be used to initiate a secure authorization flow.
+/// Client devices and applications request this value before proceeding to verify the user's identity, and then provide
+/// it in the identity assertion token later passed to the server during "connect" or "context"-phase methods.
+public struct Bloombox_Schema_Services_Auth_V1beta1_AuthNonce {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Specifies the authentication nonce value, which is required to perform an authentication flow. This is an opaque
+  /// value that may be used once, and only once.
+  public var nonce: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// Specifies an RPC operation to connect a validated and signed user identity with their account. If the user has done
+/// this before, there will be an existing consumer-side account - if not, an account is created under the hood, and
+/// auto-linked with their identity.
+public struct Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Request to link a validated and signed user identity with an account.
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Identity token. This value is generated between the user's UID, an authentication nonce acquired from this
+    /// service, and a timestamp. That pre-image value is then hashed with SHA512 and signed with a private key in the
+    /// user's device, stored in a secure hardware enclave. The user must unlock the enclave with biometrics in order to
+    /// perform this signature, so, it represents a cryptographic assertion that binds the user's ID with the private key
+    /// on their device, and their biometric profile.
+    public var token: String = String()
+
+    /// APNS push token. This value is provided to the device via the Apple Push Notification System (APNS), when it
+    /// registers for remote notifications, and is used to issue push notifications under the subject application's
+    /// credentials. This value is only provided when the originating device is running iOS, and the user has authorized
+    /// push notification access to the subject application.
+    public var apns: String = String()
+
+    /// FCM push token. This value is provided to the device by Google's systems when it performs registration with
+    /// Firebase Cloud Messaging, and is used to address the user's specific device for push notifications. On iOS, this
+    /// only applies when the application is open - FCM then usually proxies to APNS. On Android and web-based platforms,
+    /// this is the primary push key.
+    public var fcm: String = String()
+
+    /// Raw content of the user's public key, hex-encoded. The public key must be stored in hardware memory on the user's
+    /// device, where it is used to sign the token payload, along with a matching private key, which is used to sign the
+    /// provided token payload when asserting the user's identity. The key provided here is used to verify the resulting
+    /// digital signature, embedded in the token in the "sig" attribute.
+    public var key: String = String()
+
+    /// Client application that is making this request. Because this is included in the hashed signature pre-image,
+    /// embedded in the token and signed by the user's key, it must be provided here for later verification. The public
+    /// key specified in this request may be persisted for this client application, such that any future requests are
+    /// expected to be signed with the same key.
+    public var client: String = String()
+
+    /// Specifies the device fingerprint, which is usually a standard UUID, uppercased. This value is generated on a per-
+    /// device-per-app basis, and so, it may change as the app is updated on the subject user's device. Early in the app
+    /// boot sequence, it should generate the fingerprint value and persist it to storage.
+    public var device: String = String()
+
+    /// Specifies the nonce value provided to the application by server-side systems, in order to authorize the client
+    /// device's participation in this authorization routine. Client applications must specify a valid API key in order
+    /// to request this value, and the API key is tied to the client ID, so both are validated by the presence of this
+    /// nonce, if it is determined not to have already been used, and matches the token's signature.
+    public var nonce: String = String()
+
+    /// Advertising identifier for the subject user. In some circumstances, particularly iOS, the device fingerprint is
+    /// not a stable identifier for the user. The Ad ID allows the user account in question to be tied to advertising
+    /// and marketing tools. This is done with the user's consent once they setup their account and bind it to their
+    /// device, along with their secure-enclave-protected public key.
+    public var adid: String = String()
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  /// Response to a request to link a user identity to an account.
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Authorization token, issued in response to the ID token provided in the request. Issued and signed by the server
+    /// to indicate applicable top-level user permissions, and implies the user account was authenticated, authorized,
+    /// and enabled to use the state associated with this token.
+    public var token: Bloombox_Schema_Security_AuthToken {
+      get {return _storage._token ?? Bloombox_Schema_Security_AuthToken()}
+      set {_uniqueStorage()._token = newValue}
+    }
+    /// Returns true if `token` has been explicitly set.
+    public var hasToken: Bool {return _storage._token != nil}
+    /// Clears the value of `token`. Subsequent reads from it will return its default value.
+    public mutating func clearToken() {_uniqueStorage()._token = nil}
+
+    public var result: OneOf_Result? {
+      get {return _storage._result}
+      set {_uniqueStorage()._result = newValue}
+    }
+
+    /// Resulting user profile, either generated from the user based on the provided identity information, or returned
+    /// from an earlier enrollment/authentication process, where it was established and confirmed by the user.
+    public var profile: Bloombox_Schema_Identity_User {
+      get {
+        if case .profile(let v)? = _storage._result {return v}
+        return Bloombox_Schema_Identity_User()
+      }
+      set {_uniqueStorage()._result = .profile(newValue)}
+    }
+
+    /// Flag indicating that the user needs to perform setup in order to establish a profile. If `setup` is seen as
+    /// true, it will trigger the client-side application to enter a signup flow, which must pre-adopt the identity
+    /// data provided earlier in the flow by the client device.
+    public var setup: Bool {
+      get {
+        if case .setup(let v)? = _storage._result {return v}
+        return false
+      }
+      set {_uniqueStorage()._result = .setup(newValue)}
+    }
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public enum OneOf_Result: Equatable {
+      /// Resulting user profile, either generated from the user based on the provided identity information, or returned
+      /// from an earlier enrollment/authentication process, where it was established and confirmed by the user.
+      case profile(Bloombox_Schema_Identity_User)
+      /// Flag indicating that the user needs to perform setup in order to establish a profile. If `setup` is seen as
+      /// true, it will trigger the client-side application to enter a signup flow, which must pre-adopt the identity
+      /// data provided earlier in the flow by the client device.
+      case setup(Bool)
+
+    #if !swift(>=4.1)
+      public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response.OneOf_Result, rhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response.OneOf_Result) -> Bool {
+        switch (lhs, rhs) {
+        case (.profile(let l), .profile(let r)): return l == r
+        case (.setup(let l), .setup(let r)): return l == r
+        default: return false
+        }
+      }
+    #endif
+    }
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  public init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "bloombox.schema.services.auth.v1beta1"
@@ -691,6 +857,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf._ProtoN
     21: .same(proto: "CAPTCHA_REJECTED"),
     22: .same(proto: "CONSENT_NOT_FOUND"),
     23: .same(proto: "EXPIRED_CONSENT"),
+    24: .same(proto: "INVALID_NONCE"),
     99: .same(proto: "INTERNAL_ERROR"),
   ]
 }
@@ -1584,6 +1751,211 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response: SwiftProto
         let _storage = _args.0
         let rhs_storage = _args.1
         if _storage._ticket != rhs_storage._ticket {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_AuthNonce: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AuthNonce"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "nonce"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.nonce)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.nonce.isEmpty {
+      try visitor.visitSingularStringField(value: self.nonce, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AuthNonce, rhs: Bloombox_Schema_Services_Auth_V1beta1_AuthNonce) -> Bool {
+    if lhs.nonce != rhs.nonce {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".IdentityConnect"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect, rhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.protoMessageName + ".Request"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "token"),
+    2: .same(proto: "apns"),
+    3: .same(proto: "fcm"),
+    4: .same(proto: "key"),
+    5: .same(proto: "client"),
+    6: .same(proto: "device"),
+    7: .same(proto: "nonce"),
+    8: .same(proto: "adid"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.token)
+      case 2: try decoder.decodeSingularStringField(value: &self.apns)
+      case 3: try decoder.decodeSingularStringField(value: &self.fcm)
+      case 4: try decoder.decodeSingularStringField(value: &self.key)
+      case 5: try decoder.decodeSingularStringField(value: &self.client)
+      case 6: try decoder.decodeSingularStringField(value: &self.device)
+      case 7: try decoder.decodeSingularStringField(value: &self.nonce)
+      case 8: try decoder.decodeSingularStringField(value: &self.adid)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.token.isEmpty {
+      try visitor.visitSingularStringField(value: self.token, fieldNumber: 1)
+    }
+    if !self.apns.isEmpty {
+      try visitor.visitSingularStringField(value: self.apns, fieldNumber: 2)
+    }
+    if !self.fcm.isEmpty {
+      try visitor.visitSingularStringField(value: self.fcm, fieldNumber: 3)
+    }
+    if !self.key.isEmpty {
+      try visitor.visitSingularStringField(value: self.key, fieldNumber: 4)
+    }
+    if !self.client.isEmpty {
+      try visitor.visitSingularStringField(value: self.client, fieldNumber: 5)
+    }
+    if !self.device.isEmpty {
+      try visitor.visitSingularStringField(value: self.device, fieldNumber: 6)
+    }
+    if !self.nonce.isEmpty {
+      try visitor.visitSingularStringField(value: self.nonce, fieldNumber: 7)
+    }
+    if !self.adid.isEmpty {
+      try visitor.visitSingularStringField(value: self.adid, fieldNumber: 8)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request) -> Bool {
+    if lhs.token != rhs.token {return false}
+    if lhs.apns != rhs.apns {return false}
+    if lhs.fcm != rhs.fcm {return false}
+    if lhs.key != rhs.key {return false}
+    if lhs.client != rhs.client {return false}
+    if lhs.device != rhs.device {return false}
+    if lhs.nonce != rhs.nonce {return false}
+    if lhs.adid != rhs.adid {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.protoMessageName + ".Response"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "token"),
+    2: .same(proto: "profile"),
+    3: .same(proto: "setup"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _token: Bloombox_Schema_Security_AuthToken? = nil
+    var _result: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response.OneOf_Result?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _token = source._token
+      _result = source._result
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._token)
+        case 2:
+          var v: Bloombox_Schema_Identity_User?
+          if let current = _storage._result {
+            try decoder.handleConflictingOneOf()
+            if case .profile(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._result = .profile(v)}
+        case 3:
+          if _storage._result != nil {try decoder.handleConflictingOneOf()}
+          var v: Bool?
+          try decoder.decodeSingularBoolField(value: &v)
+          if let v = v {_storage._result = .setup(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._token {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      switch _storage._result {
+      case .profile(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case .setup(let v)?:
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 3)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._token != rhs_storage._token {return false}
+        if _storage._result != rhs_storage._result {return false}
         return true
       }
       if !storagesAreEqual {return false}
