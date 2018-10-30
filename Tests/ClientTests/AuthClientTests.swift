@@ -14,7 +14,9 @@ internal final class AuthClientTests: XCTestCase {
   static var allTests = [
     // Auth Tests
     ("testAuthNonceInvalidApiKey", testAuthNonceInvalidApiKey),
-    ("testAuthConnectInvalidApiKey", testAuthConnectInvalidApiKey)
+    ("testAuthConnectInvalidApiKey", testAuthConnectInvalidApiKey),
+    ("testAuthNonce", testAuthNonce),
+    ("testAuthNonceAsync", testAuthNonceAsync)
   ]
 
   // MARK: - Auth Nonce
@@ -27,6 +29,22 @@ internal final class AuthClientTests: XCTestCase {
       caught = true
     }
     assert(caught, "didn't error with 'invalid API key'")
+  }
+
+  func testAuthNonce() throws {
+    let nonce = try ClientTools.client.auth.nonce()
+    assert(nonce.count > 1, "nonce must be valid")
+  }
+
+  func testAuthNonceAsync() throws {
+    let expectation = XCTestExpectation(description: "Acquire nonce in async mode")
+
+    let _ = try ClientTools.client.auth.nonce { result, nonce in
+      assert(nonce != nil, "")
+      expectation.fulfill()
+    }
+
+    wait(for: [expectation], timeout: 20.0)
   }
 
   // MARK: - Identity Connect
