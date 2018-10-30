@@ -68,4 +68,45 @@ internal final class AuthClientTests: XCTestCase {
     }
     assert(caught, "didn't error with 'invalid API key'")
   }
+
+  func testAuthConnectBunkValues() throws {
+    var caught = false
+    do {
+      let _ = try ClientTools.client().auth.connect(
+        identity: "",
+        withPublicKey: "",
+        andNonce: "",
+        forClient: ConnectApp(
+          client: "io.bloombox.test.Test",
+          fingerprint: "UUID-1234-FINGERPRINT",
+          fcm: "fcm-push-token",
+          apns: nil,
+          adid: nil))
+
+    } catch {
+      // it worked
+      caught = true
+    }
+    assert(caught, "didn't catch server-side error")
+  }
+
+  func testAuthConnectBunkValuesAsync() throws {
+    let expectation = XCTestExpectation(description: "Identity connect async")
+
+    let _ = try ClientTools.client().auth.connect(
+      identity: "",
+      withPublicKey: "",
+      andNonce: "",
+      forClient: ConnectApp(
+        client: "io.bloombox.test.Test",
+        fingerprint: "UUID-1234-FINGERPRINT",
+        fcm: "fcm-push-token",
+        apns: nil,
+        adid: nil)) { callResult, response in
+      // assert that it was a failure
+      assert(response == nil, "response should be nil for bunk identity connect")
+      expectation.fulfill()
+    }
+    wait(for: [expectation], timeout: 15.0)
+  }
 }
