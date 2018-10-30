@@ -276,7 +276,6 @@ public final class AuthClient: RemoteService {
     return try self.service(apiKey).connect(self.buildConnectRequest(identity, publicKey, nonce, client))
   }
 
-
   /// Begin an identity connect flow, having already verified the user's identity using an external service.
   /// Before beginning this process, the invoking application must acquire a valid authorization nonce, and
   /// request that the user sign a data payload containing the nonce, verified user ID, client application,
