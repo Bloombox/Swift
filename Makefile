@@ -77,7 +77,7 @@ release-package:
 	@git push origin --tags
 	@echo "Release $(VERSION) is live."
 
-pods-publish: pods
+pods-publish:
 	@echo "Publishing pods to trunk..."
 	@pod trunk push --allow-warnings --verbose OpenCannabis.podspec
 	@pod trunk push --allow-warnings --verbose BloomboxServices.podspec
