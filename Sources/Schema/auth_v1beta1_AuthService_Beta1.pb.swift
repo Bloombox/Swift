@@ -99,6 +99,9 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
   /// Consent operation or consent record has expired.
   case expiredConsent // = 23
 
+  /// The specified nonce was missing, invalid, or already used.
+  case invalidNonce // = 24
+
   /// An internal error was encountered.
   case internalError // = 99
   case UNRECOGNIZED(Int)
@@ -133,6 +136,7 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
     case 21: self = .captchaRejected
     case 22: self = .consentNotFound
     case 23: self = .expiredConsent
+    case 24: self = .invalidNonce
     case 99: self = .internalError
     default: self = .UNRECOGNIZED(rawValue)
     }
@@ -164,6 +168,7 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
     case .captchaRejected: return 21
     case .consentNotFound: return 22
     case .expiredConsent: return 23
+    case .invalidNonce: return 24
     case .internalError: return 99
     case .UNRECOGNIZED(let i): return i
     }
@@ -200,6 +205,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: CaseIterable {
     .captchaRejected,
     .consentNotFound,
     .expiredConsent,
+    .invalidNonce,
     .internalError,
   ]
 }
@@ -851,6 +857,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf._ProtoN
     21: .same(proto: "CAPTCHA_REJECTED"),
     22: .same(proto: "CONSENT_NOT_FOUND"),
     23: .same(proto: "EXPIRED_CONSENT"),
+    24: .same(proto: "INVALID_NONCE"),
     99: .same(proto: "INTERNAL_ERROR"),
   ]
 }
