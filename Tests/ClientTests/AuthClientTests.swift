@@ -16,7 +16,10 @@ internal final class AuthClientTests: XCTestCase {
     ("testAuthNonceInvalidApiKey", testAuthNonceInvalidApiKey),
     ("testAuthConnectInvalidApiKey", testAuthConnectInvalidApiKey),
     ("testAuthNonce", testAuthNonce),
-    ("testAuthNonceAsync", testAuthNonceAsync)
+    ("testAuthNonceAsync", testAuthNonceAsync),
+    ("testGetProfile", testGetProfile),
+    ("testGetProfileNotFound", testGetProfileNotFound),
+    ("testGetProfileNotFoundAsync", testGetProfileNotFoundAsync)
   ]
 
   // MARK: - Auth Nonce
@@ -108,5 +111,31 @@ internal final class AuthClientTests: XCTestCase {
       expectation.fulfill()
     }
     wait(for: [expectation], timeout: 15.0)
+  }
+
+  // MARK: - Profile Retrieve
+  func testGetProfile() throws {
+    let user = try ClientTools.client().auth.profile(forUser: testUser)
+    assert(!user.uid.isEmpty, "should be able to find user and person data")
+  }
+
+  func testGetProfileNotFoundAsync() throws {
+    let expectation = XCTestExpectation(description: "Fetch profile async")
+
+    try ClientTools.client().auth.profile(forUser: UserKey.with { $0.uid = "blablabla123" }) { callResult, profile in
+      assert(profile == nil, "should get null profile")
+      expectation.fulfill()
+    }
+    wait(for: [expectation], timeout: 30.0)
+  }
+
+  func testGetProfileNotFound() throws {
+    var caught = false
+    do {
+      let _ = try ClientTools.client().auth.profile(forUser: UserKey.with { $0.uid = "blablabla123" })
+    } catch {
+      caught = true
+    }
+    assert(caught, "should throw error when no profile could be found")
   }
 }

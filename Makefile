@@ -4,7 +4,7 @@
 #
 
 SCHEMA ?= Schema/
-VERSION ?= 0.1.7
+VERSION ?= 0.1.8
 SCHEMA_BRANCH ?= master
 SWIFT_GRPC ?= SwiftGRPC
 

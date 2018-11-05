@@ -52,6 +52,16 @@ public typealias AuthNonceCallback = (CallResult, NonceValue?) -> ()
 public typealias IdentityConnectCallback = (CallResult, IdentityConnect.Response?) -> ()
 
 
+/// Defines a callback interface for retrieving a user's profile, via their user key. If the profile can be located and
+/// the invoking user is duly authenticated and authorized to read it, it is provided in the callback here as the second
+/// parameter, with the gRPC call result as the first. No return result is expected.
+///
+/// - Parameters:
+///    - `CallResult`: gRPC call result object, which includes a status code.
+///    - `User?`: User profile, if it could be located.
+public typealias GetProfileCallback = (CallResult, User?) -> ()
+
+
 /// Enumerates code-level errors in the auth client.
 public enum AuthClientError: Error {
   /// No partner code could be resolved, or the given partner code was invalid.
@@ -247,6 +257,52 @@ public final class AuthClient: RemoteService {
     let (_, _, apiKey) = try resolveContext(nil, nil, apiKey, enforcePartnerLocation: false)
     return try self.service(apiKey).nonce(Empty()) { response, callResult in
       callback(callResult, response?.nonce)
+    }
+  }
+
+  // MARK: - Profile Fetch
+
+  /// Retrieve a user's profile using their universal key. The user's profile key is resolved from the identity ID,
+  /// which is resolved or generated during the authentication process (so, you must complete an auth flow to retrieve
+  /// the user's profile via this method). Only the owning user, and any application authorized by the owning user, may
+  /// read the user's full profile - for social connections and similar operations, profile results may return truncated
+  /// data, omitting details to which the invoking user does not have access.
+  ///
+  /// - Parameter userKey: Key for the user profile we would like to fetch.
+  /// - Parameter apiKey: API key to use when fetching the profile. If none is specified, use the client-wide default.
+  /// - Returns: User profile, if one can be found. If one cannot be found, an error is thrown.
+  /// - Throws: Server-side and client-side errors, including `USER_NOT_FOUND` if the user cannot be found.
+  public func profile(forUser userKey: UserKey,
+                      apiKey: APIKey? = nil) throws -> User {
+    let (_, _, apiKey) = try resolveContext(nil, nil, apiKey, enforcePartnerLocation: false)
+    return try self.service(apiKey).profile(GetProfile.Request.with { builder in
+      builder.user = userKey.uid
+    }).profile
+  }
+
+  /// Retrieve a user's profile using their universal key. The user's profile key is resolved from the identity ID,
+  /// which is resolved or generated during the authentication process (so, you must complete an auth flow to retrieve
+  /// the user's profile via this method). Only the owning user, and any application authorized by the owning user, may
+  /// read the user's full profile - for social connections and similar operations, profile results may return truncated
+  /// data, omitting details to which the invoking user does not have access.
+  ///
+  /// This method fetches the user profile asynchronously and provides results in callback form. The returned RPC call
+  /// object may be used to cancel or observe the underlying RPC call.
+  ///
+  /// - Parameter userKey: Key for the user profile we would like to fetch.
+  /// - Parameter apiKey: API key to use when fetching the profile. If none is specified, use the client-wide default.
+  /// - Parameter callback: Callback to dispatch once a response, or terminal error, is available.
+  /// - Returns: User profile, if one can be found. If one cannot be found, an error is thrown.
+  /// - Throws: Server-side and client-side errors, including `USER_NOT_FOUND` if the user cannot be found.
+  @discardableResult
+  public func profile(forUser userKey: UserKey,
+                      apiKey: APIKey? = nil,
+                      _ callback: @escaping GetProfileCallback) throws -> GetProfileCall {
+    let (_, _, apiKey) = try resolveContext(nil, nil, apiKey, enforcePartnerLocation: false)
+    return try self.service(apiKey).profile(GetProfile.Request.with { builder in
+      builder.user = userKey.uid
+    }) { resp, callResult in
+      callback(callResult, resp?.profile)
     }
   }
 

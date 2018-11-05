@@ -13,6 +13,9 @@ let testLocation = "sacramento"
 let testAccount = "sam@bloombox.io"
 let testApiKey = "AIzaSyBC4ZQVM3JnnS4P-wu6MHKi5oc0NcEuWxE"
 let testOrigin = "abatin.menu:443"
+let testIdentity = "P0gUgHMPs6MmvvW0Wk8SQote2IN2"
+let testUID: UserID = "-L1UXri_ZI9QKAHpeqpa"
+let testUser = UserKey.with { $0.uid = testUID; $0.identity = testIdentity; }
 
 
 internal struct ClientTools {
