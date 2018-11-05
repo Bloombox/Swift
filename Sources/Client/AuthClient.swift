@@ -242,6 +242,7 @@ public final class AuthClient: RemoteService {
   /// - Parameter callback: Callback to dispatch once a nonce or a fatal error is available.
   /// - Returns: RPC call object, which may be used to observe and cancel the underlying RPC call.
   /// - Throws: Client-side errors only, since this method is async. Server side methods occur in the callback.
+  @discardableResult
   public func nonce(apiKey: APIKey? = nil, _ callback: @escaping AuthNonceCallback) throws -> AuthNonceCall {
     let (_, _, apiKey) = try resolveContext(nil, nil, apiKey, enforcePartnerLocation: false)
     return try self.service(apiKey).nonce(Empty()) { response, callResult in
@@ -293,6 +294,7 @@ public final class AuthClient: RemoteService {
   /// - Parameter callback: Response callback to dispatch once a response or error is ready.
   /// - Returns: RPC call object, which can be used
   /// - Throws: Client and server-side errors, since this method is synchronous.
+  @discardableResult
   public func connect(identity: VerifiedIdentityToken,
                       withPublicKey publicKey: UserPublicKey,
                       andNonce nonce: NonceValue,
