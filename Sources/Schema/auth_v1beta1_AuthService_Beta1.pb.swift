@@ -102,6 +102,15 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
   /// The specified nonce was missing, invalid, or already used.
   case invalidNonce // = 24
 
+  /// A signature was required but none was found.
+  case signatureRequired // = 25
+
+  /// The signature was invalid or could not be loaded/decoded.
+  case signatureInvalid // = 26
+
+  /// The signature did not pass verification.
+  case signatureMismatch // = 27
+
   /// An internal error was encountered.
   case internalError // = 99
   case UNRECOGNIZED(Int)
@@ -137,6 +146,9 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
     case 22: self = .consentNotFound
     case 23: self = .expiredConsent
     case 24: self = .invalidNonce
+    case 25: self = .signatureRequired
+    case 26: self = .signatureInvalid
+    case 27: self = .signatureMismatch
     case 99: self = .internalError
     default: self = .UNRECOGNIZED(rawValue)
     }
@@ -169,6 +181,9 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
     case .consentNotFound: return 22
     case .expiredConsent: return 23
     case .invalidNonce: return 24
+    case .signatureRequired: return 25
+    case .signatureInvalid: return 26
+    case .signatureMismatch: return 27
     case .internalError: return 99
     case .UNRECOGNIZED(let i): return i
     }
@@ -206,6 +221,9 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: CaseIterable {
     .consentNotFound,
     .expiredConsent,
     .invalidNonce,
+    .signatureRequired,
+    .signatureInvalid,
+    .signatureMismatch,
     .internalError,
   ]
 }
@@ -759,6 +777,18 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
+    /// Resolved key for the subject user. A user key is distinguished from a UID, in that it addresses an actual account
+    /// and user profile payload, rather than just pointing to an identity that can be linked to a full account. User
+    /// keys are used for interacting with the API in an identity agnostic manner, post-authorization.
+    public var key: Bloombox_Schema_Identity_UserKey {
+      get {return _storage._key ?? Bloombox_Schema_Identity_UserKey()}
+      set {_uniqueStorage()._key = newValue}
+    }
+    /// Returns true if `key` has been explicitly set.
+    public var hasKey: Bool {return _storage._key != nil}
+    /// Clears the value of `key`. Subsequent reads from it will return its default value.
+    public mutating func clearKey() {_uniqueStorage()._key = nil}
+
     /// Authorization token, issued in response to the ID token provided in the request. Issued and signed by the server
     /// to indicate applicable top-level user permissions, and implies the user account was authenticated, authorized,
     /// and enabled to use the state associated with this token.
@@ -858,6 +888,9 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf._ProtoN
     22: .same(proto: "CONSENT_NOT_FOUND"),
     23: .same(proto: "EXPIRED_CONSENT"),
     24: .same(proto: "INVALID_NONCE"),
+    25: .same(proto: "SIGNATURE_REQUIRED"),
+    26: .same(proto: "SIGNATURE_INVALID"),
+    27: .same(proto: "SIGNATURE_MISMATCH"),
     99: .same(proto: "INTERNAL_ERROR"),
   ]
 }
@@ -1882,12 +1915,14 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request: SwiftPr
 extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "token"),
-    2: .same(proto: "profile"),
-    3: .same(proto: "setup"),
+    1: .same(proto: "key"),
+    2: .same(proto: "token"),
+    3: .same(proto: "profile"),
+    4: .same(proto: "setup"),
   ]
 
   fileprivate class _StorageClass {
+    var _key: Bloombox_Schema_Identity_UserKey? = nil
     var _token: Bloombox_Schema_Security_AuthToken? = nil
     var _result: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response.OneOf_Result?
 
@@ -1896,6 +1931,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftP
     private init() {}
 
     init(copying source: _StorageClass) {
+      _key = source._key
       _token = source._token
       _result = source._result
     }
@@ -1913,8 +1949,9 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftP
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._token)
-        case 2:
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._token)
+        case 3:
           var v: Bloombox_Schema_Identity_User?
           if let current = _storage._result {
             try decoder.handleConflictingOneOf()
@@ -1922,7 +1959,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftP
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._result = .profile(v)}
-        case 3:
+        case 4:
           if _storage._result != nil {try decoder.handleConflictingOneOf()}
           var v: Bool?
           try decoder.decodeSingularBoolField(value: &v)
@@ -1935,14 +1972,17 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftP
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._token {
+      if let v = _storage._key {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._token {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
       switch _storage._result {
       case .profile(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
       case .setup(let v)?:
-        try visitor.visitSingularBoolField(value: v, fieldNumber: 3)
+        try visitor.visitSingularBoolField(value: v, fieldNumber: 4)
       case nil: break
       }
     }
@@ -1954,6 +1994,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftP
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
+        if _storage._key != rhs_storage._key {return false}
         if _storage._token != rhs_storage._token {return false}
         if _storage._result != rhs_storage._result {return false}
         return true

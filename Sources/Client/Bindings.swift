@@ -51,6 +51,10 @@ public typealias AuthenticateUserCall = Bloombox_Schema_Services_Auth_V1beta1_Au
 public typealias IdentityConnect = Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect
 public typealias IdentityConnectCall = Bloombox_Schema_Services_Auth_V1beta1_AuthConnectCall
 
+/// Method: `profile`
+public typealias GetProfile = Bloombox_Schema_Services_Auth_V1beta1_GetProfile
+public typealias GetProfileCall = Bloombox_Schema_Services_Auth_V1beta1_AuthProfileCall
+
 
 //// Platform Service
 
