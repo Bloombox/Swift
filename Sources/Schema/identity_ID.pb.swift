@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates supported types of user-provided, government-issued ID.
-public enum Bloombox_Schema_Identity_IDType: SwiftProtobuf.Enum {
+public enum Bloombox_Identity_IDType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// United States Driver's License, issued by a U.S. state government.
@@ -58,9 +58,9 @@ public enum Bloombox_Schema_Identity_IDType: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Identity_IDType: CaseIterable {
+extension Bloombox_Identity_IDType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Identity_IDType] = [
+  public static var allCases: [Bloombox_Identity_IDType] = [
     .usdl,
     .passport,
   ]
@@ -68,14 +68,14 @@ extension Bloombox_Schema_Identity_IDType: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-/// Refererence to a government-issued ID.
-public struct Bloombox_Schema_Identity_IDReference {
+/// Reference to a government-issued ID.
+public struct Bloombox_Identity_IDReference {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Type of ID we're specifying.
-  public var type: Bloombox_Schema_Identity_IDType {
+  public var type: Bloombox_Identity_IDType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
@@ -106,19 +106,19 @@ public struct Bloombox_Schema_Identity_IDReference {
   }
 
   /// United States Driver's License.
-  public var license: Bloombox_Schema_Identity_Ids_USDLReference {
+  public var license: Bloombox_Identity_Ids_USDLReference {
     get {
       if case .license(let v)? = _storage._document {return v}
-      return Bloombox_Schema_Identity_Ids_USDLReference()
+      return Bloombox_Identity_Ids_USDLReference()
     }
     set {_uniqueStorage()._document = .license(newValue)}
   }
 
   /// National passport.
-  public var passport: Bloombox_Schema_Identity_Ids_PassportReference {
+  public var passport: Bloombox_Identity_Ids_PassportReference {
     get {
       if case .passport(let v)? = _storage._document {return v}
-      return Bloombox_Schema_Identity_Ids_PassportReference()
+      return Bloombox_Identity_Ids_PassportReference()
     }
     set {_uniqueStorage()._document = .passport(newValue)}
   }
@@ -127,12 +127,12 @@ public struct Bloombox_Schema_Identity_IDReference {
 
   public enum OneOf_Document: Equatable {
     /// United States Driver's License.
-    case license(Bloombox_Schema_Identity_Ids_USDLReference)
+    case license(Bloombox_Identity_Ids_USDLReference)
     /// National passport.
-    case passport(Bloombox_Schema_Identity_Ids_PassportReference)
+    case passport(Bloombox_Identity_Ids_PassportReference)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Identity_IDReference.OneOf_Document, rhs: Bloombox_Schema_Identity_IDReference.OneOf_Document) -> Bool {
+    public static func ==(lhs: Bloombox_Identity_IDReference.OneOf_Document, rhs: Bloombox_Identity_IDReference.OneOf_Document) -> Bool {
       switch (lhs, rhs) {
       case (.license(let l), .license(let r)): return l == r
       case (.passport(let l), .passport(let r)): return l == r
@@ -148,13 +148,13 @@ public struct Bloombox_Schema_Identity_IDReference {
 }
 
 /// Specifies an object for expressing a user's government ID information.
-public struct Bloombox_Schema_Identity_ID {
+public struct Bloombox_Identity_ID {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Type of ID we're specifying.
-  public var type: Bloombox_Schema_Identity_IDType {
+  public var type: Bloombox_Identity_IDType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
@@ -185,25 +185,37 @@ public struct Bloombox_Schema_Identity_ID {
   /// Clears the value of `birthDate`. Subsequent reads from it will return its default value.
   public mutating func clearBirthDate() {_uniqueStorage()._birthDate = nil}
 
+  /// Whether or not this ID has been verified in some way.
+  public var verified: Bool {
+    get {return _storage._verified}
+    set {_uniqueStorage()._verified = newValue}
+  }
+
+  /// Globally-provisioned ID for this identification document.
+  public var globalID: String {
+    get {return _storage._globalID}
+    set {_uniqueStorage()._globalID = newValue}
+  }
+
   public var document: OneOf_Document? {
     get {return _storage._document}
     set {_uniqueStorage()._document = newValue}
   }
 
   /// United States Driver's License.
-  public var license: Bloombox_Schema_Identity_Ids_USDL {
+  public var license: Bloombox_Identity_Ids_USDL {
     get {
       if case .license(let v)? = _storage._document {return v}
-      return Bloombox_Schema_Identity_Ids_USDL()
+      return Bloombox_Identity_Ids_USDL()
     }
     set {_uniqueStorage()._document = .license(newValue)}
   }
 
   /// National passport.
-  public var passport: Bloombox_Schema_Identity_Ids_Passport {
+  public var passport: Bloombox_Identity_Ids_Passport {
     get {
       if case .passport(let v)? = _storage._document {return v}
-      return Bloombox_Schema_Identity_Ids_Passport()
+      return Bloombox_Identity_Ids_Passport()
     }
     set {_uniqueStorage()._document = .passport(newValue)}
   }
@@ -212,12 +224,12 @@ public struct Bloombox_Schema_Identity_ID {
 
   public enum OneOf_Document: Equatable {
     /// United States Driver's License.
-    case license(Bloombox_Schema_Identity_Ids_USDL)
+    case license(Bloombox_Identity_Ids_USDL)
     /// National passport.
-    case passport(Bloombox_Schema_Identity_Ids_Passport)
+    case passport(Bloombox_Identity_Ids_Passport)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Identity_ID.OneOf_Document, rhs: Bloombox_Schema_Identity_ID.OneOf_Document) -> Bool {
+    public static func ==(lhs: Bloombox_Identity_ID.OneOf_Document, rhs: Bloombox_Identity_ID.OneOf_Document) -> Bool {
       switch (lhs, rhs) {
       case (.license(let l), .license(let r)): return l == r
       case (.passport(let l), .passport(let r)): return l == r
@@ -234,16 +246,16 @@ public struct Bloombox_Schema_Identity_ID {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity"
+fileprivate let _protobuf_package = "bloombox.identity"
 
-extension Bloombox_Schema_Identity_IDType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_IDType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "USDL"),
     1: .same(proto: "PASSPORT"),
   ]
 }
 
-extension Bloombox_Schema_Identity_IDReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_IDReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".IDReference"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
@@ -254,10 +266,10 @@ extension Bloombox_Schema_Identity_IDReference: SwiftProtobuf.Message, SwiftProt
   ]
 
   fileprivate class _StorageClass {
-    var _type: Bloombox_Schema_Identity_IDType = .usdl
+    var _type: Bloombox_Identity_IDType = .usdl
     var _expireDate: Opencannabis_Temporal_Date? = nil
     var _birthDate: Opencannabis_Temporal_Date? = nil
-    var _document: Bloombox_Schema_Identity_IDReference.OneOf_Document?
+    var _document: Bloombox_Identity_IDReference.OneOf_Document?
 
     static let defaultInstance = _StorageClass()
 
@@ -287,7 +299,7 @@ extension Bloombox_Schema_Identity_IDReference: SwiftProtobuf.Message, SwiftProt
         case 2: try decoder.decodeSingularMessageField(value: &_storage._expireDate)
         case 3: try decoder.decodeSingularMessageField(value: &_storage._birthDate)
         case 20:
-          var v: Bloombox_Schema_Identity_Ids_USDLReference?
+          var v: Bloombox_Identity_Ids_USDLReference?
           if let current = _storage._document {
             try decoder.handleConflictingOneOf()
             if case .license(let m) = current {v = m}
@@ -295,7 +307,7 @@ extension Bloombox_Schema_Identity_IDReference: SwiftProtobuf.Message, SwiftProt
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._document = .license(v)}
         case 21:
-          var v: Bloombox_Schema_Identity_Ids_PassportReference?
+          var v: Bloombox_Identity_Ids_PassportReference?
           if let current = _storage._document {
             try decoder.handleConflictingOneOf()
             if case .passport(let m) = current {v = m}
@@ -330,7 +342,7 @@ extension Bloombox_Schema_Identity_IDReference: SwiftProtobuf.Message, SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_IDReference, rhs: Bloombox_Schema_Identity_IDReference) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_IDReference, rhs: Bloombox_Identity_IDReference) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -348,23 +360,27 @@ extension Bloombox_Schema_Identity_IDReference: SwiftProtobuf.Message, SwiftProt
   }
 }
 
-extension Bloombox_Schema_Identity_ID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_ID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ID"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "id"),
     3: .standard(proto: "expire_date"),
     4: .standard(proto: "birth_date"),
+    5: .same(proto: "verified"),
+    6: .standard(proto: "global_id"),
     20: .same(proto: "license"),
     21: .same(proto: "passport"),
   ]
 
   fileprivate class _StorageClass {
-    var _type: Bloombox_Schema_Identity_IDType = .usdl
+    var _type: Bloombox_Identity_IDType = .usdl
     var _id: String = String()
     var _expireDate: Opencannabis_Temporal_Date? = nil
     var _birthDate: Opencannabis_Temporal_Date? = nil
-    var _document: Bloombox_Schema_Identity_ID.OneOf_Document?
+    var _verified: Bool = false
+    var _globalID: String = String()
+    var _document: Bloombox_Identity_ID.OneOf_Document?
 
     static let defaultInstance = _StorageClass()
 
@@ -375,6 +391,8 @@ extension Bloombox_Schema_Identity_ID: SwiftProtobuf.Message, SwiftProtobuf._Mes
       _id = source._id
       _expireDate = source._expireDate
       _birthDate = source._birthDate
+      _verified = source._verified
+      _globalID = source._globalID
       _document = source._document
     }
   }
@@ -395,8 +413,10 @@ extension Bloombox_Schema_Identity_ID: SwiftProtobuf.Message, SwiftProtobuf._Mes
         case 2: try decoder.decodeSingularStringField(value: &_storage._id)
         case 3: try decoder.decodeSingularMessageField(value: &_storage._expireDate)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._birthDate)
+        case 5: try decoder.decodeSingularBoolField(value: &_storage._verified)
+        case 6: try decoder.decodeSingularStringField(value: &_storage._globalID)
         case 20:
-          var v: Bloombox_Schema_Identity_Ids_USDL?
+          var v: Bloombox_Identity_Ids_USDL?
           if let current = _storage._document {
             try decoder.handleConflictingOneOf()
             if case .license(let m) = current {v = m}
@@ -404,7 +424,7 @@ extension Bloombox_Schema_Identity_ID: SwiftProtobuf.Message, SwiftProtobuf._Mes
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._document = .license(v)}
         case 21:
-          var v: Bloombox_Schema_Identity_Ids_Passport?
+          var v: Bloombox_Identity_Ids_Passport?
           if let current = _storage._document {
             try decoder.handleConflictingOneOf()
             if case .passport(let m) = current {v = m}
@@ -431,6 +451,12 @@ extension Bloombox_Schema_Identity_ID: SwiftProtobuf.Message, SwiftProtobuf._Mes
       if let v = _storage._birthDate {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
       }
+      if _storage._verified != false {
+        try visitor.visitSingularBoolField(value: _storage._verified, fieldNumber: 5)
+      }
+      if !_storage._globalID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._globalID, fieldNumber: 6)
+      }
       switch _storage._document {
       case .license(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
@@ -442,7 +468,7 @@ extension Bloombox_Schema_Identity_ID: SwiftProtobuf.Message, SwiftProtobuf._Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_ID, rhs: Bloombox_Schema_Identity_ID) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_ID, rhs: Bloombox_Identity_ID) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -451,6 +477,8 @@ extension Bloombox_Schema_Identity_ID: SwiftProtobuf.Message, SwiftProtobuf._Mes
         if _storage._id != rhs_storage._id {return false}
         if _storage._expireDate != rhs_storage._expireDate {return false}
         if _storage._birthDate != rhs_storage._birthDate {return false}
+        if _storage._verified != rhs_storage._verified {return false}
+        if _storage._globalID != rhs_storage._globalID {return false}
         if _storage._document != rhs_storage._document {return false}
         return true
       }

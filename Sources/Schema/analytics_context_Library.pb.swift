@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies known API client libraries, produced internally by Bloombox.
-public enum Bloombox_Schema_Analytics_Context_APIClient: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Context_APIClient: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The underlying library specified no known API client library.
@@ -64,9 +64,9 @@ public enum Bloombox_Schema_Analytics_Context_APIClient: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Context_APIClient: CaseIterable {
+extension Bloombox_Analytics_Context_APIClient: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Context_APIClient] = [
+  public static var allCases: [Bloombox_Analytics_Context_APIClient] = [
     .unidentified,
     .javaScript,
     .swift,
@@ -77,7 +77,7 @@ extension Bloombox_Schema_Analytics_Context_APIClient: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies information about the library being used to transmit data.
-public struct Bloombox_Schema_Analytics_Context_DeviceLibrary {
+public struct Bloombox_Analytics_Context_DeviceLibrary {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -99,7 +99,7 @@ public struct Bloombox_Schema_Analytics_Context_DeviceLibrary {
   public mutating func clearVersion() {_uniqueStorage()._version = nil}
 
   /// Specifies, if applicable, the internally-produced client library in use.
-  public var client: Bloombox_Schema_Analytics_Context_APIClient {
+  public var client: Bloombox_Analytics_Context_APIClient {
     get {return _storage._client}
     set {_uniqueStorage()._client = newValue}
   }
@@ -113,9 +113,9 @@ public struct Bloombox_Schema_Analytics_Context_DeviceLibrary {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
+fileprivate let _protobuf_package = "bloombox.analytics.context"
 
-extension Bloombox_Schema_Analytics_Context_APIClient: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_APIClient: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNIDENTIFIED"),
     1: .same(proto: "JAVA_SCRIPT"),
@@ -124,7 +124,7 @@ extension Bloombox_Schema_Analytics_Context_APIClient: SwiftProtobuf._ProtoNameP
   ]
 }
 
-extension Bloombox_Schema_Analytics_Context_DeviceLibrary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_DeviceLibrary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeviceLibrary"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "variant"),
@@ -135,7 +135,7 @@ extension Bloombox_Schema_Analytics_Context_DeviceLibrary: SwiftProtobuf.Message
   fileprivate class _StorageClass {
     var _variant: String = String()
     var _version: Opencannabis_Structs_VersionSpec? = nil
-    var _client: Bloombox_Schema_Analytics_Context_APIClient = .unidentified
+    var _client: Bloombox_Analytics_Context_APIClient = .unidentified
 
     static let defaultInstance = _StorageClass()
 
@@ -184,7 +184,7 @@ extension Bloombox_Schema_Analytics_Context_DeviceLibrary: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Context_DeviceLibrary, rhs: Bloombox_Schema_Analytics_Context_DeviceLibrary) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Context_DeviceLibrary, rhs: Bloombox_Analytics_Context_DeviceLibrary) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

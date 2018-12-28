@@ -26,15 +26,15 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Transactions: CREATE. Create transactions allocate, or issue, digital assets within the context of a ledger. The
 /// owner-to-be of those assets commits the transaction, signed with their private key.
-public struct Bloombox_Schema_Ledger_CreateOperation {
+public struct Bloombox_Ledger_CreateOperation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies the digital asset we are creating a record for in the digital ledger. The content of this data depends on
   /// the particular asset being stored.
-  public var asset: Bloombox_Schema_Ledger_DigitalAsset {
-    get {return _storage._asset ?? Bloombox_Schema_Ledger_DigitalAsset()}
+  public var asset: Bloombox_Ledger_DigitalAsset {
+    get {return _storage._asset ?? Bloombox_Ledger_DigitalAsset()}
     set {_uniqueStorage()._asset = newValue}
   }
   /// Returns true if `asset` has been explicitly set.
@@ -44,8 +44,8 @@ public struct Bloombox_Schema_Ledger_CreateOperation {
 
   /// Specifies the acting identity on the ledger for this transaction. In the context of a CREATE transaction, this is
   /// the final owner of the digital asset after execution.
-  public var owner: Bloombox_Schema_Ledger_LedgerIdentity {
-    get {return _storage._owner ?? Bloombox_Schema_Ledger_LedgerIdentity()}
+  public var owner: Bloombox_Ledger_LedgerIdentity {
+    get {return _storage._owner ?? Bloombox_Ledger_LedgerIdentity()}
     set {_uniqueStorage()._owner = newValue}
   }
   /// Returns true if `owner` has been explicitly set.
@@ -62,15 +62,15 @@ public struct Bloombox_Schema_Ledger_CreateOperation {
 
 /// Transactions: TRANSFER. Transfer transactions enable the interchange of existing digital assets, and, as such, always
 /// follow a CREATE transaction in the lifecycle of an asset.
-public struct Bloombox_Schema_Ledger_TransferOperation {
+public struct Bloombox_Ledger_TransferOperation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies the underlying digital asset being transferred. TRANSFER transactions specify digital assets by
   /// reference. It is worth noting here that an asset's ID is equal to the CREATE transaction's ID that created it.
-  public var asset: Bloombox_Schema_Ledger_AssetKey {
-    get {return _storage._asset ?? Bloombox_Schema_Ledger_AssetKey()}
+  public var asset: Bloombox_Ledger_AssetKey {
+    get {return _storage._asset ?? Bloombox_Ledger_AssetKey()}
     set {_uniqueStorage()._asset = newValue}
   }
   /// Returns true if `asset` has been explicitly set.
@@ -80,8 +80,8 @@ public struct Bloombox_Schema_Ledger_TransferOperation {
 
   /// Specifies the acting identity on the ledger for this transaction. In the case of a TRANSFER, it must be the
   /// authorized owner of the asset in its current state, in order to fully authorize the underlying asset's transfer.
-  public var source: Bloombox_Schema_Ledger_LedgerIdentity {
-    get {return _storage._source ?? Bloombox_Schema_Ledger_LedgerIdentity()}
+  public var source: Bloombox_Ledger_LedgerIdentity {
+    get {return _storage._source ?? Bloombox_Ledger_LedgerIdentity()}
     set {_uniqueStorage()._source = newValue}
   }
   /// Returns true if `source` has been explicitly set.
@@ -91,8 +91,8 @@ public struct Bloombox_Schema_Ledger_TransferOperation {
 
   /// Specifies the identity of the future-owner of the digital asset, should this transaction be deemed valid and then
   /// accepted to the ledger. That is to say, this is the "recipient" in the transaction.
-  public var target: Bloombox_Schema_Ledger_LedgerIdentity {
-    get {return _storage._target ?? Bloombox_Schema_Ledger_LedgerIdentity()}
+  public var target: Bloombox_Ledger_LedgerIdentity {
+    get {return _storage._target ?? Bloombox_Ledger_LedgerIdentity()}
     set {_uniqueStorage()._target = newValue}
   }
   /// Returns true if `target` has been explicitly set.
@@ -109,7 +109,7 @@ public struct Bloombox_Schema_Ledger_TransferOperation {
 
 /// Specifies the concept of a transaction "key," which may or may not be based on the transaction's ID, and may be
 /// allocated outside of the transaction's commitment lifecycle (i.e. to track an in-flight transaction).
-public struct Bloombox_Schema_Ledger_TransactionKey {
+public struct Bloombox_Ledger_TransactionKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -129,15 +129,15 @@ public struct Bloombox_Schema_Ledger_TransactionKey {
 
 /// Describes the structure of an individual transaction on the ledger. This serves as the main structural specification
 /// for a transaction, by operating as a generic container of both CREATE and TRANSFER operations.
-public struct Bloombox_Schema_Ledger_Transaction {
+public struct Bloombox_Ledger_Transaction {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Key for the transaction, which may consist of an ID (calculated from the underlying transaction content), and/or
   /// an XID (external ID, which is independent of the transaction content and committment status).
-  public var key: Bloombox_Schema_Ledger_TransactionKey {
-    get {return _storage._key ?? Bloombox_Schema_Ledger_TransactionKey()}
+  public var key: Bloombox_Ledger_TransactionKey {
+    get {return _storage._key ?? Bloombox_Ledger_TransactionKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -147,7 +147,7 @@ public struct Bloombox_Schema_Ledger_Transaction {
 
   /// Operation mode of this transaction. Can either be CREATE or TRANSFER. Create transactions perform the issuance of
   /// digital assets, and TRANSFER transactions perform their interchange.
-  public var operation: Bloombox_Schema_Ledger_Transaction.Operation {
+  public var operation: Bloombox_Ledger_Transaction.Operation {
     get {return _storage._operation}
     set {_uniqueStorage()._operation = newValue}
   }
@@ -160,19 +160,19 @@ public struct Bloombox_Schema_Ledger_Transaction {
   }
 
   /// Specifies a payload for an asset CREATE transaction.
-  public var issuance: Bloombox_Schema_Ledger_CreateOperation {
+  public var issuance: Bloombox_Ledger_CreateOperation {
     get {
       if case .issuance(let v)? = _storage._txn {return v}
-      return Bloombox_Schema_Ledger_CreateOperation()
+      return Bloombox_Ledger_CreateOperation()
     }
     set {_uniqueStorage()._txn = .issuance(newValue)}
   }
 
   /// Specifies a payload for an asset TRANSFER transaction.
-  public var interchange: Bloombox_Schema_Ledger_TransferOperation {
+  public var interchange: Bloombox_Ledger_TransferOperation {
     get {
       if case .interchange(let v)? = _storage._txn {return v}
-      return Bloombox_Schema_Ledger_TransferOperation()
+      return Bloombox_Ledger_TransferOperation()
     }
     set {_uniqueStorage()._txn = .interchange(newValue)}
   }
@@ -203,12 +203,12 @@ public struct Bloombox_Schema_Ledger_Transaction {
   /// expressed for serialization.
   public enum OneOf_Txn: Equatable {
     /// Specifies a payload for an asset CREATE transaction.
-    case issuance(Bloombox_Schema_Ledger_CreateOperation)
+    case issuance(Bloombox_Ledger_CreateOperation)
     /// Specifies a payload for an asset TRANSFER transaction.
-    case interchange(Bloombox_Schema_Ledger_TransferOperation)
+    case interchange(Bloombox_Ledger_TransferOperation)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Ledger_Transaction.OneOf_Txn, rhs: Bloombox_Schema_Ledger_Transaction.OneOf_Txn) -> Bool {
+    public static func ==(lhs: Bloombox_Ledger_Transaction.OneOf_Txn, rhs: Bloombox_Ledger_Transaction.OneOf_Txn) -> Bool {
       switch (lhs, rhs) {
       case (.issuance(let l), .issuance(let r)): return l == r
       case (.interchange(let l), .interchange(let r)): return l == r
@@ -259,9 +259,9 @@ public struct Bloombox_Schema_Ledger_Transaction {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Ledger_Transaction.Operation: CaseIterable {
+extension Bloombox_Ledger_Transaction.Operation: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Ledger_Transaction.Operation] = [
+  public static var allCases: [Bloombox_Ledger_Transaction.Operation] = [
     .create,
     .transfer,
   ]
@@ -271,9 +271,9 @@ extension Bloombox_Schema_Ledger_Transaction.Operation: CaseIterable {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.ledger"
+fileprivate let _protobuf_package = "bloombox.ledger"
 
-extension Bloombox_Schema_Ledger_CreateOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_CreateOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CreateOperation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "asset"),
@@ -281,8 +281,8 @@ extension Bloombox_Schema_Ledger_CreateOperation: SwiftProtobuf.Message, SwiftPr
   ]
 
   fileprivate class _StorageClass {
-    var _asset: Bloombox_Schema_Ledger_DigitalAsset? = nil
-    var _owner: Bloombox_Schema_Ledger_LedgerIdentity? = nil
+    var _asset: Bloombox_Ledger_DigitalAsset? = nil
+    var _owner: Bloombox_Ledger_LedgerIdentity? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -326,7 +326,7 @@ extension Bloombox_Schema_Ledger_CreateOperation: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_CreateOperation, rhs: Bloombox_Schema_Ledger_CreateOperation) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_CreateOperation, rhs: Bloombox_Ledger_CreateOperation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -342,7 +342,7 @@ extension Bloombox_Schema_Ledger_CreateOperation: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Bloombox_Schema_Ledger_TransferOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_TransferOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TransferOperation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "asset"),
@@ -351,9 +351,9 @@ extension Bloombox_Schema_Ledger_TransferOperation: SwiftProtobuf.Message, Swift
   ]
 
   fileprivate class _StorageClass {
-    var _asset: Bloombox_Schema_Ledger_AssetKey? = nil
-    var _source: Bloombox_Schema_Ledger_LedgerIdentity? = nil
-    var _target: Bloombox_Schema_Ledger_LedgerIdentity? = nil
+    var _asset: Bloombox_Ledger_AssetKey? = nil
+    var _source: Bloombox_Ledger_LedgerIdentity? = nil
+    var _target: Bloombox_Ledger_LedgerIdentity? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -402,7 +402,7 @@ extension Bloombox_Schema_Ledger_TransferOperation: SwiftProtobuf.Message, Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_TransferOperation, rhs: Bloombox_Schema_Ledger_TransferOperation) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_TransferOperation, rhs: Bloombox_Ledger_TransferOperation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -419,7 +419,7 @@ extension Bloombox_Schema_Ledger_TransferOperation: SwiftProtobuf.Message, Swift
   }
 }
 
-extension Bloombox_Schema_Ledger_TransactionKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_TransactionKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TransactionKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "xid"),
@@ -446,7 +446,7 @@ extension Bloombox_Schema_Ledger_TransactionKey: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_TransactionKey, rhs: Bloombox_Schema_Ledger_TransactionKey) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_TransactionKey, rhs: Bloombox_Ledger_TransactionKey) -> Bool {
     if lhs.xid != rhs.xid {return false}
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -454,7 +454,7 @@ extension Bloombox_Schema_Ledger_TransactionKey: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Transaction"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -466,9 +466,9 @@ extension Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message, SwiftProtob
   ]
 
   fileprivate class _StorageClass {
-    var _key: Bloombox_Schema_Ledger_TransactionKey? = nil
-    var _operation: Bloombox_Schema_Ledger_Transaction.Operation = .create
-    var _txn: Bloombox_Schema_Ledger_Transaction.OneOf_Txn?
+    var _key: Bloombox_Ledger_TransactionKey? = nil
+    var _operation: Bloombox_Ledger_Transaction.Operation = .create
+    var _txn: Bloombox_Ledger_Transaction.OneOf_Txn?
     var _created: Opencannabis_Temporal_Instant? = nil
     var _modified: Opencannabis_Temporal_Instant? = nil
 
@@ -500,7 +500,7 @@ extension Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message, SwiftProtob
         case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
         case 2: try decoder.decodeSingularEnumField(value: &_storage._operation)
         case 10:
-          var v: Bloombox_Schema_Ledger_CreateOperation?
+          var v: Bloombox_Ledger_CreateOperation?
           if let current = _storage._txn {
             try decoder.handleConflictingOneOf()
             if case .issuance(let m) = current {v = m}
@@ -508,7 +508,7 @@ extension Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message, SwiftProtob
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._txn = .issuance(v)}
         case 11:
-          var v: Bloombox_Schema_Ledger_TransferOperation?
+          var v: Bloombox_Ledger_TransferOperation?
           if let current = _storage._txn {
             try decoder.handleConflictingOneOf()
             if case .interchange(let m) = current {v = m}
@@ -548,7 +548,7 @@ extension Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_Transaction, rhs: Bloombox_Schema_Ledger_Transaction) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_Transaction, rhs: Bloombox_Ledger_Transaction) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -567,7 +567,7 @@ extension Bloombox_Schema_Ledger_Transaction: SwiftProtobuf.Message, SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Ledger_Transaction.Operation: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_Transaction.Operation: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "CREATE"),
     1: .same(proto: "TRANSFER"),

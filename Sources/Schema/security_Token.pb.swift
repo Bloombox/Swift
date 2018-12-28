@@ -25,7 +25,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a parsed ID token payload structure.
-public struct Bloombox_Schema_Security_IDTokenPayload {
+public struct Bloombox_Security_IDTokenPayload {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -51,7 +51,7 @@ public struct Bloombox_Schema_Security_IDTokenPayload {
 }
 
 /// Specifies an ID token, usually structured as a JWT.
-public struct Bloombox_Schema_Security_IDToken {
+public struct Bloombox_Security_IDToken {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -71,10 +71,10 @@ public struct Bloombox_Schema_Security_IDToken {
   }
 
   /// Parsed identity JWT payload.
-  public var data: Bloombox_Schema_Security_IDTokenPayload {
+  public var data: Bloombox_Security_IDTokenPayload {
     get {
       if case .data(let v)? = _storage._payload {return v}
-      return Bloombox_Schema_Security_IDTokenPayload()
+      return Bloombox_Security_IDTokenPayload()
     }
     set {_uniqueStorage()._payload = .data(newValue)}
   }
@@ -85,10 +85,10 @@ public struct Bloombox_Schema_Security_IDToken {
     /// Encoded ID token.
     case encoded(String)
     /// Parsed identity JWT payload.
-    case data(Bloombox_Schema_Security_IDTokenPayload)
+    case data(Bloombox_Security_IDTokenPayload)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Security_IDToken.OneOf_Payload, rhs: Bloombox_Schema_Security_IDToken.OneOf_Payload) -> Bool {
+    public static func ==(lhs: Bloombox_Security_IDToken.OneOf_Payload, rhs: Bloombox_Security_IDToken.OneOf_Payload) -> Bool {
       switch (lhs, rhs) {
       case (.encoded(let l), .encoded(let r)): return l == r
       case (.data(let l), .data(let r)): return l == r
@@ -104,7 +104,7 @@ public struct Bloombox_Schema_Security_IDToken {
 }
 
 /// Specifies a parsed access token structure.
-public struct Bloombox_Schema_Security_TokenPayload {
+public struct Bloombox_Security_TokenPayload {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -127,7 +127,7 @@ public struct Bloombox_Schema_Security_TokenPayload {
 }
 
 /// Specifies an authorization token, in the OAuth2 access_token format.
-public struct Bloombox_Schema_Security_AuthToken {
+public struct Bloombox_Security_AuthToken {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -147,10 +147,10 @@ public struct Bloombox_Schema_Security_AuthToken {
   }
 
   /// Parsed and structured authorization ticket.
-  public var ticket: Bloombox_Schema_Security_TokenPayload {
+  public var ticket: Bloombox_Security_TokenPayload {
     get {
       if case .ticket(let v)? = _storage._payload {return v}
-      return Bloombox_Schema_Security_TokenPayload()
+      return Bloombox_Security_TokenPayload()
     }
     set {_uniqueStorage()._payload = .ticket(newValue)}
   }
@@ -161,10 +161,10 @@ public struct Bloombox_Schema_Security_AuthToken {
     /// Encoded access token.
     case encoded(String)
     /// Parsed and structured authorization ticket.
-    case ticket(Bloombox_Schema_Security_TokenPayload)
+    case ticket(Bloombox_Security_TokenPayload)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Security_AuthToken.OneOf_Payload, rhs: Bloombox_Schema_Security_AuthToken.OneOf_Payload) -> Bool {
+    public static func ==(lhs: Bloombox_Security_AuthToken.OneOf_Payload, rhs: Bloombox_Security_AuthToken.OneOf_Payload) -> Bool {
       switch (lhs, rhs) {
       case (.encoded(let l), .encoded(let r)): return l == r
       case (.ticket(let l), .ticket(let r)): return l == r
@@ -181,14 +181,14 @@ public struct Bloombox_Schema_Security_AuthToken {
 
 /// Specifies a full auth flow payload, representing a completed or in-progress identity and authorization/consent flow,
 /// performed by a machine on behalf of an end user.
-public struct Bloombox_Schema_Security_AuthPayload {
+public struct Bloombox_Security_AuthPayload {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Identity token, asserting the user's identity.
-  public var id: Bloombox_Schema_Security_IDToken {
-    get {return _storage._id ?? Bloombox_Schema_Security_IDToken()}
+  public var id: Bloombox_Security_IDToken {
+    get {return _storage._id ?? Bloombox_Security_IDToken()}
     set {_uniqueStorage()._id = newValue}
   }
   /// Returns true if `id` has been explicitly set.
@@ -197,8 +197,8 @@ public struct Bloombox_Schema_Security_AuthPayload {
   public mutating func clearID() {_uniqueStorage()._id = nil}
 
   /// Authorization token, asserting completed consent and authorization status.
-  public var auth: Bloombox_Schema_Security_AuthToken {
-    get {return _storage._auth ?? Bloombox_Schema_Security_AuthToken()}
+  public var auth: Bloombox_Security_AuthToken {
+    get {return _storage._auth ?? Bloombox_Security_AuthToken()}
     set {_uniqueStorage()._auth = newValue}
   }
   /// Returns true if `auth` has been explicitly set.
@@ -215,9 +215,9 @@ public struct Bloombox_Schema_Security_AuthPayload {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.security"
+fileprivate let _protobuf_package = "bloombox.security"
 
-extension Bloombox_Schema_Security_IDTokenPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_IDTokenPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".IDTokenPayload"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "token"),
@@ -259,7 +259,7 @@ extension Bloombox_Schema_Security_IDTokenPayload: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Security_IDTokenPayload, rhs: Bloombox_Schema_Security_IDTokenPayload) -> Bool {
+  public static func ==(lhs: Bloombox_Security_IDTokenPayload, rhs: Bloombox_Security_IDTokenPayload) -> Bool {
     if lhs.token != rhs.token {return false}
     if lhs.expiration != rhs.expiration {return false}
     if lhs.issuance != rhs.issuance {return false}
@@ -270,7 +270,7 @@ extension Bloombox_Schema_Security_IDTokenPayload: SwiftProtobuf.Message, SwiftP
   }
 }
 
-extension Bloombox_Schema_Security_IDToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_IDToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".IDToken"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "encoded"),
@@ -278,7 +278,7 @@ extension Bloombox_Schema_Security_IDToken: SwiftProtobuf.Message, SwiftProtobuf
   ]
 
   fileprivate class _StorageClass {
-    var _payload: Bloombox_Schema_Security_IDToken.OneOf_Payload?
+    var _payload: Bloombox_Security_IDToken.OneOf_Payload?
 
     static let defaultInstance = _StorageClass()
 
@@ -307,7 +307,7 @@ extension Bloombox_Schema_Security_IDToken: SwiftProtobuf.Message, SwiftProtobuf
           try decoder.decodeSingularStringField(value: &v)
           if let v = v {_storage._payload = .encoded(v)}
         case 2:
-          var v: Bloombox_Schema_Security_IDTokenPayload?
+          var v: Bloombox_Security_IDTokenPayload?
           if let current = _storage._payload {
             try decoder.handleConflictingOneOf()
             if case .data(let m) = current {v = m}
@@ -333,7 +333,7 @@ extension Bloombox_Schema_Security_IDToken: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Security_IDToken, rhs: Bloombox_Schema_Security_IDToken) -> Bool {
+  public static func ==(lhs: Bloombox_Security_IDToken, rhs: Bloombox_Security_IDToken) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -348,7 +348,7 @@ extension Bloombox_Schema_Security_IDToken: SwiftProtobuf.Message, SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Security_TokenPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_TokenPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TokenPayload"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "token"),
@@ -385,7 +385,7 @@ extension Bloombox_Schema_Security_TokenPayload: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Security_TokenPayload, rhs: Bloombox_Schema_Security_TokenPayload) -> Bool {
+  public static func ==(lhs: Bloombox_Security_TokenPayload, rhs: Bloombox_Security_TokenPayload) -> Bool {
     if lhs.token != rhs.token {return false}
     if lhs.expiration != rhs.expiration {return false}
     if lhs.issuance != rhs.issuance {return false}
@@ -395,7 +395,7 @@ extension Bloombox_Schema_Security_TokenPayload: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Security_AuthToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_AuthToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AuthToken"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "encoded"),
@@ -403,7 +403,7 @@ extension Bloombox_Schema_Security_AuthToken: SwiftProtobuf.Message, SwiftProtob
   ]
 
   fileprivate class _StorageClass {
-    var _payload: Bloombox_Schema_Security_AuthToken.OneOf_Payload?
+    var _payload: Bloombox_Security_AuthToken.OneOf_Payload?
 
     static let defaultInstance = _StorageClass()
 
@@ -432,7 +432,7 @@ extension Bloombox_Schema_Security_AuthToken: SwiftProtobuf.Message, SwiftProtob
           try decoder.decodeSingularStringField(value: &v)
           if let v = v {_storage._payload = .encoded(v)}
         case 2:
-          var v: Bloombox_Schema_Security_TokenPayload?
+          var v: Bloombox_Security_TokenPayload?
           if let current = _storage._payload {
             try decoder.handleConflictingOneOf()
             if case .ticket(let m) = current {v = m}
@@ -458,7 +458,7 @@ extension Bloombox_Schema_Security_AuthToken: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Security_AuthToken, rhs: Bloombox_Schema_Security_AuthToken) -> Bool {
+  public static func ==(lhs: Bloombox_Security_AuthToken, rhs: Bloombox_Security_AuthToken) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -473,7 +473,7 @@ extension Bloombox_Schema_Security_AuthToken: SwiftProtobuf.Message, SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Security_AuthPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_AuthPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AuthPayload"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -481,8 +481,8 @@ extension Bloombox_Schema_Security_AuthPayload: SwiftProtobuf.Message, SwiftProt
   ]
 
   fileprivate class _StorageClass {
-    var _id: Bloombox_Schema_Security_IDToken? = nil
-    var _auth: Bloombox_Schema_Security_AuthToken? = nil
+    var _id: Bloombox_Security_IDToken? = nil
+    var _auth: Bloombox_Security_AuthToken? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -526,7 +526,7 @@ extension Bloombox_Schema_Security_AuthPayload: SwiftProtobuf.Message, SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Security_AuthPayload, rhs: Bloombox_Schema_Security_AuthPayload) -> Bool {
+  public static func ==(lhs: Bloombox_Security_AuthPayload, rhs: Bloombox_Security_AuthPayload) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Mode of operation to employ when resizing images.
-public enum Bloombox_Schema_Services_Media_V1beta1_ImageResizeMode: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Media_V1beta1_ImageResizeMode: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Don't change the size of the image.
@@ -62,9 +62,9 @@ public enum Bloombox_Schema_Services_Media_V1beta1_ImageResizeMode: SwiftProtobu
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Media_V1beta1_ImageResizeMode: CaseIterable {
+extension Bloombox_Services_Media_V1beta1_ImageResizeMode: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Media_V1beta1_ImageResizeMode] = [
+  public static var allCases: [Bloombox_Services_Media_V1beta1_ImageResizeMode] = [
     .noResize,
     .resize,
     .crop,
@@ -74,7 +74,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_ImageResizeMode: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Structure for a generic task dealing with media data.
-public struct Bloombox_Schema_Services_Media_V1beta1_MediaTask {
+public struct Bloombox_Services_Media_V1beta1_MediaTask {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -112,10 +112,10 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaTask {
   }
 
   /// Minify/optimize an image.
-  public var imageMin: Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization {
+  public var imageMin: Bloombox_Services_Media_V1beta1_MediaTask.ImageOptimization {
     get {
       if case .imageMin(let v)? = _storage._task {return v}
-      return Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization()
+      return Bloombox_Services_Media_V1beta1_MediaTask.ImageOptimization()
     }
     set {_uniqueStorage()._task = .imageMin(newValue)}
   }
@@ -134,12 +134,12 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaTask {
   /// Media task to perform.
   public enum OneOf_Task: Equatable {
     /// Minify/optimize an image.
-    case imageMin(Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization)
+    case imageMin(Bloombox_Services_Media_V1beta1_MediaTask.ImageOptimization)
     /// Publish an image to specialized serving infrastructure.
     case imagePublish(Bool)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask.OneOf_Task, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask.OneOf_Task) -> Bool {
+    public static func ==(lhs: Bloombox_Services_Media_V1beta1_MediaTask.OneOf_Task, rhs: Bloombox_Services_Media_V1beta1_MediaTask.OneOf_Task) -> Bool {
       switch (lhs, rhs) {
       case (.imageMin(let l), .imageMin(let r)): return l == r
       case (.imagePublish(let l), .imagePublish(let r)): return l == r
@@ -179,9 +179,9 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaTask {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.services.media.v1beta1"
+fileprivate let _protobuf_package = "bloombox.services.media.v1beta1"
 
-extension Bloombox_Schema_Services_Media_V1beta1_ImageResizeMode: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Media_V1beta1_ImageResizeMode: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_RESIZE"),
     1: .same(proto: "RESIZE"),
@@ -189,7 +189,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_ImageResizeMode: SwiftProtobuf.
   ]
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MediaTask"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
@@ -203,7 +203,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Messag
     var _uuid: String = String()
     var _key: Opencannabis_Media_MediaKey? = nil
     var _media: Opencannabis_Media_MediaItem? = nil
-    var _task: Bloombox_Schema_Services_Media_V1beta1_MediaTask.OneOf_Task?
+    var _task: Bloombox_Services_Media_V1beta1_MediaTask.OneOf_Task?
 
     static let defaultInstance = _StorageClass()
 
@@ -233,7 +233,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Messag
         case 2: try decoder.decodeSingularMessageField(value: &_storage._key)
         case 3: try decoder.decodeSingularMessageField(value: &_storage._media)
         case 10:
-          var v: Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization?
+          var v: Bloombox_Services_Media_V1beta1_MediaTask.ImageOptimization?
           if let current = _storage._task {
             try decoder.handleConflictingOneOf()
             if case .imageMin(let m) = current {v = m}
@@ -273,7 +273,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_MediaTask, rhs: Bloombox_Services_Media_V1beta1_MediaTask) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -291,8 +291,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaTask: SwiftProtobuf.Messag
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_MediaTask.protoMessageName + ".ImageOptimization"
+extension Bloombox_Services_Media_V1beta1_MediaTask.ImageOptimization: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Media_V1beta1_MediaTask.protoMessageName + ".ImageOptimization"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "format"),
     2: .same(proto: "dpi"),
@@ -328,7 +328,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization: Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaTask.ImageOptimization) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_MediaTask.ImageOptimization, rhs: Bloombox_Services_Media_V1beta1_MediaTask.ImageOptimization) -> Bool {
     if lhs.format != rhs.format {return false}
     if lhs.dpi != rhs.dpi {return false}
     if lhs.width != rhs.width {return false}

@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Communication channel types.
-public enum Bloombox_Schema_Comms_Channel: SwiftProtobuf.Enum {
+public enum Bloombox_Comms_Channel: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unspecified, or default, channel type.
@@ -62,9 +62,9 @@ public enum Bloombox_Schema_Comms_Channel: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Comms_Channel: CaseIterable {
+extension Bloombox_Comms_Channel: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Comms_Channel] = [
+  public static var allCases: [Bloombox_Comms_Channel] = [
     .unspecified,
     .email,
     .sms,
@@ -75,7 +75,7 @@ extension Bloombox_Schema_Comms_Channel: CaseIterable {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Bloombox_Schema_Comms_Channel: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_Channel: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED"),
     1: .same(proto: "EMAIL"),

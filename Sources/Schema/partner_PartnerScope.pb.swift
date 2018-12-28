@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies authentication scopes at the partner level.
-public enum Bloombox_Schema_Partner_PartnerScope: SwiftProtobuf.Enum {
+public enum Bloombox_Partner_PartnerScope: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Basic authentication as a member of a partner. This includes partner staff, managers, owners, and so on.
@@ -88,9 +88,9 @@ public enum Bloombox_Schema_Partner_PartnerScope: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Partner_PartnerScope: CaseIterable {
+extension Bloombox_Partner_PartnerScope: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Partner_PartnerScope] = [
+  public static var allCases: [Bloombox_Partner_PartnerScope] = [
     .auth,
     .contact,
     .dashboard,
@@ -106,7 +106,7 @@ extension Bloombox_Schema_Partner_PartnerScope: CaseIterable {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Bloombox_Schema_Partner_PartnerScope: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_PartnerScope: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "AUTH"),
     1: .same(proto: "CONTACT"),

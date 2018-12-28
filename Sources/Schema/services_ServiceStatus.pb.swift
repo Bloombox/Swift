@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the status of this service in PING responses.
-public enum Bloombox_Schema_Services_ServiceStatus: SwiftProtobuf.Enum {
+public enum Bloombox_Services_ServiceStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The state of the service is not known.
@@ -64,9 +64,9 @@ public enum Bloombox_Schema_Services_ServiceStatus: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_ServiceStatus: CaseIterable {
+extension Bloombox_Services_ServiceStatus: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_ServiceStatus] = [
+  public static var allCases: [Bloombox_Services_ServiceStatus] = [
     .unknown,
     .up,
     .down,
@@ -78,7 +78,7 @@ extension Bloombox_Schema_Services_ServiceStatus: CaseIterable {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Bloombox_Schema_Services_ServiceStatus: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_ServiceStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNKNOWN"),
     1: .same(proto: "UP"),

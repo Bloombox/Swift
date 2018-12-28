@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates categories of events supported by the telemetry system.
-public enum Bloombox_Schema_Analytics_Context_EventType: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Context_EventType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Generic event or error report with arbitrary payload.
@@ -69,9 +69,9 @@ public enum Bloombox_Schema_Analytics_Context_EventType: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Context_EventType: CaseIterable {
+extension Bloombox_Analytics_Context_EventType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Context_EventType] = [
+  public static var allCases: [Bloombox_Analytics_Context_EventType] = [
     .generic,
     .commercial,
     .identity,
@@ -83,7 +83,7 @@ extension Bloombox_Schema_Analytics_Context_EventType: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Represents a specification for an analytics event collection.
-public struct Bloombox_Schema_Analytics_Context_Collection {
+public struct Bloombox_Analytics_Context_Collection {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -95,7 +95,7 @@ public struct Bloombox_Schema_Analytics_Context_Collection {
   public var `internal`: Bool = false
 
   /// Specifies the type of event. Usually added by the telemetry backend.
-  public var type: Bloombox_Schema_Analytics_Context_EventType = .generic
+  public var type: Bloombox_Analytics_Context_EventType = .generic
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -104,9 +104,9 @@ public struct Bloombox_Schema_Analytics_Context_Collection {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
+fileprivate let _protobuf_package = "bloombox.analytics.context"
 
-extension Bloombox_Schema_Analytics_Context_EventType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_EventType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "GENERIC"),
     1: .same(proto: "COMMERCIAL"),
@@ -116,7 +116,7 @@ extension Bloombox_Schema_Analytics_Context_EventType: SwiftProtobuf._ProtoNameP
   ]
 }
 
-extension Bloombox_Schema_Analytics_Context_Collection: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_Collection: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Collection"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
@@ -148,7 +148,7 @@ extension Bloombox_Schema_Analytics_Context_Collection: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Context_Collection, rhs: Bloombox_Schema_Analytics_Context_Collection) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Context_Collection, rhs: Bloombox_Analytics_Context_Collection) -> Bool {
     if lhs.name != rhs.name {return false}
     if lhs.`internal` != rhs.`internal` {return false}
     if lhs.type != rhs.type {return false}

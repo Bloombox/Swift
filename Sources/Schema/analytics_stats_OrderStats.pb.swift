@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a set of basic calculated statistics, computed at the level of an entire user session.
-public struct Bloombox_Schema_Analytics_Stats_OrderStats {
+public struct Bloombox_Analytics_Stats_OrderStats {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -68,9 +68,9 @@ public struct Bloombox_Schema_Analytics_Stats_OrderStats {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.stats"
+fileprivate let _protobuf_package = "bloombox.analytics.stats"
 
-extension Bloombox_Schema_Analytics_Stats_OrderStats: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Stats_OrderStats: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".OrderStats"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "oid"),
@@ -144,7 +144,7 @@ extension Bloombox_Schema_Analytics_Stats_OrderStats: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Stats_OrderStats, rhs: Bloombox_Schema_Analytics_Stats_OrderStats) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Stats_OrderStats, rhs: Bloombox_Analytics_Stats_OrderStats) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

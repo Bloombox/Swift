@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates errors that may be yielded when working when the device service.
-public enum Bloombox_Schema_Services_Devices_V1beta1_DeviceError: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Devices_V1beta1_DeviceError: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// No error occurred.
@@ -73,9 +73,9 @@ public enum Bloombox_Schema_Services_Devices_V1beta1_DeviceError: SwiftProtobuf.
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Devices_V1beta1_DeviceError: CaseIterable {
+extension Bloombox_Services_Devices_V1beta1_DeviceError: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Devices_V1beta1_DeviceError] = [
+  public static var allCases: [Bloombox_Services_Devices_V1beta1_DeviceError] = [
     .noError,
     .invalidSerial,
     .deviceNotFound,
@@ -87,7 +87,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceError: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies the role of a device, and therefore how it should behave.
-public enum Bloombox_Schema_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The device does not currently have an assigned role.
@@ -136,9 +136,9 @@ public enum Bloombox_Schema_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf.E
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Devices_V1beta1_DeviceRole: CaseIterable {
+extension Bloombox_Services_Devices_V1beta1_DeviceRole: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Devices_V1beta1_DeviceRole] = [
+  public static var allCases: [Bloombox_Services_Devices_V1beta1_DeviceRole] = [
     .unassigned,
     .menu,
     .checkin,
@@ -150,7 +150,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceRole: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Enumerates available environments that a device may be assigned to, when consuming its data.
-public enum Bloombox_Schema_Services_Devices_V1beta1_DataEnvironment: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Devices_V1beta1_DataEnvironment: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// "Current" environment.
@@ -184,9 +184,9 @@ public enum Bloombox_Schema_Services_Devices_V1beta1_DataEnvironment: SwiftProto
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Devices_V1beta1_DataEnvironment: CaseIterable {
+extension Bloombox_Services_Devices_V1beta1_DataEnvironment: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Devices_V1beta1_DataEnvironment] = [
+  public static var allCases: [Bloombox_Services_Devices_V1beta1_DataEnvironment] = [
     .v1,
     .v2,
   ]
@@ -196,7 +196,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DataEnvironment: CaseIterable
 
 /// Describes a device's assignment information, in terms of its role, and also the partner/location it is co-located
 /// with.
-public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceAssignment {
+public struct Bloombox_Services_Devices_V1beta1_DeviceAssignment {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -208,10 +208,10 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceAssignment {
   public var location: String = String()
 
   /// Role setting for the device.
-  public var role: Bloombox_Schema_Services_Devices_V1beta1_DeviceRole = .unassigned
+  public var role: Bloombox_Services_Devices_V1beta1_DeviceRole = .unassigned
 
   /// Environment name to make use of. Usually "V1".
-  public var environment: Bloombox_Schema_Services_Devices_V1beta1_DataEnvironment = .v1
+  public var environment: Bloombox_Services_Devices_V1beta1_DataEnvironment = .v1
 
   /// Optional human-readable name or label for the subject device.
   public var label: String = String()
@@ -222,7 +222,7 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceAssignment {
 }
 
 /// Specifies a set of OAuth2 URLs to use with Bloombox account authorization.
-public struct Bloombox_Schema_Services_Devices_V1beta1_OAuth2Endpoints {
+public struct Bloombox_Services_Devices_V1beta1_OAuth2Endpoints {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -240,14 +240,14 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_OAuth2Endpoints {
 
 /// Describes endpoints a device should use, or is assigned to use, for different purposes - to include authentication,
 /// authorization, API use, and direct database use.
-public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceEndpoints {
+public struct Bloombox_Services_Devices_V1beta1_DeviceEndpoints {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// OAuth2 endpoint to use for authorization. Default value is "authorize.bloombox.cloud".
-  public var oauth2: Bloombox_Schema_Services_Devices_V1beta1_OAuth2Endpoints {
-    get {return _storage._oauth2 ?? Bloombox_Schema_Services_Devices_V1beta1_OAuth2Endpoints()}
+  public var oauth2: Bloombox_Services_Devices_V1beta1_OAuth2Endpoints {
+    get {return _storage._oauth2 ?? Bloombox_Services_Devices_V1beta1_OAuth2Endpoints()}
     set {_uniqueStorage()._oauth2 = newValue}
   }
   /// Returns true if `oauth2` has been explicitly set.
@@ -299,7 +299,7 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceEndpoints {
 }
 
 /// Credentials an activated partner device should make use of when communicating with server-side systems.
-public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceKeys {
+public struct Bloombox_Services_Devices_V1beta1_DeviceKeys {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -317,7 +317,7 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceKeys {
 
 /// Describes the result of a device activation operation, which includes various pieces of cryptographic information,
 /// and the device's assignment and role information.
-public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation {
+public struct Bloombox_Services_Devices_V1beta1_DeviceActivation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -335,8 +335,8 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation {
   }
 
   /// Assignment information for the device.
-  public var assignment: Bloombox_Schema_Services_Devices_V1beta1_DeviceAssignment {
-    get {return _storage._assignment ?? Bloombox_Schema_Services_Devices_V1beta1_DeviceAssignment()}
+  public var assignment: Bloombox_Services_Devices_V1beta1_DeviceAssignment {
+    get {return _storage._assignment ?? Bloombox_Services_Devices_V1beta1_DeviceAssignment()}
     set {_uniqueStorage()._assignment = newValue}
   }
   /// Returns true if `assignment` has been explicitly set.
@@ -346,8 +346,8 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation {
 
   /// Specifies an activation ticket for the subject device, including authorization information and a signed JWT that
   /// allows the device access to assigned information and credentials.
-  public var ticket: Bloombox_Schema_Security_DeviceTicket {
-    get {return _storage._ticket ?? Bloombox_Schema_Security_DeviceTicket()}
+  public var ticket: Bloombox_Security_DeviceTicket {
+    get {return _storage._ticket ?? Bloombox_Security_DeviceTicket()}
     set {_uniqueStorage()._ticket = newValue}
   }
   /// Returns true if `ticket` has been explicitly set.
@@ -357,8 +357,8 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation {
 
   /// Payload specifying endpoints the device should use under different circumstances, to include OAuth2, API use, and
   /// direct use of Firebase.
-  public var endpoints: Bloombox_Schema_Services_Devices_V1beta1_DeviceEndpoints {
-    get {return _storage._endpoints ?? Bloombox_Schema_Services_Devices_V1beta1_DeviceEndpoints()}
+  public var endpoints: Bloombox_Services_Devices_V1beta1_DeviceEndpoints {
+    get {return _storage._endpoints ?? Bloombox_Services_Devices_V1beta1_DeviceEndpoints()}
     set {_uniqueStorage()._endpoints = newValue}
   }
   /// Returns true if `endpoints` has been explicitly set.
@@ -379,8 +379,8 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation {
 
   /// Specifies the cryptographic material this activated device should make use of when communicating with the Bloombox
   /// Platform server-side systems.
-  public var credentials: Bloombox_Schema_Services_Devices_V1beta1_DeviceKeys {
-    get {return _storage._credentials ?? Bloombox_Schema_Services_Devices_V1beta1_DeviceKeys()}
+  public var credentials: Bloombox_Services_Devices_V1beta1_DeviceKeys {
+    get {return _storage._credentials ?? Bloombox_Services_Devices_V1beta1_DeviceKeys()}
     set {_uniqueStorage()._credentials = newValue}
   }
   /// Returns true if `credentials` has been explicitly set.
@@ -396,7 +396,7 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation {
 }
 
 /// Specifies an RPC operation to retrieve status information for the Devices API.
-public struct Bloombox_Schema_Services_Devices_V1beta1_Ping {
+public struct Bloombox_Services_Devices_V1beta1_Ping {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -421,7 +421,7 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_Ping {
     // methods supported on all messages.
 
     /// Current service status.
-    public var status: Bloombox_Schema_Services_ServiceStatus = .unknown
+    public var status: Bloombox_Services_ServiceStatus = .unknown
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -435,8 +435,8 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_Ping {
     // methods supported on all messages.
 
     /// Request for member verification.
-    public var request: Bloombox_Schema_Services_Devices_V1beta1_Ping.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Devices_V1beta1_Ping.Request()}
+    public var request: Bloombox_Services_Devices_V1beta1_Ping.Request {
+      get {return _storage._request ?? Bloombox_Services_Devices_V1beta1_Ping.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -445,8 +445,8 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_Ping {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response for member verification.
-    public var response: Bloombox_Schema_Services_Devices_V1beta1_Ping.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Devices_V1beta1_Ping.Response()}
+    public var response: Bloombox_Services_Devices_V1beta1_Ping.Response {
+      get {return _storage._response ?? Bloombox_Services_Devices_V1beta1_Ping.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -465,7 +465,7 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_Ping {
 }
 
 /// Specifies an RPC operation to activate a hardware device for use.
-public struct Bloombox_Schema_Services_Devices_V1beta1_Activation {
+public struct Bloombox_Services_Devices_V1beta1_Activation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -505,14 +505,14 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_Activation {
     }
 
     /// Error that occurred while activating, if any.
-    public var error: Bloombox_Schema_Services_Devices_V1beta1_DeviceError {
+    public var error: Bloombox_Services_Devices_V1beta1_DeviceError {
       get {return _storage._error}
       set {_uniqueStorage()._error = newValue}
     }
 
     /// Device activation information, including its assignment/role.
-    public var manifest: Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation {
-      get {return _storage._manifest ?? Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation()}
+    public var manifest: Bloombox_Services_Devices_V1beta1_DeviceActivation {
+      get {return _storage._manifest ?? Bloombox_Services_Devices_V1beta1_DeviceActivation()}
       set {_uniqueStorage()._manifest = newValue}
     }
     /// Returns true if `manifest` has been explicitly set.
@@ -534,8 +534,8 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_Activation {
     // methods supported on all messages.
 
     /// Request to activate a device.
-    public var request: Bloombox_Schema_Services_Devices_V1beta1_Activation.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Devices_V1beta1_Activation.Request()}
+    public var request: Bloombox_Services_Devices_V1beta1_Activation.Request {
+      get {return _storage._request ?? Bloombox_Services_Devices_V1beta1_Activation.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -544,8 +544,8 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_Activation {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to activate a device.
-    public var response: Bloombox_Schema_Services_Devices_V1beta1_Activation.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Devices_V1beta1_Activation.Response()}
+    public var response: Bloombox_Services_Devices_V1beta1_Activation.Response {
+      get {return _storage._response ?? Bloombox_Services_Devices_V1beta1_Activation.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -565,9 +565,9 @@ public struct Bloombox_Schema_Services_Devices_V1beta1_Activation {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.services.devices.v1beta1"
+fileprivate let _protobuf_package = "bloombox.services.devices.v1beta1"
 
-extension Bloombox_Schema_Services_Devices_V1beta1_DeviceError: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Devices_V1beta1_DeviceError: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_ERROR"),
     1: .same(proto: "INVALID_SERIAL"),
@@ -577,7 +577,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceError: SwiftProtobuf._P
   ]
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNASSIGNED"),
     1: .same(proto: "MENU"),
@@ -587,14 +587,14 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf._Pr
   ]
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_DataEnvironment: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Devices_V1beta1_DataEnvironment: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "V1"),
     1: .same(proto: "V2"),
   ]
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_DeviceAssignment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Devices_V1beta1_DeviceAssignment: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeviceAssignment"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
@@ -636,7 +636,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceAssignment: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_DeviceAssignment, rhs: Bloombox_Schema_Services_Devices_V1beta1_DeviceAssignment) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_DeviceAssignment, rhs: Bloombox_Services_Devices_V1beta1_DeviceAssignment) -> Bool {
     if lhs.partner != rhs.partner {return false}
     if lhs.location != rhs.location {return false}
     if lhs.role != rhs.role {return false}
@@ -647,7 +647,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceAssignment: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_OAuth2Endpoints: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Devices_V1beta1_OAuth2Endpoints: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".OAuth2Endpoints"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "authorize"),
@@ -674,7 +674,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_OAuth2Endpoints: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_OAuth2Endpoints, rhs: Bloombox_Schema_Services_Devices_V1beta1_OAuth2Endpoints) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_OAuth2Endpoints, rhs: Bloombox_Services_Devices_V1beta1_OAuth2Endpoints) -> Bool {
     if lhs.authorize != rhs.authorize {return false}
     if lhs.token != rhs.token {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -682,7 +682,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_OAuth2Endpoints: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_DeviceEndpoints: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Devices_V1beta1_DeviceEndpoints: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeviceEndpoints"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "oauth2"),
@@ -695,7 +695,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceEndpoints: SwiftProtobu
   ]
 
   fileprivate class _StorageClass {
-    var _oauth2: Bloombox_Schema_Services_Devices_V1beta1_OAuth2Endpoints? = nil
+    var _oauth2: Bloombox_Services_Devices_V1beta1_OAuth2Endpoints? = nil
     var _account: String = String()
     var _api: String = String()
     var _rpc: String = String()
@@ -770,7 +770,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceEndpoints: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_DeviceEndpoints, rhs: Bloombox_Schema_Services_Devices_V1beta1_DeviceEndpoints) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_DeviceEndpoints, rhs: Bloombox_Services_Devices_V1beta1_DeviceEndpoints) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -791,7 +791,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceEndpoints: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_DeviceKeys: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Devices_V1beta1_DeviceKeys: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeviceKeys"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "api"),
@@ -818,7 +818,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceKeys: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_DeviceKeys, rhs: Bloombox_Schema_Services_Devices_V1beta1_DeviceKeys) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_DeviceKeys, rhs: Bloombox_Services_Devices_V1beta1_DeviceKeys) -> Bool {
     if lhs.api != rhs.api {return false}
     if lhs.telemetry != rhs.telemetry {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -826,7 +826,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceKeys: SwiftProtobuf.Mes
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Devices_V1beta1_DeviceActivation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeviceActivation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
@@ -841,11 +841,11 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation: SwiftProtob
   fileprivate class _StorageClass {
     var _uuid: String = String()
     var _hostname: String = String()
-    var _assignment: Bloombox_Schema_Services_Devices_V1beta1_DeviceAssignment? = nil
-    var _ticket: Bloombox_Schema_Security_DeviceTicket? = nil
-    var _endpoints: Bloombox_Schema_Services_Devices_V1beta1_DeviceEndpoints? = nil
+    var _assignment: Bloombox_Services_Devices_V1beta1_DeviceAssignment? = nil
+    var _ticket: Bloombox_Security_DeviceTicket? = nil
+    var _endpoints: Bloombox_Services_Devices_V1beta1_DeviceEndpoints? = nil
     var _beacon: Opencannabis_Proximity_BluetoothBeacon? = nil
-    var _credentials: Bloombox_Schema_Services_Devices_V1beta1_DeviceKeys? = nil
+    var _credentials: Bloombox_Services_Devices_V1beta1_DeviceKeys? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -914,7 +914,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation, rhs: Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_DeviceActivation, rhs: Bloombox_Services_Devices_V1beta1_DeviceActivation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -935,7 +935,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_Ping: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Devices_V1beta1_Ping: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Ping"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -948,14 +948,14 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Ping: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_Ping, rhs: Bloombox_Schema_Services_Devices_V1beta1_Ping) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_Ping, rhs: Bloombox_Services_Devices_V1beta1_Ping) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_Ping.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Devices_V1beta1_Ping.protoMessageName + ".Request"
+extension Bloombox_Services_Devices_V1beta1_Ping.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Devices_V1beta1_Ping.protoMessageName + ".Request"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -967,14 +967,14 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Ping.Request: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_Ping.Request, rhs: Bloombox_Schema_Services_Devices_V1beta1_Ping.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_Ping.Request, rhs: Bloombox_Services_Devices_V1beta1_Ping.Request) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_Ping.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Devices_V1beta1_Ping.protoMessageName + ".Response"
+extension Bloombox_Services_Devices_V1beta1_Ping.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Devices_V1beta1_Ping.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
   ]
@@ -995,23 +995,23 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Ping.Response: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_Ping.Response, rhs: Bloombox_Schema_Services_Devices_V1beta1_Ping.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_Ping.Response, rhs: Bloombox_Services_Devices_V1beta1_Ping.Response) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_Ping.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Devices_V1beta1_Ping.protoMessageName + ".Operation"
+extension Bloombox_Services_Devices_V1beta1_Ping.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Devices_V1beta1_Ping.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Devices_V1beta1_Ping.Request? = nil
-    var _response: Bloombox_Schema_Services_Devices_V1beta1_Ping.Response? = nil
+    var _request: Bloombox_Services_Devices_V1beta1_Ping.Request? = nil
+    var _response: Bloombox_Services_Devices_V1beta1_Ping.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1055,7 +1055,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Ping.Operation: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_Ping.Operation, rhs: Bloombox_Schema_Services_Devices_V1beta1_Ping.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_Ping.Operation, rhs: Bloombox_Services_Devices_V1beta1_Ping.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1071,7 +1071,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Ping.Operation: SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_Activation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Devices_V1beta1_Activation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Activation"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1084,14 +1084,14 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Activation: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_Activation, rhs: Bloombox_Schema_Services_Devices_V1beta1_Activation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_Activation, rhs: Bloombox_Services_Devices_V1beta1_Activation) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_Activation.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Devices_V1beta1_Activation.protoMessageName + ".Request"
+extension Bloombox_Services_Devices_V1beta1_Activation.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Devices_V1beta1_Activation.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "serial"),
     2: .same(proto: "fingerprint"),
@@ -1122,7 +1122,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Activation.Request: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_Activation.Request, rhs: Bloombox_Schema_Services_Devices_V1beta1_Activation.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_Activation.Request, rhs: Bloombox_Services_Devices_V1beta1_Activation.Request) -> Bool {
     if lhs.serial != rhs.serial {return false}
     if lhs.fingerprint != rhs.fingerprint {return false}
     if lhs.publicKey != rhs.publicKey {return false}
@@ -1131,8 +1131,8 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Activation.Request: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_Activation.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Devices_V1beta1_Activation.protoMessageName + ".Response"
+extension Bloombox_Services_Devices_V1beta1_Activation.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Devices_V1beta1_Activation.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "active"),
     2: .same(proto: "error"),
@@ -1141,8 +1141,8 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Activation.Response: SwiftPro
 
   fileprivate class _StorageClass {
     var _active: Bool = false
-    var _error: Bloombox_Schema_Services_Devices_V1beta1_DeviceError = .noError
-    var _manifest: Bloombox_Schema_Services_Devices_V1beta1_DeviceActivation? = nil
+    var _error: Bloombox_Services_Devices_V1beta1_DeviceError = .noError
+    var _manifest: Bloombox_Services_Devices_V1beta1_DeviceActivation? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1191,7 +1191,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Activation.Response: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_Activation.Response, rhs: Bloombox_Schema_Services_Devices_V1beta1_Activation.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_Activation.Response, rhs: Bloombox_Services_Devices_V1beta1_Activation.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1208,16 +1208,16 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Activation.Response: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Devices_V1beta1_Activation.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Devices_V1beta1_Activation.protoMessageName + ".Operation"
+extension Bloombox_Services_Devices_V1beta1_Activation.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Devices_V1beta1_Activation.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Devices_V1beta1_Activation.Request? = nil
-    var _response: Bloombox_Schema_Services_Devices_V1beta1_Activation.Response? = nil
+    var _request: Bloombox_Services_Devices_V1beta1_Activation.Request? = nil
+    var _response: Bloombox_Services_Devices_V1beta1_Activation.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1261,7 +1261,7 @@ extension Bloombox_Schema_Services_Devices_V1beta1_Activation.Operation: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Devices_V1beta1_Activation.Operation, rhs: Bloombox_Schema_Services_Devices_V1beta1_Activation.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Devices_V1beta1_Activation.Operation, rhs: Bloombox_Services_Devices_V1beta1_Activation.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

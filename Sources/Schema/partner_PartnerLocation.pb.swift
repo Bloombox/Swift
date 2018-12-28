@@ -25,7 +25,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Specifies information about a brick-and-mortar location owned by a partner organization that has an active account
 /// with Bloombox.
-public struct Bloombox_Schema_Partner_PartnerLocation {
+public struct Bloombox_Partner_PartnerLocation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -37,8 +37,8 @@ public struct Bloombox_Schema_Partner_PartnerLocation {
   }
 
   /// Partner record that owns this location.
-  public var partner: Bloombox_Schema_Partner_PartnerKey {
-    get {return _storage._partner ?? Bloombox_Schema_Partner_PartnerKey()}
+  public var partner: Bloombox_Partner_PartnerKey {
+    get {return _storage._partner ?? Bloombox_Partner_PartnerKey()}
     set {_uniqueStorage()._partner = newValue}
   }
   /// Returns true if `partner` has been explicitly set.
@@ -59,8 +59,8 @@ public struct Bloombox_Schema_Partner_PartnerLocation {
   }
 
   /// Flags that specify conditions applied to this partner location.
-  public var flags: Bloombox_Schema_Partner_PartnerFlags {
-    get {return _storage._flags ?? Bloombox_Schema_Partner_PartnerFlags()}
+  public var flags: Bloombox_Partner_PartnerFlags {
+    get {return _storage._flags ?? Bloombox_Partner_PartnerFlags()}
     set {_uniqueStorage()._flags = newValue}
   }
   /// Returns true if `flags` has been explicitly set.
@@ -89,8 +89,8 @@ public struct Bloombox_Schema_Partner_PartnerLocation {
   public mutating func clearBranding() {_uniqueStorage()._branding = nil}
 
   /// Settings for this partner location.
-  public var settings: Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
-    get {return _storage._settings ?? Bloombox_Schema_Partner_Settings_PartnerLocationSettings()}
+  public var settings: Bloombox_Partner_Settings_PartnerLocationSettings {
+    get {return _storage._settings ?? Bloombox_Partner_Settings_PartnerLocationSettings()}
     set {_uniqueStorage()._settings = newValue}
   }
   /// Returns true if `settings` has been explicitly set.
@@ -127,9 +127,9 @@ public struct Bloombox_Schema_Partner_PartnerLocation {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.partner"
+fileprivate let _protobuf_package = "bloombox.partner"
 
-extension Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerLocation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "code"),
@@ -146,13 +146,13 @@ extension Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftP
 
   fileprivate class _StorageClass {
     var _code: String = String()
-    var _partner: Bloombox_Schema_Partner_PartnerKey? = nil
+    var _partner: Bloombox_Partner_PartnerKey? = nil
     var _name: String = String()
     var _label: String = String()
-    var _flags: Bloombox_Schema_Partner_PartnerFlags? = nil
+    var _flags: Bloombox_Partner_PartnerFlags? = nil
     var _contact: Opencannabis_Contact_ContactInfo? = nil
     var _branding: Opencannabis_Media_MediaKey? = nil
-    var _settings: Bloombox_Schema_Partner_Settings_PartnerLocationSettings? = nil
+    var _settings: Bloombox_Partner_Settings_PartnerLocationSettings? = nil
     var _created: Opencannabis_Temporal_Instant? = nil
     var _modified: Opencannabis_Temporal_Instant? = nil
 
@@ -238,7 +238,7 @@ extension Bloombox_Schema_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_PartnerLocation, rhs: Bloombox_Schema_Partner_PartnerLocation) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_PartnerLocation, rhs: Bloombox_Partner_PartnerLocation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

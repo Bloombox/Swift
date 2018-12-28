@@ -21,7 +21,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Specifies digital properties that support fulltext search, for the purpose of enumerating where a search came from,
 /// or was submitted from, during analytics processing.
-public enum Bloombox_Schema_Analytics_Search_SearchProperty: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Search_SearchProperty: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The origin property was left unspecified or it was unrecognized.
@@ -60,9 +60,9 @@ public enum Bloombox_Schema_Analytics_Search_SearchProperty: SwiftProtobuf.Enum 
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Search_SearchProperty: CaseIterable {
+extension Bloombox_Analytics_Search_SearchProperty: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Search_SearchProperty] = [
+  public static var allCases: [Bloombox_Analytics_Search_SearchProperty] = [
     .propertyUnspecified,
     .web,
     .tablet,
@@ -73,7 +73,7 @@ extension Bloombox_Schema_Analytics_Search_SearchProperty: CaseIterable {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension Bloombox_Schema_Analytics_Search_SearchProperty: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Search_SearchProperty: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PROPERTY_UNSPECIFIED"),
     1: .same(proto: "WEB"),

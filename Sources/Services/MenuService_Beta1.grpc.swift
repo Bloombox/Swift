@@ -26,382 +26,253 @@ import SwiftGRPC
 import SwiftProtobuf
 import OpenCannabis
 
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveCall: ClientCallUnary {}
+public protocol Bloombox_Services_Menu_V1beta1_MenuRetrieveCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveCall {
-  override class var method: String { return "/bloombox.schema.services.menu.v1beta1.Menu/Retrieve" }
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuRetrieveCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_GetMenu.Request, Bloombox_Services_Menu_V1beta1_GetMenu.Response>, Bloombox_Services_Menu_V1beta1_MenuRetrieveCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/Retrieve" }
 }
 
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuSectionCall: ClientCallUnary {}
+public protocol Bloombox_Services_Menu_V1beta1_MenuSectionCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuSectionCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuSectionCall {
-  override class var method: String { return "/bloombox.schema.services.menu.v1beta1.Menu/Section" }
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuSectionCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_GetMenu.Request, Bloombox_Services_Menu_V1beta1_GetMenu.Response>, Bloombox_Services_Menu_V1beta1_MenuSectionCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/Section" }
 }
 
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedCall: ClientCallUnary {}
+public protocol Bloombox_Services_Menu_V1beta1_MenuFeaturedCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request, Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedCall {
-  override class var method: String { return "/bloombox.schema.services.menu.v1beta1.Menu/Featured" }
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuFeaturedCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_GetFeatured.Request, Bloombox_Services_Menu_V1beta1_GetFeatured.Response>, Bloombox_Services_Menu_V1beta1_MenuFeaturedCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/Featured" }
 }
 
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuProductsCall: ClientCallUnary {}
+public protocol Bloombox_Services_Menu_V1beta1_MenuProductsCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuProductsCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request, Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuProductsCall {
-  override class var method: String { return "/bloombox.schema.services.menu.v1beta1.Menu/Products" }
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuProductsCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_GetProduct.Request, Bloombox_Services_Menu_V1beta1_GetProduct.Response>, Bloombox_Services_Menu_V1beta1_MenuProductsCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/Products" }
 }
 
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuSearchCall: ClientCallUnary {}
+public protocol Bloombox_Services_Menu_V1beta1_MenuSearchCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuSearchCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request, Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuSearchCall {
-  override class var method: String { return "/bloombox.schema.services.menu.v1beta1.Menu/Search" }
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuSearchCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_SearchMenu.Request, Bloombox_Services_Menu_V1beta1_SearchMenu.Response>, Bloombox_Services_Menu_V1beta1_MenuSearchCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/Search" }
 }
 
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuCreateCall: ClientCallUnary {}
+public protocol Bloombox_Services_Menu_V1beta1_MenuCreateCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuCreateCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request, Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuCreateCall {
-  override class var method: String { return "/bloombox.schema.services.menu.v1beta1.Menu/Create" }
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuCreateCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_CreateProduct.Request, Bloombox_Services_Menu_V1beta1_CreateProduct.Response>, Bloombox_Services_Menu_V1beta1_MenuCreateCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/Create" }
 }
 
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateCall: ClientCallUnary {}
+public protocol Bloombox_Services_Menu_V1beta1_MenuUpdateCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateCall {
-  override class var method: String { return "/bloombox.schema.services.menu.v1beta1.Menu/Update" }
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuUpdateCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_UpdateProduct.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Menu_V1beta1_MenuUpdateCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/Update" }
 }
 
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveCall: ClientCallUnary {}
+public protocol Bloombox_Services_Menu_V1beta1_MenuRemoveCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveCall {
-  override class var method: String { return "/bloombox.schema.services.menu.v1beta1.Menu/Remove" }
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuRemoveCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_DeleteProduct.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Menu_V1beta1_MenuRemoveCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/Remove" }
 }
 
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusCall: ClientCallUnary {}
+public protocol Bloombox_Services_Menu_V1beta1_MenuProductStatusCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusCall {
-  override class var method: String { return "/bloombox.schema.services.menu.v1beta1.Menu/ProductStatus" }
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuProductStatusCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_ProductStock.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Menu_V1beta1_MenuProductStatusCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/ProductStatus" }
 }
 
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuInStockCall: ClientCallUnary {}
+public protocol Bloombox_Services_Menu_V1beta1_MenuInStockCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuInStockCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Menu_V1beta1_MenuInStockCall {
-  override class var method: String { return "/bloombox.schema.services.menu.v1beta1.Menu/InStock" }
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuInStockCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_ProductStock.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Menu_V1beta1_MenuInStockCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/InStock" }
 }
 
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockCall: ClientCallUnary {}
+public protocol Bloombox_Services_Menu_V1beta1_MenuOutOfStockCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockCall {
-  override class var method: String { return "/bloombox.schema.services.menu.v1beta1.Menu/OutOfStock" }
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuOutOfStockCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_ProductStock.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Menu_V1beta1_MenuOutOfStockCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/OutOfStock" }
 }
 
 
-/// Instantiate Bloombox_Schema_Services_Menu_V1beta1_MenuServiceClient, then call methods of this protocol to make API calls.
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuService: ServiceClient {
+/// Instantiate Bloombox_Services_Menu_V1beta1_MenuServiceClient, then call methods of this protocol to make API calls.
+public protocol Bloombox_Services_Menu_V1beta1_MenuService: ServiceClient {
   /// Synchronous. Unary.
-  func retrieve(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response
+  func retrieve(_ request: Bloombox_Services_Menu_V1beta1_GetMenu.Request) throws -> Bloombox_Services_Menu_V1beta1_GetMenu.Response
   /// Asynchronous. Unary.
-  func retrieve(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveCall
+  func retrieve(_ request: Bloombox_Services_Menu_V1beta1_GetMenu.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_GetMenu.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuRetrieveCall
 
   /// Synchronous. Unary.
-  func section(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response
+  func section(_ request: Bloombox_Services_Menu_V1beta1_GetMenu.Request) throws -> Bloombox_Services_Menu_V1beta1_GetMenu.Response
   /// Asynchronous. Unary.
-  func section(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuSectionCall
+  func section(_ request: Bloombox_Services_Menu_V1beta1_GetMenu.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_GetMenu.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuSectionCall
 
   /// Synchronous. Unary.
-  func featured(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response
+  func featured(_ request: Bloombox_Services_Menu_V1beta1_GetFeatured.Request) throws -> Bloombox_Services_Menu_V1beta1_GetFeatured.Response
   /// Asynchronous. Unary.
-  func featured(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedCall
+  func featured(_ request: Bloombox_Services_Menu_V1beta1_GetFeatured.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_GetFeatured.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuFeaturedCall
 
   /// Synchronous. Unary.
-  func products(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response
+  func products(_ request: Bloombox_Services_Menu_V1beta1_GetProduct.Request) throws -> Bloombox_Services_Menu_V1beta1_GetProduct.Response
   /// Asynchronous. Unary.
-  func products(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuProductsCall
+  func products(_ request: Bloombox_Services_Menu_V1beta1_GetProduct.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_GetProduct.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuProductsCall
 
   /// Synchronous. Unary.
-  func search(_ request: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response
+  func search(_ request: Bloombox_Services_Menu_V1beta1_SearchMenu.Request) throws -> Bloombox_Services_Menu_V1beta1_SearchMenu.Response
   /// Asynchronous. Unary.
-  func search(_ request: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuSearchCall
+  func search(_ request: Bloombox_Services_Menu_V1beta1_SearchMenu.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_SearchMenu.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuSearchCall
 
   /// Synchronous. Unary.
-  func create(_ request: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response
+  func create(_ request: Bloombox_Services_Menu_V1beta1_CreateProduct.Request) throws -> Bloombox_Services_Menu_V1beta1_CreateProduct.Response
   /// Asynchronous. Unary.
-  func create(_ request: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuCreateCall
+  func create(_ request: Bloombox_Services_Menu_V1beta1_CreateProduct.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_CreateProduct.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuCreateCall
 
   /// Synchronous. Unary.
-  func update(_ request: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func update(_ request: Bloombox_Services_Menu_V1beta1_UpdateProduct.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func update(_ request: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateCall
+  func update(_ request: Bloombox_Services_Menu_V1beta1_UpdateProduct.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuUpdateCall
 
   /// Synchronous. Unary.
-  func remove(_ request: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func remove(_ request: Bloombox_Services_Menu_V1beta1_DeleteProduct.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func remove(_ request: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveCall
+  func remove(_ request: Bloombox_Services_Menu_V1beta1_DeleteProduct.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuRemoveCall
 
   /// Synchronous. Unary.
-  func productStatus(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func productStatus(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func productStatus(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusCall
+  func productStatus(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuProductStatusCall
 
   /// Synchronous. Unary.
-  func inStock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func inStock(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func inStock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuInStockCall
+  func inStock(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuInStockCall
 
   /// Synchronous. Unary.
-  func outOfStock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func outOfStock(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func outOfStock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockCall
+  func outOfStock(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuOutOfStockCall
 
 }
 
-public final class Bloombox_Schema_Services_Menu_V1beta1_MenuServiceClient: ServiceClientBase, Bloombox_Schema_Services_Menu_V1beta1_MenuService {
+public final class Bloombox_Services_Menu_V1beta1_MenuServiceClient: ServiceClientBase, Bloombox_Services_Menu_V1beta1_MenuService {
   /// Synchronous. Unary.
-  public func retrieve(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveCallBase(channel)
+  public func retrieve(_ request: Bloombox_Services_Menu_V1beta1_GetMenu.Request) throws -> Bloombox_Services_Menu_V1beta1_GetMenu.Response {
+    return try Bloombox_Services_Menu_V1beta1_MenuRetrieveCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func retrieve(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveCall {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveCallBase(channel)
+  public func retrieve(_ request: Bloombox_Services_Menu_V1beta1_GetMenu.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_GetMenu.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuRetrieveCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuRetrieveCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func section(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuSectionCallBase(channel)
+  public func section(_ request: Bloombox_Services_Menu_V1beta1_GetMenu.Request) throws -> Bloombox_Services_Menu_V1beta1_GetMenu.Response {
+    return try Bloombox_Services_Menu_V1beta1_MenuSectionCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func section(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuSectionCall {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuSectionCallBase(channel)
+  public func section(_ request: Bloombox_Services_Menu_V1beta1_GetMenu.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_GetMenu.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuSectionCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuSectionCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func featured(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedCallBase(channel)
+  public func featured(_ request: Bloombox_Services_Menu_V1beta1_GetFeatured.Request) throws -> Bloombox_Services_Menu_V1beta1_GetFeatured.Response {
+    return try Bloombox_Services_Menu_V1beta1_MenuFeaturedCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func featured(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedCall {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedCallBase(channel)
+  public func featured(_ request: Bloombox_Services_Menu_V1beta1_GetFeatured.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_GetFeatured.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuFeaturedCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuFeaturedCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func products(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuProductsCallBase(channel)
+  public func products(_ request: Bloombox_Services_Menu_V1beta1_GetProduct.Request) throws -> Bloombox_Services_Menu_V1beta1_GetProduct.Response {
+    return try Bloombox_Services_Menu_V1beta1_MenuProductsCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func products(_ request: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuProductsCall {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuProductsCallBase(channel)
+  public func products(_ request: Bloombox_Services_Menu_V1beta1_GetProduct.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_GetProduct.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuProductsCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuProductsCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func search(_ request: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuSearchCallBase(channel)
+  public func search(_ request: Bloombox_Services_Menu_V1beta1_SearchMenu.Request) throws -> Bloombox_Services_Menu_V1beta1_SearchMenu.Response {
+    return try Bloombox_Services_Menu_V1beta1_MenuSearchCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func search(_ request: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuSearchCall {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuSearchCallBase(channel)
+  public func search(_ request: Bloombox_Services_Menu_V1beta1_SearchMenu.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_SearchMenu.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuSearchCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuSearchCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func create(_ request: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request) throws -> Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuCreateCallBase(channel)
+  public func create(_ request: Bloombox_Services_Menu_V1beta1_CreateProduct.Request) throws -> Bloombox_Services_Menu_V1beta1_CreateProduct.Response {
+    return try Bloombox_Services_Menu_V1beta1_MenuCreateCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func create(_ request: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request, completion: @escaping (Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuCreateCall {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuCreateCallBase(channel)
+  public func create(_ request: Bloombox_Services_Menu_V1beta1_CreateProduct.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_CreateProduct.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuCreateCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuCreateCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func update(_ request: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateCallBase(channel)
+  public func update(_ request: Bloombox_Services_Menu_V1beta1_UpdateProduct.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Menu_V1beta1_MenuUpdateCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func update(_ request: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateCall {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateCallBase(channel)
+  public func update(_ request: Bloombox_Services_Menu_V1beta1_UpdateProduct.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuUpdateCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuUpdateCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func remove(_ request: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveCallBase(channel)
+  public func remove(_ request: Bloombox_Services_Menu_V1beta1_DeleteProduct.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Menu_V1beta1_MenuRemoveCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func remove(_ request: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveCall {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveCallBase(channel)
+  public func remove(_ request: Bloombox_Services_Menu_V1beta1_DeleteProduct.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuRemoveCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuRemoveCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func productStatus(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusCallBase(channel)
+  public func productStatus(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Menu_V1beta1_MenuProductStatusCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func productStatus(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusCall {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusCallBase(channel)
+  public func productStatus(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuProductStatusCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuProductStatusCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func inStock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuInStockCallBase(channel)
+  public func inStock(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Menu_V1beta1_MenuInStockCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func inStock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuInStockCall {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuInStockCallBase(channel)
+  public func inStock(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuInStockCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuInStockCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func outOfStock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockCallBase(channel)
+  public func outOfStock(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Menu_V1beta1_MenuOutOfStockCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func outOfStock(_ request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockCall {
-    return try Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockCallBase(channel)
+  public func outOfStock(_ request: Bloombox_Services_Menu_V1beta1_ProductStock.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuOutOfStockCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuOutOfStockCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
 }
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuProvider: ServiceProvider {
-  func retrieve(request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, session: Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response
-  func section(request: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, session: Bloombox_Schema_Services_Menu_V1beta1_MenuSectionSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response
-  func featured(request: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request, session: Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response
-  func products(request: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request, session: Bloombox_Schema_Services_Menu_V1beta1_MenuProductsSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response
-  func search(request: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request, session: Bloombox_Schema_Services_Menu_V1beta1_MenuSearchSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response
-  func create(request: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request, session: Bloombox_Schema_Services_Menu_V1beta1_MenuCreateSession) throws -> Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response
-  func update(request: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request, session: Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  func remove(request: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request, session: Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  func productStatus(request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, session: Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  func inStock(request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, session: Bloombox_Schema_Services_Menu_V1beta1_MenuInStockSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  func outOfStock(request: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, session: Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
-}
-
-extension Bloombox_Schema_Services_Menu_V1beta1_MenuProvider {
-  public var serviceName: String { return "bloombox.schema.services.menu.v1beta1.Menu" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bloombox.schema.services.menu.v1beta1.Menu/Retrieve":
-      return try Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveSessionBase(
-        handler: handler,
-        providerBlock: { try self.retrieve(request: $0, session: $1 as! Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveSessionBase) })
-          .run()
-    case "/bloombox.schema.services.menu.v1beta1.Menu/Section":
-      return try Bloombox_Schema_Services_Menu_V1beta1_MenuSectionSessionBase(
-        handler: handler,
-        providerBlock: { try self.section(request: $0, session: $1 as! Bloombox_Schema_Services_Menu_V1beta1_MenuSectionSessionBase) })
-          .run()
-    case "/bloombox.schema.services.menu.v1beta1.Menu/Featured":
-      return try Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedSessionBase(
-        handler: handler,
-        providerBlock: { try self.featured(request: $0, session: $1 as! Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedSessionBase) })
-          .run()
-    case "/bloombox.schema.services.menu.v1beta1.Menu/Products":
-      return try Bloombox_Schema_Services_Menu_V1beta1_MenuProductsSessionBase(
-        handler: handler,
-        providerBlock: { try self.products(request: $0, session: $1 as! Bloombox_Schema_Services_Menu_V1beta1_MenuProductsSessionBase) })
-          .run()
-    case "/bloombox.schema.services.menu.v1beta1.Menu/Search":
-      return try Bloombox_Schema_Services_Menu_V1beta1_MenuSearchSessionBase(
-        handler: handler,
-        providerBlock: { try self.search(request: $0, session: $1 as! Bloombox_Schema_Services_Menu_V1beta1_MenuSearchSessionBase) })
-          .run()
-    case "/bloombox.schema.services.menu.v1beta1.Menu/Create":
-      return try Bloombox_Schema_Services_Menu_V1beta1_MenuCreateSessionBase(
-        handler: handler,
-        providerBlock: { try self.create(request: $0, session: $1 as! Bloombox_Schema_Services_Menu_V1beta1_MenuCreateSessionBase) })
-          .run()
-    case "/bloombox.schema.services.menu.v1beta1.Menu/Update":
-      return try Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateSessionBase(
-        handler: handler,
-        providerBlock: { try self.update(request: $0, session: $1 as! Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateSessionBase) })
-          .run()
-    case "/bloombox.schema.services.menu.v1beta1.Menu/Remove":
-      return try Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveSessionBase(
-        handler: handler,
-        providerBlock: { try self.remove(request: $0, session: $1 as! Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveSessionBase) })
-          .run()
-    case "/bloombox.schema.services.menu.v1beta1.Menu/ProductStatus":
-      return try Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusSessionBase(
-        handler: handler,
-        providerBlock: { try self.productStatus(request: $0, session: $1 as! Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusSessionBase) })
-          .run()
-    case "/bloombox.schema.services.menu.v1beta1.Menu/InStock":
-      return try Bloombox_Schema_Services_Menu_V1beta1_MenuInStockSessionBase(
-        handler: handler,
-        providerBlock: { try self.inStock(request: $0, session: $1 as! Bloombox_Schema_Services_Menu_V1beta1_MenuInStockSessionBase) })
-          .run()
-    case "/bloombox.schema.services.menu.v1beta1.Menu/OutOfStock":
-      return try Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockSessionBase(
-        handler: handler,
-        providerBlock: { try self.outOfStock(request: $0, session: $1 as! Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
-  }
-}
-
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveSession {}
-
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuSectionSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuSectionSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuSectionSession {}
-
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request, Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuFeaturedSession {}
-
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuProductsSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuProductsSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request, Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuProductsSession {}
-
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuSearchSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuSearchSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request, Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuSearchSession {}
-
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuCreateSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuCreateSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request, Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response>, Bloombox_Schema_Services_Menu_V1beta1_MenuCreateSession {}
-
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Menu_V1beta1_MenuUpdateSession {}
-
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Menu_V1beta1_MenuRemoveSession {}
-
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Menu_V1beta1_MenuProductStatusSession {}
-
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuInStockSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuInStockSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Menu_V1beta1_MenuInStockSession {}
-
-public protocol Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Menu_V1beta1_MenuOutOfStockSession {}
 

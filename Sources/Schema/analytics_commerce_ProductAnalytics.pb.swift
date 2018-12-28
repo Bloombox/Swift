@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the types of actions that a user may take on a product.
-public enum Bloombox_Schema_Analytics_Product_ProductAction: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Product_ProductAction: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The user viewed a product. Product views are implemented under the hood as 'VIEW' actions.
@@ -94,9 +94,9 @@ public enum Bloombox_Schema_Analytics_Product_ProductAction: SwiftProtobuf.Enum 
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Product_ProductAction: CaseIterable {
+extension Bloombox_Analytics_Product_ProductAction: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Product_ProductAction] = [
+  public static var allCases: [Bloombox_Analytics_Product_ProductAction] = [
     .view,
     .share,
     .favorite,
@@ -114,7 +114,7 @@ extension Bloombox_Schema_Analytics_Product_ProductAction: CaseIterable {
 
 /// Specifies that a product was presented, alongside one or more other products in a master-style view, as a candidate
 /// for detail information to an end user.
-public struct Bloombox_Schema_Analytics_Product_Impression {
+public struct Bloombox_Analytics_Product_Impression {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -159,7 +159,7 @@ public struct Bloombox_Schema_Analytics_Product_Impression {
 }
 
 /// Specifies that an end-user viewed detail information about a product.
-public struct Bloombox_Schema_Analytics_Product_View {
+public struct Bloombox_Analytics_Product_View {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -198,7 +198,7 @@ public struct Bloombox_Schema_Analytics_Product_View {
 }
 
 /// An action that was taken affirmatively by a user on a particular product.
-public struct Bloombox_Schema_Analytics_Product_Action {
+public struct Bloombox_Analytics_Product_Action {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -214,7 +214,7 @@ public struct Bloombox_Schema_Analytics_Product_Action {
   public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// The action that was taken on the product.
-  public var verb: Bloombox_Schema_Analytics_Product_ProductAction {
+  public var verb: Bloombox_Analytics_Product_ProductAction {
     get {return _storage._verb}
     set {_uniqueStorage()._verb = newValue}
   }
@@ -238,9 +238,9 @@ public struct Bloombox_Schema_Analytics_Product_Action {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.product"
+fileprivate let _protobuf_package = "bloombox.analytics.product"
 
-extension Bloombox_Schema_Analytics_Product_ProductAction: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Product_ProductAction: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "VIEW"),
     1: .same(proto: "SHARE"),
@@ -255,7 +255,7 @@ extension Bloombox_Schema_Analytics_Product_ProductAction: SwiftProtobuf._ProtoN
   ]
 }
 
-extension Bloombox_Schema_Analytics_Product_Impression: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Product_Impression: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Impression"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -322,7 +322,7 @@ extension Bloombox_Schema_Analytics_Product_Impression: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Product_Impression, rhs: Bloombox_Schema_Analytics_Product_Impression) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Product_Impression, rhs: Bloombox_Analytics_Product_Impression) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -340,7 +340,7 @@ extension Bloombox_Schema_Analytics_Product_Impression: SwiftProtobuf.Message, S
   }
 }
 
-extension Bloombox_Schema_Analytics_Product_View: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Product_View: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".View"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -400,7 +400,7 @@ extension Bloombox_Schema_Analytics_Product_View: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Product_View, rhs: Bloombox_Schema_Analytics_Product_View) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Product_View, rhs: Bloombox_Analytics_Product_View) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -417,7 +417,7 @@ extension Bloombox_Schema_Analytics_Product_View: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Bloombox_Schema_Analytics_Product_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Product_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Action"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -427,7 +427,7 @@ extension Bloombox_Schema_Analytics_Product_Action: SwiftProtobuf.Message, Swift
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
-    var _verb: Bloombox_Schema_Analytics_Product_ProductAction = .view
+    var _verb: Bloombox_Analytics_Product_ProductAction = .view
     var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
@@ -477,7 +477,7 @@ extension Bloombox_Schema_Analytics_Product_Action: SwiftProtobuf.Message, Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Product_Action, rhs: Bloombox_Schema_Analytics_Product_Action) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Product_Action, rhs: Bloombox_Analytics_Product_Action) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

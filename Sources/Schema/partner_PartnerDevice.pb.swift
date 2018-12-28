@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies types of partner co-located devices.
-public enum Bloombox_Schema_Partner_PartnerDeviceType: SwiftProtobuf.Enum {
+public enum Bloombox_Partner_PartnerDeviceType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unspecified, or unrecognized, device type.
@@ -83,9 +83,9 @@ public enum Bloombox_Schema_Partner_PartnerDeviceType: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Partner_PartnerDeviceType: CaseIterable {
+extension Bloombox_Partner_PartnerDeviceType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Partner_PartnerDeviceType] = [
+  public static var allCases: [Bloombox_Partner_PartnerDeviceType] = [
     .unspecifiedDeviceType,
     .internal,
     .menuTablet,
@@ -99,14 +99,14 @@ extension Bloombox_Schema_Partner_PartnerDeviceType: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies the structure of a key for a given partner device.
-public struct Bloombox_Schema_Partner_PartnerDeviceKey {
+public struct Bloombox_Partner_PartnerDeviceKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Partner location that owns/co-locates this device.
-  public var location: Bloombox_Schema_Partner_LocationKey {
-    get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
+  public var location: Bloombox_Partner_LocationKey {
+    get {return _storage._location ?? Bloombox_Partner_LocationKey()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -128,7 +128,7 @@ public struct Bloombox_Schema_Partner_PartnerDeviceKey {
 }
 
 /// Specifies the structure of partner co-located device records.
-public struct Bloombox_Schema_Partner_PartnerDevice {
+public struct Bloombox_Partner_PartnerDevice {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -140,8 +140,8 @@ public struct Bloombox_Schema_Partner_PartnerDevice {
   }
 
   /// Partner that owns this device.
-  public var location: Bloombox_Schema_Partner_LocationKey {
-    get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
+  public var location: Bloombox_Partner_LocationKey {
+    get {return _storage._location ?? Bloombox_Partner_LocationKey()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -150,14 +150,14 @@ public struct Bloombox_Schema_Partner_PartnerDevice {
   public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
   /// Type of the device this record represents.
-  public var type: Bloombox_Schema_Partner_PartnerDeviceType {
+  public var type: Bloombox_Partner_PartnerDeviceType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Flags for this device.
-  public var flags: Bloombox_Schema_Partner_PartnerDeviceFlags {
-    get {return _storage._flags ?? Bloombox_Schema_Partner_PartnerDeviceFlags()}
+  public var flags: Bloombox_Partner_PartnerDeviceFlags {
+    get {return _storage._flags ?? Bloombox_Partner_PartnerDeviceFlags()}
     set {_uniqueStorage()._flags = newValue}
   }
   /// Returns true if `flags` has been explicitly set.
@@ -203,7 +203,7 @@ public struct Bloombox_Schema_Partner_PartnerDevice {
 }
 
 /// Enumerates flags that may be applied to partner co-located devices.
-public struct Bloombox_Schema_Partner_PartnerDeviceFlags {
+public struct Bloombox_Partner_PartnerDeviceFlags {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -227,9 +227,9 @@ public struct Bloombox_Schema_Partner_PartnerDeviceFlags {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.partner"
+fileprivate let _protobuf_package = "bloombox.partner"
 
-extension Bloombox_Schema_Partner_PartnerDeviceType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_PartnerDeviceType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED_DEVICE_TYPE"),
     1: .same(proto: "INTERNAL"),
@@ -241,7 +241,7 @@ extension Bloombox_Schema_Partner_PartnerDeviceType: SwiftProtobuf._ProtoNamePro
   ]
 }
 
-extension Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_PartnerDeviceKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerDeviceKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "location"),
@@ -249,7 +249,7 @@ extension Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf.Message, Swift
   ]
 
   fileprivate class _StorageClass {
-    var _location: Bloombox_Schema_Partner_LocationKey? = nil
+    var _location: Bloombox_Partner_LocationKey? = nil
     var _uuid: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -294,7 +294,7 @@ extension Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf.Message, Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_PartnerDeviceKey, rhs: Bloombox_Schema_Partner_PartnerDeviceKey) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_PartnerDeviceKey, rhs: Bloombox_Partner_PartnerDeviceKey) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -310,7 +310,7 @@ extension Bloombox_Schema_Partner_PartnerDeviceKey: SwiftProtobuf.Message, Swift
   }
 }
 
-extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_PartnerDevice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerDevice"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
@@ -324,9 +324,9 @@ extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message, SwiftPro
 
   fileprivate class _StorageClass {
     var _uuid: String = String()
-    var _location: Bloombox_Schema_Partner_LocationKey? = nil
-    var _type: Bloombox_Schema_Partner_PartnerDeviceType = .unspecifiedDeviceType
-    var _flags: Bloombox_Schema_Partner_PartnerDeviceFlags? = nil
+    var _location: Bloombox_Partner_LocationKey? = nil
+    var _type: Bloombox_Partner_PartnerDeviceType = .unspecifiedDeviceType
+    var _flags: Bloombox_Partner_PartnerDeviceFlags? = nil
     var _device: Opencannabis_Device_Device? = nil
     var _seen: Opencannabis_Temporal_Instant? = nil
     var _registered: Opencannabis_Temporal_Instant? = nil
@@ -398,7 +398,7 @@ extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_PartnerDevice, rhs: Bloombox_Schema_Partner_PartnerDevice) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_PartnerDevice, rhs: Bloombox_Partner_PartnerDevice) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -419,7 +419,7 @@ extension Bloombox_Schema_Partner_PartnerDevice: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Partner_PartnerDeviceFlags: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_PartnerDeviceFlags: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerDeviceFlags"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "active"),
@@ -456,7 +456,7 @@ extension Bloombox_Schema_Partner_PartnerDeviceFlags: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_PartnerDeviceFlags, rhs: Bloombox_Schema_Partner_PartnerDeviceFlags) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_PartnerDeviceFlags, rhs: Bloombox_Partner_PartnerDeviceFlags) -> Bool {
     if lhs.active != rhs.active {return false}
     if lhs.suspended != rhs.suspended {return false}
     if lhs.beta != rhs.beta {return false}

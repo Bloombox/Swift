@@ -26,7 +26,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 /// Enumerates identity token issuers, or authorizing IdPs (Identity Providers). Internal authorization refers to systems
 /// internal to Bloombox, where a system account is authorizing some resource. Otherwise, Firebase is the main auth
 /// mechanism for end-users.
-public enum Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
+public enum Bloombox_Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Internal, Bloombox-system account authentication.
@@ -80,9 +80,9 @@ public enum Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Security_IdentityTokenIssuer: CaseIterable {
+extension Bloombox_Security_IdentityTokenIssuer: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Security_IdentityTokenIssuer] = [
+  public static var allCases: [Bloombox_Security_IdentityTokenIssuer] = [
     .internal,
     .firebase,
     .auth0,
@@ -96,7 +96,7 @@ extension Bloombox_Schema_Security_IdentityTokenIssuer: CaseIterable {
 
 /// Specifies an individual token asserting the identity of a user. An identity token does not make any claim related to
 /// authorization, only identity.
-public struct Bloombox_Schema_Security_IdentityToken {
+public struct Bloombox_Security_IdentityToken {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -108,7 +108,7 @@ public struct Bloombox_Schema_Security_IdentityToken {
   public var encoded: String = String()
 
   /// Token issuer, or authorizing IdP (Identity Provider).
-  public var issuer: Bloombox_Schema_Security_IdentityTokenIssuer = .internal
+  public var issuer: Bloombox_Security_IdentityTokenIssuer = .internal
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -117,9 +117,9 @@ public struct Bloombox_Schema_Security_IdentityToken {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.security"
+fileprivate let _protobuf_package = "bloombox.security"
 
-extension Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_IdentityTokenIssuer: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "INTERNAL"),
     1: .same(proto: "FIREBASE"),
@@ -130,7 +130,7 @@ extension Bloombox_Schema_Security_IdentityTokenIssuer: SwiftProtobuf._ProtoName
   ]
 }
 
-extension Bloombox_Schema_Security_IdentityToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_IdentityToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".IdentityToken"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
@@ -162,7 +162,7 @@ extension Bloombox_Schema_Security_IdentityToken: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Security_IdentityToken, rhs: Bloombox_Schema_Security_IdentityToken) -> Bool {
+  public static func ==(lhs: Bloombox_Security_IdentityToken, rhs: Bloombox_Security_IdentityToken) -> Bool {
     if lhs.uid != rhs.uid {return false}
     if lhs.encoded != rhs.encoded {return false}
     if lhs.issuer != rhs.issuer {return false}

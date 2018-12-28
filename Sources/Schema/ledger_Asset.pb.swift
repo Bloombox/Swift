@@ -26,7 +26,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Unique ID structure for a digital asset. Specifies globally-unique identifying information, or at the very least, a
 /// string asset ID, calculated based on the asset's content and the owner's private key signing that content.
-public struct Bloombox_Schema_Ledger_AssetKey {
+public struct Bloombox_Ledger_AssetKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -44,7 +44,7 @@ public struct Bloombox_Schema_Ledger_AssetKey {
 /// may reference any arbitrary proto message. In encoded form, the asset data is expressed in binary-serialized proto,
 /// wrapped in base58. In all cases, a fingerprint must be supplied for integrity checking. In some cases, "raw" form may
 /// be used, wherein the encoding is the same as encoded-form, without the base58 wrapping.
-public struct Bloombox_Schema_Ledger_AssetData {
+public struct Bloombox_Ledger_AssetData {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -96,7 +96,7 @@ public struct Bloombox_Schema_Ledger_AssetData {
     case `struct`(SwiftProtobuf.Google_Protobuf_Any)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Ledger_AssetData.OneOf_Payload, rhs: Bloombox_Schema_Ledger_AssetData.OneOf_Payload) -> Bool {
+    public static func ==(lhs: Bloombox_Ledger_AssetData.OneOf_Payload, rhs: Bloombox_Ledger_AssetData.OneOf_Payload) -> Bool {
       switch (lhs, rhs) {
       case (.raw(let l), .raw(let r)): return l == r
       case (.encoded(let l), .encoded(let r)): return l == r
@@ -114,20 +114,20 @@ public struct Bloombox_Schema_Ledger_AssetData {
 
 /// Specifies digital asset ownership parameters. In most cases, this is simply a single cryptographic identity on the
 /// ledger, but may be more complex (in cases of multiple owners, organizational signers for owners, and so on).
-public struct Bloombox_Schema_Ledger_AssetOwnership {
+public struct Bloombox_Ledger_AssetOwnership {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Identities of the owners of this digital asset, if known and applicable.
-  public var owner: [Bloombox_Schema_Ledger_LedgerIdentity] {
+  public var owner: [Bloombox_Ledger_LedgerIdentity] {
     get {return _storage._owner}
     set {_uniqueStorage()._owner = newValue}
   }
 
   /// Previous asset ownership, allowing chained asset history to be expressed.
-  public var previous: Bloombox_Schema_Ledger_AssetOwnership {
-    get {return _storage._previous ?? Bloombox_Schema_Ledger_AssetOwnership()}
+  public var previous: Bloombox_Ledger_AssetOwnership {
+    get {return _storage._previous ?? Bloombox_Ledger_AssetOwnership()}
     set {_uniqueStorage()._previous = newValue}
   }
   /// Returns true if `previous` has been explicitly set.
@@ -144,15 +144,15 @@ public struct Bloombox_Schema_Ledger_AssetOwnership {
 
 /// Specifies the concept of a digital asset, which is an asset represented by data, and usually stored or tracked within
 /// a blockchain or distributed ledger.
-public struct Bloombox_Schema_Ledger_DigitalAsset {
+public struct Bloombox_Ledger_DigitalAsset {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Globally unique ID that identifies the asset, generally with a signed cryptographic hash based on the asset content
-  /// itself. Asset IDs can be generated statelessly as long as the private key for the asset's owner is available.
-  public var key: Bloombox_Schema_Ledger_AssetKey {
-    get {return _storage._key ?? Bloombox_Schema_Ledger_AssetKey()}
+  /// itself. Asset IDs can be generated stateless-ly as long as the private key for the asset's owner is available.
+  public var key: Bloombox_Ledger_AssetKey {
+    get {return _storage._key ?? Bloombox_Ledger_AssetKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -162,8 +162,8 @@ public struct Bloombox_Schema_Ledger_DigitalAsset {
 
   /// Reference to this digital asset's origin/parent digital asset, if applicable. In many cases a digital asset is
   /// spawned or subdivided from an existing digital asset.
-  public var parent: Bloombox_Schema_Ledger_DigitalAsset {
-    get {return _storage._parent ?? Bloombox_Schema_Ledger_DigitalAsset()}
+  public var parent: Bloombox_Ledger_DigitalAsset {
+    get {return _storage._parent ?? Bloombox_Ledger_DigitalAsset()}
     set {_uniqueStorage()._parent = newValue}
   }
   /// Returns true if `parent` has been explicitly set.
@@ -173,8 +173,8 @@ public struct Bloombox_Schema_Ledger_DigitalAsset {
 
   /// Specifies digital asset content data, which may be transmitted either in structured or encoded form. Asset data
   /// is always included because it constitutes the asset ID.
-  public var data: Bloombox_Schema_Ledger_AssetData {
-    get {return _storage._data ?? Bloombox_Schema_Ledger_AssetData()}
+  public var data: Bloombox_Ledger_AssetData {
+    get {return _storage._data ?? Bloombox_Ledger_AssetData()}
     set {_uniqueStorage()._data = newValue}
   }
   /// Returns true if `data` has been explicitly set.
@@ -183,8 +183,8 @@ public struct Bloombox_Schema_Ledger_DigitalAsset {
   public mutating func clearData() {_uniqueStorage()._data = nil}
 
   /// Identity of the owner(s) of this digital asset, if known and applicable.
-  public var owner: Bloombox_Schema_Ledger_AssetOwnership {
-    get {return _storage._owner ?? Bloombox_Schema_Ledger_AssetOwnership()}
+  public var owner: Bloombox_Ledger_AssetOwnership {
+    get {return _storage._owner ?? Bloombox_Ledger_AssetOwnership()}
     set {_uniqueStorage()._owner = newValue}
   }
   /// Returns true if `owner` has been explicitly set.
@@ -194,8 +194,8 @@ public struct Bloombox_Schema_Ledger_DigitalAsset {
 
   /// Fingerprint for the asset data, which carries with it a cryptographic hash verifying the contents' integrity. The
   /// hash payload carries with it the algorithm that was used.
-  public var fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash {
-    get {return _storage._fingerprint ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+  public var fingerprint: Opencannabis_Crypto_Hash {
+    get {return _storage._fingerprint ?? Opencannabis_Crypto_Hash()}
     set {_uniqueStorage()._fingerprint = newValue}
   }
   /// Returns true if `fingerprint` has been explicitly set.
@@ -232,9 +232,9 @@ public struct Bloombox_Schema_Ledger_DigitalAsset {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.ledger"
+fileprivate let _protobuf_package = "bloombox.ledger"
 
-extension Bloombox_Schema_Ledger_AssetKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_AssetKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AssetKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -256,14 +256,14 @@ extension Bloombox_Schema_Ledger_AssetKey: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_AssetKey, rhs: Bloombox_Schema_Ledger_AssetKey) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_AssetKey, rhs: Bloombox_Ledger_AssetKey) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Ledger_AssetData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_AssetData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AssetData"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "raw"),
@@ -272,7 +272,7 @@ extension Bloombox_Schema_Ledger_AssetData: SwiftProtobuf.Message, SwiftProtobuf
   ]
 
   fileprivate class _StorageClass {
-    var _payload: Bloombox_Schema_Ledger_AssetData.OneOf_Payload?
+    var _payload: Bloombox_Ledger_AssetData.OneOf_Payload?
 
     static let defaultInstance = _StorageClass()
 
@@ -334,7 +334,7 @@ extension Bloombox_Schema_Ledger_AssetData: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_AssetData, rhs: Bloombox_Schema_Ledger_AssetData) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_AssetData, rhs: Bloombox_Ledger_AssetData) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -349,7 +349,7 @@ extension Bloombox_Schema_Ledger_AssetData: SwiftProtobuf.Message, SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Ledger_AssetOwnership: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_AssetOwnership: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AssetOwnership"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "owner"),
@@ -357,8 +357,8 @@ extension Bloombox_Schema_Ledger_AssetOwnership: SwiftProtobuf.Message, SwiftPro
   ]
 
   fileprivate class _StorageClass {
-    var _owner: [Bloombox_Schema_Ledger_LedgerIdentity] = []
-    var _previous: Bloombox_Schema_Ledger_AssetOwnership? = nil
+    var _owner: [Bloombox_Ledger_LedgerIdentity] = []
+    var _previous: Bloombox_Ledger_AssetOwnership? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -402,7 +402,7 @@ extension Bloombox_Schema_Ledger_AssetOwnership: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_AssetOwnership, rhs: Bloombox_Schema_Ledger_AssetOwnership) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_AssetOwnership, rhs: Bloombox_Ledger_AssetOwnership) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -418,7 +418,7 @@ extension Bloombox_Schema_Ledger_AssetOwnership: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Ledger_DigitalAsset: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_DigitalAsset: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DigitalAsset"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -431,11 +431,11 @@ extension Bloombox_Schema_Ledger_DigitalAsset: SwiftProtobuf.Message, SwiftProto
   ]
 
   fileprivate class _StorageClass {
-    var _key: Bloombox_Schema_Ledger_AssetKey? = nil
-    var _parent: Bloombox_Schema_Ledger_DigitalAsset? = nil
-    var _data: Bloombox_Schema_Ledger_AssetData? = nil
-    var _owner: Bloombox_Schema_Ledger_AssetOwnership? = nil
-    var _fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
+    var _key: Bloombox_Ledger_AssetKey? = nil
+    var _parent: Bloombox_Ledger_DigitalAsset? = nil
+    var _data: Bloombox_Ledger_AssetData? = nil
+    var _owner: Bloombox_Ledger_AssetOwnership? = nil
+    var _fingerprint: Opencannabis_Crypto_Hash? = nil
     var _created: Opencannabis_Temporal_Instant? = nil
     var _modified: Opencannabis_Temporal_Instant? = nil
 
@@ -506,7 +506,7 @@ extension Bloombox_Schema_Ledger_DigitalAsset: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_DigitalAsset, rhs: Bloombox_Schema_Ledger_DigitalAsset) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_DigitalAsset, rhs: Bloombox_Ledger_DigitalAsset) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

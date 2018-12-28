@@ -4,7 +4,7 @@
 #
 
 SCHEMA ?= Schema/
-VERSION ?= 0.1.8
+VERSION ?= 0.1.9
 SCHEMA_BRANCH ?= master
 SWIFT_GRPC ?= SwiftGRPC
 
@@ -120,23 +120,31 @@ $(SCHEMA):
 $(SCHEMA)languages/swift: $(SCHEMA)
 	@echo "Building schema..."
 	@mkdir -p Schema/languages/swiftgrpc
-	@$(MAKE) -C Schema LANGUAGES="swift swiftgrpc" PROTO_FLAGS="--plugin=$(PWD)/SwiftGRPC/protoc-gen-swift --plugin=$(PWD)/SwiftGRPC/protoc-gen-swiftgrpc --swiftgrpc_out=languages/swiftgrpc" SERVICES=yes TABLES=no INCLUDE_DESCRIPTOR=yes build
+	@$(MAKE) -C Schema LANGUAGES="swift swiftgrpc" PROTO_FLAGS="--plugin=$(PWD)/SwiftGRPC/protoc-gen-swift --plugin=$(PWD)/SwiftGRPC/protoc-gen-swiftgrpc --swiftgrpc_out=Visibility=Public,Server=false,Client=true:languages/swiftgrpc" SERVICES=yes TABLES=no INCLUDE_DESCRIPTOR=yes build
 
 update-schema:
 	@echo "Updating schemas..."
 	@git submodule update --init --remote Schema
 
+regen-schema:
+	@echo "Removing schema..."
+	@rm -fr Schema/languages/*swift*
+
 sync-schema: $(SCHEMA)languages/swift
 	@echo "Syncing Swift schemas..."
 	@rm -fr Sources/Schema/*.pb.swift
 	@rm -fr Sources/Schema/*.grpc.swift
+	@rm -fr Sources/Services/*.swift
 	@cp -fr $(SCHEMA)languages/swift/*.swift Sources/Schema/
-	@cp -fr $(SCHEMA)languages/swift/*/*/*.swift Sources/Schema/
 	@cp -fr $(SCHEMA)languages/swiftgrpc/*/*/*.swift Sources/Schema/
-	@cp -fr Sources/Schema/*.grpc.swift Sources/Client/
-	@rm -fv Sources/Schema/*.grpc.swift
+	@cp -fr Sources/Schema/*.grpc.swift Sources/Services/
+	@rm -f Sources/Schema/*.grpc.swift
 	@rm -f Sources/Schema/*.server.pb.swift
+	@rm -f Sources/Client/*.grpc.swift
+	@rm -f Sources/Client/*.pb.swift
 	@rm -f Sources/Schema/bq*
+	@rm -f rm -fv Sources/Services/{CheckinService*,DashService*,LedgerService*,MarketingService*,PartnersService*}
+	@echo "Sync complete."
 
 swift-grpc: $(SWIFT_GRPC)/.build
 	@echo "Cleaning SwiftGRPC."
@@ -145,6 +153,9 @@ swift-grpc: $(SWIFT_GRPC)/.build
 $(SWIFT_GRPC)/.build:
 	@echo "Building SwiftGRPC..."
 	@$(MAKE) -C $(SWIFT_GRPC)
+
+grpc: $(SWIFT_GRPC) $(SWIFT_GRPC)/.build
+	@echo "gRPC is ready."
 
 $(SWIFT_GRPC):
 	@echo "Initializing SwiftGRPC..."

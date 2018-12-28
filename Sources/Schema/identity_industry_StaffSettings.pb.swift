@@ -26,15 +26,15 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Settings for staff users, attached to a user's overall industry profile. Applies in any context where the user is
 /// authorized for industry-side use of Bloombox products.
-public struct Bloombox_Schema_Identity_Industry_StaffSettings {
+public struct Bloombox_Identity_Industry_StaffSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Point-of-sale device settings. Includes the user's authorization code hash, public key hash, and other settings or
   /// security details. User preferences on the point-of-sale device are also stored here.
-  public var pos: Bloombox_Schema_Identity_Industry_POSStaffSettings {
-    get {return _storage._pos ?? Bloombox_Schema_Identity_Industry_POSStaffSettings()}
+  public var pos: Bloombox_Identity_Industry_POSStaffSettings {
+    get {return _storage._pos ?? Bloombox_Identity_Industry_POSStaffSettings()}
     set {_uniqueStorage()._pos = newValue}
   }
   /// Returns true if `pos` has been explicitly set.
@@ -45,8 +45,8 @@ public struct Bloombox_Schema_Identity_Industry_StaffSettings {
   /// Settings specific to the web dashboard when this user signs in. Personalization and preference options expressed
   /// for update by the user in the dashboard are stored here. These are distinguished from organization settings in that
   /// they are not shared between users and generally only apply cosmetically.
-  public var dashboard: Bloombox_Schema_Identity_Industry_DashboardStaffSettings {
-    get {return _storage._dashboard ?? Bloombox_Schema_Identity_Industry_DashboardStaffSettings()}
+  public var dashboard: Bloombox_Identity_Industry_DashboardStaffSettings {
+    get {return _storage._dashboard ?? Bloombox_Identity_Industry_DashboardStaffSettings()}
     set {_uniqueStorage()._dashboard = newValue}
   }
   /// Returns true if `dashboard` has been explicitly set.
@@ -63,9 +63,9 @@ public struct Bloombox_Schema_Identity_Industry_StaffSettings {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity.industry"
+fileprivate let _protobuf_package = "bloombox.identity.industry"
 
-extension Bloombox_Schema_Identity_Industry_StaffSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_Industry_StaffSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".StaffSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "pos"),
@@ -73,8 +73,8 @@ extension Bloombox_Schema_Identity_Industry_StaffSettings: SwiftProtobuf.Message
   ]
 
   fileprivate class _StorageClass {
-    var _pos: Bloombox_Schema_Identity_Industry_POSStaffSettings? = nil
-    var _dashboard: Bloombox_Schema_Identity_Industry_DashboardStaffSettings? = nil
+    var _pos: Bloombox_Identity_Industry_POSStaffSettings? = nil
+    var _dashboard: Bloombox_Identity_Industry_DashboardStaffSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -118,7 +118,7 @@ extension Bloombox_Schema_Identity_Industry_StaffSettings: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_Industry_StaffSettings, rhs: Bloombox_Schema_Identity_Industry_StaffSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_Industry_StaffSettings, rhs: Bloombox_Identity_Industry_StaffSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

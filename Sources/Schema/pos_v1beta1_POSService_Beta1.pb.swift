@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates error states that may be served from the POS service.
-public enum Bloombox_Schema_Services_Pos_V1beta1_POSError: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Pos_V1beta1_POSError: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// An unknown internal error occurred.
@@ -163,9 +163,9 @@ public enum Bloombox_Schema_Services_Pos_V1beta1_POSError: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Pos_V1beta1_POSError: CaseIterable {
+extension Bloombox_Services_Pos_V1beta1_POSError: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Pos_V1beta1_POSError] = [
+  public static var allCases: [Bloombox_Services_Pos_V1beta1_POSError] = [
     .noError,
     .invalidPartner,
     .invalidLocation,
@@ -195,7 +195,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_POSError: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Enumerates types of events for a live inventory connection.
-public enum Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Pos_V1beta1_InventoryStreamEvent: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Ping (when sent from the client) and pong (when replied from the server).
@@ -234,9 +234,9 @@ public enum Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent: SwiftProt
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent: CaseIterable {
+extension Bloombox_Services_Pos_V1beta1_InventoryStreamEvent: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent] = [
+  public static var allCases: [Bloombox_Services_Pos_V1beta1_InventoryStreamEvent] = [
     .pingPong,
     .noChange,
     .update,
@@ -246,7 +246,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent: CaseIterabl
 #endif  // swift(>=4.2)
 
 /// Enumerates types of authorization tokens supported or used by a point-of-sale session.
-public enum Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Pos_V1beta1_SessionTokenGrant: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specialized authorization ticket that grants access to the Point of Sale API.
@@ -285,9 +285,9 @@ public enum Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant: SwiftProtobu
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant: CaseIterable {
+extension Bloombox_Services_Pos_V1beta1_SessionTokenGrant: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant] = [
+  public static var allCases: [Bloombox_Services_Pos_V1beta1_SessionTokenGrant] = [
     .api,
     .stream,
     .messaging,
@@ -297,20 +297,20 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies authorization tokens for a given device/user pair.
-public struct Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken {
+public struct Bloombox_Services_Pos_V1beta1_RegisterSessionToken {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Type of grant that this token provides the bearer.
-  public var grant: Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant {
+  public var grant: Bloombox_Services_Pos_V1beta1_SessionTokenGrant {
     get {return _storage._grant}
     set {_uniqueStorage()._grant = newValue}
   }
 
   /// Resulting authorization token, entitling the bearer to access the specified grant.
-  public var token: Bloombox_Schema_Security_AuthToken {
-    get {return _storage._token ?? Bloombox_Schema_Security_AuthToken()}
+  public var token: Bloombox_Security_AuthToken {
+    get {return _storage._token ?? Bloombox_Security_AuthToken()}
     set {_uniqueStorage()._token = newValue}
   }
   /// Returns true if `token` has been explicitly set.
@@ -326,7 +326,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken {
 }
 
 /// Specifies details for authenticating with messaging services.
-public struct Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth {
+public struct Bloombox_Services_Pos_V1beta1_MessagingAuth {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -340,7 +340,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth {
 }
 
 /// Specifies the notion of a point-of-sale session, bound to a user and particular POS device.
-public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession {
+public struct Bloombox_Services_Pos_V1beta1_CashRegisterSession {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -352,8 +352,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession {
   }
 
   /// Specifies the staff user logged in via this operation.
-  public var user: Bloombox_Schema_Identity_StaffUser {
-    get {return _storage._user ?? Bloombox_Schema_Identity_StaffUser()}
+  public var user: Bloombox_Identity_StaffUser {
+    get {return _storage._user ?? Bloombox_Identity_StaffUser()}
     set {_uniqueStorage()._user = newValue}
   }
   /// Returns true if `user` has been explicitly set.
@@ -362,14 +362,14 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession {
   public mutating func clearUser() {_uniqueStorage()._user = nil}
 
   /// Specifies the current/active status of a particular point of sale session.
-  public var status: Opencannabis_Commerce_SessionStatus {
+  public var status: Bloombox_Pos_SessionStatus {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
   }
 
   /// Rendered access rights for this partner location.
-  public var rights: Bloombox_Schema_Identity_IndustryProfile {
-    get {return _storage._rights ?? Bloombox_Schema_Identity_IndustryProfile()}
+  public var rights: Bloombox_Identity_IndustryProfile {
+    get {return _storage._rights ?? Bloombox_Identity_IndustryProfile()}
     set {_uniqueStorage()._rights = newValue}
   }
   /// Returns true if `rights` has been explicitly set.
@@ -378,14 +378,14 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession {
   public mutating func clearRights() {_uniqueStorage()._rights = nil}
 
   /// Authorization grants/tokens issued in response to this authentication transaction.
-  public var authorization: [Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken] {
+  public var authorization: [Bloombox_Services_Pos_V1beta1_RegisterSessionToken] {
     get {return _storage._authorization}
     set {_uniqueStorage()._authorization = newValue}
   }
 
   /// Messaging session configuration, if applicable.
-  public var messaging: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSession {
-    get {return _storage._messaging ?? Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSession()}
+  public var messaging: Bloombox_Services_Pos_V1beta1_CashRegisterSession.MessagingSession {
+    get {return _storage._messaging ?? Bloombox_Services_Pos_V1beta1_CashRegisterSession.MessagingSession()}
     set {_uniqueStorage()._messaging = newValue}
   }
   /// Returns true if `messaging` has been explicitly set.
@@ -445,7 +445,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession {
 }
 
 /// Specifies an RPC transaction to authenticate a staff member user on a point-of-sale device.
-public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
+public struct Bloombox_Services_Pos_V1beta1_AuthorizeUser {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -459,8 +459,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
     // methods supported on all messages.
 
     /// Device key, including the location and partner where the device is located.
-    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
-      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+    public var register: Bloombox_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Partner_PartnerDeviceKey()}
       set {_uniqueStorage()._register = newValue}
     }
     /// Returns true if `register` has been explicitly set.
@@ -469,8 +469,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
     public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// Authentication nonce, for access to messaging services.
-    public var messaging: Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth {
-      get {return _storage._messaging ?? Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth()}
+    public var messaging: Bloombox_Services_Pos_V1beta1_MessagingAuth {
+      get {return _storage._messaging ?? Bloombox_Services_Pos_V1beta1_MessagingAuth()}
       set {_uniqueStorage()._messaging = newValue}
     }
     /// Returns true if `messaging` has been explicitly set.
@@ -479,8 +479,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
     public mutating func clearMessaging() {_uniqueStorage()._messaging = nil}
 
     /// Information about point-of-sale hardware installed or supported on this device.
-    public var hardware: Opencannabis_Commerce_POSHardware {
-      get {return _storage._hardware ?? Opencannabis_Commerce_POSHardware()}
+    public var hardware: Bloombox_Pos_POSHardware {
+      get {return _storage._hardware ?? Bloombox_Pos_POSHardware()}
       set {_uniqueStorage()._hardware = newValue}
     }
     /// Returns true if `hardware` has been explicitly set.
@@ -489,8 +489,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
     public mutating func clearHardware() {_uniqueStorage()._hardware = nil}
 
     /// Information about the POS app in use.
-    public var app: Bloombox_Schema_Analytics_Context_DeviceApplication {
-      get {return _storage._app ?? Bloombox_Schema_Analytics_Context_DeviceApplication()}
+    public var app: Bloombox_Analytics_Context_DeviceApplication {
+      get {return _storage._app ?? Bloombox_Analytics_Context_DeviceApplication()}
       set {_uniqueStorage()._app = newValue}
     }
     /// Returns true if `app` has been explicitly set.
@@ -510,19 +510,19 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
     }
 
     /// Resolved identity provided by the user, including their provider and identity ID.
-    public var token: Bloombox_Schema_Security_IdentityToken {
+    public var token: Bloombox_Security_IdentityToken {
       get {
         if case .token(let v)? = _storage._auth {return v}
-        return Bloombox_Schema_Security_IdentityToken()
+        return Bloombox_Security_IdentityToken()
       }
       set {_uniqueStorage()._auth = .token(newValue)}
     }
 
     /// Cryptographic hash representing the user's response to an identity challenge.
-    public var challenge: Opencannabis_Crypto_Primitives_Integrity_Hash {
+    public var challenge: Opencannabis_Crypto_Hash {
       get {
         if case .challenge(let v)? = _storage._auth {return v}
-        return Opencannabis_Crypto_Primitives_Integrity_Hash()
+        return Opencannabis_Crypto_Hash()
       }
       set {_uniqueStorage()._auth = .challenge(newValue)}
     }
@@ -531,12 +531,12 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
 
     public enum OneOf_Auth: Equatable {
       /// Resolved identity provided by the user, including their provider and identity ID.
-      case token(Bloombox_Schema_Security_IdentityToken)
+      case token(Bloombox_Security_IdentityToken)
       /// Cryptographic hash representing the user's response to an identity challenge.
-      case challenge(Opencannabis_Crypto_Primitives_Integrity_Hash)
+      case challenge(Opencannabis_Crypto_Hash)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request.OneOf_Auth, rhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request.OneOf_Auth) -> Bool {
+      public static func ==(lhs: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request.OneOf_Auth, rhs: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request.OneOf_Auth) -> Bool {
         switch (lhs, rhs) {
         case (.token(let l), .token(let r)): return l == r
         case (.challenge(let l), .challenge(let r)): return l == r
@@ -558,8 +558,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
     // methods supported on all messages.
 
     /// Session allocated to coordinate this user's point-of-sale transactions.
-    public var session: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession {
-      get {return _storage._session ?? Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession()}
+    public var session: Bloombox_Services_Pos_V1beta1_CashRegisterSession {
+      get {return _storage._session ?? Bloombox_Services_Pos_V1beta1_CashRegisterSession()}
       set {_uniqueStorage()._session = newValue}
     }
     /// Returns true if `session` has been explicitly set.
@@ -581,8 +581,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
     // methods supported on all messages.
 
     /// Authorization request.
-    public var request: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request()}
+    public var request: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request {
+      get {return _storage._request ?? Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -591,8 +591,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Authorization response.
-    public var response: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response()}
+    public var response: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Response {
+      get {return _storage._response ?? Bloombox_Services_Pos_V1beta1_AuthorizeUser.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -611,7 +611,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser {
 }
 
 /// Specifies an RPC operation to open a formal point-of-sale session.
-public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession {
+public struct Bloombox_Services_Pos_V1beta1_OpenSession {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -625,8 +625,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession {
     // methods supported on all messages.
 
     /// Device key, including the location and partner where the device is located.
-    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
-      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+    public var register: Bloombox_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Partner_PartnerDeviceKey()}
       set {_uniqueStorage()._register = newValue}
     }
     /// Returns true if `register` has been explicitly set.
@@ -655,10 +655,10 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession {
     }
 
     /// Specifies the opening state of the cash register, including the beginning float for the session.
-    public var `open`: Opencannabis_Commerce_PointOfSaleState.SessionOpen {
+    public var `open`: Bloombox_Pos_PointOfSaleState.SessionOpen {
       get {
         if case .open(let v)? = _storage._claim {return v}
-        return Opencannabis_Commerce_PointOfSaleState.SessionOpen()
+        return Bloombox_Pos_PointOfSaleState.SessionOpen()
       }
       set {_uniqueStorage()._claim = .open(newValue)}
     }
@@ -689,12 +689,12 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession {
     /// which case the resumption flag must be present.
     public enum OneOf_Claim: Equatable {
       /// Specifies the opening state of the cash register, including the beginning float for the session.
-      case `open`(Opencannabis_Commerce_PointOfSaleState.SessionOpen)
+      case `open`(Bloombox_Pos_PointOfSaleState.SessionOpen)
       /// Flag to indicate this session-open call is reclaiming or resuming a previously opened and established session.
       case resume(Bool)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim) -> Bool {
+      public static func ==(lhs: Bloombox_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim, rhs: Bloombox_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim) -> Bool {
         switch (lhs, rhs) {
         case (.open(let l), .open(let r)): return l == r
         case (.resume(let l), .resume(let r)): return l == r
@@ -716,8 +716,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession {
     // methods supported on all messages.
 
     /// Updated session, after it has presumably been opened (i.e. not encountered a fatal error).
-    public var session: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession {
-      get {return _storage._session ?? Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession()}
+    public var session: Bloombox_Services_Pos_V1beta1_CashRegisterSession {
+      get {return _storage._session ?? Bloombox_Services_Pos_V1beta1_CashRegisterSession()}
       set {_uniqueStorage()._session = newValue}
     }
     /// Returns true if `session` has been explicitly set.
@@ -739,8 +739,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession {
     // methods supported on all messages.
 
     /// Request to open a POS session.
-    public var request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request()}
+    public var request: Bloombox_Services_Pos_V1beta1_OpenSession.Request {
+      get {return _storage._request ?? Bloombox_Services_Pos_V1beta1_OpenSession.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -749,8 +749,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to open a POS session.
-    public var response: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response()}
+    public var response: Bloombox_Services_Pos_V1beta1_OpenSession.Response {
+      get {return _storage._response ?? Bloombox_Services_Pos_V1beta1_OpenSession.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -769,7 +769,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenSession {
 }
 
 /// Specifies an RPC operation to close a formal point-of-sale session.
-public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession {
+public struct Bloombox_Services_Pos_V1beta1_CloseSession {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -783,8 +783,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession {
     // methods supported on all messages.
 
     /// Device key, including the location and partner where the device is located.
-    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
-      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+    public var register: Bloombox_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Partner_PartnerDeviceKey()}
       set {_uniqueStorage()._register = newValue}
     }
     /// Returns true if `register` has been explicitly set.
@@ -799,8 +799,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession {
     }
 
     /// Specifies the closing state of the cash register, including the final cash total for the session.
-    public var close: Opencannabis_Commerce_PointOfSaleState.SessionClose {
-      get {return _storage._close ?? Opencannabis_Commerce_PointOfSaleState.SessionClose()}
+    public var close: Bloombox_Pos_PointOfSaleState.SessionClose {
+      get {return _storage._close ?? Bloombox_Pos_PointOfSaleState.SessionClose()}
       set {_uniqueStorage()._close = newValue}
     }
     /// Returns true if `close` has been explicitly set.
@@ -861,8 +861,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession {
     // methods supported on all messages.
 
     /// Specifies the close-session request.
-    public var request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request()}
+    public var request: Bloombox_Services_Pos_V1beta1_CloseSession.Request {
+      get {return _storage._request ?? Bloombox_Services_Pos_V1beta1_CloseSession.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -871,8 +871,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Specifies the close-session response.
-    public var response: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response()}
+    public var response: Bloombox_Services_Pos_V1beta1_CloseSession.Response {
+      get {return _storage._response ?? Bloombox_Services_Pos_V1beta1_CloseSession.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -891,7 +891,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloseSession {
 }
 
 /// Specifies an RPC operation to open a new or existing ticket.
-public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket {
+public struct Bloombox_Services_Pos_V1beta1_OpenTicket {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -915,8 +915,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket {
     public mutating func clearPurchase() {_uniqueStorage()._purchase = nil}
 
     /// Specifies the device for which a ticket is being requested.
-    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
-      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+    public var register: Bloombox_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Partner_PartnerDeviceKey()}
       set {_uniqueStorage()._register = newValue}
     }
     /// Returns true if `register` has been explicitly set.
@@ -1015,8 +1015,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket {
     // methods supported on all messages.
 
     /// Request to open a ticket.
-    public var request: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request()}
+    public var request: Bloombox_Services_Pos_V1beta1_OpenTicket.Request {
+      get {return _storage._request ?? Bloombox_Services_Pos_V1beta1_OpenTicket.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -1025,8 +1025,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to open a ticket.
-    public var response: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response()}
+    public var response: Bloombox_Services_Pos_V1beta1_OpenTicket.Response {
+      get {return _storage._response ?? Bloombox_Services_Pos_V1beta1_OpenTicket.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -1045,7 +1045,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_OpenTicket {
 }
 
 /// Specifies an RPC operation to save a ticket after modifications were made.
-public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket {
+public struct Bloombox_Services_Pos_V1beta1_SaveTicket {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1059,8 +1059,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket {
     // methods supported on all messages.
 
     /// Device key, including the location and partner.
-    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
-      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+    public var register: Bloombox_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Partner_PartnerDeviceKey()}
       set {_uniqueStorage()._register = newValue}
     }
     /// Returns true if `register` has been explicitly set.
@@ -1069,8 +1069,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket {
     public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// Specifies the purchase to save.
-    public var ticket: Opencannabis_Commerce_PurchaseTicket {
-      get {return _storage._ticket ?? Opencannabis_Commerce_PurchaseTicket()}
+    public var ticket: Bloombox_Pos_PurchaseTicket {
+      get {return _storage._ticket ?? Bloombox_Pos_PurchaseTicket()}
       set {_uniqueStorage()._ticket = newValue}
     }
     /// Returns true if `ticket` has been explicitly set.
@@ -1175,8 +1175,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket {
     // methods supported on all messages.
 
     /// Request to save a ticket.
-    public var request: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request()}
+    public var request: Bloombox_Services_Pos_V1beta1_SaveTicket.Request {
+      get {return _storage._request ?? Bloombox_Services_Pos_V1beta1_SaveTicket.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -1185,8 +1185,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to save a ticket.
-    public var response: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response()}
+    public var response: Bloombox_Services_Pos_V1beta1_SaveTicket.Response {
+      get {return _storage._response ?? Bloombox_Services_Pos_V1beta1_SaveTicket.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -1205,7 +1205,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_SaveTicket {
 }
 
 /// Specifies an RPC operation to load a ticket by its ID or key.
-public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket {
+public struct Bloombox_Services_Pos_V1beta1_LoadTicket {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1219,8 +1219,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket {
     // methods supported on all messages.
 
     /// Device key, including the location and partner.
-    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
-      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+    public var register: Bloombox_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Partner_PartnerDeviceKey()}
       set {_uniqueStorage()._register = newValue}
     }
     /// Returns true if `register` has been explicitly set.
@@ -1258,8 +1258,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket {
     // methods supported on all messages.
 
     /// Specifies the resulting purchase ticket, if it could be located.
-    public var ticket: Opencannabis_Commerce_PurchaseTicket {
-      get {return _storage._ticket ?? Opencannabis_Commerce_PurchaseTicket()}
+    public var ticket: Bloombox_Pos_PurchaseTicket {
+      get {return _storage._ticket ?? Bloombox_Pos_PurchaseTicket()}
       set {_uniqueStorage()._ticket = newValue}
     }
     /// Returns true if `ticket` has been explicitly set.
@@ -1281,8 +1281,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket {
     // methods supported on all messages.
 
     /// Request for service status.
-    public var request: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request()}
+    public var request: Bloombox_Services_Pos_V1beta1_LoadTicket.Request {
+      get {return _storage._request ?? Bloombox_Services_Pos_V1beta1_LoadTicket.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -1291,8 +1291,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request for service status.
-    public var response: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response()}
+    public var response: Bloombox_Services_Pos_V1beta1_LoadTicket.Response {
+      get {return _storage._response ?? Bloombox_Services_Pos_V1beta1_LoadTicket.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -1312,7 +1312,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_LoadTicket {
 
 /// Specifies an RPC operation to claim an existing, open ticket. "Claim"-ing a ticket involves changing the facilitator
 /// identity, such that a new budtender/staff members owns the ticket.
-public struct Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket {
+public struct Bloombox_Services_Pos_V1beta1_ClaimTicket {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1326,8 +1326,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket {
     // methods supported on all messages.
 
     /// Device key, including the location and partner, where the ticket should be claimed.
-    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
-      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+    public var register: Bloombox_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Partner_PartnerDeviceKey()}
       set {_uniqueStorage()._register = newValue}
     }
     /// Returns true if `register` has been explicitly set.
@@ -1365,8 +1365,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket {
     // methods supported on all messages.
 
     /// Specifies the resulting purchase ticket, if it could successfully be claimed.
-    public var ticket: Opencannabis_Commerce_PurchaseTicket {
-      get {return _storage._ticket ?? Opencannabis_Commerce_PurchaseTicket()}
+    public var ticket: Bloombox_Pos_PurchaseTicket {
+      get {return _storage._ticket ?? Bloombox_Pos_PurchaseTicket()}
       set {_uniqueStorage()._ticket = newValue}
     }
     /// Returns true if `ticket` has been explicitly set.
@@ -1388,8 +1388,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket {
     // methods supported on all messages.
 
     /// Request to claim ownership of a ticket.
-    public var request: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request()}
+    public var request: Bloombox_Services_Pos_V1beta1_ClaimTicket.Request {
+      get {return _storage._request ?? Bloombox_Services_Pos_V1beta1_ClaimTicket.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -1398,8 +1398,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to claim ownership of a ticket.
-    public var response: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response()}
+    public var response: Bloombox_Services_Pos_V1beta1_ClaimTicket.Response {
+      get {return _storage._response ?? Bloombox_Services_Pos_V1beta1_ClaimTicket.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -1420,7 +1420,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket {
 /// Specifies an RPC operation to clone an existing ticket. The source ticket may be in any state. The purchase ticket
 /// items are pre-filled, and any other computed properties are provided (i.e. bill of sale), but the facilitator and
 /// customer may be replaced.
-public struct Bloombox_Schema_Services_Pos_V1beta1_CloneTicket {
+public struct Bloombox_Services_Pos_V1beta1_CloneTicket {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1444,8 +1444,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloneTicket {
     public mutating func clearPurchase() {_uniqueStorage()._purchase = nil}
 
     /// Specifies the device for which a ticket is being cloned.
-    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
-      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+    public var register: Bloombox_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Partner_PartnerDeviceKey()}
       set {_uniqueStorage()._register = newValue}
     }
     /// Returns true if `register` has been explicitly set.
@@ -1473,8 +1473,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloneTicket {
     // methods supported on all messages.
 
     /// Specifies the resulting newly-cloned purchase ticket, if it could successfully be cloned.
-    public var ticket: Opencannabis_Commerce_PurchaseTicket {
-      get {return _storage._ticket ?? Opencannabis_Commerce_PurchaseTicket()}
+    public var ticket: Bloombox_Pos_PurchaseTicket {
+      get {return _storage._ticket ?? Bloombox_Pos_PurchaseTicket()}
       set {_uniqueStorage()._ticket = newValue}
     }
     /// Returns true if `ticket` has been explicitly set.
@@ -1496,8 +1496,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloneTicket {
     // methods supported on all messages.
 
     /// Request to clone a purchase ticket.
-    public var request: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request()}
+    public var request: Bloombox_Services_Pos_V1beta1_CloneTicket.Request {
+      get {return _storage._request ?? Bloombox_Services_Pos_V1beta1_CloneTicket.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -1506,8 +1506,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloneTicket {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response provided to this request to clone a purchase ticket.
-    public var response: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response()}
+    public var response: Bloombox_Services_Pos_V1beta1_CloneTicket.Response {
+      get {return _storage._response ?? Bloombox_Services_Pos_V1beta1_CloneTicket.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -1526,7 +1526,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_CloneTicket {
 }
 
 /// Specifies an RPC operation to void an existing, open ticket.
-public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket {
+public struct Bloombox_Services_Pos_V1beta1_VoidTicket {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1540,8 +1540,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket {
     // methods supported on all messages.
 
     /// Device key, including the location and partner.
-    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
-      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+    public var register: Bloombox_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Partner_PartnerDeviceKey()}
       set {_uniqueStorage()._register = newValue}
     }
     /// Returns true if `register` has been explicitly set.
@@ -1618,8 +1618,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket {
     // methods supported on all messages.
 
     /// Request to void a ticket.
-    public var request: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request()}
+    public var request: Bloombox_Services_Pos_V1beta1_VoidTicket.Request {
+      get {return _storage._request ?? Bloombox_Services_Pos_V1beta1_VoidTicket.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -1628,8 +1628,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to void a ticket.
-    public var response: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response()}
+    public var response: Bloombox_Services_Pos_V1beta1_VoidTicket.Response {
+      get {return _storage._response ?? Bloombox_Services_Pos_V1beta1_VoidTicket.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -1648,7 +1648,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_VoidTicket {
 }
 
 /// Specifies an RPC operation to finalize an existing, open ticket.
-public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket {
+public struct Bloombox_Services_Pos_V1beta1_FinalizeTicket {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1662,8 +1662,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket {
     // methods supported on all messages.
 
     /// Device key, including the location and partner.
-    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
-      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+    public var register: Bloombox_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Partner_PartnerDeviceKey()}
       set {_uniqueStorage()._register = newValue}
     }
     /// Returns true if `register` has been explicitly set.
@@ -1740,8 +1740,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket {
     // methods supported on all messages.
 
     /// Request to finalize a ticket.
-    public var request: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request()}
+    public var request: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Request {
+      get {return _storage._request ?? Bloombox_Services_Pos_V1beta1_FinalizeTicket.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -1750,8 +1750,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to finalize a ticket.
-    public var response: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response()}
+    public var response: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Response {
+      get {return _storage._response ?? Bloombox_Services_Pos_V1beta1_FinalizeTicket.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -1770,7 +1770,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket {
 }
 
 /// Specifies an RPC operation to search member accounts by ID, contact info, or name.
-public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch {
+public struct Bloombox_Services_Pos_V1beta1_MemberSearch {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1801,8 +1801,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch {
     // methods supported on all messages.
 
     /// Specifies the scanned/received information from the pass.
-    public var pass: Bloombox_Schema_Identity_Pass_DigitalPassKey {
-      get {return _storage._pass ?? Bloombox_Schema_Identity_Pass_DigitalPassKey()}
+    public var pass: Bloombox_Identity_Pass_DigitalPassKey {
+      get {return _storage._pass ?? Bloombox_Identity_Pass_DigitalPassKey()}
       set {_uniqueStorage()._pass = newValue}
     }
     /// Returns true if `pass` has been explicitly set.
@@ -1811,8 +1811,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch {
     public mutating func clearPass() {_uniqueStorage()._pass = nil}
 
     /// Cryptographic signature hash from the physical device that scanned the pass.
-    public var challenge: Opencannabis_Crypto_Primitives_Integrity_Hash {
-      get {return _storage._challenge ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+    public var challenge: Opencannabis_Crypto_Hash {
+      get {return _storage._challenge ?? Opencannabis_Crypto_Hash()}
       set {_uniqueStorage()._challenge = newValue}
     }
     /// Returns true if `challenge` has been explicitly set.
@@ -1858,19 +1858,19 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch {
     }
 
     /// Search criteria.
-    public var search: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate {
+    public var search: Bloombox_Services_Pos_V1beta1_MemberSearch.MemberPredicate {
       get {
         if case .search(let v)? = _storage._spec {return v}
-        return Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate()
+        return Bloombox_Services_Pos_V1beta1_MemberSearch.MemberPredicate()
       }
       set {_uniqueStorage()._spec = .search(newValue)}
     }
 
     /// Identification presented by the user.
-    public var identification: Bloombox_Schema_Identity_IDReference {
+    public var identification: Bloombox_Identity_IDReference {
       get {
         if case .identification(let v)? = _storage._spec {return v}
-        return Bloombox_Schema_Identity_IDReference()
+        return Bloombox_Identity_IDReference()
       }
       set {_uniqueStorage()._spec = .identification(newValue)}
     }
@@ -1894,10 +1894,10 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch {
     }
 
     /// Specifies a members-resolve request being requested based on a digital wallet pass.
-    public var wallet: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass {
+    public var wallet: Bloombox_Services_Pos_V1beta1_MemberSearch.DigitalPass {
       get {
         if case .wallet(let v)? = _storage._spec {return v}
-        return Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass()
+        return Bloombox_Services_Pos_V1beta1_MemberSearch.DigitalPass()
       }
       set {_uniqueStorage()._spec = .wallet(newValue)}
     }
@@ -1907,18 +1907,18 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch {
     /// Specification of how we want to locate a member.
     public enum OneOf_Spec: Equatable {
       /// Search criteria.
-      case search(Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate)
+      case search(Bloombox_Services_Pos_V1beta1_MemberSearch.MemberPredicate)
       /// Identification presented by the user.
-      case identification(Bloombox_Schema_Identity_IDReference)
+      case identification(Bloombox_Identity_IDReference)
       /// Flag to indicate lobby-checked-in users are desired.
       case lobby(Bool)
       /// Flag to indicate currently-shopping users with an open ticket.
       case shopping(Bool)
       /// Specifies a members-resolve request being requested based on a digital wallet pass.
-      case wallet(Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass)
+      case wallet(Bloombox_Services_Pos_V1beta1_MemberSearch.DigitalPass)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request.OneOf_Spec, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request.OneOf_Spec) -> Bool {
+      public static func ==(lhs: Bloombox_Services_Pos_V1beta1_MemberSearch.Request.OneOf_Spec, rhs: Bloombox_Services_Pos_V1beta1_MemberSearch.Request.OneOf_Spec) -> Bool {
         switch (lhs, rhs) {
         case (.search(let l), .search(let r)): return l == r
         case (.identification(let l), .identification(let r)): return l == r
@@ -1952,7 +1952,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch {
     public var total: UInt32 = 0
 
     /// Matching member accounts.
-    public var member: [Bloombox_Schema_Identity_MembershipReference] = []
+    public var member: [Bloombox_Identity_MembershipReference] = []
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1966,8 +1966,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch {
     // methods supported on all messages.
 
     /// Request to search for members.
-    public var request: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request()}
+    public var request: Bloombox_Services_Pos_V1beta1_MemberSearch.Request {
+      get {return _storage._request ?? Bloombox_Services_Pos_V1beta1_MemberSearch.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -1976,8 +1976,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to search for members.
-    public var response: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response()}
+    public var response: Bloombox_Services_Pos_V1beta1_MemberSearch.Response {
+      get {return _storage._response ?? Bloombox_Services_Pos_V1beta1_MemberSearch.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -1996,7 +1996,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_MemberSearch {
 }
 
 /// Specifies an RPC operation to search for active stock status at a given location.
-public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery {
+public struct Bloombox_Services_Pos_V1beta1_InventoryQuery {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -2047,8 +2047,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery {
     // methods supported on all messages.
 
     /// The device that is submitting this search.
-    public var register: Bloombox_Schema_Partner_PartnerDeviceKey {
-      get {return _storage._register ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+    public var register: Bloombox_Partner_PartnerDeviceKey {
+      get {return _storage._register ?? Bloombox_Partner_PartnerDeviceKey()}
       set {_uniqueStorage()._register = newValue}
     }
     /// Returns true if `register` has been explicitly set.
@@ -2057,8 +2057,8 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery {
     public mutating func clearRegister() {_uniqueStorage()._register = nil}
 
     /// Specifies the location at which we wish to query inventory.
-    public var location: Bloombox_Schema_Partner_LocationKey {
-      get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
+    public var location: Bloombox_Partner_LocationKey {
+      get {return _storage._location ?? Bloombox_Partner_LocationKey()}
       set {_uniqueStorage()._location = newValue}
     }
     /// Returns true if `location` has been explicitly set.
@@ -2081,19 +2081,19 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery {
     }
 
     /// Specifies a key-based query.
-    public var keys: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec {
+    public var keys: Bloombox_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec {
       get {
         if case .keys(let v)? = _storage._query {return v}
-        return Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec()
+        return Bloombox_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec()
       }
       set {_uniqueStorage()._query = .keys(newValue)}
     }
 
     /// Specifies a section-based query.
-    public var sections: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec {
+    public var sections: Bloombox_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec {
       get {
         if case .sections(let v)? = _storage._query {return v}
-        return Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec()
+        return Bloombox_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec()
       }
       set {_uniqueStorage()._query = .sections(newValue)}
     }
@@ -2104,12 +2104,12 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery {
       /// Flag to indicate that we need a full menu.
       case full(Bool)
       /// Specifies a key-based query.
-      case keys(Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec)
+      case keys(Bloombox_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec)
       /// Specifies a section-based query.
-      case sections(Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec)
+      case sections(Bloombox_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request.OneOf_Query, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request.OneOf_Query) -> Bool {
+      public static func ==(lhs: Bloombox_Services_Pos_V1beta1_InventoryQuery.Request.OneOf_Query, rhs: Bloombox_Services_Pos_V1beta1_InventoryQuery.Request.OneOf_Query) -> Bool {
         switch (lhs, rhs) {
         case (.full(let l), .full(let r)): return l == r
         case (.keys(let l), .keys(let r)): return l == r
@@ -2144,7 +2144,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery {
 
 /// Specifies an RPC operation to establish an inventory status stream, wherein initial inventory information is sent and
 /// then kept up to date with real-time notifications.
-public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryStream {
+public struct Bloombox_Services_Pos_V1beta1_InventoryStream {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -2193,7 +2193,7 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryStream {
     // methods supported on all messages.
 
     /// Specifies the event being transmitted in this payload.
-    public var event: Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent = .pingPong
+    public var event: Bloombox_Services_Pos_V1beta1_InventoryStreamEvent = .pingPong
 
     /// Specifies update payloads for this event, if applicable.
     public var item: [Opencannabis_Inventory_InventoryProduct] = []
@@ -2208,9 +2208,9 @@ public struct Bloombox_Schema_Services_Pos_V1beta1_InventoryStream {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.services.pos.v1beta1"
+fileprivate let _protobuf_package = "bloombox.services.pos.v1beta1"
 
-extension Bloombox_Schema_Services_Pos_V1beta1_POSError: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_POSError: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_ERROR"),
     1: .same(proto: "INVALID_PARTNER"),
@@ -2238,7 +2238,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_POSError: SwiftProtobuf._ProtoNam
   ]
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_InventoryStreamEvent: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PING_PONG"),
     1: .same(proto: "NO_CHANGE"),
@@ -2246,7 +2246,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent: SwiftProtob
   ]
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_SessionTokenGrant: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "API"),
     1: .same(proto: "STREAM"),
@@ -2254,7 +2254,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant: SwiftProtobuf.
   ]
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_RegisterSessionToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".RegisterSessionToken"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "grant"),
@@ -2262,8 +2262,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken: SwiftProtob
   ]
 
   fileprivate class _StorageClass {
-    var _grant: Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant = .api
-    var _token: Bloombox_Schema_Security_AuthToken? = nil
+    var _grant: Bloombox_Services_Pos_V1beta1_SessionTokenGrant = .api
+    var _token: Bloombox_Security_AuthToken? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2307,7 +2307,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken, rhs: Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_RegisterSessionToken, rhs: Bloombox_Services_Pos_V1beta1_RegisterSessionToken) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2323,7 +2323,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_MessagingAuth: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MessagingAuth"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "nonce"),
@@ -2345,14 +2345,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth, rhs: Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_MessagingAuth, rhs: Bloombox_Services_Pos_V1beta1_MessagingAuth) -> Bool {
     if lhs.nonce != rhs.nonce {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_CashRegisterSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CashRegisterSession"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -2368,11 +2368,11 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftProtobu
 
   fileprivate class _StorageClass {
     var _id: String = String()
-    var _user: Bloombox_Schema_Identity_StaffUser? = nil
-    var _status: Opencannabis_Commerce_SessionStatus = .established
-    var _rights: Bloombox_Schema_Identity_IndustryProfile? = nil
-    var _authorization: [Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken] = []
-    var _messaging: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSession? = nil
+    var _user: Bloombox_Identity_StaffUser? = nil
+    var _status: Bloombox_Pos_SessionStatus = .established
+    var _rights: Bloombox_Identity_IndustryProfile? = nil
+    var _authorization: [Bloombox_Services_Pos_V1beta1_RegisterSessionToken] = []
+    var _messaging: Bloombox_Services_Pos_V1beta1_CashRegisterSession.MessagingSession? = nil
     var _checkIn: Opencannabis_Temporal_Instant? = nil
     var _expires: Opencannabis_Temporal_Instant? = nil
     var _established: Opencannabis_Temporal_Instant? = nil
@@ -2454,7 +2454,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession, rhs: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_CashRegisterSession, rhs: Bloombox_Services_Pos_V1beta1_CashRegisterSession) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2477,8 +2477,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.protoMessageName + ".MessagingSession"
+extension Bloombox_Services_Pos_V1beta1_CashRegisterSession.MessagingSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_CashRegisterSession.protoMessageName + ".MessagingSession"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "identity"),
   ]
@@ -2499,14 +2499,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSession, rhs: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession.MessagingSession) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_CashRegisterSession.MessagingSession, rhs: Bloombox_Services_Pos_V1beta1_CashRegisterSession.MessagingSession) -> Bool {
     if lhs.identity != rhs.identity {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AuthorizeUser"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -2519,14 +2519,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser, rhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_AuthorizeUser, rhs: Bloombox_Services_Pos_V1beta1_AuthorizeUser) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "messaging"),
@@ -2538,12 +2538,12 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
   ]
 
   fileprivate class _StorageClass {
-    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
-    var _messaging: Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth? = nil
-    var _hardware: Opencannabis_Commerce_POSHardware? = nil
-    var _app: Bloombox_Schema_Analytics_Context_DeviceApplication? = nil
+    var _register: Bloombox_Partner_PartnerDeviceKey? = nil
+    var _messaging: Bloombox_Services_Pos_V1beta1_MessagingAuth? = nil
+    var _hardware: Bloombox_Pos_POSHardware? = nil
+    var _app: Bloombox_Analytics_Context_DeviceApplication? = nil
     var _session: String = String()
-    var _auth: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request.OneOf_Auth?
+    var _auth: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request.OneOf_Auth?
 
     static let defaultInstance = _StorageClass()
 
@@ -2577,7 +2577,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
         case 4: try decoder.decodeSingularMessageField(value: &_storage._app)
         case 5: try decoder.decodeSingularStringField(value: &_storage._session)
         case 10:
-          var v: Bloombox_Schema_Security_IdentityToken?
+          var v: Bloombox_Security_IdentityToken?
           if let current = _storage._auth {
             try decoder.handleConflictingOneOf()
             if case .token(let m) = current {v = m}
@@ -2585,7 +2585,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._auth = .token(v)}
         case 11:
-          var v: Opencannabis_Crypto_Primitives_Integrity_Hash?
+          var v: Opencannabis_Crypto_Hash?
           if let current = _storage._auth {
             try decoder.handleConflictingOneOf()
             if case .challenge(let m) = current {v = m}
@@ -2626,7 +2626,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request, rhs: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2646,14 +2646,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_AuthorizeUser.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "session"),
   ]
 
   fileprivate class _StorageClass {
-    var _session: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession? = nil
+    var _session: Bloombox_Services_Pos_V1beta1_CashRegisterSession? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2692,7 +2692,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Response, rhs: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2707,16 +2707,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Operation"
+extension Bloombox_Services_Pos_V1beta1_AuthorizeUser.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_AuthorizeUser.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request? = nil
-    var _response: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response? = nil
+    var _request: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request? = nil
+    var _response: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2760,7 +2760,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Operation: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Operation, rhs: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2776,7 +2776,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Operation: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".OpenSession"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -2789,14 +2789,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_OpenSession, rhs: Bloombox_Services_Pos_V1beta1_OpenSession) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "session"),
@@ -2807,10 +2807,10 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobu
   ]
 
   fileprivate class _StorageClass {
-    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _register: Bloombox_Partner_PartnerDeviceKey? = nil
     var _session: String = String()
     var _token: String = String()
-    var _claim: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim?
+    var _claim: Bloombox_Services_Pos_V1beta1_OpenSession.Request.OneOf_Claim?
     var _signature: Opencannabis_Crypto_Signature? = nil
 
     static let defaultInstance = _StorageClass()
@@ -2842,7 +2842,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobu
         case 2: try decoder.decodeSingularStringField(value: &_storage._session)
         case 3: try decoder.decodeSingularStringField(value: &_storage._token)
         case 4:
-          var v: Opencannabis_Commerce_PointOfSaleState.SessionOpen?
+          var v: Bloombox_Pos_PointOfSaleState.SessionOpen?
           if let current = _storage._claim {
             try decoder.handleConflictingOneOf()
             if case .open(let m) = current {v = m}
@@ -2886,7 +2886,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_OpenSession.Request, rhs: Bloombox_Services_Pos_V1beta1_OpenSession.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2905,14 +2905,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_OpenSession.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "session"),
   ]
 
   fileprivate class _StorageClass {
-    var _session: Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession? = nil
+    var _session: Bloombox_Services_Pos_V1beta1_CashRegisterSession? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2951,7 +2951,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_OpenSession.Response, rhs: Bloombox_Services_Pos_V1beta1_OpenSession.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2966,16 +2966,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Operation"
+extension Bloombox_Services_Pos_V1beta1_OpenSession.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_OpenSession.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request? = nil
-    var _response: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response? = nil
+    var _request: Bloombox_Services_Pos_V1beta1_OpenSession.Request? = nil
+    var _response: Bloombox_Services_Pos_V1beta1_OpenSession.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3019,7 +3019,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Operation: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_OpenSession.Operation, rhs: Bloombox_Services_Pos_V1beta1_OpenSession.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3035,7 +3035,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Operation: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CloseSession"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -3048,14 +3048,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_CloseSession, rhs: Bloombox_Services_Pos_V1beta1_CloseSession) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_CloseSession.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "session"),
@@ -3065,9 +3065,9 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtob
   ]
 
   fileprivate class _StorageClass {
-    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _register: Bloombox_Partner_PartnerDeviceKey? = nil
     var _session: String = String()
-    var _close: Opencannabis_Commerce_PointOfSaleState.SessionClose? = nil
+    var _close: Bloombox_Pos_PointOfSaleState.SessionClose? = nil
     var _transaction: [Opencannabis_Commerce_PurchaseKey] = []
     var _signature: Opencannabis_Crypto_Signature? = nil
 
@@ -3128,7 +3128,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_CloseSession.Request, rhs: Bloombox_Services_Pos_V1beta1_CloseSession.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3147,8 +3147,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_CloseSession.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .same(proto: "closed"),
   ]
@@ -3193,7 +3193,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_CloseSession.Response, rhs: Bloombox_Services_Pos_V1beta1_CloseSession.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3208,16 +3208,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Operation"
+extension Bloombox_Services_Pos_V1beta1_CloseSession.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_CloseSession.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request? = nil
-    var _response: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response? = nil
+    var _request: Bloombox_Services_Pos_V1beta1_CloseSession.Request? = nil
+    var _response: Bloombox_Services_Pos_V1beta1_CloseSession.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3261,7 +3261,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Operation: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_CloseSession.Operation, rhs: Bloombox_Services_Pos_V1beta1_CloseSession.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3277,7 +3277,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Operation: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".OpenTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -3290,14 +3290,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_OpenTicket, rhs: Bloombox_Services_Pos_V1beta1_OpenTicket) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "purchase"),
     2: .same(proto: "register"),
@@ -3308,7 +3308,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf
 
   fileprivate class _StorageClass {
     var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
-    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _register: Bloombox_Partner_PartnerDeviceKey? = nil
     var _session: String = String()
     var _fresh: Bool = false
     var _signature: Opencannabis_Crypto_Signature? = nil
@@ -3370,7 +3370,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_OpenTicket.Request, rhs: Bloombox_Services_Pos_V1beta1_OpenTicket.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3389,8 +3389,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request: SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_OpenTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "purchase"),
     2: .same(proto: "claim"),
@@ -3463,7 +3463,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_OpenTicket.Response, rhs: Bloombox_Services_Pos_V1beta1_OpenTicket.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3482,16 +3482,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Operation"
+extension Bloombox_Services_Pos_V1beta1_OpenTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_OpenTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request? = nil
-    var _response: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response? = nil
+    var _request: Bloombox_Services_Pos_V1beta1_OpenTicket.Request? = nil
+    var _response: Bloombox_Services_Pos_V1beta1_OpenTicket.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3535,7 +3535,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Operation: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_OpenTicket.Operation, rhs: Bloombox_Services_Pos_V1beta1_OpenTicket.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3551,7 +3551,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Operation: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SaveTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -3564,14 +3564,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_SaveTicket, rhs: Bloombox_Services_Pos_V1beta1_SaveTicket) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_SaveTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "ticket"),
@@ -3583,8 +3583,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request: SwiftProtobuf
   ]
 
   fileprivate class _StorageClass {
-    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
-    var _ticket: Opencannabis_Commerce_PurchaseTicket? = nil
+    var _register: Bloombox_Partner_PartnerDeviceKey? = nil
+    var _ticket: Bloombox_Pos_PurchaseTicket? = nil
     var _session: String = String()
     var _signature: Opencannabis_Commerce_PurchaseSignature? = nil
     var _timestamp: Opencannabis_Temporal_Instant? = nil
@@ -3658,7 +3658,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_SaveTicket.Request, rhs: Bloombox_Services_Pos_V1beta1_SaveTicket.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3679,8 +3679,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request: SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_SaveTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "version"),
     2: .same(proto: "status"),
@@ -3746,7 +3746,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_SaveTicket.Response, rhs: Bloombox_Services_Pos_V1beta1_SaveTicket.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3764,16 +3764,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Operation"
+extension Bloombox_Services_Pos_V1beta1_SaveTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_SaveTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request? = nil
-    var _response: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response? = nil
+    var _request: Bloombox_Services_Pos_V1beta1_SaveTicket.Request? = nil
+    var _response: Bloombox_Services_Pos_V1beta1_SaveTicket.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3817,7 +3817,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Operation: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_SaveTicket.Operation, rhs: Bloombox_Services_Pos_V1beta1_SaveTicket.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3833,7 +3833,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Operation: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LoadTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -3846,14 +3846,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_LoadTicket, rhs: Bloombox_Services_Pos_V1beta1_LoadTicket) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_LoadTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "purchase"),
@@ -3861,7 +3861,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request: SwiftProtobuf
   ]
 
   fileprivate class _StorageClass {
-    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _register: Bloombox_Partner_PartnerDeviceKey? = nil
     var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
     var _session: String = String()
 
@@ -3912,7 +3912,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_LoadTicket.Request, rhs: Bloombox_Services_Pos_V1beta1_LoadTicket.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3929,14 +3929,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request: SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_LoadTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "ticket"),
   ]
 
   fileprivate class _StorageClass {
-    var _ticket: Opencannabis_Commerce_PurchaseTicket? = nil
+    var _ticket: Bloombox_Pos_PurchaseTicket? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3975,7 +3975,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_LoadTicket.Response, rhs: Bloombox_Services_Pos_V1beta1_LoadTicket.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3990,16 +3990,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Operation"
+extension Bloombox_Services_Pos_V1beta1_LoadTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_LoadTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request? = nil
-    var _response: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response? = nil
+    var _request: Bloombox_Services_Pos_V1beta1_LoadTicket.Request? = nil
+    var _response: Bloombox_Services_Pos_V1beta1_LoadTicket.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4043,7 +4043,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Operation: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_LoadTicket.Operation, rhs: Bloombox_Services_Pos_V1beta1_LoadTicket.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4059,7 +4059,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Operation: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_ClaimTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ClaimTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -4072,14 +4072,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_ClaimTicket, rhs: Bloombox_Services_Pos_V1beta1_ClaimTicket) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_ClaimTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_ClaimTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "purchase"),
@@ -4087,7 +4087,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request: SwiftProtobu
   ]
 
   fileprivate class _StorageClass {
-    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _register: Bloombox_Partner_PartnerDeviceKey? = nil
     var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
     var _session: String = String()
 
@@ -4138,7 +4138,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_ClaimTicket.Request, rhs: Bloombox_Services_Pos_V1beta1_ClaimTicket.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4155,14 +4155,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_ClaimTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_ClaimTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "ticket"),
   ]
 
   fileprivate class _StorageClass {
-    var _ticket: Opencannabis_Commerce_PurchaseTicket? = nil
+    var _ticket: Bloombox_Pos_PurchaseTicket? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4201,7 +4201,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_ClaimTicket.Response, rhs: Bloombox_Services_Pos_V1beta1_ClaimTicket.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4216,16 +4216,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.protoMessageName + ".Operation"
+extension Bloombox_Services_Pos_V1beta1_ClaimTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_ClaimTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request? = nil
-    var _response: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response? = nil
+    var _request: Bloombox_Services_Pos_V1beta1_ClaimTicket.Request? = nil
+    var _response: Bloombox_Services_Pos_V1beta1_ClaimTicket.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4269,7 +4269,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Operation: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_ClaimTicket.Operation, rhs: Bloombox_Services_Pos_V1beta1_ClaimTicket.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4285,7 +4285,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Operation: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_CloneTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CloneTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -4298,14 +4298,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_CloneTicket, rhs: Bloombox_Services_Pos_V1beta1_CloneTicket) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_CloneTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_CloneTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "purchase"),
     2: .same(proto: "register"),
@@ -4314,7 +4314,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request: SwiftProtobu
 
   fileprivate class _StorageClass {
     var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
-    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _register: Bloombox_Partner_PartnerDeviceKey? = nil
     var _session: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -4364,7 +4364,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_CloneTicket.Request, rhs: Bloombox_Services_Pos_V1beta1_CloneTicket.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4381,14 +4381,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_CloneTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_CloneTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "ticket"),
   ]
 
   fileprivate class _StorageClass {
-    var _ticket: Opencannabis_Commerce_PurchaseTicket? = nil
+    var _ticket: Bloombox_Pos_PurchaseTicket? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4427,7 +4427,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_CloneTicket.Response, rhs: Bloombox_Services_Pos_V1beta1_CloneTicket.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4442,16 +4442,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.protoMessageName + ".Operation"
+extension Bloombox_Services_Pos_V1beta1_CloneTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_CloneTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request? = nil
-    var _response: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response? = nil
+    var _request: Bloombox_Services_Pos_V1beta1_CloneTicket.Request? = nil
+    var _response: Bloombox_Services_Pos_V1beta1_CloneTicket.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4495,7 +4495,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Operation: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_CloneTicket.Operation, rhs: Bloombox_Services_Pos_V1beta1_CloneTicket.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4511,7 +4511,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Operation: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".VoidTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -4524,14 +4524,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_VoidTicket, rhs: Bloombox_Services_Pos_V1beta1_VoidTicket) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "purchase"),
@@ -4540,7 +4540,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf
   ]
 
   fileprivate class _StorageClass {
-    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _register: Bloombox_Partner_PartnerDeviceKey? = nil
     var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
     var _session: String = String()
     var _signature: Opencannabis_Crypto_Signature? = nil
@@ -4597,7 +4597,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_VoidTicket.Request, rhs: Bloombox_Services_Pos_V1beta1_VoidTicket.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4615,8 +4615,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request: SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_VoidTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "version"),
     2: .same(proto: "timestamp"),
@@ -4668,7 +4668,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_VoidTicket.Response, rhs: Bloombox_Services_Pos_V1beta1_VoidTicket.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4684,16 +4684,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Operation"
+extension Bloombox_Services_Pos_V1beta1_VoidTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_VoidTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request? = nil
-    var _response: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response? = nil
+    var _request: Bloombox_Services_Pos_V1beta1_VoidTicket.Request? = nil
+    var _response: Bloombox_Services_Pos_V1beta1_VoidTicket.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4737,7 +4737,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Operation: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_VoidTicket.Operation, rhs: Bloombox_Services_Pos_V1beta1_VoidTicket.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4753,7 +4753,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Operation: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FinalizeTicket"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -4766,14 +4766,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket, rhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_FinalizeTicket, rhs: Bloombox_Services_Pos_V1beta1_FinalizeTicket) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "purchase"),
@@ -4782,7 +4782,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProt
   ]
 
   fileprivate class _StorageClass {
-    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _register: Bloombox_Partner_PartnerDeviceKey? = nil
     var _purchase: Opencannabis_Commerce_PurchaseKey? = nil
     var _session: String = String()
     var _signature: Opencannabis_Crypto_Signature? = nil
@@ -4839,7 +4839,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Request, rhs: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4857,8 +4857,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_FinalizeTicket.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "version"),
     2: .same(proto: "timestamp"),
@@ -4910,7 +4910,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Response, rhs: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4926,16 +4926,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Operation"
+extension Bloombox_Services_Pos_V1beta1_FinalizeTicket.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_FinalizeTicket.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request? = nil
-    var _response: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response? = nil
+    var _request: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Request? = nil
+    var _response: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4979,7 +4979,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Operation: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Operation, rhs: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -4995,7 +4995,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Operation: SwiftPr
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MemberSearch"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -5008,14 +5008,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_MemberSearch, rhs: Bloombox_Services_Pos_V1beta1_MemberSearch) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".MemberPredicate"
+extension Bloombox_Services_Pos_V1beta1_MemberSearch.MemberPredicate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".MemberPredicate"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "email"),
     2: .same(proto: "phone"),
@@ -5041,7 +5041,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate: Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_MemberSearch.MemberPredicate, rhs: Bloombox_Services_Pos_V1beta1_MemberSearch.MemberPredicate) -> Bool {
     if lhs.email != rhs.email {return false}
     if lhs.phone != rhs.phone {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -5049,16 +5049,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate: Swi
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".DigitalPass"
+extension Bloombox_Services_Pos_V1beta1_MemberSearch.DigitalPass: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".DigitalPass"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "pass"),
     2: .same(proto: "challenge"),
   ]
 
   fileprivate class _StorageClass {
-    var _pass: Bloombox_Schema_Identity_Pass_DigitalPassKey? = nil
-    var _challenge: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
+    var _pass: Bloombox_Identity_Pass_DigitalPassKey? = nil
+    var _challenge: Opencannabis_Crypto_Hash? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -5102,7 +5102,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_MemberSearch.DigitalPass, rhs: Bloombox_Services_Pos_V1beta1_MemberSearch.DigitalPass) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -5118,8 +5118,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass: SwiftPr
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_MemberSearch.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "cursor"),
     2: .same(proto: "limit"),
@@ -5135,7 +5135,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request: SwiftProtob
     var _cursor: String = String()
     var _limit: UInt32 = 0
     var _signal: [String] = []
-    var _spec: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request.OneOf_Spec?
+    var _spec: Bloombox_Services_Pos_V1beta1_MemberSearch.Request.OneOf_Spec?
 
     static let defaultInstance = _StorageClass()
 
@@ -5165,7 +5165,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request: SwiftProtob
         case 2: try decoder.decodeSingularUInt32Field(value: &_storage._limit)
         case 3: try decoder.decodeRepeatedStringField(value: &_storage._signal)
         case 20:
-          var v: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.MemberPredicate?
+          var v: Bloombox_Services_Pos_V1beta1_MemberSearch.MemberPredicate?
           if let current = _storage._spec {
             try decoder.handleConflictingOneOf()
             if case .search(let m) = current {v = m}
@@ -5173,7 +5173,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request: SwiftProtob
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._spec = .search(v)}
         case 21:
-          var v: Bloombox_Schema_Identity_IDReference?
+          var v: Bloombox_Identity_IDReference?
           if let current = _storage._spec {
             try decoder.handleConflictingOneOf()
             if case .identification(let m) = current {v = m}
@@ -5191,7 +5191,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request: SwiftProtob
           try decoder.decodeSingularBoolField(value: &v)
           if let v = v {_storage._spec = .shopping(v)}
         case 24:
-          var v: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.DigitalPass?
+          var v: Bloombox_Services_Pos_V1beta1_MemberSearch.DigitalPass?
           if let current = _storage._spec {
             try decoder.handleConflictingOneOf()
             if case .wallet(let m) = current {v = m}
@@ -5232,7 +5232,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_MemberSearch.Request, rhs: Bloombox_Services_Pos_V1beta1_MemberSearch.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -5250,8 +5250,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_MemberSearch.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "cursor"),
     2: .same(proto: "count"),
@@ -5287,7 +5287,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_MemberSearch.Response, rhs: Bloombox_Services_Pos_V1beta1_MemberSearch.Response) -> Bool {
     if lhs.cursor != rhs.cursor {return false}
     if lhs.count != rhs.count {return false}
     if lhs.total != rhs.total {return false}
@@ -5297,16 +5297,16 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Operation"
+extension Bloombox_Services_Pos_V1beta1_MemberSearch.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_MemberSearch.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request? = nil
-    var _response: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response? = nil
+    var _request: Bloombox_Services_Pos_V1beta1_MemberSearch.Request? = nil
+    var _response: Bloombox_Services_Pos_V1beta1_MemberSearch.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -5350,7 +5350,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Operation: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Operation, rhs: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_MemberSearch.Operation, rhs: Bloombox_Services_Pos_V1beta1_MemberSearch.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -5366,7 +5366,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Operation: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".InventoryQuery"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -5379,14 +5379,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_InventoryQuery, rhs: Bloombox_Services_Pos_V1beta1_InventoryQuery) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".KeyQuerySpec"
+extension Bloombox_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".KeyQuerySpec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
   ]
@@ -5431,7 +5431,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec, rhs: Bloombox_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -5446,8 +5446,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec: Swif
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".SectionQuerySpec"
+extension Bloombox_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".SectionQuerySpec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "section"),
   ]
@@ -5468,15 +5468,15 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec: 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec, rhs: Bloombox_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec) -> Bool {
     if lhs.section != rhs.section {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_InventoryQuery.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "register"),
     2: .same(proto: "location"),
@@ -5486,9 +5486,9 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request: SwiftProt
   ]
 
   fileprivate class _StorageClass {
-    var _register: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
-    var _location: Bloombox_Schema_Partner_LocationKey? = nil
-    var _query: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request.OneOf_Query?
+    var _register: Bloombox_Partner_PartnerDeviceKey? = nil
+    var _location: Bloombox_Partner_LocationKey? = nil
+    var _query: Bloombox_Services_Pos_V1beta1_InventoryQuery.Request.OneOf_Query?
 
     static let defaultInstance = _StorageClass()
 
@@ -5521,7 +5521,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request: SwiftProt
           try decoder.decodeSingularBoolField(value: &v)
           if let v = v {_storage._query = .full(v)}
         case 4:
-          var v: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec?
+          var v: Bloombox_Services_Pos_V1beta1_InventoryQuery.KeyQuerySpec?
           if let current = _storage._query {
             try decoder.handleConflictingOneOf()
             if case .keys(let m) = current {v = m}
@@ -5529,7 +5529,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request: SwiftProt
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._query = .keys(v)}
         case 5:
-          var v: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec?
+          var v: Bloombox_Services_Pos_V1beta1_InventoryQuery.SectionQuerySpec?
           if let current = _storage._query {
             try decoder.handleConflictingOneOf()
             if case .sections(let m) = current {v = m}
@@ -5563,7 +5563,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_InventoryQuery.Request, rhs: Bloombox_Services_Pos_V1beta1_InventoryQuery.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -5580,8 +5580,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".Response"
+extension Bloombox_Services_Pos_V1beta1_InventoryQuery.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_InventoryQuery.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "item"),
   ]
@@ -5602,14 +5602,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_InventoryQuery.Response, rhs: Bloombox_Services_Pos_V1beta1_InventoryQuery.Response) -> Bool {
     if lhs.item != rhs.item {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Pos_V1beta1_InventoryStream: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".InventoryStream"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -5622,14 +5622,14 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_InventoryStream, rhs: Bloombox_Services_Pos_V1beta1_InventoryStream) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.protoMessageName + ".Request"
+extension Bloombox_Services_Pos_V1beta1_InventoryStream.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_InventoryStream.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "location"),
     3: .same(proto: "session"),
@@ -5688,7 +5688,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_InventoryStream.Request, rhs: Bloombox_Services_Pos_V1beta1_InventoryStream.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -5705,8 +5705,8 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.protoMessageName + ".Payload"
+extension Bloombox_Services_Pos_V1beta1_InventoryStream.Payload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Pos_V1beta1_InventoryStream.protoMessageName + ".Payload"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "event"),
     2: .same(proto: "item"),
@@ -5732,7 +5732,7 @@ extension Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload, rhs: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Pos_V1beta1_InventoryStream.Payload, rhs: Bloombox_Services_Pos_V1beta1_InventoryStream.Payload) -> Bool {
     if lhs.event != rhs.event {return false}
     if lhs.item != rhs.item {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Represents a generic event, which can carry an arbitrary payload and is bound to an unenumerated collection.
-public struct Bloombox_Schema_Analytics_Generic_Event {
+public struct Bloombox_Analytics_Generic_Event {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -54,9 +54,9 @@ public struct Bloombox_Schema_Analytics_Generic_Event {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.generic"
+fileprivate let _protobuf_package = "bloombox.analytics.generic"
 
-extension Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Generic_Event: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Event"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "payload"),
@@ -109,7 +109,7 @@ extension Bloombox_Schema_Analytics_Generic_Event: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Generic_Event, rhs: Bloombox_Schema_Analytics_Generic_Event) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Generic_Event, rhs: Bloombox_Analytics_Generic_Event) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

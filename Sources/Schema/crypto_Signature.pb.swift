@@ -30,8 +30,8 @@ public struct Opencannabis_Crypto_Signature {
   // methods supported on all messages.
 
   /// Public key fingerprint, or raw content of the public key, that performed the signing operation.
-  public var publicKey: Opencannabis_Crypto_Primitives_Pki_KeyMaterial {
-    get {return _storage._publicKey ?? Opencannabis_Crypto_Primitives_Pki_KeyMaterial()}
+  public var publicKey: Opencannabis_Crypto_KeyMaterial {
+    get {return _storage._publicKey ?? Opencannabis_Crypto_KeyMaterial()}
     set {_uniqueStorage()._publicKey = newValue}
   }
   /// Returns true if `publicKey` has been explicitly set.
@@ -41,8 +41,8 @@ public struct Opencannabis_Crypto_Signature {
 
   /// Cryptographic fingerprint of the subject data that was signed. This is the actual value that should be signed by
   /// the private key and recomputed via the public key.
-  public var fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash {
-    get {return _storage._fingerprint ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+  public var fingerprint: Opencannabis_Crypto_Hash {
+    get {return _storage._fingerprint ?? Opencannabis_Crypto_Hash()}
     set {_uniqueStorage()._fingerprint = newValue}
   }
   /// Returns true if `fingerprint` has been explicitly set.
@@ -132,8 +132,8 @@ extension Opencannabis_Crypto_Signature: SwiftProtobuf.Message, SwiftProtobuf._M
   ]
 
   fileprivate class _StorageClass {
-    var _publicKey: Opencannabis_Crypto_Primitives_Pki_KeyMaterial? = nil
-    var _fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
+    var _publicKey: Opencannabis_Crypto_KeyMaterial? = nil
+    var _fingerprint: Opencannabis_Crypto_Hash? = nil
     var _signature: Opencannabis_Crypto_Signature.OneOf_Signature?
 
     static let defaultInstance = _StorageClass()

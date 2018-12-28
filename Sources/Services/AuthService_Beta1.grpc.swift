@@ -26,318 +26,231 @@ import SwiftGRPC
 import SwiftProtobuf
 import OpenCannabis
 
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthNonceCall: ClientCallUnary {}
+public protocol Bloombox_Services_Auth_V1beta1_AuthNonceCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthNonceCallBase: ClientCallUnaryBase<SwiftProtobuf.Google_Protobuf_Empty, Bloombox_Schema_Services_Auth_V1beta1_AuthNonce>, Bloombox_Schema_Services_Auth_V1beta1_AuthNonceCall {
-  override class var method: String { return "/bloombox.schema.services.auth.v1beta1.Auth/Nonce" }
+fileprivate final class Bloombox_Services_Auth_V1beta1_AuthNonceCallBase: ClientCallUnaryBase<SwiftProtobuf.Google_Protobuf_Empty, Bloombox_Services_Auth_V1beta1_AuthNonce>, Bloombox_Services_Auth_V1beta1_AuthNonceCall {
+  override class var method: String { return "/bloombox.services.auth.v1beta1.Auth/Nonce" }
 }
 
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateCall: ClientCallUnary {}
+public protocol Bloombox_Services_Auth_V1beta1_AuthAuthenticateCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request, Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateCall {
-  override class var method: String { return "/bloombox.schema.services.auth.v1beta1.Auth/Authenticate" }
+fileprivate final class Bloombox_Services_Auth_V1beta1_AuthAuthenticateCallBase: ClientCallUnaryBase<Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request, Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response>, Bloombox_Services_Auth_V1beta1_AuthAuthenticateCall {
+  override class var method: String { return "/bloombox.services.auth.v1beta1.Auth/Authenticate" }
 }
 
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthConsentCall: ClientCallUnary {}
+public protocol Bloombox_Services_Auth_V1beta1_AuthConsentCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthConsentCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request, Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthConsentCall {
-  override class var method: String { return "/bloombox.schema.services.auth.v1beta1.Auth/Consent" }
+fileprivate final class Bloombox_Services_Auth_V1beta1_AuthConsentCallBase: ClientCallUnaryBase<Bloombox_Services_Auth_V1beta1_ConsentFlow.Request, Bloombox_Services_Auth_V1beta1_ConsentFlow.Response>, Bloombox_Services_Auth_V1beta1_AuthConsentCall {
+  override class var method: String { return "/bloombox.services.auth.v1beta1.Auth/Consent" }
 }
 
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthTokenCall: ClientCallUnary {}
+public protocol Bloombox_Services_Auth_V1beta1_AuthTokenCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthTokenCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request, Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthTokenCall {
-  override class var method: String { return "/bloombox.schema.services.auth.v1beta1.Auth/Token" }
+fileprivate final class Bloombox_Services_Auth_V1beta1_AuthTokenCallBase: ClientCallUnaryBase<Bloombox_Services_Auth_V1beta1_ResolveToken.Request, Bloombox_Services_Auth_V1beta1_ResolveToken.Response>, Bloombox_Services_Auth_V1beta1_AuthTokenCall {
+  override class var method: String { return "/bloombox.services.auth.v1beta1.Auth/Token" }
 }
 
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptCall: ClientCallUnary {}
+public protocol Bloombox_Services_Auth_V1beta1_AuthAcceptCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptCall {
-  override class var method: String { return "/bloombox.schema.services.auth.v1beta1.Auth/Accept" }
+fileprivate final class Bloombox_Services_Auth_V1beta1_AuthAcceptCallBase: ClientCallUnaryBase<Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Auth_V1beta1_AuthAcceptCall {
+  override class var method: String { return "/bloombox.services.auth.v1beta1.Auth/Accept" }
 }
 
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthRejectCall: ClientCallUnary {}
+public protocol Bloombox_Services_Auth_V1beta1_AuthRejectCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthRejectCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Auth_V1beta1_AuthRejectCall {
-  override class var method: String { return "/bloombox.schema.services.auth.v1beta1.Auth/Reject" }
+fileprivate final class Bloombox_Services_Auth_V1beta1_AuthRejectCallBase: ClientCallUnaryBase<Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Auth_V1beta1_AuthRejectCall {
+  override class var method: String { return "/bloombox.services.auth.v1beta1.Auth/Reject" }
 }
 
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthConnectCall: ClientCallUnary {}
+public protocol Bloombox_Services_Auth_V1beta1_AuthConnectCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthConnectCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request, Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthConnectCall {
-  override class var method: String { return "/bloombox.schema.services.auth.v1beta1.Auth/Connect" }
+fileprivate final class Bloombox_Services_Auth_V1beta1_AuthConnectCallBase: ClientCallUnaryBase<Bloombox_Services_Auth_V1beta1_IdentityConnect.Request, Bloombox_Services_Auth_V1beta1_IdentityConnect.Response>, Bloombox_Services_Auth_V1beta1_AuthConnectCall {
+  override class var method: String { return "/bloombox.services.auth.v1beta1.Auth/Connect" }
 }
 
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthContextCall: ClientCallUnary {}
+public protocol Bloombox_Services_Auth_V1beta1_AuthContextCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthContextCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request, Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthContextCall {
-  override class var method: String { return "/bloombox.schema.services.auth.v1beta1.Auth/Context" }
+fileprivate final class Bloombox_Services_Auth_V1beta1_AuthContextCallBase: ClientCallUnaryBase<Bloombox_Services_Auth_V1beta1_UserContext.Request, Bloombox_Services_Auth_V1beta1_UserContext.Response>, Bloombox_Services_Auth_V1beta1_AuthContextCall {
+  override class var method: String { return "/bloombox.services.auth.v1beta1.Auth/Context" }
 }
 
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthProfileCall: ClientCallUnary {}
+public protocol Bloombox_Services_Auth_V1beta1_AuthProfileCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthProfileCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request, Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthProfileCall {
-  override class var method: String { return "/bloombox.schema.services.auth.v1beta1.Auth/Profile" }
+fileprivate final class Bloombox_Services_Auth_V1beta1_AuthProfileCallBase: ClientCallUnaryBase<Bloombox_Services_Auth_V1beta1_GetProfile.Request, Bloombox_Services_Auth_V1beta1_GetProfile.Response>, Bloombox_Services_Auth_V1beta1_AuthProfileCall {
+  override class var method: String { return "/bloombox.services.auth.v1beta1.Auth/Profile" }
+}
+
+public protocol Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCall: ClientCallUnary {}
+
+fileprivate final class Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCallBase: ClientCallUnaryBase<Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCall {
+  override class var method: String { return "/bloombox.services.auth.v1beta1.Auth/UpdateProfile" }
 }
 
 
-/// Instantiate Bloombox_Schema_Services_Auth_V1beta1_AuthServiceClient, then call methods of this protocol to make API calls.
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthService: ServiceClient {
+/// Instantiate Bloombox_Services_Auth_V1beta1_AuthServiceClient, then call methods of this protocol to make API calls.
+public protocol Bloombox_Services_Auth_V1beta1_AuthService: ServiceClient {
   /// Synchronous. Unary.
-  func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthNonce
+  func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty) throws -> Bloombox_Services_Auth_V1beta1_AuthNonce
   /// Asynchronous. Unary.
-  func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_AuthNonce?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthNonceCall
+  func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthNonce?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthNonceCall
 
   /// Synchronous. Unary.
-  func authenticate(_ request: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response
+  func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request) throws -> Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response
   /// Asynchronous. Unary.
-  func authenticate(_ request: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateCall
+  func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAuthenticateCall
 
   /// Synchronous. Unary.
-  func consent(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response
+  func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request) throws -> Bloombox_Services_Auth_V1beta1_ConsentFlow.Response
   /// Asynchronous. Unary.
-  func consent(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthConsentCall
+  func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_ConsentFlow.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConsentCall
 
   /// Synchronous. Unary.
-  func token(_ request: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response
+  func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request) throws -> Bloombox_Services_Auth_V1beta1_ResolveToken.Response
   /// Asynchronous. Unary.
-  func token(_ request: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthTokenCall
+  func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_ResolveToken.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthTokenCall
 
   /// Synchronous. Unary.
-  func accept(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func accept(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptCall
+  func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAcceptCall
 
   /// Synchronous. Unary.
-  func reject(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func reject(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthRejectCall
+  func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthRejectCall
 
   /// Synchronous. Unary.
-  func connect(_ request: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response
+  func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request) throws -> Bloombox_Services_Auth_V1beta1_IdentityConnect.Response
   /// Asynchronous. Unary.
-  func connect(_ request: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthConnectCall
+  func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_IdentityConnect.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConnectCall
 
   /// Synchronous. Unary.
-  func context(_ request: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response
+  func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request) throws -> Bloombox_Services_Auth_V1beta1_UserContext.Response
   /// Asynchronous. Unary.
-  func context(_ request: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthContextCall
+  func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_UserContext.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthContextCall
 
   /// Synchronous. Unary.
-  func profile(_ request: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response
+  func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request) throws -> Bloombox_Services_Auth_V1beta1_GetProfile.Response
   /// Asynchronous. Unary.
-  func profile(_ request: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthProfileCall
+  func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_GetProfile.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthProfileCall
+
+  /// Synchronous. Unary.
+  func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  /// Asynchronous. Unary.
+  func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCall
 
 }
 
-public final class Bloombox_Schema_Services_Auth_V1beta1_AuthServiceClient: ServiceClientBase, Bloombox_Schema_Services_Auth_V1beta1_AuthService {
+public final class Bloombox_Services_Auth_V1beta1_AuthServiceClient: ServiceClientBase, Bloombox_Services_Auth_V1beta1_AuthService {
   /// Synchronous. Unary.
-  public func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthNonce {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthNonceCallBase(channel)
+  public func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty) throws -> Bloombox_Services_Auth_V1beta1_AuthNonce {
+    return try Bloombox_Services_Auth_V1beta1_AuthNonceCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_AuthNonce?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthNonceCall {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthNonceCallBase(channel)
+  public func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthNonce?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthNonceCall {
+    return try Bloombox_Services_Auth_V1beta1_AuthNonceCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func authenticate(_ request: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateCallBase(channel)
+  public func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request) throws -> Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response {
+    return try Bloombox_Services_Auth_V1beta1_AuthAuthenticateCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func authenticate(_ request: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateCall {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateCallBase(channel)
+  public func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAuthenticateCall {
+    return try Bloombox_Services_Auth_V1beta1_AuthAuthenticateCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func consent(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthConsentCallBase(channel)
+  public func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request) throws -> Bloombox_Services_Auth_V1beta1_ConsentFlow.Response {
+    return try Bloombox_Services_Auth_V1beta1_AuthConsentCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func consent(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthConsentCall {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthConsentCallBase(channel)
+  public func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_ConsentFlow.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConsentCall {
+    return try Bloombox_Services_Auth_V1beta1_AuthConsentCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func token(_ request: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthTokenCallBase(channel)
+  public func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request) throws -> Bloombox_Services_Auth_V1beta1_ResolveToken.Response {
+    return try Bloombox_Services_Auth_V1beta1_AuthTokenCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func token(_ request: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthTokenCall {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthTokenCallBase(channel)
+  public func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_ResolveToken.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthTokenCall {
+    return try Bloombox_Services_Auth_V1beta1_AuthTokenCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func accept(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptCallBase(channel)
+  public func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Auth_V1beta1_AuthAcceptCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func accept(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptCall {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptCallBase(channel)
+  public func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAcceptCall {
+    return try Bloombox_Services_Auth_V1beta1_AuthAcceptCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func reject(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthRejectCallBase(channel)
+  public func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Auth_V1beta1_AuthRejectCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func reject(_ request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthRejectCall {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthRejectCallBase(channel)
+  public func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthRejectCall {
+    return try Bloombox_Services_Auth_V1beta1_AuthRejectCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func connect(_ request: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthConnectCallBase(channel)
+  public func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request) throws -> Bloombox_Services_Auth_V1beta1_IdentityConnect.Response {
+    return try Bloombox_Services_Auth_V1beta1_AuthConnectCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func connect(_ request: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthConnectCall {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthConnectCallBase(channel)
+  public func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_IdentityConnect.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConnectCall {
+    return try Bloombox_Services_Auth_V1beta1_AuthConnectCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func context(_ request: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthContextCallBase(channel)
+  public func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request) throws -> Bloombox_Services_Auth_V1beta1_UserContext.Response {
+    return try Bloombox_Services_Auth_V1beta1_AuthContextCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func context(_ request: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthContextCall {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthContextCallBase(channel)
+  public func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_UserContext.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthContextCall {
+    return try Bloombox_Services_Auth_V1beta1_AuthContextCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func profile(_ request: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request) throws -> Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthProfileCallBase(channel)
+  public func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request) throws -> Bloombox_Services_Auth_V1beta1_GetProfile.Response {
+    return try Bloombox_Services_Auth_V1beta1_AuthProfileCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func profile(_ request: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request, completion: @escaping (Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthProfileCall {
-    return try Bloombox_Schema_Services_Auth_V1beta1_AuthProfileCallBase(channel)
+  public func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_GetProfile.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthProfileCall {
+    return try Bloombox_Services_Auth_V1beta1_AuthProfileCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  public func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  public func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCall {
+    return try Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
 }
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthProvider: ServiceProvider {
-  func nonce(request: SwiftProtobuf.Google_Protobuf_Empty, session: Bloombox_Schema_Services_Auth_V1beta1_AuthNonceSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthNonce
-  func authenticate(request: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request, session: Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response
-  func consent(request: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request, session: Bloombox_Schema_Services_Auth_V1beta1_AuthConsentSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response
-  func token(request: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request, session: Bloombox_Schema_Services_Auth_V1beta1_AuthTokenSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response
-  func accept(request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept, session: Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  func reject(request: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject, session: Bloombox_Schema_Services_Auth_V1beta1_AuthRejectSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  func connect(request: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request, session: Bloombox_Schema_Services_Auth_V1beta1_AuthConnectSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response
-  func context(request: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request, session: Bloombox_Schema_Services_Auth_V1beta1_AuthContextSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response
-  func profile(request: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request, session: Bloombox_Schema_Services_Auth_V1beta1_AuthProfileSession) throws -> Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response
-}
-
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthProvider {
-  public var serviceName: String { return "bloombox.schema.services.auth.v1beta1.Auth" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bloombox.schema.services.auth.v1beta1.Auth/Nonce":
-      return try Bloombox_Schema_Services_Auth_V1beta1_AuthNonceSessionBase(
-        handler: handler,
-        providerBlock: { try self.nonce(request: $0, session: $1 as! Bloombox_Schema_Services_Auth_V1beta1_AuthNonceSessionBase) })
-          .run()
-    case "/bloombox.schema.services.auth.v1beta1.Auth/Authenticate":
-      return try Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateSessionBase(
-        handler: handler,
-        providerBlock: { try self.authenticate(request: $0, session: $1 as! Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateSessionBase) })
-          .run()
-    case "/bloombox.schema.services.auth.v1beta1.Auth/Consent":
-      return try Bloombox_Schema_Services_Auth_V1beta1_AuthConsentSessionBase(
-        handler: handler,
-        providerBlock: { try self.consent(request: $0, session: $1 as! Bloombox_Schema_Services_Auth_V1beta1_AuthConsentSessionBase) })
-          .run()
-    case "/bloombox.schema.services.auth.v1beta1.Auth/Token":
-      return try Bloombox_Schema_Services_Auth_V1beta1_AuthTokenSessionBase(
-        handler: handler,
-        providerBlock: { try self.token(request: $0, session: $1 as! Bloombox_Schema_Services_Auth_V1beta1_AuthTokenSessionBase) })
-          .run()
-    case "/bloombox.schema.services.auth.v1beta1.Auth/Accept":
-      return try Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptSessionBase(
-        handler: handler,
-        providerBlock: { try self.accept(request: $0, session: $1 as! Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptSessionBase) })
-          .run()
-    case "/bloombox.schema.services.auth.v1beta1.Auth/Reject":
-      return try Bloombox_Schema_Services_Auth_V1beta1_AuthRejectSessionBase(
-        handler: handler,
-        providerBlock: { try self.reject(request: $0, session: $1 as! Bloombox_Schema_Services_Auth_V1beta1_AuthRejectSessionBase) })
-          .run()
-    case "/bloombox.schema.services.auth.v1beta1.Auth/Connect":
-      return try Bloombox_Schema_Services_Auth_V1beta1_AuthConnectSessionBase(
-        handler: handler,
-        providerBlock: { try self.connect(request: $0, session: $1 as! Bloombox_Schema_Services_Auth_V1beta1_AuthConnectSessionBase) })
-          .run()
-    case "/bloombox.schema.services.auth.v1beta1.Auth/Context":
-      return try Bloombox_Schema_Services_Auth_V1beta1_AuthContextSessionBase(
-        handler: handler,
-        providerBlock: { try self.context(request: $0, session: $1 as! Bloombox_Schema_Services_Auth_V1beta1_AuthContextSessionBase) })
-          .run()
-    case "/bloombox.schema.services.auth.v1beta1.Auth/Profile":
-      return try Bloombox_Schema_Services_Auth_V1beta1_AuthProfileSessionBase(
-        handler: handler,
-        providerBlock: { try self.profile(request: $0, session: $1 as! Bloombox_Schema_Services_Auth_V1beta1_AuthProfileSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
-  }
-}
-
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthNonceSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthNonceSessionBase: ServerSessionUnaryBase<SwiftProtobuf.Google_Protobuf_Empty, Bloombox_Schema_Services_Auth_V1beta1_AuthNonce>, Bloombox_Schema_Services_Auth_V1beta1_AuthNonceSession {}
-
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request, Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateSession {}
-
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthConsentSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthConsentSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request, Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthConsentSession {}
-
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthTokenSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthTokenSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request, Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthTokenSession {}
-
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Auth_V1beta1_AuthAcceptSession {}
-
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthRejectSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthRejectSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Auth_V1beta1_AuthRejectSession {}
-
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthConnectSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthConnectSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request, Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthConnectSession {}
-
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthContextSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthContextSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request, Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthContextSession {}
-
-public protocol Bloombox_Schema_Services_Auth_V1beta1_AuthProfileSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Auth_V1beta1_AuthProfileSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request, Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response>, Bloombox_Schema_Services_Auth_V1beta1_AuthProfileSession {}
 

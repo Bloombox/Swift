@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies types of browsers or known browser engines.
-public enum Bloombox_Schema_Analytics_Context_BrowserType: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Context_BrowserType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies an unknown or unrecognized browser.
@@ -74,9 +74,9 @@ public enum Bloombox_Schema_Analytics_Context_BrowserType: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Context_BrowserType: CaseIterable {
+extension Bloombox_Analytics_Context_BrowserType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Context_BrowserType] = [
+  public static var allCases: [Bloombox_Analytics_Context_BrowserType] = [
     .browserUnknown,
     .chrome,
     .safari,
@@ -89,13 +89,13 @@ extension Bloombox_Schema_Analytics_Context_BrowserType: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies a structure describing JavaScript code running in a web browser of some kind.
-public struct Bloombox_Schema_Analytics_Context_BrowserDeviceContext {
+public struct Bloombox_Analytics_Context_BrowserDeviceContext {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies the general browser type.
-  public var browserType: Bloombox_Schema_Analytics_Context_BrowserType {
+  public var browserType: Bloombox_Analytics_Context_BrowserType {
     get {return _storage._browserType}
     set {_uniqueStorage()._browserType = newValue}
   }
@@ -149,9 +149,9 @@ public struct Bloombox_Schema_Analytics_Context_BrowserDeviceContext {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
+fileprivate let _protobuf_package = "bloombox.analytics.context"
 
-extension Bloombox_Schema_Analytics_Context_BrowserType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_BrowserType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "BROWSER_UNKNOWN"),
     1: .same(proto: "CHROME"),
@@ -162,7 +162,7 @@ extension Bloombox_Schema_Analytics_Context_BrowserType: SwiftProtobuf._ProtoNam
   ]
 }
 
-extension Bloombox_Schema_Analytics_Context_BrowserDeviceContext: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_BrowserDeviceContext: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".BrowserDeviceContext"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "browser_type"),
@@ -175,7 +175,7 @@ extension Bloombox_Schema_Analytics_Context_BrowserDeviceContext: SwiftProtobuf.
   ]
 
   fileprivate class _StorageClass {
-    var _browserType: Bloombox_Schema_Analytics_Context_BrowserType = .browserUnknown
+    var _browserType: Bloombox_Analytics_Context_BrowserType = .browserUnknown
     var _version: Opencannabis_Structs_VersionSpec? = nil
     var _language: String = String()
     var _userAgent: String = String()
@@ -250,7 +250,7 @@ extension Bloombox_Schema_Analytics_Context_BrowserDeviceContext: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Context_BrowserDeviceContext, rhs: Bloombox_Schema_Analytics_Context_BrowserDeviceContext) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Context_BrowserDeviceContext, rhs: Bloombox_Analytics_Context_BrowserDeviceContext) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

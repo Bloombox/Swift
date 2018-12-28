@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Send a batch of either SMS or email messages.
-public struct Bloombox_Schema_Comms_SendOperation {
+public struct Bloombox_Comms_SendOperation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -35,13 +35,13 @@ public struct Bloombox_Schema_Comms_SendOperation {
   }
 
   /// Channel for which this send operation is operating.
-  public var channel: Bloombox_Schema_Comms_Channel {
+  public var channel: Bloombox_Comms_Channel {
     get {return _storage._channel}
     set {_uniqueStorage()._channel = newValue}
   }
 
   /// Status for this operation.
-  public var status: Bloombox_Schema_Comms_SendOperation.Status {
+  public var status: Bloombox_Comms_SendOperation.Status {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
   }
@@ -59,19 +59,19 @@ public struct Bloombox_Schema_Comms_SendOperation {
   }
 
   /// Batch of SMS send operations.
-  public var sms: Bloombox_Schema_Comms_SMSTransmission {
+  public var sms: Bloombox_Comms_SMSTransmission {
     get {
       if case .sms(let v)? = _storage._operation {return v}
-      return Bloombox_Schema_Comms_SMSTransmission()
+      return Bloombox_Comms_SMSTransmission()
     }
     set {_uniqueStorage()._operation = .sms(newValue)}
   }
 
   /// Batch of email send operations.
-  public var email: Bloombox_Schema_Comms_EmailTransmission {
+  public var email: Bloombox_Comms_EmailTransmission {
     get {
       if case .email(let v)? = _storage._operation {return v}
-      return Bloombox_Schema_Comms_EmailTransmission()
+      return Bloombox_Comms_EmailTransmission()
     }
     set {_uniqueStorage()._operation = .email(newValue)}
   }
@@ -81,12 +81,12 @@ public struct Bloombox_Schema_Comms_SendOperation {
   /// Operation batch field.
   public enum OneOf_Operation: Equatable {
     /// Batch of SMS send operations.
-    case sms(Bloombox_Schema_Comms_SMSTransmission)
+    case sms(Bloombox_Comms_SMSTransmission)
     /// Batch of email send operations.
-    case email(Bloombox_Schema_Comms_EmailTransmission)
+    case email(Bloombox_Comms_EmailTransmission)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Comms_SendOperation.OneOf_Operation, rhs: Bloombox_Schema_Comms_SendOperation.OneOf_Operation) -> Bool {
+    public static func ==(lhs: Bloombox_Comms_SendOperation.OneOf_Operation, rhs: Bloombox_Comms_SendOperation.OneOf_Operation) -> Bool {
       switch (lhs, rhs) {
       case (.sms(let l), .sms(let r)): return l == r
       case (.email(let l), .email(let r)): return l == r
@@ -146,9 +146,9 @@ public struct Bloombox_Schema_Comms_SendOperation {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Comms_SendOperation.Status: CaseIterable {
+extension Bloombox_Comms_SendOperation.Status: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Comms_SendOperation.Status] = [
+  public static var allCases: [Bloombox_Comms_SendOperation.Status] = [
     .pending,
     .sending,
     .error,
@@ -159,7 +159,7 @@ extension Bloombox_Schema_Comms_SendOperation.Status: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies an operation to merge campaign targeting parameters and trigger execution.
-public struct Bloombox_Schema_Comms_TriggerOperation {
+public struct Bloombox_Comms_TriggerOperation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -209,13 +209,13 @@ public struct Bloombox_Schema_Comms_TriggerOperation {
   public mutating func clearNotBefore() {_uniqueStorage()._notBefore = nil}
 
   /// Communication channels to execute for the subject campaign.
-  public var channel: [Bloombox_Schema_Comms_Channel] {
+  public var channel: [Bloombox_Comms_Channel] {
     get {return _storage._channel}
     set {_uniqueStorage()._channel = newValue}
   }
 
   /// Attached/constituent send operations.
-  public var op: [Bloombox_Schema_Comms_SendOperation] {
+  public var op: [Bloombox_Comms_SendOperation] {
     get {return _storage._op}
     set {_uniqueStorage()._op = newValue}
   }
@@ -235,7 +235,7 @@ public struct Bloombox_Schema_Comms_TriggerOperation {
 
 /// Specifies a marketing engine operation, in which a campaign and a set of ad groups are matched to a user's profile,
 /// and enqueued for transmission if targeting parameters don't exclude their profile.
-public struct Bloombox_Schema_Comms_AdEngineOperation {
+public struct Bloombox_Comms_AdEngineOperation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -247,8 +247,8 @@ public struct Bloombox_Schema_Comms_AdEngineOperation {
   }
 
   /// Campaign that we are executing this operation against, with adgroups included.
-  public var campaign: Bloombox_Schema_Marketing_Campaign {
-    get {return _storage._campaign ?? Bloombox_Schema_Marketing_Campaign()}
+  public var campaign: Bloombox_Marketing_Campaign {
+    get {return _storage._campaign ?? Bloombox_Marketing_Campaign()}
     set {_uniqueStorage()._campaign = newValue}
   }
   /// Returns true if `campaign` has been explicitly set.
@@ -257,14 +257,14 @@ public struct Bloombox_Schema_Comms_AdEngineOperation {
   public mutating func clearCampaign() {_uniqueStorage()._campaign = nil}
 
   /// Communication channels to execute for the subject campaign.
-  public var channel: [Bloombox_Schema_Comms_Channel] {
+  public var channel: [Bloombox_Comms_Channel] {
     get {return _storage._channel}
     set {_uniqueStorage()._channel = newValue}
   }
 
   /// Membership record for this user at the partner location in question.
-  public var membership: Bloombox_Schema_Identity_ConsumerMembership {
-    get {return _storage._membership ?? Bloombox_Schema_Identity_ConsumerMembership()}
+  public var membership: Bloombox_Identity_ConsumerMembership {
+    get {return _storage._membership ?? Bloombox_Identity_ConsumerMembership()}
     set {_uniqueStorage()._membership = newValue}
   }
   /// Returns true if `membership` has been explicitly set.
@@ -273,8 +273,8 @@ public struct Bloombox_Schema_Comms_AdEngineOperation {
   public mutating func clearMembership() {_uniqueStorage()._membership = nil}
 
   /// Key for the user's account.
-  public var user: Bloombox_Schema_Identity_UserKey {
-    get {return _storage._user ?? Bloombox_Schema_Identity_UserKey()}
+  public var user: Bloombox_Identity_UserKey {
+    get {return _storage._user ?? Bloombox_Identity_UserKey()}
     set {_uniqueStorage()._user = newValue}
   }
   /// Returns true if `user` has been explicitly set.
@@ -307,9 +307,9 @@ public struct Bloombox_Schema_Comms_AdEngineOperation {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.comms"
+fileprivate let _protobuf_package = "bloombox.comms"
 
-extension Bloombox_Schema_Comms_SendOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_SendOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SendOperation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
@@ -322,10 +322,10 @@ extension Bloombox_Schema_Comms_SendOperation: SwiftProtobuf.Message, SwiftProto
 
   fileprivate class _StorageClass {
     var _uuid: String = String()
-    var _channel: Bloombox_Schema_Comms_Channel = .unspecified
-    var _status: Bloombox_Schema_Comms_SendOperation.Status = .pending
+    var _channel: Bloombox_Comms_Channel = .unspecified
+    var _status: Bloombox_Comms_SendOperation.Status = .pending
     var _dryRun: Bool = false
-    var _operation: Bloombox_Schema_Comms_SendOperation.OneOf_Operation?
+    var _operation: Bloombox_Comms_SendOperation.OneOf_Operation?
 
     static let defaultInstance = _StorageClass()
 
@@ -357,7 +357,7 @@ extension Bloombox_Schema_Comms_SendOperation: SwiftProtobuf.Message, SwiftProto
         case 3: try decoder.decodeSingularEnumField(value: &_storage._status)
         case 4: try decoder.decodeSingularBoolField(value: &_storage._dryRun)
         case 10:
-          var v: Bloombox_Schema_Comms_SMSTransmission?
+          var v: Bloombox_Comms_SMSTransmission?
           if let current = _storage._operation {
             try decoder.handleConflictingOneOf()
             if case .sms(let m) = current {v = m}
@@ -365,7 +365,7 @@ extension Bloombox_Schema_Comms_SendOperation: SwiftProtobuf.Message, SwiftProto
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._operation = .sms(v)}
         case 11:
-          var v: Bloombox_Schema_Comms_EmailTransmission?
+          var v: Bloombox_Comms_EmailTransmission?
           if let current = _storage._operation {
             try decoder.handleConflictingOneOf()
             if case .email(let m) = current {v = m}
@@ -403,7 +403,7 @@ extension Bloombox_Schema_Comms_SendOperation: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_SendOperation, rhs: Bloombox_Schema_Comms_SendOperation) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_SendOperation, rhs: Bloombox_Comms_SendOperation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -422,7 +422,7 @@ extension Bloombox_Schema_Comms_SendOperation: SwiftProtobuf.Message, SwiftProto
   }
 }
 
-extension Bloombox_Schema_Comms_SendOperation.Status: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_SendOperation.Status: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PENDING"),
     1: .same(proto: "SENDING"),
@@ -431,7 +431,7 @@ extension Bloombox_Schema_Comms_SendOperation.Status: SwiftProtobuf._ProtoNamePr
   ]
 }
 
-extension Bloombox_Schema_Comms_TriggerOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_TriggerOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TriggerOperation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
@@ -452,8 +452,8 @@ extension Bloombox_Schema_Comms_TriggerOperation: SwiftProtobuf.Message, SwiftPr
     var _campaign: String = String()
     var _submitted: Opencannabis_Temporal_Instant? = nil
     var _notBefore: Opencannabis_Temporal_Instant? = nil
-    var _channel: [Bloombox_Schema_Comms_Channel] = []
-    var _op: [Bloombox_Schema_Comms_SendOperation] = []
+    var _channel: [Bloombox_Comms_Channel] = []
+    var _op: [Bloombox_Comms_SendOperation] = []
     var _dryRun: Bool = false
 
     static let defaultInstance = _StorageClass()
@@ -533,7 +533,7 @@ extension Bloombox_Schema_Comms_TriggerOperation: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_TriggerOperation, rhs: Bloombox_Schema_Comms_TriggerOperation) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_TriggerOperation, rhs: Bloombox_Comms_TriggerOperation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -556,7 +556,7 @@ extension Bloombox_Schema_Comms_TriggerOperation: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Bloombox_Schema_Comms_AdEngineOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_AdEngineOperation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AdEngineOperation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "execution"),
@@ -570,10 +570,10 @@ extension Bloombox_Schema_Comms_AdEngineOperation: SwiftProtobuf.Message, SwiftP
 
   fileprivate class _StorageClass {
     var _execution: String = String()
-    var _campaign: Bloombox_Schema_Marketing_Campaign? = nil
-    var _channel: [Bloombox_Schema_Comms_Channel] = []
-    var _membership: Bloombox_Schema_Identity_ConsumerMembership? = nil
-    var _user: Bloombox_Schema_Identity_UserKey? = nil
+    var _campaign: Bloombox_Marketing_Campaign? = nil
+    var _channel: [Bloombox_Comms_Channel] = []
+    var _membership: Bloombox_Identity_ConsumerMembership? = nil
+    var _user: Bloombox_Identity_UserKey? = nil
     var _notBefore: Opencannabis_Temporal_Instant? = nil
     var _dryRun: Bool = false
 
@@ -644,7 +644,7 @@ extension Bloombox_Schema_Comms_AdEngineOperation: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_AdEngineOperation, rhs: Bloombox_Schema_Comms_AdEngineOperation) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_AdEngineOperation, rhs: Bloombox_Comms_AdEngineOperation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

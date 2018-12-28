@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies MailChimp integration features to enable or disable.
-public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures {
+public struct Bloombox_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -43,7 +43,7 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegratio
 }
 
 /// MailChimp list mappings to use for signup integration.
-public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists {
+public struct Bloombox_Partner_Integrations_Mailchimp_MailchimpLists {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -60,7 +60,7 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists {
 }
 
 /// Specifies MailChimp integration settings.
-public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings {
+public struct Bloombox_Partner_Integrations_Mailchimp_MailchimpSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -72,8 +72,8 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings {
   }
 
   /// Flags indicating features that should be enabled or disabled.
-  public var features: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures {
-    get {return _storage._features ?? Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures()}
+  public var features: Bloombox_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures {
+    get {return _storage._features ?? Bloombox_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures()}
     set {_uniqueStorage()._features = newValue}
   }
   /// Returns true if `features` has been explicitly set.
@@ -82,8 +82,8 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings {
   public mutating func clearFeatures() {_uniqueStorage()._features = nil}
 
   /// Lists to use for various bindings in MailChimp.
-  public var lists: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists {
-    get {return _storage._lists ?? Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists()}
+  public var lists: Bloombox_Partner_Integrations_Mailchimp_MailchimpLists {
+    get {return _storage._lists ?? Bloombox_Partner_Integrations_Mailchimp_MailchimpLists()}
     set {_uniqueStorage()._lists = newValue}
   }
   /// Returns true if `lists` has been explicitly set.
@@ -100,9 +100,9 @@ public struct Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.partner.integrations.mailchimp"
+fileprivate let _protobuf_package = "bloombox.partner.integrations.mailchimp"
 
-extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MailchimpIntegrationFeatures"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "signups"),
@@ -134,7 +134,7 @@ extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFea
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures, rhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures, rhs: Bloombox_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures) -> Bool {
     if lhs.signups != rhs.signups {return false}
     if lhs.segments != rhs.segments {return false}
     if lhs.ordering != rhs.ordering {return false}
@@ -143,7 +143,7 @@ extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFea
   }
 }
 
-extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Integrations_Mailchimp_MailchimpLists: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MailchimpLists"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "comms"),
@@ -170,7 +170,7 @@ extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists, rhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Integrations_Mailchimp_MailchimpLists, rhs: Bloombox_Partner_Integrations_Mailchimp_MailchimpLists) -> Bool {
     if lhs.comms != rhs.comms {return false}
     if lhs.marketing != rhs.marketing {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -178,7 +178,7 @@ extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists: SwiftPr
   }
 }
 
-extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Integrations_Mailchimp_MailchimpSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MailchimpSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "api_key"),
@@ -188,8 +188,8 @@ extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings: Swif
 
   fileprivate class _StorageClass {
     var _apiKey: String = String()
-    var _features: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures? = nil
-    var _lists: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpLists? = nil
+    var _features: Bloombox_Partner_Integrations_Mailchimp_MailchimpIntegrationFeatures? = nil
+    var _lists: Bloombox_Partner_Integrations_Mailchimp_MailchimpLists? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -238,7 +238,7 @@ extension Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings, rhs: Bloombox_Schema_Partner_Integrations_Mailchimp_MailchimpSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Integrations_Mailchimp_MailchimpSettings, rhs: Bloombox_Partner_Integrations_Mailchimp_MailchimpSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

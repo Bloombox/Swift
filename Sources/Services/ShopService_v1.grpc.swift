@@ -26,286 +26,187 @@ import SwiftGRPC
 import SwiftProtobuf
 import OpenCannabis
 
-public protocol Bloombox_Schema_Services_Shop_V1_ShopPingCall: ClientCallUnary {}
+public protocol Bloombox_Services_Shop_V1_ShopPingCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopPingCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Shop_V1_Ping.Request, Bloombox_Schema_Services_Shop_V1_Ping.Response>, Bloombox_Schema_Services_Shop_V1_ShopPingCall {
-  override class var method: String { return "/bloombox.schema.services.shop.v1.Shop/Ping" }
+fileprivate final class Bloombox_Services_Shop_V1_ShopPingCallBase: ClientCallUnaryBase<Bloombox_Services_Shop_V1_Ping.Request, Bloombox_Services_Shop_V1_Ping.Response>, Bloombox_Services_Shop_V1_ShopPingCall {
+  override class var method: String { return "/bloombox.services.shop.v1.Shop/Ping" }
 }
 
-public protocol Bloombox_Schema_Services_Shop_V1_ShopShopInfoCall: ClientCallUnary {}
+public protocol Bloombox_Services_Shop_V1_ShopShopInfoCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopShopInfoCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Shop_V1_ShopInfo.Request, Bloombox_Schema_Services_Shop_V1_ShopInfo.Response>, Bloombox_Schema_Services_Shop_V1_ShopShopInfoCall {
-  override class var method: String { return "/bloombox.schema.services.shop.v1.Shop/ShopInfo" }
+fileprivate final class Bloombox_Services_Shop_V1_ShopShopInfoCallBase: ClientCallUnaryBase<Bloombox_Services_Shop_V1_ShopInfo.Request, Bloombox_Services_Shop_V1_ShopInfo.Response>, Bloombox_Services_Shop_V1_ShopShopInfoCall {
+  override class var method: String { return "/bloombox.services.shop.v1.Shop/ShopInfo" }
 }
 
-public protocol Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCall: ClientCallUnary {}
+public protocol Bloombox_Services_Shop_V1_ShopEnrollMemberCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Shop_V1_EnrollMember.Request, Bloombox_Schema_Services_Shop_V1_EnrollMember.Response>, Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCall {
-  override class var method: String { return "/bloombox.schema.services.shop.v1.Shop/EnrollMember" }
+fileprivate final class Bloombox_Services_Shop_V1_ShopEnrollMemberCallBase: ClientCallUnaryBase<Bloombox_Services_Shop_V1_EnrollMember.Request, Bloombox_Services_Shop_V1_EnrollMember.Response>, Bloombox_Services_Shop_V1_ShopEnrollMemberCall {
+  override class var method: String { return "/bloombox.services.shop.v1.Shop/EnrollMember" }
 }
 
-public protocol Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCall: ClientCallUnary {}
+public protocol Bloombox_Services_Shop_V1_ShopCheckZipcodeCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request, Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response>, Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCall {
-  override class var method: String { return "/bloombox.schema.services.shop.v1.Shop/CheckZipcode" }
+fileprivate final class Bloombox_Services_Shop_V1_ShopCheckZipcodeCallBase: ClientCallUnaryBase<Bloombox_Services_Shop_V1_CheckZipcode.Request, Bloombox_Services_Shop_V1_CheckZipcode.Response>, Bloombox_Services_Shop_V1_ShopCheckZipcodeCall {
+  override class var method: String { return "/bloombox.services.shop.v1.Shop/CheckZipcode" }
 }
 
-public protocol Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCall: ClientCallUnary {}
+public protocol Bloombox_Services_Shop_V1_ShopVerifyMemberCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Shop_V1_VerifyMember.Request, Bloombox_Schema_Services_Shop_V1_VerifyMember.Response>, Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCall {
-  override class var method: String { return "/bloombox.schema.services.shop.v1.Shop/VerifyMember" }
+fileprivate final class Bloombox_Services_Shop_V1_ShopVerifyMemberCallBase: ClientCallUnaryBase<Bloombox_Services_Shop_V1_VerifyMember.Request, Bloombox_Services_Shop_V1_VerifyMember.Response>, Bloombox_Services_Shop_V1_ShopVerifyMemberCall {
+  override class var method: String { return "/bloombox.services.shop.v1.Shop/VerifyMember" }
 }
 
-public protocol Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCall: ClientCallUnary {}
+public protocol Bloombox_Services_Shop_V1_ShopSubmitOrderCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request, Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response>, Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCall {
-  override class var method: String { return "/bloombox.schema.services.shop.v1.Shop/SubmitOrder" }
+fileprivate final class Bloombox_Services_Shop_V1_ShopSubmitOrderCallBase: ClientCallUnaryBase<Bloombox_Services_Shop_V1_SubmitOrder.Request, Bloombox_Services_Shop_V1_SubmitOrder.Response>, Bloombox_Services_Shop_V1_ShopSubmitOrderCall {
+  override class var method: String { return "/bloombox.services.shop.v1.Shop/SubmitOrder" }
 }
 
-public protocol Bloombox_Schema_Services_Shop_V1_ShopGetOrderCall: ClientCallUnary {}
+public protocol Bloombox_Services_Shop_V1_ShopGetOrderCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopGetOrderCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Shop_V1_GetOrder.Request, Bloombox_Schema_Services_Shop_V1_GetOrder.Response>, Bloombox_Schema_Services_Shop_V1_ShopGetOrderCall {
-  override class var method: String { return "/bloombox.schema.services.shop.v1.Shop/GetOrder" }
+fileprivate final class Bloombox_Services_Shop_V1_ShopGetOrderCallBase: ClientCallUnaryBase<Bloombox_Services_Shop_V1_GetOrder.Request, Bloombox_Services_Shop_V1_GetOrder.Response>, Bloombox_Services_Shop_V1_ShopGetOrderCall {
+  override class var method: String { return "/bloombox.services.shop.v1.Shop/GetOrder" }
 }
 
-public protocol Bloombox_Schema_Services_Shop_V1_ShopShareOrderCall: ClientCallUnary {}
+public protocol Bloombox_Services_Shop_V1_ShopShareOrderCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopShareOrderCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Shop_V1_ShareOrder.Request, Bloombox_Schema_Services_Shop_V1_ShareOrder.Response>, Bloombox_Schema_Services_Shop_V1_ShopShareOrderCall {
-  override class var method: String { return "/bloombox.schema.services.shop.v1.Shop/ShareOrder" }
+fileprivate final class Bloombox_Services_Shop_V1_ShopShareOrderCallBase: ClientCallUnaryBase<Bloombox_Services_Shop_V1_ShareOrder.Request, Bloombox_Services_Shop_V1_ShareOrder.Response>, Bloombox_Services_Shop_V1_ShopShareOrderCall {
+  override class var method: String { return "/bloombox.services.shop.v1.Shop/ShareOrder" }
 }
 
 
-/// Instantiate Bloombox_Schema_Services_Shop_V1_ShopServiceClient, then call methods of this protocol to make API calls.
-public protocol Bloombox_Schema_Services_Shop_V1_ShopService: ServiceClient {
+/// Instantiate Bloombox_Services_Shop_V1_ShopServiceClient, then call methods of this protocol to make API calls.
+public protocol Bloombox_Services_Shop_V1_ShopService: ServiceClient {
   /// Synchronous. Unary.
-  func ping(_ request: Bloombox_Schema_Services_Shop_V1_Ping.Request) throws -> Bloombox_Schema_Services_Shop_V1_Ping.Response
+  func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request) throws -> Bloombox_Services_Shop_V1_Ping.Response
   /// Asynchronous. Unary.
-  func ping(_ request: Bloombox_Schema_Services_Shop_V1_Ping.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopPingCall
+  func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request, completion: @escaping (Bloombox_Services_Shop_V1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopPingCall
 
   /// Synchronous. Unary.
-  func shopInfo(_ request: Bloombox_Schema_Services_Shop_V1_ShopInfo.Request) throws -> Bloombox_Schema_Services_Shop_V1_ShopInfo.Response
+  func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request) throws -> Bloombox_Services_Shop_V1_ShopInfo.Response
   /// Asynchronous. Unary.
-  func shopInfo(_ request: Bloombox_Schema_Services_Shop_V1_ShopInfo.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_ShopInfo.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopShopInfoCall
+  func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request, completion: @escaping (Bloombox_Services_Shop_V1_ShopInfo.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopShopInfoCall
 
   /// Synchronous. Unary.
-  func enrollMember(_ request: Bloombox_Schema_Services_Shop_V1_EnrollMember.Request) throws -> Bloombox_Schema_Services_Shop_V1_EnrollMember.Response
+  func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request) throws -> Bloombox_Services_Shop_V1_EnrollMember.Response
   /// Asynchronous. Unary.
-  func enrollMember(_ request: Bloombox_Schema_Services_Shop_V1_EnrollMember.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_EnrollMember.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCall
+  func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request, completion: @escaping (Bloombox_Services_Shop_V1_EnrollMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopEnrollMemberCall
 
   /// Synchronous. Unary.
-  func checkZipcode(_ request: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request) throws -> Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response
+  func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request) throws -> Bloombox_Services_Shop_V1_CheckZipcode.Response
   /// Asynchronous. Unary.
-  func checkZipcode(_ request: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCall
+  func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request, completion: @escaping (Bloombox_Services_Shop_V1_CheckZipcode.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopCheckZipcodeCall
 
   /// Synchronous. Unary.
-  func verifyMember(_ request: Bloombox_Schema_Services_Shop_V1_VerifyMember.Request) throws -> Bloombox_Schema_Services_Shop_V1_VerifyMember.Response
+  func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request) throws -> Bloombox_Services_Shop_V1_VerifyMember.Response
   /// Asynchronous. Unary.
-  func verifyMember(_ request: Bloombox_Schema_Services_Shop_V1_VerifyMember.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_VerifyMember.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCall
+  func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request, completion: @escaping (Bloombox_Services_Shop_V1_VerifyMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopVerifyMemberCall
 
   /// Synchronous. Unary.
-  func submitOrder(_ request: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request) throws -> Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response
+  func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request) throws -> Bloombox_Services_Shop_V1_SubmitOrder.Response
   /// Asynchronous. Unary.
-  func submitOrder(_ request: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCall
+  func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_SubmitOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopSubmitOrderCall
 
   /// Synchronous. Unary.
-  func getOrder(_ request: Bloombox_Schema_Services_Shop_V1_GetOrder.Request) throws -> Bloombox_Schema_Services_Shop_V1_GetOrder.Response
+  func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request) throws -> Bloombox_Services_Shop_V1_GetOrder.Response
   /// Asynchronous. Unary.
-  func getOrder(_ request: Bloombox_Schema_Services_Shop_V1_GetOrder.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_GetOrder.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopGetOrderCall
+  func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_GetOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopGetOrderCall
 
   /// Synchronous. Unary.
-  func shareOrder(_ request: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request) throws -> Bloombox_Schema_Services_Shop_V1_ShareOrder.Response
+  func shareOrder(_ request: Bloombox_Services_Shop_V1_ShareOrder.Request) throws -> Bloombox_Services_Shop_V1_ShareOrder.Response
   /// Asynchronous. Unary.
-  func shareOrder(_ request: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_ShareOrder.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopShareOrderCall
+  func shareOrder(_ request: Bloombox_Services_Shop_V1_ShareOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_ShareOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopShareOrderCall
 
 }
 
-public final class Bloombox_Schema_Services_Shop_V1_ShopServiceClient: ServiceClientBase, Bloombox_Schema_Services_Shop_V1_ShopService {
+public final class Bloombox_Services_Shop_V1_ShopServiceClient: ServiceClientBase, Bloombox_Services_Shop_V1_ShopService {
   /// Synchronous. Unary.
-  public func ping(_ request: Bloombox_Schema_Services_Shop_V1_Ping.Request) throws -> Bloombox_Schema_Services_Shop_V1_Ping.Response {
-    return try Bloombox_Schema_Services_Shop_V1_ShopPingCallBase(channel)
+  public func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request) throws -> Bloombox_Services_Shop_V1_Ping.Response {
+    return try Bloombox_Services_Shop_V1_ShopPingCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func ping(_ request: Bloombox_Schema_Services_Shop_V1_Ping.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopPingCall {
-    return try Bloombox_Schema_Services_Shop_V1_ShopPingCallBase(channel)
+  public func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request, completion: @escaping (Bloombox_Services_Shop_V1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopPingCall {
+    return try Bloombox_Services_Shop_V1_ShopPingCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func shopInfo(_ request: Bloombox_Schema_Services_Shop_V1_ShopInfo.Request) throws -> Bloombox_Schema_Services_Shop_V1_ShopInfo.Response {
-    return try Bloombox_Schema_Services_Shop_V1_ShopShopInfoCallBase(channel)
+  public func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request) throws -> Bloombox_Services_Shop_V1_ShopInfo.Response {
+    return try Bloombox_Services_Shop_V1_ShopShopInfoCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func shopInfo(_ request: Bloombox_Schema_Services_Shop_V1_ShopInfo.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_ShopInfo.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopShopInfoCall {
-    return try Bloombox_Schema_Services_Shop_V1_ShopShopInfoCallBase(channel)
+  public func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request, completion: @escaping (Bloombox_Services_Shop_V1_ShopInfo.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopShopInfoCall {
+    return try Bloombox_Services_Shop_V1_ShopShopInfoCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func enrollMember(_ request: Bloombox_Schema_Services_Shop_V1_EnrollMember.Request) throws -> Bloombox_Schema_Services_Shop_V1_EnrollMember.Response {
-    return try Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCallBase(channel)
+  public func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request) throws -> Bloombox_Services_Shop_V1_EnrollMember.Response {
+    return try Bloombox_Services_Shop_V1_ShopEnrollMemberCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func enrollMember(_ request: Bloombox_Schema_Services_Shop_V1_EnrollMember.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_EnrollMember.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCall {
-    return try Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCallBase(channel)
+  public func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request, completion: @escaping (Bloombox_Services_Shop_V1_EnrollMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopEnrollMemberCall {
+    return try Bloombox_Services_Shop_V1_ShopEnrollMemberCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func checkZipcode(_ request: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request) throws -> Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response {
-    return try Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCallBase(channel)
+  public func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request) throws -> Bloombox_Services_Shop_V1_CheckZipcode.Response {
+    return try Bloombox_Services_Shop_V1_ShopCheckZipcodeCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func checkZipcode(_ request: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCall {
-    return try Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCallBase(channel)
+  public func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request, completion: @escaping (Bloombox_Services_Shop_V1_CheckZipcode.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopCheckZipcodeCall {
+    return try Bloombox_Services_Shop_V1_ShopCheckZipcodeCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func verifyMember(_ request: Bloombox_Schema_Services_Shop_V1_VerifyMember.Request) throws -> Bloombox_Schema_Services_Shop_V1_VerifyMember.Response {
-    return try Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCallBase(channel)
+  public func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request) throws -> Bloombox_Services_Shop_V1_VerifyMember.Response {
+    return try Bloombox_Services_Shop_V1_ShopVerifyMemberCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func verifyMember(_ request: Bloombox_Schema_Services_Shop_V1_VerifyMember.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_VerifyMember.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCall {
-    return try Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCallBase(channel)
+  public func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request, completion: @escaping (Bloombox_Services_Shop_V1_VerifyMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopVerifyMemberCall {
+    return try Bloombox_Services_Shop_V1_ShopVerifyMemberCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func submitOrder(_ request: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request) throws -> Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response {
-    return try Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCallBase(channel)
+  public func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request) throws -> Bloombox_Services_Shop_V1_SubmitOrder.Response {
+    return try Bloombox_Services_Shop_V1_ShopSubmitOrderCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func submitOrder(_ request: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCall {
-    return try Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCallBase(channel)
+  public func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_SubmitOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopSubmitOrderCall {
+    return try Bloombox_Services_Shop_V1_ShopSubmitOrderCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func getOrder(_ request: Bloombox_Schema_Services_Shop_V1_GetOrder.Request) throws -> Bloombox_Schema_Services_Shop_V1_GetOrder.Response {
-    return try Bloombox_Schema_Services_Shop_V1_ShopGetOrderCallBase(channel)
+  public func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request) throws -> Bloombox_Services_Shop_V1_GetOrder.Response {
+    return try Bloombox_Services_Shop_V1_ShopGetOrderCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func getOrder(_ request: Bloombox_Schema_Services_Shop_V1_GetOrder.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_GetOrder.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopGetOrderCall {
-    return try Bloombox_Schema_Services_Shop_V1_ShopGetOrderCallBase(channel)
+  public func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_GetOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopGetOrderCall {
+    return try Bloombox_Services_Shop_V1_ShopGetOrderCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func shareOrder(_ request: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request) throws -> Bloombox_Schema_Services_Shop_V1_ShareOrder.Response {
-    return try Bloombox_Schema_Services_Shop_V1_ShopShareOrderCallBase(channel)
+  public func shareOrder(_ request: Bloombox_Services_Shop_V1_ShareOrder.Request) throws -> Bloombox_Services_Shop_V1_ShareOrder.Response {
+    return try Bloombox_Services_Shop_V1_ShopShareOrderCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func shareOrder(_ request: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request, completion: @escaping (Bloombox_Schema_Services_Shop_V1_ShareOrder.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Shop_V1_ShopShareOrderCall {
-    return try Bloombox_Schema_Services_Shop_V1_ShopShareOrderCallBase(channel)
+  public func shareOrder(_ request: Bloombox_Services_Shop_V1_ShareOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_ShareOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopShareOrderCall {
+    return try Bloombox_Services_Shop_V1_ShopShareOrderCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
 }
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Bloombox_Schema_Services_Shop_V1_ShopProvider: ServiceProvider {
-  func ping(request: Bloombox_Schema_Services_Shop_V1_Ping.Request, session: Bloombox_Schema_Services_Shop_V1_ShopPingSession) throws -> Bloombox_Schema_Services_Shop_V1_Ping.Response
-  func shopInfo(request: Bloombox_Schema_Services_Shop_V1_ShopInfo.Request, session: Bloombox_Schema_Services_Shop_V1_ShopShopInfoSession) throws -> Bloombox_Schema_Services_Shop_V1_ShopInfo.Response
-  func enrollMember(request: Bloombox_Schema_Services_Shop_V1_EnrollMember.Request, session: Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberSession) throws -> Bloombox_Schema_Services_Shop_V1_EnrollMember.Response
-  func checkZipcode(request: Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request, session: Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeSession) throws -> Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response
-  func verifyMember(request: Bloombox_Schema_Services_Shop_V1_VerifyMember.Request, session: Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberSession) throws -> Bloombox_Schema_Services_Shop_V1_VerifyMember.Response
-  func submitOrder(request: Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request, session: Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderSession) throws -> Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response
-  func getOrder(request: Bloombox_Schema_Services_Shop_V1_GetOrder.Request, session: Bloombox_Schema_Services_Shop_V1_ShopGetOrderSession) throws -> Bloombox_Schema_Services_Shop_V1_GetOrder.Response
-  func shareOrder(request: Bloombox_Schema_Services_Shop_V1_ShareOrder.Request, session: Bloombox_Schema_Services_Shop_V1_ShopShareOrderSession) throws -> Bloombox_Schema_Services_Shop_V1_ShareOrder.Response
-}
-
-extension Bloombox_Schema_Services_Shop_V1_ShopProvider {
-  public var serviceName: String { return "bloombox.schema.services.shop.v1.Shop" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bloombox.schema.services.shop.v1.Shop/Ping":
-      return try Bloombox_Schema_Services_Shop_V1_ShopPingSessionBase(
-        handler: handler,
-        providerBlock: { try self.ping(request: $0, session: $1 as! Bloombox_Schema_Services_Shop_V1_ShopPingSessionBase) })
-          .run()
-    case "/bloombox.schema.services.shop.v1.Shop/ShopInfo":
-      return try Bloombox_Schema_Services_Shop_V1_ShopShopInfoSessionBase(
-        handler: handler,
-        providerBlock: { try self.shopInfo(request: $0, session: $1 as! Bloombox_Schema_Services_Shop_V1_ShopShopInfoSessionBase) })
-          .run()
-    case "/bloombox.schema.services.shop.v1.Shop/EnrollMember":
-      return try Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberSessionBase(
-        handler: handler,
-        providerBlock: { try self.enrollMember(request: $0, session: $1 as! Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberSessionBase) })
-          .run()
-    case "/bloombox.schema.services.shop.v1.Shop/CheckZipcode":
-      return try Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeSessionBase(
-        handler: handler,
-        providerBlock: { try self.checkZipcode(request: $0, session: $1 as! Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeSessionBase) })
-          .run()
-    case "/bloombox.schema.services.shop.v1.Shop/VerifyMember":
-      return try Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberSessionBase(
-        handler: handler,
-        providerBlock: { try self.verifyMember(request: $0, session: $1 as! Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberSessionBase) })
-          .run()
-    case "/bloombox.schema.services.shop.v1.Shop/SubmitOrder":
-      return try Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderSessionBase(
-        handler: handler,
-        providerBlock: { try self.submitOrder(request: $0, session: $1 as! Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderSessionBase) })
-          .run()
-    case "/bloombox.schema.services.shop.v1.Shop/GetOrder":
-      return try Bloombox_Schema_Services_Shop_V1_ShopGetOrderSessionBase(
-        handler: handler,
-        providerBlock: { try self.getOrder(request: $0, session: $1 as! Bloombox_Schema_Services_Shop_V1_ShopGetOrderSessionBase) })
-          .run()
-    case "/bloombox.schema.services.shop.v1.Shop/ShareOrder":
-      return try Bloombox_Schema_Services_Shop_V1_ShopShareOrderSessionBase(
-        handler: handler,
-        providerBlock: { try self.shareOrder(request: $0, session: $1 as! Bloombox_Schema_Services_Shop_V1_ShopShareOrderSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
-  }
-}
-
-public protocol Bloombox_Schema_Services_Shop_V1_ShopPingSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopPingSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Shop_V1_Ping.Request, Bloombox_Schema_Services_Shop_V1_Ping.Response>, Bloombox_Schema_Services_Shop_V1_ShopPingSession {}
-
-public protocol Bloombox_Schema_Services_Shop_V1_ShopShopInfoSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopShopInfoSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Shop_V1_ShopInfo.Request, Bloombox_Schema_Services_Shop_V1_ShopInfo.Response>, Bloombox_Schema_Services_Shop_V1_ShopShopInfoSession {}
-
-public protocol Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Shop_V1_EnrollMember.Request, Bloombox_Schema_Services_Shop_V1_EnrollMember.Response>, Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberSession {}
-
-public protocol Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Shop_V1_CheckZipcode.Request, Bloombox_Schema_Services_Shop_V1_CheckZipcode.Response>, Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeSession {}
-
-public protocol Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Shop_V1_VerifyMember.Request, Bloombox_Schema_Services_Shop_V1_VerifyMember.Response>, Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberSession {}
-
-public protocol Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Shop_V1_SubmitOrder.Request, Bloombox_Schema_Services_Shop_V1_SubmitOrder.Response>, Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderSession {}
-
-public protocol Bloombox_Schema_Services_Shop_V1_ShopGetOrderSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopGetOrderSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Shop_V1_GetOrder.Request, Bloombox_Schema_Services_Shop_V1_GetOrder.Response>, Bloombox_Schema_Services_Shop_V1_ShopGetOrderSession {}
-
-public protocol Bloombox_Schema_Services_Shop_V1_ShopShareOrderSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Shop_V1_ShopShareOrderSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Shop_V1_ShareOrder.Request, Bloombox_Schema_Services_Shop_V1_ShareOrder.Response>, Bloombox_Schema_Services_Shop_V1_ShopShareOrderSession {}
 

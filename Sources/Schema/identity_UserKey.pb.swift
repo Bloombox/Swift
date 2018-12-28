@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Represents a key that refers to a user account.
-public struct Bloombox_Schema_Identity_UserKey {
+public struct Bloombox_Identity_UserKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -38,9 +38,9 @@ public struct Bloombox_Schema_Identity_UserKey {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity"
+fileprivate let _protobuf_package = "bloombox.identity"
 
-extension Bloombox_Schema_Identity_UserKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_UserKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UserKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
@@ -67,7 +67,7 @@ extension Bloombox_Schema_Identity_UserKey: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_UserKey, rhs: Bloombox_Schema_Identity_UserKey) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_UserKey, rhs: Bloombox_Identity_UserKey) -> Bool {
     if lhs.uid != rhs.uid {return false}
     if lhs.identity != rhs.identity {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

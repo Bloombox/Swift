@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Wrapper object that provides support for transporting telemetry data of any kind.
-public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
+public struct Bloombox_Services_Telemetry_V1beta4_TelemetryEvent {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -45,8 +45,8 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
   }
 
   /// 'Position', or timing, of the event, in various circumstances.
-  public var timing: Bloombox_Schema_Analytics_EventPosition {
-    get {return _storage._timing ?? Bloombox_Schema_Analytics_EventPosition()}
+  public var timing: Bloombox_Analytics_EventPosition {
+    get {return _storage._timing ?? Bloombox_Analytics_EventPosition()}
     set {_uniqueStorage()._timing = newValue}
   }
   /// Returns true if `timing` has been explicitly set.
@@ -55,8 +55,8 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
   public mutating func clearTiming() {_uniqueStorage()._timing = nil}
 
   /// Event context.
-  public var context: Bloombox_Schema_Analytics_Context {
-    get {return _storage._context ?? Bloombox_Schema_Analytics_Context()}
+  public var context: Bloombox_Analytics_Context {
+    get {return _storage._context ?? Bloombox_Analytics_Context()}
     set {_uniqueStorage()._context = newValue}
   }
   /// Returns true if `context` has been explicitly set.
@@ -65,8 +65,8 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
   public mutating func clearContext() {_uniqueStorage()._context = nil}
 
   /// Full event actor records.
-  public var actors: Bloombox_Schema_Analytics_EventActors {
-    get {return _storage._actors ?? Bloombox_Schema_Analytics_EventActors()}
+  public var actors: Bloombox_Analytics_EventActors {
+    get {return _storage._actors ?? Bloombox_Analytics_EventActors()}
     set {_uniqueStorage()._actors = newValue}
   }
   /// Returns true if `actors` has been explicitly set.
@@ -81,73 +81,73 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
   }
 
   /// Generic: Event.
-  public var generic: Bloombox_Schema_Analytics_Generic_Event {
+  public var generic: Bloombox_Analytics_Generic_Event {
     get {
       if case .generic(let v)? = _storage._event {return v}
-      return Bloombox_Schema_Analytics_Generic_Event()
+      return Bloombox_Analytics_Generic_Event()
     }
     set {_uniqueStorage()._event = .generic(newValue)}
   }
 
   /// Generic: Exception.
-  public var error: Bloombox_Schema_Analytics_Generic_Exception {
+  public var error: Bloombox_Analytics_Generic_Exception {
     get {
       if case .error(let v)? = _storage._event {return v}
-      return Bloombox_Schema_Analytics_Generic_Exception()
+      return Bloombox_Analytics_Generic_Exception()
     }
     set {_uniqueStorage()._event = .error(newValue)}
   }
 
   /// Sections: Impression.
-  public var impression: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression {
+  public var impression: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression {
     get {
       if case .impression(let v)? = _storage._event {return v}
-      return Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression()
+      return Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression()
     }
     set {_uniqueStorage()._event = .impression(newValue)}
   }
 
   /// Sections: View.
-  public var view: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View {
+  public var view: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View {
     get {
       if case .view(let v)? = _storage._event {return v}
-      return Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View()
+      return Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View()
     }
     set {_uniqueStorage()._event = .view(newValue)}
   }
 
   /// Sections: Action.
-  public var action: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action {
+  public var action: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action {
     get {
       if case .action(let v)? = _storage._event {return v}
-      return Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action()
+      return Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action()
     }
     set {_uniqueStorage()._event = .action(newValue)}
   }
 
   /// Users: Action.
-  public var userAction: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action {
+  public var userAction: Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action {
     get {
       if case .userAction(let v)? = _storage._event {return v}
-      return Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action()
+      return Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action()
     }
     set {_uniqueStorage()._event = .userAction(newValue)}
   }
 
   /// Search: Query.
-  public var searchQuery: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query {
+  public var searchQuery: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query {
     get {
       if case .searchQuery(let v)? = _storage._event {return v}
-      return Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query()
+      return Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query()
     }
     set {_uniqueStorage()._event = .searchQuery(newValue)}
   }
 
   /// Search: Result.
-  public var searchResult: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result {
+  public var searchResult: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result {
     get {
       if case .searchResult(let v)? = _storage._event {return v}
-      return Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result()
+      return Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result()
     }
     set {_uniqueStorage()._event = .searchResult(newValue)}
   }
@@ -157,24 +157,24 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
   /// Event data payload.
   public enum OneOf_Event: Equatable {
     /// Generic: Event.
-    case generic(Bloombox_Schema_Analytics_Generic_Event)
+    case generic(Bloombox_Analytics_Generic_Event)
     /// Generic: Exception.
-    case error(Bloombox_Schema_Analytics_Generic_Exception)
+    case error(Bloombox_Analytics_Generic_Exception)
     /// Sections: Impression.
-    case impression(Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression)
+    case impression(Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression)
     /// Sections: View.
-    case view(Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View)
+    case view(Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View)
     /// Sections: Action.
-    case action(Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action)
+    case action(Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action)
     /// Users: Action.
-    case userAction(Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action)
+    case userAction(Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action)
     /// Search: Query.
-    case searchQuery(Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query)
+    case searchQuery(Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query)
     /// Search: Result.
-    case searchResult(Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result)
+    case searchResult(Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event) -> Bool {
+    public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event, rhs: Bloombox_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event) -> Bool {
       switch (lhs, rhs) {
       case (.generic(let l), .generic(let r)): return l == r
       case (.error(let l), .error(let r)): return l == r
@@ -197,9 +197,9 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.services.telemetry.v1beta4"
+fileprivate let _protobuf_package = "bloombox.services.telemetry.v1beta4"
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TelemetryEvent"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
@@ -222,10 +222,10 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
     var _uuid: String = String()
     var _parent: String = String()
     var _internal: Bool = false
-    var _timing: Bloombox_Schema_Analytics_EventPosition? = nil
-    var _context: Bloombox_Schema_Analytics_Context? = nil
-    var _actors: Bloombox_Schema_Analytics_EventActors? = nil
-    var _event: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event?
+    var _timing: Bloombox_Analytics_EventPosition? = nil
+    var _context: Bloombox_Analytics_Context? = nil
+    var _actors: Bloombox_Analytics_EventActors? = nil
+    var _event: Bloombox_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event?
 
     static let defaultInstance = _StorageClass()
 
@@ -261,7 +261,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
         case 5: try decoder.decodeSingularMessageField(value: &_storage._context)
         case 6: try decoder.decodeSingularMessageField(value: &_storage._actors)
         case 10:
-          var v: Bloombox_Schema_Analytics_Generic_Event?
+          var v: Bloombox_Analytics_Generic_Event?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .generic(let m) = current {v = m}
@@ -269,7 +269,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .generic(v)}
         case 11:
-          var v: Bloombox_Schema_Analytics_Generic_Exception?
+          var v: Bloombox_Analytics_Generic_Exception?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .error(let m) = current {v = m}
@@ -277,7 +277,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .error(v)}
         case 20:
-          var v: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression?
+          var v: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .impression(let m) = current {v = m}
@@ -285,7 +285,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .impression(v)}
         case 21:
-          var v: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View?
+          var v: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .view(let m) = current {v = m}
@@ -293,7 +293,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .view(v)}
         case 22:
-          var v: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action?
+          var v: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .action(let m) = current {v = m}
@@ -301,7 +301,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .action(v)}
         case 30:
-          var v: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action?
+          var v: Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .userAction(let m) = current {v = m}
@@ -309,7 +309,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .userAction(v)}
         case 31:
-          var v: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query?
+          var v: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .searchQuery(let m) = current {v = m}
@@ -317,7 +317,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .searchQuery(v)}
         case 32:
-          var v: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result?
+          var v: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .searchResult(let m) = current {v = m}
@@ -373,7 +373,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryEvent) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_TelemetryEvent, rhs: Bloombox_Services_Telemetry_V1beta4_TelemetryEvent) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -32,6 +32,7 @@ public final class Services: ClientLogic {
     self.menu = MenuClient(settings: settings)
     self.pos = PointOfSaleClient(settings: settings)
     self.platform = PlatformClient(settings: settings)
+    self.identity = IdentityClient(settings: settings)
   }
 
   /// Holds a reference to each supported remote service.
@@ -43,7 +44,8 @@ public final class Services: ClientLogic {
       menu,
       pos,
       devices,
-      platform
+      platform,
+      identity
     ]
   }
 
@@ -85,4 +87,8 @@ public final class Services: ClientLogic {
   /// Platform service. Provides methods that resolve basic info, map info to other info, and so on. Healthchecks and
   /// cloud platform pings happen here, too.
   public let platform: PlatformClient
+
+  /// Identity service. Provides methods that resolve public key material, or identifying key ownership information,
+  /// given an opaque keypair ID or cryptographic fingerprint of a public key.
+  public let identity: IdentityClient
 }

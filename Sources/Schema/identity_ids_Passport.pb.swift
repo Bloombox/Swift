@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Reference to a nation-issued passport document.
-public struct Bloombox_Schema_Identity_Ids_PassportReference {
+public struct Bloombox_Identity_Ids_PassportReference {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -43,7 +43,7 @@ public struct Bloombox_Schema_Identity_Ids_PassportReference {
 }
 
 /// Specifies a model for a nation-state-issued passport.
-public struct Bloombox_Schema_Identity_Ids_Passport {
+public struct Bloombox_Identity_Ids_Passport {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -61,9 +61,9 @@ public struct Bloombox_Schema_Identity_Ids_Passport {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity.ids"
+fileprivate let _protobuf_package = "bloombox.identity.ids"
 
-extension Bloombox_Schema_Identity_Ids_PassportReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_Ids_PassportReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PassportReference"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "nation"),
@@ -95,7 +95,7 @@ extension Bloombox_Schema_Identity_Ids_PassportReference: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_Ids_PassportReference, rhs: Bloombox_Schema_Identity_Ids_PassportReference) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_Ids_PassportReference, rhs: Bloombox_Identity_Ids_PassportReference) -> Bool {
     if lhs.nation != rhs.nation {return false}
     if lhs.idNumber != rhs.idNumber {return false}
     if lhs.barcode != rhs.barcode {return false}
@@ -104,7 +104,7 @@ extension Bloombox_Schema_Identity_Ids_PassportReference: SwiftProtobuf.Message,
   }
 }
 
-extension Bloombox_Schema_Identity_Ids_Passport: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_Ids_Passport: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Passport"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "barcode"),
@@ -131,7 +131,7 @@ extension Bloombox_Schema_Identity_Ids_Passport: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_Ids_Passport, rhs: Bloombox_Schema_Identity_Ids_Passport) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_Ids_Passport, rhs: Bloombox_Identity_Ids_Passport) -> Bool {
     if lhs.barcode != rhs.barcode {return false}
     if lhs.nation != rhs.nation {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

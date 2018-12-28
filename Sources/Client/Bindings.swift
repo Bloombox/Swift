@@ -32,203 +32,211 @@ public typealias LocationCode = String
 //// Auth Service
 
 /// Binding to the active AuthService.
-public typealias AuthService = Bloombox_Schema_Services_Auth_V1beta1_AuthServiceClient
-public typealias AuthError = Bloombox_Schema_Services_Auth_V1beta1_AuthError
-public typealias AuthProvider = Bloombox_Schema_Services_Auth_V1beta1_AuthProvider
-public typealias EmailPasswordAssertion = Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion
-public typealias FirebaseTokenAssertion = Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion
-public typealias AccountAssertion = Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion
+public typealias AuthService = Bloombox_Services_Auth_V1beta1_AuthServiceClient
+public typealias AuthError = Bloombox_Services_Auth_V1beta1_AuthError
+public typealias EmailPasswordAssertion = Bloombox_Services_Auth_V1beta1_EmailPasswordAssertion
+public typealias FirebaseTokenAssertion = Bloombox_Services_Auth_V1beta1_FirebaseTokenAssertion
+public typealias AccountAssertion = Bloombox_Services_Auth_V1beta1_AccountAssertion
 
 /// Method: `nonce`
-public typealias AuthNonce = Bloombox_Schema_Services_Auth_V1beta1_AuthNonce
-public typealias AuthNonceCall = Bloombox_Schema_Services_Auth_V1beta1_AuthNonceCall
+public typealias AuthNonce = Bloombox_Services_Auth_V1beta1_AuthNonce
+public typealias AuthNonceCall = Bloombox_Services_Auth_V1beta1_AuthNonceCall
 
 /// Method: `authenticate`
-public typealias AuthenticateUser = Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser
-public typealias AuthenticateUserCall = Bloombox_Schema_Services_Auth_V1beta1_AuthAuthenticateCall
+public typealias AuthenticateUser = Bloombox_Services_Auth_V1beta1_AuthenticateUser
+public typealias AuthenticateUserCall = Bloombox_Services_Auth_V1beta1_AuthAuthenticateCall
 
 /// Method: `connect`
-public typealias IdentityConnect = Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect
-public typealias IdentityConnectCall = Bloombox_Schema_Services_Auth_V1beta1_AuthConnectCall
+public typealias IdentityConnect = Bloombox_Services_Auth_V1beta1_IdentityConnect
+public typealias IdentityConnectCall = Bloombox_Services_Auth_V1beta1_AuthConnectCall
 
 /// Method: `profile`
-public typealias GetProfile = Bloombox_Schema_Services_Auth_V1beta1_GetProfile
-public typealias GetProfileCall = Bloombox_Schema_Services_Auth_V1beta1_AuthProfileCall
+public typealias GetProfile = Bloombox_Services_Auth_V1beta1_GetProfile
+public typealias GetProfileCall = Bloombox_Services_Auth_V1beta1_AuthProfileCall
+
+
+//// Identity Service
+
+/// Binding to the active IdentityService.
+public typealias IdentityService = Bloombox_Services_Identity_V1beta1_IdentityServiceClient
+public typealias IdentityError = Bloombox_Services_Identity_V1beta1_IdentityError
+public typealias ResolveKey = Bloombox_Services_Identity_V1beta1_ResolveKey
+public typealias KeyOwnership = Bloombox_Services_Identity_V1beta1_KeyOwnership
+public typealias ResolveKeyCall = Bloombox_Services_Identity_V1beta1_IdentityKeyResolveCall
 
 
 //// Platform Service
 
 /// Binding to the active PlatformService.
-public typealias PlatformService = Bloombox_Schema_Services_Platform_V1_PlatformServiceClient
-public typealias PlatformError = Bloombox_Schema_Services_Platform_V1_PlatformError
-public typealias PlatformServiceStatus = Bloombox_Schema_Services_Platform_V1_PlatformServiceStatus
+public typealias PlatformService = Bloombox_Services_Platform_V1_PlatformServiceClient
+public typealias PlatformError = Bloombox_Services_Platform_V1_PlatformError
+public typealias PlatformServiceStatus = Bloombox_Services_Platform_V1_PlatformServiceStatus
 
 /// Method: `ping`.
-public typealias PlatformPing = Bloombox_Schema_Services_Platform_V1_Ping
-public typealias PlatformPingCall = Bloombox_Schema_Services_Platform_V1_PlatformPingCall
+public typealias PlatformPing = Bloombox_Services_Platform_V1_Ping
+public typealias PlatformPingCall = Bloombox_Services_Platform_V1_PlatformPingCall
 
 /// Method: `health`.
-public typealias Healthcheck = Bloombox_Schema_Services_Platform_V1_Healthcheck
-public typealias HealthcheckCall = Bloombox_Schema_Services_Platform_V1_PlatformHealthCall
+public typealias Healthcheck = Bloombox_Services_Platform_V1_Healthcheck
+public typealias HealthcheckCall = Bloombox_Services_Platform_V1_PlatformHealthCall
 
 /// Method: `resolve`.
-public typealias ResolveDomains = Bloombox_Schema_Services_Platform_V1_DomainResolve
-public typealias ResolveDomainsCall = Bloombox_Schema_Services_Platform_V1_PlatformResolveCall
+public typealias ResolveDomains = Bloombox_Services_Platform_V1_DomainResolve
+public typealias ResolveDomainsCall = Bloombox_Services_Platform_V1_PlatformResolveCall
 
 /// Method: `domains`.
-public typealias DomainInfo = Bloombox_Schema_Services_Platform_V1_DomainInfo
-public typealias DomainInfoCall = Bloombox_Schema_Services_Platform_V1_PlatformDomainsCall
+public typealias DomainInfo = Bloombox_Services_Platform_V1_DomainInfo
+public typealias DomainInfoCall = Bloombox_Services_Platform_V1_PlatformDomainsCall
 
 /// Method: `brand`.
-public typealias BrandInfo = Bloombox_Schema_Services_Platform_V1_BrandInfo
-public typealias BrandInfoCall = Bloombox_Schema_Services_Platform_V1_PlatformBrandCall
+public typealias BrandInfo = Bloombox_Services_Platform_V1_BrandInfo
+public typealias BrandInfoCall = Bloombox_Services_Platform_V1_PlatformBrandCall
 
 
 //// Devices Service
 
 /// Binding to the active DevicesService.
-public typealias DevicesService = Bloombox_Schema_Services_Devices_V1beta1_DevicesServiceClient
-public typealias DeviceError = Bloombox_Schema_Services_Devices_V1beta1_DeviceError
+public typealias DevicesService = Bloombox_Services_Devices_V1beta1_DevicesServiceClient
+public typealias DeviceError = Bloombox_Services_Devices_V1beta1_DeviceError
 
 /// Method: `ping`.
-public typealias DevicesPing = Bloombox_Schema_Services_Devices_V1beta1_Ping
-public typealias DevicesPingCall = Bloombox_Schema_Services_Devices_V1beta1_DevicesPingCall
+public typealias DevicesPing = Bloombox_Services_Devices_V1beta1_Ping
+public typealias DevicesPingCall = Bloombox_Services_Devices_V1beta1_DevicesPingCall
 
 /// Method: `activate`.
-public typealias DeviceActivation = Bloombox_Schema_Services_Devices_V1beta1_Activation
-public typealias DeviceActivateCall = Bloombox_Schema_Services_Devices_V1beta1_DevicesActivateCall
+public typealias DeviceActivation = Bloombox_Services_Devices_V1beta1_Activation
+public typealias DeviceActivateCall = Bloombox_Services_Devices_V1beta1_DevicesActivateCall
 
 
 //// POS Service
 
 /// Binding to the active Point-of-Sale service.
-public typealias PointOfSaleService = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleServiceClient
+public typealias PointOfSaleService = Bloombox_Services_Pos_V1beta1_PointOfSaleServiceClient
 
 /// Error Types
-public typealias POSError = Bloombox_Schema_Services_Pos_V1beta1_POSError
+public typealias POSError = Bloombox_Services_Pos_V1beta1_POSError
 
 /// Object Types
-public typealias OpenSession = Bloombox_Schema_Services_Pos_V1beta1_OpenSession
-public typealias OpenSessionCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenCall
-public typealias RegisterSessionToken = Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken
-public typealias CashRegisterSession = Bloombox_Schema_Services_Pos_V1beta1_CashRegisterSession
-public typealias SessionToken = Bloombox_Schema_Services_Pos_V1beta1_RegisterSessionToken
-public typealias SessionTokenGrant = Bloombox_Schema_Services_Pos_V1beta1_SessionTokenGrant
-public typealias InventoryStreamEvent = Bloombox_Schema_Services_Pos_V1beta1_InventoryStreamEvent
+public typealias OpenSession = Bloombox_Services_Pos_V1beta1_OpenSession
+public typealias OpenSessionCall = Bloombox_Services_Pos_V1beta1_PointOfSaleSessionOpenCall
+public typealias RegisterSessionToken = Bloombox_Services_Pos_V1beta1_RegisterSessionToken
+public typealias CashRegisterSession = Bloombox_Services_Pos_V1beta1_CashRegisterSession
+public typealias SessionToken = Bloombox_Services_Pos_V1beta1_RegisterSessionToken
+public typealias SessionTokenGrant = Bloombox_Services_Pos_V1beta1_SessionTokenGrant
+public typealias InventoryStreamEvent = Bloombox_Services_Pos_V1beta1_InventoryStreamEvent
 
 /// Method `authorize`.
-public typealias POSAuthorize = Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser
-public typealias POSAuthorizeCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeCall
+public typealias POSAuthorize = Bloombox_Services_Pos_V1beta1_AuthorizeUser
+public typealias POSAuthorizeCall = Bloombox_Services_Pos_V1beta1_PointOfSaleAuthorizeCall
 
 /// Method `openTicket`.
-public typealias POSOpenTicket = Bloombox_Schema_Services_Pos_V1beta1_OpenTicket
-public typealias POSOpenTicketCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenCall
+public typealias POSOpenTicket = Bloombox_Services_Pos_V1beta1_OpenTicket
+public typealias POSOpenTicketCall = Bloombox_Services_Pos_V1beta1_PointOfSaleTicketOpenCall
 
 /// Method `loadTicket`.
-public typealias POSLoadTicket = Bloombox_Schema_Services_Pos_V1beta1_LoadTicket
-public typealias POSLoadTicketCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadCall
+public typealias POSLoadTicket = Bloombox_Services_Pos_V1beta1_LoadTicket
+public typealias POSLoadTicketCall = Bloombox_Services_Pos_V1beta1_PointOfSaleTicketLoadCall
 
 /// Method `saveTicket`.
-public typealias POSSaveTicket = Bloombox_Schema_Services_Pos_V1beta1_SaveTicket
-public typealias POSSaveTicketCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveCall
+public typealias POSSaveTicket = Bloombox_Services_Pos_V1beta1_SaveTicket
+public typealias POSSaveTicketCall = Bloombox_Services_Pos_V1beta1_PointOfSaleTicketSaveCall
 
 /// Method `claimTicket`.
-public typealias POSClaimTicket = Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket
-public typealias POSClaimTicketCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimCall
+public typealias POSClaimTicket = Bloombox_Services_Pos_V1beta1_ClaimTicket
+public typealias POSClaimTicketCall = Bloombox_Services_Pos_V1beta1_PointOfSaleTicketClaimCall
 
 /// Method `cloneTicket`.
-public typealias POSCloneTicket = Bloombox_Schema_Services_Pos_V1beta1_CloneTicket
-public typealias POSCloneTicketCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneCall
+public typealias POSCloneTicket = Bloombox_Services_Pos_V1beta1_CloneTicket
+public typealias POSCloneTicketCall = Bloombox_Services_Pos_V1beta1_PointOfSaleTicketCloneCall
 
 /// Method `voidTicket`.
-public typealias POSVoidTicket = Bloombox_Schema_Services_Pos_V1beta1_VoidTicket
-public typealias POSVoidTicketCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidCall
+public typealias POSVoidTicket = Bloombox_Services_Pos_V1beta1_VoidTicket
+public typealias POSVoidTicketCall = Bloombox_Services_Pos_V1beta1_PointOfSaleTicketVoidCall
 
 /// Method `finalizeTicket`.
-public typealias POSFinalizeTicket = Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket
-public typealias POSFinalizeTicketCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCall
+public typealias POSFinalizeTicket = Bloombox_Services_Pos_V1beta1_FinalizeTicket
+public typealias POSFinalizeTicketCall = Bloombox_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCall
 
 /// Method `memberSearch`.
-public typealias POSMemberSearch = Bloombox_Schema_Services_Pos_V1beta1_MemberSearch
-public typealias POSMemberSearchCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersCall
+public typealias POSMemberSearch = Bloombox_Services_Pos_V1beta1_MemberSearch
+public typealias POSMemberSearchCall = Bloombox_Services_Pos_V1beta1_PointOfSaleSearchMembersCall
 
 /// Method `inventoryRetrieve`.
-public typealias POSInventoryQuery = Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery
-public typealias POSInventoryQueryCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCall
+public typealias POSInventoryQuery = Bloombox_Services_Pos_V1beta1_InventoryQuery
+public typealias POSInventoryQueryCall = Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCall
 
 /// Method `inventoryStream`.
-public typealias POSInventoryStream = Bloombox_Schema_Services_Pos_V1beta1_InventoryStream
-public typealias POSInventoryStreamCall = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall
-public typealias POSInventoryStreamSession = Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamSession
+public typealias POSInventoryStream = Bloombox_Services_Pos_V1beta1_InventoryStream
+public typealias POSInventoryStreamCall = Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall
 
 
 //// Shop Service
 
 /// Binding to the active ShopService.
-public typealias ShopService = Bloombox_Schema_Services_Shop_V1_ShopServiceClient
+public typealias ShopService = Bloombox_Services_Shop_V1_ShopServiceClient
 
 /// Error Types
-public typealias VerifyError = Bloombox_Schema_Services_Shop_V1_VerifyError
-public typealias EnrollmentError = Bloombox_Schema_Services_Shop_V1_EnrollmentError
+public typealias VerifyError = Bloombox_Services_Shop_V1_VerifyError
+public typealias EnrollmentError = Bloombox_Services_Shop_V1_EnrollmentError
 
 /// Method `ping`.
-public typealias ShopPing = Bloombox_Schema_Services_Shop_V1_Ping
-public typealias ShopPingCall = Bloombox_Schema_Services_Shop_V1_ShopPingCall
+public typealias ShopPing = Bloombox_Services_Shop_V1_Ping
+public typealias ShopPingCall = Bloombox_Services_Shop_V1_ShopPingCall
 
 /// Method: `shopInfo`.
-public typealias ShopInfo = Bloombox_Schema_Services_Shop_V1_ShopInfo
-public typealias ShopInfoCall = Bloombox_Schema_Services_Shop_V1_ShopShopInfoCall
+public typealias ShopInfo = Bloombox_Services_Shop_V1_ShopInfo
+public typealias ShopInfoCall = Bloombox_Services_Shop_V1_ShopShopInfoCall
 
 /// Method: `checkZipcode`.
-public typealias CheckZipcode = Bloombox_Schema_Services_Shop_V1_CheckZipcode
-public typealias CheckZipcodeCall = Bloombox_Schema_Services_Shop_V1_ShopCheckZipcodeCall
+public typealias CheckZipcode = Bloombox_Services_Shop_V1_CheckZipcode
+public typealias CheckZipcodeCall = Bloombox_Services_Shop_V1_ShopCheckZipcodeCall
 
 /// Method: `verifyMember`.
-public typealias VerifyMember = Bloombox_Schema_Services_Shop_V1_VerifyMember
-public typealias VerifyMemberCall = Bloombox_Schema_Services_Shop_V1_ShopVerifyMemberCall
+public typealias VerifyMember = Bloombox_Services_Shop_V1_VerifyMember
+public typealias VerifyMemberCall = Bloombox_Services_Shop_V1_ShopVerifyMemberCall
 
 /// Method: `enrollMember`.
-public typealias EnrollMember = Bloombox_Schema_Services_Shop_V1_EnrollMember
-public typealias EnrollMemberCall = Bloombox_Schema_Services_Shop_V1_ShopEnrollMemberCall
+public typealias EnrollMember = Bloombox_Services_Shop_V1_EnrollMember
+public typealias EnrollMemberCall = Bloombox_Services_Shop_V1_ShopEnrollMemberCall
 
 /// Method: `getOrder`.
-public typealias GetOrder = Bloombox_Schema_Services_Shop_V1_GetOrder
-public typealias GetOrderCall = Bloombox_Schema_Services_Shop_V1_ShopGetOrderCall
+public typealias GetOrder = Bloombox_Services_Shop_V1_GetOrder
+public typealias GetOrderCall = Bloombox_Services_Shop_V1_ShopGetOrderCall
 
 /// Method: `submitOrder`.
-public typealias SubmitOrder = Bloombox_Schema_Services_Shop_V1_SubmitOrder
-public typealias SubmitOrderCall = Bloombox_Schema_Services_Shop_V1_ShopSubmitOrderCall
+public typealias SubmitOrder = Bloombox_Services_Shop_V1_SubmitOrder
+public typealias SubmitOrderCall = Bloombox_Services_Shop_V1_ShopSubmitOrderCall
 
 
 //// Telemetry Service
 
 /// Binding to the active EventTelemetryService.
-public typealias EventTelemetry = Bloombox_Schema_Services_Telemetry_V1beta4_EventTelemetryServiceClient
+public typealias EventTelemetry = Bloombox_Services_Telemetry_V1beta4_EventTelemetryServiceClient
 
 /// Method: `ping`.
-public typealias TelemetryPing = Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing
-public typealias TelemetryPingCall = Bloombox_Schema_Services_Telemetry_V1beta4_EventTelemetryPingCall
+public typealias TelemetryPing = Bloombox_Services_Telemetry_V1beta4_TelemetryPing
+public typealias TelemetryPingCall = Bloombox_Services_Telemetry_V1beta4_EventTelemetryPingCall
 
 /// Method: `event`.
-public typealias TelemetryEvent = Bloombox_Schema_Services_Telemetry_V1beta4_Event
-public typealias TelemetryEventCall = Bloombox_Schema_Services_Telemetry_V1beta4_EventTelemetryEventCall
+public typealias TelemetryEvent = Bloombox_Services_Telemetry_V1beta4_Event
+public typealias TelemetryEventCall = Bloombox_Services_Telemetry_V1beta4_EventTelemetryEventCall
 
 /// Method: `batch`.
-public typealias TelemetryEventBatch = Bloombox_Schema_Services_Telemetry_V1beta4_Event.Batch
-public typealias TelemetryEventBatchRequest = Bloombox_Schema_Services_Telemetry_V1beta4_Event.BatchRequest
+public typealias TelemetryEventBatch = Bloombox_Services_Telemetry_V1beta4_Event.Batch
+public typealias TelemetryEventBatchRequest = Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest
 
 /// Method: `error`.
-public typealias TelemetryException = Bloombox_Schema_Services_Telemetry_V1beta4_Exception
+public typealias TelemetryException = Bloombox_Services_Telemetry_V1beta4_Exception
 
 
 //// Menu Service
 
 /// Binding to the active MenuService.
-public typealias MenuService = Bloombox_Schema_Services_Menu_V1beta1_MenuServiceClient
+public typealias MenuService = Bloombox_Services_Menu_V1beta1_MenuServiceClient
 
 /// Method: `retrieve`.
-public typealias GetMenu = Bloombox_Schema_Services_Menu_V1beta1_GetMenu
-public typealias GetMenuCall = Bloombox_Schema_Services_Menu_V1beta1_MenuRetrieveCall
+public typealias GetMenu = Bloombox_Services_Menu_V1beta1_GetMenu
+public typealias GetMenuCall = Bloombox_Services_Menu_V1beta1_MenuRetrieveCall
 
 
 //// Generic
@@ -238,31 +246,44 @@ public typealias Language = Opencannabis_Base_Language
 public typealias Compression = Opencannabis_Base_Compression
 public typealias Color = Opencannabis_Content_Color
 public typealias ColorScheme = Opencannabis_Content_ColorScheme
-public typealias Hash = Opencannabis_Crypto_Primitives_Integrity_Hash
-public typealias Keypair = Opencannabis_Crypto_Primitives_Pki_Keypair
-public typealias KeyMaterial = Opencannabis_Crypto_Primitives_Pki_KeyMaterial
-public typealias KeyingScheme = Opencannabis_Crypto_Primitives_Pki_KeyingScheme
-public typealias KeyParameters = Opencannabis_Crypto_Primitives_Pki_KeyParameters
-public typealias AuthToken = Bloombox_Schema_Security_AuthToken
-public typealias IdentityToken = Bloombox_Schema_Security_IdentityToken
-public typealias IdentityTokenIssuer = Bloombox_Schema_Security_IdentityTokenIssuer
-public typealias User = Bloombox_Schema_Identity_User
-public typealias UserKey = Bloombox_Schema_Identity_UserKey
-public typealias PartnerKey = Bloombox_Schema_Partner_PartnerKey
-public typealias PartnerDeviceKey = Bloombox_Schema_Partner_PartnerDeviceKey
-public typealias LocationKey = Bloombox_Schema_Partner_LocationKey
-public typealias Event = Bloombox_Schema_Services_Telemetry_V1beta4_Event
-public typealias GenericEvent = Bloombox_Schema_Analytics_Generic_Event
-public typealias AnalyticsContext = Bloombox_Schema_Analytics_Context
-public typealias AnalyticsScope = Bloombox_Schema_Analytics_Scope
-public typealias AnalyticsCollection = Bloombox_Schema_Analytics_Context_Collection
-public typealias TelemetryResponse = Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse
-public typealias LibraryContext = Bloombox_Schema_Analytics_Context_DeviceLibrary
-public typealias ApplicationContext = Bloombox_Schema_Analytics_Context_DeviceApplication
-public typealias NativeDeviceContext = Bloombox_Schema_Analytics_Context_NativeDeviceContext
-public typealias DeviceApplication = Bloombox_Schema_Analytics_Context_DeviceApplication
-public typealias APIClient = Bloombox_Schema_Analytics_Context_APIClient
-public typealias EventType = Bloombox_Schema_Analytics_Context_EventType
+public typealias Hash = Opencannabis_Crypto_Hash
+public typealias HashAlgorithm = Opencannabis_Crypto_HashAlgorithm
+public typealias Keypair = Opencannabis_Crypto_Keypair
+public typealias KeyMaterial = Opencannabis_Crypto_KeyMaterial
+public typealias KeyingScheme = Opencannabis_Crypto_KeyingScheme
+public typealias KeyParameters = Opencannabis_Crypto_KeyParameters
+public typealias KeyType = Opencannabis_Crypto_KeyType
+public typealias BlockMode = Opencannabis_Crypto_BlockMode
+public typealias KeyAgreement = Opencannabis_Crypto_KeyAgreement
+public typealias HashedData = Opencannabis_Crypto_HashedData
+public typealias Signature = Opencannabis_Crypto_Signature
+public typealias StreamCipher = Opencannabis_Crypto_StreamCipher
+public typealias SymmetricKey = Opencannabis_Crypto_SymmetricKey
+public typealias KeyDisposition = Opencannabis_Crypto_KeyDisposition
+public typealias InitializationVector = Opencannabis_Crypto_InitializationVector
+public typealias EncryptedData = Opencannabis_Crypto_EncryptedData
+public typealias BlockCipher = Opencannabis_Crypto_BlockCipher
+public typealias BlockCipherParameters = Opencannabis_Crypto_BlockCipherParameters
+public typealias AuthToken = Bloombox_Security_AuthToken
+public typealias IdentityToken = Bloombox_Security_IdentityToken
+public typealias IdentityTokenIssuer = Bloombox_Security_IdentityTokenIssuer
+public typealias User = Bloombox_Identity_User
+public typealias UserKey = Bloombox_Identity_UserKey
+public typealias PartnerKey = Bloombox_Partner_PartnerKey
+public typealias PartnerDeviceKey = Bloombox_Partner_PartnerDeviceKey
+public typealias LocationKey = Bloombox_Partner_LocationKey
+public typealias Event = Bloombox_Services_Telemetry_V1beta4_Event
+public typealias GenericEvent = Bloombox_Analytics_Generic_Event
+public typealias AnalyticsContext = Bloombox_Analytics_Context
+public typealias AnalyticsScope = Bloombox_Analytics_Scope
+public typealias AnalyticsCollection = Bloombox_Analytics_Context_Collection
+public typealias TelemetryResponse = Bloombox_Services_Telemetry_V1beta4_TelemetryResponse
+public typealias LibraryContext = Bloombox_Analytics_Context_DeviceLibrary
+public typealias ApplicationContext = Bloombox_Analytics_Context_DeviceApplication
+public typealias NativeDeviceContext = Bloombox_Analytics_Context_NativeDeviceContext
+public typealias DeviceApplication = Bloombox_Analytics_Context_DeviceApplication
+public typealias APIClient = Bloombox_Analytics_Context_APIClient
+public typealias EventType = Bloombox_Analytics_Context_EventType
 public typealias Order = Opencannabis_Commerce_Order
 public typealias OrderKey = Opencannabis_Commerce_OrderKey
 public typealias ProductVariant = Opencannabis_Commerce_ProductVariant
@@ -290,10 +311,10 @@ public typealias DistributionChannel = Opencannabis_Products_Distribution_Channe
 public typealias DistributionChannelType = Opencannabis_Products_Distribution_ChannelType
 public typealias FiatCurrency = Opencannabis_Commerce_FiatCurrency
 public typealias CurrencyValue = Opencannabis_Commerce_CurrencyValue
-public typealias POSHardware = Opencannabis_Commerce_POSHardware
-public typealias SessionStatus = Opencannabis_Commerce_SessionStatus
-public typealias POSDeviceStatus = Opencannabis_Commerce_POSDeviceStatus
-public typealias PointOfSaleState = Opencannabis_Commerce_PointOfSaleState
+public typealias POSHardware = Bloombox_Pos_POSHardware
+public typealias SessionStatus = Bloombox_Pos_SessionStatus
+public typealias POSDeviceStatus = Bloombox_Pos_POSDeviceStatus
+public typealias PointOfSaleState = Bloombox_Pos_PointOfSaleState
 public typealias Flower = Opencannabis_Products_Flower
 public typealias Edible = Opencannabis_Products_Edible
 public typealias EdibleType = Opencannabis_Products_EdibleType
@@ -324,14 +345,14 @@ public typealias InventoryCoordinates = Opencannabis_Inventory_InventoryCoordina
 public typealias InventoryLocationKey = Opencannabis_Inventory_InventoryLocationKey
 public typealias InventoryLocationType = Opencannabis_Inventory_InventoryLocationType
 public typealias PurchaseKey = Opencannabis_Commerce_PurchaseKey
-public typealias PurchaseTicket = Opencannabis_Commerce_PurchaseTicket
+public typealias PurchaseTicket = Bloombox_Pos_PurchaseTicket
 public typealias PurchaseStatus = Opencannabis_Commerce_PurchaseStatus
 public typealias PurchaseTimestamps = Opencannabis_Commerce_PurchaseTimestamps
 public typealias PurchaseFacilitator = Opencannabis_Commerce_PurchaseFacilitator
 public typealias PurchaseCustomer = Opencannabis_Commerce_PurchaseCustomer
 public typealias BillOfCharges = Opencannabis_Commerce_BillOfCharges
-public typealias StaffUser = Bloombox_Schema_Identity_StaffUser
-public typealias MessagingAuth = Bloombox_Schema_Services_Pos_V1beta1_MessagingAuth
+public typealias StaffUser = Bloombox_Identity_StaffUser
+public typealias MessagingAuth = Bloombox_Services_Pos_V1beta1_MessagingAuth
 public typealias PricingWeightTier = Opencannabis_Structs_Pricing_PricingWeightTier
 public typealias PricingTierAvailability = Opencannabis_Structs_Pricing_PricingTierAvailability
 public typealias PricingType = Opencannabis_Structs_Pricing_PricingType
@@ -380,16 +401,16 @@ public typealias MediaOrientation = Opencannabis_Media_MediaOrientation
 public typealias PersonName = Opencannabis_Person_Name
 public typealias PhoneNumber = Opencannabis_Contact_PhoneNumber
 public typealias EmailAddress = Opencannabis_Contact_EmailAddress
-public typealias Passport = Bloombox_Schema_Identity_Ids_Passport
-public typealias ID = Bloombox_Schema_Identity_ID
-public typealias IDType = Bloombox_Schema_Identity_IDType
-public typealias USDL = Bloombox_Schema_Identity_Ids_USDL
-public typealias USDLField = Bloombox_Schema_Identity_Ids_USDLField
+public typealias Passport = Bloombox_Identity_Ids_Passport
+public typealias ID = Bloombox_Identity_ID
+public typealias IDType = Bloombox_Identity_IDType
+public typealias USDL = Bloombox_Identity_Ids_USDL
+public typealias USDLField = Bloombox_Identity_Ids_USDLField
 public typealias TemporalDate = Opencannabis_Temporal_Date
-public typealias USDLFieldValue = Bloombox_Schema_Identity_Ids_USDLFieldValue
+public typealias USDLFieldValue = Bloombox_Identity_Ids_USDLFieldValue
 
 @available(*, deprecated)
-public typealias PartnerLocationKey = Bloombox_Schema_Partner_LocationKey
+public typealias PartnerLocationKey = Bloombox_Partner_LocationKey
 
 //// Protobuf Types
 public typealias Empty = Google_Protobuf_Empty

@@ -25,7 +25,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Settings for users with specific regard to their dashboard, industry-side, i.e. when they are on the clock or
 /// otherwise working on behalf of a partner/location account, rather than a consumer.
-public struct Bloombox_Schema_Identity_Industry_DashboardStaffSettings {
+public struct Bloombox_Identity_Industry_DashboardStaffSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -37,9 +37,9 @@ public struct Bloombox_Schema_Identity_Industry_DashboardStaffSettings {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity.industry"
+fileprivate let _protobuf_package = "bloombox.identity.industry"
 
-extension Bloombox_Schema_Identity_Industry_DashboardStaffSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_Industry_DashboardStaffSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DashboardStaffSettings"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -52,7 +52,7 @@ extension Bloombox_Schema_Identity_Industry_DashboardStaffSettings: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_Industry_DashboardStaffSettings, rhs: Bloombox_Schema_Identity_Industry_DashboardStaffSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_Industry_DashboardStaffSettings, rhs: Bloombox_Identity_Industry_DashboardStaffSettings) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

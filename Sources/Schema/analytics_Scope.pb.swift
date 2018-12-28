@@ -22,7 +22,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 /// Specifies scope options applied to an event, including its "partner scope," (or the partner/location/device under
 /// which the event was logged), and its "commercial scope," (indicating the section/item/order involved in an event
 /// transaction), among others.
-public struct Bloombox_Schema_Analytics_Scope {
+public struct Bloombox_Analytics_Scope {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -45,9 +45,9 @@ public struct Bloombox_Schema_Analytics_Scope {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics"
+fileprivate let _protobuf_package = "bloombox.analytics"
 
-extension Bloombox_Schema_Analytics_Scope: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Scope: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Scope"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
@@ -79,7 +79,7 @@ extension Bloombox_Schema_Analytics_Scope: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Scope, rhs: Bloombox_Schema_Analytics_Scope) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Scope, rhs: Bloombox_Analytics_Scope) -> Bool {
     if lhs.partner != rhs.partner {return false}
     if lhs.commercial != rhs.commercial {return false}
     if lhs.order != rhs.order {return false}

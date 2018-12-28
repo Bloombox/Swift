@@ -26,7 +26,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Enumerates roles that may be granted, on behalf of a partner or partner location account, to an end-user account, by
 /// a location or partner admin.
-public enum Bloombox_Schema_Security_Access_PartnerRole: SwiftProtobuf.Enum {
+public enum Bloombox_Security_Access_PartnerRole: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Read-only permission for the specified scope.
@@ -85,9 +85,9 @@ public enum Bloombox_Schema_Security_Access_PartnerRole: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Security_Access_PartnerRole: CaseIterable {
+extension Bloombox_Security_Access_PartnerRole: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Security_Access_PartnerRole] = [
+  public static var allCases: [Bloombox_Security_Access_PartnerRole] = [
     .readonly,
     .supervisor,
     .billing,
@@ -102,7 +102,7 @@ extension Bloombox_Schema_Security_Access_PartnerRole: CaseIterable {
 
 /// Specifies the subject account for a given access policy. The subject "account," in this case, is the partner or
 /// partner location for which right are being specified.
-public struct Bloombox_Schema_Security_Access_AccessSubject {
+public struct Bloombox_Security_Access_AccessSubject {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -114,19 +114,19 @@ public struct Bloombox_Schema_Security_Access_AccessSubject {
   }
 
   /// Partner-level access scope.
-  public var partner: Bloombox_Schema_Partner_PartnerKey {
+  public var partner: Bloombox_Partner_PartnerKey {
     get {
       if case .partner(let v)? = _storage._account {return v}
-      return Bloombox_Schema_Partner_PartnerKey()
+      return Bloombox_Partner_PartnerKey()
     }
     set {_uniqueStorage()._account = .partner(newValue)}
   }
 
   /// Partner location-level access scope.
-  public var location: Bloombox_Schema_Partner_LocationKey {
+  public var location: Bloombox_Partner_LocationKey {
     get {
       if case .location(let v)? = _storage._account {return v}
-      return Bloombox_Schema_Partner_LocationKey()
+      return Bloombox_Partner_LocationKey()
     }
     set {_uniqueStorage()._account = .location(newValue)}
   }
@@ -136,12 +136,12 @@ public struct Bloombox_Schema_Security_Access_AccessSubject {
   /// Specifies the subject account (partner or location) for this rights subject payload.
   public enum OneOf_Account: Equatable {
     /// Partner-level access scope.
-    case partner(Bloombox_Schema_Partner_PartnerKey)
+    case partner(Bloombox_Partner_PartnerKey)
     /// Partner location-level access scope.
-    case location(Bloombox_Schema_Partner_LocationKey)
+    case location(Bloombox_Partner_LocationKey)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Security_Access_AccessSubject.OneOf_Account, rhs: Bloombox_Schema_Security_Access_AccessSubject.OneOf_Account) -> Bool {
+    public static func ==(lhs: Bloombox_Security_Access_AccessSubject.OneOf_Account, rhs: Bloombox_Security_Access_AccessSubject.OneOf_Account) -> Bool {
       switch (lhs, rhs) {
       case (.partner(let l), .partner(let r)): return l == r
       case (.location(let l), .location(let r)): return l == r
@@ -158,7 +158,7 @@ public struct Bloombox_Schema_Security_Access_AccessSubject {
 
 /// Specifies a policy that grants access to a given security subject (a user or a domain) for a given resource (a kind
 /// of data, login access at all, etc).
-public struct Bloombox_Schema_Security_Access_AccessPolicy {
+public struct Bloombox_Security_Access_AccessPolicy {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -170,8 +170,8 @@ public struct Bloombox_Schema_Security_Access_AccessPolicy {
   }
 
   /// Partner account or location that we are specifying access rights for.
-  public var subject: Bloombox_Schema_Security_Access_AccessSubject {
-    get {return _storage._subject ?? Bloombox_Schema_Security_Access_AccessSubject()}
+  public var subject: Bloombox_Security_Access_AccessSubject {
+    get {return _storage._subject ?? Bloombox_Security_Access_AccessSubject()}
     set {_uniqueStorage()._subject = newValue}
   }
   /// Returns true if `subject` has been explicitly set.
@@ -180,14 +180,14 @@ public struct Bloombox_Schema_Security_Access_AccessPolicy {
   public mutating func clearSubject() {_uniqueStorage()._subject = nil}
 
   /// Roles granted as part of this policy.
-  public var privilege: [Bloombox_Schema_Security_Access_PartnerRole] {
+  public var privilege: [Bloombox_Security_Access_PartnerRole] {
     get {return _storage._privilege}
     set {_uniqueStorage()._privilege = newValue}
   }
 
   /// User being granted rights as part of this policy.
-  public var user: Bloombox_Schema_Identity_UserKey {
-    get {return _storage._user ?? Bloombox_Schema_Identity_UserKey()}
+  public var user: Bloombox_Identity_UserKey {
+    get {return _storage._user ?? Bloombox_Identity_UserKey()}
     set {_uniqueStorage()._user = newValue}
   }
   /// Returns true if `user` has been explicitly set.
@@ -196,8 +196,8 @@ public struct Bloombox_Schema_Security_Access_AccessPolicy {
   public mutating func clearUser() {_uniqueStorage()._user = nil}
 
   /// Permissions grantor.
-  public var grantor: Bloombox_Schema_Identity_UserKey {
-    get {return _storage._grantor ?? Bloombox_Schema_Identity_UserKey()}
+  public var grantor: Bloombox_Identity_UserKey {
+    get {return _storage._grantor ?? Bloombox_Identity_UserKey()}
     set {_uniqueStorage()._grantor = newValue}
   }
   /// Returns true if `grantor` has been explicitly set.
@@ -234,9 +234,9 @@ public struct Bloombox_Schema_Security_Access_AccessPolicy {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.security.access"
+fileprivate let _protobuf_package = "bloombox.security.access"
 
-extension Bloombox_Schema_Security_Access_PartnerRole: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_Access_PartnerRole: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "READONLY"),
     1: .same(proto: "SUPERVISOR"),
@@ -248,7 +248,7 @@ extension Bloombox_Schema_Security_Access_PartnerRole: SwiftProtobuf._ProtoNameP
   ]
 }
 
-extension Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_Access_AccessSubject: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AccessSubject"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     10: .same(proto: "partner"),
@@ -256,7 +256,7 @@ extension Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Message, 
   ]
 
   fileprivate class _StorageClass {
-    var _account: Bloombox_Schema_Security_Access_AccessSubject.OneOf_Account?
+    var _account: Bloombox_Security_Access_AccessSubject.OneOf_Account?
 
     static let defaultInstance = _StorageClass()
 
@@ -280,7 +280,7 @@ extension Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Message, 
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 10:
-          var v: Bloombox_Schema_Partner_PartnerKey?
+          var v: Bloombox_Partner_PartnerKey?
           if let current = _storage._account {
             try decoder.handleConflictingOneOf()
             if case .partner(let m) = current {v = m}
@@ -288,7 +288,7 @@ extension Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Message, 
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._account = .partner(v)}
         case 20:
-          var v: Bloombox_Schema_Partner_LocationKey?
+          var v: Bloombox_Partner_LocationKey?
           if let current = _storage._account {
             try decoder.handleConflictingOneOf()
             if case .location(let m) = current {v = m}
@@ -314,7 +314,7 @@ extension Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Security_Access_AccessSubject, rhs: Bloombox_Schema_Security_Access_AccessSubject) -> Bool {
+  public static func ==(lhs: Bloombox_Security_Access_AccessSubject, rhs: Bloombox_Security_Access_AccessSubject) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -329,7 +329,7 @@ extension Bloombox_Schema_Security_Access_AccessSubject: SwiftProtobuf.Message, 
   }
 }
 
-extension Bloombox_Schema_Security_Access_AccessPolicy: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_Access_AccessPolicy: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AccessPolicy"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
@@ -343,10 +343,10 @@ extension Bloombox_Schema_Security_Access_AccessPolicy: SwiftProtobuf.Message, S
 
   fileprivate class _StorageClass {
     var _uuid: String = String()
-    var _subject: Bloombox_Schema_Security_Access_AccessSubject? = nil
-    var _privilege: [Bloombox_Schema_Security_Access_PartnerRole] = []
-    var _user: Bloombox_Schema_Identity_UserKey? = nil
-    var _grantor: Bloombox_Schema_Identity_UserKey? = nil
+    var _subject: Bloombox_Security_Access_AccessSubject? = nil
+    var _privilege: [Bloombox_Security_Access_PartnerRole] = []
+    var _user: Bloombox_Identity_UserKey? = nil
+    var _grantor: Bloombox_Identity_UserKey? = nil
     var _modified: Opencannabis_Temporal_Instant? = nil
     var _created: Opencannabis_Temporal_Instant? = nil
 
@@ -417,7 +417,7 @@ extension Bloombox_Schema_Security_Access_AccessPolicy: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Security_Access_AccessPolicy, rhs: Bloombox_Schema_Security_Access_AccessPolicy) -> Bool {
+  public static func ==(lhs: Bloombox_Security_Access_AccessPolicy, rhs: Bloombox_Security_Access_AccessPolicy) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

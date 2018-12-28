@@ -21,7 +21,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Specifies a device context where code is running natively. This is most applicable to native mobile applications and
 /// server applications.
-public enum Bloombox_Schema_Analytics_Context_OSType: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Context_OSType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies that the OS is unknown or not applicable in this circumstance.
@@ -95,9 +95,9 @@ public enum Bloombox_Schema_Analytics_Context_OSType: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Context_OSType: CaseIterable {
+extension Bloombox_Analytics_Context_OSType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Context_OSType] = [
+  public static var allCases: [Bloombox_Analytics_Context_OSType] = [
     .osUnknown,
     .iOs,
     .macOs,
@@ -114,13 +114,13 @@ extension Bloombox_Schema_Analytics_Context_OSType: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Structure describing a device's operating system, including type and version.
-public struct Bloombox_Schema_Analytics_Context_DeviceOS {
+public struct Bloombox_Analytics_Context_DeviceOS {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Type of Operating System being expressed or specified.
-  public var type: Bloombox_Schema_Analytics_Context_OSType {
+  public var type: Bloombox_Analytics_Context_OSType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
@@ -144,9 +144,9 @@ public struct Bloombox_Schema_Analytics_Context_DeviceOS {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
+fileprivate let _protobuf_package = "bloombox.analytics.context"
 
-extension Bloombox_Schema_Analytics_Context_OSType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_OSType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "OS_UNKNOWN"),
     4: .same(proto: "WINDOWS"),
@@ -161,7 +161,7 @@ extension Bloombox_Schema_Analytics_Context_OSType: SwiftProtobuf._ProtoNameProv
   ]
 }
 
-extension Bloombox_Schema_Analytics_Context_DeviceOS: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_DeviceOS: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeviceOS"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
@@ -169,7 +169,7 @@ extension Bloombox_Schema_Analytics_Context_DeviceOS: SwiftProtobuf.Message, Swi
   ]
 
   fileprivate class _StorageClass {
-    var _type: Bloombox_Schema_Analytics_Context_OSType = .osUnknown
+    var _type: Bloombox_Analytics_Context_OSType = .osUnknown
     var _version: Opencannabis_Structs_VersionSpec? = nil
 
     static let defaultInstance = _StorageClass()
@@ -214,7 +214,7 @@ extension Bloombox_Schema_Analytics_Context_DeviceOS: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Context_DeviceOS, rhs: Bloombox_Schema_Analytics_Context_DeviceOS) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Context_DeviceOS, rhs: Bloombox_Analytics_Context_DeviceOS) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

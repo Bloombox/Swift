@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a product that matched a search.
-public struct Bloombox_Schema_Search_ProductSearchResult {
+public struct Bloombox_Search_ProductSearchResult {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -46,14 +46,14 @@ public struct Bloombox_Schema_Search_ProductSearchResult {
 }
 
 /// Specifies a user or user profile that matched a search.
-public struct Bloombox_Schema_Search_UserSearchResult {
+public struct Bloombox_Search_UserSearchResult {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// User profile key.
-  public var key: Bloombox_Schema_Identity_UserKey {
-    get {return _storage._key ?? Bloombox_Schema_Identity_UserKey()}
+  public var key: Bloombox_Identity_UserKey {
+    get {return _storage._key ?? Bloombox_Identity_UserKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -62,8 +62,8 @@ public struct Bloombox_Schema_Search_UserSearchResult {
   public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// User profile record.
-  public var user: Bloombox_Schema_Identity_User {
-    get {return _storage._user ?? Bloombox_Schema_Identity_User()}
+  public var user: Bloombox_Identity_User {
+    get {return _storage._user ?? Bloombox_Identity_User()}
     set {_uniqueStorage()._user = newValue}
   }
   /// Returns true if `user` has been explicitly set.
@@ -79,7 +79,7 @@ public struct Bloombox_Schema_Search_UserSearchResult {
 }
 
 /// Specifies a partner or partner location profile that matched a search.
-public struct Bloombox_Schema_Search_PartnerSearchResult {
+public struct Bloombox_Search_PartnerSearchResult {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -94,7 +94,7 @@ public struct Bloombox_Schema_Search_PartnerSearchResult {
 }
 
 /// Specifies an individual matching result to a search operation, regardless of type.
-public struct Bloombox_Schema_Search_SearchResult {
+public struct Bloombox_Search_SearchResult {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -128,28 +128,28 @@ public struct Bloombox_Schema_Search_SearchResult {
   }
 
   /// Resulting data that is a catalog product.
-  public var product: Bloombox_Schema_Search_ProductSearchResult {
+  public var product: Bloombox_Search_ProductSearchResult {
     get {
       if case .product(let v)? = _storage._result {return v}
-      return Bloombox_Schema_Search_ProductSearchResult()
+      return Bloombox_Search_ProductSearchResult()
     }
     set {_uniqueStorage()._result = .product(newValue)}
   }
 
   /// Resulting data that is a user or user profile.
-  public var profile: Bloombox_Schema_Search_UserSearchResult {
+  public var profile: Bloombox_Search_UserSearchResult {
     get {
       if case .profile(let v)? = _storage._result {return v}
-      return Bloombox_Schema_Search_UserSearchResult()
+      return Bloombox_Search_UserSearchResult()
     }
     set {_uniqueStorage()._result = .profile(newValue)}
   }
 
   /// Resulting data that is a partner or partner location profile.
-  public var partner: Bloombox_Schema_Search_PartnerSearchResult {
+  public var partner: Bloombox_Search_PartnerSearchResult {
     get {
       if case .partner(let v)? = _storage._result {return v}
-      return Bloombox_Schema_Search_PartnerSearchResult()
+      return Bloombox_Search_PartnerSearchResult()
     }
     set {_uniqueStorage()._result = .partner(newValue)}
   }
@@ -159,14 +159,14 @@ public struct Bloombox_Schema_Search_SearchResult {
   /// Result data, according to its categorical type.
   public enum OneOf_Result: Equatable {
     /// Resulting data that is a catalog product.
-    case product(Bloombox_Schema_Search_ProductSearchResult)
+    case product(Bloombox_Search_ProductSearchResult)
     /// Resulting data that is a user or user profile.
-    case profile(Bloombox_Schema_Search_UserSearchResult)
+    case profile(Bloombox_Search_UserSearchResult)
     /// Resulting data that is a partner or partner location profile.
-    case partner(Bloombox_Schema_Search_PartnerSearchResult)
+    case partner(Bloombox_Search_PartnerSearchResult)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Search_SearchResult.OneOf_Result, rhs: Bloombox_Schema_Search_SearchResult.OneOf_Result) -> Bool {
+    public static func ==(lhs: Bloombox_Search_SearchResult.OneOf_Result, rhs: Bloombox_Search_SearchResult.OneOf_Result) -> Bool {
       switch (lhs, rhs) {
       case (.product(let l), .product(let r)): return l == r
       case (.profile(let l), .profile(let r)): return l == r
@@ -184,9 +184,9 @@ public struct Bloombox_Schema_Search_SearchResult {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.search"
+fileprivate let _protobuf_package = "bloombox.search"
 
-extension Bloombox_Schema_Search_ProductSearchResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Search_ProductSearchResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ProductSearchResult"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "item"),
@@ -232,7 +232,7 @@ extension Bloombox_Schema_Search_ProductSearchResult: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Search_ProductSearchResult, rhs: Bloombox_Schema_Search_ProductSearchResult) -> Bool {
+  public static func ==(lhs: Bloombox_Search_ProductSearchResult, rhs: Bloombox_Search_ProductSearchResult) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -247,7 +247,7 @@ extension Bloombox_Schema_Search_ProductSearchResult: SwiftProtobuf.Message, Swi
   }
 }
 
-extension Bloombox_Schema_Search_UserSearchResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Search_UserSearchResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UserSearchResult"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -255,8 +255,8 @@ extension Bloombox_Schema_Search_UserSearchResult: SwiftProtobuf.Message, SwiftP
   ]
 
   fileprivate class _StorageClass {
-    var _key: Bloombox_Schema_Identity_UserKey? = nil
-    var _user: Bloombox_Schema_Identity_User? = nil
+    var _key: Bloombox_Identity_UserKey? = nil
+    var _user: Bloombox_Identity_User? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -300,7 +300,7 @@ extension Bloombox_Schema_Search_UserSearchResult: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Search_UserSearchResult, rhs: Bloombox_Schema_Search_UserSearchResult) -> Bool {
+  public static func ==(lhs: Bloombox_Search_UserSearchResult, rhs: Bloombox_Search_UserSearchResult) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -316,7 +316,7 @@ extension Bloombox_Schema_Search_UserSearchResult: SwiftProtobuf.Message, SwiftP
   }
 }
 
-extension Bloombox_Schema_Search_PartnerSearchResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Search_PartnerSearchResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerSearchResult"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
@@ -338,14 +338,14 @@ extension Bloombox_Schema_Search_PartnerSearchResult: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Search_PartnerSearchResult, rhs: Bloombox_Schema_Search_PartnerSearchResult) -> Bool {
+  public static func ==(lhs: Bloombox_Search_PartnerSearchResult, rhs: Bloombox_Search_PartnerSearchResult) -> Bool {
     if lhs.scope != rhs.scope {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Search_SearchResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Search_SearchResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SearchResult"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "rank"),
@@ -360,7 +360,7 @@ extension Bloombox_Schema_Search_SearchResult: SwiftProtobuf.Message, SwiftProto
     var _rank: UInt32 = 0
     var _relevance: Double = 0
     var _fields: SwiftProtobuf.Google_Protobuf_FieldMask? = nil
-    var _result: Bloombox_Schema_Search_SearchResult.OneOf_Result?
+    var _result: Bloombox_Search_SearchResult.OneOf_Result?
 
     static let defaultInstance = _StorageClass()
 
@@ -390,7 +390,7 @@ extension Bloombox_Schema_Search_SearchResult: SwiftProtobuf.Message, SwiftProto
         case 2: try decoder.decodeSingularDoubleField(value: &_storage._relevance)
         case 3: try decoder.decodeSingularMessageField(value: &_storage._fields)
         case 10:
-          var v: Bloombox_Schema_Search_ProductSearchResult?
+          var v: Bloombox_Search_ProductSearchResult?
           if let current = _storage._result {
             try decoder.handleConflictingOneOf()
             if case .product(let m) = current {v = m}
@@ -398,7 +398,7 @@ extension Bloombox_Schema_Search_SearchResult: SwiftProtobuf.Message, SwiftProto
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._result = .product(v)}
         case 11:
-          var v: Bloombox_Schema_Search_UserSearchResult?
+          var v: Bloombox_Search_UserSearchResult?
           if let current = _storage._result {
             try decoder.handleConflictingOneOf()
             if case .profile(let m) = current {v = m}
@@ -406,7 +406,7 @@ extension Bloombox_Schema_Search_SearchResult: SwiftProtobuf.Message, SwiftProto
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._result = .profile(v)}
         case 12:
-          var v: Bloombox_Schema_Search_PartnerSearchResult?
+          var v: Bloombox_Search_PartnerSearchResult?
           if let current = _storage._result {
             try decoder.handleConflictingOneOf()
             if case .partner(let m) = current {v = m}
@@ -443,7 +443,7 @@ extension Bloombox_Schema_Search_SearchResult: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Search_SearchResult, rhs: Bloombox_Schema_Search_SearchResult) -> Bool {
+  public static func ==(lhs: Bloombox_Search_SearchResult, rhs: Bloombox_Search_SearchResult) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

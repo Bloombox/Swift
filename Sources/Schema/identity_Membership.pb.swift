@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the temporal position of various events related to a user's membership with a particular partner location.
-public struct Bloombox_Schema_Identity_MembershipTimestamps {
+public struct Bloombox_Identity_MembershipTimestamps {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -67,14 +67,14 @@ public struct Bloombox_Schema_Identity_MembershipTimestamps {
 }
 
 /// Represents a user's membership within a given Bloombox partner organization or partner location.
-public struct Bloombox_Schema_Identity_Membership {
+public struct Bloombox_Identity_Membership {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies a unique key identifying this user membership.
-  public var key: Bloombox_Schema_Identity_MembershipKey {
-    get {return _storage._key ?? Bloombox_Schema_Identity_MembershipKey()}
+  public var key: Bloombox_Identity_MembershipKey {
+    get {return _storage._key ?? Bloombox_Identity_MembershipKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -83,8 +83,8 @@ public struct Bloombox_Schema_Identity_Membership {
   public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Specifies when various events occurred in the lifecycle of this user membership.
-  public var ts: Bloombox_Schema_Identity_MembershipTimestamps {
-    get {return _storage._ts ?? Bloombox_Schema_Identity_MembershipTimestamps()}
+  public var ts: Bloombox_Identity_MembershipTimestamps {
+    get {return _storage._ts ?? Bloombox_Identity_MembershipTimestamps()}
     set {_uniqueStorage()._ts = newValue}
   }
   /// Returns true if `ts` has been explicitly set.
@@ -101,9 +101,9 @@ public struct Bloombox_Schema_Identity_Membership {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity"
+fileprivate let _protobuf_package = "bloombox.identity"
 
-extension Bloombox_Schema_Identity_MembershipTimestamps: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_MembershipTimestamps: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MembershipTimestamps"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "established"),
@@ -163,7 +163,7 @@ extension Bloombox_Schema_Identity_MembershipTimestamps: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_MembershipTimestamps, rhs: Bloombox_Schema_Identity_MembershipTimestamps) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_MembershipTimestamps, rhs: Bloombox_Identity_MembershipTimestamps) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -180,7 +180,7 @@ extension Bloombox_Schema_Identity_MembershipTimestamps: SwiftProtobuf.Message, 
   }
 }
 
-extension Bloombox_Schema_Identity_Membership: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_Membership: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Membership"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -188,8 +188,8 @@ extension Bloombox_Schema_Identity_Membership: SwiftProtobuf.Message, SwiftProto
   ]
 
   fileprivate class _StorageClass {
-    var _key: Bloombox_Schema_Identity_MembershipKey? = nil
-    var _ts: Bloombox_Schema_Identity_MembershipTimestamps? = nil
+    var _key: Bloombox_Identity_MembershipKey? = nil
+    var _ts: Bloombox_Identity_MembershipTimestamps? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -233,7 +233,7 @@ extension Bloombox_Schema_Identity_Membership: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_Membership, rhs: Bloombox_Schema_Identity_Membership) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_Membership, rhs: Bloombox_Identity_Membership) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -58,7 +58,8 @@ internal struct Transport {
       media: ProductionMedia(),
       pos: ProductionPOS(),
       platform: ProductionPlatform(),
-      checkin: ProductionCheckin())
+      checkin: ProductionCheckin(),
+      identity: ProductionIdentity())
   }
 
   /// Staging transport profile.
@@ -73,7 +74,8 @@ internal struct Transport {
       media: ProductionMedia(),
       pos: ProductionPOS(),
       platform: ProductionPlatform(),
-      checkin: ProductionCheckin())
+      checkin: ProductionCheckin(),
+      identity: ProductionIdentity())
   }
   #endif
 
@@ -89,7 +91,8 @@ internal struct Transport {
       media: ProductionMedia(),
       pos: ProductionPOS(),
       platform: ProductionPlatform(),
-      checkin: ProductionCheckin())
+      checkin: ProductionCheckin(),
+      identity: ProductionIdentity())
   }
 }
 
@@ -125,6 +128,17 @@ internal enum TransportEnvironment {
       return __production
     #endif
   }
+}
+
+/// Production identity service settings.
+internal struct ProductionIdentity: RPCServiceSettings {
+    let secure = true
+    let host = "api.bloombox.cloud"
+    let port = 443
+    let hostname: String? = "api.bloombox.cloud"
+    let chain: String? = authorityChain
+    let cert: String? = nil
+    let key: String? = nil
 }
 
 /// Production devices service settings.
@@ -278,6 +292,7 @@ internal struct RPCServicesConfig: ServiceSettings {
   let pos: RPCServiceSettings
   let platform: RPCServiceSettings
   let checkin: RPCServiceSettings
+  let identity: RPCServiceSettings
 }
 
 /// Specifies a structure for a block of settings for an individual RPC service.
@@ -301,6 +316,7 @@ internal protocol ServiceSettings {
   var auth: RPCServiceSettings { get }
   var platform: RPCServiceSettings { get }
   var checkin: RPCServiceSettings { get }
+  var identity: RPCServiceSettings { get }
 }
 
 // MARK: Data Services
