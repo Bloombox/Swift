@@ -299,6 +299,7 @@ public typealias Shelf = Opencannabis_Structs_Shelf
 public typealias ProductKey = Opencannabis_Base_ProductKey
 public typealias ProductKind = Opencannabis_Base_ProductKind
 public typealias Content = Opencannabis_Content_Content
+public typealias Encoding = Opencannabis_Content_Encoding
 public typealias Brand = Opencannabis_Content_Brand
 public typealias BrandAsset = Opencannabis_Content_BrandAsset
 public typealias Name = Opencannabis_Content_Name
