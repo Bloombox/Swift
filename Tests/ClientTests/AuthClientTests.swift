@@ -17,7 +17,7 @@ internal final class AuthClientTests: XCTestCase {
     ("testAuthConnectInvalidApiKey", testAuthConnectInvalidApiKey),
     ("testAuthNonce", testAuthNonce),
     ("testAuthNonceAsync", testAuthNonceAsync),
-//    ("testGetProfile", testGetProfile),
+    ("testGetProfile", testGetProfile),
     ("testGetProfileNotFound", testGetProfileNotFound),
     ("testGetProfileNotFoundAsync", testGetProfileNotFoundAsync)
   ]
@@ -114,10 +114,10 @@ internal final class AuthClientTests: XCTestCase {
   }
 
   // MARK: - Profile Retrieve
-//  func testGetProfile() throws {
-//    let user = try ClientTools.client().auth.profile(forUser: testUser)
-//    assert(!user.uid.isEmpty, "should be able to find user and person data")
-//  }
+  func testGetProfile() throws {
+    let user = try ClientTools.client().auth.profile(forUser: testUser)
+    assert(!user.uid.isEmpty, "should be able to find user and person data")
+  }
 
   func testGetProfileNotFoundAsync() throws {
     let expectation = XCTestExpectation(description: "Fetch profile async")
