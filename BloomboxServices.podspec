@@ -22,7 +22,7 @@ the Bloombox client library for Swift.
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.10"
+  #s.osx.deployment_target = "10.10"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.source       = { :git => "https://github.com/bloombox/Swift.git", :tag => "#{s.version}" }
