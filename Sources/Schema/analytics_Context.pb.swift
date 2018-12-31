@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Indicates temporal positioning - or, the "when" - for a telemetry event, post-ingest.
-public struct Bloombox_Schema_Analytics_EventPosition {
+public struct Bloombox_Analytics_EventPosition {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -65,14 +65,14 @@ public struct Bloombox_Schema_Analytics_EventPosition {
 }
 
 /// Specifies full, inflated data records for contextually-related objects, w.r.t. the current event.
-public struct Bloombox_Schema_Analytics_EventActors {
+public struct Bloombox_Analytics_EventActors {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// User account that was logged in when the event was submitted.
-  public var user: Bloombox_Schema_Identity_User {
-    get {return _storage._user ?? Bloombox_Schema_Identity_User()}
+  public var user: Bloombox_Identity_User {
+    get {return _storage._user ?? Bloombox_Identity_User()}
     set {_uniqueStorage()._user = newValue}
   }
   /// Returns true if `user` has been explicitly set.
@@ -81,8 +81,8 @@ public struct Bloombox_Schema_Analytics_EventActors {
   public mutating func clearUser() {_uniqueStorage()._user = nil}
 
   /// Partner account under which the event was submitted.
-  public var partner: Bloombox_Schema_Partner_Partner {
-    get {return _storage._partner ?? Bloombox_Schema_Partner_Partner()}
+  public var partner: Bloombox_Partner_Partner {
+    get {return _storage._partner ?? Bloombox_Partner_Partner()}
     set {_uniqueStorage()._partner = newValue}
   }
   /// Returns true if `partner` has been explicitly set.
@@ -91,8 +91,8 @@ public struct Bloombox_Schema_Analytics_EventActors {
   public mutating func clearPartner() {_uniqueStorage()._partner = nil}
 
   /// Location account under which this event was submitted.
-  public var location: Bloombox_Schema_Partner_PartnerLocation {
-    get {return _storage._location ?? Bloombox_Schema_Partner_PartnerLocation()}
+  public var location: Bloombox_Partner_PartnerLocation {
+    get {return _storage._location ?? Bloombox_Partner_PartnerLocation()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -108,14 +108,14 @@ public struct Bloombox_Schema_Analytics_EventActors {
 }
 
 /// Specifies contextual metadata to include with events or exceptions recorded via analytics/telemetry ingest.
-public struct Bloombox_Schema_Analytics_Context {
+public struct Bloombox_Analytics_Context {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Collection information, specifies event type or category.
-  public var collection: Bloombox_Schema_Analytics_Context_Collection {
-    get {return _storage._collection ?? Bloombox_Schema_Analytics_Context_Collection()}
+  public var collection: Bloombox_Analytics_Context_Collection {
+    get {return _storage._collection ?? Bloombox_Analytics_Context_Collection()}
     set {_uniqueStorage()._collection = newValue}
   }
   /// Returns true if `collection` has been explicitly set.
@@ -124,8 +124,8 @@ public struct Bloombox_Schema_Analytics_Context {
   public mutating func clearCollection() {_uniqueStorage()._collection = nil}
 
   /// Specifies the user associated with this event, if known.
-  public var userKey: Bloombox_Schema_Identity_UserKey {
-    get {return _storage._userKey ?? Bloombox_Schema_Identity_UserKey()}
+  public var userKey: Bloombox_Identity_UserKey {
+    get {return _storage._userKey ?? Bloombox_Identity_UserKey()}
     set {_uniqueStorage()._userKey = newValue}
   }
   /// Returns true if `userKey` has been explicitly set.
@@ -159,8 +159,8 @@ public struct Bloombox_Schema_Analytics_Context {
   }
 
   /// Partner and commercial scope of this event.
-  public var scope: Bloombox_Schema_Analytics_Scope {
-    get {return _storage._scope ?? Bloombox_Schema_Analytics_Scope()}
+  public var scope: Bloombox_Analytics_Scope {
+    get {return _storage._scope ?? Bloombox_Analytics_Scope()}
     set {_uniqueStorage()._scope = newValue}
   }
   /// Returns true if `scope` has been explicitly set.
@@ -169,8 +169,8 @@ public struct Bloombox_Schema_Analytics_Context {
   public mutating func clearScope() {_uniqueStorage()._scope = nil}
 
   /// Application version information.
-  public var app: Bloombox_Schema_Analytics_Context_DeviceApplication {
-    get {return _storage._app ?? Bloombox_Schema_Analytics_Context_DeviceApplication()}
+  public var app: Bloombox_Analytics_Context_DeviceApplication {
+    get {return _storage._app ?? Bloombox_Analytics_Context_DeviceApplication()}
     set {_uniqueStorage()._app = newValue}
   }
   /// Returns true if `app` has been explicitly set.
@@ -179,8 +179,8 @@ public struct Bloombox_Schema_Analytics_Context {
   public mutating func clearApp() {_uniqueStorage()._app = nil}
 
   /// Library version information.
-  public var library: Bloombox_Schema_Analytics_Context_DeviceLibrary {
-    get {return _storage._library ?? Bloombox_Schema_Analytics_Context_DeviceLibrary()}
+  public var library: Bloombox_Analytics_Context_DeviceLibrary {
+    get {return _storage._library ?? Bloombox_Analytics_Context_DeviceLibrary()}
     set {_uniqueStorage()._library = newValue}
   }
   /// Returns true if `library` has been explicitly set.
@@ -190,8 +190,8 @@ public struct Bloombox_Schema_Analytics_Context {
 
   /// Specifies information about a native device, when the event is being sent from a native context of some kind,
   /// such as a mobile phone application or embedded device running partner code.
-  public var native: Bloombox_Schema_Analytics_Context_NativeDeviceContext {
-    get {return _storage._native ?? Bloombox_Schema_Analytics_Context_NativeDeviceContext()}
+  public var native: Bloombox_Analytics_Context_NativeDeviceContext {
+    get {return _storage._native ?? Bloombox_Analytics_Context_NativeDeviceContext()}
     set {_uniqueStorage()._native = newValue}
   }
   /// Returns true if `native` has been explicitly set.
@@ -200,8 +200,8 @@ public struct Bloombox_Schema_Analytics_Context {
   public mutating func clearNative() {_uniqueStorage()._native = nil}
 
   /// Specifies information about a web browser, when the event is being sent from some kind of web browsing context.
-  public var browser: Bloombox_Schema_Analytics_Context_BrowserDeviceContext {
-    get {return _storage._browser ?? Bloombox_Schema_Analytics_Context_BrowserDeviceContext()}
+  public var browser: Bloombox_Analytics_Context_BrowserDeviceContext {
+    get {return _storage._browser ?? Bloombox_Analytics_Context_BrowserDeviceContext()}
     set {_uniqueStorage()._browser = newValue}
   }
   /// Returns true if `browser` has been explicitly set.
@@ -228,9 +228,9 @@ public struct Bloombox_Schema_Analytics_Context {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics"
+fileprivate let _protobuf_package = "bloombox.analytics"
 
-extension Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_EventPosition: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EventPosition"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .same(proto: "ingest"),
@@ -297,7 +297,7 @@ extension Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_EventPosition, rhs: Bloombox_Schema_Analytics_EventPosition) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_EventPosition, rhs: Bloombox_Analytics_EventPosition) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -315,7 +315,7 @@ extension Bloombox_Schema_Analytics_EventPosition: SwiftProtobuf.Message, SwiftP
   }
 }
 
-extension Bloombox_Schema_Analytics_EventActors: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_EventActors: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EventActors"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "user"),
@@ -324,9 +324,9 @@ extension Bloombox_Schema_Analytics_EventActors: SwiftProtobuf.Message, SwiftPro
   ]
 
   fileprivate class _StorageClass {
-    var _user: Bloombox_Schema_Identity_User? = nil
-    var _partner: Bloombox_Schema_Partner_Partner? = nil
-    var _location: Bloombox_Schema_Partner_PartnerLocation? = nil
+    var _user: Bloombox_Identity_User? = nil
+    var _partner: Bloombox_Partner_Partner? = nil
+    var _location: Bloombox_Partner_PartnerLocation? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -375,7 +375,7 @@ extension Bloombox_Schema_Analytics_EventActors: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_EventActors, rhs: Bloombox_Schema_Analytics_EventActors) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_EventActors, rhs: Bloombox_Analytics_EventActors) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -392,7 +392,7 @@ extension Bloombox_Schema_Analytics_EventActors: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Context"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "collection"),
@@ -410,17 +410,17 @@ extension Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message, SwiftProtobu
   ]
 
   fileprivate class _StorageClass {
-    var _collection: Bloombox_Schema_Analytics_Context_Collection? = nil
-    var _userKey: Bloombox_Schema_Identity_UserKey? = nil
+    var _collection: Bloombox_Analytics_Context_Collection? = nil
+    var _userKey: Bloombox_Identity_UserKey? = nil
     var _fingerprint: String = String()
     var _group: String = String()
     var _hostname: String = String()
     var _ipAddress: String = String()
-    var _scope: Bloombox_Schema_Analytics_Scope? = nil
-    var _app: Bloombox_Schema_Analytics_Context_DeviceApplication? = nil
-    var _library: Bloombox_Schema_Analytics_Context_DeviceLibrary? = nil
-    var _native: Bloombox_Schema_Analytics_Context_NativeDeviceContext? = nil
-    var _browser: Bloombox_Schema_Analytics_Context_BrowserDeviceContext? = nil
+    var _scope: Bloombox_Analytics_Scope? = nil
+    var _app: Bloombox_Analytics_Context_DeviceApplication? = nil
+    var _library: Bloombox_Analytics_Context_DeviceLibrary? = nil
+    var _native: Bloombox_Analytics_Context_NativeDeviceContext? = nil
+    var _browser: Bloombox_Analytics_Context_BrowserDeviceContext? = nil
     var _location: Opencannabis_Geo_Location? = nil
 
     static let defaultInstance = _StorageClass()
@@ -515,7 +515,7 @@ extension Bloombox_Schema_Analytics_Context: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Context, rhs: Bloombox_Schema_Analytics_Context) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Context, rhs: Bloombox_Analytics_Context) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

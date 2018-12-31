@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates known errors that may be thrown by media operations.
-public enum Bloombox_Schema_Services_Media_V1beta1_MediaError: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Media_V1beta1_MediaError: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// No error was encountered.
@@ -83,9 +83,9 @@ public enum Bloombox_Schema_Services_Media_V1beta1_MediaError: SwiftProtobuf.Enu
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Media_V1beta1_MediaError: CaseIterable {
+extension Bloombox_Services_Media_V1beta1_MediaError: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Media_V1beta1_MediaError] = [
+  public static var allCases: [Bloombox_Services_Media_V1beta1_MediaError] = [
     .noError,
     .partnerInvalid,
     .locationInvalid,
@@ -99,7 +99,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaError: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies a payload containing a media file upload.
-public struct Bloombox_Schema_Services_Media_V1beta1_MediaFile {
+public struct Bloombox_Services_Media_V1beta1_MediaFile {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -116,7 +116,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaFile {
 }
 
 /// Specifies media content uploaded inline via the API, if applicable for a given media upload request.
-public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
+public struct Bloombox_Services_Media_V1beta1_MediaContent {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -139,10 +139,10 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
   }
 
   /// Information about the file being uploaded, including the filename and content mime type.
-  public var file: Bloombox_Schema_Services_Media_V1beta1_MediaFile {
+  public var file: Bloombox_Services_Media_V1beta1_MediaFile {
     get {
       if case .file(let v)? = _storage._spec {return v}
-      return Bloombox_Schema_Services_Media_V1beta1_MediaFile()
+      return Bloombox_Services_Media_V1beta1_MediaFile()
     }
     set {_uniqueStorage()._spec = .file(newValue)}
   }
@@ -178,12 +178,12 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
   /// provided, or a blob flag indicating it's just raw data.
   public enum OneOf_Spec: Equatable {
     /// Information about the file being uploaded, including the filename and content mime type.
-    case file(Bloombox_Schema_Services_Media_V1beta1_MediaFile)
+    case file(Bloombox_Services_Media_V1beta1_MediaFile)
     /// Flag indicating the specified/attached content is a raw data blob.
     case blob(Bool)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaContent.OneOf_Spec, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaContent.OneOf_Spec) -> Bool {
+    public static func ==(lhs: Bloombox_Services_Media_V1beta1_MediaContent.OneOf_Spec, rhs: Bloombox_Services_Media_V1beta1_MediaContent.OneOf_Spec) -> Bool {
       switch (lhs, rhs) {
       case (.file(let l), .file(let r)): return l == r
       case (.blob(let l), .blob(let r)): return l == r
@@ -200,7 +200,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_MediaContent {
 
 /// Specifies a resumeable upload operation, created and authorized in response to a request to upload a new media item
 /// from a web browser.
-public struct Bloombox_Schema_Services_Media_V1beta1_UploadTransaction {
+public struct Bloombox_Services_Media_V1beta1_UploadTransaction {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -229,7 +229,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadTransaction {
 }
 
 /// Media operation result, when data/operations are performed inline with a request and do not require followup.
-public struct Bloombox_Schema_Services_Media_V1beta1_OperationResult {
+public struct Bloombox_Services_Media_V1beta1_OperationResult {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -252,7 +252,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_OperationResult {
 }
 
 /// Specifies an RPC structure and operation to list media items for a given partner/location scope.
-public struct Bloombox_Schema_Services_Media_V1beta1_ListMedia {
+public struct Bloombox_Services_Media_V1beta1_ListMedia {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -292,7 +292,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_ListMedia {
 
 /// Specifies an RPC structure and operation to retrieve an individual media item record, stored under a partner/location
 /// account scope value.
-public struct Bloombox_Schema_Services_Media_V1beta1_GetMedia {
+public struct Bloombox_Services_Media_V1beta1_GetMedia {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -356,7 +356,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_GetMedia {
 
 /// Specifies an RPC operation to upload a new piece of media, provisioning a media item record (and key) along the way.
 /// The resulting key, or an error encountered while attempting to fulfill the operation, is returned.
-public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
+public struct Bloombox_Services_Media_V1beta1_UploadMedia {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -386,8 +386,8 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
     public mutating func clearSubject() {_uniqueStorage()._subject = nil}
 
     /// Inline media content, if applicable to this request.
-    public var content: Bloombox_Schema_Services_Media_V1beta1_MediaContent {
-      get {return _storage._content ?? Bloombox_Schema_Services_Media_V1beta1_MediaContent()}
+    public var content: Bloombox_Services_Media_V1beta1_MediaContent {
+      get {return _storage._content ?? Bloombox_Services_Media_V1beta1_MediaContent()}
       set {_uniqueStorage()._content = newValue}
     }
     /// Returns true if `content` has been explicitly set.
@@ -429,20 +429,20 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
     /// Specifies an upload transaction, created/provisioned in response to the specified media upload request. When
     /// this property is specified, the client is expected to transmit its upload data to the URI target specified in
     /// this payload.
-    public var transaction: Bloombox_Schema_Services_Media_V1beta1_UploadTransaction {
+    public var transaction: Bloombox_Services_Media_V1beta1_UploadTransaction {
       get {
         if case .transaction(let v)? = _storage._operation {return v}
-        return Bloombox_Schema_Services_Media_V1beta1_UploadTransaction()
+        return Bloombox_Services_Media_V1beta1_UploadTransaction()
       }
       set {_uniqueStorage()._operation = .transaction(newValue)}
     }
 
     /// Specifies the result of an upload operation, when data is provided inline, or otherwise, no followup is
     /// required by the client to complete the operation.
-    public var result: Bloombox_Schema_Services_Media_V1beta1_OperationResult {
+    public var result: Bloombox_Services_Media_V1beta1_OperationResult {
       get {
         if case .result(let v)? = _storage._operation {return v}
-        return Bloombox_Schema_Services_Media_V1beta1_OperationResult()
+        return Bloombox_Services_Media_V1beta1_OperationResult()
       }
       set {_uniqueStorage()._operation = .result(newValue)}
     }
@@ -454,13 +454,13 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
       /// Specifies an upload transaction, created/provisioned in response to the specified media upload request. When
       /// this property is specified, the client is expected to transmit its upload data to the URI target specified in
       /// this payload.
-      case transaction(Bloombox_Schema_Services_Media_V1beta1_UploadTransaction)
+      case transaction(Bloombox_Services_Media_V1beta1_UploadTransaction)
       /// Specifies the result of an upload operation, when data is provided inline, or otherwise, no followup is
       /// required by the client to complete the operation.
-      case result(Bloombox_Schema_Services_Media_V1beta1_OperationResult)
+      case result(Bloombox_Services_Media_V1beta1_OperationResult)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response.OneOf_Operation, rhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response.OneOf_Operation) -> Bool {
+      public static func ==(lhs: Bloombox_Services_Media_V1beta1_UploadMedia.Response.OneOf_Operation, rhs: Bloombox_Services_Media_V1beta1_UploadMedia.Response.OneOf_Operation) -> Bool {
         switch (lhs, rhs) {
         case (.transaction(let l), .transaction(let r)): return l == r
         case (.result(let l), .result(let r)): return l == r
@@ -480,7 +480,7 @@ public struct Bloombox_Schema_Services_Media_V1beta1_UploadMedia {
 
 /// Specifies an RPC operation notifying the server that a piece of media has completed uploading, and is ready to be
 /// attached to a given media subject parent.
-public struct Bloombox_Schema_Services_Media_V1beta1_AttachMedia {
+public struct Bloombox_Services_Media_V1beta1_AttachMedia {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -522,9 +522,9 @@ public struct Bloombox_Schema_Services_Media_V1beta1_AttachMedia {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.services.media.v1beta1"
+fileprivate let _protobuf_package = "bloombox.services.media.v1beta1"
 
-extension Bloombox_Schema_Services_Media_V1beta1_MediaError: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Media_V1beta1_MediaError: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_ERROR"),
     1: .same(proto: "PARTNER_INVALID"),
@@ -536,7 +536,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaError: SwiftProtobuf._Prot
   ]
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_MediaFile: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Media_V1beta1_MediaFile: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MediaFile"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "filename"),
@@ -563,7 +563,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaFile: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaFile, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaFile) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_MediaFile, rhs: Bloombox_Services_Media_V1beta1_MediaFile) -> Bool {
     if lhs.filename != rhs.filename {return false}
     if lhs.mimetype != rhs.mimetype {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -571,7 +571,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaFile: SwiftProtobuf.Messag
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MediaContent"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
@@ -583,7 +583,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Mes
 
   fileprivate class _StorageClass {
     var _type: Opencannabis_Media_MediaType? = nil
-    var _spec: Bloombox_Schema_Services_Media_V1beta1_MediaContent.OneOf_Spec?
+    var _spec: Bloombox_Services_Media_V1beta1_MediaContent.OneOf_Spec?
     var _content: Opencannabis_Content_Content? = nil
     var _name: String = String()
 
@@ -613,7 +613,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Mes
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._type)
         case 2:
-          var v: Bloombox_Schema_Services_Media_V1beta1_MediaFile?
+          var v: Bloombox_Services_Media_V1beta1_MediaFile?
           if let current = _storage._spec {
             try decoder.handleConflictingOneOf()
             if case .file(let m) = current {v = m}
@@ -655,7 +655,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_MediaContent, rhs: Bloombox_Schema_Services_Media_V1beta1_MediaContent) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_MediaContent, rhs: Bloombox_Services_Media_V1beta1_MediaContent) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -673,7 +673,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_MediaContent: SwiftProtobuf.Mes
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_UploadTransaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Media_V1beta1_UploadTransaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UploadTransaction"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "target"),
@@ -726,7 +726,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadTransaction: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_UploadTransaction, rhs: Bloombox_Schema_Services_Media_V1beta1_UploadTransaction) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_UploadTransaction, rhs: Bloombox_Services_Media_V1beta1_UploadTransaction) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -742,7 +742,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadTransaction: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Media_V1beta1_OperationResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".OperationResult"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "item"),
@@ -788,7 +788,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_OperationResult, rhs: Bloombox_Schema_Services_Media_V1beta1_OperationResult) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_OperationResult, rhs: Bloombox_Services_Media_V1beta1_OperationResult) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -803,7 +803,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_OperationResult: SwiftProtobuf.
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_ListMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Media_V1beta1_ListMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ListMedia"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -816,14 +816,14 @@ extension Bloombox_Schema_Services_Media_V1beta1_ListMedia: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia, rhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_ListMedia, rhs: Bloombox_Services_Media_V1beta1_ListMedia) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_ListMedia.protoMessageName + ".Request"
+extension Bloombox_Services_Media_V1beta1_ListMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Media_V1beta1_ListMedia.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
   ]
@@ -844,15 +844,15 @@ extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request, rhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_ListMedia.Request, rhs: Bloombox_Services_Media_V1beta1_ListMedia.Request) -> Bool {
     if lhs.scope != rhs.scope {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_ListMedia.protoMessageName + ".Response"
+extension Bloombox_Services_Media_V1beta1_ListMedia.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Media_V1beta1_ListMedia.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "media"),
   ]
@@ -873,14 +873,14 @@ extension Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response, rhs: Bloombox_Schema_Services_Media_V1beta1_ListMedia.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_ListMedia.Response, rhs: Bloombox_Services_Media_V1beta1_ListMedia.Response) -> Bool {
     if lhs.media != rhs.media {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_GetMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Media_V1beta1_GetMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetMedia"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -893,14 +893,14 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia, rhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_GetMedia, rhs: Bloombox_Services_Media_V1beta1_GetMedia) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_GetMedia.protoMessageName + ".Request"
+extension Bloombox_Services_Media_V1beta1_GetMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Media_V1beta1_GetMedia.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "key"),
@@ -952,7 +952,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request, rhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_GetMedia.Request, rhs: Bloombox_Services_Media_V1beta1_GetMedia.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -968,8 +968,8 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Request: SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_GetMedia.protoMessageName + ".Response"
+extension Bloombox_Services_Media_V1beta1_GetMedia.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Media_V1beta1_GetMedia.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "media"),
   ]
@@ -1014,7 +1014,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response, rhs: Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_GetMedia.Response, rhs: Bloombox_Services_Media_V1beta1_GetMedia.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1029,7 +1029,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_GetMedia.Response: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Media_V1beta1_UploadMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UploadMedia"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1042,14 +1042,14 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia, rhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_UploadMedia, rhs: Bloombox_Services_Media_V1beta1_UploadMedia) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_UploadMedia.protoMessageName + ".Request"
+extension Bloombox_Services_Media_V1beta1_UploadMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Media_V1beta1_UploadMedia.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "subject"),
@@ -1061,7 +1061,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProto
   fileprivate class _StorageClass {
     var _scope: String = String()
     var _subject: Opencannabis_Media_MediaSubject? = nil
-    var _content: Bloombox_Schema_Services_Media_V1beta1_MediaContent? = nil
+    var _content: Bloombox_Services_Media_V1beta1_MediaContent? = nil
     var _privacy: Opencannabis_Media_MediaPrivacy = .defaultPrivacy
     var _origin: String = String()
 
@@ -1122,7 +1122,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request, rhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_UploadMedia.Request, rhs: Bloombox_Services_Media_V1beta1_UploadMedia.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1141,15 +1141,15 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Request: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_UploadMedia.protoMessageName + ".Response"
+extension Bloombox_Services_Media_V1beta1_UploadMedia.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Media_V1beta1_UploadMedia.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "transaction"),
     2: .same(proto: "result"),
   ]
 
   fileprivate class _StorageClass {
-    var _operation: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response.OneOf_Operation?
+    var _operation: Bloombox_Services_Media_V1beta1_UploadMedia.Response.OneOf_Operation?
 
     static let defaultInstance = _StorageClass()
 
@@ -1173,7 +1173,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response: SwiftProt
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1:
-          var v: Bloombox_Schema_Services_Media_V1beta1_UploadTransaction?
+          var v: Bloombox_Services_Media_V1beta1_UploadTransaction?
           if let current = _storage._operation {
             try decoder.handleConflictingOneOf()
             if case .transaction(let m) = current {v = m}
@@ -1181,7 +1181,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response: SwiftProt
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._operation = .transaction(v)}
         case 2:
-          var v: Bloombox_Schema_Services_Media_V1beta1_OperationResult?
+          var v: Bloombox_Services_Media_V1beta1_OperationResult?
           if let current = _storage._operation {
             try decoder.handleConflictingOneOf()
             if case .result(let m) = current {v = m}
@@ -1207,7 +1207,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response, rhs: Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_UploadMedia.Response, rhs: Bloombox_Services_Media_V1beta1_UploadMedia.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1222,7 +1222,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_UploadMedia.Response: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_AttachMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Media_V1beta1_AttachMedia: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AttachMedia"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1235,14 +1235,14 @@ extension Bloombox_Schema_Services_Media_V1beta1_AttachMedia: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_AttachMedia, rhs: Bloombox_Schema_Services_Media_V1beta1_AttachMedia) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_AttachMedia, rhs: Bloombox_Services_Media_V1beta1_AttachMedia) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Media_V1beta1_AttachMedia.protoMessageName + ".Request"
+extension Bloombox_Services_Media_V1beta1_AttachMedia.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Media_V1beta1_AttachMedia.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "key"),
@@ -1294,7 +1294,7 @@ extension Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request, rhs: Bloombox_Schema_Services_Media_V1beta1_AttachMedia.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Media_V1beta1_AttachMedia.Request, rhs: Bloombox_Services_Media_V1beta1_AttachMedia.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

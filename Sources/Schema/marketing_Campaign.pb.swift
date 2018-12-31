@@ -26,7 +26,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates the statuses a campaign object may live in.
-public enum Bloombox_Schema_Marketing_CampaignStatus: SwiftProtobuf.Enum {
+public enum Bloombox_Marketing_CampaignStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The campaign draft status is unspecified, or not-yet-written.
@@ -75,9 +75,9 @@ public enum Bloombox_Schema_Marketing_CampaignStatus: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Marketing_CampaignStatus: CaseIterable {
+extension Bloombox_Marketing_CampaignStatus: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Marketing_CampaignStatus] = [
+  public static var allCases: [Bloombox_Marketing_CampaignStatus] = [
     .pending,
     .draft,
     .queued,
@@ -89,7 +89,7 @@ extension Bloombox_Schema_Marketing_CampaignStatus: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Tags applied to a campaign to organize/group similar marketing efforts.
-public struct Bloombox_Schema_Marketing_CampaignTag {
+public struct Bloombox_Marketing_CampaignTag {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -106,13 +106,13 @@ public struct Bloombox_Schema_Marketing_CampaignTag {
 }
 
 /// Settings for a given channel.
-public struct Bloombox_Schema_Marketing_ChannelSettings {
+public struct Bloombox_Marketing_ChannelSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Channel for which we are specifying settings.
-  public var channel: Bloombox_Schema_Comms_Channel {
+  public var channel: Bloombox_Comms_Channel {
     get {return _storage._channel}
     set {_uniqueStorage()._channel = newValue}
   }
@@ -130,19 +130,19 @@ public struct Bloombox_Schema_Marketing_ChannelSettings {
   }
 
   /// SMS settings.
-  public var sms: Bloombox_Schema_Comms_SMSSettings {
+  public var sms: Bloombox_Comms_SMSSettings {
     get {
       if case .sms(let v)? = _storage._settings {return v}
-      return Bloombox_Schema_Comms_SMSSettings()
+      return Bloombox_Comms_SMSSettings()
     }
     set {_uniqueStorage()._settings = .sms(newValue)}
   }
 
   /// Email settings.
-  public var email: Bloombox_Schema_Comms_EmailSettings {
+  public var email: Bloombox_Comms_EmailSettings {
     get {
       if case .email(let v)? = _storage._settings {return v}
-      return Bloombox_Schema_Comms_EmailSettings()
+      return Bloombox_Comms_EmailSettings()
     }
     set {_uniqueStorage()._settings = .email(newValue)}
   }
@@ -152,12 +152,12 @@ public struct Bloombox_Schema_Marketing_ChannelSettings {
   /// Settings payload for the specified channel.
   public enum OneOf_Settings: Equatable {
     /// SMS settings.
-    case sms(Bloombox_Schema_Comms_SMSSettings)
+    case sms(Bloombox_Comms_SMSSettings)
     /// Email settings.
-    case email(Bloombox_Schema_Comms_EmailSettings)
+    case email(Bloombox_Comms_EmailSettings)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Marketing_ChannelSettings.OneOf_Settings, rhs: Bloombox_Schema_Marketing_ChannelSettings.OneOf_Settings) -> Bool {
+    public static func ==(lhs: Bloombox_Marketing_ChannelSettings.OneOf_Settings, rhs: Bloombox_Marketing_ChannelSettings.OneOf_Settings) -> Bool {
       switch (lhs, rhs) {
       case (.sms(let l), .sms(let r)): return l == r
       case (.email(let l), .email(let r)): return l == r
@@ -173,7 +173,7 @@ public struct Bloombox_Schema_Marketing_ChannelSettings {
 }
 
 /// Specifies the actual content of a marketing campaign ad group.
-public struct Bloombox_Schema_Marketing_Creative {
+public struct Bloombox_Marketing_Creative {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -185,19 +185,19 @@ public struct Bloombox_Schema_Marketing_Creative {
   }
 
   /// SMS-specific content.
-  public var sms: Bloombox_Schema_Comms_SMSContent {
+  public var sms: Bloombox_Comms_SMSContent {
     get {
       if case .sms(let v)? = _storage._content {return v}
-      return Bloombox_Schema_Comms_SMSContent()
+      return Bloombox_Comms_SMSContent()
     }
     set {_uniqueStorage()._content = .sms(newValue)}
   }
 
   /// Email-specific content.
-  public var email: Bloombox_Schema_Comms_EmailContent {
+  public var email: Bloombox_Comms_EmailContent {
     get {
       if case .email(let v)? = _storage._content {return v}
-      return Bloombox_Schema_Comms_EmailContent()
+      return Bloombox_Comms_EmailContent()
     }
     set {_uniqueStorage()._content = .email(newValue)}
   }
@@ -207,12 +207,12 @@ public struct Bloombox_Schema_Marketing_Creative {
   /// Specifies the content for a given type.
   public enum OneOf_Content: Equatable {
     /// SMS-specific content.
-    case sms(Bloombox_Schema_Comms_SMSContent)
+    case sms(Bloombox_Comms_SMSContent)
     /// Email-specific content.
-    case email(Bloombox_Schema_Comms_EmailContent)
+    case email(Bloombox_Comms_EmailContent)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Marketing_Creative.OneOf_Content, rhs: Bloombox_Schema_Marketing_Creative.OneOf_Content) -> Bool {
+    public static func ==(lhs: Bloombox_Marketing_Creative.OneOf_Content, rhs: Bloombox_Marketing_Creative.OneOf_Content) -> Bool {
       switch (lhs, rhs) {
       case (.sms(let l), .sms(let r)): return l == r
       case (.email(let l), .email(let r)): return l == r
@@ -228,7 +228,7 @@ public struct Bloombox_Schema_Marketing_Creative {
 }
 
 /// Specifies campaign settings for a given channel.
-public struct Bloombox_Schema_Marketing_AdGroup {
+public struct Bloombox_Marketing_AdGroup {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -240,8 +240,8 @@ public struct Bloombox_Schema_Marketing_AdGroup {
   }
 
   /// Key for this ad group's owning campaign.
-  public var campaign: Bloombox_Schema_Marketing_CampaignKey {
-    get {return _storage._campaign ?? Bloombox_Schema_Marketing_CampaignKey()}
+  public var campaign: Bloombox_Marketing_CampaignKey {
+    get {return _storage._campaign ?? Bloombox_Marketing_CampaignKey()}
     set {_uniqueStorage()._campaign = newValue}
   }
   /// Returns true if `campaign` has been explicitly set.
@@ -250,13 +250,13 @@ public struct Bloombox_Schema_Marketing_AdGroup {
   public mutating func clearCampaign() {_uniqueStorage()._campaign = nil}
 
   /// Channel for this specification.
-  public var channel: Bloombox_Schema_Comms_Channel {
+  public var channel: Bloombox_Comms_Channel {
     get {return _storage._channel}
     set {_uniqueStorage()._channel = newValue}
   }
 
   /// Attached content/creatives for this ad group.
-  public var creative: [Bloombox_Schema_Marketing_Creative] {
+  public var creative: [Bloombox_Marketing_Creative] {
     get {return _storage._creative}
     set {_uniqueStorage()._creative = newValue}
   }
@@ -269,7 +269,7 @@ public struct Bloombox_Schema_Marketing_AdGroup {
 }
 
 /// Marketing campaign targeting parameters/configuration.
-public struct Bloombox_Schema_Marketing_CampaignTargeting {
+public struct Bloombox_Marketing_CampaignTargeting {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -278,7 +278,7 @@ public struct Bloombox_Schema_Marketing_CampaignTargeting {
   public var strict: Bool = false
 
   /// Targeting policy payload block.
-  public var block: [Bloombox_Schema_Marketing_TargetingPolicy] = []
+  public var block: [Bloombox_Marketing_TargetingPolicy] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -286,7 +286,7 @@ public struct Bloombox_Schema_Marketing_CampaignTargeting {
 }
 
 /// Specifies the structure of a marketing campaign's unique primary key.
-public struct Bloombox_Schema_Marketing_CampaignKey {
+public struct Bloombox_Marketing_CampaignKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -307,14 +307,14 @@ public struct Bloombox_Schema_Marketing_CampaignKey {
 
 /// Represents a single marketing operation, involving outreach and potentially other forms of engagement building, in a
 /// concentrated effort towards specific, defined conversion goals.
-public struct Bloombox_Schema_Marketing_Campaign {
+public struct Bloombox_Marketing_Campaign {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Unique key for this campaign.
-  public var key: Bloombox_Schema_Marketing_CampaignKey {
-    get {return _storage._key ?? Bloombox_Schema_Marketing_CampaignKey()}
+  public var key: Bloombox_Marketing_CampaignKey {
+    get {return _storage._key ?? Bloombox_Marketing_CampaignKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -335,7 +335,7 @@ public struct Bloombox_Schema_Marketing_Campaign {
   }
 
   /// Status of this campaign.
-  public var status: Bloombox_Schema_Marketing_CampaignStatus {
+  public var status: Bloombox_Marketing_CampaignStatus {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
   }
@@ -347,8 +347,8 @@ public struct Bloombox_Schema_Marketing_Campaign {
   }
 
   /// Campaign audience targeting settings.
-  public var targeting: Bloombox_Schema_Marketing_CampaignTargeting {
-    get {return _storage._targeting ?? Bloombox_Schema_Marketing_CampaignTargeting()}
+  public var targeting: Bloombox_Marketing_CampaignTargeting {
+    get {return _storage._targeting ?? Bloombox_Marketing_CampaignTargeting()}
     set {_uniqueStorage()._targeting = newValue}
   }
   /// Returns true if `targeting` has been explicitly set.
@@ -357,19 +357,19 @@ public struct Bloombox_Schema_Marketing_Campaign {
   public mutating func clearTargeting() {_uniqueStorage()._targeting = nil}
 
   /// Distribution/channel settings for this campaign.
-  public var channel: [Bloombox_Schema_Marketing_ChannelSettings] {
+  public var channel: [Bloombox_Marketing_ChannelSettings] {
     get {return _storage._channel}
     set {_uniqueStorage()._channel = newValue}
   }
 
   /// Tags for this campaign.
-  public var tag: [Bloombox_Schema_Marketing_CampaignTag] {
+  public var tag: [Bloombox_Marketing_CampaignTag] {
     get {return _storage._tag}
     set {_uniqueStorage()._tag = newValue}
   }
 
   /// Ad groups attached to this campaign.
-  public var group: [Bloombox_Schema_Marketing_AdGroup] {
+  public var group: [Bloombox_Marketing_AdGroup] {
     get {return _storage._group}
     set {_uniqueStorage()._group = newValue}
   }
@@ -413,9 +413,9 @@ public struct Bloombox_Schema_Marketing_Campaign {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.marketing"
+fileprivate let _protobuf_package = "bloombox.marketing"
 
-extension Bloombox_Schema_Marketing_CampaignStatus: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_CampaignStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PENDING"),
     1: .same(proto: "DRAFT"),
@@ -425,7 +425,7 @@ extension Bloombox_Schema_Marketing_CampaignStatus: SwiftProtobuf._ProtoNameProv
   ]
 }
 
-extension Bloombox_Schema_Marketing_CampaignTag: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_CampaignTag: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CampaignTag"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -452,7 +452,7 @@ extension Bloombox_Schema_Marketing_CampaignTag: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Marketing_CampaignTag, rhs: Bloombox_Schema_Marketing_CampaignTag) -> Bool {
+  public static func ==(lhs: Bloombox_Marketing_CampaignTag, rhs: Bloombox_Marketing_CampaignTag) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.label != rhs.label {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -460,7 +460,7 @@ extension Bloombox_Schema_Marketing_CampaignTag: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_ChannelSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ChannelSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "channel"),
@@ -470,9 +470,9 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
   ]
 
   fileprivate class _StorageClass {
-    var _channel: Bloombox_Schema_Comms_Channel = .unspecified
+    var _channel: Bloombox_Comms_Channel = .unspecified
     var _active: Bool = false
-    var _settings: Bloombox_Schema_Marketing_ChannelSettings.OneOf_Settings?
+    var _settings: Bloombox_Marketing_ChannelSettings.OneOf_Settings?
 
     static let defaultInstance = _StorageClass()
 
@@ -500,7 +500,7 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
         case 1: try decoder.decodeSingularEnumField(value: &_storage._channel)
         case 2: try decoder.decodeSingularBoolField(value: &_storage._active)
         case 20:
-          var v: Bloombox_Schema_Comms_SMSSettings?
+          var v: Bloombox_Comms_SMSSettings?
           if let current = _storage._settings {
             try decoder.handleConflictingOneOf()
             if case .sms(let m) = current {v = m}
@@ -508,7 +508,7 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._settings = .sms(v)}
         case 21:
-          var v: Bloombox_Schema_Comms_EmailSettings?
+          var v: Bloombox_Comms_EmailSettings?
           if let current = _storage._settings {
             try decoder.handleConflictingOneOf()
             if case .email(let m) = current {v = m}
@@ -540,7 +540,7 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Marketing_ChannelSettings, rhs: Bloombox_Schema_Marketing_ChannelSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Marketing_ChannelSettings, rhs: Bloombox_Marketing_ChannelSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -557,7 +557,7 @@ extension Bloombox_Schema_Marketing_ChannelSettings: SwiftProtobuf.Message, Swif
   }
 }
 
-extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_Creative: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Creative"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     10: .same(proto: "sms"),
@@ -565,7 +565,7 @@ extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtob
   ]
 
   fileprivate class _StorageClass {
-    var _content: Bloombox_Schema_Marketing_Creative.OneOf_Content?
+    var _content: Bloombox_Marketing_Creative.OneOf_Content?
 
     static let defaultInstance = _StorageClass()
 
@@ -589,7 +589,7 @@ extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtob
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 10:
-          var v: Bloombox_Schema_Comms_SMSContent?
+          var v: Bloombox_Comms_SMSContent?
           if let current = _storage._content {
             try decoder.handleConflictingOneOf()
             if case .sms(let m) = current {v = m}
@@ -597,7 +597,7 @@ extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtob
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._content = .sms(v)}
         case 11:
-          var v: Bloombox_Schema_Comms_EmailContent?
+          var v: Bloombox_Comms_EmailContent?
           if let current = _storage._content {
             try decoder.handleConflictingOneOf()
             if case .email(let m) = current {v = m}
@@ -623,7 +623,7 @@ extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Marketing_Creative, rhs: Bloombox_Schema_Marketing_Creative) -> Bool {
+  public static func ==(lhs: Bloombox_Marketing_Creative, rhs: Bloombox_Marketing_Creative) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -638,7 +638,7 @@ extension Bloombox_Schema_Marketing_Creative: SwiftProtobuf.Message, SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Marketing_AdGroup: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_AdGroup: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AdGroup"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -649,9 +649,9 @@ extension Bloombox_Schema_Marketing_AdGroup: SwiftProtobuf.Message, SwiftProtobu
 
   fileprivate class _StorageClass {
     var _id: String = String()
-    var _campaign: Bloombox_Schema_Marketing_CampaignKey? = nil
-    var _channel: Bloombox_Schema_Comms_Channel = .unspecified
-    var _creative: [Bloombox_Schema_Marketing_Creative] = []
+    var _campaign: Bloombox_Marketing_CampaignKey? = nil
+    var _channel: Bloombox_Comms_Channel = .unspecified
+    var _creative: [Bloombox_Marketing_Creative] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -705,7 +705,7 @@ extension Bloombox_Schema_Marketing_AdGroup: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Marketing_AdGroup, rhs: Bloombox_Schema_Marketing_AdGroup) -> Bool {
+  public static func ==(lhs: Bloombox_Marketing_AdGroup, rhs: Bloombox_Marketing_AdGroup) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -723,7 +723,7 @@ extension Bloombox_Schema_Marketing_AdGroup: SwiftProtobuf.Message, SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Marketing_CampaignTargeting: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_CampaignTargeting: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CampaignTargeting"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "strict"),
@@ -750,7 +750,7 @@ extension Bloombox_Schema_Marketing_CampaignTargeting: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Marketing_CampaignTargeting, rhs: Bloombox_Schema_Marketing_CampaignTargeting) -> Bool {
+  public static func ==(lhs: Bloombox_Marketing_CampaignTargeting, rhs: Bloombox_Marketing_CampaignTargeting) -> Bool {
     if lhs.strict != rhs.strict {return false}
     if lhs.block != rhs.block {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -758,7 +758,7 @@ extension Bloombox_Schema_Marketing_CampaignTargeting: SwiftProtobuf.Message, Sw
   }
 }
 
-extension Bloombox_Schema_Marketing_CampaignKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_CampaignKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CampaignKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -790,7 +790,7 @@ extension Bloombox_Schema_Marketing_CampaignKey: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Marketing_CampaignKey, rhs: Bloombox_Schema_Marketing_CampaignKey) -> Bool {
+  public static func ==(lhs: Bloombox_Marketing_CampaignKey, rhs: Bloombox_Marketing_CampaignKey) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.partner != rhs.partner {return false}
     if lhs.location != rhs.location {return false}
@@ -799,7 +799,7 @@ extension Bloombox_Schema_Marketing_CampaignKey: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Marketing_Campaign: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_Campaign: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Campaign"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -817,15 +817,15 @@ extension Bloombox_Schema_Marketing_Campaign: SwiftProtobuf.Message, SwiftProtob
   ]
 
   fileprivate class _StorageClass {
-    var _key: Bloombox_Schema_Marketing_CampaignKey? = nil
+    var _key: Bloombox_Marketing_CampaignKey? = nil
     var _name: String = String()
     var _description_p: String = String()
-    var _status: Bloombox_Schema_Marketing_CampaignStatus = .pending
+    var _status: Bloombox_Marketing_CampaignStatus = .pending
     var _live: Bool = false
-    var _targeting: Bloombox_Schema_Marketing_CampaignTargeting? = nil
-    var _channel: [Bloombox_Schema_Marketing_ChannelSettings] = []
-    var _tag: [Bloombox_Schema_Marketing_CampaignTag] = []
-    var _group: [Bloombox_Schema_Marketing_AdGroup] = []
+    var _targeting: Bloombox_Marketing_CampaignTargeting? = nil
+    var _channel: [Bloombox_Marketing_ChannelSettings] = []
+    var _tag: [Bloombox_Marketing_CampaignTag] = []
+    var _group: [Bloombox_Marketing_AdGroup] = []
     var _published: Opencannabis_Temporal_Instant? = nil
     var _created: Opencannabis_Temporal_Instant? = nil
     var _modified: Opencannabis_Temporal_Instant? = nil
@@ -922,7 +922,7 @@ extension Bloombox_Schema_Marketing_Campaign: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Marketing_Campaign, rhs: Bloombox_Schema_Marketing_Campaign) -> Bool {
+  public static func ==(lhs: Bloombox_Marketing_Campaign, rhs: Bloombox_Marketing_Campaign) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

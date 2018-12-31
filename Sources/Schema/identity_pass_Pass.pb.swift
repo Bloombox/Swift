@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates statuses that a digital pass record may be in.
-public enum Bloombox_Schema_Identity_Pass_PassStatus: SwiftProtobuf.Enum {
+public enum Bloombox_Identity_Pass_PassStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The pass has been provisioned, but not issued.
@@ -77,9 +77,9 @@ public enum Bloombox_Schema_Identity_Pass_PassStatus: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Identity_Pass_PassStatus: CaseIterable {
+extension Bloombox_Identity_Pass_PassStatus: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Identity_Pass_PassStatus] = [
+  public static var allCases: [Bloombox_Identity_Pass_PassStatus] = [
     .provisioned,
     .issued,
     .active,
@@ -92,14 +92,14 @@ extension Bloombox_Schema_Identity_Pass_PassStatus: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies the structure of a digital pass record.
-public struct Bloombox_Schema_Identity_Pass_Pass {
+public struct Bloombox_Identity_Pass_Pass {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies the key for a digital pass record.
-  public var key: Bloombox_Schema_Identity_Pass_PassKey {
-    get {return _storage._key ?? Bloombox_Schema_Identity_Pass_PassKey()}
+  public var key: Bloombox_Identity_Pass_PassKey {
+    get {return _storage._key ?? Bloombox_Identity_Pass_PassKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -138,7 +138,7 @@ public struct Bloombox_Schema_Identity_Pass_Pass {
   }
 
   /// Current status of this pass.
-  public var status: Bloombox_Schema_Identity_Pass_PassStatus {
+  public var status: Bloombox_Identity_Pass_PassStatus {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
   }
@@ -232,9 +232,9 @@ public struct Bloombox_Schema_Identity_Pass_Pass {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity.pass"
+fileprivate let _protobuf_package = "bloombox.identity.pass"
 
-extension Bloombox_Schema_Identity_Pass_PassStatus: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_Pass_PassStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PROVISIONED"),
     1: .same(proto: "ISSUED"),
@@ -245,7 +245,7 @@ extension Bloombox_Schema_Identity_Pass_PassStatus: SwiftProtobuf._ProtoNameProv
   ]
 }
 
-extension Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_Pass_Pass: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Pass"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -266,13 +266,13 @@ extension Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message, SwiftProtob
   ]
 
   fileprivate class _StorageClass {
-    var _key: Bloombox_Schema_Identity_Pass_PassKey? = nil
+    var _key: Bloombox_Identity_Pass_PassKey? = nil
     var _token: String = String()
     var _uri: String = String()
     var _active: Bool = false
     var _personalizable: Bool = false
     var _personalized: Bool = false
-    var _status: Bloombox_Schema_Identity_Pass_PassStatus = .provisioned
+    var _status: Bloombox_Identity_Pass_PassStatus = .provisioned
     var _provisioned: Opencannabis_Temporal_Instant? = nil
     var _issued: Opencannabis_Temporal_Instant? = nil
     var _activated: Opencannabis_Temporal_Instant? = nil
@@ -389,7 +389,7 @@ extension Bloombox_Schema_Identity_Pass_Pass: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_Pass_Pass, rhs: Bloombox_Schema_Identity_Pass_Pass) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_Pass_Pass, rhs: Bloombox_Identity_Pass_Pass) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -25,7 +25,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies status codes that a response may provide.
-public enum Bloombox_Schema_Services_Telemetry_V1beta4_OperationStatus: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Telemetry_V1beta4_OperationStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Everything went well.
@@ -59,9 +59,9 @@ public enum Bloombox_Schema_Services_Telemetry_V1beta4_OperationStatus: SwiftPro
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_OperationStatus: CaseIterable {
+extension Bloombox_Services_Telemetry_V1beta4_OperationStatus: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Telemetry_V1beta4_OperationStatus] = [
+  public static var allCases: [Bloombox_Services_Telemetry_V1beta4_OperationStatus] = [
     .ok,
     .error,
   ]
@@ -70,7 +70,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_OperationStatus: CaseIterab
 #endif  // swift(>=4.2)
 
 /// Specifies known errors that may be emitted in exceptional processing cases.
-public enum Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryError: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Telemetry_V1beta4_TelemetryError: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// An unknown internal error occurred.
@@ -144,9 +144,9 @@ public enum Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryError: SwiftProt
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryError: CaseIterable {
+extension Bloombox_Services_Telemetry_V1beta4_TelemetryError: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryError] = [
+  public static var allCases: [Bloombox_Services_Telemetry_V1beta4_TelemetryError] = [
     .unknown,
     .invalidCollection,
     .invalidPartner,
@@ -163,19 +163,19 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryError: CaseIterabl
 #endif  // swift(>=4.2)
 
 /// Specifies a response to a request to submit telemetry data.
-public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse {
+public struct Bloombox_Services_Telemetry_V1beta4_TelemetryResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Status of the operation.
-  public var status: Bloombox_Schema_Services_Telemetry_V1beta4_OperationStatus = .ok
+  public var status: Bloombox_Services_Telemetry_V1beta4_OperationStatus = .ok
 
   /// Count of events submitted.
   public var count: UInt32 = 0
 
   /// Service maintenance status, if applicable.
-  public var service: Bloombox_Schema_Services_ServiceStatus = .unknown
+  public var service: Bloombox_Services_ServiceStatus = .unknown
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -183,7 +183,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse {
 }
 
 /// Specifies an RPC operation to retrieve status information for the telemetry service.
-public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing {
+public struct Bloombox_Services_Telemetry_V1beta4_TelemetryPing {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -208,7 +208,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing {
     // methods supported on all messages.
 
     /// Current service status.
-    public var status: Bloombox_Schema_Services_ServiceStatus = .unknown
+    public var status: Bloombox_Services_ServiceStatus = .unknown
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -222,8 +222,8 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing {
     // methods supported on all messages.
 
     /// Request for service status.
-    public var request: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Request()}
+    public var request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request {
+      get {return _storage._request ?? Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -232,8 +232,8 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request for service status.
-    public var response: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response()}
+    public var response: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response {
+      get {return _storage._response ?? Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -252,7 +252,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing {
 }
 
 /// Specifies an event related to commercial services. This includes product events, section events, and order events.
-public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
+public struct Bloombox_Services_Telemetry_V1beta4_CommercialEvent {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -266,8 +266,8 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     // methods supported on all messages.
 
     /// Event context to specify for this event.
-    public var context: Bloombox_Schema_Analytics_Context {
-      get {return _storage._context ?? Bloombox_Schema_Analytics_Context()}
+    public var context: Bloombox_Analytics_Context {
+      get {return _storage._context ?? Bloombox_Analytics_Context()}
       set {_uniqueStorage()._context = newValue}
     }
     /// Returns true if `context` has been explicitly set.
@@ -282,28 +282,28 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     }
 
     /// Impression event on a menu section.
-    public var section: Bloombox_Schema_Analytics_Section_Impression {
+    public var section: Bloombox_Analytics_Section_Impression {
       get {
         if case .section(let v)? = _storage._event {return v}
-        return Bloombox_Schema_Analytics_Section_Impression()
+        return Bloombox_Analytics_Section_Impression()
       }
       set {_uniqueStorage()._event = .section(newValue)}
     }
 
     /// Impression event on a menu product.
-    public var product: Bloombox_Schema_Analytics_Product_Impression {
+    public var product: Bloombox_Analytics_Product_Impression {
       get {
         if case .product(let v)? = _storage._event {return v}
-        return Bloombox_Schema_Analytics_Product_Impression()
+        return Bloombox_Analytics_Product_Impression()
       }
       set {_uniqueStorage()._event = .product(newValue)}
     }
 
     /// Impression event for a commercial shop.
-    public var shop: Bloombox_Schema_Analytics_Shop_Impression {
+    public var shop: Bloombox_Analytics_Shop_Impression {
       get {
         if case .shop(let v)? = _storage._event {return v}
-        return Bloombox_Schema_Analytics_Shop_Impression()
+        return Bloombox_Analytics_Shop_Impression()
       }
       set {_uniqueStorage()._event = .shop(newValue)}
     }
@@ -313,14 +313,14 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     /// Event being reported in this transaction.
     public enum OneOf_Event: Equatable {
       /// Impression event on a menu section.
-      case section(Bloombox_Schema_Analytics_Section_Impression)
+      case section(Bloombox_Analytics_Section_Impression)
       /// Impression event on a menu product.
-      case product(Bloombox_Schema_Analytics_Product_Impression)
+      case product(Bloombox_Analytics_Product_Impression)
       /// Impression event for a commercial shop.
-      case shop(Bloombox_Schema_Analytics_Shop_Impression)
+      case shop(Bloombox_Analytics_Shop_Impression)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression.OneOf_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression.OneOf_Event) -> Bool {
+      public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression.OneOf_Event, rhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression.OneOf_Event) -> Bool {
         switch (lhs, rhs) {
         case (.section(let l), .section(let r)): return l == r
         case (.product(let l), .product(let r)): return l == r
@@ -343,8 +343,8 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     // methods supported on all messages.
 
     /// Event context to specify for this event.
-    public var context: Bloombox_Schema_Analytics_Context {
-      get {return _storage._context ?? Bloombox_Schema_Analytics_Context()}
+    public var context: Bloombox_Analytics_Context {
+      get {return _storage._context ?? Bloombox_Analytics_Context()}
       set {_uniqueStorage()._context = newValue}
     }
     /// Returns true if `context` has been explicitly set.
@@ -359,28 +359,28 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     }
 
     /// View event on a menu section.
-    public var section: Bloombox_Schema_Analytics_Section_View {
+    public var section: Bloombox_Analytics_Section_View {
       get {
         if case .section(let v)? = _storage._event {return v}
-        return Bloombox_Schema_Analytics_Section_View()
+        return Bloombox_Analytics_Section_View()
       }
       set {_uniqueStorage()._event = .section(newValue)}
     }
 
     /// View event on a menu product.
-    public var product: Bloombox_Schema_Analytics_Product_View {
+    public var product: Bloombox_Analytics_Product_View {
       get {
         if case .product(let v)? = _storage._event {return v}
-        return Bloombox_Schema_Analytics_Product_View()
+        return Bloombox_Analytics_Product_View()
       }
       set {_uniqueStorage()._event = .product(newValue)}
     }
 
     /// View event for a commercial shop.
-    public var shop: Bloombox_Schema_Analytics_Shop_View {
+    public var shop: Bloombox_Analytics_Shop_View {
       get {
         if case .shop(let v)? = _storage._event {return v}
-        return Bloombox_Schema_Analytics_Shop_View()
+        return Bloombox_Analytics_Shop_View()
       }
       set {_uniqueStorage()._event = .shop(newValue)}
     }
@@ -390,14 +390,14 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     /// Event being reported in this transaction.
     public enum OneOf_Event: Equatable {
       /// View event on a menu section.
-      case section(Bloombox_Schema_Analytics_Section_View)
+      case section(Bloombox_Analytics_Section_View)
       /// View event on a menu product.
-      case product(Bloombox_Schema_Analytics_Product_View)
+      case product(Bloombox_Analytics_Product_View)
       /// View event for a commercial shop.
-      case shop(Bloombox_Schema_Analytics_Shop_View)
+      case shop(Bloombox_Analytics_Shop_View)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View.OneOf_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View.OneOf_Event) -> Bool {
+      public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View.OneOf_Event, rhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View.OneOf_Event) -> Bool {
         switch (lhs, rhs) {
         case (.section(let l), .section(let r)): return l == r
         case (.product(let l), .product(let r)): return l == r
@@ -426,8 +426,8 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     }
 
     /// Event context to specify for this event.
-    public var context: Bloombox_Schema_Analytics_Context {
-      get {return _storage._context ?? Bloombox_Schema_Analytics_Context()}
+    public var context: Bloombox_Analytics_Context {
+      get {return _storage._context ?? Bloombox_Analytics_Context()}
       set {_uniqueStorage()._context = newValue}
     }
     /// Returns true if `context` has been explicitly set.
@@ -442,37 +442,37 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     }
 
     /// Action event on a menu section.
-    public var section: Bloombox_Schema_Analytics_Section_Action {
+    public var section: Bloombox_Analytics_Section_Action {
       get {
         if case .section(let v)? = _storage._event {return v}
-        return Bloombox_Schema_Analytics_Section_Action()
+        return Bloombox_Analytics_Section_Action()
       }
       set {_uniqueStorage()._event = .section(newValue)}
     }
 
     /// Action event on a menu product.
-    public var product: Bloombox_Schema_Analytics_Product_Action {
+    public var product: Bloombox_Analytics_Product_Action {
       get {
         if case .product(let v)? = _storage._event {return v}
-        return Bloombox_Schema_Analytics_Product_Action()
+        return Bloombox_Analytics_Product_Action()
       }
       set {_uniqueStorage()._event = .product(newValue)}
     }
 
     /// Action event for a commercial shop.
-    public var shop: Bloombox_Schema_Analytics_Shop_Action {
+    public var shop: Bloombox_Analytics_Shop_Action {
       get {
         if case .shop(let v)? = _storage._event {return v}
-        return Bloombox_Schema_Analytics_Shop_Action()
+        return Bloombox_Analytics_Shop_Action()
       }
       set {_uniqueStorage()._event = .shop(newValue)}
     }
 
     /// Action event on a user order.
-    public var order: Bloombox_Schema_Analytics_Order_Action {
+    public var order: Bloombox_Analytics_Order_Action {
       get {
         if case .order(let v)? = _storage._event {return v}
-        return Bloombox_Schema_Analytics_Order_Action()
+        return Bloombox_Analytics_Order_Action()
       }
       set {_uniqueStorage()._event = .order(newValue)}
     }
@@ -482,16 +482,16 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
     /// Event being reported in this transaction.
     public enum OneOf_Event: Equatable {
       /// Action event on a menu section.
-      case section(Bloombox_Schema_Analytics_Section_Action)
+      case section(Bloombox_Analytics_Section_Action)
       /// Action event on a menu product.
-      case product(Bloombox_Schema_Analytics_Product_Action)
+      case product(Bloombox_Analytics_Product_Action)
       /// Action event for a commercial shop.
-      case shop(Bloombox_Schema_Analytics_Shop_Action)
+      case shop(Bloombox_Analytics_Shop_Action)
       /// Action event on a user order.
-      case order(Bloombox_Schema_Analytics_Order_Action)
+      case order(Bloombox_Analytics_Order_Action)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action.OneOf_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action.OneOf_Event) -> Bool {
+      public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action.OneOf_Event, rhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action.OneOf_Event) -> Bool {
         switch (lhs, rhs) {
         case (.section(let l), .section(let r)): return l == r
         case (.product(let l), .product(let r)): return l == r
@@ -513,7 +513,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent {
 
 /// Specifies an event related to a user's identity, account, preferences, or otherwise having some concern with the
 /// addressability, authentication, and relevace of a user's experience with Bloombox.
-public struct Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent {
+public struct Bloombox_Services_Telemetry_V1beta4_IdentityEvent {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -533,8 +533,8 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent {
     }
 
     /// Event context to specify for this event.
-    public var context: Bloombox_Schema_Analytics_Context {
-      get {return _storage._context ?? Bloombox_Schema_Analytics_Context()}
+    public var context: Bloombox_Analytics_Context {
+      get {return _storage._context ?? Bloombox_Analytics_Context()}
       set {_uniqueStorage()._context = newValue}
     }
     /// Returns true if `context` has been explicitly set.
@@ -548,10 +548,10 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent {
     }
 
     /// Action taken by or on a user.
-    public var action: Bloombox_Schema_Analytics_Identity_Action {
+    public var action: Bloombox_Analytics_Identity_Action {
       get {
         if case .action(let v)? = _storage._event {return v}
-        return Bloombox_Schema_Analytics_Identity_Action()
+        return Bloombox_Analytics_Identity_Action()
       }
       set {_uniqueStorage()._event = .action(newValue)}
     }
@@ -560,10 +560,10 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent {
 
     public enum OneOf_Event: Equatable {
       /// Action taken by or on a user.
-      case action(Bloombox_Schema_Analytics_Identity_Action)
+      case action(Bloombox_Analytics_Identity_Action)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action.OneOf_Event, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action.OneOf_Event) -> Bool {
+      public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action.OneOf_Event, rhs: Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action.OneOf_Event) -> Bool {
         switch (lhs, rhs) {
         case (.action(let l), .action(let r)): return l == r
         }
@@ -581,7 +581,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent {
 
 /// Specifies events that deal with user-submitted searches, including the query itself, the resultset, and any response
 /// the user makes based upon that resultset.
-public struct Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent {
+public struct Bloombox_Services_Telemetry_V1beta4_SearchEvent {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -601,8 +601,8 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent {
     }
 
     /// Event context to specify for this event.
-    public var context: Bloombox_Schema_Analytics_Context {
-      get {return _storage._context ?? Bloombox_Schema_Analytics_Context()}
+    public var context: Bloombox_Analytics_Context {
+      get {return _storage._context ?? Bloombox_Analytics_Context()}
       set {_uniqueStorage()._context = newValue}
     }
     /// Returns true if `context` has been explicitly set.
@@ -611,7 +611,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent {
     public mutating func clearContext() {_uniqueStorage()._context = nil}
 
     /// Digital property from which this search originated.
-    public var property: Bloombox_Schema_Analytics_Search_SearchProperty {
+    public var property: Bloombox_Analytics_Search_SearchProperty {
       get {return _storage._property}
       set {_uniqueStorage()._property = newValue}
     }
@@ -642,8 +642,8 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent {
     }
 
     /// Event context to specify for this event.
-    public var context: Bloombox_Schema_Analytics_Context {
-      get {return _storage._context ?? Bloombox_Schema_Analytics_Context()}
+    public var context: Bloombox_Analytics_Context {
+      get {return _storage._context ?? Bloombox_Analytics_Context()}
       set {_uniqueStorage()._context = newValue}
     }
     /// Returns true if `context` has been explicitly set.
@@ -652,7 +652,7 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent {
     public mutating func clearContext() {_uniqueStorage()._context = nil}
 
     /// Digital property from which this search originated.
-    public var property: Bloombox_Schema_Analytics_Search_SearchProperty {
+    public var property: Bloombox_Analytics_Search_SearchProperty {
       get {return _storage._property}
       set {_uniqueStorage()._property = newValue}
     }
@@ -691,16 +691,16 @@ public struct Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.services.telemetry.v1beta4"
+fileprivate let _protobuf_package = "bloombox.services.telemetry.v1beta4"
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_OperationStatus: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Telemetry_V1beta4_OperationStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "OK"),
     1: .same(proto: "ERROR"),
   ]
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryError: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Telemetry_V1beta4_TelemetryError: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNKNOWN"),
     1: .same(proto: "INVALID_COLLECTION"),
@@ -715,7 +715,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryError: SwiftProtob
   ]
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Telemetry_V1beta4_TelemetryResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TelemetryResponse"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
@@ -747,7 +747,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_TelemetryResponse, rhs: Bloombox_Services_Telemetry_V1beta4_TelemetryResponse) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.count != rhs.count {return false}
     if lhs.service != rhs.service {return false}
@@ -756,7 +756,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryResponse: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Telemetry_V1beta4_TelemetryPing: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TelemetryPing"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -769,14 +769,14 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_TelemetryPing, rhs: Bloombox_Services_Telemetry_V1beta4_TelemetryPing) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.protoMessageName + ".Request"
+extension Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_TelemetryPing.protoMessageName + ".Request"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -788,14 +788,14 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Request: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Request, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request, rhs: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.protoMessageName + ".Response"
+extension Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_TelemetryPing.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
   ]
@@ -816,23 +816,23 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response: Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response, rhs: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.protoMessageName + ".Operation"
+extension Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_TelemetryPing.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Request? = nil
-    var _response: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Response? = nil
+    var _request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request? = nil
+    var _response: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -876,7 +876,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Operation: Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Operation, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Operation, rhs: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -892,7 +892,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_TelemetryPing.Operation: Sw
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CommercialEvent"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -905,14 +905,14 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent, rhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.protoMessageName + ".Impression"
+extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_CommercialEvent.protoMessageName + ".Impression"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "context"),
     10: .same(proto: "section"),
@@ -921,8 +921,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression:
   ]
 
   fileprivate class _StorageClass {
-    var _context: Bloombox_Schema_Analytics_Context? = nil
-    var _event: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression.OneOf_Event?
+    var _context: Bloombox_Analytics_Context? = nil
+    var _event: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression.OneOf_Event?
 
     static let defaultInstance = _StorageClass()
 
@@ -948,7 +948,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression:
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._context)
         case 10:
-          var v: Bloombox_Schema_Analytics_Section_Impression?
+          var v: Bloombox_Analytics_Section_Impression?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .section(let m) = current {v = m}
@@ -956,7 +956,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression:
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .section(v)}
         case 11:
-          var v: Bloombox_Schema_Analytics_Product_Impression?
+          var v: Bloombox_Analytics_Product_Impression?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .product(let m) = current {v = m}
@@ -964,7 +964,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression:
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .product(v)}
         case 12:
-          var v: Bloombox_Schema_Analytics_Shop_Impression?
+          var v: Bloombox_Analytics_Shop_Impression?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .shop(let m) = current {v = m}
@@ -995,7 +995,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression:
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression, rhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1011,8 +1011,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Impression:
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.protoMessageName + ".View"
+extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_CommercialEvent.protoMessageName + ".View"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "context"),
     10: .same(proto: "section"),
@@ -1021,8 +1021,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View: Swift
   ]
 
   fileprivate class _StorageClass {
-    var _context: Bloombox_Schema_Analytics_Context? = nil
-    var _event: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View.OneOf_Event?
+    var _context: Bloombox_Analytics_Context? = nil
+    var _event: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View.OneOf_Event?
 
     static let defaultInstance = _StorageClass()
 
@@ -1048,7 +1048,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View: Swift
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._context)
         case 10:
-          var v: Bloombox_Schema_Analytics_Section_View?
+          var v: Bloombox_Analytics_Section_View?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .section(let m) = current {v = m}
@@ -1056,7 +1056,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View: Swift
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .section(v)}
         case 11:
-          var v: Bloombox_Schema_Analytics_Product_View?
+          var v: Bloombox_Analytics_Product_View?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .product(let m) = current {v = m}
@@ -1064,7 +1064,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View: Swift
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .product(v)}
         case 12:
-          var v: Bloombox_Schema_Analytics_Shop_View?
+          var v: Bloombox_Analytics_Shop_View?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .shop(let m) = current {v = m}
@@ -1095,7 +1095,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View: Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View, rhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1111,8 +1111,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.View: Swift
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.protoMessageName + ".Action"
+extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_CommercialEvent.protoMessageName + ".Action"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "context"),
@@ -1124,8 +1124,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action: Swi
 
   fileprivate class _StorageClass {
     var _name: String = String()
-    var _context: Bloombox_Schema_Analytics_Context? = nil
-    var _event: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action.OneOf_Event?
+    var _context: Bloombox_Analytics_Context? = nil
+    var _event: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action.OneOf_Event?
 
     static let defaultInstance = _StorageClass()
 
@@ -1153,7 +1153,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action: Swi
         case 1: try decoder.decodeSingularStringField(value: &_storage._name)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._context)
         case 10:
-          var v: Bloombox_Schema_Analytics_Section_Action?
+          var v: Bloombox_Analytics_Section_Action?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .section(let m) = current {v = m}
@@ -1161,7 +1161,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action: Swi
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .section(v)}
         case 11:
-          var v: Bloombox_Schema_Analytics_Product_Action?
+          var v: Bloombox_Analytics_Product_Action?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .product(let m) = current {v = m}
@@ -1169,7 +1169,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action: Swi
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .product(v)}
         case 12:
-          var v: Bloombox_Schema_Analytics_Shop_Action?
+          var v: Bloombox_Analytics_Shop_Action?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .shop(let m) = current {v = m}
@@ -1177,7 +1177,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action: Swi
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .shop(v)}
         case 13:
-          var v: Bloombox_Schema_Analytics_Order_Action?
+          var v: Bloombox_Analytics_Order_Action?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .order(let m) = current {v = m}
@@ -1213,7 +1213,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action: Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action, rhs: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1230,7 +1230,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_CommercialEvent.Action: Swi
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Telemetry_V1beta4_IdentityEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".IdentityEvent"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1243,14 +1243,14 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_IdentityEvent, rhs: Bloombox_Services_Telemetry_V1beta4_IdentityEvent) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.protoMessageName + ".Action"
+extension Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_IdentityEvent.protoMessageName + ".Action"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "context"),
@@ -1259,8 +1259,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action: Swift
 
   fileprivate class _StorageClass {
     var _name: String = String()
-    var _context: Bloombox_Schema_Analytics_Context? = nil
-    var _event: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action.OneOf_Event?
+    var _context: Bloombox_Analytics_Context? = nil
+    var _event: Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action.OneOf_Event?
 
     static let defaultInstance = _StorageClass()
 
@@ -1288,7 +1288,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action: Swift
         case 1: try decoder.decodeSingularStringField(value: &_storage._name)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._context)
         case 10:
-          var v: Bloombox_Schema_Analytics_Identity_Action?
+          var v: Bloombox_Analytics_Identity_Action?
           if let current = _storage._event {
             try decoder.handleConflictingOneOf()
             if case .action(let m) = current {v = m}
@@ -1316,7 +1316,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action: Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action, rhs: Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1333,7 +1333,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_IdentityEvent.Action: Swift
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Telemetry_V1beta4_SearchEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SearchEvent"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1346,14 +1346,14 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_SearchEvent, rhs: Bloombox_Services_Telemetry_V1beta4_SearchEvent) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.protoMessageName + ".Query"
+extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_SearchEvent.protoMessageName + ".Query"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "term"),
     2: .same(proto: "context"),
@@ -1363,8 +1363,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftPro
 
   fileprivate class _StorageClass {
     var _term: String = String()
-    var _context: Bloombox_Schema_Analytics_Context? = nil
-    var _property: Bloombox_Schema_Analytics_Search_SearchProperty = .propertyUnspecified
+    var _context: Bloombox_Analytics_Context? = nil
+    var _property: Bloombox_Analytics_Search_SearchProperty = .propertyUnspecified
     var _totalResults: UInt32 = 0
 
     static let defaultInstance = _StorageClass()
@@ -1419,7 +1419,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query, rhs: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1437,8 +1437,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.protoMessageName + ".Result"
+extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_SearchEvent.protoMessageName + ".Result"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "term"),
     2: .same(proto: "context"),
@@ -1450,8 +1450,8 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result: SwiftPr
 
   fileprivate class _StorageClass {
     var _term: String = String()
-    var _context: Bloombox_Schema_Analytics_Context? = nil
-    var _property: Bloombox_Schema_Analytics_Search_SearchProperty = .propertyUnspecified
+    var _context: Bloombox_Analytics_Context? = nil
+    var _property: Bloombox_Analytics_Search_SearchProperty = .propertyUnspecified
     var _totalResults: UInt32 = 0
     var _selectedResult: UInt32 = 0
     var _key: Opencannabis_Base_ProductKey? = nil
@@ -1518,7 +1518,7 @@ extension Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result, rhs: Bloombox_Schema_Services_Telemetry_V1beta4_SearchEvent.Result) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result, rhs: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

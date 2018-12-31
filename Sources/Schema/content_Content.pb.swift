@@ -22,6 +22,57 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Enumerates supported encodings for content data.
+public enum Opencannabis_Content_Encoding: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// UTF-8 standard encoding.
+  case utf8 // = 0
+
+  /// Base-64 encoded UTF-8.
+  case b64 // = 1
+
+  /// Base-64 encoded ASCII.
+  case b64Ascii // = 2
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .utf8
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .utf8
+    case 1: self = .b64
+    case 2: self = .b64Ascii
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .utf8: return 0
+    case .b64: return 1
+    case .b64Ascii: return 2
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Opencannabis_Content_Encoding: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Content_Encoding] = [
+    .utf8,
+    .b64,
+    .b64Ascii,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies a freeform content payload of some kind.
 public struct Opencannabis_Content_Content {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -35,7 +86,7 @@ public struct Opencannabis_Content_Content {
   }
 
   /// Encoding of underlying content data.
-  public var encoding: Opencannabis_Content_Content.Encoding {
+  public var encoding: Opencannabis_Content_Encoding {
     get {return _storage._encoding}
     set {_uniqueStorage()._encoding = newValue}
   }
@@ -143,44 +194,6 @@ public struct Opencannabis_Content_Content {
 
   }
 
-  /// Enumerates supported encodings for content data.
-  public enum Encoding: SwiftProtobuf.Enum {
-    public typealias RawValue = Int
-
-    /// UTF-8 standard encoding.
-    case utf8 // = 0
-
-    /// Base-64 encoded UTF-8.
-    case b64 // = 1
-
-    /// Base-64 encoded ASCII.
-    case b64Ascii // = 2
-    case UNRECOGNIZED(Int)
-
-    public init() {
-      self = .utf8
-    }
-
-    public init?(rawValue: Int) {
-      switch rawValue {
-      case 0: self = .utf8
-      case 1: self = .b64
-      case 2: self = .b64Ascii
-      default: self = .UNRECOGNIZED(rawValue)
-      }
-    }
-
-    public var rawValue: Int {
-      switch self {
-      case .utf8: return 0
-      case .b64: return 1
-      case .b64Ascii: return 2
-      case .UNRECOGNIZED(let i): return i
-      }
-    }
-
-  }
-
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
@@ -198,20 +211,19 @@ extension Opencannabis_Content_Content.TypeEnum: CaseIterable {
   ]
 }
 
-extension Opencannabis_Content_Content.Encoding: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Content_Content.Encoding] = [
-    .utf8,
-    .b64,
-    .b64Ascii,
-  ]
-}
-
 #endif  // swift(>=4.2)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.content"
+
+extension Opencannabis_Content_Encoding: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UTF8"),
+    1: .same(proto: "B64"),
+    2: .same(proto: "B64_ASCII"),
+  ]
+}
 
 extension Opencannabis_Content_Content: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Content"
@@ -226,7 +238,7 @@ extension Opencannabis_Content_Content: SwiftProtobuf.Message, SwiftProtobuf._Me
 
   fileprivate class _StorageClass {
     var _type: Opencannabis_Content_Content.TypeEnum = .text
-    var _encoding: Opencannabis_Content_Content.Encoding = .utf8
+    var _encoding: Opencannabis_Content_Encoding = .utf8
     var _language: Opencannabis_Base_Language = .unspecified
     var _compression: Opencannabis_Base_Compression? = nil
     var _payload: Opencannabis_Content_Content.OneOf_Payload?
@@ -326,13 +338,5 @@ extension Opencannabis_Content_Content.TypeEnum: SwiftProtobuf._ProtoNameProvidi
     1: .same(proto: "MARKDOWN"),
     2: .same(proto: "HTML"),
     3: .same(proto: "BINARY"),
-  ]
-}
-
-extension Opencannabis_Content_Content.Encoding: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "UTF8"),
-    1: .same(proto: "B64"),
-    2: .same(proto: "B64_ASCII"),
   ]
 }

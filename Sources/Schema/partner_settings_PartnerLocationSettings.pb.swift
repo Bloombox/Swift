@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates types of section settings that may be applied and considered.
-public enum Bloombox_Schema_Partner_Settings_SectionSettingsType: SwiftProtobuf.Enum {
+public enum Bloombox_Partner_Settings_SectionSettingsType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Settings for a standard section, based on product types or categories.
@@ -57,9 +57,9 @@ public enum Bloombox_Schema_Partner_Settings_SectionSettingsType: SwiftProtobuf.
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Partner_Settings_SectionSettingsType: CaseIterable {
+extension Bloombox_Partner_Settings_SectionSettingsType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Partner_Settings_SectionSettingsType] = [
+  public static var allCases: [Bloombox_Partner_Settings_SectionSettingsType] = [
     .standard,
     .filtered,
   ]
@@ -68,7 +68,7 @@ extension Bloombox_Schema_Partner_Settings_SectionSettingsType: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies known types of filtered product sections.
-public enum Bloombox_Schema_Partner_Settings_FilteredSectionType: SwiftProtobuf.Enum {
+public enum Bloombox_Partner_Settings_FilteredSectionType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// It's a CBD-only section.
@@ -107,9 +107,9 @@ public enum Bloombox_Schema_Partner_Settings_FilteredSectionType: SwiftProtobuf.
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Partner_Settings_FilteredSectionType: CaseIterable {
+extension Bloombox_Partner_Settings_FilteredSectionType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Partner_Settings_FilteredSectionType] = [
+  public static var allCases: [Bloombox_Partner_Settings_FilteredSectionType] = [
     .cbd,
     .house,
     .onsale,
@@ -119,7 +119,7 @@ extension Bloombox_Schema_Partner_Settings_FilteredSectionType: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies the type of a custom settings specification payload.
-public enum Bloombox_Schema_Partner_Settings_CustomSettingsType: SwiftProtobuf.Enum {
+public enum Bloombox_Partner_Settings_CustomSettingsType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies custom settings for a filtered menu section.
@@ -148,9 +148,9 @@ public enum Bloombox_Schema_Partner_Settings_CustomSettingsType: SwiftProtobuf.E
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Partner_Settings_CustomSettingsType: CaseIterable {
+extension Bloombox_Partner_Settings_CustomSettingsType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Partner_Settings_CustomSettingsType] = [
+  public static var allCases: [Bloombox_Partner_Settings_CustomSettingsType] = [
     .filter,
   ]
 }
@@ -158,7 +158,7 @@ extension Bloombox_Schema_Partner_Settings_CustomSettingsType: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Enumerates available known hours spans, to which a set of hours boundaries and shop status may apply.
-public enum Bloombox_Schema_Partner_Settings_HoursSpan: SwiftProtobuf.Enum {
+public enum Bloombox_Partner_Settings_HoursSpan: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Every day of the week.
@@ -232,9 +232,9 @@ public enum Bloombox_Schema_Partner_Settings_HoursSpan: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Partner_Settings_HoursSpan: CaseIterable {
+extension Bloombox_Partner_Settings_HoursSpan: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Partner_Settings_HoursSpan] = [
+  public static var allCases: [Bloombox_Partner_Settings_HoursSpan] = [
     .everyday,
     .weekdays,
     .weekends,
@@ -252,7 +252,7 @@ extension Bloombox_Schema_Partner_Settings_HoursSpan: CaseIterable {
 
 /// Specifies statuses that an online shop itself may take, where it is either open/closed or only open for pickup or
 /// delivery.
-public enum Bloombox_Schema_Partner_Settings_ShopStatus: SwiftProtobuf.Enum {
+public enum Bloombox_Partner_Settings_ShopStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The shop is currently open for business, for both delivery and pickup.
@@ -296,9 +296,9 @@ public enum Bloombox_Schema_Partner_Settings_ShopStatus: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Partner_Settings_ShopStatus: CaseIterable {
+extension Bloombox_Partner_Settings_ShopStatus: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Partner_Settings_ShopStatus] = [
+  public static var allCases: [Bloombox_Partner_Settings_ShopStatus] = [
     .open,
     .closed,
     .deliveryOnly,
@@ -309,7 +309,7 @@ extension Bloombox_Schema_Partner_Settings_ShopStatus: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Enumerates the types of shop comms for which settings may be specified.
-public enum Bloombox_Schema_Partner_Settings_ShopCommsType: SwiftProtobuf.Enum {
+public enum Bloombox_Partner_Settings_ShopCommsType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies communications settings for internal comms - i.e. to dispensary owners/staff/operators.
@@ -343,9 +343,9 @@ public enum Bloombox_Schema_Partner_Settings_ShopCommsType: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Partner_Settings_ShopCommsType: CaseIterable {
+extension Bloombox_Partner_Settings_ShopCommsType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Partner_Settings_ShopCommsType] = [
+  public static var allCases: [Bloombox_Partner_Settings_ShopCommsType] = [
     .internal,
     .external,
   ]
@@ -354,7 +354,7 @@ extension Bloombox_Schema_Partner_Settings_ShopCommsType: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies available shop action notification channels.
-public enum Bloombox_Schema_Partner_Settings_ShopContactChannel: SwiftProtobuf.Enum {
+public enum Bloombox_Partner_Settings_ShopContactChannel: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies notifications related to shop order submission and status changes.
@@ -393,9 +393,9 @@ public enum Bloombox_Schema_Partner_Settings_ShopContactChannel: SwiftProtobuf.E
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Partner_Settings_ShopContactChannel: CaseIterable {
+extension Bloombox_Partner_Settings_ShopContactChannel: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Partner_Settings_ShopContactChannel] = [
+  public static var allCases: [Bloombox_Partner_Settings_ShopContactChannel] = [
     .ordering,
     .enrollment,
     .marketing,
@@ -405,7 +405,7 @@ extension Bloombox_Schema_Partner_Settings_ShopContactChannel: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies the operating mode for build-a-bag/cart UI on tablet menus.
-public enum Bloombox_Schema_Partner_Settings_CartMode: SwiftProtobuf.Enum {
+public enum Bloombox_Partner_Settings_CartMode: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Cart mode is off.
@@ -444,9 +444,9 @@ public enum Bloombox_Schema_Partner_Settings_CartMode: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Partner_Settings_CartMode: CaseIterable {
+extension Bloombox_Partner_Settings_CartMode: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Partner_Settings_CartMode] = [
+  public static var allCases: [Bloombox_Partner_Settings_CartMode] = [
     .off,
     .bag,
     .cart,
@@ -456,7 +456,7 @@ extension Bloombox_Schema_Partner_Settings_CartMode: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies API-related settings that are setup on a per-location basis.
-public struct Bloombox_Schema_Partner_Settings_APISettings {
+public struct Bloombox_Partner_Settings_APISettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -470,7 +470,7 @@ public struct Bloombox_Schema_Partner_Settings_APISettings {
 }
 
 /// Specifies an in-house brand that should be highlighted in menu display applications.
-public struct Bloombox_Schema_Partner_Settings_InHouseBrand {
+public struct Bloombox_Partner_Settings_InHouseBrand {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -487,13 +487,13 @@ public struct Bloombox_Schema_Partner_Settings_InHouseBrand {
 }
 
 /// Settings related to brand taxonomy for products.
-public struct Bloombox_Schema_Partner_Settings_ProductBrandSettings {
+public struct Bloombox_Partner_Settings_ProductBrandSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Settings payloads for in-house brands.
-  public var inhouse: [Bloombox_Schema_Partner_Settings_InHouseBrand] = []
+  public var inhouse: [Bloombox_Partner_Settings_InHouseBrand] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -501,7 +501,7 @@ public struct Bloombox_Schema_Partner_Settings_ProductBrandSettings {
 }
 
 /// Settings on a per-location basis about what should/should not be published.
-public struct Bloombox_Schema_Partner_Settings_PublishSettings {
+public struct Bloombox_Partner_Settings_PublishSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -518,7 +518,7 @@ public struct Bloombox_Schema_Partner_Settings_PublishSettings {
 }
 
 /// Specific settings specifying a filtered section type.
-public struct Bloombox_Schema_Partner_Settings_CustomSectionSettings {
+public struct Bloombox_Partner_Settings_CustomSectionSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -526,10 +526,10 @@ public struct Bloombox_Schema_Partner_Settings_CustomSectionSettings {
   /// Specification for the type of this block of settings. Always 'filter', for now.
   public var spec: String = String()
 
-  public var settings: Bloombox_Schema_Partner_Settings_CustomSectionSettings.OneOf_Settings? = nil
+  public var settings: Bloombox_Partner_Settings_CustomSectionSettings.OneOf_Settings? = nil
 
   /// Specified internal filter to employ for this section.
-  public var filter: Bloombox_Schema_Partner_Settings_FilteredSectionType {
+  public var filter: Bloombox_Partner_Settings_FilteredSectionType {
     get {
       if case .filter(let v)? = settings {return v}
       return .cbd
@@ -541,10 +541,10 @@ public struct Bloombox_Schema_Partner_Settings_CustomSectionSettings {
 
   public enum OneOf_Settings: Equatable {
     /// Specified internal filter to employ for this section.
-    case filter(Bloombox_Schema_Partner_Settings_FilteredSectionType)
+    case filter(Bloombox_Partner_Settings_FilteredSectionType)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Partner_Settings_CustomSectionSettings.OneOf_Settings, rhs: Bloombox_Schema_Partner_Settings_CustomSectionSettings.OneOf_Settings) -> Bool {
+    public static func ==(lhs: Bloombox_Partner_Settings_CustomSectionSettings.OneOf_Settings, rhs: Bloombox_Partner_Settings_CustomSectionSettings.OneOf_Settings) -> Bool {
       switch (lhs, rhs) {
       case (.filter(let l), .filter(let r)): return l == r
       }
@@ -556,7 +556,7 @@ public struct Bloombox_Schema_Partner_Settings_CustomSectionSettings {
 }
 
 /// Payload of settings for a specified menu section.
-public struct Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
+public struct Bloombox_Partner_Settings_SectionSettingsPayload {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -594,7 +594,7 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
   }
 
   /// This is a specification of a standard section type.
-  public var type: Bloombox_Schema_Partner_Settings_SectionSettingsType {
+  public var type: Bloombox_Partner_Settings_SectionSettingsType {
     get {
       if case .type(let v)? = _storage._kind {return v}
       return .standard
@@ -603,10 +603,10 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
   }
 
   /// This is a specification of a filtered section type.
-  public var custom: Bloombox_Schema_Partner_Settings_CustomSectionSettings {
+  public var custom: Bloombox_Partner_Settings_CustomSectionSettings {
     get {
       if case .custom(let v)? = _storage._kind {return v}
-      return Bloombox_Schema_Partner_Settings_CustomSectionSettings()
+      return Bloombox_Partner_Settings_CustomSectionSettings()
     }
     set {_uniqueStorage()._kind = .custom(newValue)}
   }
@@ -616,12 +616,12 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
   /// Type of section we are specifying settings for.
   public enum OneOf_Kind: Equatable {
     /// This is a specification of a standard section type.
-    case type(Bloombox_Schema_Partner_Settings_SectionSettingsType)
+    case type(Bloombox_Partner_Settings_SectionSettingsType)
     /// This is a specification of a filtered section type.
-    case custom(Bloombox_Schema_Partner_Settings_CustomSectionSettings)
+    case custom(Bloombox_Partner_Settings_CustomSectionSettings)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Partner_Settings_SectionSettingsPayload.OneOf_Kind, rhs: Bloombox_Schema_Partner_Settings_SectionSettingsPayload.OneOf_Kind) -> Bool {
+    public static func ==(lhs: Bloombox_Partner_Settings_SectionSettingsPayload.OneOf_Kind, rhs: Bloombox_Partner_Settings_SectionSettingsPayload.OneOf_Kind) -> Bool {
       switch (lhs, rhs) {
       case (.type(let l), .type(let r)): return l == r
       case (.custom(let l), .custom(let r)): return l == r
@@ -637,14 +637,14 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
 }
 
 /// Section-level settings in menu display applications.
-public struct Bloombox_Schema_Partner_Settings_SectionSettings {
+public struct Bloombox_Partner_Settings_SectionSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Apothecary section settings.
-  public var apothecary: Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
-    get {return _storage._apothecary ?? Bloombox_Schema_Partner_Settings_SectionSettingsPayload()}
+  public var apothecary: Bloombox_Partner_Settings_SectionSettingsPayload {
+    get {return _storage._apothecary ?? Bloombox_Partner_Settings_SectionSettingsPayload()}
     set {_uniqueStorage()._apothecary = newValue}
   }
   /// Returns true if `apothecary` has been explicitly set.
@@ -653,8 +653,8 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettings {
   public mutating func clearApothecary() {_uniqueStorage()._apothecary = nil}
 
   /// Cartridges section settings.
-  public var cartridges: Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
-    get {return _storage._cartridges ?? Bloombox_Schema_Partner_Settings_SectionSettingsPayload()}
+  public var cartridges: Bloombox_Partner_Settings_SectionSettingsPayload {
+    get {return _storage._cartridges ?? Bloombox_Partner_Settings_SectionSettingsPayload()}
     set {_uniqueStorage()._cartridges = newValue}
   }
   /// Returns true if `cartridges` has been explicitly set.
@@ -663,8 +663,8 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettings {
   public mutating func clearCartridges() {_uniqueStorage()._cartridges = nil}
 
   /// Concentrates/extracts section settings.
-  public var concentrates: Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
-    get {return _storage._concentrates ?? Bloombox_Schema_Partner_Settings_SectionSettingsPayload()}
+  public var concentrates: Bloombox_Partner_Settings_SectionSettingsPayload {
+    get {return _storage._concentrates ?? Bloombox_Partner_Settings_SectionSettingsPayload()}
     set {_uniqueStorage()._concentrates = newValue}
   }
   /// Returns true if `concentrates` has been explicitly set.
@@ -673,8 +673,8 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettings {
   public mutating func clearConcentrates() {_uniqueStorage()._concentrates = nil}
 
   /// Edibles section settings.
-  public var edibles: Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
-    get {return _storage._edibles ?? Bloombox_Schema_Partner_Settings_SectionSettingsPayload()}
+  public var edibles: Bloombox_Partner_Settings_SectionSettingsPayload {
+    get {return _storage._edibles ?? Bloombox_Partner_Settings_SectionSettingsPayload()}
     set {_uniqueStorage()._edibles = newValue}
   }
   /// Returns true if `edibles` has been explicitly set.
@@ -683,8 +683,8 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettings {
   public mutating func clearEdibles() {_uniqueStorage()._edibles = nil}
 
   /// Flowers section settings.
-  public var flowers: Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
-    get {return _storage._flowers ?? Bloombox_Schema_Partner_Settings_SectionSettingsPayload()}
+  public var flowers: Bloombox_Partner_Settings_SectionSettingsPayload {
+    get {return _storage._flowers ?? Bloombox_Partner_Settings_SectionSettingsPayload()}
     set {_uniqueStorage()._flowers = newValue}
   }
   /// Returns true if `flowers` has been explicitly set.
@@ -693,8 +693,8 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettings {
   public mutating func clearFlowers() {_uniqueStorage()._flowers = nil}
 
   /// Prerolls section settings.
-  public var prerolls: Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
-    get {return _storage._prerolls ?? Bloombox_Schema_Partner_Settings_SectionSettingsPayload()}
+  public var prerolls: Bloombox_Partner_Settings_SectionSettingsPayload {
+    get {return _storage._prerolls ?? Bloombox_Partner_Settings_SectionSettingsPayload()}
     set {_uniqueStorage()._prerolls = newValue}
   }
   /// Returns true if `prerolls` has been explicitly set.
@@ -703,8 +703,8 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettings {
   public mutating func clearPrerolls() {_uniqueStorage()._prerolls = nil}
 
   /// Merchandise section settings.
-  public var merchandise: Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
-    get {return _storage._merchandise ?? Bloombox_Schema_Partner_Settings_SectionSettingsPayload()}
+  public var merchandise: Bloombox_Partner_Settings_SectionSettingsPayload {
+    get {return _storage._merchandise ?? Bloombox_Partner_Settings_SectionSettingsPayload()}
     set {_uniqueStorage()._merchandise = newValue}
   }
   /// Returns true if `merchandise` has been explicitly set.
@@ -713,8 +713,8 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettings {
   public mutating func clearMerchandise() {_uniqueStorage()._merchandise = nil}
 
   /// Plants section settings.
-  public var plants: Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
-    get {return _storage._plants ?? Bloombox_Schema_Partner_Settings_SectionSettingsPayload()}
+  public var plants: Bloombox_Partner_Settings_SectionSettingsPayload {
+    get {return _storage._plants ?? Bloombox_Partner_Settings_SectionSettingsPayload()}
     set {_uniqueStorage()._plants = newValue}
   }
   /// Returns true if `plants` has been explicitly set.
@@ -723,8 +723,8 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettings {
   public mutating func clearPlants() {_uniqueStorage()._plants = nil}
 
   /// CBD section settings.
-  public var cbd: Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
-    get {return _storage._cbd ?? Bloombox_Schema_Partner_Settings_SectionSettingsPayload()}
+  public var cbd: Bloombox_Partner_Settings_SectionSettingsPayload {
+    get {return _storage._cbd ?? Bloombox_Partner_Settings_SectionSettingsPayload()}
     set {_uniqueStorage()._cbd = newValue}
   }
   /// Returns true if `cbd` has been explicitly set.
@@ -733,8 +733,8 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettings {
   public mutating func clearCbd() {_uniqueStorage()._cbd = nil}
 
   /// In-house section settings.
-  public var house: Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
-    get {return _storage._house ?? Bloombox_Schema_Partner_Settings_SectionSettingsPayload()}
+  public var house: Bloombox_Partner_Settings_SectionSettingsPayload {
+    get {return _storage._house ?? Bloombox_Partner_Settings_SectionSettingsPayload()}
     set {_uniqueStorage()._house = newValue}
   }
   /// Returns true if `house` has been explicitly set.
@@ -743,8 +743,8 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettings {
   public mutating func clearHouse() {_uniqueStorage()._house = nil}
 
   /// On-sale section settings.
-  public var onsale: Bloombox_Schema_Partner_Settings_SectionSettingsPayload {
-    get {return _storage._onsale ?? Bloombox_Schema_Partner_Settings_SectionSettingsPayload()}
+  public var onsale: Bloombox_Partner_Settings_SectionSettingsPayload {
+    get {return _storage._onsale ?? Bloombox_Partner_Settings_SectionSettingsPayload()}
     set {_uniqueStorage()._onsale = newValue}
   }
   /// Returns true if `onsale` has been explicitly set.
@@ -760,7 +760,7 @@ public struct Bloombox_Schema_Partner_Settings_SectionSettings {
 }
 
 /// Specifies banner settings for television display units.
-public struct Bloombox_Schema_Partner_Settings_TVBannerSettings {
+public struct Bloombox_Partner_Settings_TVBannerSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -777,7 +777,7 @@ public struct Bloombox_Schema_Partner_Settings_TVBannerSettings {
 }
 
 /// Section-specific settings when viewed via TV menus.
-public struct Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload {
+public struct Bloombox_Partner_Settings_TVSectionSettingsPayload {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -797,14 +797,14 @@ public struct Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload {
 }
 
 /// Specifies settings specific to TV menus.
-public struct Bloombox_Schema_Partner_Settings_TVMenuSettings {
+public struct Bloombox_Partner_Settings_TVMenuSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Apothecary section settings, when viewed on TV menus.
-  public var apothecary: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload {
-    get {return _storage._apothecary ?? Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload()}
+  public var apothecary: Bloombox_Partner_Settings_TVSectionSettingsPayload {
+    get {return _storage._apothecary ?? Bloombox_Partner_Settings_TVSectionSettingsPayload()}
     set {_uniqueStorage()._apothecary = newValue}
   }
   /// Returns true if `apothecary` has been explicitly set.
@@ -813,8 +813,8 @@ public struct Bloombox_Schema_Partner_Settings_TVMenuSettings {
   public mutating func clearApothecary() {_uniqueStorage()._apothecary = nil}
 
   /// Cartridges section settings, when viewed on TV menus.
-  public var cartridges: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload {
-    get {return _storage._cartridges ?? Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload()}
+  public var cartridges: Bloombox_Partner_Settings_TVSectionSettingsPayload {
+    get {return _storage._cartridges ?? Bloombox_Partner_Settings_TVSectionSettingsPayload()}
     set {_uniqueStorage()._cartridges = newValue}
   }
   /// Returns true if `cartridges` has been explicitly set.
@@ -823,8 +823,8 @@ public struct Bloombox_Schema_Partner_Settings_TVMenuSettings {
   public mutating func clearCartridges() {_uniqueStorage()._cartridges = nil}
 
   /// Concentrates/extracts section settings, when viewed on TV menus.
-  public var concentrates: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload {
-    get {return _storage._concentrates ?? Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload()}
+  public var concentrates: Bloombox_Partner_Settings_TVSectionSettingsPayload {
+    get {return _storage._concentrates ?? Bloombox_Partner_Settings_TVSectionSettingsPayload()}
     set {_uniqueStorage()._concentrates = newValue}
   }
   /// Returns true if `concentrates` has been explicitly set.
@@ -833,8 +833,8 @@ public struct Bloombox_Schema_Partner_Settings_TVMenuSettings {
   public mutating func clearConcentrates() {_uniqueStorage()._concentrates = nil}
 
   /// Edibles section settings, when viewed on TV menus.
-  public var edibles: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload {
-    get {return _storage._edibles ?? Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload()}
+  public var edibles: Bloombox_Partner_Settings_TVSectionSettingsPayload {
+    get {return _storage._edibles ?? Bloombox_Partner_Settings_TVSectionSettingsPayload()}
     set {_uniqueStorage()._edibles = newValue}
   }
   /// Returns true if `edibles` has been explicitly set.
@@ -843,8 +843,8 @@ public struct Bloombox_Schema_Partner_Settings_TVMenuSettings {
   public mutating func clearEdibles() {_uniqueStorage()._edibles = nil}
 
   /// Flowers section settings, when viewed on TV menus.
-  public var flowers: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload {
-    get {return _storage._flowers ?? Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload()}
+  public var flowers: Bloombox_Partner_Settings_TVSectionSettingsPayload {
+    get {return _storage._flowers ?? Bloombox_Partner_Settings_TVSectionSettingsPayload()}
     set {_uniqueStorage()._flowers = newValue}
   }
   /// Returns true if `flowers` has been explicitly set.
@@ -853,8 +853,8 @@ public struct Bloombox_Schema_Partner_Settings_TVMenuSettings {
   public mutating func clearFlowers() {_uniqueStorage()._flowers = nil}
 
   /// Prerolls section settings, when viewed on TV menus.
-  public var prerolls: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload {
-    get {return _storage._prerolls ?? Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload()}
+  public var prerolls: Bloombox_Partner_Settings_TVSectionSettingsPayload {
+    get {return _storage._prerolls ?? Bloombox_Partner_Settings_TVSectionSettingsPayload()}
     set {_uniqueStorage()._prerolls = newValue}
   }
   /// Returns true if `prerolls` has been explicitly set.
@@ -863,8 +863,8 @@ public struct Bloombox_Schema_Partner_Settings_TVMenuSettings {
   public mutating func clearPrerolls() {_uniqueStorage()._prerolls = nil}
 
   /// Merchandise section settings, when viewed on TV menus.
-  public var merchandise: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload {
-    get {return _storage._merchandise ?? Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload()}
+  public var merchandise: Bloombox_Partner_Settings_TVSectionSettingsPayload {
+    get {return _storage._merchandise ?? Bloombox_Partner_Settings_TVSectionSettingsPayload()}
     set {_uniqueStorage()._merchandise = newValue}
   }
   /// Returns true if `merchandise` has been explicitly set.
@@ -873,8 +873,8 @@ public struct Bloombox_Schema_Partner_Settings_TVMenuSettings {
   public mutating func clearMerchandise() {_uniqueStorage()._merchandise = nil}
 
   /// Plants section settings, when viewed on TV menus.
-  public var plants: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload {
-    get {return _storage._plants ?? Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload()}
+  public var plants: Bloombox_Partner_Settings_TVSectionSettingsPayload {
+    get {return _storage._plants ?? Bloombox_Partner_Settings_TVSectionSettingsPayload()}
     set {_uniqueStorage()._plants = newValue}
   }
   /// Returns true if `plants` has been explicitly set.
@@ -890,14 +890,14 @@ public struct Bloombox_Schema_Partner_Settings_TVMenuSettings {
 }
 
 /// Specifies settings for television display units on a per-location basis.
-public struct Bloombox_Schema_Partner_Settings_TVSettings {
+public struct Bloombox_Partner_Settings_TVSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Settings for the TV's top banner.
-  public var banner: Bloombox_Schema_Partner_Settings_TVBannerSettings {
-    get {return _storage._banner ?? Bloombox_Schema_Partner_Settings_TVBannerSettings()}
+  public var banner: Bloombox_Partner_Settings_TVBannerSettings {
+    get {return _storage._banner ?? Bloombox_Partner_Settings_TVBannerSettings()}
     set {_uniqueStorage()._banner = newValue}
   }
   /// Returns true if `banner` has been explicitly set.
@@ -906,8 +906,8 @@ public struct Bloombox_Schema_Partner_Settings_TVSettings {
   public mutating func clearBanner() {_uniqueStorage()._banner = nil}
 
   /// Menu-specific settings for TVs.
-  public var settings: Bloombox_Schema_Partner_Settings_TVMenuSettings {
-    get {return _storage._settings ?? Bloombox_Schema_Partner_Settings_TVMenuSettings()}
+  public var settings: Bloombox_Partner_Settings_TVMenuSettings {
+    get {return _storage._settings ?? Bloombox_Partner_Settings_TVMenuSettings()}
     set {_uniqueStorage()._settings = newValue}
   }
   /// Returns true if `settings` has been explicitly set.
@@ -923,7 +923,7 @@ public struct Bloombox_Schema_Partner_Settings_TVSettings {
 }
 
 /// Specifies an hours point as part of an hours boundary.
-public struct Bloombox_Schema_Partner_Settings_HoursSpec {
+public struct Bloombox_Partner_Settings_HoursSpec {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -940,14 +940,14 @@ public struct Bloombox_Schema_Partner_Settings_HoursSpec {
 }
 
 /// Specifies an hours boundary as part of an hours settings payload.
-public struct Bloombox_Schema_Partner_Settings_HoursBoundary {
+public struct Bloombox_Partner_Settings_HoursBoundary {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Beginning of the hours boundary.
-  public var begin: Bloombox_Schema_Partner_Settings_HoursSpec {
-    get {return _storage._begin ?? Bloombox_Schema_Partner_Settings_HoursSpec()}
+  public var begin: Bloombox_Partner_Settings_HoursSpec {
+    get {return _storage._begin ?? Bloombox_Partner_Settings_HoursSpec()}
     set {_uniqueStorage()._begin = newValue}
   }
   /// Returns true if `begin` has been explicitly set.
@@ -956,8 +956,8 @@ public struct Bloombox_Schema_Partner_Settings_HoursBoundary {
   public mutating func clearBegin() {_uniqueStorage()._begin = nil}
 
   /// End of the hours boundary.
-  public var end: Bloombox_Schema_Partner_Settings_HoursSpec {
-    get {return _storage._end ?? Bloombox_Schema_Partner_Settings_HoursSpec()}
+  public var end: Bloombox_Partner_Settings_HoursSpec {
+    get {return _storage._end ?? Bloombox_Partner_Settings_HoursSpec()}
     set {_uniqueStorage()._end = newValue}
   }
   /// Returns true if `end` has been explicitly set.
@@ -966,7 +966,7 @@ public struct Bloombox_Schema_Partner_Settings_HoursBoundary {
   public mutating func clearEnd() {_uniqueStorage()._end = nil}
 
   /// How this boundary applies - the span of days for this boundary.
-  public var span: Bloombox_Schema_Partner_Settings_HoursSpan {
+  public var span: Bloombox_Partner_Settings_HoursSpan {
     get {return _storage._span}
     set {_uniqueStorage()._span = newValue}
   }
@@ -979,14 +979,14 @@ public struct Bloombox_Schema_Partner_Settings_HoursBoundary {
 }
 
 /// Specifies 'regular' hours, that apply when no 'special' hours apply.
-public struct Bloombox_Schema_Partner_Settings_RegularHoursSettings {
+public struct Bloombox_Partner_Settings_RegularHoursSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Boundary of this set of hours settings.
-  public var bounds: Bloombox_Schema_Partner_Settings_HoursBoundary {
-    get {return _storage._bounds ?? Bloombox_Schema_Partner_Settings_HoursBoundary()}
+  public var bounds: Bloombox_Partner_Settings_HoursBoundary {
+    get {return _storage._bounds ?? Bloombox_Partner_Settings_HoursBoundary()}
     set {_uniqueStorage()._bounds = newValue}
   }
   /// Returns true if `bounds` has been explicitly set.
@@ -995,7 +995,7 @@ public struct Bloombox_Schema_Partner_Settings_RegularHoursSettings {
   public mutating func clearBounds() {_uniqueStorage()._bounds = nil}
 
   /// Specifies the policy that should apply during the specified bounds, with regard to the shop's open/closed status.
-  public var mode: Bloombox_Schema_Partner_Settings_ShopStatus {
+  public var mode: Bloombox_Partner_Settings_ShopStatus {
     get {return _storage._mode}
     set {_uniqueStorage()._mode = newValue}
   }
@@ -1008,14 +1008,14 @@ public struct Bloombox_Schema_Partner_Settings_RegularHoursSettings {
 }
 
 /// Specifies 'special' hours, such as holidays or one-off days.
-public struct Bloombox_Schema_Partner_Settings_SpecialHoursSettings {
+public struct Bloombox_Partner_Settings_SpecialHoursSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Boundary of this set of hours settings.
-  public var bounds: Bloombox_Schema_Partner_Settings_HoursBoundary {
-    get {return _storage._bounds ?? Bloombox_Schema_Partner_Settings_HoursBoundary()}
+  public var bounds: Bloombox_Partner_Settings_HoursBoundary {
+    get {return _storage._bounds ?? Bloombox_Partner_Settings_HoursBoundary()}
     set {_uniqueStorage()._bounds = newValue}
   }
   /// Returns true if `bounds` has been explicitly set.
@@ -1024,7 +1024,7 @@ public struct Bloombox_Schema_Partner_Settings_SpecialHoursSettings {
   public mutating func clearBounds() {_uniqueStorage()._bounds = nil}
 
   /// Specifies the policy that should apply during the specified bounds, with regard to the shop's open/closed status.
-  public var mode: Bloombox_Schema_Partner_Settings_ShopStatus {
+  public var mode: Bloombox_Partner_Settings_ShopStatus {
     get {return _storage._mode}
     set {_uniqueStorage()._mode = newValue}
   }
@@ -1047,16 +1047,16 @@ public struct Bloombox_Schema_Partner_Settings_SpecialHoursSettings {
 }
 
 /// Specifies shop hours that tie together the physical and digital storefront.
-public struct Bloombox_Schema_Partner_Settings_ShopHoursSettings {
+public struct Bloombox_Partner_Settings_ShopHoursSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies payloads of regular hours settings for this shop location.
-  public var regular: [Bloombox_Schema_Partner_Settings_RegularHoursSettings] = []
+  public var regular: [Bloombox_Partner_Settings_RegularHoursSettings] = []
 
   /// Specifies paylods of special hours settings for this shop location, mapped to the day they apply.
-  public var special: Dictionary<String,Bloombox_Schema_Partner_Settings_SpecialHoursSettings> = [:]
+  public var special: Dictionary<String,Bloombox_Partner_Settings_SpecialHoursSettings> = [:]
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1064,7 +1064,7 @@ public struct Bloombox_Schema_Partner_Settings_ShopHoursSettings {
 }
 
 /// Flags that indicate the services offered through a particular shop.
-public struct Bloombox_Schema_Partner_Settings_ShopServiceSettings {
+public struct Bloombox_Partner_Settings_ShopServiceSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1093,7 +1093,7 @@ public struct Bloombox_Schema_Partner_Settings_ShopServiceSettings {
 }
 
 /// Settings for delivery according to a specific zipcode.
-public struct Bloombox_Schema_Partner_Settings_DeliveryZipcodeSettings {
+public struct Bloombox_Partner_Settings_DeliveryZipcodeSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1114,7 +1114,7 @@ public struct Bloombox_Schema_Partner_Settings_DeliveryZipcodeSettings {
 }
 
 /// Settings for delivery services.
-public struct Bloombox_Schema_Partner_Settings_DeliverySettings {
+public struct Bloombox_Partner_Settings_DeliverySettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1123,7 +1123,7 @@ public struct Bloombox_Schema_Partner_Settings_DeliverySettings {
   public var globalMinimum: UInt32 = 0
 
   /// Specifies zipcode-level settings for delivery.
-  public var zipcodes: Dictionary<String,Bloombox_Schema_Partner_Settings_DeliveryZipcodeSettings> = [:]
+  public var zipcodes: Dictionary<String,Bloombox_Partner_Settings_DeliveryZipcodeSettings> = [:]
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1131,7 +1131,7 @@ public struct Bloombox_Schema_Partner_Settings_DeliverySettings {
 }
 
 /// Specifies channel-specific shop contact/notification settings.
-public struct Bloombox_Schema_Partner_Settings_ShopContactChannelSettings {
+public struct Bloombox_Partner_Settings_ShopContactChannelSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1148,14 +1148,14 @@ public struct Bloombox_Schema_Partner_Settings_ShopContactChannelSettings {
 }
 
 /// Groups settings for different shop notification channels into one payload.
-public struct Bloombox_Schema_Partner_Settings_ShopChannelSettings {
+public struct Bloombox_Partner_Settings_ShopChannelSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies channel-specific settings for orders notifications.
-  public var orders: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings {
-    get {return _storage._orders ?? Bloombox_Schema_Partner_Settings_ShopContactChannelSettings()}
+  public var orders: Bloombox_Partner_Settings_ShopContactChannelSettings {
+    get {return _storage._orders ?? Bloombox_Partner_Settings_ShopContactChannelSettings()}
     set {_uniqueStorage()._orders = newValue}
   }
   /// Returns true if `orders` has been explicitly set.
@@ -1164,8 +1164,8 @@ public struct Bloombox_Schema_Partner_Settings_ShopChannelSettings {
   public mutating func clearOrders() {_uniqueStorage()._orders = nil}
 
   /// Specifies channel-specific settings for enrollment notifications.
-  public var enrollment: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings {
-    get {return _storage._enrollment ?? Bloombox_Schema_Partner_Settings_ShopContactChannelSettings()}
+  public var enrollment: Bloombox_Partner_Settings_ShopContactChannelSettings {
+    get {return _storage._enrollment ?? Bloombox_Partner_Settings_ShopContactChannelSettings()}
     set {_uniqueStorage()._enrollment = newValue}
   }
   /// Returns true if `enrollment` has been explicitly set.
@@ -1174,8 +1174,8 @@ public struct Bloombox_Schema_Partner_Settings_ShopChannelSettings {
   public mutating func clearEnrollment() {_uniqueStorage()._enrollment = nil}
 
   /// Specifies channel-specific settings for marketing notifications.
-  public var marketing: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings {
-    get {return _storage._marketing ?? Bloombox_Schema_Partner_Settings_ShopContactChannelSettings()}
+  public var marketing: Bloombox_Partner_Settings_ShopContactChannelSettings {
+    get {return _storage._marketing ?? Bloombox_Partner_Settings_ShopContactChannelSettings()}
     set {_uniqueStorage()._marketing = newValue}
   }
   /// Returns true if `marketing` has been explicitly set.
@@ -1191,7 +1191,7 @@ public struct Bloombox_Schema_Partner_Settings_ShopChannelSettings {
 }
 
 /// Specifies a shop contact target who should receive shop notifications in some specified circumstances.
-public struct Bloombox_Schema_Partner_Settings_ShopContactTarget {
+public struct Bloombox_Partner_Settings_ShopContactTarget {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1229,8 +1229,8 @@ public struct Bloombox_Schema_Partner_Settings_ShopContactTarget {
   public mutating func clearPhone() {_uniqueStorage()._phone = nil}
 
   /// Specifies channel-specific subscription settings.
-  public var channels: Bloombox_Schema_Partner_Settings_ShopChannelSettings {
-    get {return _storage._channels ?? Bloombox_Schema_Partner_Settings_ShopChannelSettings()}
+  public var channels: Bloombox_Partner_Settings_ShopChannelSettings {
+    get {return _storage._channels ?? Bloombox_Partner_Settings_ShopChannelSettings()}
     set {_uniqueStorage()._channels = newValue}
   }
   /// Returns true if `channels` has been explicitly set.
@@ -1246,7 +1246,7 @@ public struct Bloombox_Schema_Partner_Settings_ShopContactTarget {
 }
 
 /// Specifies sender account settings for SMS and email notification channels.
-public struct Bloombox_Schema_Partner_Settings_CommsSenderSettings {
+public struct Bloombox_Partner_Settings_CommsSenderSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1279,29 +1279,29 @@ public struct Bloombox_Schema_Partner_Settings_CommsSenderSettings {
 }
 
 /// Specifies a particular type of communication settings, usually keyed by its type.
-public struct Bloombox_Schema_Partner_Settings_CommsSettingsPayload {
+public struct Bloombox_Partner_Settings_CommsSettingsPayload {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies the type communications this settings payload should apply to. Sometimes left unspecified when this
   /// message is used as a map value, since this value is used as its key.
-  public var type: Bloombox_Schema_Partner_Settings_ShopCommsType {
+  public var type: Bloombox_Partner_Settings_ShopCommsType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Specifies contacts attached to this type of shop communication. In an internal context, these represent the full
   /// set of contacts reached-out-to when things occur. In an external context, these are like a BCC function.
-  public var contacts: [Bloombox_Schema_Partner_Settings_ShopContactTarget] {
+  public var contacts: [Bloombox_Partner_Settings_ShopContactTarget] {
     get {return _storage._contacts}
     set {_uniqueStorage()._contacts = newValue}
   }
 
   /// Specifies settings for where messages should come from when they are sent for shop communications, including email
   /// (source email address), and SMS (source phone number).
-  public var sender: Bloombox_Schema_Partner_Settings_CommsSenderSettings {
-    get {return _storage._sender ?? Bloombox_Schema_Partner_Settings_CommsSenderSettings()}
+  public var sender: Bloombox_Partner_Settings_CommsSenderSettings {
+    get {return _storage._sender ?? Bloombox_Partner_Settings_CommsSenderSettings()}
     set {_uniqueStorage()._sender = newValue}
   }
   /// Returns true if `sender` has been explicitly set.
@@ -1317,14 +1317,14 @@ public struct Bloombox_Schema_Partner_Settings_CommsSettingsPayload {
 }
 
 /// Specifies settings related to shop comms.
-public struct Bloombox_Schema_Partner_Settings_ShopCommsSettings {
+public struct Bloombox_Partner_Settings_ShopCommsSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Internal communications settings. This includes dispensary owners/operators/staff and other internal stakeholders.
-  public var `internal`: Bloombox_Schema_Partner_Settings_CommsSettingsPayload {
-    get {return _storage._internal ?? Bloombox_Schema_Partner_Settings_CommsSettingsPayload()}
+  public var `internal`: Bloombox_Partner_Settings_CommsSettingsPayload {
+    get {return _storage._internal ?? Bloombox_Partner_Settings_CommsSettingsPayload()}
     set {_uniqueStorage()._internal = newValue}
   }
   /// Returns true if ``internal`` has been explicitly set.
@@ -1334,8 +1334,8 @@ public struct Bloombox_Schema_Partner_Settings_ShopCommsSettings {
 
   /// External communications settings. This specifies settings that apply when communicating with end-users, consumers,
   /// customers, and so on.
-  public var external: Bloombox_Schema_Partner_Settings_CommsSettingsPayload {
-    get {return _storage._external ?? Bloombox_Schema_Partner_Settings_CommsSettingsPayload()}
+  public var external: Bloombox_Partner_Settings_CommsSettingsPayload {
+    get {return _storage._external ?? Bloombox_Partner_Settings_CommsSettingsPayload()}
     set {_uniqueStorage()._external = newValue}
   }
   /// Returns true if `external` has been explicitly set.
@@ -1351,7 +1351,7 @@ public struct Bloombox_Schema_Partner_Settings_ShopCommsSettings {
 }
 
 /// Settings scope for items specifically related to online shop access.
-public struct Bloombox_Schema_Partner_Settings_OnlineShopSettings {
+public struct Bloombox_Partner_Settings_OnlineShopSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1363,8 +1363,8 @@ public struct Bloombox_Schema_Partner_Settings_OnlineShopSettings {
   }
 
   /// Specifies settings related to internal or external communications.
-  public var comms: Bloombox_Schema_Partner_Settings_ShopCommsSettings {
-    get {return _storage._comms ?? Bloombox_Schema_Partner_Settings_ShopCommsSettings()}
+  public var comms: Bloombox_Partner_Settings_ShopCommsSettings {
+    get {return _storage._comms ?? Bloombox_Partner_Settings_ShopCommsSettings()}
     set {_uniqueStorage()._comms = newValue}
   }
   /// Returns true if `comms` has been explicitly set.
@@ -1410,7 +1410,7 @@ public struct Bloombox_Schema_Partner_Settings_OnlineShopSettings {
 }
 
 /// Specifies settings and preferences related to a location's physical storefront.
-public struct Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings {
+public struct Bloombox_Partner_Settings_PhysicalStorefrontSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1445,14 +1445,14 @@ public struct Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings {
 }
 
 /// Specifies settings related to the actual sale of goods, either digitally or physically.
-public struct Bloombox_Schema_Partner_Settings_StorefrontSettings {
+public struct Bloombox_Partner_Settings_StorefrontSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies settings related to shop delivery.
-  public var delivery: Bloombox_Schema_Partner_Settings_DeliverySettings {
-    get {return _storage._delivery ?? Bloombox_Schema_Partner_Settings_DeliverySettings()}
+  public var delivery: Bloombox_Partner_Settings_DeliverySettings {
+    get {return _storage._delivery ?? Bloombox_Partner_Settings_DeliverySettings()}
     set {_uniqueStorage()._delivery = newValue}
   }
   /// Returns true if `delivery` has been explicitly set.
@@ -1461,8 +1461,8 @@ public struct Bloombox_Schema_Partner_Settings_StorefrontSettings {
   public mutating func clearDelivery() {_uniqueStorage()._delivery = nil}
 
   /// Specifies settings related to the online shop.
-  public var online: Bloombox_Schema_Partner_Settings_OnlineShopSettings {
-    get {return _storage._online ?? Bloombox_Schema_Partner_Settings_OnlineShopSettings()}
+  public var online: Bloombox_Partner_Settings_OnlineShopSettings {
+    get {return _storage._online ?? Bloombox_Partner_Settings_OnlineShopSettings()}
     set {_uniqueStorage()._online = newValue}
   }
   /// Returns true if `online` has been explicitly set.
@@ -1471,8 +1471,8 @@ public struct Bloombox_Schema_Partner_Settings_StorefrontSettings {
   public mutating func clearOnline() {_uniqueStorage()._online = nil}
 
   /// Specifies settings related to this location's physical storefront.
-  public var physical: Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings {
-    get {return _storage._physical ?? Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings()}
+  public var physical: Bloombox_Partner_Settings_PhysicalStorefrontSettings {
+    get {return _storage._physical ?? Bloombox_Partner_Settings_PhysicalStorefrontSettings()}
     set {_uniqueStorage()._physical = newValue}
   }
   /// Returns true if `physical` has been explicitly set.
@@ -1488,14 +1488,14 @@ public struct Bloombox_Schema_Partner_Settings_StorefrontSettings {
 }
 
 /// Specifies settings that apply to the web shop on a per-location basis.
-public struct Bloombox_Schema_Partner_Settings_ShopSettings {
+public struct Bloombox_Partner_Settings_ShopSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies hours that apply to this storefront.
-  public var hours: Bloombox_Schema_Partner_Settings_ShopHoursSettings {
-    get {return _storage._hours ?? Bloombox_Schema_Partner_Settings_ShopHoursSettings()}
+  public var hours: Bloombox_Partner_Settings_ShopHoursSettings {
+    get {return _storage._hours ?? Bloombox_Partner_Settings_ShopHoursSettings()}
     set {_uniqueStorage()._hours = newValue}
   }
   /// Returns true if `hours` has been explicitly set.
@@ -1504,8 +1504,8 @@ public struct Bloombox_Schema_Partner_Settings_ShopSettings {
   public mutating func clearHours() {_uniqueStorage()._hours = nil}
 
   /// Specifies the services offered by this shop, digital or physical.
-  public var services: Bloombox_Schema_Partner_Settings_ShopServiceSettings {
-    get {return _storage._services ?? Bloombox_Schema_Partner_Settings_ShopServiceSettings()}
+  public var services: Bloombox_Partner_Settings_ShopServiceSettings {
+    get {return _storage._services ?? Bloombox_Partner_Settings_ShopServiceSettings()}
     set {_uniqueStorage()._services = newValue}
   }
   /// Returns true if `services` has been explicitly set.
@@ -1514,8 +1514,8 @@ public struct Bloombox_Schema_Partner_Settings_ShopSettings {
   public mutating func clearServices() {_uniqueStorage()._services = nil}
 
   /// Specifies settings that apply to digital and physical sale of goods.
-  public var storefront: Bloombox_Schema_Partner_Settings_StorefrontSettings {
-    get {return _storage._storefront ?? Bloombox_Schema_Partner_Settings_StorefrontSettings()}
+  public var storefront: Bloombox_Partner_Settings_StorefrontSettings {
+    get {return _storage._storefront ?? Bloombox_Partner_Settings_StorefrontSettings()}
     set {_uniqueStorage()._storefront = newValue}
   }
   /// Returns true if `storefront` has been explicitly set.
@@ -1531,13 +1531,13 @@ public struct Bloombox_Schema_Partner_Settings_ShopSettings {
 }
 
 /// Settings for the cart UI and mode switch on tablet menus.
-public struct Bloombox_Schema_Partner_Settings_CartSettings {
+public struct Bloombox_Partner_Settings_CartSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Operating mode for the cart.
-  public var mode: Bloombox_Schema_Partner_Settings_CartMode = .off
+  public var mode: Bloombox_Partner_Settings_CartMode = .off
 
   /// Default order type to send from the device.
   public var orderType: Opencannabis_Commerce_OrderType = .pickup
@@ -1548,14 +1548,14 @@ public struct Bloombox_Schema_Partner_Settings_CartSettings {
 }
 
 /// Settings related to tablet menus.
-public struct Bloombox_Schema_Partner_Settings_TabletSettings {
+public struct Bloombox_Partner_Settings_TabletSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Settings for the tablet menu cart/build-a-bag feature.
-  public var cart: Bloombox_Schema_Partner_Settings_CartSettings {
-    get {return _storage._cart ?? Bloombox_Schema_Partner_Settings_CartSettings()}
+  public var cart: Bloombox_Partner_Settings_CartSettings {
+    get {return _storage._cart ?? Bloombox_Partner_Settings_CartSettings()}
     set {_uniqueStorage()._cart = newValue}
   }
   /// Returns true if `cart` has been explicitly set.
@@ -1571,14 +1571,14 @@ public struct Bloombox_Schema_Partner_Settings_TabletSettings {
 }
 
 /// Partner location-level account settings.
-public struct Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
+public struct Bloombox_Partner_Settings_PartnerLocationSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Internal API-related settings.
-  public var api: Bloombox_Schema_Partner_Settings_APISettings {
-    get {return _storage._api ?? Bloombox_Schema_Partner_Settings_APISettings()}
+  public var api: Bloombox_Partner_Settings_APISettings {
+    get {return _storage._api ?? Bloombox_Partner_Settings_APISettings()}
     set {_uniqueStorage()._api = newValue}
   }
   /// Returns true if `api` has been explicitly set.
@@ -1587,8 +1587,8 @@ public struct Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
   public mutating func clearApi() {_uniqueStorage()._api = nil}
 
   /// Product-level branding settings.
-  public var brands: Bloombox_Schema_Partner_Settings_ProductBrandSettings {
-    get {return _storage._brands ?? Bloombox_Schema_Partner_Settings_ProductBrandSettings()}
+  public var brands: Bloombox_Partner_Settings_ProductBrandSettings {
+    get {return _storage._brands ?? Bloombox_Partner_Settings_ProductBrandSettings()}
     set {_uniqueStorage()._brands = newValue}
   }
   /// Returns true if `brands` has been explicitly set.
@@ -1597,8 +1597,8 @@ public struct Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
   public mutating func clearBrands() {_uniqueStorage()._brands = nil}
 
   /// Settings related to publishing data on behalf of a partner.
-  public var publish: Bloombox_Schema_Partner_Settings_PublishSettings {
-    get {return _storage._publish ?? Bloombox_Schema_Partner_Settings_PublishSettings()}
+  public var publish: Bloombox_Partner_Settings_PublishSettings {
+    get {return _storage._publish ?? Bloombox_Partner_Settings_PublishSettings()}
     set {_uniqueStorage()._publish = newValue}
   }
   /// Returns true if `publish` has been explicitly set.
@@ -1607,8 +1607,8 @@ public struct Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
   public mutating func clearPublish() {_uniqueStorage()._publish = nil}
 
   /// Section-level menu settings.
-  public var sections: Bloombox_Schema_Partner_Settings_SectionSettings {
-    get {return _storage._sections ?? Bloombox_Schema_Partner_Settings_SectionSettings()}
+  public var sections: Bloombox_Partner_Settings_SectionSettings {
+    get {return _storage._sections ?? Bloombox_Partner_Settings_SectionSettings()}
     set {_uniqueStorage()._sections = newValue}
   }
   /// Returns true if `sections` has been explicitly set.
@@ -1617,8 +1617,8 @@ public struct Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
   public mutating func clearSections() {_uniqueStorage()._sections = nil}
 
   /// Specifies settings that apply to the web or physical storefronts for this partner location.
-  public var shop: Bloombox_Schema_Partner_Settings_ShopSettings {
-    get {return _storage._shop ?? Bloombox_Schema_Partner_Settings_ShopSettings()}
+  public var shop: Bloombox_Partner_Settings_ShopSettings {
+    get {return _storage._shop ?? Bloombox_Partner_Settings_ShopSettings()}
     set {_uniqueStorage()._shop = newValue}
   }
   /// Returns true if `shop` has been explicitly set.
@@ -1627,8 +1627,8 @@ public struct Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
   public mutating func clearShop() {_uniqueStorage()._shop = nil}
 
   /// Specifies settings that apply to television display units, particularly TV menus.
-  public var tv: Bloombox_Schema_Partner_Settings_TVSettings {
-    get {return _storage._tv ?? Bloombox_Schema_Partner_Settings_TVSettings()}
+  public var tv: Bloombox_Partner_Settings_TVSettings {
+    get {return _storage._tv ?? Bloombox_Partner_Settings_TVSettings()}
     set {_uniqueStorage()._tv = newValue}
   }
   /// Returns true if `tv` has been explicitly set.
@@ -1637,8 +1637,8 @@ public struct Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
   public mutating func clearTv() {_uniqueStorage()._tv = nil}
 
   /// Tablet-related settings.
-  public var tablet: Bloombox_Schema_Partner_Settings_TabletSettings {
-    get {return _storage._tablet ?? Bloombox_Schema_Partner_Settings_TabletSettings()}
+  public var tablet: Bloombox_Partner_Settings_TabletSettings {
+    get {return _storage._tablet ?? Bloombox_Partner_Settings_TabletSettings()}
     set {_uniqueStorage()._tablet = newValue}
   }
   /// Returns true if `tablet` has been explicitly set.
@@ -1647,8 +1647,8 @@ public struct Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
   public mutating func clearTablet() {_uniqueStorage()._tablet = nil}
 
   /// Integration settings for this location.
-  public var integration: Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings {
-    get {return _storage._integration ?? Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings()}
+  public var integration: Bloombox_Partner_Integrations_LocationIntegrationSettings {
+    get {return _storage._integration ?? Bloombox_Partner_Integrations_LocationIntegrationSettings()}
     set {_uniqueStorage()._integration = newValue}
   }
   /// Returns true if `integration` has been explicitly set.
@@ -1665,16 +1665,16 @@ public struct Bloombox_Schema_Partner_Settings_PartnerLocationSettings {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.partner.settings"
+fileprivate let _protobuf_package = "bloombox.partner.settings"
 
-extension Bloombox_Schema_Partner_Settings_SectionSettingsType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_SectionSettingsType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "STANDARD"),
     1: .same(proto: "FILTERED"),
   ]
 }
 
-extension Bloombox_Schema_Partner_Settings_FilteredSectionType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_FilteredSectionType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "CBD"),
     1: .same(proto: "HOUSE"),
@@ -1682,13 +1682,13 @@ extension Bloombox_Schema_Partner_Settings_FilteredSectionType: SwiftProtobuf._P
   ]
 }
 
-extension Bloombox_Schema_Partner_Settings_CustomSettingsType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_CustomSettingsType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "FILTER"),
   ]
 }
 
-extension Bloombox_Schema_Partner_Settings_HoursSpan: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_HoursSpan: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "EVERYDAY"),
     1: .same(proto: "WEEKDAYS"),
@@ -1703,7 +1703,7 @@ extension Bloombox_Schema_Partner_Settings_HoursSpan: SwiftProtobuf._ProtoNamePr
   ]
 }
 
-extension Bloombox_Schema_Partner_Settings_ShopStatus: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_ShopStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "OPEN"),
     1: .same(proto: "CLOSED"),
@@ -1712,14 +1712,14 @@ extension Bloombox_Schema_Partner_Settings_ShopStatus: SwiftProtobuf._ProtoNameP
   ]
 }
 
-extension Bloombox_Schema_Partner_Settings_ShopCommsType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_ShopCommsType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "INTERNAL"),
     1: .same(proto: "EXTERNAL"),
   ]
 }
 
-extension Bloombox_Schema_Partner_Settings_ShopContactChannel: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_ShopContactChannel: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ORDERING"),
     1: .same(proto: "ENROLLMENT"),
@@ -1727,7 +1727,7 @@ extension Bloombox_Schema_Partner_Settings_ShopContactChannel: SwiftProtobuf._Pr
   ]
 }
 
-extension Bloombox_Schema_Partner_Settings_CartMode: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_CartMode: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "OFF"),
     1: .same(proto: "BAG"),
@@ -1735,7 +1735,7 @@ extension Bloombox_Schema_Partner_Settings_CartMode: SwiftProtobuf._ProtoNamePro
   ]
 }
 
-extension Bloombox_Schema_Partner_Settings_APISettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_APISettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".APISettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "embed"),
@@ -1757,14 +1757,14 @@ extension Bloombox_Schema_Partner_Settings_APISettings: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_APISettings, rhs: Bloombox_Schema_Partner_Settings_APISettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_APISettings, rhs: Bloombox_Partner_Settings_APISettings) -> Bool {
     if lhs.embed != rhs.embed {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_InHouseBrand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_InHouseBrand: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".InHouseBrand"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "label"),
@@ -1791,7 +1791,7 @@ extension Bloombox_Schema_Partner_Settings_InHouseBrand: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_InHouseBrand, rhs: Bloombox_Schema_Partner_Settings_InHouseBrand) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_InHouseBrand, rhs: Bloombox_Partner_Settings_InHouseBrand) -> Bool {
     if lhs.label != rhs.label {return false}
     if lhs.brand != rhs.brand {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1799,7 +1799,7 @@ extension Bloombox_Schema_Partner_Settings_InHouseBrand: SwiftProtobuf.Message, 
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_ProductBrandSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_ProductBrandSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ProductBrandSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "inhouse"),
@@ -1821,14 +1821,14 @@ extension Bloombox_Schema_Partner_Settings_ProductBrandSettings: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_ProductBrandSettings, rhs: Bloombox_Schema_Partner_Settings_ProductBrandSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_ProductBrandSettings, rhs: Bloombox_Partner_Settings_ProductBrandSettings) -> Bool {
     if lhs.inhouse != rhs.inhouse {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_PublishSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_PublishSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PublishSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "menu"),
@@ -1855,7 +1855,7 @@ extension Bloombox_Schema_Partner_Settings_PublishSettings: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_PublishSettings, rhs: Bloombox_Schema_Partner_Settings_PublishSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_PublishSettings, rhs: Bloombox_Partner_Settings_PublishSettings) -> Bool {
     if lhs.menu != rhs.menu {return false}
     if lhs.profile != rhs.profile {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1863,7 +1863,7 @@ extension Bloombox_Schema_Partner_Settings_PublishSettings: SwiftProtobuf.Messag
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_CustomSectionSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_CustomSectionSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CustomSectionSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "spec"),
@@ -1876,7 +1876,7 @@ extension Bloombox_Schema_Partner_Settings_CustomSectionSettings: SwiftProtobuf.
       case 1: try decoder.decodeSingularStringField(value: &self.spec)
       case 2:
         if self.settings != nil {try decoder.handleConflictingOneOf()}
-        var v: Bloombox_Schema_Partner_Settings_FilteredSectionType?
+        var v: Bloombox_Partner_Settings_FilteredSectionType?
         try decoder.decodeSingularEnumField(value: &v)
         if let v = v {self.settings = .filter(v)}
       default: break
@@ -1894,7 +1894,7 @@ extension Bloombox_Schema_Partner_Settings_CustomSectionSettings: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_CustomSectionSettings, rhs: Bloombox_Schema_Partner_Settings_CustomSectionSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_CustomSectionSettings, rhs: Bloombox_Partner_Settings_CustomSectionSettings) -> Bool {
     if lhs.spec != rhs.spec {return false}
     if lhs.settings != rhs.settings {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1902,7 +1902,7 @@ extension Bloombox_Schema_Partner_Settings_CustomSectionSettings: SwiftProtobuf.
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_SectionSettingsPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_SectionSettingsPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SectionSettingsPayload"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "hide"),
@@ -1918,7 +1918,7 @@ extension Bloombox_Schema_Partner_Settings_SectionSettingsPayload: SwiftProtobuf
     var _label: Bool = false
     var _media: String = String()
     var _text: String = String()
-    var _kind: Bloombox_Schema_Partner_Settings_SectionSettingsPayload.OneOf_Kind?
+    var _kind: Bloombox_Partner_Settings_SectionSettingsPayload.OneOf_Kind?
 
     static let defaultInstance = _StorageClass()
 
@@ -1951,11 +1951,11 @@ extension Bloombox_Schema_Partner_Settings_SectionSettingsPayload: SwiftProtobuf
         case 4: try decoder.decodeSingularStringField(value: &_storage._text)
         case 5:
           if _storage._kind != nil {try decoder.handleConflictingOneOf()}
-          var v: Bloombox_Schema_Partner_Settings_SectionSettingsType?
+          var v: Bloombox_Partner_Settings_SectionSettingsType?
           try decoder.decodeSingularEnumField(value: &v)
           if let v = v {_storage._kind = .type(v)}
         case 6:
-          var v: Bloombox_Schema_Partner_Settings_CustomSectionSettings?
+          var v: Bloombox_Partner_Settings_CustomSectionSettings?
           if let current = _storage._kind {
             try decoder.handleConflictingOneOf()
             if case .custom(let m) = current {v = m}
@@ -1993,7 +1993,7 @@ extension Bloombox_Schema_Partner_Settings_SectionSettingsPayload: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_SectionSettingsPayload, rhs: Bloombox_Schema_Partner_Settings_SectionSettingsPayload) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_SectionSettingsPayload, rhs: Bloombox_Partner_Settings_SectionSettingsPayload) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2012,7 +2012,7 @@ extension Bloombox_Schema_Partner_Settings_SectionSettingsPayload: SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_SectionSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_SectionSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SectionSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "apothecary"),
@@ -2029,17 +2029,17 @@ extension Bloombox_Schema_Partner_Settings_SectionSettings: SwiftProtobuf.Messag
   ]
 
   fileprivate class _StorageClass {
-    var _apothecary: Bloombox_Schema_Partner_Settings_SectionSettingsPayload? = nil
-    var _cartridges: Bloombox_Schema_Partner_Settings_SectionSettingsPayload? = nil
-    var _concentrates: Bloombox_Schema_Partner_Settings_SectionSettingsPayload? = nil
-    var _edibles: Bloombox_Schema_Partner_Settings_SectionSettingsPayload? = nil
-    var _flowers: Bloombox_Schema_Partner_Settings_SectionSettingsPayload? = nil
-    var _prerolls: Bloombox_Schema_Partner_Settings_SectionSettingsPayload? = nil
-    var _merchandise: Bloombox_Schema_Partner_Settings_SectionSettingsPayload? = nil
-    var _plants: Bloombox_Schema_Partner_Settings_SectionSettingsPayload? = nil
-    var _cbd: Bloombox_Schema_Partner_Settings_SectionSettingsPayload? = nil
-    var _house: Bloombox_Schema_Partner_Settings_SectionSettingsPayload? = nil
-    var _onsale: Bloombox_Schema_Partner_Settings_SectionSettingsPayload? = nil
+    var _apothecary: Bloombox_Partner_Settings_SectionSettingsPayload? = nil
+    var _cartridges: Bloombox_Partner_Settings_SectionSettingsPayload? = nil
+    var _concentrates: Bloombox_Partner_Settings_SectionSettingsPayload? = nil
+    var _edibles: Bloombox_Partner_Settings_SectionSettingsPayload? = nil
+    var _flowers: Bloombox_Partner_Settings_SectionSettingsPayload? = nil
+    var _prerolls: Bloombox_Partner_Settings_SectionSettingsPayload? = nil
+    var _merchandise: Bloombox_Partner_Settings_SectionSettingsPayload? = nil
+    var _plants: Bloombox_Partner_Settings_SectionSettingsPayload? = nil
+    var _cbd: Bloombox_Partner_Settings_SectionSettingsPayload? = nil
+    var _house: Bloombox_Partner_Settings_SectionSettingsPayload? = nil
+    var _onsale: Bloombox_Partner_Settings_SectionSettingsPayload? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2128,7 +2128,7 @@ extension Bloombox_Schema_Partner_Settings_SectionSettings: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_SectionSettings, rhs: Bloombox_Schema_Partner_Settings_SectionSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_SectionSettings, rhs: Bloombox_Partner_Settings_SectionSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2153,7 +2153,7 @@ extension Bloombox_Schema_Partner_Settings_SectionSettings: SwiftProtobuf.Messag
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_TVBannerSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_TVBannerSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TVBannerSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "banner_text"),
@@ -2180,7 +2180,7 @@ extension Bloombox_Schema_Partner_Settings_TVBannerSettings: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_TVBannerSettings, rhs: Bloombox_Schema_Partner_Settings_TVBannerSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_TVBannerSettings, rhs: Bloombox_Partner_Settings_TVBannerSettings) -> Bool {
     if lhs.bannerText != rhs.bannerText {return false}
     if lhs.image != rhs.image {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -2188,7 +2188,7 @@ extension Bloombox_Schema_Partner_Settings_TVBannerSettings: SwiftProtobuf.Messa
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_TVSectionSettingsPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TVSectionSettingsPayload"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "sort"),
@@ -2220,7 +2220,7 @@ extension Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload, rhs: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_TVSectionSettingsPayload, rhs: Bloombox_Partner_Settings_TVSectionSettingsPayload) -> Bool {
     if lhs.sort != rhs.sort {return false}
     if lhs.title != rhs.title {return false}
     if lhs.image != rhs.image {return false}
@@ -2229,7 +2229,7 @@ extension Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_TVMenuSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_TVMenuSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TVMenuSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "apothecary"),
@@ -2243,14 +2243,14 @@ extension Bloombox_Schema_Partner_Settings_TVMenuSettings: SwiftProtobuf.Message
   ]
 
   fileprivate class _StorageClass {
-    var _apothecary: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload? = nil
-    var _cartridges: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload? = nil
-    var _concentrates: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload? = nil
-    var _edibles: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload? = nil
-    var _flowers: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload? = nil
-    var _prerolls: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload? = nil
-    var _merchandise: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload? = nil
-    var _plants: Bloombox_Schema_Partner_Settings_TVSectionSettingsPayload? = nil
+    var _apothecary: Bloombox_Partner_Settings_TVSectionSettingsPayload? = nil
+    var _cartridges: Bloombox_Partner_Settings_TVSectionSettingsPayload? = nil
+    var _concentrates: Bloombox_Partner_Settings_TVSectionSettingsPayload? = nil
+    var _edibles: Bloombox_Partner_Settings_TVSectionSettingsPayload? = nil
+    var _flowers: Bloombox_Partner_Settings_TVSectionSettingsPayload? = nil
+    var _prerolls: Bloombox_Partner_Settings_TVSectionSettingsPayload? = nil
+    var _merchandise: Bloombox_Partner_Settings_TVSectionSettingsPayload? = nil
+    var _plants: Bloombox_Partner_Settings_TVSectionSettingsPayload? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2324,7 +2324,7 @@ extension Bloombox_Schema_Partner_Settings_TVMenuSettings: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_TVMenuSettings, rhs: Bloombox_Schema_Partner_Settings_TVMenuSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_TVMenuSettings, rhs: Bloombox_Partner_Settings_TVMenuSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2346,7 +2346,7 @@ extension Bloombox_Schema_Partner_Settings_TVMenuSettings: SwiftProtobuf.Message
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_TVSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_TVSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TVSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "banner"),
@@ -2354,8 +2354,8 @@ extension Bloombox_Schema_Partner_Settings_TVSettings: SwiftProtobuf.Message, Sw
   ]
 
   fileprivate class _StorageClass {
-    var _banner: Bloombox_Schema_Partner_Settings_TVBannerSettings? = nil
-    var _settings: Bloombox_Schema_Partner_Settings_TVMenuSettings? = nil
+    var _banner: Bloombox_Partner_Settings_TVBannerSettings? = nil
+    var _settings: Bloombox_Partner_Settings_TVMenuSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2399,7 +2399,7 @@ extension Bloombox_Schema_Partner_Settings_TVSettings: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_TVSettings, rhs: Bloombox_Schema_Partner_Settings_TVSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_TVSettings, rhs: Bloombox_Partner_Settings_TVSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2415,7 +2415,7 @@ extension Bloombox_Schema_Partner_Settings_TVSettings: SwiftProtobuf.Message, Sw
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_HoursSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_HoursSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".HoursSpec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "hour"),
@@ -2442,7 +2442,7 @@ extension Bloombox_Schema_Partner_Settings_HoursSpec: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_HoursSpec, rhs: Bloombox_Schema_Partner_Settings_HoursSpec) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_HoursSpec, rhs: Bloombox_Partner_Settings_HoursSpec) -> Bool {
     if lhs.hour != rhs.hour {return false}
     if lhs.minute != rhs.minute {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -2450,7 +2450,7 @@ extension Bloombox_Schema_Partner_Settings_HoursSpec: SwiftProtobuf.Message, Swi
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_HoursBoundary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_HoursBoundary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".HoursBoundary"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "begin"),
@@ -2459,9 +2459,9 @@ extension Bloombox_Schema_Partner_Settings_HoursBoundary: SwiftProtobuf.Message,
   ]
 
   fileprivate class _StorageClass {
-    var _begin: Bloombox_Schema_Partner_Settings_HoursSpec? = nil
-    var _end: Bloombox_Schema_Partner_Settings_HoursSpec? = nil
-    var _span: Bloombox_Schema_Partner_Settings_HoursSpan = .everyday
+    var _begin: Bloombox_Partner_Settings_HoursSpec? = nil
+    var _end: Bloombox_Partner_Settings_HoursSpec? = nil
+    var _span: Bloombox_Partner_Settings_HoursSpan = .everyday
 
     static let defaultInstance = _StorageClass()
 
@@ -2510,7 +2510,7 @@ extension Bloombox_Schema_Partner_Settings_HoursBoundary: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_HoursBoundary, rhs: Bloombox_Schema_Partner_Settings_HoursBoundary) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_HoursBoundary, rhs: Bloombox_Partner_Settings_HoursBoundary) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2527,7 +2527,7 @@ extension Bloombox_Schema_Partner_Settings_HoursBoundary: SwiftProtobuf.Message,
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_RegularHoursSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_RegularHoursSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".RegularHoursSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "bounds"),
@@ -2535,8 +2535,8 @@ extension Bloombox_Schema_Partner_Settings_RegularHoursSettings: SwiftProtobuf.M
   ]
 
   fileprivate class _StorageClass {
-    var _bounds: Bloombox_Schema_Partner_Settings_HoursBoundary? = nil
-    var _mode: Bloombox_Schema_Partner_Settings_ShopStatus = .open
+    var _bounds: Bloombox_Partner_Settings_HoursBoundary? = nil
+    var _mode: Bloombox_Partner_Settings_ShopStatus = .open
 
     static let defaultInstance = _StorageClass()
 
@@ -2580,7 +2580,7 @@ extension Bloombox_Schema_Partner_Settings_RegularHoursSettings: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_RegularHoursSettings, rhs: Bloombox_Schema_Partner_Settings_RegularHoursSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_RegularHoursSettings, rhs: Bloombox_Partner_Settings_RegularHoursSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2596,7 +2596,7 @@ extension Bloombox_Schema_Partner_Settings_RegularHoursSettings: SwiftProtobuf.M
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_SpecialHoursSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_SpecialHoursSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SpecialHoursSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "bounds"),
@@ -2605,8 +2605,8 @@ extension Bloombox_Schema_Partner_Settings_SpecialHoursSettings: SwiftProtobuf.M
   ]
 
   fileprivate class _StorageClass {
-    var _bounds: Bloombox_Schema_Partner_Settings_HoursBoundary? = nil
-    var _mode: Bloombox_Schema_Partner_Settings_ShopStatus = .open
+    var _bounds: Bloombox_Partner_Settings_HoursBoundary? = nil
+    var _mode: Bloombox_Partner_Settings_ShopStatus = .open
     var _date: Opencannabis_Temporal_Date? = nil
 
     static let defaultInstance = _StorageClass()
@@ -2656,7 +2656,7 @@ extension Bloombox_Schema_Partner_Settings_SpecialHoursSettings: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_SpecialHoursSettings, rhs: Bloombox_Schema_Partner_Settings_SpecialHoursSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_SpecialHoursSettings, rhs: Bloombox_Partner_Settings_SpecialHoursSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2673,7 +2673,7 @@ extension Bloombox_Schema_Partner_Settings_SpecialHoursSettings: SwiftProtobuf.M
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_ShopHoursSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_ShopHoursSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ShopHoursSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "regular"),
@@ -2684,7 +2684,7 @@ extension Bloombox_Schema_Partner_Settings_ShopHoursSettings: SwiftProtobuf.Mess
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeRepeatedMessageField(value: &self.regular)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Settings_SpecialHoursSettings>.self, value: &self.special)
+      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Settings_SpecialHoursSettings>.self, value: &self.special)
       default: break
       }
     }
@@ -2695,12 +2695,12 @@ extension Bloombox_Schema_Partner_Settings_ShopHoursSettings: SwiftProtobuf.Mess
       try visitor.visitRepeatedMessageField(value: self.regular, fieldNumber: 1)
     }
     if !self.special.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Settings_SpecialHoursSettings>.self, value: self.special, fieldNumber: 2)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Settings_SpecialHoursSettings>.self, value: self.special, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_ShopHoursSettings, rhs: Bloombox_Schema_Partner_Settings_ShopHoursSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_ShopHoursSettings, rhs: Bloombox_Partner_Settings_ShopHoursSettings) -> Bool {
     if lhs.regular != rhs.regular {return false}
     if lhs.special != rhs.special {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -2708,7 +2708,7 @@ extension Bloombox_Schema_Partner_Settings_ShopHoursSettings: SwiftProtobuf.Mess
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_ShopServiceSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_ShopServiceSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ShopServiceSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "delivery"),
@@ -2755,7 +2755,7 @@ extension Bloombox_Schema_Partner_Settings_ShopServiceSettings: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_ShopServiceSettings, rhs: Bloombox_Schema_Partner_Settings_ShopServiceSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_ShopServiceSettings, rhs: Bloombox_Partner_Settings_ShopServiceSettings) -> Bool {
     if lhs.delivery != rhs.delivery {return false}
     if lhs.express != rhs.express {return false}
     if lhs.pickup != rhs.pickup {return false}
@@ -2767,7 +2767,7 @@ extension Bloombox_Schema_Partner_Settings_ShopServiceSettings: SwiftProtobuf.Me
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_DeliveryZipcodeSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_DeliveryZipcodeSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeliveryZipcodeSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "zipcode"),
@@ -2799,7 +2799,7 @@ extension Bloombox_Schema_Partner_Settings_DeliveryZipcodeSettings: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_DeliveryZipcodeSettings, rhs: Bloombox_Schema_Partner_Settings_DeliveryZipcodeSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_DeliveryZipcodeSettings, rhs: Bloombox_Partner_Settings_DeliveryZipcodeSettings) -> Bool {
     if lhs.zipcode != rhs.zipcode {return false}
     if lhs.enabled != rhs.enabled {return false}
     if lhs.deliveryMinimum != rhs.deliveryMinimum {return false}
@@ -2808,7 +2808,7 @@ extension Bloombox_Schema_Partner_Settings_DeliveryZipcodeSettings: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_DeliverySettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_DeliverySettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeliverySettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "global_minimum"),
@@ -2819,7 +2819,7 @@ extension Bloombox_Schema_Partner_Settings_DeliverySettings: SwiftProtobuf.Messa
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularUInt32Field(value: &self.globalMinimum)
-      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Settings_DeliveryZipcodeSettings>.self, value: &self.zipcodes)
+      case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Settings_DeliveryZipcodeSettings>.self, value: &self.zipcodes)
       default: break
       }
     }
@@ -2830,12 +2830,12 @@ extension Bloombox_Schema_Partner_Settings_DeliverySettings: SwiftProtobuf.Messa
       try visitor.visitSingularUInt32Field(value: self.globalMinimum, fieldNumber: 1)
     }
     if !self.zipcodes.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Schema_Partner_Settings_DeliveryZipcodeSettings>.self, value: self.zipcodes, fieldNumber: 2)
+      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Settings_DeliveryZipcodeSettings>.self, value: self.zipcodes, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_DeliverySettings, rhs: Bloombox_Schema_Partner_Settings_DeliverySettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_DeliverySettings, rhs: Bloombox_Partner_Settings_DeliverySettings) -> Bool {
     if lhs.globalMinimum != rhs.globalMinimum {return false}
     if lhs.zipcodes != rhs.zipcodes {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -2843,7 +2843,7 @@ extension Bloombox_Schema_Partner_Settings_DeliverySettings: SwiftProtobuf.Messa
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_ShopContactChannelSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_ShopContactChannelSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ShopContactChannelSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "email"),
@@ -2870,7 +2870,7 @@ extension Bloombox_Schema_Partner_Settings_ShopContactChannelSettings: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings, rhs: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_ShopContactChannelSettings, rhs: Bloombox_Partner_Settings_ShopContactChannelSettings) -> Bool {
     if lhs.email != rhs.email {return false}
     if lhs.sms != rhs.sms {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -2878,7 +2878,7 @@ extension Bloombox_Schema_Partner_Settings_ShopContactChannelSettings: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_ShopChannelSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_ShopChannelSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ShopChannelSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "orders"),
@@ -2887,9 +2887,9 @@ extension Bloombox_Schema_Partner_Settings_ShopChannelSettings: SwiftProtobuf.Me
   ]
 
   fileprivate class _StorageClass {
-    var _orders: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings? = nil
-    var _enrollment: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings? = nil
-    var _marketing: Bloombox_Schema_Partner_Settings_ShopContactChannelSettings? = nil
+    var _orders: Bloombox_Partner_Settings_ShopContactChannelSettings? = nil
+    var _enrollment: Bloombox_Partner_Settings_ShopContactChannelSettings? = nil
+    var _marketing: Bloombox_Partner_Settings_ShopContactChannelSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2938,7 +2938,7 @@ extension Bloombox_Schema_Partner_Settings_ShopChannelSettings: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_ShopChannelSettings, rhs: Bloombox_Schema_Partner_Settings_ShopChannelSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_ShopChannelSettings, rhs: Bloombox_Partner_Settings_ShopChannelSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -2955,7 +2955,7 @@ extension Bloombox_Schema_Partner_Settings_ShopChannelSettings: SwiftProtobuf.Me
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_ShopContactTarget: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_ShopContactTarget: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ShopContactTarget"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "label"),
@@ -2970,7 +2970,7 @@ extension Bloombox_Schema_Partner_Settings_ShopContactTarget: SwiftProtobuf.Mess
     var _debug: Bool = false
     var _email: Opencannabis_Contact_EmailAddress? = nil
     var _phone: Opencannabis_Contact_PhoneNumber? = nil
-    var _channels: Bloombox_Schema_Partner_Settings_ShopChannelSettings? = nil
+    var _channels: Bloombox_Partner_Settings_ShopChannelSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3029,7 +3029,7 @@ extension Bloombox_Schema_Partner_Settings_ShopContactTarget: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_ShopContactTarget, rhs: Bloombox_Schema_Partner_Settings_ShopContactTarget) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_ShopContactTarget, rhs: Bloombox_Partner_Settings_ShopContactTarget) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3048,7 +3048,7 @@ extension Bloombox_Schema_Partner_Settings_ShopContactTarget: SwiftProtobuf.Mess
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_CommsSenderSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_CommsSenderSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CommsSenderSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "email"),
@@ -3101,7 +3101,7 @@ extension Bloombox_Schema_Partner_Settings_CommsSenderSettings: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_CommsSenderSettings, rhs: Bloombox_Schema_Partner_Settings_CommsSenderSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_CommsSenderSettings, rhs: Bloombox_Partner_Settings_CommsSenderSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3117,7 +3117,7 @@ extension Bloombox_Schema_Partner_Settings_CommsSenderSettings: SwiftProtobuf.Me
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_CommsSettingsPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_CommsSettingsPayload: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CommsSettingsPayload"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
@@ -3126,9 +3126,9 @@ extension Bloombox_Schema_Partner_Settings_CommsSettingsPayload: SwiftProtobuf.M
   ]
 
   fileprivate class _StorageClass {
-    var _type: Bloombox_Schema_Partner_Settings_ShopCommsType = .internal
-    var _contacts: [Bloombox_Schema_Partner_Settings_ShopContactTarget] = []
-    var _sender: Bloombox_Schema_Partner_Settings_CommsSenderSettings? = nil
+    var _type: Bloombox_Partner_Settings_ShopCommsType = .internal
+    var _contacts: [Bloombox_Partner_Settings_ShopContactTarget] = []
+    var _sender: Bloombox_Partner_Settings_CommsSenderSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3177,7 +3177,7 @@ extension Bloombox_Schema_Partner_Settings_CommsSettingsPayload: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_CommsSettingsPayload, rhs: Bloombox_Schema_Partner_Settings_CommsSettingsPayload) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_CommsSettingsPayload, rhs: Bloombox_Partner_Settings_CommsSettingsPayload) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3194,7 +3194,7 @@ extension Bloombox_Schema_Partner_Settings_CommsSettingsPayload: SwiftProtobuf.M
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_ShopCommsSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_ShopCommsSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ShopCommsSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "internal"),
@@ -3202,8 +3202,8 @@ extension Bloombox_Schema_Partner_Settings_ShopCommsSettings: SwiftProtobuf.Mess
   ]
 
   fileprivate class _StorageClass {
-    var _internal: Bloombox_Schema_Partner_Settings_CommsSettingsPayload? = nil
-    var _external: Bloombox_Schema_Partner_Settings_CommsSettingsPayload? = nil
+    var _internal: Bloombox_Partner_Settings_CommsSettingsPayload? = nil
+    var _external: Bloombox_Partner_Settings_CommsSettingsPayload? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3247,7 +3247,7 @@ extension Bloombox_Schema_Partner_Settings_ShopCommsSettings: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_ShopCommsSettings, rhs: Bloombox_Schema_Partner_Settings_ShopCommsSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_ShopCommsSettings, rhs: Bloombox_Partner_Settings_ShopCommsSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3263,7 +3263,7 @@ extension Bloombox_Schema_Partner_Settings_ShopCommsSettings: SwiftProtobuf.Mess
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_OnlineShopSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_OnlineShopSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".OnlineShopSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "origin"),
@@ -3277,7 +3277,7 @@ extension Bloombox_Schema_Partner_Settings_OnlineShopSettings: SwiftProtobuf.Mes
 
   fileprivate class _StorageClass {
     var _origin: String = String()
-    var _comms: Bloombox_Schema_Partner_Settings_ShopCommsSettings? = nil
+    var _comms: Bloombox_Partner_Settings_ShopCommsSettings? = nil
     var _domain: String = String()
     var _signup: String = String()
     var _login: String = String()
@@ -3351,7 +3351,7 @@ extension Bloombox_Schema_Partner_Settings_OnlineShopSettings: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_OnlineShopSettings, rhs: Bloombox_Schema_Partner_Settings_OnlineShopSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_OnlineShopSettings, rhs: Bloombox_Partner_Settings_OnlineShopSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3372,7 +3372,7 @@ extension Bloombox_Schema_Partner_Settings_OnlineShopSettings: SwiftProtobuf.Mes
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_PhysicalStorefrontSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PhysicalStorefrontSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "location"),
@@ -3432,7 +3432,7 @@ extension Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings, rhs: Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_PhysicalStorefrontSettings, rhs: Bloombox_Partner_Settings_PhysicalStorefrontSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3449,7 +3449,7 @@ extension Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_StorefrontSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_StorefrontSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".StorefrontSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "delivery"),
@@ -3458,9 +3458,9 @@ extension Bloombox_Schema_Partner_Settings_StorefrontSettings: SwiftProtobuf.Mes
   ]
 
   fileprivate class _StorageClass {
-    var _delivery: Bloombox_Schema_Partner_Settings_DeliverySettings? = nil
-    var _online: Bloombox_Schema_Partner_Settings_OnlineShopSettings? = nil
-    var _physical: Bloombox_Schema_Partner_Settings_PhysicalStorefrontSettings? = nil
+    var _delivery: Bloombox_Partner_Settings_DeliverySettings? = nil
+    var _online: Bloombox_Partner_Settings_OnlineShopSettings? = nil
+    var _physical: Bloombox_Partner_Settings_PhysicalStorefrontSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3509,7 +3509,7 @@ extension Bloombox_Schema_Partner_Settings_StorefrontSettings: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_StorefrontSettings, rhs: Bloombox_Schema_Partner_Settings_StorefrontSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_StorefrontSettings, rhs: Bloombox_Partner_Settings_StorefrontSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3526,7 +3526,7 @@ extension Bloombox_Schema_Partner_Settings_StorefrontSettings: SwiftProtobuf.Mes
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_ShopSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_ShopSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ShopSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "hours"),
@@ -3535,9 +3535,9 @@ extension Bloombox_Schema_Partner_Settings_ShopSettings: SwiftProtobuf.Message, 
   ]
 
   fileprivate class _StorageClass {
-    var _hours: Bloombox_Schema_Partner_Settings_ShopHoursSettings? = nil
-    var _services: Bloombox_Schema_Partner_Settings_ShopServiceSettings? = nil
-    var _storefront: Bloombox_Schema_Partner_Settings_StorefrontSettings? = nil
+    var _hours: Bloombox_Partner_Settings_ShopHoursSettings? = nil
+    var _services: Bloombox_Partner_Settings_ShopServiceSettings? = nil
+    var _storefront: Bloombox_Partner_Settings_StorefrontSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3586,7 +3586,7 @@ extension Bloombox_Schema_Partner_Settings_ShopSettings: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_ShopSettings, rhs: Bloombox_Schema_Partner_Settings_ShopSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_ShopSettings, rhs: Bloombox_Partner_Settings_ShopSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3603,7 +3603,7 @@ extension Bloombox_Schema_Partner_Settings_ShopSettings: SwiftProtobuf.Message, 
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_CartSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_CartSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CartSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "mode"),
@@ -3630,7 +3630,7 @@ extension Bloombox_Schema_Partner_Settings_CartSettings: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_CartSettings, rhs: Bloombox_Schema_Partner_Settings_CartSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_CartSettings, rhs: Bloombox_Partner_Settings_CartSettings) -> Bool {
     if lhs.mode != rhs.mode {return false}
     if lhs.orderType != rhs.orderType {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -3638,14 +3638,14 @@ extension Bloombox_Schema_Partner_Settings_CartSettings: SwiftProtobuf.Message, 
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_TabletSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_TabletSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TabletSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "cart"),
   ]
 
   fileprivate class _StorageClass {
-    var _cart: Bloombox_Schema_Partner_Settings_CartSettings? = nil
+    var _cart: Bloombox_Partner_Settings_CartSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3684,7 +3684,7 @@ extension Bloombox_Schema_Partner_Settings_TabletSettings: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_TabletSettings, rhs: Bloombox_Schema_Partner_Settings_TabletSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_TabletSettings, rhs: Bloombox_Partner_Settings_TabletSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -3699,7 +3699,7 @@ extension Bloombox_Schema_Partner_Settings_TabletSettings: SwiftProtobuf.Message
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_PartnerLocationSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_PartnerLocationSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerLocationSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "api"),
@@ -3713,14 +3713,14 @@ extension Bloombox_Schema_Partner_Settings_PartnerLocationSettings: SwiftProtobu
   ]
 
   fileprivate class _StorageClass {
-    var _api: Bloombox_Schema_Partner_Settings_APISettings? = nil
-    var _brands: Bloombox_Schema_Partner_Settings_ProductBrandSettings? = nil
-    var _publish: Bloombox_Schema_Partner_Settings_PublishSettings? = nil
-    var _sections: Bloombox_Schema_Partner_Settings_SectionSettings? = nil
-    var _shop: Bloombox_Schema_Partner_Settings_ShopSettings? = nil
-    var _tv: Bloombox_Schema_Partner_Settings_TVSettings? = nil
-    var _tablet: Bloombox_Schema_Partner_Settings_TabletSettings? = nil
-    var _integration: Bloombox_Schema_Partner_Integrations_LocationIntegrationSettings? = nil
+    var _api: Bloombox_Partner_Settings_APISettings? = nil
+    var _brands: Bloombox_Partner_Settings_ProductBrandSettings? = nil
+    var _publish: Bloombox_Partner_Settings_PublishSettings? = nil
+    var _sections: Bloombox_Partner_Settings_SectionSettings? = nil
+    var _shop: Bloombox_Partner_Settings_ShopSettings? = nil
+    var _tv: Bloombox_Partner_Settings_TVSettings? = nil
+    var _tablet: Bloombox_Partner_Settings_TabletSettings? = nil
+    var _integration: Bloombox_Partner_Integrations_LocationIntegrationSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3794,7 +3794,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerLocationSettings: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_PartnerLocationSettings, rhs: Bloombox_Schema_Partner_Settings_PartnerLocationSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_PartnerLocationSettings, rhs: Bloombox_Partner_Settings_PartnerLocationSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

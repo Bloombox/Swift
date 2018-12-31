@@ -25,7 +25,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates known errors that may be thrown by wallet operations.
-public enum Bloombox_Schema_Services_Wallet_V1_WalletError: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Wallet_V1_WalletError: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// There was no error.
@@ -94,9 +94,9 @@ public enum Bloombox_Schema_Services_Wallet_V1_WalletError: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Wallet_V1_WalletError: CaseIterable {
+extension Bloombox_Services_Wallet_V1_WalletError: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Wallet_V1_WalletError] = [
+  public static var allCases: [Bloombox_Services_Wallet_V1_WalletError] = [
     .noError,
     .invalidPartner,
     .invalidLocation,
@@ -114,7 +114,7 @@ extension Bloombox_Schema_Services_Wallet_V1_WalletError: CaseIterable {
 /// Specifies a request and response flow for an RPC operation to provision a new digital wallet card. Provisioning a
 /// card occurs first in the card lifecycle, before the card is issued, and after the user has already satisfied any
 /// constraints or requirements related to the partner or location context for which the card is being issued.
-public struct Bloombox_Schema_Services_Wallet_V1_CardProvision {
+public struct Bloombox_Services_Wallet_V1_CardProvision {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -128,8 +128,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardProvision {
     // methods supported on all messages.
 
     /// User that the card provision request is being issued for.
-    public var user: Bloombox_Schema_Identity_UserKey {
-      get {return _storage._user ?? Bloombox_Schema_Identity_UserKey()}
+    public var user: Bloombox_Identity_UserKey {
+      get {return _storage._user ?? Bloombox_Identity_UserKey()}
       set {_uniqueStorage()._user = newValue}
     }
     /// Returns true if `user` has been explicitly set.
@@ -144,19 +144,19 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardProvision {
     }
 
     /// Partner record for which this card is being provisioned.
-    public var partner: Bloombox_Schema_Partner_PartnerKey {
+    public var partner: Bloombox_Partner_PartnerKey {
       get {
         if case .partner(let v)? = _storage._context {return v}
-        return Bloombox_Schema_Partner_PartnerKey()
+        return Bloombox_Partner_PartnerKey()
       }
       set {_uniqueStorage()._context = .partner(newValue)}
     }
 
     /// Location record for which this card is being provisioned.
-    public var location: Bloombox_Schema_Partner_LocationKey {
+    public var location: Bloombox_Partner_LocationKey {
       get {
         if case .location(let v)? = _storage._context {return v}
-        return Bloombox_Schema_Partner_LocationKey()
+        return Bloombox_Partner_LocationKey()
       }
       set {_uniqueStorage()._context = .location(newValue)}
     }
@@ -171,8 +171,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardProvision {
     }
 
     /// Public key for the user, so their signatures later on may be verified.
-    public var publicKey: Opencannabis_Crypto_Primitives_Pki_KeyMaterial {
-      get {return _storage._publicKey ?? Opencannabis_Crypto_Primitives_Pki_KeyMaterial()}
+    public var publicKey: Opencannabis_Crypto_KeyMaterial {
+      get {return _storage._publicKey ?? Opencannabis_Crypto_KeyMaterial()}
       set {_uniqueStorage()._publicKey = newValue}
     }
     /// Returns true if `publicKey` has been explicitly set.
@@ -185,14 +185,14 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardProvision {
     /// Specifies the context under which this card is being provisioned.
     public enum OneOf_Context: Equatable {
       /// Partner record for which this card is being provisioned.
-      case partner(Bloombox_Schema_Partner_PartnerKey)
+      case partner(Bloombox_Partner_PartnerKey)
       /// Location record for which this card is being provisioned.
-      case location(Bloombox_Schema_Partner_LocationKey)
+      case location(Bloombox_Partner_LocationKey)
       /// Special flag indicating a globally-usable identity card for the user.
       case identity(Bool)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request.OneOf_Context, rhs: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request.OneOf_Context) -> Bool {
+      public static func ==(lhs: Bloombox_Services_Wallet_V1_CardProvision.Request.OneOf_Context, rhs: Bloombox_Services_Wallet_V1_CardProvision.Request.OneOf_Context) -> Bool {
         switch (lhs, rhs) {
         case (.partner(let l), .partner(let r)): return l == r
         case (.location(let l), .location(let r)): return l == r
@@ -215,8 +215,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardProvision {
     // methods supported on all messages.
 
     /// Wallet pass key provisioned for the requested ID card.
-    public var card: Bloombox_Schema_Identity_Pass_PassKey {
-      get {return _storage._card ?? Bloombox_Schema_Identity_Pass_PassKey()}
+    public var card: Bloombox_Identity_Pass_PassKey {
+      get {return _storage._card ?? Bloombox_Identity_Pass_PassKey()}
       set {_uniqueStorage()._card = newValue}
     }
     /// Returns true if `card` has been explicitly set.
@@ -244,8 +244,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardProvision {
     // methods supported on all messages.
 
     /// Request to provision a new card.
-    public var request: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Wallet_V1_CardProvision.Request()}
+    public var request: Bloombox_Services_Wallet_V1_CardProvision.Request {
+      get {return _storage._request ?? Bloombox_Services_Wallet_V1_CardProvision.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -254,8 +254,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardProvision {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to provision a new digital card.
-    public var response: Bloombox_Schema_Services_Wallet_V1_CardProvision.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Wallet_V1_CardProvision.Response()}
+    public var response: Bloombox_Services_Wallet_V1_CardProvision.Response {
+      get {return _storage._response ?? Bloombox_Services_Wallet_V1_CardProvision.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -274,7 +274,7 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardProvision {
 }
 
 /// Issue a digital card for a given user, from the user's perspective.
-public struct Bloombox_Schema_Services_Wallet_V1_CardIssuance {
+public struct Bloombox_Services_Wallet_V1_CardIssuance {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -288,8 +288,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardIssuance {
     // methods supported on all messages.
 
     /// User that cards are being requested for.
-    public var user: Bloombox_Schema_Identity_UserKey {
-      get {return _storage._user ?? Bloombox_Schema_Identity_UserKey()}
+    public var user: Bloombox_Identity_UserKey {
+      get {return _storage._user ?? Bloombox_Identity_UserKey()}
       set {_uniqueStorage()._user = newValue}
     }
     /// Returns true if `user` has been explicitly set.
@@ -298,8 +298,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardIssuance {
     public mutating func clearUser() {_uniqueStorage()._user = nil}
 
     /// Wallet pass key provisioned for the requested ID card.
-    public var card: Bloombox_Schema_Identity_Pass_PassKey {
-      get {return _storage._card ?? Bloombox_Schema_Identity_Pass_PassKey()}
+    public var card: Bloombox_Identity_Pass_PassKey {
+      get {return _storage._card ?? Bloombox_Identity_Pass_PassKey()}
       set {_uniqueStorage()._card = newValue}
     }
     /// Returns true if `card` has been explicitly set.
@@ -339,8 +339,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardIssuance {
     // methods supported on all messages.
 
     /// Record for the digital pass in question, after it has been shifted to an issued-state.
-    public var card: Bloombox_Schema_Identity_Pass_Pass {
-      get {return _storage._card ?? Bloombox_Schema_Identity_Pass_Pass()}
+    public var card: Bloombox_Identity_Pass_Pass {
+      get {return _storage._card ?? Bloombox_Identity_Pass_Pass()}
       set {_uniqueStorage()._card = newValue}
     }
     /// Returns true if `card` has been explicitly set.
@@ -362,8 +362,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardIssuance {
     // methods supported on all messages.
 
     /// Request to issue a digital pass card.
-    public var request: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request()}
+    public var request: Bloombox_Services_Wallet_V1_CardIssuance.Request {
+      get {return _storage._request ?? Bloombox_Services_Wallet_V1_CardIssuance.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -372,8 +372,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardIssuance {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to issue a digital pass card.
-    public var response: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response()}
+    public var response: Bloombox_Services_Wallet_V1_CardIssuance.Response {
+      get {return _storage._response ?? Bloombox_Services_Wallet_V1_CardIssuance.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -392,7 +392,7 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardIssuance {
 }
 
 /// Specifies an RPC operation to register a digital wallet pass for remote updates.
-public struct Bloombox_Schema_Services_Wallet_V1_CardActivate {
+public struct Bloombox_Services_Wallet_V1_CardActivate {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -426,7 +426,7 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardActivate {
 }
 
 /// Specifies an RPC operation to retrieve the latest version of a given wallet pass.
-public struct Bloombox_Schema_Services_Wallet_V1_CardRetrieve {
+public struct Bloombox_Services_Wallet_V1_CardRetrieve {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -468,7 +468,7 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardRetrieve {
 }
 
 /// Specifies an endpoint to enroll in rewards programs via personalizable passes.
-public struct Bloombox_Schema_Services_Wallet_V1_CardEnroll {
+public struct Bloombox_Services_Wallet_V1_CardEnroll {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -532,8 +532,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardEnroll {
     }
 
     /// Dictionary containing required personal information for enrollment.
-    public var requiredPersonalizationInfo: Bloombox_Schema_Services_Wallet_V1_CardEnroll.CardSpec {
-      get {return _storage._requiredPersonalizationInfo ?? Bloombox_Schema_Services_Wallet_V1_CardEnroll.CardSpec()}
+    public var requiredPersonalizationInfo: Bloombox_Services_Wallet_V1_CardEnroll.CardSpec {
+      get {return _storage._requiredPersonalizationInfo ?? Bloombox_Services_Wallet_V1_CardEnroll.CardSpec()}
       set {_uniqueStorage()._requiredPersonalizationInfo = newValue}
     }
     /// Returns true if `requiredPersonalizationInfo` has been explicitly set.
@@ -566,7 +566,7 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardEnroll {
 }
 
 /// Request to list cards for a given user, from their own perspective, optionally filtering by partner/location key.
-public struct Bloombox_Schema_Services_Wallet_V1_CardList {
+public struct Bloombox_Services_Wallet_V1_CardList {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -617,8 +617,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardList {
     // methods supported on all messages.
 
     /// Request to list cards for a given user.
-    public var request: Bloombox_Schema_Services_Wallet_V1_CardList.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Wallet_V1_CardList.Request()}
+    public var request: Bloombox_Services_Wallet_V1_CardList.Request {
+      get {return _storage._request ?? Bloombox_Services_Wallet_V1_CardList.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -627,8 +627,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardList {
     public mutating func clearRequest() {_uniqueStorage()._request = nil}
 
     /// Response to a request to list cards for a given user.
-    public var response: Bloombox_Schema_Services_Wallet_V1_CardList.Response {
-      get {return _storage._response ?? Bloombox_Schema_Services_Wallet_V1_CardList.Response()}
+    public var response: Bloombox_Services_Wallet_V1_CardList.Response {
+      get {return _storage._response ?? Bloombox_Services_Wallet_V1_CardList.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -647,7 +647,7 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardList {
 }
 
 /// Specifies a request, on behalf of a user, to decommission a given card they own.
-public struct Bloombox_Schema_Services_Wallet_V1_CardVoid {
+public struct Bloombox_Services_Wallet_V1_CardVoid {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -681,8 +681,8 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardVoid {
     // methods supported on all messages.
 
     /// Request to void a given digital card.
-    public var request: Bloombox_Schema_Services_Wallet_V1_CardVoid.Request {
-      get {return _storage._request ?? Bloombox_Schema_Services_Wallet_V1_CardVoid.Request()}
+    public var request: Bloombox_Services_Wallet_V1_CardVoid.Request {
+      get {return _storage._request ?? Bloombox_Services_Wallet_V1_CardVoid.Request()}
       set {_uniqueStorage()._request = newValue}
     }
     /// Returns true if `request` has been explicitly set.
@@ -708,9 +708,9 @@ public struct Bloombox_Schema_Services_Wallet_V1_CardVoid {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.services.wallet.v1"
+fileprivate let _protobuf_package = "bloombox.services.wallet.v1"
 
-extension Bloombox_Schema_Services_Wallet_V1_WalletError: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Wallet_V1_WalletError: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_ERROR"),
     1: .same(proto: "INVALID_PARTNER"),
@@ -724,7 +724,7 @@ extension Bloombox_Schema_Services_Wallet_V1_WalletError: SwiftProtobuf._ProtoNa
   ]
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardProvision: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Wallet_V1_CardProvision: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CardProvision"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -737,14 +737,14 @@ extension Bloombox_Schema_Services_Wallet_V1_CardProvision: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardProvision, rhs: Bloombox_Schema_Services_Wallet_V1_CardProvision) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardProvision, rhs: Bloombox_Services_Wallet_V1_CardProvision) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardProvision.protoMessageName + ".Request"
+extension Bloombox_Services_Wallet_V1_CardProvision.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardProvision.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "user"),
     2: .same(proto: "partner"),
@@ -754,9 +754,9 @@ extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Request: SwiftProtobu
   ]
 
   fileprivate class _StorageClass {
-    var _user: Bloombox_Schema_Identity_UserKey? = nil
-    var _context: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request.OneOf_Context?
-    var _publicKey: Opencannabis_Crypto_Primitives_Pki_KeyMaterial? = nil
+    var _user: Bloombox_Identity_UserKey? = nil
+    var _context: Bloombox_Services_Wallet_V1_CardProvision.Request.OneOf_Context?
+    var _publicKey: Opencannabis_Crypto_KeyMaterial? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -783,7 +783,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Request: SwiftProtobu
         switch fieldNumber {
         case 1: try decoder.decodeSingularMessageField(value: &_storage._user)
         case 2:
-          var v: Bloombox_Schema_Partner_PartnerKey?
+          var v: Bloombox_Partner_PartnerKey?
           if let current = _storage._context {
             try decoder.handleConflictingOneOf()
             if case .partner(let m) = current {v = m}
@@ -791,7 +791,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Request: SwiftProtobu
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._context = .partner(v)}
         case 3:
-          var v: Bloombox_Schema_Partner_LocationKey?
+          var v: Bloombox_Partner_LocationKey?
           if let current = _storage._context {
             try decoder.handleConflictingOneOf()
             if case .location(let m) = current {v = m}
@@ -831,7 +831,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request, rhs: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardProvision.Request, rhs: Bloombox_Services_Wallet_V1_CardProvision.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -848,15 +848,15 @@ extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Request: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardProvision.protoMessageName + ".Response"
+extension Bloombox_Services_Wallet_V1_CardProvision.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardProvision.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "card"),
     2: .same(proto: "nonce"),
   ]
 
   fileprivate class _StorageClass {
-    var _card: Bloombox_Schema_Identity_Pass_PassKey? = nil
+    var _card: Bloombox_Identity_Pass_PassKey? = nil
     var _nonce: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -901,7 +901,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardProvision.Response, rhs: Bloombox_Schema_Services_Wallet_V1_CardProvision.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardProvision.Response, rhs: Bloombox_Services_Wallet_V1_CardProvision.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -917,16 +917,16 @@ extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Response: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardProvision.protoMessageName + ".Operation"
+extension Bloombox_Services_Wallet_V1_CardProvision.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardProvision.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request? = nil
-    var _response: Bloombox_Schema_Services_Wallet_V1_CardProvision.Response? = nil
+    var _request: Bloombox_Services_Wallet_V1_CardProvision.Request? = nil
+    var _response: Bloombox_Services_Wallet_V1_CardProvision.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -970,7 +970,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Operation: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardProvision.Operation, rhs: Bloombox_Schema_Services_Wallet_V1_CardProvision.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardProvision.Operation, rhs: Bloombox_Services_Wallet_V1_CardProvision.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -986,7 +986,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardProvision.Operation: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardIssuance: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Wallet_V1_CardIssuance: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CardIssuance"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -999,14 +999,14 @@ extension Bloombox_Schema_Services_Wallet_V1_CardIssuance: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardIssuance, rhs: Bloombox_Schema_Services_Wallet_V1_CardIssuance) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardIssuance, rhs: Bloombox_Services_Wallet_V1_CardIssuance) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardIssuance.protoMessageName + ".Request"
+extension Bloombox_Services_Wallet_V1_CardIssuance.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardIssuance.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "user"),
     2: .same(proto: "card"),
@@ -1015,8 +1015,8 @@ extension Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request: SwiftProtobuf
   ]
 
   fileprivate class _StorageClass {
-    var _user: Bloombox_Schema_Identity_UserKey? = nil
-    var _card: Bloombox_Schema_Identity_Pass_PassKey? = nil
+    var _user: Bloombox_Identity_UserKey? = nil
+    var _card: Bloombox_Identity_Pass_PassKey? = nil
     var _nonce: String = String()
     var _signature: Opencannabis_Crypto_Signature? = nil
 
@@ -1072,7 +1072,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request, rhs: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardIssuance.Request, rhs: Bloombox_Services_Wallet_V1_CardIssuance.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1090,14 +1090,14 @@ extension Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request: SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardIssuance.protoMessageName + ".Response"
+extension Bloombox_Services_Wallet_V1_CardIssuance.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardIssuance.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "card"),
   ]
 
   fileprivate class _StorageClass {
-    var _card: Bloombox_Schema_Identity_Pass_Pass? = nil
+    var _card: Bloombox_Identity_Pass_Pass? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1136,7 +1136,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response, rhs: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardIssuance.Response, rhs: Bloombox_Services_Wallet_V1_CardIssuance.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1151,16 +1151,16 @@ extension Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardIssuance.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardIssuance.protoMessageName + ".Operation"
+extension Bloombox_Services_Wallet_V1_CardIssuance.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardIssuance.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request? = nil
-    var _response: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response? = nil
+    var _request: Bloombox_Services_Wallet_V1_CardIssuance.Request? = nil
+    var _response: Bloombox_Services_Wallet_V1_CardIssuance.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1204,7 +1204,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardIssuance.Operation: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Operation, rhs: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardIssuance.Operation, rhs: Bloombox_Services_Wallet_V1_CardIssuance.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1220,7 +1220,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardIssuance.Operation: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardActivate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Wallet_V1_CardActivate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CardActivate"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1233,14 +1233,14 @@ extension Bloombox_Schema_Services_Wallet_V1_CardActivate: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardActivate, rhs: Bloombox_Schema_Services_Wallet_V1_CardActivate) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardActivate, rhs: Bloombox_Services_Wallet_V1_CardActivate) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardActivate.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardActivate.protoMessageName + ".Request"
+extension Bloombox_Services_Wallet_V1_CardActivate.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardActivate.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "library"),
     2: .standard(proto: "pass_type"),
@@ -1276,7 +1276,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardActivate.Request: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardActivate.Request, rhs: Bloombox_Schema_Services_Wallet_V1_CardActivate.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardActivate.Request, rhs: Bloombox_Services_Wallet_V1_CardActivate.Request) -> Bool {
     if lhs.library != rhs.library {return false}
     if lhs.passType != rhs.passType {return false}
     if lhs.serial != rhs.serial {return false}
@@ -1286,7 +1286,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardActivate.Request: SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardRetrieve: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Wallet_V1_CardRetrieve: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CardRetrieve"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1299,14 +1299,14 @@ extension Bloombox_Schema_Services_Wallet_V1_CardRetrieve: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardRetrieve, rhs: Bloombox_Schema_Services_Wallet_V1_CardRetrieve) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardRetrieve, rhs: Bloombox_Services_Wallet_V1_CardRetrieve) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardRetrieve.protoMessageName + ".Request"
+extension Bloombox_Services_Wallet_V1_CardRetrieve.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardRetrieve.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .standard(proto: "pass_type"),
     3: .same(proto: "serial"),
@@ -1332,7 +1332,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request, rhs: Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardRetrieve.Request, rhs: Bloombox_Services_Wallet_V1_CardRetrieve.Request) -> Bool {
     if lhs.passType != rhs.passType {return false}
     if lhs.serial != rhs.serial {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1340,8 +1340,8 @@ extension Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request: SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardRetrieve.protoMessageName + ".Response"
+extension Bloombox_Services_Wallet_V1_CardRetrieve.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardRetrieve.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "payload"),
   ]
@@ -1362,14 +1362,14 @@ extension Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Response: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Response, rhs: Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardRetrieve.Response, rhs: Bloombox_Services_Wallet_V1_CardRetrieve.Response) -> Bool {
     if lhs.payload != rhs.payload {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardEnroll: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Wallet_V1_CardEnroll: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CardEnroll"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1382,14 +1382,14 @@ extension Bloombox_Schema_Services_Wallet_V1_CardEnroll: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardEnroll, rhs: Bloombox_Schema_Services_Wallet_V1_CardEnroll) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardEnroll, rhs: Bloombox_Services_Wallet_V1_CardEnroll) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardEnroll.CardSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardEnroll.protoMessageName + ".CardSpec"
+extension Bloombox_Services_Wallet_V1_CardEnroll.CardSpec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardEnroll.protoMessageName + ".CardSpec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "full_name"),
     2: .standard(proto: "given_name"),
@@ -1440,7 +1440,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardEnroll.CardSpec: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardEnroll.CardSpec, rhs: Bloombox_Schema_Services_Wallet_V1_CardEnroll.CardSpec) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardEnroll.CardSpec, rhs: Bloombox_Services_Wallet_V1_CardEnroll.CardSpec) -> Bool {
     if lhs.fullName != rhs.fullName {return false}
     if lhs.givenName != rhs.givenName {return false}
     if lhs.familyName != rhs.familyName {return false}
@@ -1453,8 +1453,8 @@ extension Bloombox_Schema_Services_Wallet_V1_CardEnroll.CardSpec: SwiftProtobuf.
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardEnroll.protoMessageName + ".Request"
+extension Bloombox_Services_Wallet_V1_CardEnroll.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardEnroll.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "pass_type"),
     2: .same(proto: "serial"),
@@ -1466,7 +1466,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request: SwiftProtobuf.M
     var _passType: String = String()
     var _serial: String = String()
     var _personalizationToken: String = String()
-    var _requiredPersonalizationInfo: Bloombox_Schema_Services_Wallet_V1_CardEnroll.CardSpec? = nil
+    var _requiredPersonalizationInfo: Bloombox_Services_Wallet_V1_CardEnroll.CardSpec? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1520,7 +1520,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request, rhs: Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardEnroll.Request, rhs: Bloombox_Services_Wallet_V1_CardEnroll.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1538,8 +1538,8 @@ extension Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request: SwiftProtobuf.M
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardEnroll.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardEnroll.protoMessageName + ".Response"
+extension Bloombox_Services_Wallet_V1_CardEnroll.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardEnroll.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "signature"),
   ]
@@ -1560,14 +1560,14 @@ extension Bloombox_Schema_Services_Wallet_V1_CardEnroll.Response: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardEnroll.Response, rhs: Bloombox_Schema_Services_Wallet_V1_CardEnroll.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardEnroll.Response, rhs: Bloombox_Services_Wallet_V1_CardEnroll.Response) -> Bool {
     if lhs.signature != rhs.signature {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Wallet_V1_CardList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CardList"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1580,14 +1580,14 @@ extension Bloombox_Schema_Services_Wallet_V1_CardList: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardList, rhs: Bloombox_Schema_Services_Wallet_V1_CardList) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardList, rhs: Bloombox_Services_Wallet_V1_CardList) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardList.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardList.protoMessageName + ".Request"
+extension Bloombox_Services_Wallet_V1_CardList.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardList.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "library"),
     2: .standard(proto: "pass_type"),
@@ -1618,7 +1618,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardList.Request: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardList.Request, rhs: Bloombox_Schema_Services_Wallet_V1_CardList.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardList.Request, rhs: Bloombox_Services_Wallet_V1_CardList.Request) -> Bool {
     if lhs.library != rhs.library {return false}
     if lhs.passType != rhs.passType {return false}
     if lhs.passesUpdatedSince != rhs.passesUpdatedSince {return false}
@@ -1627,8 +1627,8 @@ extension Bloombox_Schema_Services_Wallet_V1_CardList.Request: SwiftProtobuf.Mes
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardList.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardList.protoMessageName + ".Response"
+extension Bloombox_Services_Wallet_V1_CardList.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardList.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "last_updated"),
     2: .standard(proto: "serial_numbers"),
@@ -1654,7 +1654,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardList.Response: SwiftProtobuf.Me
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardList.Response, rhs: Bloombox_Schema_Services_Wallet_V1_CardList.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardList.Response, rhs: Bloombox_Services_Wallet_V1_CardList.Response) -> Bool {
     if lhs.lastUpdated != rhs.lastUpdated {return false}
     if lhs.serialNumbers != rhs.serialNumbers {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1662,16 +1662,16 @@ extension Bloombox_Schema_Services_Wallet_V1_CardList.Response: SwiftProtobuf.Me
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardList.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardList.protoMessageName + ".Operation"
+extension Bloombox_Services_Wallet_V1_CardList.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardList.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "response"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Wallet_V1_CardList.Request? = nil
-    var _response: Bloombox_Schema_Services_Wallet_V1_CardList.Response? = nil
+    var _request: Bloombox_Services_Wallet_V1_CardList.Request? = nil
+    var _response: Bloombox_Services_Wallet_V1_CardList.Response? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1715,7 +1715,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardList.Operation: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardList.Operation, rhs: Bloombox_Schema_Services_Wallet_V1_CardList.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardList.Operation, rhs: Bloombox_Services_Wallet_V1_CardList.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1731,7 +1731,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardList.Operation: SwiftProtobuf.M
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardVoid: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Wallet_V1_CardVoid: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CardVoid"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1744,14 +1744,14 @@ extension Bloombox_Schema_Services_Wallet_V1_CardVoid: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardVoid, rhs: Bloombox_Schema_Services_Wallet_V1_CardVoid) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardVoid, rhs: Bloombox_Services_Wallet_V1_CardVoid) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardVoid.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardVoid.protoMessageName + ".Request"
+extension Bloombox_Services_Wallet_V1_CardVoid.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardVoid.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "library"),
     2: .standard(proto: "pass_type"),
@@ -1782,7 +1782,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardVoid.Request: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardVoid.Request, rhs: Bloombox_Schema_Services_Wallet_V1_CardVoid.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardVoid.Request, rhs: Bloombox_Services_Wallet_V1_CardVoid.Request) -> Bool {
     if lhs.library != rhs.library {return false}
     if lhs.passType != rhs.passType {return false}
     if lhs.serial != rhs.serial {return false}
@@ -1791,15 +1791,15 @@ extension Bloombox_Schema_Services_Wallet_V1_CardVoid.Request: SwiftProtobuf.Mes
   }
 }
 
-extension Bloombox_Schema_Services_Wallet_V1_CardVoid.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Wallet_V1_CardVoid.protoMessageName + ".Operation"
+extension Bloombox_Services_Wallet_V1_CardVoid.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Wallet_V1_CardVoid.protoMessageName + ".Operation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "request"),
     2: .same(proto: "success"),
   ]
 
   fileprivate class _StorageClass {
-    var _request: Bloombox_Schema_Services_Wallet_V1_CardVoid.Request? = nil
+    var _request: Bloombox_Services_Wallet_V1_CardVoid.Request? = nil
     var _success: Bool = false
 
     static let defaultInstance = _StorageClass()
@@ -1844,7 +1844,7 @@ extension Bloombox_Schema_Services_Wallet_V1_CardVoid.Operation: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Wallet_V1_CardVoid.Operation, rhs: Bloombox_Schema_Services_Wallet_V1_CardVoid.Operation) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Wallet_V1_CardVoid.Operation, rhs: Bloombox_Services_Wallet_V1_CardVoid.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -25,7 +25,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Specifies the supertypes of licenses that are supported by the system. By default, all licenses are considered
 /// "permanent," meaning they do not have expiration parameters built in besides regular compliance.
-public enum Bloombox_Schema_Licensure_LicenseType: SwiftProtobuf.Enum {
+public enum Bloombox_Licensure_LicenseType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Permanent licenses are the default supertype for a license, and indicate that a license does not, by default,
@@ -70,9 +70,9 @@ public enum Bloombox_Schema_Licensure_LicenseType: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Licensure_LicenseType: CaseIterable {
+extension Bloombox_Licensure_LicenseType: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Licensure_LicenseType] = [
+  public static var allCases: [Bloombox_Licensure_LicenseType] = [
     .permanent,
     .temporary,
     .compound,
@@ -83,7 +83,7 @@ extension Bloombox_Schema_Licensure_LicenseType: CaseIterable {
 
 /// Enumerates different types of cannabis licenses that relate to the larger data model. Licensing is based on the role
 /// of a given organization or individual in the supply chain.
-public enum Bloombox_Schema_Licensure_LicensePrivilege: SwiftProtobuf.Enum {
+public enum Bloombox_Licensure_LicensePrivilege: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies that the license type of a given license payload is unknown. This value is not meant for explicit use and
@@ -171,9 +171,9 @@ public enum Bloombox_Schema_Licensure_LicensePrivilege: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Licensure_LicensePrivilege: CaseIterable {
+extension Bloombox_Licensure_LicensePrivilege: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Licensure_LicensePrivilege] = [
+  public static var allCases: [Bloombox_Licensure_LicensePrivilege] = [
     .unknownLicense,
     .cultivation,
     .distribution,
@@ -191,7 +191,7 @@ extension Bloombox_Schema_Licensure_LicensePrivilege: CaseIterable {
 
 /// Specifies states that a given license may exist in. Expiration, revocation, and other actions that may deny access,
 /// are enumerated here with descriptions.
-public enum Bloombox_Schema_Licensure_LicenseStatus: SwiftProtobuf.Enum {
+public enum Bloombox_Licensure_LicenseStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Specifies a license status that is unknown, or pending review or action to verify.
@@ -255,9 +255,9 @@ public enum Bloombox_Schema_Licensure_LicenseStatus: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Licensure_LicenseStatus: CaseIterable {
+extension Bloombox_Licensure_LicenseStatus: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Licensure_LicenseStatus] = [
+  public static var allCases: [Bloombox_Licensure_LicenseStatus] = [
     .pending,
     .active,
     .revoked,
@@ -272,7 +272,7 @@ extension Bloombox_Schema_Licensure_LicenseStatus: CaseIterable {
 /// Specifies the jurisdictional authority that issued or is in the process of issuing a license. Jurisdiction is a
 /// hierarchical concept, and so, this structure is filled out according to the "leaf" jurisdiction that actually issued
 /// the subject license.
-public struct Bloombox_Schema_Licensure_LicensingAuthority {
+public struct Bloombox_Licensure_LicensingAuthority {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -284,28 +284,28 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
   }
 
   /// Specifies a license issued by a "local" (or municipal) jurisdiction, which is to say, a township or city.
-  public var local: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense {
+  public var local: Bloombox_Licensure_LicensingAuthority.LocalLicense {
     get {
       if case .local(let v)? = _storage._jurisdiction {return v}
-      return Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense()
+      return Bloombox_Licensure_LicensingAuthority.LocalLicense()
     }
     set {_uniqueStorage()._jurisdiction = .local(newValue)}
   }
 
   /// Specifies a license issued by a semi-local (provincial) jurisdiction, which is to say, a county.
-  public var county: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense {
+  public var county: Bloombox_Licensure_LicensingAuthority.CountyLicense {
     get {
       if case .county(let v)? = _storage._jurisdiction {return v}
-      return Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense()
+      return Bloombox_Licensure_LicensingAuthority.CountyLicense()
     }
     set {_uniqueStorage()._jurisdiction = .county(newValue)}
   }
 
   /// Specifies a license issued by a regional jurisdiction, which is to say, a state.
-  public var state: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense {
+  public var state: Bloombox_Licensure_LicensingAuthority.StateLicense {
     get {
       if case .state(let v)? = _storage._jurisdiction {return v}
-      return Bloombox_Schema_Licensure_LicensingAuthority.StateLicense()
+      return Bloombox_Licensure_LicensingAuthority.StateLicense()
     }
     set {_uniqueStorage()._jurisdiction = .state(newValue)}
   }
@@ -315,14 +315,14 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
   /// Specifies the jurisdictional authority that applies to a subject license.
   public enum OneOf_Jurisdiction: Equatable {
     /// Specifies a license issued by a "local" (or municipal) jurisdiction, which is to say, a township or city.
-    case local(Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense)
+    case local(Bloombox_Licensure_LicensingAuthority.LocalLicense)
     /// Specifies a license issued by a semi-local (provincial) jurisdiction, which is to say, a county.
-    case county(Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense)
+    case county(Bloombox_Licensure_LicensingAuthority.CountyLicense)
     /// Specifies a license issued by a regional jurisdiction, which is to say, a state.
-    case state(Bloombox_Schema_Licensure_LicensingAuthority.StateLicense)
+    case state(Bloombox_Licensure_LicensingAuthority.StateLicense)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.OneOf_Jurisdiction, rhs: Bloombox_Schema_Licensure_LicensingAuthority.OneOf_Jurisdiction) -> Bool {
+    public static func ==(lhs: Bloombox_Licensure_LicensingAuthority.OneOf_Jurisdiction, rhs: Bloombox_Licensure_LicensingAuthority.OneOf_Jurisdiction) -> Bool {
       switch (lhs, rhs) {
       case (.local(let l), .local(let r)): return l == r
       case (.county(let l), .county(let r)): return l == r
@@ -344,7 +344,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
     public var municipality: String = String()
 
     /// Specifies, either via arbitrary name or structured reference, the county containing the municipality.
-    public var county: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense.OneOf_County? = nil
+    public var county: Bloombox_Licensure_LicensingAuthority.LocalLicense.OneOf_County? = nil
 
     /// Arbitrary name of a given county.
     public var countyName: String {
@@ -365,7 +365,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
     }
 
     /// Specifies, either via arbitrary name or structured reference, the state containing the municipality.
-    public var province: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense.OneOf_Province? = nil
+    public var province: Bloombox_Licensure_LicensingAuthority.LocalLicense.OneOf_Province? = nil
 
     /// Arbitrary name for a given state or province.
     public var provinceName: String {
@@ -395,7 +395,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
       case californiaCounty(Opencannabis_Geo_Usa_Ca_CaliforniaCounty)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense.OneOf_County, rhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense.OneOf_County) -> Bool {
+      public static func ==(lhs: Bloombox_Licensure_LicensingAuthority.LocalLicense.OneOf_County, rhs: Bloombox_Licensure_LicensingAuthority.LocalLicense.OneOf_County) -> Bool {
         switch (lhs, rhs) {
         case (.countyName(let l), .countyName(let r)): return l == r
         case (.californiaCounty(let l), .californiaCounty(let r)): return l == r
@@ -413,7 +413,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
       case usState(Opencannabis_Geo_Usa_USState)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense.OneOf_Province, rhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense.OneOf_Province) -> Bool {
+      public static func ==(lhs: Bloombox_Licensure_LicensingAuthority.LocalLicense.OneOf_Province, rhs: Bloombox_Licensure_LicensingAuthority.LocalLicense.OneOf_Province) -> Bool {
         switch (lhs, rhs) {
         case (.provinceName(let l), .provinceName(let r)): return l == r
         case (.usState(let l), .usState(let r)): return l == r
@@ -434,7 +434,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
     // methods supported on all messages.
 
     /// Specifies, either via arbitrary name or structured reference, the county in question.
-    public var county: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense.OneOf_County? = nil
+    public var county: Bloombox_Licensure_LicensingAuthority.CountyLicense.OneOf_County? = nil
 
     /// Arbitrary name of a given county.
     public var name: String {
@@ -455,7 +455,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
     }
 
     /// Specifies, either via arbitrary name or structured reference, the state containing the county.
-    public var province: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense.OneOf_Province? = nil
+    public var province: Bloombox_Licensure_LicensingAuthority.CountyLicense.OneOf_Province? = nil
 
     /// Arbitrary name for a given state or province.
     public var provinceName: String {
@@ -485,7 +485,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
       case californiaCounty(Opencannabis_Geo_Usa_Ca_CaliforniaCounty)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense.OneOf_County, rhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense.OneOf_County) -> Bool {
+      public static func ==(lhs: Bloombox_Licensure_LicensingAuthority.CountyLicense.OneOf_County, rhs: Bloombox_Licensure_LicensingAuthority.CountyLicense.OneOf_County) -> Bool {
         switch (lhs, rhs) {
         case (.name(let l), .name(let r)): return l == r
         case (.californiaCounty(let l), .californiaCounty(let r)): return l == r
@@ -503,7 +503,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
       case usState(Opencannabis_Geo_Usa_USState)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense.OneOf_Province, rhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense.OneOf_Province) -> Bool {
+      public static func ==(lhs: Bloombox_Licensure_LicensingAuthority.CountyLicense.OneOf_Province, rhs: Bloombox_Licensure_LicensingAuthority.CountyLicense.OneOf_Province) -> Bool {
         switch (lhs, rhs) {
         case (.provinceName(let l), .provinceName(let r)): return l == r
         case (.usState(let l), .usState(let r)): return l == r
@@ -524,7 +524,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
     // methods supported on all messages.
 
     /// Specifies, either via arbitrary name or structured reference, the state in question.
-    public var province: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense.OneOf_Province? = nil
+    public var province: Bloombox_Licensure_LicensingAuthority.StateLicense.OneOf_Province? = nil
 
     /// Arbitrary name for a given state or province.
     public var provinceName: String {
@@ -545,7 +545,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
     }
 
     /// Specific governing or issuing regulatory body for a given state or provincial license.
-    public var agency: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense.OneOf_Agency? = nil
+    public var agency: Bloombox_Licensure_LicensingAuthority.StateLicense.OneOf_Agency? = nil
 
     /// Arbitrary name for a given regulatory/licensing agency.
     public var agencyName: String {
@@ -575,7 +575,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
       case usState(Opencannabis_Geo_Usa_USState)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense.OneOf_Province, rhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense.OneOf_Province) -> Bool {
+      public static func ==(lhs: Bloombox_Licensure_LicensingAuthority.StateLicense.OneOf_Province, rhs: Bloombox_Licensure_LicensingAuthority.StateLicense.OneOf_Province) -> Bool {
         switch (lhs, rhs) {
         case (.provinceName(let l), .provinceName(let r)): return l == r
         case (.usState(let l), .usState(let r)): return l == r
@@ -593,7 +593,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
       case californiaAgency(Opencannabis_Regulatory_Usa_Ca_CaliforniaAgency)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense.OneOf_Agency, rhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense.OneOf_Agency) -> Bool {
+      public static func ==(lhs: Bloombox_Licensure_LicensingAuthority.StateLicense.OneOf_Agency, rhs: Bloombox_Licensure_LicensingAuthority.StateLicense.OneOf_Agency) -> Bool {
         switch (lhs, rhs) {
         case (.agencyName(let l), .agencyName(let r)): return l == r
         case (.californiaAgency(let l), .californiaAgency(let r)): return l == r
@@ -613,7 +613,7 @@ public struct Bloombox_Schema_Licensure_LicensingAuthority {
 
 /// Specifies a unique key that identifies a regulatory license document. It is generally compose of an auto-generated
 /// UUID value, and a reference to any jurisdictionally-issued document or license codes.
-public struct Bloombox_Schema_Licensure_LicenseKey {
+public struct Bloombox_Licensure_LicenseKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -633,20 +633,20 @@ public struct Bloombox_Schema_Licensure_LicenseKey {
 
 /// Specifies an individual event in the lifecycle of a given industrial cannabis license. History for a given license
 /// can be reconstructed from a set of license events.
-public struct Bloombox_Schema_Licensure_LicenseEvent {
+public struct Bloombox_Licensure_LicenseEvent {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Status for the license after this event takes place.
-  public var status: Bloombox_Schema_Licensure_LicenseStatus {
+  public var status: Bloombox_Licensure_LicenseStatus {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
   }
 
   /// Privileges attached to this license after this event takes place. If this property is left empty, privileges are
   /// considered unchanged from the previous license event.
-  public var privilege: [Bloombox_Schema_Licensure_LicensePrivilege] {
+  public var privilege: [Bloombox_Licensure_LicensePrivilege] {
     get {return _storage._privilege}
     set {_uniqueStorage()._privilege = newValue}
   }
@@ -676,7 +676,7 @@ public struct Bloombox_Schema_Licensure_LicenseEvent {
 
 /// Specifies standard timestamps for a given regulatory license, that are generally considered immutable or at least
 /// only updated by changes in the license content or privileges.
-public struct Bloombox_Schema_Licensure_LicenseTimestamps {
+public struct Bloombox_Licensure_LicenseTimestamps {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -751,15 +751,15 @@ public struct Bloombox_Schema_Licensure_LicenseTimestamps {
 /// Specifies a persistable claim with details about a regulatory license, presumably granting industrial cannabis
 /// participation privileges to a given licensee, under the statutory authority of a given licensing agency or
 /// jurisdiction. Licenses are generally considered sub-objects to existing licensee records.
-public struct Bloombox_Schema_Licensure_RegulatoryLicense {
+public struct Bloombox_Licensure_RegulatoryLicense {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Primary key for a regulatory license record. This includes an auto-generated UUID, and any external license ID
   /// allocated and issued by the licensing agency.
-  public var key: Bloombox_Schema_Licensure_LicenseKey {
-    get {return _storage._key ?? Bloombox_Schema_Licensure_LicenseKey()}
+  public var key: Bloombox_Licensure_LicenseKey {
+    get {return _storage._key ?? Bloombox_Licensure_LicenseKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -769,15 +769,15 @@ public struct Bloombox_Schema_Licensure_RegulatoryLicense {
 
   /// Specifies the main type of a given regulatory license. These types are enumerated in the declared type, but
   /// generally, this value is either 'temporary' or 'permanent'.
-  public var type: Bloombox_Schema_Licensure_LicenseType {
+  public var type: Bloombox_Licensure_LicenseType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Specifies the agency or jurisdiction with which this license was or will be issued. It is under the authority of
   /// this governing body that the privileges embedded in this license apply to the licensee.
-  public var authority: Bloombox_Schema_Licensure_LicensingAuthority {
-    get {return _storage._authority ?? Bloombox_Schema_Licensure_LicensingAuthority()}
+  public var authority: Bloombox_Licensure_LicensingAuthority {
+    get {return _storage._authority ?? Bloombox_Licensure_LicensingAuthority()}
     set {_uniqueStorage()._authority = newValue}
   }
   /// Returns true if `authority` has been explicitly set.
@@ -787,28 +787,28 @@ public struct Bloombox_Schema_Licensure_RegulatoryLicense {
 
   /// Indicate the current, up-to-date status of this regulatory license record, considering all available informaiton.
   /// Docs about each state are available on the declared type.
-  public var status: Bloombox_Schema_Licensure_LicenseStatus {
+  public var status: Bloombox_Licensure_LicenseStatus {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
   }
 
   /// History of events as they occurred, to this license, or involving this license. When a license record is first
   /// allocated, this property is left empty, and begins with an entry after the first mutation of a license record.
-  public var event: [Bloombox_Schema_Licensure_LicenseEvent] {
+  public var event: [Bloombox_Licensure_LicenseEvent] {
     get {return _storage._event}
     set {_uniqueStorage()._event = newValue}
   }
 
   /// Specifies privileges granted pursuant to the issuance, and validity, of this license. Privileges specified are used
   /// to govern behavior and obtain authorization for various actions.
-  public var privilege: [Bloombox_Schema_Licensure_LicensePrivilege] {
+  public var privilege: [Bloombox_Licensure_LicensePrivilege] {
     get {return _storage._privilege}
     set {_uniqueStorage()._privilege = newValue}
   }
 
   /// Timestamps that record when various actions or states became active.
-  public var timestamps: Bloombox_Schema_Licensure_LicenseTimestamps {
-    get {return _storage._timestamps ?? Bloombox_Schema_Licensure_LicenseTimestamps()}
+  public var timestamps: Bloombox_Licensure_LicenseTimestamps {
+    get {return _storage._timestamps ?? Bloombox_Licensure_LicenseTimestamps()}
     set {_uniqueStorage()._timestamps = newValue}
   }
   /// Returns true if `timestamps` has been explicitly set.
@@ -825,9 +825,9 @@ public struct Bloombox_Schema_Licensure_RegulatoryLicense {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.licensure"
+fileprivate let _protobuf_package = "bloombox.licensure"
 
-extension Bloombox_Schema_Licensure_LicenseType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Licensure_LicenseType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PERMANENT"),
     1: .same(proto: "TEMPORARY"),
@@ -835,7 +835,7 @@ extension Bloombox_Schema_Licensure_LicenseType: SwiftProtobuf._ProtoNameProvidi
   ]
 }
 
-extension Bloombox_Schema_Licensure_LicensePrivilege: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Licensure_LicensePrivilege: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNKNOWN_LICENSE"),
     1: .same(proto: "CULTIVATION"),
@@ -850,7 +850,7 @@ extension Bloombox_Schema_Licensure_LicensePrivilege: SwiftProtobuf._ProtoNamePr
   ]
 }
 
-extension Bloombox_Schema_Licensure_LicenseStatus: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Licensure_LicenseStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "PENDING"),
     1: .same(proto: "ACTIVE"),
@@ -861,7 +861,7 @@ extension Bloombox_Schema_Licensure_LicenseStatus: SwiftProtobuf._ProtoNameProvi
   ]
 }
 
-extension Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Licensure_LicensingAuthority: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LicensingAuthority"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "local"),
@@ -870,7 +870,7 @@ extension Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Message, S
   ]
 
   fileprivate class _StorageClass {
-    var _jurisdiction: Bloombox_Schema_Licensure_LicensingAuthority.OneOf_Jurisdiction?
+    var _jurisdiction: Bloombox_Licensure_LicensingAuthority.OneOf_Jurisdiction?
 
     static let defaultInstance = _StorageClass()
 
@@ -894,7 +894,7 @@ extension Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Message, S
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1:
-          var v: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense?
+          var v: Bloombox_Licensure_LicensingAuthority.LocalLicense?
           if let current = _storage._jurisdiction {
             try decoder.handleConflictingOneOf()
             if case .local(let m) = current {v = m}
@@ -902,7 +902,7 @@ extension Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Message, S
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._jurisdiction = .local(v)}
         case 2:
-          var v: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense?
+          var v: Bloombox_Licensure_LicensingAuthority.CountyLicense?
           if let current = _storage._jurisdiction {
             try decoder.handleConflictingOneOf()
             if case .county(let m) = current {v = m}
@@ -910,7 +910,7 @@ extension Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Message, S
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._jurisdiction = .county(v)}
         case 3:
-          var v: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense?
+          var v: Bloombox_Licensure_LicensingAuthority.StateLicense?
           if let current = _storage._jurisdiction {
             try decoder.handleConflictingOneOf()
             if case .state(let m) = current {v = m}
@@ -938,7 +938,7 @@ extension Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority, rhs: Bloombox_Schema_Licensure_LicensingAuthority) -> Bool {
+  public static func ==(lhs: Bloombox_Licensure_LicensingAuthority, rhs: Bloombox_Licensure_LicensingAuthority) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -953,8 +953,8 @@ extension Bloombox_Schema_Licensure_LicensingAuthority: SwiftProtobuf.Message, S
   }
 }
 
-extension Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Licensure_LicensingAuthority.protoMessageName + ".LocalLicense"
+extension Bloombox_Licensure_LicensingAuthority.LocalLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Licensure_LicensingAuthority.protoMessageName + ".LocalLicense"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "municipality"),
     2: .standard(proto: "county_name"),
@@ -1013,7 +1013,7 @@ extension Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense, rhs: Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense) -> Bool {
+  public static func ==(lhs: Bloombox_Licensure_LicensingAuthority.LocalLicense, rhs: Bloombox_Licensure_LicensingAuthority.LocalLicense) -> Bool {
     if lhs.municipality != rhs.municipality {return false}
     if lhs.county != rhs.county {return false}
     if lhs.province != rhs.province {return false}
@@ -1022,8 +1022,8 @@ extension Bloombox_Schema_Licensure_LicensingAuthority.LocalLicense: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Licensure_LicensingAuthority.protoMessageName + ".CountyLicense"
+extension Bloombox_Licensure_LicensingAuthority.CountyLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Licensure_LicensingAuthority.protoMessageName + ".CountyLicense"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .standard(proto: "california_county"),
@@ -1077,7 +1077,7 @@ extension Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense, rhs: Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense) -> Bool {
+  public static func ==(lhs: Bloombox_Licensure_LicensingAuthority.CountyLicense, rhs: Bloombox_Licensure_LicensingAuthority.CountyLicense) -> Bool {
     if lhs.county != rhs.county {return false}
     if lhs.province != rhs.province {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1085,8 +1085,8 @@ extension Bloombox_Schema_Licensure_LicensingAuthority.CountyLicense: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Licensure_LicensingAuthority.StateLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Licensure_LicensingAuthority.protoMessageName + ".StateLicense"
+extension Bloombox_Licensure_LicensingAuthority.StateLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Licensure_LicensingAuthority.protoMessageName + ".StateLicense"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "province_name"),
     2: .standard(proto: "us_state"),
@@ -1140,7 +1140,7 @@ extension Bloombox_Schema_Licensure_LicensingAuthority.StateLicense: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense, rhs: Bloombox_Schema_Licensure_LicensingAuthority.StateLicense) -> Bool {
+  public static func ==(lhs: Bloombox_Licensure_LicensingAuthority.StateLicense, rhs: Bloombox_Licensure_LicensingAuthority.StateLicense) -> Bool {
     if lhs.province != rhs.province {return false}
     if lhs.agency != rhs.agency {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1148,7 +1148,7 @@ extension Bloombox_Schema_Licensure_LicensingAuthority.StateLicense: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Licensure_LicenseKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Licensure_LicenseKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LicenseKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -1175,7 +1175,7 @@ extension Bloombox_Schema_Licensure_LicenseKey: SwiftProtobuf.Message, SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Licensure_LicenseKey, rhs: Bloombox_Schema_Licensure_LicenseKey) -> Bool {
+  public static func ==(lhs: Bloombox_Licensure_LicenseKey, rhs: Bloombox_Licensure_LicenseKey) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.jid != rhs.jid {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1183,7 +1183,7 @@ extension Bloombox_Schema_Licensure_LicenseKey: SwiftProtobuf.Message, SwiftProt
   }
 }
 
-extension Bloombox_Schema_Licensure_LicenseEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Licensure_LicenseEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LicenseEvent"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
@@ -1193,8 +1193,8 @@ extension Bloombox_Schema_Licensure_LicenseEvent: SwiftProtobuf.Message, SwiftPr
   ]
 
   fileprivate class _StorageClass {
-    var _status: Bloombox_Schema_Licensure_LicenseStatus = .pending
-    var _privilege: [Bloombox_Schema_Licensure_LicensePrivilege] = []
+    var _status: Bloombox_Licensure_LicenseStatus = .pending
+    var _privilege: [Bloombox_Licensure_LicensePrivilege] = []
     var _message: String = String()
     var _occurred: Opencannabis_Temporal_Instant? = nil
 
@@ -1250,7 +1250,7 @@ extension Bloombox_Schema_Licensure_LicenseEvent: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Licensure_LicenseEvent, rhs: Bloombox_Schema_Licensure_LicenseEvent) -> Bool {
+  public static func ==(lhs: Bloombox_Licensure_LicenseEvent, rhs: Bloombox_Licensure_LicenseEvent) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1268,7 +1268,7 @@ extension Bloombox_Schema_Licensure_LicenseEvent: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Licensure_LicenseTimestamps: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LicenseTimestamps"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "submitted"),
@@ -1349,7 +1349,7 @@ extension Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Licensure_LicenseTimestamps, rhs: Bloombox_Schema_Licensure_LicenseTimestamps) -> Bool {
+  public static func ==(lhs: Bloombox_Licensure_LicenseTimestamps, rhs: Bloombox_Licensure_LicenseTimestamps) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1369,7 +1369,7 @@ extension Bloombox_Schema_Licensure_LicenseTimestamps: SwiftProtobuf.Message, Sw
   }
 }
 
-extension Bloombox_Schema_Licensure_RegulatoryLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Licensure_RegulatoryLicense: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".RegulatoryLicense"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -1382,13 +1382,13 @@ extension Bloombox_Schema_Licensure_RegulatoryLicense: SwiftProtobuf.Message, Sw
   ]
 
   fileprivate class _StorageClass {
-    var _key: Bloombox_Schema_Licensure_LicenseKey? = nil
-    var _type: Bloombox_Schema_Licensure_LicenseType = .permanent
-    var _authority: Bloombox_Schema_Licensure_LicensingAuthority? = nil
-    var _status: Bloombox_Schema_Licensure_LicenseStatus = .pending
-    var _event: [Bloombox_Schema_Licensure_LicenseEvent] = []
-    var _privilege: [Bloombox_Schema_Licensure_LicensePrivilege] = []
-    var _timestamps: Bloombox_Schema_Licensure_LicenseTimestamps? = nil
+    var _key: Bloombox_Licensure_LicenseKey? = nil
+    var _type: Bloombox_Licensure_LicenseType = .permanent
+    var _authority: Bloombox_Licensure_LicensingAuthority? = nil
+    var _status: Bloombox_Licensure_LicenseStatus = .pending
+    var _event: [Bloombox_Licensure_LicenseEvent] = []
+    var _privilege: [Bloombox_Licensure_LicensePrivilege] = []
+    var _timestamps: Bloombox_Licensure_LicenseTimestamps? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1457,7 +1457,7 @@ extension Bloombox_Schema_Licensure_RegulatoryLicense: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Licensure_RegulatoryLicense, rhs: Bloombox_Schema_Licensure_RegulatoryLicense) -> Bool {
+  public static func ==(lhs: Bloombox_Licensure_RegulatoryLicense, rhs: Bloombox_Licensure_RegulatoryLicense) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

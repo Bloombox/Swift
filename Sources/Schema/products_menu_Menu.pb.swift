@@ -139,8 +139,8 @@ public struct Opencannabis_Products_Menu_MenuSettings {
   }
 
   /// Don't return the menu if it's identical to this fingerprint.
-  public var snapshot: Opencannabis_Crypto_Primitives_Integrity_Hash {
-    get {return _storage._snapshot ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+  public var snapshot: Opencannabis_Crypto_Hash {
+    get {return _storage._snapshot ?? Opencannabis_Crypto_Hash()}
     set {_uniqueStorage()._snapshot = newValue}
   }
   /// Returns true if `snapshot` has been explicitly set.
@@ -149,8 +149,8 @@ public struct Opencannabis_Products_Menu_MenuSettings {
   public mutating func clearSnapshot() {_uniqueStorage()._snapshot = nil}
 
   /// Bloom filter to consider when returning or processing menu items.
-  public var fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash {
-    get {return _storage._fingerprint ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+  public var fingerprint: Opencannabis_Crypto_Hash {
+    get {return _storage._fingerprint ?? Opencannabis_Crypto_Hash()}
     set {_uniqueStorage()._fingerprint = newValue}
   }
   /// Returns true if `fingerprint` has been explicitly set.
@@ -241,7 +241,7 @@ public struct Opencannabis_Products_Menu_ProductTag {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// ID for the tag. Usually a slug-ified version of the display name.
+  /// ID for the tag. Usually a shortened version of the display name.
   public var id: String = String()
 
   /// Display text for the tag.
@@ -276,7 +276,7 @@ public struct Opencannabis_Products_Menu_ForeignReference {
     set {_uniqueStorage()._domain = newValue}
   }
 
-  /// URL to this product in the foreign system, if applicable. Can also be a link to a RESTful URL payload representing
+  /// URL to this product in the foreign system, if applicable. Can also be a link to a REST URL payload representing
   /// this product's data in the foreign system.
   public var link: String {
     get {return _storage._link}
@@ -518,7 +518,7 @@ public struct Opencannabis_Products_Menu_SectionedMenu {
   public init() {}
 }
 
-/// Specifies an inner menu payload which contains mapped data, where each map key is a section name, lowercased, and
+/// Specifies an inner menu payload which contains mapped data, where each map key is a section name, lower-cased, and
 /// each map value is itself a product, and each map is addressed at a typed property name.
 public struct Opencannabis_Products_Menu_StaticMenu {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -653,8 +653,8 @@ extension Opencannabis_Products_Menu_MenuSettings: SwiftProtobuf.Message, SwiftP
   fileprivate class _StorageClass {
     var _full: Bool = false
     var _keysOnly: Bool = false
-    var _snapshot: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
-    var _fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
+    var _snapshot: Opencannabis_Crypto_Hash? = nil
+    var _fingerprint: Opencannabis_Crypto_Hash? = nil
     var _section: [Opencannabis_Products_Menu_Section_Section] = []
     var _availableSection: [Opencannabis_Products_Menu_Section_Section] = []
 

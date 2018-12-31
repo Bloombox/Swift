@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies Treez features that may be enabled or disabled.
-public struct Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures {
+public struct Bloombox_Partner_Integrations_Treez_TreezIntegrationFeatures {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -37,7 +37,7 @@ public struct Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeature
 }
 
 /// Specifies settings related to Treez integration with Bloombox.
-public struct Bloombox_Schema_Partner_Integrations_Treez_TreezSettings {
+public struct Bloombox_Partner_Integrations_Treez_TreezSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -59,8 +59,8 @@ public struct Bloombox_Schema_Partner_Integrations_Treez_TreezSettings {
   public mutating func clearSyncInterval() {_uniqueStorage()._syncInterval = nil}
 
   /// Flags indicating features that should be enabled or disabled.
-  public var features: Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures {
-    get {return _storage._features ?? Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures()}
+  public var features: Bloombox_Partner_Integrations_Treez_TreezIntegrationFeatures {
+    get {return _storage._features ?? Bloombox_Partner_Integrations_Treez_TreezIntegrationFeatures()}
     set {_uniqueStorage()._features = newValue}
   }
   /// Returns true if `features` has been explicitly set.
@@ -77,9 +77,9 @@ public struct Bloombox_Schema_Partner_Integrations_Treez_TreezSettings {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.partner.integrations.treez"
+fileprivate let _protobuf_package = "bloombox.partner.integrations.treez"
 
-extension Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Integrations_Treez_TreezIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TreezIntegrationFeatures"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "menu_read"),
@@ -101,14 +101,14 @@ extension Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures: S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures, rhs: Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Integrations_Treez_TreezIntegrationFeatures, rhs: Bloombox_Partner_Integrations_Treez_TreezIntegrationFeatures) -> Bool {
     if lhs.menuRead != rhs.menuRead {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_Integrations_Treez_TreezSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Integrations_Treez_TreezSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TreezSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "account_id"),
@@ -119,7 +119,7 @@ extension Bloombox_Schema_Partner_Integrations_Treez_TreezSettings: SwiftProtobu
   fileprivate class _StorageClass {
     var _accountID: String = String()
     var _syncInterval: Opencannabis_Temporal_Schedule? = nil
-    var _features: Bloombox_Schema_Partner_Integrations_Treez_TreezIntegrationFeatures? = nil
+    var _features: Bloombox_Partner_Integrations_Treez_TreezIntegrationFeatures? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -168,7 +168,7 @@ extension Bloombox_Schema_Partner_Integrations_Treez_TreezSettings: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Treez_TreezSettings, rhs: Bloombox_Schema_Partner_Integrations_Treez_TreezSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Integrations_Treez_TreezSettings, rhs: Bloombox_Partner_Integrations_Treez_TreezSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

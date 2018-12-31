@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies the key for a digital pass record.
-public struct Bloombox_Schema_Identity_Pass_PassKey {
+public struct Bloombox_Identity_Pass_PassKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -49,7 +49,7 @@ public struct Bloombox_Schema_Identity_Pass_PassKey {
 }
 
 /// Specifies a reference to a digital pass.
-public struct Bloombox_Schema_Identity_Pass_DigitalPassKey {
+public struct Bloombox_Identity_Pass_DigitalPassKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -86,7 +86,7 @@ public struct Bloombox_Schema_Identity_Pass_DigitalPassKey {
     case beacon(Opencannabis_Proximity_BluetoothBeacon)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Identity_Pass_DigitalPassKey.OneOf_Reference, rhs: Bloombox_Schema_Identity_Pass_DigitalPassKey.OneOf_Reference) -> Bool {
+    public static func ==(lhs: Bloombox_Identity_Pass_DigitalPassKey.OneOf_Reference, rhs: Bloombox_Identity_Pass_DigitalPassKey.OneOf_Reference) -> Bool {
       switch (lhs, rhs) {
       case (.barcode(let l), .barcode(let r)): return l == r
       case (.beacon(let l), .beacon(let r)): return l == r
@@ -103,9 +103,9 @@ public struct Bloombox_Schema_Identity_Pass_DigitalPassKey {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity.pass"
+fileprivate let _protobuf_package = "bloombox.identity.pass"
 
-extension Bloombox_Schema_Identity_Pass_PassKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_Pass_PassKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PassKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
@@ -147,7 +147,7 @@ extension Bloombox_Schema_Identity_Pass_PassKey: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_Pass_PassKey, rhs: Bloombox_Schema_Identity_Pass_PassKey) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_Pass_PassKey, rhs: Bloombox_Identity_Pass_PassKey) -> Bool {
     if lhs.uuid != rhs.uuid {return false}
     if lhs.serial != rhs.serial {return false}
     if lhs.uid != rhs.uid {return false}
@@ -158,7 +158,7 @@ extension Bloombox_Schema_Identity_Pass_PassKey: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Identity_Pass_DigitalPassKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_Pass_DigitalPassKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DigitalPassKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "barcode"),
@@ -166,7 +166,7 @@ extension Bloombox_Schema_Identity_Pass_DigitalPassKey: SwiftProtobuf.Message, S
   ]
 
   fileprivate class _StorageClass {
-    var _reference: Bloombox_Schema_Identity_Pass_DigitalPassKey.OneOf_Reference?
+    var _reference: Bloombox_Identity_Pass_DigitalPassKey.OneOf_Reference?
 
     static let defaultInstance = _StorageClass()
 
@@ -221,7 +221,7 @@ extension Bloombox_Schema_Identity_Pass_DigitalPassKey: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_Pass_DigitalPassKey, rhs: Bloombox_Schema_Identity_Pass_DigitalPassKey) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_Pass_DigitalPassKey, rhs: Bloombox_Identity_Pass_DigitalPassKey) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

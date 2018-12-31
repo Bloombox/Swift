@@ -144,7 +144,7 @@ public struct Core_PersistenceOptions {
   /// Specifies the storage mode for this entity.
   public var mode: Core_CollectionMode = .nested
 
-  /// Data path for a given message, with templated items in the URL corresponding to parameters in the item's key path.
+  /// Data path for a given message, with items in the URL corresponding to parameters in the item's key path.
   public var path: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -170,16 +170,16 @@ public struct Core_TableOptions {
   public init() {}
 }
 
-/// Specifies options related to storing a submessage.
+/// Specifies options related to storing a sub-message.
 public struct Core_SubmessageOptions {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Collection storage mode for the given submessage field.
+  /// Collection storage mode for the given sub-message field.
   public var mode: Core_CollectionMode = .nested
 
-  /// Data path for the given submessage field.
+  /// Data path for the given sub-message field.
   public var path: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -224,7 +224,57 @@ public struct Core_TableFieldOptions {
   public init() {}
 }
 
+/// Specifies mappings for an arbitrary protobuf message object.
+public struct Core_ObjectMapping {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Maps an enumeration instance to this object. Enumeration membership is contextual.
+  public var instance: [String] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 // MARK: - Extension support defined in Datamodel.proto.
+
+extension Google_Protobuf_EnumValueOptions {
+
+  /// Human-readable label for a given enumeration value state. Optional, can be used by invoking code to generate labels
+  /// for states in forms or other UI.
+  public var Core_label: String {
+    get {return getExtensionValue(ext: Core_Extensions_label) ?? String()}
+    set {setExtensionValue(ext: Core_Extensions_label, value: newValue)}
+  }
+  /// Returns true if extension `Core_Extensions_label`
+  /// has been explicitly set.
+  public var hasCore_label: Bool {
+    return hasExtensionValue(ext: Core_Extensions_label)
+  }
+  /// Clears the value of extension `Core_Extensions_label`.
+  /// Subsequent reads from it will return its default value.
+  public mutating func clearCore_label() {
+    clearExtensionValue(ext: Core_Extensions_label)
+  }
+
+  /// Color code value for a given enumerated value state. Optional, can be used by invoking code to generate UI schemes.
+  public var Core_color: Opencannabis_Content_Color {
+    get {return getExtensionValue(ext: Core_Extensions_color) ?? Opencannabis_Content_Color()}
+    set {setExtensionValue(ext: Core_Extensions_color, value: newValue)}
+  }
+  /// Returns true if extension `Core_Extensions_color`
+  /// has been explicitly set.
+  public var hasCore_color: Bool {
+    return hasExtensionValue(ext: Core_Extensions_color)
+  }
+  /// Clears the value of extension `Core_Extensions_color`.
+  /// Subsequent reads from it will return its default value.
+  public mutating func clearCore_color() {
+    clearExtensionValue(ext: Core_Extensions_color)
+  }
+}
 
 extension Google_Protobuf_FieldOptions {
 
@@ -313,6 +363,23 @@ extension Google_Protobuf_MessageOptions {
     clearExtensionValue(ext: Core_Extensions_table)
   }
 
+  /// Settings that determine meta-mappings between this message object and enumerated states, declared in a foreign
+  /// structure. Foreign structure mappings are contextually defined by the invoking application.
+  public var Core_map: Core_ObjectMapping {
+    get {return getExtensionValue(ext: Core_Extensions_map) ?? Core_ObjectMapping()}
+    set {setExtensionValue(ext: Core_Extensions_map, value: newValue)}
+  }
+  /// Returns true if extension `Core_Extensions_map`
+  /// has been explicitly set.
+  public var hasCore_map: Bool {
+    return hasExtensionValue(ext: Core_Extensions_map)
+  }
+  /// Clears the value of extension `Core_Extensions_map`.
+  /// Subsequent reads from it will return its default value.
+  public mutating func clearCore_map() {
+    clearExtensionValue(ext: Core_Extensions_map)
+  }
+
 }
 
 /// A `SwiftProtobuf.SimpleExtensionMap` that includes all of the extensions defined by
@@ -322,9 +389,12 @@ extension Google_Protobuf_MessageOptions {
 public let Core_Datamodel_Extensions: SwiftProtobuf.SimpleExtensionMap = [
   Core_Extensions_db,
   Core_Extensions_table,
+  Core_Extensions_map,
   Core_Extensions_field,
   Core_Extensions_column,
-  Core_Extensions_collection
+  Core_Extensions_collection,
+  Core_Extensions_label,
+  Core_Extensions_color
 ]
 
 /// Settings specific to how a particular message entity is stored in the underlying persistence engine. For Bloombox,
@@ -339,6 +409,13 @@ let Core_Extensions_db = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalMe
 let Core_Extensions_table = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalMessageExtensionField<Core_TableOptions>, Google_Protobuf_MessageOptions>(
   _protobuf_fieldNumber: 6001,
   fieldName: "core.table"
+)
+
+/// Settings that determine meta-mappings between this message object and enumerated states, declared in a foreign
+/// structure. Foreign structure mappings are contextually defined by the invoking application.
+let Core_Extensions_map = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalMessageExtensionField<Core_ObjectMapping>, Google_Protobuf_MessageOptions>(
+  _protobuf_fieldNumber: 6002,
+  fieldName: "core.map"
 )
 
 /// Database engine persistence options specific to an individual document field.
@@ -357,6 +434,19 @@ let Core_Extensions_column = SwiftProtobuf.MessageExtension<SwiftProtobuf.Option
 let Core_Extensions_collection = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalMessageExtensionField<Core_SubmessageOptions>, Google_Protobuf_FieldOptions>(
   _protobuf_fieldNumber: 7002,
   fieldName: "core.collection"
+)
+
+/// Human-readable label for a given enumeration value state. Optional, can be used by invoking code to generate labels
+/// for states in forms or other UI.
+let Core_Extensions_label = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalExtensionField<SwiftProtobuf.ProtobufString>, Google_Protobuf_EnumValueOptions>(
+  _protobuf_fieldNumber: 8003,
+  fieldName: "core.label"
+)
+
+/// Color code value for a given enumerated value state. Optional, can be used by invoking code to generate UI schemes.
+let Core_Extensions_color = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalMessageExtensionField<Opencannabis_Content_Color>, Google_Protobuf_EnumValueOptions>(
+  _protobuf_fieldNumber: 8004,
+  fieldName: "core.color"
 )
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -557,6 +647,35 @@ extension Core_TableFieldOptions: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     if lhs.require != rhs.require {return false}
     if lhs.ignore != rhs.ignore {return false}
     if lhs.bqtype != rhs.bqtype {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Core_ObjectMapping: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ObjectMapping"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "instance"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedStringField(value: &self.instance)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.instance.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.instance, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Core_ObjectMapping, rhs: Core_ObjectMapping) -> Bool {
+    if lhs.instance != rhs.instance {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies generic types of native devices that can be described.
-public enum Bloombox_Schema_Analytics_Context_DeviceRole: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Context_DeviceRole: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Indicates that the native device is acting in the role of a client. This is the default option.
@@ -54,9 +54,9 @@ public enum Bloombox_Schema_Analytics_Context_DeviceRole: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Context_DeviceRole: CaseIterable {
+extension Bloombox_Analytics_Context_DeviceRole: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Context_DeviceRole] = [
+  public static var allCases: [Bloombox_Analytics_Context_DeviceRole] = [
     .client,
     .server,
   ]
@@ -65,7 +65,7 @@ extension Bloombox_Schema_Analytics_Context_DeviceRole: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies the screen orientation at the time an event was captured.
-public enum Bloombox_Schema_Analytics_Context_ScreenOrientation: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Context_ScreenOrientation: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unspecified or unknown screen orientation.
@@ -104,9 +104,9 @@ public enum Bloombox_Schema_Analytics_Context_ScreenOrientation: SwiftProtobuf.E
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Context_ScreenOrientation: CaseIterable {
+extension Bloombox_Analytics_Context_ScreenOrientation: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Context_ScreenOrientation] = [
+  public static var allCases: [Bloombox_Analytics_Context_ScreenOrientation] = [
     .unspecifiedOrientation,
     .portrait,
     .landscape,
@@ -116,7 +116,7 @@ extension Bloombox_Schema_Analytics_Context_ScreenOrientation: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Carries information about a device display, including resolution, pixel density, and viewport size, if applicable.
-public struct Bloombox_Schema_Analytics_Context_PixelSize {
+public struct Bloombox_Analytics_Context_PixelSize {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -133,14 +133,14 @@ public struct Bloombox_Schema_Analytics_Context_PixelSize {
 }
 
 /// Carries information about the screen being used on the device to display whatever is being instrumented.
-public struct Bloombox_Schema_Analytics_Context_DeviceScreen {
+public struct Bloombox_Analytics_Context_DeviceScreen {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Size of the screen.
-  public var screen: Bloombox_Schema_Analytics_Context_PixelSize {
-    get {return _storage._screen ?? Bloombox_Schema_Analytics_Context_PixelSize()}
+  public var screen: Bloombox_Analytics_Context_PixelSize {
+    get {return _storage._screen ?? Bloombox_Analytics_Context_PixelSize()}
     set {_uniqueStorage()._screen = newValue}
   }
   /// Returns true if `screen` has been explicitly set.
@@ -149,8 +149,8 @@ public struct Bloombox_Schema_Analytics_Context_DeviceScreen {
   public mutating func clearScreen() {_uniqueStorage()._screen = nil}
 
   /// Size of the viewport.
-  public var viewport: Bloombox_Schema_Analytics_Context_PixelSize {
-    get {return _storage._viewport ?? Bloombox_Schema_Analytics_Context_PixelSize()}
+  public var viewport: Bloombox_Analytics_Context_PixelSize {
+    get {return _storage._viewport ?? Bloombox_Analytics_Context_PixelSize()}
     set {_uniqueStorage()._viewport = newValue}
   }
   /// Returns true if `viewport` has been explicitly set.
@@ -165,7 +165,7 @@ public struct Bloombox_Schema_Analytics_Context_DeviceScreen {
   }
 
   /// Specifies the orientation of the screen at the time an event was captured.
-  public var orientation: Bloombox_Schema_Analytics_Context_ScreenOrientation {
+  public var orientation: Bloombox_Analytics_Context_ScreenOrientation {
     get {return _storage._orientation}
     set {_uniqueStorage()._orientation = newValue}
   }
@@ -178,7 +178,7 @@ public struct Bloombox_Schema_Analytics_Context_DeviceScreen {
 }
 
 /// Specifies a structure describing code running in some form of a native context.
-public struct Bloombox_Schema_Analytics_Context_NativeDeviceContext {
+public struct Bloombox_Analytics_Context_NativeDeviceContext {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -190,14 +190,14 @@ public struct Bloombox_Schema_Analytics_Context_NativeDeviceContext {
   }
 
   /// Specifies the type of native device.
-  public var role: Bloombox_Schema_Analytics_Context_DeviceRole {
+  public var role: Bloombox_Analytics_Context_DeviceRole {
     get {return _storage._role}
     set {_uniqueStorage()._role = newValue}
   }
 
   /// Specifies the OS of the native device.
-  public var os: Bloombox_Schema_Analytics_Context_DeviceOS {
-    get {return _storage._os ?? Bloombox_Schema_Analytics_Context_DeviceOS()}
+  public var os: Bloombox_Analytics_Context_DeviceOS {
+    get {return _storage._os ?? Bloombox_Analytics_Context_DeviceOS()}
     set {_uniqueStorage()._os = newValue}
   }
   /// Returns true if `os` has been explicitly set.
@@ -222,8 +222,8 @@ public struct Bloombox_Schema_Analytics_Context_NativeDeviceContext {
   }
 
   /// Information about the device screen.
-  public var screen: Bloombox_Schema_Analytics_Context_DeviceScreen {
-    get {return _storage._screen ?? Bloombox_Schema_Analytics_Context_DeviceScreen()}
+  public var screen: Bloombox_Analytics_Context_DeviceScreen {
+    get {return _storage._screen ?? Bloombox_Analytics_Context_DeviceScreen()}
     set {_uniqueStorage()._screen = newValue}
   }
   /// Returns true if `screen` has been explicitly set.
@@ -240,16 +240,16 @@ public struct Bloombox_Schema_Analytics_Context_NativeDeviceContext {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.context"
+fileprivate let _protobuf_package = "bloombox.analytics.context"
 
-extension Bloombox_Schema_Analytics_Context_DeviceRole: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_DeviceRole: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "CLIENT"),
     1: .same(proto: "SERVER"),
   ]
 }
 
-extension Bloombox_Schema_Analytics_Context_ScreenOrientation: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_ScreenOrientation: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED_ORIENTATION"),
     1: .same(proto: "PORTRAIT"),
@@ -257,7 +257,7 @@ extension Bloombox_Schema_Analytics_Context_ScreenOrientation: SwiftProtobuf._Pr
   ]
 }
 
-extension Bloombox_Schema_Analytics_Context_PixelSize: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_PixelSize: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PixelSize"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "width"),
@@ -284,7 +284,7 @@ extension Bloombox_Schema_Analytics_Context_PixelSize: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Context_PixelSize, rhs: Bloombox_Schema_Analytics_Context_PixelSize) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Context_PixelSize, rhs: Bloombox_Analytics_Context_PixelSize) -> Bool {
     if lhs.width != rhs.width {return false}
     if lhs.height != rhs.height {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -292,7 +292,7 @@ extension Bloombox_Schema_Analytics_Context_PixelSize: SwiftProtobuf.Message, Sw
   }
 }
 
-extension Bloombox_Schema_Analytics_Context_DeviceScreen: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_DeviceScreen: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeviceScreen"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "screen"),
@@ -302,10 +302,10 @@ extension Bloombox_Schema_Analytics_Context_DeviceScreen: SwiftProtobuf.Message,
   ]
 
   fileprivate class _StorageClass {
-    var _screen: Bloombox_Schema_Analytics_Context_PixelSize? = nil
-    var _viewport: Bloombox_Schema_Analytics_Context_PixelSize? = nil
+    var _screen: Bloombox_Analytics_Context_PixelSize? = nil
+    var _viewport: Bloombox_Analytics_Context_PixelSize? = nil
     var _density: UInt32 = 0
-    var _orientation: Bloombox_Schema_Analytics_Context_ScreenOrientation = .unspecifiedOrientation
+    var _orientation: Bloombox_Analytics_Context_ScreenOrientation = .unspecifiedOrientation
 
     static let defaultInstance = _StorageClass()
 
@@ -359,7 +359,7 @@ extension Bloombox_Schema_Analytics_Context_DeviceScreen: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Context_DeviceScreen, rhs: Bloombox_Schema_Analytics_Context_DeviceScreen) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Context_DeviceScreen, rhs: Bloombox_Analytics_Context_DeviceScreen) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -377,7 +377,7 @@ extension Bloombox_Schema_Analytics_Context_DeviceScreen: SwiftProtobuf.Message,
   }
 }
 
-extension Bloombox_Schema_Analytics_Context_NativeDeviceContext: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Context_NativeDeviceContext: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".NativeDeviceContext"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
@@ -390,11 +390,11 @@ extension Bloombox_Schema_Analytics_Context_NativeDeviceContext: SwiftProtobuf.M
 
   fileprivate class _StorageClass {
     var _type: Opencannabis_Device_DeviceType = .unknownDeviceType
-    var _role: Bloombox_Schema_Analytics_Context_DeviceRole = .client
-    var _os: Bloombox_Schema_Analytics_Context_DeviceOS? = nil
+    var _role: Bloombox_Analytics_Context_DeviceRole = .client
+    var _os: Bloombox_Analytics_Context_DeviceOS? = nil
     var _beacon: Opencannabis_Proximity_BluetoothBeacon? = nil
     var _witnessed: [Opencannabis_Proximity_BluetoothBeacon] = []
-    var _screen: Bloombox_Schema_Analytics_Context_DeviceScreen? = nil
+    var _screen: Bloombox_Analytics_Context_DeviceScreen? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -458,7 +458,7 @@ extension Bloombox_Schema_Analytics_Context_NativeDeviceContext: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Context_NativeDeviceContext, rhs: Bloombox_Schema_Analytics_Context_NativeDeviceContext) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Context_NativeDeviceContext, rhs: Bloombox_Analytics_Context_NativeDeviceContext) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

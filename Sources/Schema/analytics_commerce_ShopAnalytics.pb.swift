@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies actions that may be taken w.r.t. a physical or digital storefront. Stays in sync with `UserAction`.
-public enum Bloombox_Schema_Analytics_Shop_ShopAction: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Shop_ShopAction: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The storefront was viewed, or entered physically by a patron.
@@ -107,9 +107,9 @@ public enum Bloombox_Schema_Analytics_Shop_ShopAction: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Shop_ShopAction: CaseIterable {
+extension Bloombox_Analytics_Shop_ShopAction: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Shop_ShopAction] = [
+  public static var allCases: [Bloombox_Analytics_Shop_ShopAction] = [
     .engage,
     .enroll,
     .activate,
@@ -128,7 +128,7 @@ extension Bloombox_Schema_Analytics_Shop_ShopAction: CaseIterable {
 
 /// Specifies a shop impression event, wherein a user, known or unknown, has witnessed a shop's existence or brand, and
 /// was offered the decision to engage.
-public struct Bloombox_Schema_Analytics_Shop_Impression {
+public struct Bloombox_Analytics_Shop_Impression {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -158,7 +158,7 @@ public struct Bloombox_Schema_Analytics_Shop_Impression {
 
 /// Specifies a shop view event, wherein a user has navigated to a page on a digital web store, entered a physical
 /// brick-and-mortar location, or otherwise chosen to engage in a non-commercial way.
-public struct Bloombox_Schema_Analytics_Shop_View {
+public struct Bloombox_Analytics_Shop_View {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -194,7 +194,7 @@ public struct Bloombox_Schema_Analytics_Shop_View {
 
 /// Specifies a shop action event, wherein a user has affirmatively elected to take some action while engaged in an
 /// interactive session with a digital or physical commercial storefront.
-public struct Bloombox_Schema_Analytics_Shop_Action {
+public struct Bloombox_Analytics_Shop_Action {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -206,7 +206,7 @@ public struct Bloombox_Schema_Analytics_Shop_Action {
   }
 
   /// Action that was taken at or within the digital or physical shop.
-  public var verb: Bloombox_Schema_Analytics_Shop_ShopAction {
+  public var verb: Bloombox_Analytics_Shop_ShopAction {
     get {return _storage._verb}
     set {_uniqueStorage()._verb = newValue}
   }
@@ -230,9 +230,9 @@ public struct Bloombox_Schema_Analytics_Shop_Action {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.shop"
+fileprivate let _protobuf_package = "bloombox.analytics.shop"
 
-extension Bloombox_Schema_Analytics_Shop_ShopAction: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Shop_ShopAction: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ENGAGE"),
     10: .same(proto: "ENROLL"),
@@ -248,7 +248,7 @@ extension Bloombox_Schema_Analytics_Shop_ShopAction: SwiftProtobuf._ProtoNamePro
   ]
 }
 
-extension Bloombox_Schema_Analytics_Shop_Impression: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Shop_Impression: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Impression"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "physical"),
@@ -301,7 +301,7 @@ extension Bloombox_Schema_Analytics_Shop_Impression: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Shop_Impression, rhs: Bloombox_Schema_Analytics_Shop_Impression) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Shop_Impression, rhs: Bloombox_Analytics_Shop_Impression) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -317,7 +317,7 @@ extension Bloombox_Schema_Analytics_Shop_Impression: SwiftProtobuf.Message, Swif
   }
 }
 
-extension Bloombox_Schema_Analytics_Shop_View: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Shop_View: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".View"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "physical"),
@@ -377,7 +377,7 @@ extension Bloombox_Schema_Analytics_Shop_View: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Shop_View, rhs: Bloombox_Schema_Analytics_Shop_View) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Shop_View, rhs: Bloombox_Analytics_Shop_View) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -394,7 +394,7 @@ extension Bloombox_Schema_Analytics_Shop_View: SwiftProtobuf.Message, SwiftProto
   }
 }
 
-extension Bloombox_Schema_Analytics_Shop_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Shop_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Action"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "physical"),
@@ -404,7 +404,7 @@ extension Bloombox_Schema_Analytics_Shop_Action: SwiftProtobuf.Message, SwiftPro
 
   fileprivate class _StorageClass {
     var _physical: Bool = false
-    var _verb: Bloombox_Schema_Analytics_Shop_ShopAction = .engage
+    var _verb: Bloombox_Analytics_Shop_ShopAction = .engage
     var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
@@ -454,7 +454,7 @@ extension Bloombox_Schema_Analytics_Shop_Action: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Shop_Action, rhs: Bloombox_Schema_Analytics_Shop_Action) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Shop_Action, rhs: Bloombox_Analytics_Shop_Action) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -23,14 +23,14 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a key that references a location owned by a partner organization that has an active account with Bloombox.
-public struct Bloombox_Schema_Partner_LocationKey {
+public struct Bloombox_Partner_LocationKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies the partner that owns this location.
-  public var partner: Bloombox_Schema_Partner_PartnerKey {
-    get {return _storage._partner ?? Bloombox_Schema_Partner_PartnerKey()}
+  public var partner: Bloombox_Partner_PartnerKey {
+    get {return _storage._partner ?? Bloombox_Partner_PartnerKey()}
     set {_uniqueStorage()._partner = newValue}
   }
   /// Returns true if `partner` has been explicitly set.
@@ -53,9 +53,9 @@ public struct Bloombox_Schema_Partner_LocationKey {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.partner"
+fileprivate let _protobuf_package = "bloombox.partner"
 
-extension Bloombox_Schema_Partner_LocationKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_LocationKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LocationKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
@@ -63,7 +63,7 @@ extension Bloombox_Schema_Partner_LocationKey: SwiftProtobuf.Message, SwiftProto
   ]
 
   fileprivate class _StorageClass {
-    var _partner: Bloombox_Schema_Partner_PartnerKey? = nil
+    var _partner: Bloombox_Partner_PartnerKey? = nil
     var _code: String = String()
 
     static let defaultInstance = _StorageClass()
@@ -108,7 +108,7 @@ extension Bloombox_Schema_Partner_LocationKey: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_LocationKey, rhs: Bloombox_Schema_Partner_LocationKey) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_LocationKey, rhs: Bloombox_Partner_LocationKey) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

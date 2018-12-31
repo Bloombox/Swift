@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 public enum Opencannabis_Media_MediaStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
-  /// The media item has been provisioned, but is not yet subject to a resumable write operation (at which point, the
+  /// The media item has been provisioned, but is not yet subject to a resume-able write operation (at which point, the
   /// media item would be 'PENDING').
   case provisioned // = 0
 
@@ -159,19 +159,19 @@ public struct Opencannabis_Media_MediaSubject {
   }
 
   /// Specify a partner as the subject parent of this media.
-  public var partner: Bloombox_Schema_Partner_PartnerKey {
+  public var partner: String {
     get {
       if case .partner(let v)? = _storage._attachment {return v}
-      return Bloombox_Schema_Partner_PartnerKey()
+      return String()
     }
     set {_uniqueStorage()._attachment = .partner(newValue)}
   }
 
   /// Specify a partner and location as the subject parent of this media.
-  public var location: Bloombox_Schema_Partner_LocationKey {
+  public var location: String {
     get {
       if case .location(let v)? = _storage._attachment {return v}
-      return Bloombox_Schema_Partner_LocationKey()
+      return String()
     }
     set {_uniqueStorage()._attachment = .location(newValue)}
   }
@@ -193,9 +193,9 @@ public struct Opencannabis_Media_MediaSubject {
     /// Specify a product key as the subject parent of this media.
     case product(Opencannabis_Base_ProductKey)
     /// Specify a partner as the subject parent of this media.
-    case partner(Bloombox_Schema_Partner_PartnerKey)
+    case partner(String)
     /// Specify a partner and location as the subject parent of this media.
-    case location(Bloombox_Schema_Partner_LocationKey)
+    case location(String)
     /// Specify this media as global. This is a special flag that should only be used internally.
     case global(Bool)
 
@@ -231,7 +231,7 @@ public struct Opencannabis_Media_MediaUpload {
     set {_uniqueStorage()._token = newValue}
   }
 
-  /// Upload operation ID, provided by GCS upon initializing a resumable upload operation.
+  /// Upload operation ID, provided by GCS upon initializing a resume-able upload operation.
   public var operation: String {
     get {return _storage._operation}
     set {_uniqueStorage()._operation = newValue}
@@ -247,7 +247,7 @@ public struct Opencannabis_Media_MediaUpload {
   /// Clears the value of `media`. Subsequent reads from it will return its default value.
   public mutating func clearMedia() {_uniqueStorage()._media = nil}
 
-  /// Mimetype for the file uploaded as part of this media operation. This should be known ahead of time.
+  /// Mime-type for the file uploaded as part of this media operation. This should be known ahead of time.
   public var mime: String {
     get {return _storage._mime}
     set {_uniqueStorage()._mime = newValue}
@@ -280,14 +280,10 @@ public struct Opencannabis_Media_MediaUpload {
   }
 
   /// User account that initiated this upload operation.
-  public var owner: Bloombox_Schema_Identity_UserKey {
-    get {return _storage._owner ?? Bloombox_Schema_Identity_UserKey()}
+  public var owner: String {
+    get {return _storage._owner}
     set {_uniqueStorage()._owner = newValue}
   }
-  /// Returns true if `owner` has been explicitly set.
-  public var hasOwner: Bool {return _storage._owner != nil}
-  /// Clears the value of `owner`. Subsequent reads from it will return its default value.
-  public mutating func clearOwner() {_uniqueStorage()._owner = nil}
 
   /// Path to the underlying file in GCS, without a bucket.
   public var path: String {
@@ -497,20 +493,14 @@ extension Opencannabis_Media_MediaSubject: SwiftProtobuf.Message, SwiftProtobuf.
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._attachment = .product(v)}
         case 3:
-          var v: Bloombox_Schema_Partner_PartnerKey?
-          if let current = _storage._attachment {
-            try decoder.handleConflictingOneOf()
-            if case .partner(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
+          if _storage._attachment != nil {try decoder.handleConflictingOneOf()}
+          var v: String?
+          try decoder.decodeSingularStringField(value: &v)
           if let v = v {_storage._attachment = .partner(v)}
         case 4:
-          var v: Bloombox_Schema_Partner_LocationKey?
-          if let current = _storage._attachment {
-            try decoder.handleConflictingOneOf()
-            if case .location(let m) = current {v = m}
-          }
-          try decoder.decodeSingularMessageField(value: &v)
+          if _storage._attachment != nil {try decoder.handleConflictingOneOf()}
+          var v: String?
+          try decoder.decodeSingularStringField(value: &v)
           if let v = v {_storage._attachment = .location(v)}
         case 5:
           if _storage._attachment != nil {try decoder.handleConflictingOneOf()}
@@ -529,9 +519,9 @@ extension Opencannabis_Media_MediaSubject: SwiftProtobuf.Message, SwiftProtobuf.
       case .product(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       case .partner(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+        try visitor.visitSingularStringField(value: v, fieldNumber: 3)
       case .location(let v)?:
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+        try visitor.visitSingularStringField(value: v, fieldNumber: 4)
       case .global(let v)?:
         try visitor.visitSingularBoolField(value: v, fieldNumber: 5)
       case nil: break
@@ -582,7 +572,7 @@ extension Opencannabis_Media_MediaUpload: SwiftProtobuf.Message, SwiftProtobuf._
     var _finished: Bool = false
     var _md5: String = String()
     var _crc32: String = String()
-    var _owner: Bloombox_Schema_Identity_UserKey? = nil
+    var _owner: String = String()
     var _path: String = String()
     var _parent: String = String()
     var _created: Opencannabis_Temporal_Instant? = nil
@@ -629,7 +619,7 @@ extension Opencannabis_Media_MediaUpload: SwiftProtobuf.Message, SwiftProtobuf._
         case 6: try decoder.decodeSingularBoolField(value: &_storage._finished)
         case 7: try decoder.decodeSingularStringField(value: &_storage._md5)
         case 8: try decoder.decodeSingularStringField(value: &_storage._crc32)
-        case 9: try decoder.decodeSingularMessageField(value: &_storage._owner)
+        case 9: try decoder.decodeSingularStringField(value: &_storage._owner)
         case 10: try decoder.decodeSingularStringField(value: &_storage._path)
         case 11: try decoder.decodeSingularStringField(value: &_storage._parent)
         case 20: try decoder.decodeSingularMessageField(value: &_storage._created)
@@ -666,8 +656,8 @@ extension Opencannabis_Media_MediaUpload: SwiftProtobuf.Message, SwiftProtobuf._
       if !_storage._crc32.isEmpty {
         try visitor.visitSingularStringField(value: _storage._crc32, fieldNumber: 8)
       }
-      if let v = _storage._owner {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      if !_storage._owner.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._owner, fieldNumber: 9)
       }
       if !_storage._path.isEmpty {
         try visitor.visitSingularStringField(value: _storage._path, fieldNumber: 10)

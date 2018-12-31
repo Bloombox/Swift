@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies email content for a given ad group.
-public struct Bloombox_Schema_Comms_EmailContent {
+public struct Bloombox_Comms_EmailContent {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -44,7 +44,7 @@ public struct Bloombox_Schema_Comms_EmailContent {
 }
 
 /// Specifies the structure of an individual email message.
-public struct Bloombox_Schema_Comms_EmailMessage {
+public struct Bloombox_Comms_EmailMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -70,8 +70,8 @@ public struct Bloombox_Schema_Comms_EmailMessage {
   public mutating func clearRecipient() {_uniqueStorage()._recipient = nil}
 
   /// Content for the email message.
-  public var content: Bloombox_Schema_Comms_EmailContent {
-    get {return _storage._content ?? Bloombox_Schema_Comms_EmailContent()}
+  public var content: Bloombox_Comms_EmailContent {
+    get {return _storage._content ?? Bloombox_Comms_EmailContent()}
     set {_uniqueStorage()._content = newValue}
   }
   /// Returns true if `content` has been explicitly set.
@@ -109,7 +109,7 @@ public struct Bloombox_Schema_Comms_EmailMessage {
 }
 
 /// Specifies information about the publisher of an action.
-public struct Bloombox_Schema_Comms_PublisherMetadata {
+public struct Bloombox_Comms_PublisherMetadata {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -135,7 +135,7 @@ public struct Bloombox_Schema_Comms_PublisherMetadata {
 }
 
 /// Specifies schema-based metadata appended to a message.
-public struct Bloombox_Schema_Comms_EmailMetadata {
+public struct Bloombox_Comms_EmailMetadata {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -204,8 +204,8 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     }
 
     /// Information about the action's publisher.
-    public var publisher: Bloombox_Schema_Comms_PublisherMetadata {
-      get {return _storage._publisher ?? Bloombox_Schema_Comms_PublisherMetadata()}
+    public var publisher: Bloombox_Comms_PublisherMetadata {
+      get {return _storage._publisher ?? Bloombox_Comms_PublisherMetadata()}
       set {_uniqueStorage()._publisher = newValue}
     }
     /// Returns true if `publisher` has been explicitly set.
@@ -257,8 +257,8 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     public mutating func clearEstimatedArrival() {_uniqueStorage()._estimatedArrival = nil}
 
     /// Specifies info about the partner fulfilling the order.
-    public var partner: Bloombox_Schema_Partner_Partner {
-      get {return _storage._partner ?? Bloombox_Schema_Partner_Partner()}
+    public var partner: Bloombox_Partner_Partner {
+      get {return _storage._partner ?? Bloombox_Partner_Partner()}
       set {_uniqueStorage()._partner = newValue}
     }
     /// Returns true if `partner` has been explicitly set.
@@ -296,7 +296,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     // methods supported on all messages.
 
     /// Type of one-click-action to attach.
-    public var type: Bloombox_Schema_Comms_EmailMetadata.OneClickAction.ActionType = .confirm
+    public var type: Bloombox_Comms_EmailMetadata.OneClickAction.ActionType = .confirm
 
     /// Name for the action payload.
     public var name: String = String()
@@ -357,8 +357,8 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     // methods supported on all messages.
 
     /// Specifies info about the partner fulfilling the order.
-    public var partner: Bloombox_Schema_Partner_Partner {
-      get {return _storage._partner ?? Bloombox_Schema_Partner_Partner()}
+    public var partner: Bloombox_Partner_Partner {
+      get {return _storage._partner ?? Bloombox_Partner_Partner()}
       set {_uniqueStorage()._partner = newValue}
     }
     /// Returns true if `partner` has been explicitly set.
@@ -414,7 +414,7 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     // methods supported on all messages.
 
     /// Type of schema block we're specifying.
-    public var type: Bloombox_Schema_Comms_EmailMetadata.TypeEnum {
+    public var type: Bloombox_Comms_EmailMetadata.TypeEnum {
       get {return _storage._type}
       set {_uniqueStorage()._type = newValue}
     }
@@ -426,37 +426,37 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     }
 
     /// Specifies a block for a go-to view action.
-    public var view: Bloombox_Schema_Comms_EmailMetadata.GoToView {
+    public var view: Bloombox_Comms_EmailMetadata.GoToView {
       get {
         if case .view(let v)? = _storage._block {return v}
-        return Bloombox_Schema_Comms_EmailMetadata.GoToView()
+        return Bloombox_Comms_EmailMetadata.GoToView()
       }
       set {_uniqueStorage()._block = .view(newValue)}
     }
 
     /// Specifies a block for a go-to track action.
-    public var track: Bloombox_Schema_Comms_EmailMetadata.GoToTrack {
+    public var track: Bloombox_Comms_EmailMetadata.GoToTrack {
       get {
         if case .track(let v)? = _storage._block {return v}
-        return Bloombox_Schema_Comms_EmailMetadata.GoToTrack()
+        return Bloombox_Comms_EmailMetadata.GoToTrack()
       }
       set {_uniqueStorage()._block = .track(newValue)}
     }
 
     /// Specifies a block for a one-click action.
-    public var oneClick: Bloombox_Schema_Comms_EmailMetadata.OneClickAction {
+    public var oneClick: Bloombox_Comms_EmailMetadata.OneClickAction {
       get {
         if case .oneClick(let v)? = _storage._block {return v}
-        return Bloombox_Schema_Comms_EmailMetadata.OneClickAction()
+        return Bloombox_Comms_EmailMetadata.OneClickAction()
       }
       set {_uniqueStorage()._block = .oneClick(newValue)}
     }
 
     /// Specifies a block for order metadata.
-    public var order: Bloombox_Schema_Comms_EmailMetadata.OrderMetadata {
+    public var order: Bloombox_Comms_EmailMetadata.OrderMetadata {
       get {
         if case .order(let v)? = _storage._block {return v}
-        return Bloombox_Schema_Comms_EmailMetadata.OrderMetadata()
+        return Bloombox_Comms_EmailMetadata.OrderMetadata()
       }
       set {_uniqueStorage()._block = .order(newValue)}
     }
@@ -466,16 +466,16 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
     /// Specifies the block of metadata to append.
     public enum OneOf_Block: Equatable {
       /// Specifies a block for a go-to view action.
-      case view(Bloombox_Schema_Comms_EmailMetadata.GoToView)
+      case view(Bloombox_Comms_EmailMetadata.GoToView)
       /// Specifies a block for a go-to track action.
-      case track(Bloombox_Schema_Comms_EmailMetadata.GoToTrack)
+      case track(Bloombox_Comms_EmailMetadata.GoToTrack)
       /// Specifies a block for a one-click action.
-      case oneClick(Bloombox_Schema_Comms_EmailMetadata.OneClickAction)
+      case oneClick(Bloombox_Comms_EmailMetadata.OneClickAction)
       /// Specifies a block for order metadata.
-      case order(Bloombox_Schema_Comms_EmailMetadata.OrderMetadata)
+      case order(Bloombox_Comms_EmailMetadata.OrderMetadata)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.SchemaBlock.OneOf_Block, rhs: Bloombox_Schema_Comms_EmailMetadata.SchemaBlock.OneOf_Block) -> Bool {
+      public static func ==(lhs: Bloombox_Comms_EmailMetadata.SchemaBlock.OneOf_Block, rhs: Bloombox_Comms_EmailMetadata.SchemaBlock.OneOf_Block) -> Bool {
         switch (lhs, rhs) {
         case (.view(let l), .view(let r)): return l == r
         case (.track(let l), .track(let r)): return l == r
@@ -497,9 +497,9 @@ public struct Bloombox_Schema_Comms_EmailMetadata {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Comms_EmailMetadata.TypeEnum: CaseIterable {
+extension Bloombox_Comms_EmailMetadata.TypeEnum: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Comms_EmailMetadata.TypeEnum] = [
+  public static var allCases: [Bloombox_Comms_EmailMetadata.TypeEnum] = [
     .view,
     .track,
     .oneClick,
@@ -510,14 +510,14 @@ extension Bloombox_Schema_Comms_EmailMetadata.TypeEnum: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies the structure of a transmission operation for an individual email message.
-public struct Bloombox_Schema_Comms_EmailTransmission {
+public struct Bloombox_Comms_EmailTransmission {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Message payload to transmit in this operation.
-  public var message: Bloombox_Schema_Comms_EmailMessage {
-    get {return _storage._message ?? Bloombox_Schema_Comms_EmailMessage()}
+  public var message: Bloombox_Comms_EmailMessage {
+    get {return _storage._message ?? Bloombox_Comms_EmailMessage()}
     set {_uniqueStorage()._message = newValue}
   }
   /// Returns true if `message` has been explicitly set.
@@ -533,13 +533,13 @@ public struct Bloombox_Schema_Comms_EmailTransmission {
 }
 
 /// Specifies the structure of a batch of email transmission operations.
-public struct Bloombox_Schema_Comms_EmailBatch {
+public struct Bloombox_Comms_EmailBatch {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Transmission operations for this batch.
-  public var op: [Bloombox_Schema_Comms_EmailTransmission] = []
+  public var op: [Bloombox_Comms_EmailTransmission] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -547,13 +547,13 @@ public struct Bloombox_Schema_Comms_EmailBatch {
 }
 
 /// Specifies an email sender record.
-public struct Bloombox_Schema_Comms_EmailSender {
+public struct Bloombox_Comms_EmailSender {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Roles for this contact.
-  public var role: [Bloombox_Schema_Comms_EmailSender.Role] {
+  public var role: [Bloombox_Comms_EmailSender.Role] {
     get {return _storage._role}
     set {_uniqueStorage()._role = newValue}
   }
@@ -620,9 +620,9 @@ public struct Bloombox_Schema_Comms_EmailSender {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Comms_EmailSender.Role: CaseIterable {
+extension Bloombox_Comms_EmailSender.Role: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Comms_EmailSender.Role] = [
+  public static var allCases: [Bloombox_Comms_EmailSender.Role] = [
     .sender,
     .cc,
     .bcc,
@@ -633,13 +633,13 @@ extension Bloombox_Schema_Comms_EmailSender.Role: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Email-specific settings.
-public struct Bloombox_Schema_Comms_EmailSettings {
+public struct Bloombox_Comms_EmailSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Origin email address to send the email from.
-  public var sender: [Bloombox_Schema_Comms_EmailSender] = []
+  public var sender: [Bloombox_Comms_EmailSender] = []
 
   /// Enable/disable plaintext emails.
   public var enableText: Bool = false
@@ -657,9 +657,9 @@ public struct Bloombox_Schema_Comms_EmailSettings {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.comms"
+fileprivate let _protobuf_package = "bloombox.comms"
 
-extension Bloombox_Schema_Comms_EmailContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_EmailContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EmailContent"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "subject"),
@@ -691,7 +691,7 @@ extension Bloombox_Schema_Comms_EmailContent: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailContent, rhs: Bloombox_Schema_Comms_EmailContent) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailContent, rhs: Bloombox_Comms_EmailContent) -> Bool {
     if lhs.subject != rhs.subject {return false}
     if lhs.content != rhs.content {return false}
     if lhs.attachment != rhs.attachment {return false}
@@ -700,7 +700,7 @@ extension Bloombox_Schema_Comms_EmailContent: SwiftProtobuf.Message, SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Comms_EmailMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_EmailMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EmailMessage"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "sender"),
@@ -714,7 +714,7 @@ extension Bloombox_Schema_Comms_EmailMessage: SwiftProtobuf.Message, SwiftProtob
   fileprivate class _StorageClass {
     var _sender: Opencannabis_Contact_EmailAddress? = nil
     var _recipient: Opencannabis_Contact_EmailAddress? = nil
-    var _content: Bloombox_Schema_Comms_EmailContent? = nil
+    var _content: Bloombox_Comms_EmailContent? = nil
     var _replyTo: Opencannabis_Contact_EmailAddress? = nil
     var _cc: [Opencannabis_Contact_EmailAddress] = []
     var _bcc: [Opencannabis_Contact_EmailAddress] = []
@@ -781,7 +781,7 @@ extension Bloombox_Schema_Comms_EmailMessage: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailMessage, rhs: Bloombox_Schema_Comms_EmailMessage) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailMessage, rhs: Bloombox_Comms_EmailMessage) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -801,7 +801,7 @@ extension Bloombox_Schema_Comms_EmailMessage: SwiftProtobuf.Message, SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Comms_PublisherMetadata: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_PublisherMetadata: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PublisherMetadata"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
@@ -843,7 +843,7 @@ extension Bloombox_Schema_Comms_PublisherMetadata: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_PublisherMetadata, rhs: Bloombox_Schema_Comms_PublisherMetadata) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_PublisherMetadata, rhs: Bloombox_Comms_PublisherMetadata) -> Bool {
     if lhs.name != rhs.name {return false}
     if lhs.url != rhs.url {return false}
     if lhs.googlePlus != rhs.googlePlus {return false}
@@ -854,7 +854,7 @@ extension Bloombox_Schema_Comms_PublisherMetadata: SwiftProtobuf.Message, SwiftP
   }
 }
 
-extension Bloombox_Schema_Comms_EmailMetadata: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_EmailMetadata: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EmailMetadata"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -867,13 +867,13 @@ extension Bloombox_Schema_Comms_EmailMetadata: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata, rhs: Bloombox_Schema_Comms_EmailMetadata) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailMetadata, rhs: Bloombox_Comms_EmailMetadata) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Comms_EmailMetadata.TypeEnum: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_EmailMetadata.TypeEnum: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "VIEW"),
     1: .same(proto: "TRACK"),
@@ -882,8 +882,8 @@ extension Bloombox_Schema_Comms_EmailMetadata.TypeEnum: SwiftProtobuf._ProtoName
   ]
 }
 
-extension Bloombox_Schema_Comms_EmailMetadata.GoToView: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Comms_EmailMetadata.protoMessageName + ".GoToView"
+extension Bloombox_Comms_EmailMetadata.GoToView: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Comms_EmailMetadata.protoMessageName + ".GoToView"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     3: .same(proto: "target"),
@@ -893,7 +893,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.GoToView: SwiftProtobuf.Message, S
   fileprivate class _StorageClass {
     var _name: String = String()
     var _target: String = String()
-    var _publisher: Bloombox_Schema_Comms_PublisherMetadata? = nil
+    var _publisher: Bloombox_Comms_PublisherMetadata? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -942,7 +942,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.GoToView: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.GoToView, rhs: Bloombox_Schema_Comms_EmailMetadata.GoToView) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailMetadata.GoToView, rhs: Bloombox_Comms_EmailMetadata.GoToView) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -959,8 +959,8 @@ extension Bloombox_Schema_Comms_EmailMetadata.GoToView: SwiftProtobuf.Message, S
   }
 }
 
-extension Bloombox_Schema_Comms_EmailMetadata.GoToTrack: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Comms_EmailMetadata.protoMessageName + ".GoToTrack"
+extension Bloombox_Comms_EmailMetadata.GoToTrack: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Comms_EmailMetadata.protoMessageName + ".GoToTrack"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "delivery_address"),
     2: .standard(proto: "estimated_ready"),
@@ -974,7 +974,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.GoToTrack: SwiftProtobuf.Message, 
     var _deliveryAddress: Opencannabis_Geo_Address? = nil
     var _estimatedReady: Opencannabis_Temporal_Instant? = nil
     var _estimatedArrival: Opencannabis_Temporal_Instant? = nil
-    var _partner: Bloombox_Schema_Partner_Partner? = nil
+    var _partner: Bloombox_Partner_Partner? = nil
     var _order: Opencannabis_Commerce_Order? = nil
     var _trackingURL: String = String()
 
@@ -1040,7 +1040,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.GoToTrack: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.GoToTrack, rhs: Bloombox_Schema_Comms_EmailMetadata.GoToTrack) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailMetadata.GoToTrack, rhs: Bloombox_Comms_EmailMetadata.GoToTrack) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1060,8 +1060,8 @@ extension Bloombox_Schema_Comms_EmailMetadata.GoToTrack: SwiftProtobuf.Message, 
   }
 }
 
-extension Bloombox_Schema_Comms_EmailMetadata.OneClickAction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Comms_EmailMetadata.protoMessageName + ".OneClickAction"
+extension Bloombox_Comms_EmailMetadata.OneClickAction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Comms_EmailMetadata.protoMessageName + ".OneClickAction"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "name"),
@@ -1097,7 +1097,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.OneClickAction: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.OneClickAction, rhs: Bloombox_Schema_Comms_EmailMetadata.OneClickAction) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailMetadata.OneClickAction, rhs: Bloombox_Comms_EmailMetadata.OneClickAction) -> Bool {
     if lhs.type != rhs.type {return false}
     if lhs.name != rhs.name {return false}
     if lhs.target != rhs.target {return false}
@@ -1107,7 +1107,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.OneClickAction: SwiftProtobuf.Mess
   }
 }
 
-extension Bloombox_Schema_Comms_EmailMetadata.OneClickAction.ActionType: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_EmailMetadata.OneClickAction.ActionType: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "CONFIRM"),
     1: .same(proto: "SAVE"),
@@ -1115,8 +1115,8 @@ extension Bloombox_Schema_Comms_EmailMetadata.OneClickAction.ActionType: SwiftPr
   ]
 }
 
-extension Bloombox_Schema_Comms_EmailMetadata.OrderMetadata: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Comms_EmailMetadata.protoMessageName + ".OrderMetadata"
+extension Bloombox_Comms_EmailMetadata.OrderMetadata: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Comms_EmailMetadata.protoMessageName + ".OrderMetadata"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "partner"),
     2: .same(proto: "order"),
@@ -1127,7 +1127,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.OrderMetadata: SwiftProtobuf.Messa
   ]
 
   fileprivate class _StorageClass {
-    var _partner: Bloombox_Schema_Partner_Partner? = nil
+    var _partner: Bloombox_Partner_Partner? = nil
     var _order: Opencannabis_Commerce_Order? = nil
     var _currency: String = String()
     var _subtotal: Double = 0
@@ -1196,7 +1196,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.OrderMetadata: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.OrderMetadata, rhs: Bloombox_Schema_Comms_EmailMetadata.OrderMetadata) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailMetadata.OrderMetadata, rhs: Bloombox_Comms_EmailMetadata.OrderMetadata) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1216,8 +1216,8 @@ extension Bloombox_Schema_Comms_EmailMetadata.OrderMetadata: SwiftProtobuf.Messa
   }
 }
 
-extension Bloombox_Schema_Comms_EmailMetadata.SchemaBlock: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Comms_EmailMetadata.protoMessageName + ".SchemaBlock"
+extension Bloombox_Comms_EmailMetadata.SchemaBlock: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Comms_EmailMetadata.protoMessageName + ".SchemaBlock"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     10: .same(proto: "view"),
@@ -1227,8 +1227,8 @@ extension Bloombox_Schema_Comms_EmailMetadata.SchemaBlock: SwiftProtobuf.Message
   ]
 
   fileprivate class _StorageClass {
-    var _type: Bloombox_Schema_Comms_EmailMetadata.TypeEnum = .view
-    var _block: Bloombox_Schema_Comms_EmailMetadata.SchemaBlock.OneOf_Block?
+    var _type: Bloombox_Comms_EmailMetadata.TypeEnum = .view
+    var _block: Bloombox_Comms_EmailMetadata.SchemaBlock.OneOf_Block?
 
     static let defaultInstance = _StorageClass()
 
@@ -1254,7 +1254,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.SchemaBlock: SwiftProtobuf.Message
         switch fieldNumber {
         case 1: try decoder.decodeSingularEnumField(value: &_storage._type)
         case 10:
-          var v: Bloombox_Schema_Comms_EmailMetadata.GoToView?
+          var v: Bloombox_Comms_EmailMetadata.GoToView?
           if let current = _storage._block {
             try decoder.handleConflictingOneOf()
             if case .view(let m) = current {v = m}
@@ -1262,7 +1262,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.SchemaBlock: SwiftProtobuf.Message
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._block = .view(v)}
         case 15:
-          var v: Bloombox_Schema_Comms_EmailMetadata.GoToTrack?
+          var v: Bloombox_Comms_EmailMetadata.GoToTrack?
           if let current = _storage._block {
             try decoder.handleConflictingOneOf()
             if case .track(let m) = current {v = m}
@@ -1270,7 +1270,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.SchemaBlock: SwiftProtobuf.Message
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._block = .track(v)}
         case 20:
-          var v: Bloombox_Schema_Comms_EmailMetadata.OneClickAction?
+          var v: Bloombox_Comms_EmailMetadata.OneClickAction?
           if let current = _storage._block {
             try decoder.handleConflictingOneOf()
             if case .oneClick(let m) = current {v = m}
@@ -1278,7 +1278,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.SchemaBlock: SwiftProtobuf.Message
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._block = .oneClick(v)}
         case 30:
-          var v: Bloombox_Schema_Comms_EmailMetadata.OrderMetadata?
+          var v: Bloombox_Comms_EmailMetadata.OrderMetadata?
           if let current = _storage._block {
             try decoder.handleConflictingOneOf()
             if case .order(let m) = current {v = m}
@@ -1311,7 +1311,7 @@ extension Bloombox_Schema_Comms_EmailMetadata.SchemaBlock: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailMetadata.SchemaBlock, rhs: Bloombox_Schema_Comms_EmailMetadata.SchemaBlock) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailMetadata.SchemaBlock, rhs: Bloombox_Comms_EmailMetadata.SchemaBlock) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1327,14 +1327,14 @@ extension Bloombox_Schema_Comms_EmailMetadata.SchemaBlock: SwiftProtobuf.Message
   }
 }
 
-extension Bloombox_Schema_Comms_EmailTransmission: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_EmailTransmission: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EmailTransmission"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
   ]
 
   fileprivate class _StorageClass {
-    var _message: Bloombox_Schema_Comms_EmailMessage? = nil
+    var _message: Bloombox_Comms_EmailMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1373,7 +1373,7 @@ extension Bloombox_Schema_Comms_EmailTransmission: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailTransmission, rhs: Bloombox_Schema_Comms_EmailTransmission) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailTransmission, rhs: Bloombox_Comms_EmailTransmission) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1388,7 +1388,7 @@ extension Bloombox_Schema_Comms_EmailTransmission: SwiftProtobuf.Message, SwiftP
   }
 }
 
-extension Bloombox_Schema_Comms_EmailBatch: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_EmailBatch: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EmailBatch"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "op"),
@@ -1410,14 +1410,14 @@ extension Bloombox_Schema_Comms_EmailBatch: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailBatch, rhs: Bloombox_Schema_Comms_EmailBatch) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailBatch, rhs: Bloombox_Comms_EmailBatch) -> Bool {
     if lhs.op != rhs.op {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Comms_EmailSender: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_EmailSender: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EmailSender"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "role"),
@@ -1425,7 +1425,7 @@ extension Bloombox_Schema_Comms_EmailSender: SwiftProtobuf.Message, SwiftProtobu
   ]
 
   fileprivate class _StorageClass {
-    var _role: [Bloombox_Schema_Comms_EmailSender.Role] = []
+    var _role: [Bloombox_Comms_EmailSender.Role] = []
     var _contact: Opencannabis_Contact_EmailAddress? = nil
 
     static let defaultInstance = _StorageClass()
@@ -1470,7 +1470,7 @@ extension Bloombox_Schema_Comms_EmailSender: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailSender, rhs: Bloombox_Schema_Comms_EmailSender) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailSender, rhs: Bloombox_Comms_EmailSender) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1486,7 +1486,7 @@ extension Bloombox_Schema_Comms_EmailSender: SwiftProtobuf.Message, SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Comms_EmailSender.Role: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_EmailSender.Role: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "SENDER"),
     1: .same(proto: "CC"),
@@ -1495,7 +1495,7 @@ extension Bloombox_Schema_Comms_EmailSender.Role: SwiftProtobuf._ProtoNameProvid
   ]
 }
 
-extension Bloombox_Schema_Comms_EmailSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_EmailSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EmailSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "sender"),
@@ -1532,7 +1532,7 @@ extension Bloombox_Schema_Comms_EmailSettings: SwiftProtobuf.Message, SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_EmailSettings, rhs: Bloombox_Schema_Comms_EmailSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_EmailSettings, rhs: Bloombox_Comms_EmailSettings) -> Bool {
     if lhs.sender != rhs.sender {return false}
     if lhs.enableText != rhs.enableText {return false}
     if lhs.enableHtml != rhs.enableHtml {return false}

@@ -81,26 +81,17 @@ public struct Opencannabis_Inventory_InventoryLocationKey {
   // methods supported on all messages.
 
   /// Unique ID provisioned to represent this inventory location.
-  public var uuid: String {
-    get {return _storage._uuid}
-    set {_uniqueStorage()._uuid = newValue}
-  }
+  public var uuid: String = String()
+
+  /// Partner key, indicating which partner owns this inventory, or has custody of this inventory.
+  public var partner: String = String()
 
   /// Partner location key, which binds this inventory location to a partner organization.
-  public var location: Bloombox_Schema_Partner_LocationKey {
-    get {return _storage._location ?? Bloombox_Schema_Partner_LocationKey()}
-    set {_uniqueStorage()._location = newValue}
-  }
-  /// Returns true if `location` has been explicitly set.
-  public var hasLocation: Bool {return _storage._location != nil}
-  /// Clears the value of `location`. Subsequent reads from it will return its default value.
-  public mutating func clearLocation() {_uniqueStorage()._location = nil}
+  public var location: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
-
-  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 /// Specifies the notion of a concrete location that handles or stores inventory.
@@ -197,66 +188,38 @@ extension Opencannabis_Inventory_InventoryLocationKey: SwiftProtobuf.Message, Sw
   public static let protoMessageName: String = _protobuf_package + ".InventoryLocationKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
-    2: .same(proto: "location"),
+    2: .same(proto: "partner"),
+    3: .same(proto: "location"),
   ]
 
-  fileprivate class _StorageClass {
-    var _uuid: String = String()
-    var _location: Bloombox_Schema_Partner_LocationKey? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _uuid = source._uuid
-      _location = source._location
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._location)
-        default: break
-        }
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.uuid)
+      case 2: try decoder.decodeSingularStringField(value: &self.partner)
+      case 3: try decoder.decodeSingularStringField(value: &self.location)
+      default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if !_storage._uuid.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
-      }
-      if let v = _storage._location {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
+    if !self.uuid.isEmpty {
+      try visitor.visitSingularStringField(value: self.uuid, fieldNumber: 1)
+    }
+    if !self.partner.isEmpty {
+      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 2)
+    }
+    if !self.location.isEmpty {
+      try visitor.visitSingularStringField(value: self.location, fieldNumber: 3)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Opencannabis_Inventory_InventoryLocationKey, rhs: Opencannabis_Inventory_InventoryLocationKey) -> Bool {
-    if lhs._storage !== rhs._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let rhs_storage = _args.1
-        if _storage._uuid != rhs_storage._uuid {return false}
-        if _storage._location != rhs_storage._location {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
+    if lhs.uuid != rhs.uuid {return false}
+    if lhs.partner != rhs.partner {return false}
+    if lhs.location != rhs.location {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

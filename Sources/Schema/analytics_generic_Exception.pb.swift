@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// References a line and column number in a source file that is mentioned in an error report.
-public struct Bloombox_Schema_Analytics_Generic_SourceLineReference {
+public struct Bloombox_Analytics_Generic_SourceLineReference {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -37,7 +37,7 @@ public struct Bloombox_Schema_Analytics_Generic_SourceLineReference {
 }
 
 /// References a location for source code that is mentioned in an error report.
-public struct Bloombox_Schema_Analytics_Generic_SourceLocation {
+public struct Bloombox_Analytics_Generic_SourceLocation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -61,10 +61,10 @@ public struct Bloombox_Schema_Analytics_Generic_SourceLocation {
   }
 
   /// Reference to a line/column in that file.
-  public var lineref: Bloombox_Schema_Analytics_Generic_SourceLineReference {
+  public var lineref: Bloombox_Analytics_Generic_SourceLineReference {
     get {
       if case .lineref(let v)? = _storage._pinpoint {return v}
-      return Bloombox_Schema_Analytics_Generic_SourceLineReference()
+      return Bloombox_Analytics_Generic_SourceLineReference()
     }
     set {_uniqueStorage()._pinpoint = .lineref(newValue)}
   }
@@ -83,12 +83,12 @@ public struct Bloombox_Schema_Analytics_Generic_SourceLocation {
   /// Exact location within that file, either by raw byte offset or a line/column pair.
   public enum OneOf_Pinpoint: Equatable {
     /// Reference to a line/column in that file.
-    case lineref(Bloombox_Schema_Analytics_Generic_SourceLineReference)
+    case lineref(Bloombox_Analytics_Generic_SourceLineReference)
     /// Raw byte offset in a source code file.
     case offset(Int64)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Analytics_Generic_SourceLocation.OneOf_Pinpoint, rhs: Bloombox_Schema_Analytics_Generic_SourceLocation.OneOf_Pinpoint) -> Bool {
+    public static func ==(lhs: Bloombox_Analytics_Generic_SourceLocation.OneOf_Pinpoint, rhs: Bloombox_Analytics_Generic_SourceLocation.OneOf_Pinpoint) -> Bool {
       switch (lhs, rhs) {
       case (.lineref(let l), .lineref(let r)): return l == r
       case (.offset(let l), .offset(let r)): return l == r
@@ -104,7 +104,7 @@ public struct Bloombox_Schema_Analytics_Generic_SourceLocation {
 }
 
 /// Represents an error event.
-public struct Bloombox_Schema_Analytics_Generic_Exception {
+public struct Bloombox_Analytics_Generic_Exception {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -122,8 +122,8 @@ public struct Bloombox_Schema_Analytics_Generic_Exception {
   }
 
   /// Source location context for this failure.
-  public var location: Bloombox_Schema_Analytics_Generic_SourceLocation {
-    get {return _storage._location ?? Bloombox_Schema_Analytics_Generic_SourceLocation()}
+  public var location: Bloombox_Analytics_Generic_SourceLocation {
+    get {return _storage._location ?? Bloombox_Analytics_Generic_SourceLocation()}
     set {_uniqueStorage()._location = newValue}
   }
   /// Returns true if `location` has been explicitly set.
@@ -150,9 +150,9 @@ public struct Bloombox_Schema_Analytics_Generic_Exception {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.generic"
+fileprivate let _protobuf_package = "bloombox.analytics.generic"
 
-extension Bloombox_Schema_Analytics_Generic_SourceLineReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Generic_SourceLineReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SourceLineReference"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     3: .same(proto: "line"),
@@ -179,7 +179,7 @@ extension Bloombox_Schema_Analytics_Generic_SourceLineReference: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Generic_SourceLineReference, rhs: Bloombox_Schema_Analytics_Generic_SourceLineReference) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Generic_SourceLineReference, rhs: Bloombox_Analytics_Generic_SourceLineReference) -> Bool {
     if lhs.line != rhs.line {return false}
     if lhs.column != rhs.column {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -187,7 +187,7 @@ extension Bloombox_Schema_Analytics_Generic_SourceLineReference: SwiftProtobuf.M
   }
 }
 
-extension Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Generic_SourceLocation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SourceLocation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "module"),
@@ -199,7 +199,7 @@ extension Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf.Messag
   fileprivate class _StorageClass {
     var _module: String = String()
     var _filepath: String = String()
-    var _pinpoint: Bloombox_Schema_Analytics_Generic_SourceLocation.OneOf_Pinpoint?
+    var _pinpoint: Bloombox_Analytics_Generic_SourceLocation.OneOf_Pinpoint?
 
     static let defaultInstance = _StorageClass()
 
@@ -227,7 +227,7 @@ extension Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf.Messag
         case 1: try decoder.decodeSingularStringField(value: &_storage._module)
         case 2: try decoder.decodeSingularStringField(value: &_storage._filepath)
         case 3:
-          var v: Bloombox_Schema_Analytics_Generic_SourceLineReference?
+          var v: Bloombox_Analytics_Generic_SourceLineReference?
           if let current = _storage._pinpoint {
             try decoder.handleConflictingOneOf()
             if case .lineref(let m) = current {v = m}
@@ -264,7 +264,7 @@ extension Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Generic_SourceLocation, rhs: Bloombox_Schema_Analytics_Generic_SourceLocation) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Generic_SourceLocation, rhs: Bloombox_Analytics_Generic_SourceLocation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -281,7 +281,7 @@ extension Bloombox_Schema_Analytics_Generic_SourceLocation: SwiftProtobuf.Messag
   }
 }
 
-extension Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Generic_Exception: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Exception"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "domain"),
@@ -293,7 +293,7 @@ extension Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf.Message, Sw
   fileprivate class _StorageClass {
     var _domain: String = String()
     var _code: Int32 = 0
-    var _location: Bloombox_Schema_Analytics_Generic_SourceLocation? = nil
+    var _location: Bloombox_Analytics_Generic_SourceLocation? = nil
     var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
@@ -348,7 +348,7 @@ extension Bloombox_Schema_Analytics_Generic_Exception: SwiftProtobuf.Message, Sw
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Generic_Exception, rhs: Bloombox_Schema_Analytics_Generic_Exception) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Generic_Exception, rhs: Bloombox_Analytics_Generic_Exception) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

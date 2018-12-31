@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies Sendgrid features that may be enabled or disabled.
-public struct Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures {
+public struct Bloombox_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -34,14 +34,14 @@ public struct Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationF
 }
 
 /// Specifies Sendgrid settings for integration with Bloombox.
-public struct Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings {
+public struct Bloombox_Partner_Integrations_Sendgrid_SendgridSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Flags indicating features that should be enabled or disabled.
-  public var features: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures {
-    get {return _storage._features ?? Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures()}
+  public var features: Bloombox_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures {
+    get {return _storage._features ?? Bloombox_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures()}
     set {_uniqueStorage()._features = newValue}
   }
   /// Returns true if `features` has been explicitly set.
@@ -58,9 +58,9 @@ public struct Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.partner.integrations.sendgrid"
+fileprivate let _protobuf_package = "bloombox.partner.integrations.sendgrid"
 
-extension Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SendgridIntegrationFeatures"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -73,20 +73,20 @@ extension Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures, rhs: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures, rhs: Bloombox_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Integrations_Sendgrid_SendgridSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SendgridSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     10: .same(proto: "features"),
   ]
 
   fileprivate class _StorageClass {
-    var _features: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures? = nil
+    var _features: Bloombox_Partner_Integrations_Sendgrid_SendgridIntegrationFeatures? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -125,7 +125,7 @@ extension Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings, rhs: Bloombox_Schema_Partner_Integrations_Sendgrid_SendgridSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Integrations_Sendgrid_SendgridSettings, rhs: Bloombox_Partner_Integrations_Sendgrid_SendgridSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

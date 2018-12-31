@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Doctor recommendation to allow a consumer to purchase cannabis in a restricted market.
-public struct Bloombox_Schema_Identity_Ids_UserDoctorRec {
+public struct Bloombox_Identity_Ids_UserDoctorRec {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -87,9 +87,9 @@ public struct Bloombox_Schema_Identity_Ids_UserDoctorRec {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity.ids"
+fileprivate let _protobuf_package = "bloombox.identity.ids"
 
-extension Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UserDoctorRec"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -177,7 +177,7 @@ extension Bloombox_Schema_Identity_Ids_UserDoctorRec: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_Ids_UserDoctorRec, rhs: Bloombox_Schema_Identity_Ids_UserDoctorRec) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_Ids_UserDoctorRec, rhs: Bloombox_Identity_Ids_UserDoctorRec) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

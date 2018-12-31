@@ -26,7 +26,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Enumerates special actors on the ledger. These entries are considered system-level accounts, for various purposes,
 /// with access in limited capacities.
-public enum Bloombox_Schema_Ledger_SpecialActor: SwiftProtobuf.Enum {
+public enum Bloombox_Ledger_SpecialActor: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Built-in system account.
@@ -60,9 +60,9 @@ public enum Bloombox_Schema_Ledger_SpecialActor: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Ledger_SpecialActor: CaseIterable {
+extension Bloombox_Ledger_SpecialActor: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Ledger_SpecialActor] = [
+  public static var allCases: [Bloombox_Ledger_SpecialActor] = [
     .system,
     .sandbox,
   ]
@@ -72,7 +72,7 @@ extension Bloombox_Schema_Ledger_SpecialActor: CaseIterable {
 
 /// Certificate data accompanying an actor key. This is a certificate bound to the ECDSA keypair issued in parallel to
 /// the actor's ledger key, and certified by the ledger actor CA.
-public struct Bloombox_Schema_Ledger_ActorCertificate {
+public struct Bloombox_Ledger_ActorCertificate {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -90,8 +90,8 @@ public struct Bloombox_Schema_Ledger_ActorCertificate {
   }
 
   /// Cryptographic fingerprint of the transmitted certificate data.
-  public var fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash {
-    get {return _storage._fingerprint ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+  public var fingerprint: Opencannabis_Crypto_Hash {
+    get {return _storage._fingerprint ?? Opencannabis_Crypto_Hash()}
     set {_uniqueStorage()._fingerprint = newValue}
   }
   /// Returns true if `fingerprint` has been explicitly set.
@@ -145,7 +145,7 @@ public struct Bloombox_Schema_Ledger_ActorCertificate {
     case encoded(String)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Ledger_ActorCertificate.OneOf_Payload, rhs: Bloombox_Schema_Ledger_ActorCertificate.OneOf_Payload) -> Bool {
+    public static func ==(lhs: Bloombox_Ledger_ActorCertificate.OneOf_Payload, rhs: Bloombox_Ledger_ActorCertificate.OneOf_Payload) -> Bool {
       switch (lhs, rhs) {
       case (.data(let l), .data(let r)): return l == r
       case (.encoded(let l), .encoded(let r)): return l == r
@@ -162,7 +162,7 @@ public struct Bloombox_Schema_Ledger_ActorCertificate {
 
 /// Specifies the concept of a ledger "actor," which unifies individuals and organizations under one referential
 /// structure, such that either may easily be the basis for a ledger transaction.
-public struct Bloombox_Schema_Ledger_ActorKey {
+public struct Bloombox_Ledger_ActorKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -173,7 +173,7 @@ public struct Bloombox_Schema_Ledger_ActorKey {
   }
 
   /// Specifies a system account, such as reconciliation or sandbox access.
-  public var known: Bloombox_Schema_Ledger_SpecialActor {
+  public var known: Bloombox_Ledger_SpecialActor {
     get {
       if case .known(let v)? = _storage._actor {return v}
       return .system
@@ -182,28 +182,28 @@ public struct Bloombox_Schema_Ledger_ActorKey {
   }
 
   /// Specifies a user as the identity behind a particular ledger account.
-  public var user: Bloombox_Schema_Identity_UserKey {
+  public var user: Bloombox_Identity_UserKey {
     get {
       if case .user(let v)? = _storage._actor {return v}
-      return Bloombox_Schema_Identity_UserKey()
+      return Bloombox_Identity_UserKey()
     }
     set {_uniqueStorage()._actor = .user(newValue)}
   }
 
   /// Specifies a partner organization as the identity behind a particular ledger account.
-  public var partner: Bloombox_Schema_Partner_PartnerKey {
+  public var partner: Bloombox_Partner_PartnerKey {
     get {
       if case .partner(let v)? = _storage._actor {return v}
-      return Bloombox_Schema_Partner_PartnerKey()
+      return Bloombox_Partner_PartnerKey()
     }
     set {_uniqueStorage()._actor = .partner(newValue)}
   }
 
   /// Specifies a partner location as the identity behind a particular ledger account.
-  public var location: Bloombox_Schema_Partner_LocationKey {
+  public var location: Bloombox_Partner_LocationKey {
     get {
       if case .location(let v)? = _storage._actor {return v}
-      return Bloombox_Schema_Partner_LocationKey()
+      return Bloombox_Partner_LocationKey()
     }
     set {_uniqueStorage()._actor = .location(newValue)}
   }
@@ -212,16 +212,16 @@ public struct Bloombox_Schema_Ledger_ActorKey {
 
   public enum OneOf_Actor: Equatable {
     /// Specifies a system account, such as reconciliation or sandbox access.
-    case known(Bloombox_Schema_Ledger_SpecialActor)
+    case known(Bloombox_Ledger_SpecialActor)
     /// Specifies a user as the identity behind a particular ledger account.
-    case user(Bloombox_Schema_Identity_UserKey)
+    case user(Bloombox_Identity_UserKey)
     /// Specifies a partner organization as the identity behind a particular ledger account.
-    case partner(Bloombox_Schema_Partner_PartnerKey)
+    case partner(Bloombox_Partner_PartnerKey)
     /// Specifies a partner location as the identity behind a particular ledger account.
-    case location(Bloombox_Schema_Partner_LocationKey)
+    case location(Bloombox_Partner_LocationKey)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Ledger_ActorKey.OneOf_Actor, rhs: Bloombox_Schema_Ledger_ActorKey.OneOf_Actor) -> Bool {
+    public static func ==(lhs: Bloombox_Ledger_ActorKey.OneOf_Actor, rhs: Bloombox_Ledger_ActorKey.OneOf_Actor) -> Bool {
       switch (lhs, rhs) {
       case (.known(let l), .known(let r)): return l == r
       case (.user(let l), .user(let r)): return l == r
@@ -241,7 +241,7 @@ public struct Bloombox_Schema_Ledger_ActorKey {
 /// Specifies the structure of a distributed ledger account, which is usually defined by its public/private keypair. In
 /// particular, the computation of UPPER(SHA3-B58(public_key)) is used to identify an account uniquely in public.
 /// Separately, a user account may be associated with a concrete identity via the `identity` property.
-public struct Bloombox_Schema_Ledger_AccountKey {
+public struct Bloombox_Ledger_AccountKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -254,8 +254,8 @@ public struct Bloombox_Schema_Ledger_AccountKey {
 
   /// Reference to the public/private keypair for this ledger account. In rare cases, the private key may be included
   /// here (the structure supports it), but usually, it's used for the onboard cryptographic hash of the public key.
-  public var pair: Opencannabis_Crypto_Primitives_Pki_Keypair {
-    get {return _storage._pair ?? Opencannabis_Crypto_Primitives_Pki_Keypair()}
+  public var pair: Opencannabis_Crypto_Keypair {
+    get {return _storage._pair ?? Opencannabis_Crypto_Keypair()}
     set {_uniqueStorage()._pair = newValue}
   }
   /// Returns true if `pair` has been explicitly set.
@@ -265,8 +265,8 @@ public struct Bloombox_Schema_Ledger_AccountKey {
 
   /// Reference to the identity public/private keypair for this actor. Ledger "actors" represent the real-world identity
   /// behind organizations or individuals who execute transactions on the ledger.
-  public var identity: Opencannabis_Crypto_Primitives_Pki_Keypair {
-    get {return _storage._identity ?? Opencannabis_Crypto_Primitives_Pki_Keypair()}
+  public var identity: Opencannabis_Crypto_Keypair {
+    get {return _storage._identity ?? Opencannabis_Crypto_Keypair()}
     set {_uniqueStorage()._identity = newValue}
   }
   /// Returns true if `identity` has been explicitly set.
@@ -283,15 +283,15 @@ public struct Bloombox_Schema_Ledger_AccountKey {
 
 /// Specifies the notion of a concrete identity on the ledger. This is essentially the intersection of two items: 1) key
 /// material generated by the actor themselves, and 2) associated identity stored somewhere else, or stored with us.
-public struct Bloombox_Schema_Ledger_LedgerIdentity {
+public struct Bloombox_Ledger_LedgerIdentity {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies the key material behind this identity. In rare cases, this may include the private key (the structure
   /// supports such behavior), but in most cases only a cryptographic fingerprint of the public key is available.
-  public var key: Bloombox_Schema_Ledger_AccountKey {
-    get {return _storage._key ?? Bloombox_Schema_Ledger_AccountKey()}
+  public var key: Bloombox_Ledger_AccountKey {
+    get {return _storage._key ?? Bloombox_Ledger_AccountKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -301,8 +301,8 @@ public struct Bloombox_Schema_Ledger_LedgerIdentity {
 
   /// The actor key links this particular account key to/from a known actor in the system, be it an organization or an
   /// individual. Actor keys keys may be encrypted.
-  public var actor: Bloombox_Schema_Ledger_ActorKey {
-    get {return _storage._actor ?? Bloombox_Schema_Ledger_ActorKey()}
+  public var actor: Bloombox_Ledger_ActorKey {
+    get {return _storage._actor ?? Bloombox_Ledger_ActorKey()}
     set {_uniqueStorage()._actor = newValue}
   }
   /// Returns true if `actor` has been explicitly set.
@@ -311,8 +311,8 @@ public struct Bloombox_Schema_Ledger_LedgerIdentity {
   public mutating func clearActor() {_uniqueStorage()._actor = nil}
 
   /// Specifies actual backing certificate information, issued by the central ledger PKI CA.
-  public var certificate: Bloombox_Schema_Ledger_ActorCertificate {
-    get {return _storage._certificate ?? Bloombox_Schema_Ledger_ActorCertificate()}
+  public var certificate: Bloombox_Ledger_ActorCertificate {
+    get {return _storage._certificate ?? Bloombox_Ledger_ActorCertificate()}
     set {_uniqueStorage()._certificate = newValue}
   }
   /// Returns true if `certificate` has been explicitly set.
@@ -329,14 +329,14 @@ public struct Bloombox_Schema_Ledger_LedgerIdentity {
 
 /// Specifies a structure that stamps a structure with server-side approval, indicating the subject payload was inspected
 /// and cryptographically verified.
-public struct Bloombox_Schema_Ledger_AssertionTicket {
+public struct Bloombox_Ledger_AssertionTicket {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Cryptographic fingerprint of the transmitted certificate data.
-  public var fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash {
-    get {return _storage._fingerprint ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+  public var fingerprint: Opencannabis_Crypto_Hash {
+    get {return _storage._fingerprint ?? Opencannabis_Crypto_Hash()}
     set {_uniqueStorage()._fingerprint = newValue}
   }
   /// Returns true if `fingerprint` has been explicitly set.
@@ -376,7 +376,7 @@ public struct Bloombox_Schema_Ledger_AssertionTicket {
 /// Stored record specifying an asserted and certified identity claim on the ledger. Actors are required to register
 /// their identity before transacting, by generating a keypair, obtaining a certificate, and binding their key hashes
 /// and certificate hash to their object identifier, which is the digest of their ledger public key.
-public struct Bloombox_Schema_Ledger_IdentityClaim {
+public struct Bloombox_Ledger_IdentityClaim {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -406,8 +406,8 @@ public struct Bloombox_Schema_Ledger_IdentityClaim {
   }
 
   /// Specifies actual backing certificate information, issued by the central ledger PKI CA.
-  public var certificate: Bloombox_Schema_Ledger_ActorCertificate {
-    get {return _storage._certificate ?? Bloombox_Schema_Ledger_ActorCertificate()}
+  public var certificate: Bloombox_Ledger_ActorCertificate {
+    get {return _storage._certificate ?? Bloombox_Ledger_ActorCertificate()}
     set {_uniqueStorage()._certificate = newValue}
   }
   /// Returns true if `certificate` has been explicitly set.
@@ -417,8 +417,8 @@ public struct Bloombox_Schema_Ledger_IdentityClaim {
 
   /// The actor key links this particular account key to/from a known actor in the system, be it an organization or an
   /// individual. Actor keys keys may be encrypted.
-  public var actor: Bloombox_Schema_Ledger_ActorKey {
-    get {return _storage._actor ?? Bloombox_Schema_Ledger_ActorKey()}
+  public var actor: Bloombox_Ledger_ActorKey {
+    get {return _storage._actor ?? Bloombox_Ledger_ActorKey()}
     set {_uniqueStorage()._actor = newValue}
   }
   /// Returns true if `actor` has been explicitly set.
@@ -427,8 +427,8 @@ public struct Bloombox_Schema_Ledger_IdentityClaim {
   public mutating func clearActor() {_uniqueStorage()._actor = nil}
 
   /// Assertion ticket, verifying that this was indeed verified by the server upon submission.
-  public var assertion: Bloombox_Schema_Ledger_AssertionTicket {
-    get {return _storage._assertion ?? Bloombox_Schema_Ledger_AssertionTicket()}
+  public var assertion: Bloombox_Ledger_AssertionTicket {
+    get {return _storage._assertion ?? Bloombox_Ledger_AssertionTicket()}
     set {_uniqueStorage()._assertion = newValue}
   }
   /// Returns true if `assertion` has been explicitly set.
@@ -445,16 +445,16 @@ public struct Bloombox_Schema_Ledger_IdentityClaim {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.ledger"
+fileprivate let _protobuf_package = "bloombox.ledger"
 
-extension Bloombox_Schema_Ledger_SpecialActor: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_SpecialActor: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "SYSTEM"),
     1: .same(proto: "SANDBOX"),
   ]
 }
 
-extension Bloombox_Schema_Ledger_ActorCertificate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_ActorCertificate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ActorCertificate"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -469,10 +469,10 @@ extension Bloombox_Schema_Ledger_ActorCertificate: SwiftProtobuf.Message, SwiftP
   fileprivate class _StorageClass {
     var _id: String = String()
     var _serial: String = String()
-    var _fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
+    var _fingerprint: Opencannabis_Crypto_Hash? = nil
     var _commonName: String = String()
     var _issuerName: String = String()
-    var _payload: Bloombox_Schema_Ledger_ActorCertificate.OneOf_Payload?
+    var _payload: Bloombox_Ledger_ActorCertificate.OneOf_Payload?
 
     static let defaultInstance = _StorageClass()
 
@@ -549,7 +549,7 @@ extension Bloombox_Schema_Ledger_ActorCertificate: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_ActorCertificate, rhs: Bloombox_Schema_Ledger_ActorCertificate) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_ActorCertificate, rhs: Bloombox_Ledger_ActorCertificate) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -569,7 +569,7 @@ extension Bloombox_Schema_Ledger_ActorCertificate: SwiftProtobuf.Message, SwiftP
   }
 }
 
-extension Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ActorKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "known"),
@@ -579,7 +579,7 @@ extension Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf.
   ]
 
   fileprivate class _StorageClass {
-    var _actor: Bloombox_Schema_Ledger_ActorKey.OneOf_Actor?
+    var _actor: Bloombox_Ledger_ActorKey.OneOf_Actor?
 
     static let defaultInstance = _StorageClass()
 
@@ -604,11 +604,11 @@ extension Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf.
         switch fieldNumber {
         case 1:
           if _storage._actor != nil {try decoder.handleConflictingOneOf()}
-          var v: Bloombox_Schema_Ledger_SpecialActor?
+          var v: Bloombox_Ledger_SpecialActor?
           try decoder.decodeSingularEnumField(value: &v)
           if let v = v {_storage._actor = .known(v)}
         case 10:
-          var v: Bloombox_Schema_Identity_UserKey?
+          var v: Bloombox_Identity_UserKey?
           if let current = _storage._actor {
             try decoder.handleConflictingOneOf()
             if case .user(let m) = current {v = m}
@@ -616,7 +616,7 @@ extension Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf.
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._actor = .user(v)}
         case 20:
-          var v: Bloombox_Schema_Partner_PartnerKey?
+          var v: Bloombox_Partner_PartnerKey?
           if let current = _storage._actor {
             try decoder.handleConflictingOneOf()
             if case .partner(let m) = current {v = m}
@@ -624,7 +624,7 @@ extension Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf.
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._actor = .partner(v)}
         case 30:
-          var v: Bloombox_Schema_Partner_LocationKey?
+          var v: Bloombox_Partner_LocationKey?
           if let current = _storage._actor {
             try decoder.handleConflictingOneOf()
             if case .location(let m) = current {v = m}
@@ -654,7 +654,7 @@ extension Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_ActorKey, rhs: Bloombox_Schema_Ledger_ActorKey) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_ActorKey, rhs: Bloombox_Ledger_ActorKey) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -669,7 +669,7 @@ extension Bloombox_Schema_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf.
   }
 }
 
-extension Bloombox_Schema_Ledger_AccountKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_AccountKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AccountKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -679,8 +679,8 @@ extension Bloombox_Schema_Ledger_AccountKey: SwiftProtobuf.Message, SwiftProtobu
 
   fileprivate class _StorageClass {
     var _id: String = String()
-    var _pair: Opencannabis_Crypto_Primitives_Pki_Keypair? = nil
-    var _identity: Opencannabis_Crypto_Primitives_Pki_Keypair? = nil
+    var _pair: Opencannabis_Crypto_Keypair? = nil
+    var _identity: Opencannabis_Crypto_Keypair? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -729,7 +729,7 @@ extension Bloombox_Schema_Ledger_AccountKey: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_AccountKey, rhs: Bloombox_Schema_Ledger_AccountKey) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_AccountKey, rhs: Bloombox_Ledger_AccountKey) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -746,7 +746,7 @@ extension Bloombox_Schema_Ledger_AccountKey: SwiftProtobuf.Message, SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Ledger_LedgerIdentity: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_LedgerIdentity: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".LedgerIdentity"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -755,9 +755,9 @@ extension Bloombox_Schema_Ledger_LedgerIdentity: SwiftProtobuf.Message, SwiftPro
   ]
 
   fileprivate class _StorageClass {
-    var _key: Bloombox_Schema_Ledger_AccountKey? = nil
-    var _actor: Bloombox_Schema_Ledger_ActorKey? = nil
-    var _certificate: Bloombox_Schema_Ledger_ActorCertificate? = nil
+    var _key: Bloombox_Ledger_AccountKey? = nil
+    var _actor: Bloombox_Ledger_ActorKey? = nil
+    var _certificate: Bloombox_Ledger_ActorCertificate? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -806,7 +806,7 @@ extension Bloombox_Schema_Ledger_LedgerIdentity: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_LedgerIdentity, rhs: Bloombox_Schema_Ledger_LedgerIdentity) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_LedgerIdentity, rhs: Bloombox_Ledger_LedgerIdentity) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -823,7 +823,7 @@ extension Bloombox_Schema_Ledger_LedgerIdentity: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Ledger_AssertionTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_AssertionTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AssertionTicket"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "fingerprint"),
@@ -833,7 +833,7 @@ extension Bloombox_Schema_Ledger_AssertionTicket: SwiftProtobuf.Message, SwiftPr
   ]
 
   fileprivate class _StorageClass {
-    var _fingerprint: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
+    var _fingerprint: Opencannabis_Crypto_Hash? = nil
     var _issued: Opencannabis_Temporal_Instant? = nil
     var _signature: String = String()
     var _assurer: String = String()
@@ -890,7 +890,7 @@ extension Bloombox_Schema_Ledger_AssertionTicket: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_AssertionTicket, rhs: Bloombox_Schema_Ledger_AssertionTicket) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_AssertionTicket, rhs: Bloombox_Ledger_AssertionTicket) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -908,7 +908,7 @@ extension Bloombox_Schema_Ledger_AssertionTicket: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Bloombox_Schema_Ledger_IdentityClaim: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Ledger_IdentityClaim: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".IdentityClaim"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
@@ -925,9 +925,9 @@ extension Bloombox_Schema_Ledger_IdentityClaim: SwiftProtobuf.Message, SwiftProt
     var _key: String = String()
     var _serial: String = String()
     var _fingerprint: String = String()
-    var _certificate: Bloombox_Schema_Ledger_ActorCertificate? = nil
-    var _actor: Bloombox_Schema_Ledger_ActorKey? = nil
-    var _assertion: Bloombox_Schema_Ledger_AssertionTicket? = nil
+    var _certificate: Bloombox_Ledger_ActorCertificate? = nil
+    var _actor: Bloombox_Ledger_ActorKey? = nil
+    var _assertion: Bloombox_Ledger_AssertionTicket? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -996,7 +996,7 @@ extension Bloombox_Schema_Ledger_IdentityClaim: SwiftProtobuf.Message, SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Ledger_IdentityClaim, rhs: Bloombox_Schema_Ledger_IdentityClaim) -> Bool {
+  public static func ==(lhs: Bloombox_Ledger_IdentityClaim, rhs: Bloombox_Ledger_IdentityClaim) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

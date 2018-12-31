@@ -25,7 +25,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Channel through which a partner interacts with Bloombox.
-public enum Bloombox_Schema_Partner_PartnerChannel: SwiftProtobuf.Enum {
+public enum Bloombox_Partner_PartnerChannel: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Direct customers of Bloombox.
@@ -54,9 +54,9 @@ public enum Bloombox_Schema_Partner_PartnerChannel: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Partner_PartnerChannel: CaseIterable {
+extension Bloombox_Partner_PartnerChannel: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Partner_PartnerChannel] = [
+  public static var allCases: [Bloombox_Partner_PartnerChannel] = [
     .direct,
   ]
 }
@@ -66,7 +66,7 @@ extension Bloombox_Schema_Partner_PartnerChannel: CaseIterable {
 /// Specifies information about a partner organization that has an account opened with Bloombox. A partner can own/manage
 /// multiple `Location`s, and is identified uniquely by a short `code`, which is a lowercase string suitable for use in
 /// a URL as a slug.
-public struct Bloombox_Schema_Partner_Partner {
+public struct Bloombox_Partner_Partner {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -84,8 +84,8 @@ public struct Bloombox_Schema_Partner_Partner {
   }
 
   /// Flags for various things about this partner account.
-  public var flags: Bloombox_Schema_Partner_PartnerFlags {
-    get {return _storage._flags ?? Bloombox_Schema_Partner_PartnerFlags()}
+  public var flags: Bloombox_Partner_PartnerFlags {
+    get {return _storage._flags ?? Bloombox_Partner_PartnerFlags()}
     set {_uniqueStorage()._flags = newValue}
   }
   /// Returns true if `flags` has been explicitly set.
@@ -120,14 +120,14 @@ public struct Bloombox_Schema_Partner_Partner {
   public mutating func clearBranding() {_uniqueStorage()._branding = nil}
 
   /// Channel through which this partner organization interacts with Bloombox.
-  public var channel: Bloombox_Schema_Partner_PartnerChannel {
+  public var channel: Bloombox_Partner_PartnerChannel {
     get {return _storage._channel}
     set {_uniqueStorage()._channel = newValue}
   }
 
   /// Settings for this partner.
-  public var settings: Bloombox_Schema_Partner_Settings_PartnerSettings {
-    get {return _storage._settings ?? Bloombox_Schema_Partner_Settings_PartnerSettings()}
+  public var settings: Bloombox_Partner_Settings_PartnerSettings {
+    get {return _storage._settings ?? Bloombox_Partner_Settings_PartnerSettings()}
     set {_uniqueStorage()._settings = newValue}
   }
   /// Returns true if `settings` has been explicitly set.
@@ -136,13 +136,13 @@ public struct Bloombox_Schema_Partner_Partner {
   public mutating func clearSettings() {_uniqueStorage()._settings = nil}
 
   /// Location records attached to this partner.
-  public var location: [Bloombox_Schema_Partner_PartnerLocation] {
+  public var location: [Bloombox_Partner_PartnerLocation] {
     get {return _storage._location}
     set {_uniqueStorage()._location = newValue}
   }
 
   /// Access policy records attached to this partner.
-  public var policy: [Bloombox_Schema_Security_Access_AccessPolicy] {
+  public var policy: [Bloombox_Security_Access_AccessPolicy] {
     get {return _storage._policy}
     set {_uniqueStorage()._policy = newValue}
   }
@@ -176,15 +176,15 @@ public struct Bloombox_Schema_Partner_Partner {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.partner"
+fileprivate let _protobuf_package = "bloombox.partner"
 
-extension Bloombox_Schema_Partner_PartnerChannel: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_PartnerChannel: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "DIRECT"),
   ]
 }
 
-extension Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Partner"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "code"),
@@ -204,14 +204,14 @@ extension Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf.
   fileprivate class _StorageClass {
     var _code: String = String()
     var _name: String = String()
-    var _flags: Bloombox_Schema_Partner_PartnerFlags? = nil
+    var _flags: Bloombox_Partner_PartnerFlags? = nil
     var _legalName: String = String()
     var _contact: Opencannabis_Contact_ContactInfo? = nil
     var _branding: Opencannabis_Media_MediaItem? = nil
-    var _channel: Bloombox_Schema_Partner_PartnerChannel = .direct
-    var _settings: Bloombox_Schema_Partner_Settings_PartnerSettings? = nil
-    var _location: [Bloombox_Schema_Partner_PartnerLocation] = []
-    var _policy: [Bloombox_Schema_Security_Access_AccessPolicy] = []
+    var _channel: Bloombox_Partner_PartnerChannel = .direct
+    var _settings: Bloombox_Partner_Settings_PartnerSettings? = nil
+    var _location: [Bloombox_Partner_PartnerLocation] = []
+    var _policy: [Bloombox_Security_Access_AccessPolicy] = []
     var _created: Opencannabis_Temporal_Instant? = nil
     var _modified: Opencannabis_Temporal_Instant? = nil
 
@@ -307,7 +307,7 @@ extension Bloombox_Schema_Partner_Partner: SwiftProtobuf.Message, SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Partner, rhs: Bloombox_Schema_Partner_Partner) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Partner, rhs: Bloombox_Partner_Partner) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

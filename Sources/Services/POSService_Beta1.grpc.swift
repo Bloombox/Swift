@@ -26,88 +26,88 @@ import SwiftGRPC
 import SwiftProtobuf
 import OpenCannabis
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleAuthorizeCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request, Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/Authorize" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleAuthorizeCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request, Bloombox_Services_Pos_V1beta1_AuthorizeUser.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleAuthorizeCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/Authorize" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleSessionOpenCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request, Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/SessionOpen" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleSessionOpenCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_OpenSession.Request, Bloombox_Services_Pos_V1beta1_OpenSession.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleSessionOpenCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/SessionOpen" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleSessionCloseCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request, Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/SessionClose" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleSessionCloseCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_CloseSession.Request, Bloombox_Services_Pos_V1beta1_CloseSession.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleSessionCloseCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/SessionClose" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleTicketOpenCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketOpen" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleTicketOpenCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_OpenTicket.Request, Bloombox_Services_Pos_V1beta1_OpenTicket.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleTicketOpenCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/TicketOpen" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleTicketSaveCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketSave" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleTicketSaveCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_SaveTicket.Request, Bloombox_Services_Pos_V1beta1_SaveTicket.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleTicketSaveCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/TicketSave" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleTicketLoadCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketLoad" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleTicketLoadCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_LoadTicket.Request, Bloombox_Services_Pos_V1beta1_LoadTicket.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleTicketLoadCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/TicketLoad" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleTicketVoidCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketVoid" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleTicketVoidCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_VoidTicket.Request, Bloombox_Services_Pos_V1beta1_VoidTicket.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleTicketVoidCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/TicketVoid" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleTicketClaimCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketClaim" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleTicketClaimCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_ClaimTicket.Request, Bloombox_Services_Pos_V1beta1_ClaimTicket.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleTicketClaimCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/TicketClaim" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleTicketCloneCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketClone" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleTicketCloneCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_CloneTicket.Request, Bloombox_Services_Pos_V1beta1_CloneTicket.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleTicketCloneCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/TicketClone" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketFinalize" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_FinalizeTicket.Request, Bloombox_Services_Pos_V1beta1_FinalizeTicket.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/TicketFinalize" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleSearchMembersCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request, Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/SearchMembers" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleSearchMembersCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_MemberSearch.Request, Bloombox_Services_Pos_V1beta1_MemberSearch.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleSearchMembersCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/SearchMembers" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCall: ClientCallUnary {}
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request, Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/InventoryRetrieve" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCallBase: ClientCallUnaryBase<Bloombox_Services_Pos_V1beta1_InventoryQuery.Request, Bloombox_Services_Pos_V1beta1_InventoryQuery.Response>, Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/InventoryRetrieve" }
 }
 
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall: ClientCallBidirectionalStreaming {
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall: ClientCallBidirectionalStreaming {
   /// Do not call this directly, call `receive()` in the protocol extension below instead.
-  func _receive(timeout: DispatchTime) throws -> Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload?
+  func _receive(timeout: DispatchTime) throws -> Bloombox_Services_Pos_V1beta1_InventoryStream.Payload?
   /// Call this to wait for a result. Nonblocking.
-  func receive(completion: @escaping (ResultOrRPCError<Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload?>) -> Void) throws
+  func receive(completion: @escaping (ResultOrRPCError<Bloombox_Services_Pos_V1beta1_InventoryStream.Payload?>) -> Void) throws
 
   /// Send a message to the stream. Nonblocking.
-  func send(_ message: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request, completion: @escaping (Error?) -> Void) throws
+  func send(_ message: Bloombox_Services_Pos_V1beta1_InventoryStream.Request, completion: @escaping (Error?) -> Void) throws
   /// Do not call this directly, call `send()` in the protocol extension below instead.
-  func _send(_ message: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request, timeout: DispatchTime) throws
+  func _send(_ message: Bloombox_Services_Pos_V1beta1_InventoryStream.Request, timeout: DispatchTime) throws
 
   /// Call this to close the sending connection. Blocking.
   func closeSend() throws
@@ -115,404 +115,230 @@ public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamC
   func closeSend(completion: (() -> Void)?) throws
 }
 
-public extension Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall {
+public extension Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall {
   /// Call this to wait for a result. Blocking.
-  func receive(timeout: DispatchTime = .distantFuture) throws -> Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload? { return try self._receive(timeout: timeout) }
+  func receive(timeout: DispatchTime = .distantFuture) throws -> Bloombox_Services_Pos_V1beta1_InventoryStream.Payload? { return try self._receive(timeout: timeout) }
 }
 
-public extension Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall {
+public extension Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall {
   /// Send a message to the stream and wait for the send operation to finish. Blocking.
-  func send(_ message: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request, timeout: DispatchTime = .distantFuture) throws { try self._send(message, timeout: timeout) }
+  func send(_ message: Bloombox_Services_Pos_V1beta1_InventoryStream.Request, timeout: DispatchTime = .distantFuture) throws { try self._send(message, timeout: timeout) }
 }
 
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamCallBase: ClientCallBidirectionalStreamingBase<Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request, Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall {
-  override class var method: String { return "/bloombox.schema.services.pos.v1beta1.PointOfSale/InventoryStream" }
+fileprivate final class Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryStreamCallBase: ClientCallBidirectionalStreamingBase<Bloombox_Services_Pos_V1beta1_InventoryStream.Request, Bloombox_Services_Pos_V1beta1_InventoryStream.Payload>, Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall {
+  override class var method: String { return "/bloombox.services.pos.v1beta1.PointOfSale/InventoryStream" }
 }
 
 
-/// Instantiate Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleServiceClient, then call methods of this protocol to make API calls.
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleService: ServiceClient {
+/// Instantiate Bloombox_Services_Pos_V1beta1_PointOfSaleServiceClient, then call methods of this protocol to make API calls.
+public protocol Bloombox_Services_Pos_V1beta1_PointOfSaleService: ServiceClient {
   /// Synchronous. Unary.
-  func authorize(_ request: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response
+  func authorize(_ request: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request) throws -> Bloombox_Services_Pos_V1beta1_AuthorizeUser.Response
   /// Asynchronous. Unary.
-  func authorize(_ request: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeCall
+  func authorize(_ request: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_AuthorizeUser.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleAuthorizeCall
 
   /// Synchronous. Unary.
-  func sessionOpen(_ request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response
+  func sessionOpen(_ request: Bloombox_Services_Pos_V1beta1_OpenSession.Request) throws -> Bloombox_Services_Pos_V1beta1_OpenSession.Response
   /// Asynchronous. Unary.
-  func sessionOpen(_ request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenCall
+  func sessionOpen(_ request: Bloombox_Services_Pos_V1beta1_OpenSession.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_OpenSession.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleSessionOpenCall
 
   /// Synchronous. Unary.
-  func sessionClose(_ request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response
+  func sessionClose(_ request: Bloombox_Services_Pos_V1beta1_CloseSession.Request) throws -> Bloombox_Services_Pos_V1beta1_CloseSession.Response
   /// Asynchronous. Unary.
-  func sessionClose(_ request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseCall
+  func sessionClose(_ request: Bloombox_Services_Pos_V1beta1_CloseSession.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_CloseSession.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleSessionCloseCall
 
   /// Synchronous. Unary.
-  func ticketOpen(_ request: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response
+  func ticketOpen(_ request: Bloombox_Services_Pos_V1beta1_OpenTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_OpenTicket.Response
   /// Asynchronous. Unary.
-  func ticketOpen(_ request: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenCall
+  func ticketOpen(_ request: Bloombox_Services_Pos_V1beta1_OpenTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_OpenTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketOpenCall
 
   /// Synchronous. Unary.
-  func ticketSave(_ request: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response
+  func ticketSave(_ request: Bloombox_Services_Pos_V1beta1_SaveTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_SaveTicket.Response
   /// Asynchronous. Unary.
-  func ticketSave(_ request: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveCall
+  func ticketSave(_ request: Bloombox_Services_Pos_V1beta1_SaveTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_SaveTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketSaveCall
 
   /// Synchronous. Unary.
-  func ticketLoad(_ request: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response
+  func ticketLoad(_ request: Bloombox_Services_Pos_V1beta1_LoadTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_LoadTicket.Response
   /// Asynchronous. Unary.
-  func ticketLoad(_ request: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadCall
+  func ticketLoad(_ request: Bloombox_Services_Pos_V1beta1_LoadTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_LoadTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketLoadCall
 
   /// Synchronous. Unary.
-  func ticketVoid(_ request: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response
+  func ticketVoid(_ request: Bloombox_Services_Pos_V1beta1_VoidTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_VoidTicket.Response
   /// Asynchronous. Unary.
-  func ticketVoid(_ request: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidCall
+  func ticketVoid(_ request: Bloombox_Services_Pos_V1beta1_VoidTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_VoidTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketVoidCall
 
   /// Synchronous. Unary.
-  func ticketClaim(_ request: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response
+  func ticketClaim(_ request: Bloombox_Services_Pos_V1beta1_ClaimTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_ClaimTicket.Response
   /// Asynchronous. Unary.
-  func ticketClaim(_ request: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimCall
+  func ticketClaim(_ request: Bloombox_Services_Pos_V1beta1_ClaimTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_ClaimTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketClaimCall
 
   /// Synchronous. Unary.
-  func ticketClone(_ request: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response
+  func ticketClone(_ request: Bloombox_Services_Pos_V1beta1_CloneTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_CloneTicket.Response
   /// Asynchronous. Unary.
-  func ticketClone(_ request: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneCall
+  func ticketClone(_ request: Bloombox_Services_Pos_V1beta1_CloneTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_CloneTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketCloneCall
 
   /// Synchronous. Unary.
-  func ticketFinalize(_ request: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response
+  func ticketFinalize(_ request: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_FinalizeTicket.Response
   /// Asynchronous. Unary.
-  func ticketFinalize(_ request: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCall
+  func ticketFinalize(_ request: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_FinalizeTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCall
 
   /// Synchronous. Unary.
-  func searchMembers(_ request: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response
+  func searchMembers(_ request: Bloombox_Services_Pos_V1beta1_MemberSearch.Request) throws -> Bloombox_Services_Pos_V1beta1_MemberSearch.Response
   /// Asynchronous. Unary.
-  func searchMembers(_ request: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersCall
+  func searchMembers(_ request: Bloombox_Services_Pos_V1beta1_MemberSearch.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_MemberSearch.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleSearchMembersCall
 
   /// Synchronous. Unary.
-  func inventoryRetrieve(_ request: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response
+  func inventoryRetrieve(_ request: Bloombox_Services_Pos_V1beta1_InventoryQuery.Request) throws -> Bloombox_Services_Pos_V1beta1_InventoryQuery.Response
   /// Asynchronous. Unary.
-  func inventoryRetrieve(_ request: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCall
+  func inventoryRetrieve(_ request: Bloombox_Services_Pos_V1beta1_InventoryQuery.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_InventoryQuery.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCall
 
   /// Asynchronous. Bidirectional-streaming.
   /// Use methods on the returned object to stream messages,
   /// to wait for replies, and to close the connection.
-  func inventoryStream(completion: ((CallResult) -> Void)?) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall
+  func inventoryStream(completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall
 
 }
 
-public final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleServiceClient: ServiceClientBase, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleService {
+public final class Bloombox_Services_Pos_V1beta1_PointOfSaleServiceClient: ServiceClientBase, Bloombox_Services_Pos_V1beta1_PointOfSaleService {
   /// Synchronous. Unary.
-  public func authorize(_ request: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeCallBase(channel)
+  public func authorize(_ request: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request) throws -> Bloombox_Services_Pos_V1beta1_AuthorizeUser.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleAuthorizeCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func authorize(_ request: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeCallBase(channel)
+  public func authorize(_ request: Bloombox_Services_Pos_V1beta1_AuthorizeUser.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_AuthorizeUser.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleAuthorizeCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleAuthorizeCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func sessionOpen(_ request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenCallBase(channel)
+  public func sessionOpen(_ request: Bloombox_Services_Pos_V1beta1_OpenSession.Request) throws -> Bloombox_Services_Pos_V1beta1_OpenSession.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleSessionOpenCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func sessionOpen(_ request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenCallBase(channel)
+  public func sessionOpen(_ request: Bloombox_Services_Pos_V1beta1_OpenSession.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_OpenSession.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleSessionOpenCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleSessionOpenCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func sessionClose(_ request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseCallBase(channel)
+  public func sessionClose(_ request: Bloombox_Services_Pos_V1beta1_CloseSession.Request) throws -> Bloombox_Services_Pos_V1beta1_CloseSession.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleSessionCloseCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func sessionClose(_ request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseCallBase(channel)
+  public func sessionClose(_ request: Bloombox_Services_Pos_V1beta1_CloseSession.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_CloseSession.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleSessionCloseCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleSessionCloseCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func ticketOpen(_ request: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenCallBase(channel)
+  public func ticketOpen(_ request: Bloombox_Services_Pos_V1beta1_OpenTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_OpenTicket.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketOpenCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func ticketOpen(_ request: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenCallBase(channel)
+  public func ticketOpen(_ request: Bloombox_Services_Pos_V1beta1_OpenTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_OpenTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketOpenCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketOpenCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func ticketSave(_ request: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveCallBase(channel)
+  public func ticketSave(_ request: Bloombox_Services_Pos_V1beta1_SaveTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_SaveTicket.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketSaveCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func ticketSave(_ request: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveCallBase(channel)
+  public func ticketSave(_ request: Bloombox_Services_Pos_V1beta1_SaveTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_SaveTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketSaveCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketSaveCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func ticketLoad(_ request: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadCallBase(channel)
+  public func ticketLoad(_ request: Bloombox_Services_Pos_V1beta1_LoadTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_LoadTicket.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketLoadCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func ticketLoad(_ request: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadCallBase(channel)
+  public func ticketLoad(_ request: Bloombox_Services_Pos_V1beta1_LoadTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_LoadTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketLoadCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketLoadCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func ticketVoid(_ request: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidCallBase(channel)
+  public func ticketVoid(_ request: Bloombox_Services_Pos_V1beta1_VoidTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_VoidTicket.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketVoidCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func ticketVoid(_ request: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidCallBase(channel)
+  public func ticketVoid(_ request: Bloombox_Services_Pos_V1beta1_VoidTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_VoidTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketVoidCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketVoidCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func ticketClaim(_ request: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimCallBase(channel)
+  public func ticketClaim(_ request: Bloombox_Services_Pos_V1beta1_ClaimTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_ClaimTicket.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketClaimCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func ticketClaim(_ request: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimCallBase(channel)
+  public func ticketClaim(_ request: Bloombox_Services_Pos_V1beta1_ClaimTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_ClaimTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketClaimCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketClaimCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func ticketClone(_ request: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneCallBase(channel)
+  public func ticketClone(_ request: Bloombox_Services_Pos_V1beta1_CloneTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_CloneTicket.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketCloneCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func ticketClone(_ request: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneCallBase(channel)
+  public func ticketClone(_ request: Bloombox_Services_Pos_V1beta1_CloneTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_CloneTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketCloneCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketCloneCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func ticketFinalize(_ request: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCallBase(channel)
+  public func ticketFinalize(_ request: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Request) throws -> Bloombox_Services_Pos_V1beta1_FinalizeTicket.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func ticketFinalize(_ request: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCallBase(channel)
+  public func ticketFinalize(_ request: Bloombox_Services_Pos_V1beta1_FinalizeTicket.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_FinalizeTicket.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleTicketFinalizeCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func searchMembers(_ request: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersCallBase(channel)
+  public func searchMembers(_ request: Bloombox_Services_Pos_V1beta1_MemberSearch.Request) throws -> Bloombox_Services_Pos_V1beta1_MemberSearch.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleSearchMembersCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func searchMembers(_ request: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersCallBase(channel)
+  public func searchMembers(_ request: Bloombox_Services_Pos_V1beta1_MemberSearch.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_MemberSearch.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleSearchMembersCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleSearchMembersCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func inventoryRetrieve(_ request: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request) throws -> Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCallBase(channel)
+  public func inventoryRetrieve(_ request: Bloombox_Services_Pos_V1beta1_InventoryQuery.Request) throws -> Bloombox_Services_Pos_V1beta1_InventoryQuery.Response {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func inventoryRetrieve(_ request: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request, completion: @escaping (Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCallBase(channel)
+  public func inventoryRetrieve(_ request: Bloombox_Services_Pos_V1beta1_InventoryQuery.Request, completion: @escaping (Bloombox_Services_Pos_V1beta1_InventoryQuery.Response?, CallResult) -> Void) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Asynchronous. Bidirectional-streaming.
   /// Use methods on the returned object to stream messages,
   /// to wait for replies, and to close the connection.
-  public func inventoryStream(completion: ((CallResult) -> Void)?) throws -> Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall {
-    return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamCallBase(channel)
+  public func inventoryStream(completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryStreamCall {
+    return try Bloombox_Services_Pos_V1beta1_PointOfSaleInventoryStreamCallBase(channel)
       .start(metadata: metadata, completion: completion)
   }
 
 }
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleProvider: ServiceProvider {
-  func authorize(request: Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response
-  func sessionOpen(request: Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response
-  func sessionClose(request: Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response
-  func ticketOpen(request: Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response
-  func ticketSave(request: Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response
-  func ticketLoad(request: Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response
-  func ticketVoid(request: Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response
-  func ticketClaim(request: Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response
-  func ticketClone(request: Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response
-  func ticketFinalize(request: Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response
-  func searchMembers(request: Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response
-  func inventoryRetrieve(request: Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request, session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveSession) throws -> Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response
-  func inventoryStream(session: Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamSession) throws -> ServerStatus?
-}
-
-extension Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleProvider {
-  public var serviceName: String { return "bloombox.schema.services.pos.v1beta1.PointOfSale" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/Authorize":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeSessionBase(
-        handler: handler,
-        providerBlock: { try self.authorize(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/SessionOpen":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenSessionBase(
-        handler: handler,
-        providerBlock: { try self.sessionOpen(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/SessionClose":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseSessionBase(
-        handler: handler,
-        providerBlock: { try self.sessionClose(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketOpen":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenSessionBase(
-        handler: handler,
-        providerBlock: { try self.ticketOpen(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketSave":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveSessionBase(
-        handler: handler,
-        providerBlock: { try self.ticketSave(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketLoad":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadSessionBase(
-        handler: handler,
-        providerBlock: { try self.ticketLoad(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketVoid":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidSessionBase(
-        handler: handler,
-        providerBlock: { try self.ticketVoid(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketClaim":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimSessionBase(
-        handler: handler,
-        providerBlock: { try self.ticketClaim(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketClone":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneSessionBase(
-        handler: handler,
-        providerBlock: { try self.ticketClone(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/TicketFinalize":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeSessionBase(
-        handler: handler,
-        providerBlock: { try self.ticketFinalize(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/SearchMembers":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersSessionBase(
-        handler: handler,
-        providerBlock: { try self.searchMembers(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/InventoryRetrieve":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveSessionBase(
-        handler: handler,
-        providerBlock: { try self.inventoryRetrieve(request: $0, session: $1 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveSessionBase) })
-          .run()
-    case "/bloombox.schema.services.pos.v1beta1.PointOfSale/InventoryStream":
-      return try Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamSessionBase(
-        handler: handler,
-        providerBlock: { try self.inventoryStream(session: $0 as! Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
-  }
-}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Request, Bloombox_Schema_Services_Pos_V1beta1_AuthorizeUser.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleAuthorizeSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Request, Bloombox_Schema_Services_Pos_V1beta1_OpenSession.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionOpenSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Request, Bloombox_Schema_Services_Pos_V1beta1_CloseSession.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSessionCloseSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_OpenTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketOpenSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_SaveTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketSaveSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_LoadTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketLoadSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_VoidTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketVoidSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_ClaimTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketClaimSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_CloneTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketCloneSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Request, Bloombox_Schema_Services_Pos_V1beta1_FinalizeTicket.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleTicketFinalizeSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Request, Bloombox_Schema_Services_Pos_V1beta1_MemberSearch.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleSearchMembersSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Request, Bloombox_Schema_Services_Pos_V1beta1_InventoryQuery.Response>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryRetrieveSession {}
-
-public protocol Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamSession: ServerSessionBidirectionalStreaming {
-  /// Do not call this directly, call `receive()` in the protocol extension below instead.
-  func _receive(timeout: DispatchTime) throws -> Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request?
-  /// Call this to wait for a result. Nonblocking.
-  func receive(completion: @escaping (ResultOrRPCError<Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request?>) -> Void) throws
-
-  /// Send a message to the stream. Nonblocking.
-  func send(_ message: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload, completion: @escaping (Error?) -> Void) throws
-  /// Do not call this directly, call `send()` in the protocol extension below instead.
-  func _send(_ message: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload, timeout: DispatchTime) throws
-
-  /// Close the connection and send the status. Non-blocking.
-  /// This method should be called if and only if your request handler returns a nil value instead of a server status;
-  /// otherwise SwiftGRPC will take care of sending the status for you.
-  func close(withStatus status: ServerStatus, completion: (() -> Void)?) throws
-}
-
-public extension Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamSession {
-  /// Call this to wait for a result. Blocking.
-  func receive(timeout: DispatchTime = .distantFuture) throws -> Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request? { return try self._receive(timeout: timeout) }
-}
-
-public extension Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamSession {
-  /// Send a message to the stream and wait for the send operation to finish. Blocking.
-  func send(_ message: Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload, timeout: DispatchTime = .distantFuture) throws { try self._send(message, timeout: timeout) }
-}
-
-fileprivate final class Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamSessionBase: ServerSessionBidirectionalStreamingBase<Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Request, Bloombox_Schema_Services_Pos_V1beta1_InventoryStream.Payload>, Bloombox_Schema_Services_Pos_V1beta1_PointOfSaleInventoryStreamSession {}
 

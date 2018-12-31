@@ -27,20 +27,42 @@ public struct Opencannabis_Geo_Point {
   // methods supported on all messages.
 
   /// Latitude value of this point.
-  public var latitude: Double = 0
+  public var latitude: Double {
+    get {return _storage._latitude}
+    set {_uniqueStorage()._latitude = newValue}
+  }
 
   /// Longitude value of this point.
-  public var longitude: Double = 0
+  public var longitude: Double {
+    get {return _storage._longitude}
+    set {_uniqueStorage()._longitude = newValue}
+  }
 
   /// Elevation of this point, if any.
-  public var elevation: Double = 0
+  public var elevation: Opencannabis_Geo_Distance {
+    get {return _storage._elevation ?? Opencannabis_Geo_Distance()}
+    set {_uniqueStorage()._elevation = newValue}
+  }
+  /// Returns true if `elevation` has been explicitly set.
+  public var hasElevation: Bool {return _storage._elevation != nil}
+  /// Clears the value of `elevation`. Subsequent reads from it will return its default value.
+  public mutating func clearElevation() {_uniqueStorage()._elevation = nil}
 
   /// Accuracy rating attached to this point, if any.
-  public var accuracy: Double = 0
+  public var accuracy: Opencannabis_Geo_Distance {
+    get {return _storage._accuracy ?? Opencannabis_Geo_Distance()}
+    set {_uniqueStorage()._accuracy = newValue}
+  }
+  /// Returns true if `accuracy` has been explicitly set.
+  public var hasAccuracy: Bool {return _storage._accuracy != nil}
+  /// Clears the value of `accuracy`. Subsequent reads from it will return its default value.
+  public mutating func clearAccuracy() {_uniqueStorage()._accuracy = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -56,39 +78,77 @@ extension Opencannabis_Geo_Point: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     4: .same(proto: "accuracy"),
   ]
 
+  fileprivate class _StorageClass {
+    var _latitude: Double = 0
+    var _longitude: Double = 0
+    var _elevation: Opencannabis_Geo_Distance? = nil
+    var _accuracy: Opencannabis_Geo_Distance? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _latitude = source._latitude
+      _longitude = source._longitude
+      _elevation = source._elevation
+      _accuracy = source._accuracy
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularDoubleField(value: &self.latitude)
-      case 2: try decoder.decodeSingularDoubleField(value: &self.longitude)
-      case 3: try decoder.decodeSingularDoubleField(value: &self.elevation)
-      case 4: try decoder.decodeSingularDoubleField(value: &self.accuracy)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularDoubleField(value: &_storage._latitude)
+        case 2: try decoder.decodeSingularDoubleField(value: &_storage._longitude)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._elevation)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._accuracy)
+        default: break
+        }
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.latitude != 0 {
-      try visitor.visitSingularDoubleField(value: self.latitude, fieldNumber: 1)
-    }
-    if self.longitude != 0 {
-      try visitor.visitSingularDoubleField(value: self.longitude, fieldNumber: 2)
-    }
-    if self.elevation != 0 {
-      try visitor.visitSingularDoubleField(value: self.elevation, fieldNumber: 3)
-    }
-    if self.accuracy != 0 {
-      try visitor.visitSingularDoubleField(value: self.accuracy, fieldNumber: 4)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._latitude != 0 {
+        try visitor.visitSingularDoubleField(value: _storage._latitude, fieldNumber: 1)
+      }
+      if _storage._longitude != 0 {
+        try visitor.visitSingularDoubleField(value: _storage._longitude, fieldNumber: 2)
+      }
+      if let v = _storage._elevation {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._accuracy {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Opencannabis_Geo_Point, rhs: Opencannabis_Geo_Point) -> Bool {
-    if lhs.latitude != rhs.latitude {return false}
-    if lhs.longitude != rhs.longitude {return false}
-    if lhs.elevation != rhs.elevation {return false}
-    if lhs.accuracy != rhs.accuracy {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._latitude != rhs_storage._latitude {return false}
+        if _storage._longitude != rhs_storage._longitude {return false}
+        if _storage._elevation != rhs_storage._elevation {return false}
+        if _storage._accuracy != rhs_storage._accuracy {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

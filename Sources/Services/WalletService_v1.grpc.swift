@@ -26,254 +26,165 @@ import SwiftGRPC
 import SwiftProtobuf
 import OpenCannabis
 
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardCall: ClientCallUnary {}
+public protocol Bloombox_Services_Wallet_V1_WalletProvisionCardCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardProvision.Request, Bloombox_Schema_Services_Wallet_V1_CardProvision.Response>, Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardCall {
-  override class var method: String { return "/bloombox.schema.services.wallet.v1.Wallet/ProvisionCard" }
+fileprivate final class Bloombox_Services_Wallet_V1_WalletProvisionCardCallBase: ClientCallUnaryBase<Bloombox_Services_Wallet_V1_CardProvision.Request, Bloombox_Services_Wallet_V1_CardProvision.Response>, Bloombox_Services_Wallet_V1_WalletProvisionCardCall {
+  override class var method: String { return "/bloombox.services.wallet.v1.Wallet/ProvisionCard" }
 }
 
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletIssueCardCall: ClientCallUnary {}
+public protocol Bloombox_Services_Wallet_V1_WalletIssueCardCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletIssueCardCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request, Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response>, Bloombox_Schema_Services_Wallet_V1_WalletIssueCardCall {
-  override class var method: String { return "/bloombox.schema.services.wallet.v1.Wallet/IssueCard" }
+fileprivate final class Bloombox_Services_Wallet_V1_WalletIssueCardCallBase: ClientCallUnaryBase<Bloombox_Services_Wallet_V1_CardIssuance.Request, Bloombox_Services_Wallet_V1_CardIssuance.Response>, Bloombox_Services_Wallet_V1_WalletIssueCardCall {
+  override class var method: String { return "/bloombox.services.wallet.v1.Wallet/IssueCard" }
 }
 
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletListCardsCall: ClientCallUnary {}
+public protocol Bloombox_Services_Wallet_V1_WalletListCardsCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletListCardsCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardList.Request, Bloombox_Schema_Services_Wallet_V1_CardList.Response>, Bloombox_Schema_Services_Wallet_V1_WalletListCardsCall {
-  override class var method: String { return "/bloombox.schema.services.wallet.v1.Wallet/ListCards" }
+fileprivate final class Bloombox_Services_Wallet_V1_WalletListCardsCallBase: ClientCallUnaryBase<Bloombox_Services_Wallet_V1_CardList.Request, Bloombox_Services_Wallet_V1_CardList.Response>, Bloombox_Services_Wallet_V1_WalletListCardsCall {
+  override class var method: String { return "/bloombox.services.wallet.v1.Wallet/ListCards" }
 }
 
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletActivateCardCall: ClientCallUnary {}
+public protocol Bloombox_Services_Wallet_V1_WalletActivateCardCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletActivateCardCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardActivate.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Wallet_V1_WalletActivateCardCall {
-  override class var method: String { return "/bloombox.schema.services.wallet.v1.Wallet/ActivateCard" }
+fileprivate final class Bloombox_Services_Wallet_V1_WalletActivateCardCallBase: ClientCallUnaryBase<Bloombox_Services_Wallet_V1_CardActivate.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Wallet_V1_WalletActivateCardCall {
+  override class var method: String { return "/bloombox.services.wallet.v1.Wallet/ActivateCard" }
 }
 
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardCall: ClientCallUnary {}
+public protocol Bloombox_Services_Wallet_V1_WalletRetrieveCardCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request, Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Response>, Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardCall {
-  override class var method: String { return "/bloombox.schema.services.wallet.v1.Wallet/RetrieveCard" }
+fileprivate final class Bloombox_Services_Wallet_V1_WalletRetrieveCardCallBase: ClientCallUnaryBase<Bloombox_Services_Wallet_V1_CardRetrieve.Request, Bloombox_Services_Wallet_V1_CardRetrieve.Response>, Bloombox_Services_Wallet_V1_WalletRetrieveCardCall {
+  override class var method: String { return "/bloombox.services.wallet.v1.Wallet/RetrieveCard" }
 }
 
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardCall: ClientCallUnary {}
+public protocol Bloombox_Services_Wallet_V1_WalletPersonalizeCardCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request, Bloombox_Schema_Services_Wallet_V1_CardEnroll.Response>, Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardCall {
-  override class var method: String { return "/bloombox.schema.services.wallet.v1.Wallet/PersonalizeCard" }
+fileprivate final class Bloombox_Services_Wallet_V1_WalletPersonalizeCardCallBase: ClientCallUnaryBase<Bloombox_Services_Wallet_V1_CardEnroll.Request, Bloombox_Services_Wallet_V1_CardEnroll.Response>, Bloombox_Services_Wallet_V1_WalletPersonalizeCardCall {
+  override class var method: String { return "/bloombox.services.wallet.v1.Wallet/PersonalizeCard" }
 }
 
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardCall: ClientCallUnary {}
+public protocol Bloombox_Services_Wallet_V1_WalletDecommissionCardCall: ClientCallUnary {}
 
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardCallBase: ClientCallUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardVoid.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardCall {
-  override class var method: String { return "/bloombox.schema.services.wallet.v1.Wallet/DecommissionCard" }
+fileprivate final class Bloombox_Services_Wallet_V1_WalletDecommissionCardCallBase: ClientCallUnaryBase<Bloombox_Services_Wallet_V1_CardVoid.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Wallet_V1_WalletDecommissionCardCall {
+  override class var method: String { return "/bloombox.services.wallet.v1.Wallet/DecommissionCard" }
 }
 
 
-/// Instantiate Bloombox_Schema_Services_Wallet_V1_WalletServiceClient, then call methods of this protocol to make API calls.
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletService: ServiceClient {
+/// Instantiate Bloombox_Services_Wallet_V1_WalletServiceClient, then call methods of this protocol to make API calls.
+public protocol Bloombox_Services_Wallet_V1_WalletService: ServiceClient {
   /// Synchronous. Unary.
-  func provisionCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request) throws -> Bloombox_Schema_Services_Wallet_V1_CardProvision.Response
+  func provisionCard(_ request: Bloombox_Services_Wallet_V1_CardProvision.Request) throws -> Bloombox_Services_Wallet_V1_CardProvision.Response
   /// Asynchronous. Unary.
-  func provisionCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request, completion: @escaping (Bloombox_Schema_Services_Wallet_V1_CardProvision.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardCall
+  func provisionCard(_ request: Bloombox_Services_Wallet_V1_CardProvision.Request, completion: @escaping (Bloombox_Services_Wallet_V1_CardProvision.Response?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletProvisionCardCall
 
   /// Synchronous. Unary.
-  func issueCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request) throws -> Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response
+  func issueCard(_ request: Bloombox_Services_Wallet_V1_CardIssuance.Request) throws -> Bloombox_Services_Wallet_V1_CardIssuance.Response
   /// Asynchronous. Unary.
-  func issueCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request, completion: @escaping (Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletIssueCardCall
+  func issueCard(_ request: Bloombox_Services_Wallet_V1_CardIssuance.Request, completion: @escaping (Bloombox_Services_Wallet_V1_CardIssuance.Response?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletIssueCardCall
 
   /// Synchronous. Unary.
-  func listCards(_ request: Bloombox_Schema_Services_Wallet_V1_CardList.Request) throws -> Bloombox_Schema_Services_Wallet_V1_CardList.Response
+  func listCards(_ request: Bloombox_Services_Wallet_V1_CardList.Request) throws -> Bloombox_Services_Wallet_V1_CardList.Response
   /// Asynchronous. Unary.
-  func listCards(_ request: Bloombox_Schema_Services_Wallet_V1_CardList.Request, completion: @escaping (Bloombox_Schema_Services_Wallet_V1_CardList.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletListCardsCall
+  func listCards(_ request: Bloombox_Services_Wallet_V1_CardList.Request, completion: @escaping (Bloombox_Services_Wallet_V1_CardList.Response?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletListCardsCall
 
   /// Synchronous. Unary.
-  func activateCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardActivate.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func activateCard(_ request: Bloombox_Services_Wallet_V1_CardActivate.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func activateCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardActivate.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletActivateCardCall
+  func activateCard(_ request: Bloombox_Services_Wallet_V1_CardActivate.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletActivateCardCall
 
   /// Synchronous. Unary.
-  func retrieveCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request) throws -> Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Response
+  func retrieveCard(_ request: Bloombox_Services_Wallet_V1_CardRetrieve.Request) throws -> Bloombox_Services_Wallet_V1_CardRetrieve.Response
   /// Asynchronous. Unary.
-  func retrieveCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request, completion: @escaping (Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardCall
+  func retrieveCard(_ request: Bloombox_Services_Wallet_V1_CardRetrieve.Request, completion: @escaping (Bloombox_Services_Wallet_V1_CardRetrieve.Response?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletRetrieveCardCall
 
   /// Synchronous. Unary.
-  func personalizeCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request) throws -> Bloombox_Schema_Services_Wallet_V1_CardEnroll.Response
+  func personalizeCard(_ request: Bloombox_Services_Wallet_V1_CardEnroll.Request) throws -> Bloombox_Services_Wallet_V1_CardEnroll.Response
   /// Asynchronous. Unary.
-  func personalizeCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request, completion: @escaping (Bloombox_Schema_Services_Wallet_V1_CardEnroll.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardCall
+  func personalizeCard(_ request: Bloombox_Services_Wallet_V1_CardEnroll.Request, completion: @escaping (Bloombox_Services_Wallet_V1_CardEnroll.Response?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletPersonalizeCardCall
 
   /// Synchronous. Unary.
-  func decommissionCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardVoid.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func decommissionCard(_ request: Bloombox_Services_Wallet_V1_CardVoid.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func decommissionCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardVoid.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardCall
+  func decommissionCard(_ request: Bloombox_Services_Wallet_V1_CardVoid.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletDecommissionCardCall
 
 }
 
-public final class Bloombox_Schema_Services_Wallet_V1_WalletServiceClient: ServiceClientBase, Bloombox_Schema_Services_Wallet_V1_WalletService {
+public final class Bloombox_Services_Wallet_V1_WalletServiceClient: ServiceClientBase, Bloombox_Services_Wallet_V1_WalletService {
   /// Synchronous. Unary.
-  public func provisionCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request) throws -> Bloombox_Schema_Services_Wallet_V1_CardProvision.Response {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardCallBase(channel)
+  public func provisionCard(_ request: Bloombox_Services_Wallet_V1_CardProvision.Request) throws -> Bloombox_Services_Wallet_V1_CardProvision.Response {
+    return try Bloombox_Services_Wallet_V1_WalletProvisionCardCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func provisionCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request, completion: @escaping (Bloombox_Schema_Services_Wallet_V1_CardProvision.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardCall {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardCallBase(channel)
+  public func provisionCard(_ request: Bloombox_Services_Wallet_V1_CardProvision.Request, completion: @escaping (Bloombox_Services_Wallet_V1_CardProvision.Response?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletProvisionCardCall {
+    return try Bloombox_Services_Wallet_V1_WalletProvisionCardCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func issueCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request) throws -> Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletIssueCardCallBase(channel)
+  public func issueCard(_ request: Bloombox_Services_Wallet_V1_CardIssuance.Request) throws -> Bloombox_Services_Wallet_V1_CardIssuance.Response {
+    return try Bloombox_Services_Wallet_V1_WalletIssueCardCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func issueCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request, completion: @escaping (Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletIssueCardCall {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletIssueCardCallBase(channel)
+  public func issueCard(_ request: Bloombox_Services_Wallet_V1_CardIssuance.Request, completion: @escaping (Bloombox_Services_Wallet_V1_CardIssuance.Response?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletIssueCardCall {
+    return try Bloombox_Services_Wallet_V1_WalletIssueCardCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func listCards(_ request: Bloombox_Schema_Services_Wallet_V1_CardList.Request) throws -> Bloombox_Schema_Services_Wallet_V1_CardList.Response {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletListCardsCallBase(channel)
+  public func listCards(_ request: Bloombox_Services_Wallet_V1_CardList.Request) throws -> Bloombox_Services_Wallet_V1_CardList.Response {
+    return try Bloombox_Services_Wallet_V1_WalletListCardsCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func listCards(_ request: Bloombox_Schema_Services_Wallet_V1_CardList.Request, completion: @escaping (Bloombox_Schema_Services_Wallet_V1_CardList.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletListCardsCall {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletListCardsCallBase(channel)
+  public func listCards(_ request: Bloombox_Services_Wallet_V1_CardList.Request, completion: @escaping (Bloombox_Services_Wallet_V1_CardList.Response?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletListCardsCall {
+    return try Bloombox_Services_Wallet_V1_WalletListCardsCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func activateCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardActivate.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletActivateCardCallBase(channel)
+  public func activateCard(_ request: Bloombox_Services_Wallet_V1_CardActivate.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Wallet_V1_WalletActivateCardCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func activateCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardActivate.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletActivateCardCall {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletActivateCardCallBase(channel)
+  public func activateCard(_ request: Bloombox_Services_Wallet_V1_CardActivate.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletActivateCardCall {
+    return try Bloombox_Services_Wallet_V1_WalletActivateCardCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func retrieveCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request) throws -> Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Response {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardCallBase(channel)
+  public func retrieveCard(_ request: Bloombox_Services_Wallet_V1_CardRetrieve.Request) throws -> Bloombox_Services_Wallet_V1_CardRetrieve.Response {
+    return try Bloombox_Services_Wallet_V1_WalletRetrieveCardCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func retrieveCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request, completion: @escaping (Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardCall {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardCallBase(channel)
+  public func retrieveCard(_ request: Bloombox_Services_Wallet_V1_CardRetrieve.Request, completion: @escaping (Bloombox_Services_Wallet_V1_CardRetrieve.Response?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletRetrieveCardCall {
+    return try Bloombox_Services_Wallet_V1_WalletRetrieveCardCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func personalizeCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request) throws -> Bloombox_Schema_Services_Wallet_V1_CardEnroll.Response {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardCallBase(channel)
+  public func personalizeCard(_ request: Bloombox_Services_Wallet_V1_CardEnroll.Request) throws -> Bloombox_Services_Wallet_V1_CardEnroll.Response {
+    return try Bloombox_Services_Wallet_V1_WalletPersonalizeCardCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func personalizeCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request, completion: @escaping (Bloombox_Schema_Services_Wallet_V1_CardEnroll.Response?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardCall {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardCallBase(channel)
+  public func personalizeCard(_ request: Bloombox_Services_Wallet_V1_CardEnroll.Request, completion: @escaping (Bloombox_Services_Wallet_V1_CardEnroll.Response?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletPersonalizeCardCall {
+    return try Bloombox_Services_Wallet_V1_WalletPersonalizeCardCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func decommissionCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardVoid.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardCallBase(channel)
+  public func decommissionCard(_ request: Bloombox_Services_Wallet_V1_CardVoid.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Wallet_V1_WalletDecommissionCardCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  public func decommissionCard(_ request: Bloombox_Schema_Services_Wallet_V1_CardVoid.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardCall {
-    return try Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardCallBase(channel)
+  public func decommissionCard(_ request: Bloombox_Services_Wallet_V1_CardVoid.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Wallet_V1_WalletDecommissionCardCall {
+    return try Bloombox_Services_Wallet_V1_WalletDecommissionCardCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
 }
-
-/// To build a server, implement a class that conforms to this protocol.
-/// If one of the methods returning `ServerStatus?` returns nil,
-/// it is expected that you have already returned a status to the client by means of `session.close`.
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletProvider: ServiceProvider {
-  func provisionCard(request: Bloombox_Schema_Services_Wallet_V1_CardProvision.Request, session: Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardSession) throws -> Bloombox_Schema_Services_Wallet_V1_CardProvision.Response
-  func issueCard(request: Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request, session: Bloombox_Schema_Services_Wallet_V1_WalletIssueCardSession) throws -> Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response
-  func listCards(request: Bloombox_Schema_Services_Wallet_V1_CardList.Request, session: Bloombox_Schema_Services_Wallet_V1_WalletListCardsSession) throws -> Bloombox_Schema_Services_Wallet_V1_CardList.Response
-  func activateCard(request: Bloombox_Schema_Services_Wallet_V1_CardActivate.Request, session: Bloombox_Schema_Services_Wallet_V1_WalletActivateCardSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  func retrieveCard(request: Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request, session: Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardSession) throws -> Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Response
-  func personalizeCard(request: Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request, session: Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardSession) throws -> Bloombox_Schema_Services_Wallet_V1_CardEnroll.Response
-  func decommissionCard(request: Bloombox_Schema_Services_Wallet_V1_CardVoid.Request, session: Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardSession) throws -> SwiftProtobuf.Google_Protobuf_Empty
-}
-
-extension Bloombox_Schema_Services_Wallet_V1_WalletProvider {
-  public var serviceName: String { return "bloombox.schema.services.wallet.v1.Wallet" }
-
-  /// Determines and calls the appropriate request handler, depending on the request's method.
-  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
-  public func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
-    switch method {
-    case "/bloombox.schema.services.wallet.v1.Wallet/ProvisionCard":
-      return try Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardSessionBase(
-        handler: handler,
-        providerBlock: { try self.provisionCard(request: $0, session: $1 as! Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardSessionBase) })
-          .run()
-    case "/bloombox.schema.services.wallet.v1.Wallet/IssueCard":
-      return try Bloombox_Schema_Services_Wallet_V1_WalletIssueCardSessionBase(
-        handler: handler,
-        providerBlock: { try self.issueCard(request: $0, session: $1 as! Bloombox_Schema_Services_Wallet_V1_WalletIssueCardSessionBase) })
-          .run()
-    case "/bloombox.schema.services.wallet.v1.Wallet/ListCards":
-      return try Bloombox_Schema_Services_Wallet_V1_WalletListCardsSessionBase(
-        handler: handler,
-        providerBlock: { try self.listCards(request: $0, session: $1 as! Bloombox_Schema_Services_Wallet_V1_WalletListCardsSessionBase) })
-          .run()
-    case "/bloombox.schema.services.wallet.v1.Wallet/ActivateCard":
-      return try Bloombox_Schema_Services_Wallet_V1_WalletActivateCardSessionBase(
-        handler: handler,
-        providerBlock: { try self.activateCard(request: $0, session: $1 as! Bloombox_Schema_Services_Wallet_V1_WalletActivateCardSessionBase) })
-          .run()
-    case "/bloombox.schema.services.wallet.v1.Wallet/RetrieveCard":
-      return try Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardSessionBase(
-        handler: handler,
-        providerBlock: { try self.retrieveCard(request: $0, session: $1 as! Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardSessionBase) })
-          .run()
-    case "/bloombox.schema.services.wallet.v1.Wallet/PersonalizeCard":
-      return try Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardSessionBase(
-        handler: handler,
-        providerBlock: { try self.personalizeCard(request: $0, session: $1 as! Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardSessionBase) })
-          .run()
-    case "/bloombox.schema.services.wallet.v1.Wallet/DecommissionCard":
-      return try Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardSessionBase(
-        handler: handler,
-        providerBlock: { try self.decommissionCard(request: $0, session: $1 as! Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardSessionBase) })
-          .run()
-    default:
-      throw HandleMethodError.unknownMethod
-    }
-  }
-}
-
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardProvision.Request, Bloombox_Schema_Services_Wallet_V1_CardProvision.Response>, Bloombox_Schema_Services_Wallet_V1_WalletProvisionCardSession {}
-
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletIssueCardSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletIssueCardSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardIssuance.Request, Bloombox_Schema_Services_Wallet_V1_CardIssuance.Response>, Bloombox_Schema_Services_Wallet_V1_WalletIssueCardSession {}
-
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletListCardsSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletListCardsSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardList.Request, Bloombox_Schema_Services_Wallet_V1_CardList.Response>, Bloombox_Schema_Services_Wallet_V1_WalletListCardsSession {}
-
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletActivateCardSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletActivateCardSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardActivate.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Wallet_V1_WalletActivateCardSession {}
-
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Request, Bloombox_Schema_Services_Wallet_V1_CardRetrieve.Response>, Bloombox_Schema_Services_Wallet_V1_WalletRetrieveCardSession {}
-
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardEnroll.Request, Bloombox_Schema_Services_Wallet_V1_CardEnroll.Response>, Bloombox_Schema_Services_Wallet_V1_WalletPersonalizeCardSession {}
-
-public protocol Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardSession: ServerSessionUnary {}
-
-fileprivate final class Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardSessionBase: ServerSessionUnaryBase<Bloombox_Schema_Services_Wallet_V1_CardVoid.Request, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Schema_Services_Wallet_V1_WalletDecommissionCardSession {}
 

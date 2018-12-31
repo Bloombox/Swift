@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates known errors that may be thrown by auth operations.
-public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// There was no error.
@@ -193,9 +193,9 @@ public enum Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum 
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: CaseIterable {
+extension Bloombox_Services_Auth_V1beta1_AuthError: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Auth_V1beta1_AuthError] = [
+  public static var allCases: [Bloombox_Services_Auth_V1beta1_AuthError] = [
     .noError,
     .accountSuspended,
     .profileNotFound,
@@ -232,7 +232,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: CaseIterable {
 
 /// Specifies a message payload wherein a user is asserting their identity via an email-based username and a regular
 /// string password, encoded and potentially encrypted by the frontend agent.
-public struct Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion {
+public struct Bloombox_Services_Auth_V1beta1_EmailPasswordAssertion {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -250,7 +250,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion {
 }
 
 /// Specifies a message payload containing a Firebase ID token provided during an auth flow on the frontend.
-public struct Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion {
+public struct Bloombox_Services_Auth_V1beta1_FirebaseTokenAssertion {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -267,7 +267,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion {
 }
 
 /// Specifies a generic assertion for account access privileges.
-public struct Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion {
+public struct Bloombox_Services_Auth_V1beta1_AccountAssertion {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -279,19 +279,19 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion {
   }
 
   /// Email/Password-based account login.
-  public var emailPassword: Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion {
+  public var emailPassword: Bloombox_Services_Auth_V1beta1_EmailPasswordAssertion {
     get {
       if case .emailPassword(let v)? = _storage._assertion {return v}
-      return Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion()
+      return Bloombox_Services_Auth_V1beta1_EmailPasswordAssertion()
     }
     set {_uniqueStorage()._assertion = .emailPassword(newValue)}
   }
 
   /// Firebase account login.
-  public var firebase: Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion {
+  public var firebase: Bloombox_Services_Auth_V1beta1_FirebaseTokenAssertion {
     get {
       if case .firebase(let v)? = _storage._assertion {return v}
-      return Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion()
+      return Bloombox_Services_Auth_V1beta1_FirebaseTokenAssertion()
     }
     set {_uniqueStorage()._assertion = .firebase(newValue)}
   }
@@ -301,12 +301,12 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion {
   /// Assertion provided by the user, based on their chosen login method.
   public enum OneOf_Assertion: Equatable {
     /// Email/Password-based account login.
-    case emailPassword(Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion)
+    case emailPassword(Bloombox_Services_Auth_V1beta1_EmailPasswordAssertion)
     /// Firebase account login.
-    case firebase(Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion)
+    case firebase(Bloombox_Services_Auth_V1beta1_FirebaseTokenAssertion)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion.OneOf_Assertion, rhs: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion.OneOf_Assertion) -> Bool {
+    public static func ==(lhs: Bloombox_Services_Auth_V1beta1_AccountAssertion.OneOf_Assertion, rhs: Bloombox_Services_Auth_V1beta1_AccountAssertion.OneOf_Assertion) -> Bool {
       switch (lhs, rhs) {
       case (.emailPassword(let l), .emailPassword(let r)): return l == r
       case (.firebase(let l), .firebase(let r)): return l == r
@@ -322,7 +322,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion {
 }
 
 /// Specifies an RPC operation wherein a user has requested an assertion of their identity be validated by the server.
-public struct Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser {
+public struct Bloombox_Services_Auth_V1beta1_AuthenticateUser {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -336,14 +336,14 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser {
     // methods supported on all messages.
 
     /// Provider the user would like to login with.
-    public var provider: Bloombox_Schema_Identity_IdentityProvider {
+    public var provider: Bloombox_Identity_IdentityProvider {
       get {return _storage._provider}
       set {_uniqueStorage()._provider = newValue}
     }
 
     /// Login credentials provided by the user or Firebase.
-    public var assertion: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion {
-      get {return _storage._assertion ?? Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion()}
+    public var assertion: Bloombox_Services_Auth_V1beta1_AccountAssertion {
+      get {return _storage._assertion ?? Bloombox_Services_Auth_V1beta1_AccountAssertion()}
       set {_uniqueStorage()._assertion = newValue}
     }
     /// Returns true if `assertion` has been explicitly set.
@@ -383,7 +383,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser {
 
 /// Specifies an operation to resolve authorized access credentials for Firebase and other services, based on a completed
 /// authentication and authorization/consent flow.
-public struct Bloombox_Schema_Services_Auth_V1beta1_ResolveToken {
+public struct Bloombox_Services_Auth_V1beta1_ResolveToken {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -433,8 +433,8 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_ResolveToken {
     }
 
     /// Combined authentication/authorization ticket.
-    public var auth: Bloombox_Schema_Security_AuthPayload {
-      get {return _storage._auth ?? Bloombox_Schema_Security_AuthPayload()}
+    public var auth: Bloombox_Security_AuthPayload {
+      get {return _storage._auth ?? Bloombox_Security_AuthPayload()}
       set {_uniqueStorage()._auth = newValue}
     }
     /// Returns true if `auth` has been explicitly set.
@@ -471,7 +471,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_ResolveToken {
 
 /// Specifies an operation wherein a user is demonstrating or indicating a decision regarding a consent flow, and would
 /// like to proceed with the next sensible action.
-public struct Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision {
+public struct Bloombox_Services_Auth_V1beta1_ConsentDecision {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -531,7 +531,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision {
 
 /// Specifies an operation to build a full user context after a successful ID and authorization/consent flow, including
 /// a fresh JWT, resolved user key and profile, and access roles/rights related to particular partner/location scopes.
-public struct Bloombox_Schema_Services_Auth_V1beta1_UserContext {
+public struct Bloombox_Services_Auth_V1beta1_UserContext {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -570,8 +570,8 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_UserContext {
     }
 
     /// User's profile object.
-    public var profile: Bloombox_Schema_Identity_User {
-      get {return _storage._profile ?? Bloombox_Schema_Identity_User()}
+    public var profile: Bloombox_Identity_User {
+      get {return _storage._profile ?? Bloombox_Identity_User()}
       set {_uniqueStorage()._profile = newValue}
     }
     /// Returns true if `profile` has been explicitly set.
@@ -590,7 +590,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_UserContext {
 }
 
 /// Retrieve a user's profile by their profile key.
-public struct Bloombox_Schema_Services_Auth_V1beta1_GetProfile {
+public struct Bloombox_Services_Auth_V1beta1_GetProfile {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -618,8 +618,8 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_GetProfile {
     // methods supported on all messages.
 
     /// User's profile object.
-    public var profile: Bloombox_Schema_Identity_User {
-      get {return _storage._profile ?? Bloombox_Schema_Identity_User()}
+    public var profile: Bloombox_Identity_User {
+      get {return _storage._profile ?? Bloombox_Identity_User()}
       set {_uniqueStorage()._profile = newValue}
     }
     /// Returns true if `profile` has been explicitly set.
@@ -638,7 +638,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_GetProfile {
 }
 
 /// Specifies an RPC operation to perform a consent flow through Hydra.
-public struct Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow {
+public struct Bloombox_Services_Auth_V1beta1_ConsentFlow {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -688,7 +688,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow {
 /// Specifies a one-time use "nonce," or, "number-used-once," which can be used to initiate a secure authorization flow.
 /// Client devices and applications request this value before proceeding to verify the user's identity, and then provide
 /// it in the identity assertion token later passed to the server during "connect" or "context"-phase methods.
-public struct Bloombox_Schema_Services_Auth_V1beta1_AuthNonce {
+public struct Bloombox_Services_Auth_V1beta1_AuthNonce {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -705,7 +705,7 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_AuthNonce {
 /// Specifies an RPC operation to connect a validated and signed user identity with their account. If the user has done
 /// this before, there will be an existing consumer-side account - if not, an account is created under the hood, and
 /// auto-linked with their identity.
-public struct Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect {
+public struct Bloombox_Services_Auth_V1beta1_IdentityConnect {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -780,8 +780,8 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect {
     /// Resolved key for the subject user. A user key is distinguished from a UID, in that it addresses an actual account
     /// and user profile payload, rather than just pointing to an identity that can be linked to a full account. User
     /// keys are used for interacting with the API in an identity agnostic manner, post-authorization.
-    public var key: Bloombox_Schema_Identity_UserKey {
-      get {return _storage._key ?? Bloombox_Schema_Identity_UserKey()}
+    public var key: Bloombox_Identity_UserKey {
+      get {return _storage._key ?? Bloombox_Identity_UserKey()}
       set {_uniqueStorage()._key = newValue}
     }
     /// Returns true if `key` has been explicitly set.
@@ -792,8 +792,8 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect {
     /// Authorization token, issued in response to the ID token provided in the request. Issued and signed by the server
     /// to indicate applicable top-level user permissions, and implies the user account was authenticated, authorized,
     /// and enabled to use the state associated with this token.
-    public var token: Bloombox_Schema_Security_AuthToken {
-      get {return _storage._token ?? Bloombox_Schema_Security_AuthToken()}
+    public var token: Bloombox_Security_AuthToken {
+      get {return _storage._token ?? Bloombox_Security_AuthToken()}
       set {_uniqueStorage()._token = newValue}
     }
     /// Returns true if `token` has been explicitly set.
@@ -808,10 +808,10 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect {
 
     /// Resulting user profile, either generated from the user based on the provided identity information, or returned
     /// from an earlier enrollment/authentication process, where it was established and confirmed by the user.
-    public var profile: Bloombox_Schema_Identity_User {
+    public var profile: Bloombox_Identity_User {
       get {
         if case .profile(let v)? = _storage._result {return v}
-        return Bloombox_Schema_Identity_User()
+        return Bloombox_Identity_User()
       }
       set {_uniqueStorage()._result = .profile(newValue)}
     }
@@ -832,14 +832,14 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect {
     public enum OneOf_Result: Equatable {
       /// Resulting user profile, either generated from the user based on the provided identity information, or returned
       /// from an earlier enrollment/authentication process, where it was established and confirmed by the user.
-      case profile(Bloombox_Schema_Identity_User)
+      case profile(Bloombox_Identity_User)
       /// Flag indicating that the user needs to perform setup in order to establish a profile. If `setup` is seen as
       /// true, it will trigger the client-side application to enter a signup flow, which must pre-adopt the identity
       /// data provided earlier in the flow by the client device.
       case setup(Bool)
 
     #if !swift(>=4.1)
-      public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response.OneOf_Result, rhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response.OneOf_Result) -> Bool {
+      public static func ==(lhs: Bloombox_Services_Auth_V1beta1_IdentityConnect.Response.OneOf_Result, rhs: Bloombox_Services_Auth_V1beta1_IdentityConnect.Response.OneOf_Result) -> Bool {
         switch (lhs, rhs) {
         case (.profile(let l), .profile(let r)): return l == r
         case (.setup(let l), .setup(let r)): return l == r
@@ -857,11 +857,49 @@ public struct Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect {
   public init() {}
 }
 
+public struct Bloombox_Services_Auth_V1beta1_ProfileUpdate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// key to reference the profile user's object from the database.
+    public var user: String {
+      get {return _storage._user}
+      set {_uniqueStorage()._user = newValue}
+    }
+
+    /// Profile to update the user profile with.
+    public var profile: Bloombox_Identity_User {
+      get {return _storage._profile ?? Bloombox_Identity_User()}
+      set {_uniqueStorage()._profile = newValue}
+    }
+    /// Returns true if `profile` has been explicitly set.
+    public var hasProfile: Bool {return _storage._profile != nil}
+    /// Clears the value of `profile`. Subsequent reads from it will return its default value.
+    public mutating func clearProfile() {_uniqueStorage()._profile = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  public init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.services.auth.v1beta1"
+fileprivate let _protobuf_package = "bloombox.services.auth.v1beta1"
 
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_AuthError: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_ERROR"),
     1: .same(proto: "ACCOUNT_SUSPENDED"),
@@ -895,7 +933,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthError: SwiftProtobuf._ProtoN
   ]
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_EmailPasswordAssertion: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EmailPasswordAssertion"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "email"),
@@ -922,7 +960,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion, rhs: Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_EmailPasswordAssertion, rhs: Bloombox_Services_Auth_V1beta1_EmailPasswordAssertion) -> Bool {
     if lhs.email != rhs.email {return false}
     if lhs.password != rhs.password {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -930,7 +968,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_FirebaseTokenAssertion: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FirebaseTokenAssertion"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "token"),
@@ -957,7 +995,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion, rhs: Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_FirebaseTokenAssertion, rhs: Bloombox_Services_Auth_V1beta1_FirebaseTokenAssertion) -> Bool {
     if lhs.token != rhs.token {return false}
     if lhs.uid != rhs.uid {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -965,7 +1003,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AccountAssertion"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "email_password"),
@@ -973,7 +1011,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf.
   ]
 
   fileprivate class _StorageClass {
-    var _assertion: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion.OneOf_Assertion?
+    var _assertion: Bloombox_Services_Auth_V1beta1_AccountAssertion.OneOf_Assertion?
 
     static let defaultInstance = _StorageClass()
 
@@ -997,7 +1035,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf.
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1:
-          var v: Bloombox_Schema_Services_Auth_V1beta1_EmailPasswordAssertion?
+          var v: Bloombox_Services_Auth_V1beta1_EmailPasswordAssertion?
           if let current = _storage._assertion {
             try decoder.handleConflictingOneOf()
             if case .emailPassword(let m) = current {v = m}
@@ -1005,7 +1043,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf.
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._assertion = .emailPassword(v)}
         case 2:
-          var v: Bloombox_Schema_Services_Auth_V1beta1_FirebaseTokenAssertion?
+          var v: Bloombox_Services_Auth_V1beta1_FirebaseTokenAssertion?
           if let current = _storage._assertion {
             try decoder.handleConflictingOneOf()
             if case .firebase(let m) = current {v = m}
@@ -1031,7 +1069,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion, rhs: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_AccountAssertion, rhs: Bloombox_Services_Auth_V1beta1_AccountAssertion) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1046,7 +1084,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion: SwiftProtobuf.
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_AuthenticateUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AuthenticateUser"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1059,22 +1097,22 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser, rhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_AuthenticateUser, rhs: Bloombox_Services_Auth_V1beta1_AuthenticateUser) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.protoMessageName + ".Request"
+extension Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_AuthenticateUser.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "provider"),
     2: .same(proto: "assertion"),
   ]
 
   fileprivate class _StorageClass {
-    var _provider: Bloombox_Schema_Identity_IdentityProvider = .email
-    var _assertion: Bloombox_Schema_Services_Auth_V1beta1_AccountAssertion? = nil
+    var _provider: Bloombox_Identity_IdentityProvider = .email
+    var _assertion: Bloombox_Services_Auth_V1beta1_AccountAssertion? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1118,7 +1156,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request, rhs: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1134,8 +1172,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftP
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.protoMessageName + ".Response"
+extension Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_AuthenticateUser.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
     2: .same(proto: "key"),
@@ -1166,7 +1204,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response: Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response, rhs: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response) -> Bool {
     if lhs.uid != rhs.uid {return false}
     if lhs.key != rhs.key {return false}
     if lhs.token != rhs.token {return false}
@@ -1175,7 +1213,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthenticateUser.Response: Swift
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_ResolveToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ResolveToken"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1188,14 +1226,14 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken, rhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ResolveToken, rhs: Bloombox_Services_Auth_V1beta1_ResolveToken) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.protoMessageName + ".Request"
+extension Bloombox_Services_Auth_V1beta1_ResolveToken.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_ResolveToken.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "client_id"),
     2: .same(proto: "origin"),
@@ -1213,7 +1251,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request: SwiftProto
     var _captcha: String = String()
     var _session: String = String()
     var _fingerprint: String = String()
-    var _auth: Bloombox_Schema_Security_AuthPayload? = nil
+    var _auth: Bloombox_Security_AuthPayload? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1282,7 +1320,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ResolveToken.Request, rhs: Bloombox_Services_Auth_V1beta1_ResolveToken.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1303,8 +1341,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Request: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.protoMessageName + ".Response"
+extension Bloombox_Services_Auth_V1beta1_ResolveToken.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_ResolveToken.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "app"),
     2: .same(proto: "db"),
@@ -1330,7 +1368,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ResolveToken.Response, rhs: Bloombox_Services_Auth_V1beta1_ResolveToken.Response) -> Bool {
     if lhs.app != rhs.app {return false}
     if lhs.db != rhs.db {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1338,7 +1376,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ResolveToken.Response: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_ConsentDecision: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ConsentDecision"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1351,14 +1389,14 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ConsentDecision, rhs: Bloombox_Services_Auth_V1beta1_ConsentDecision) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.protoMessageName + ".Accept"
+extension Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_ConsentDecision.protoMessageName + ".Accept"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
     2: .same(proto: "consent"),
@@ -1389,7 +1427,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept, rhs: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept) -> Bool {
     if lhs.uid != rhs.uid {return false}
     if lhs.consent != rhs.consent {return false}
     if lhs.scope != rhs.scope {return false}
@@ -1398,8 +1436,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Accept: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.protoMessageName + ".Reject"
+extension Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_ConsentDecision.protoMessageName + ".Reject"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
     2: .same(proto: "consent"),
@@ -1425,7 +1463,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject, rhs: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject) -> Bool {
     if lhs.uid != rhs.uid {return false}
     if lhs.consent != rhs.consent {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1433,8 +1471,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Reject: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.protoMessageName + ".Response"
+extension Bloombox_Services_Auth_V1beta1_ConsentDecision.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_ConsentDecision.protoMessageName + ".Response"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1446,13 +1484,13 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Response: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentDecision.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ConsentDecision.Response, rhs: Bloombox_Services_Auth_V1beta1_ConsentDecision.Response) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_UserContext: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_UserContext: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UserContext"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1465,14 +1503,14 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext, rhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_UserContext, rhs: Bloombox_Services_Auth_V1beta1_UserContext) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_UserContext.protoMessageName + ".Request"
+extension Bloombox_Services_Auth_V1beta1_UserContext.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_UserContext.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uid"),
     2: .same(proto: "session"),
@@ -1498,7 +1536,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_UserContext.Request, rhs: Bloombox_Services_Auth_V1beta1_UserContext.Request) -> Bool {
     if lhs.uid != rhs.uid {return false}
     if lhs.session != rhs.session {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -1506,8 +1544,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Request: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_UserContext.protoMessageName + ".Response"
+extension Bloombox_Services_Auth_V1beta1_UserContext.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_UserContext.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "profile"),
@@ -1515,7 +1553,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response: SwiftProto
 
   fileprivate class _StorageClass {
     var _key: String = String()
-    var _profile: Bloombox_Schema_Identity_User? = nil
+    var _profile: Bloombox_Identity_User? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1559,7 +1597,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_UserContext.Response, rhs: Bloombox_Services_Auth_V1beta1_UserContext.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1575,7 +1613,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_UserContext.Response: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_GetProfile: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetProfile"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1588,14 +1626,14 @@ extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile, rhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_GetProfile, rhs: Bloombox_Services_Auth_V1beta1_GetProfile) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_GetProfile.protoMessageName + ".Request"
+extension Bloombox_Services_Auth_V1beta1_GetProfile.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_GetProfile.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "user"),
   ]
@@ -1616,21 +1654,21 @@ extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_GetProfile.Request, rhs: Bloombox_Services_Auth_V1beta1_GetProfile.Request) -> Bool {
     if lhs.user != rhs.user {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_GetProfile.protoMessageName + ".Response"
+extension Bloombox_Services_Auth_V1beta1_GetProfile.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_GetProfile.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "profile"),
   ]
 
   fileprivate class _StorageClass {
-    var _profile: Bloombox_Schema_Identity_User? = nil
+    var _profile: Bloombox_Identity_User? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1669,7 +1707,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_GetProfile.Response, rhs: Bloombox_Services_Auth_V1beta1_GetProfile.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1684,7 +1722,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_GetProfile.Response: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_ConsentFlow: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ConsentFlow"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1697,14 +1735,14 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ConsentFlow, rhs: Bloombox_Services_Auth_V1beta1_ConsentFlow) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.protoMessageName + ".Request"
+extension Bloombox_Services_Auth_V1beta1_ConsentFlow.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_ConsentFlow.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "consent"),
   ]
@@ -1725,15 +1763,15 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request, rhs: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request) -> Bool {
     if lhs.consent != rhs.consent {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.protoMessageName + ".Response"
+extension Bloombox_Services_Auth_V1beta1_ConsentFlow.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_ConsentFlow.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "ticket"),
   ]
@@ -1778,7 +1816,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ConsentFlow.Response, rhs: Bloombox_Services_Auth_V1beta1_ConsentFlow.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1793,7 +1831,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_ConsentFlow.Response: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_AuthNonce: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_AuthNonce: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AuthNonce"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "nonce"),
@@ -1815,14 +1853,14 @@ extension Bloombox_Schema_Services_Auth_V1beta1_AuthNonce: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_AuthNonce, rhs: Bloombox_Schema_Services_Auth_V1beta1_AuthNonce) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_AuthNonce, rhs: Bloombox_Services_Auth_V1beta1_AuthNonce) -> Bool {
     if lhs.nonce != rhs.nonce {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Auth_V1beta1_IdentityConnect: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".IdentityConnect"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1835,14 +1873,14 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect, rhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_IdentityConnect, rhs: Bloombox_Services_Auth_V1beta1_IdentityConnect) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.protoMessageName + ".Request"
+extension Bloombox_Services_Auth_V1beta1_IdentityConnect.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_IdentityConnect.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "token"),
     2: .same(proto: "apns"),
@@ -1898,7 +1936,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request, rhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request, rhs: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request) -> Bool {
     if lhs.token != rhs.token {return false}
     if lhs.apns != rhs.apns {return false}
     if lhs.fcm != rhs.fcm {return false}
@@ -1912,8 +1950,8 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Request: SwiftPr
   }
 }
 
-extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.protoMessageName + ".Response"
+extension Bloombox_Services_Auth_V1beta1_IdentityConnect.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_IdentityConnect.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "token"),
@@ -1922,9 +1960,9 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftP
   ]
 
   fileprivate class _StorageClass {
-    var _key: Bloombox_Schema_Identity_UserKey? = nil
-    var _token: Bloombox_Schema_Security_AuthToken? = nil
-    var _result: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response.OneOf_Result?
+    var _key: Bloombox_Identity_UserKey? = nil
+    var _token: Bloombox_Security_AuthToken? = nil
+    var _result: Bloombox_Services_Auth_V1beta1_IdentityConnect.Response.OneOf_Result?
 
     static let defaultInstance = _StorageClass()
 
@@ -1952,7 +1990,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftP
         case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._token)
         case 3:
-          var v: Bloombox_Schema_Identity_User?
+          var v: Bloombox_Identity_User?
           if let current = _storage._result {
             try decoder.handleConflictingOneOf()
             if case .profile(let m) = current {v = m}
@@ -1989,7 +2027,7 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response, rhs: Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_IdentityConnect.Response, rhs: Bloombox_Services_Auth_V1beta1_IdentityConnect.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1997,6 +2035,94 @@ extension Bloombox_Schema_Services_Auth_V1beta1_IdentityConnect.Response: SwiftP
         if _storage._key != rhs_storage._key {return false}
         if _storage._token != rhs_storage._token {return false}
         if _storage._result != rhs_storage._result {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Auth_V1beta1_ProfileUpdate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ProfileUpdate"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ProfileUpdate, rhs: Bloombox_Services_Auth_V1beta1_ProfileUpdate) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_ProfileUpdate.protoMessageName + ".Request"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "user"),
+    3: .same(proto: "profile"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _user: String = String()
+    var _profile: Bloombox_Identity_User? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _user = source._user
+      _profile = source._profile
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._user)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._profile)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._user.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._user, fieldNumber: 1)
+      }
+      if let v = _storage._profile {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request, rhs: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._user != rhs_storage._user {return false}
+        if _storage._profile != rhs_storage._profile {return false}
         return true
       }
       if !storagesAreEqual {return false}

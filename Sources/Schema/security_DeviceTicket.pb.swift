@@ -24,14 +24,14 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies an auth token issued to a device, or some other machine-based actor.
-public struct Bloombox_Schema_Security_DeviceTicket {
+public struct Bloombox_Security_DeviceTicket {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Authentication token, usable by this device to authenticate to the API, etc.
-  public var token: Bloombox_Schema_Security_AuthToken {
-    get {return _storage._token ?? Bloombox_Schema_Security_AuthToken()}
+  public var token: Bloombox_Security_AuthToken {
+    get {return _storage._token ?? Bloombox_Security_AuthToken()}
     set {_uniqueStorage()._token = newValue}
   }
   /// Returns true if `token` has been explicitly set.
@@ -78,9 +78,9 @@ public struct Bloombox_Schema_Security_DeviceTicket {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.security"
+fileprivate let _protobuf_package = "bloombox.security"
 
-extension Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_DeviceTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeviceTicket"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "token"),
@@ -90,7 +90,7 @@ extension Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf.Message, SwiftPro
   ]
 
   fileprivate class _StorageClass {
-    var _token: Bloombox_Schema_Security_AuthToken? = nil
+    var _token: Bloombox_Security_AuthToken? = nil
     var _device: Opencannabis_Device_Device? = nil
     var _issued: Opencannabis_Temporal_Instant? = nil
     var _expires: Opencannabis_Temporal_Instant? = nil
@@ -147,7 +147,7 @@ extension Bloombox_Schema_Security_DeviceTicket: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Security_DeviceTicket, rhs: Bloombox_Schema_Security_DeviceTicket) -> Bool {
+  public static func ==(lhs: Bloombox_Security_DeviceTicket, rhs: Bloombox_Security_DeviceTicket) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

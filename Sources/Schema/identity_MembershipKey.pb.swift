@@ -25,7 +25,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Represents a key that refers to a user account identity, as it is connected (if applicable) within a given partner or
 /// location scope.
-public struct Bloombox_Schema_Identity_MembershipKey {
+public struct Bloombox_Identity_MembershipKey {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -37,8 +37,8 @@ public struct Bloombox_Schema_Identity_MembershipKey {
   }
 
   /// Key specifying the user for which this membership was established.
-  public var user: Bloombox_Schema_Identity_UserKey {
-    get {return _storage._user ?? Bloombox_Schema_Identity_UserKey()}
+  public var user: Bloombox_Identity_UserKey {
+    get {return _storage._user ?? Bloombox_Identity_UserKey()}
     set {_uniqueStorage()._user = newValue}
   }
   /// Returns true if `user` has been explicitly set.
@@ -52,19 +52,19 @@ public struct Bloombox_Schema_Identity_MembershipKey {
   }
 
   /// Specifies the partner under which this membership applies.
-  public var partner: Bloombox_Schema_Partner_PartnerKey {
+  public var partner: Bloombox_Partner_PartnerKey {
     get {
       if case .partner(let v)? = _storage._scope {return v}
-      return Bloombox_Schema_Partner_PartnerKey()
+      return Bloombox_Partner_PartnerKey()
     }
     set {_uniqueStorage()._scope = .partner(newValue)}
   }
 
   /// Specifies the location under which this membership applies.
-  public var location: Bloombox_Schema_Partner_LocationKey {
+  public var location: Bloombox_Partner_LocationKey {
     get {
       if case .location(let v)? = _storage._scope {return v}
-      return Bloombox_Schema_Partner_LocationKey()
+      return Bloombox_Partner_LocationKey()
     }
     set {_uniqueStorage()._scope = .location(newValue)}
   }
@@ -73,12 +73,12 @@ public struct Bloombox_Schema_Identity_MembershipKey {
 
   public enum OneOf_Scope: Equatable {
     /// Specifies the partner under which this membership applies.
-    case partner(Bloombox_Schema_Partner_PartnerKey)
+    case partner(Bloombox_Partner_PartnerKey)
     /// Specifies the location under which this membership applies.
-    case location(Bloombox_Schema_Partner_LocationKey)
+    case location(Bloombox_Partner_LocationKey)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Identity_MembershipKey.OneOf_Scope, rhs: Bloombox_Schema_Identity_MembershipKey.OneOf_Scope) -> Bool {
+    public static func ==(lhs: Bloombox_Identity_MembershipKey.OneOf_Scope, rhs: Bloombox_Identity_MembershipKey.OneOf_Scope) -> Bool {
       switch (lhs, rhs) {
       case (.partner(let l), .partner(let r)): return l == r
       case (.location(let l), .location(let r)): return l == r
@@ -94,14 +94,14 @@ public struct Bloombox_Schema_Identity_MembershipKey {
 }
 
 /// Makes reference to a user in a particular membership context.
-public struct Bloombox_Schema_Identity_MembershipReference {
+public struct Bloombox_Identity_MembershipReference {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies a unique code identifying this user membership.
-  public var key: Bloombox_Schema_Identity_MembershipKey {
-    get {return _storage._key ?? Bloombox_Schema_Identity_MembershipKey()}
+  public var key: Bloombox_Identity_MembershipKey {
+    get {return _storage._key ?? Bloombox_Identity_MembershipKey()}
     set {_uniqueStorage()._key = newValue}
   }
   /// Returns true if `key` has been explicitly set.
@@ -138,9 +138,9 @@ public struct Bloombox_Schema_Identity_MembershipReference {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity"
+fileprivate let _protobuf_package = "bloombox.identity"
 
-extension Bloombox_Schema_Identity_MembershipKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_MembershipKey: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MembershipKey"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "uuid"),
@@ -151,8 +151,8 @@ extension Bloombox_Schema_Identity_MembershipKey: SwiftProtobuf.Message, SwiftPr
 
   fileprivate class _StorageClass {
     var _uuid: String = String()
-    var _user: Bloombox_Schema_Identity_UserKey? = nil
-    var _scope: Bloombox_Schema_Identity_MembershipKey.OneOf_Scope?
+    var _user: Bloombox_Identity_UserKey? = nil
+    var _scope: Bloombox_Identity_MembershipKey.OneOf_Scope?
 
     static let defaultInstance = _StorageClass()
 
@@ -180,7 +180,7 @@ extension Bloombox_Schema_Identity_MembershipKey: SwiftProtobuf.Message, SwiftPr
         case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._user)
         case 3:
-          var v: Bloombox_Schema_Partner_PartnerKey?
+          var v: Bloombox_Partner_PartnerKey?
           if let current = _storage._scope {
             try decoder.handleConflictingOneOf()
             if case .partner(let m) = current {v = m}
@@ -188,7 +188,7 @@ extension Bloombox_Schema_Identity_MembershipKey: SwiftProtobuf.Message, SwiftPr
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._scope = .partner(v)}
         case 4:
-          var v: Bloombox_Schema_Partner_LocationKey?
+          var v: Bloombox_Partner_LocationKey?
           if let current = _storage._scope {
             try decoder.handleConflictingOneOf()
             if case .location(let m) = current {v = m}
@@ -220,7 +220,7 @@ extension Bloombox_Schema_Identity_MembershipKey: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_MembershipKey, rhs: Bloombox_Schema_Identity_MembershipKey) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_MembershipKey, rhs: Bloombox_Identity_MembershipKey) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -237,7 +237,7 @@ extension Bloombox_Schema_Identity_MembershipKey: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Bloombox_Schema_Identity_MembershipReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_MembershipReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MembershipReference"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -246,7 +246,7 @@ extension Bloombox_Schema_Identity_MembershipReference: SwiftProtobuf.Message, S
   ]
 
   fileprivate class _StorageClass {
-    var _key: Bloombox_Schema_Identity_MembershipKey? = nil
+    var _key: Bloombox_Identity_MembershipKey? = nil
     var _name: Opencannabis_Person_Name? = nil
     var _portrait: Opencannabis_Media_MediaKey? = nil
 
@@ -297,7 +297,7 @@ extension Bloombox_Schema_Identity_MembershipReference: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_MembershipReference, rhs: Bloombox_Schema_Identity_MembershipReference) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_MembershipReference, rhs: Bloombox_Identity_MembershipReference) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

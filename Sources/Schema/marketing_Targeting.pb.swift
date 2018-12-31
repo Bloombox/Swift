@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies an age range as a targeting parameter.
-public struct Bloombox_Schema_Marketing_AgeTargeting {
+public struct Bloombox_Marketing_AgeTargeting {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -40,7 +40,7 @@ public struct Bloombox_Schema_Marketing_AgeTargeting {
 }
 
 /// Target a specific gender.
-public struct Bloombox_Schema_Marketing_GenderTargeting {
+public struct Bloombox_Marketing_GenderTargeting {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -54,14 +54,14 @@ public struct Bloombox_Schema_Marketing_GenderTargeting {
 }
 
 /// Specifies menu preferences to target users by.
-public struct Bloombox_Schema_Marketing_PreferenceTargeting {
+public struct Bloombox_Marketing_PreferenceTargeting {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Menu preferences, stated by a user, to target by a given campaign.
-  public var menu: Bloombox_Schema_Identity_MenuPreferences {
-    get {return _storage._menu ?? Bloombox_Schema_Identity_MenuPreferences()}
+  public var menu: Bloombox_Identity_MenuPreferences {
+    get {return _storage._menu ?? Bloombox_Identity_MenuPreferences()}
     set {_uniqueStorage()._menu = newValue}
   }
   /// Returns true if `menu` has been explicitly set.
@@ -77,7 +77,7 @@ public struct Bloombox_Schema_Marketing_PreferenceTargeting {
 }
 
 /// Targeting policy block, that binds a targeting configuration to a campaign.
-public struct Bloombox_Schema_Marketing_TargetingPolicy {
+public struct Bloombox_Marketing_TargetingPolicy {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -95,28 +95,28 @@ public struct Bloombox_Schema_Marketing_TargetingPolicy {
   }
 
   /// Age-based user targeting.
-  public var age: Bloombox_Schema_Marketing_AgeTargeting {
+  public var age: Bloombox_Marketing_AgeTargeting {
     get {
       if case .age(let v)? = _storage._policy {return v}
-      return Bloombox_Schema_Marketing_AgeTargeting()
+      return Bloombox_Marketing_AgeTargeting()
     }
     set {_uniqueStorage()._policy = .age(newValue)}
   }
 
   /// Gender-based user targeting.
-  public var gender: Bloombox_Schema_Marketing_GenderTargeting {
+  public var gender: Bloombox_Marketing_GenderTargeting {
     get {
       if case .gender(let v)? = _storage._policy {return v}
-      return Bloombox_Schema_Marketing_GenderTargeting()
+      return Bloombox_Marketing_GenderTargeting()
     }
     set {_uniqueStorage()._policy = .gender(newValue)}
   }
 
   /// Menu-preference-based targeting.
-  public var preferences: Bloombox_Schema_Marketing_PreferenceTargeting {
+  public var preferences: Bloombox_Marketing_PreferenceTargeting {
     get {
       if case .preferences(let v)? = _storage._policy {return v}
-      return Bloombox_Schema_Marketing_PreferenceTargeting()
+      return Bloombox_Marketing_PreferenceTargeting()
     }
     set {_uniqueStorage()._policy = .preferences(newValue)}
   }
@@ -126,14 +126,14 @@ public struct Bloombox_Schema_Marketing_TargetingPolicy {
   /// Policy for a given type of user targeting.
   public enum OneOf_Policy: Equatable {
     /// Age-based user targeting.
-    case age(Bloombox_Schema_Marketing_AgeTargeting)
+    case age(Bloombox_Marketing_AgeTargeting)
     /// Gender-based user targeting.
-    case gender(Bloombox_Schema_Marketing_GenderTargeting)
+    case gender(Bloombox_Marketing_GenderTargeting)
     /// Menu-preference-based targeting.
-    case preferences(Bloombox_Schema_Marketing_PreferenceTargeting)
+    case preferences(Bloombox_Marketing_PreferenceTargeting)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Marketing_TargetingPolicy.OneOf_Policy, rhs: Bloombox_Schema_Marketing_TargetingPolicy.OneOf_Policy) -> Bool {
+    public static func ==(lhs: Bloombox_Marketing_TargetingPolicy.OneOf_Policy, rhs: Bloombox_Marketing_TargetingPolicy.OneOf_Policy) -> Bool {
       switch (lhs, rhs) {
       case (.age(let l), .age(let r)): return l == r
       case (.gender(let l), .gender(let r)): return l == r
@@ -151,9 +151,9 @@ public struct Bloombox_Schema_Marketing_TargetingPolicy {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.marketing"
+fileprivate let _protobuf_package = "bloombox.marketing"
 
-extension Bloombox_Schema_Marketing_AgeTargeting: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_AgeTargeting: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AgeTargeting"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "strict"),
@@ -185,7 +185,7 @@ extension Bloombox_Schema_Marketing_AgeTargeting: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Marketing_AgeTargeting, rhs: Bloombox_Schema_Marketing_AgeTargeting) -> Bool {
+  public static func ==(lhs: Bloombox_Marketing_AgeTargeting, rhs: Bloombox_Marketing_AgeTargeting) -> Bool {
     if lhs.strict != rhs.strict {return false}
     if lhs.minimum != rhs.minimum {return false}
     if lhs.maximum != rhs.maximum {return false}
@@ -194,7 +194,7 @@ extension Bloombox_Schema_Marketing_AgeTargeting: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Bloombox_Schema_Marketing_GenderTargeting: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_GenderTargeting: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GenderTargeting"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "target"),
@@ -216,21 +216,21 @@ extension Bloombox_Schema_Marketing_GenderTargeting: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Marketing_GenderTargeting, rhs: Bloombox_Schema_Marketing_GenderTargeting) -> Bool {
+  public static func ==(lhs: Bloombox_Marketing_GenderTargeting, rhs: Bloombox_Marketing_GenderTargeting) -> Bool {
     if lhs.target != rhs.target {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Marketing_PreferenceTargeting: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_PreferenceTargeting: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PreferenceTargeting"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "menu"),
   ]
 
   fileprivate class _StorageClass {
-    var _menu: Bloombox_Schema_Identity_MenuPreferences? = nil
+    var _menu: Bloombox_Identity_MenuPreferences? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -269,7 +269,7 @@ extension Bloombox_Schema_Marketing_PreferenceTargeting: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Marketing_PreferenceTargeting, rhs: Bloombox_Schema_Marketing_PreferenceTargeting) -> Bool {
+  public static func ==(lhs: Bloombox_Marketing_PreferenceTargeting, rhs: Bloombox_Marketing_PreferenceTargeting) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -284,7 +284,7 @@ extension Bloombox_Schema_Marketing_PreferenceTargeting: SwiftProtobuf.Message, 
   }
 }
 
-extension Bloombox_Schema_Marketing_TargetingPolicy: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Marketing_TargetingPolicy: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TargetingPolicy"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "enabled"),
@@ -295,7 +295,7 @@ extension Bloombox_Schema_Marketing_TargetingPolicy: SwiftProtobuf.Message, Swif
 
   fileprivate class _StorageClass {
     var _enabled: Bool = false
-    var _policy: Bloombox_Schema_Marketing_TargetingPolicy.OneOf_Policy?
+    var _policy: Bloombox_Marketing_TargetingPolicy.OneOf_Policy?
 
     static let defaultInstance = _StorageClass()
 
@@ -321,7 +321,7 @@ extension Bloombox_Schema_Marketing_TargetingPolicy: SwiftProtobuf.Message, Swif
         switch fieldNumber {
         case 1: try decoder.decodeSingularBoolField(value: &_storage._enabled)
         case 2:
-          var v: Bloombox_Schema_Marketing_AgeTargeting?
+          var v: Bloombox_Marketing_AgeTargeting?
           if let current = _storage._policy {
             try decoder.handleConflictingOneOf()
             if case .age(let m) = current {v = m}
@@ -329,7 +329,7 @@ extension Bloombox_Schema_Marketing_TargetingPolicy: SwiftProtobuf.Message, Swif
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._policy = .age(v)}
         case 3:
-          var v: Bloombox_Schema_Marketing_GenderTargeting?
+          var v: Bloombox_Marketing_GenderTargeting?
           if let current = _storage._policy {
             try decoder.handleConflictingOneOf()
             if case .gender(let m) = current {v = m}
@@ -337,7 +337,7 @@ extension Bloombox_Schema_Marketing_TargetingPolicy: SwiftProtobuf.Message, Swif
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._policy = .gender(v)}
         case 4:
-          var v: Bloombox_Schema_Marketing_PreferenceTargeting?
+          var v: Bloombox_Marketing_PreferenceTargeting?
           if let current = _storage._policy {
             try decoder.handleConflictingOneOf()
             if case .preferences(let m) = current {v = m}
@@ -368,7 +368,7 @@ extension Bloombox_Schema_Marketing_TargetingPolicy: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Marketing_TargetingPolicy, rhs: Bloombox_Schema_Marketing_TargetingPolicy) -> Bool {
+  public static func ==(lhs: Bloombox_Marketing_TargetingPolicy, rhs: Bloombox_Marketing_TargetingPolicy) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

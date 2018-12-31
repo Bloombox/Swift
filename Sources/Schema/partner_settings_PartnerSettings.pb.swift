@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies an individual notification target for alerting.
-public struct Bloombox_Schema_Partner_Settings_PartnerNotificationTarget {
+public struct Bloombox_Partner_Settings_PartnerNotificationTarget {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -68,7 +68,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerNotificationTarget {
     case email(Opencannabis_Contact_EmailAddress)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Bloombox_Schema_Partner_Settings_PartnerNotificationTarget.OneOf_Contact, rhs: Bloombox_Schema_Partner_Settings_PartnerNotificationTarget.OneOf_Contact) -> Bool {
+    public static func ==(lhs: Bloombox_Partner_Settings_PartnerNotificationTarget.OneOf_Contact, rhs: Bloombox_Partner_Settings_PartnerNotificationTarget.OneOf_Contact) -> Bool {
       switch (lhs, rhs) {
       case (.phone(let l), .phone(let r)): return l == r
       case (.email(let l), .email(let r)): return l == r
@@ -84,7 +84,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerNotificationTarget {
 }
 
 /// Specifies event-level alerting settings.
-public struct Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings {
+public struct Bloombox_Partner_Settings_PartnerEventAlertingSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -104,14 +104,14 @@ public struct Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings {
 }
 
 /// Alerting and notification settings.
-public struct Bloombox_Schema_Partner_Settings_PartnerAlertSettings {
+public struct Bloombox_Partner_Settings_PartnerAlertSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specify event-level alerting settings.
-  public var events: Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings {
-    get {return _storage._events ?? Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings()}
+  public var events: Bloombox_Partner_Settings_PartnerEventAlertingSettings {
+    get {return _storage._events ?? Bloombox_Partner_Settings_PartnerEventAlertingSettings()}
     set {_uniqueStorage()._events = newValue}
   }
   /// Returns true if `events` has been explicitly set.
@@ -120,7 +120,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerAlertSettings {
   public mutating func clearEvents() {_uniqueStorage()._events = nil}
 
   /// Notification targets/recipients.
-  public var recipients: [Bloombox_Schema_Partner_Settings_PartnerNotificationTarget] {
+  public var recipients: [Bloombox_Partner_Settings_PartnerNotificationTarget] {
     get {return _storage._recipients}
     set {_uniqueStorage()._recipients = newValue}
   }
@@ -133,7 +133,7 @@ public struct Bloombox_Schema_Partner_Settings_PartnerAlertSettings {
 }
 
 /// Beta and sandbox settings.
-public struct Bloombox_Schema_Partner_Settings_BetaSettings {
+public struct Bloombox_Partner_Settings_BetaSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -150,7 +150,7 @@ public struct Bloombox_Schema_Partner_Settings_BetaSettings {
 }
 
 /// Feature activation flags.
-public struct Bloombox_Schema_Partner_Settings_FeatureStatus {
+public struct Bloombox_Partner_Settings_FeatureStatus {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -176,7 +176,7 @@ public struct Bloombox_Schema_Partner_Settings_FeatureStatus {
 }
 
 /// Settings related to search functionality.
-public struct Bloombox_Schema_Partner_Settings_SearchSettings {
+public struct Bloombox_Partner_Settings_SearchSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -193,14 +193,14 @@ public struct Bloombox_Schema_Partner_Settings_SearchSettings {
 }
 
 /// Partner-level account settings.
-public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
+public struct Bloombox_Partner_Settings_PartnerSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Alerting and notification settings.
-  public var alerts: Bloombox_Schema_Partner_Settings_PartnerAlertSettings {
-    get {return _storage._alerts ?? Bloombox_Schema_Partner_Settings_PartnerAlertSettings()}
+  public var alerts: Bloombox_Partner_Settings_PartnerAlertSettings {
+    get {return _storage._alerts ?? Bloombox_Partner_Settings_PartnerAlertSettings()}
     set {_uniqueStorage()._alerts = newValue}
   }
   /// Returns true if `alerts` has been explicitly set.
@@ -209,8 +209,8 @@ public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
   public mutating func clearAlerts() {_uniqueStorage()._alerts = nil}
 
   /// Beta and sandbox settings.
-  public var beta: Bloombox_Schema_Partner_Settings_BetaSettings {
-    get {return _storage._beta ?? Bloombox_Schema_Partner_Settings_BetaSettings()}
+  public var beta: Bloombox_Partner_Settings_BetaSettings {
+    get {return _storage._beta ?? Bloombox_Partner_Settings_BetaSettings()}
     set {_uniqueStorage()._beta = newValue}
   }
   /// Returns true if `beta` has been explicitly set.
@@ -219,8 +219,8 @@ public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
   public mutating func clearBeta() {_uniqueStorage()._beta = nil}
 
   /// Feature activation flags.
-  public var features: Bloombox_Schema_Partner_Settings_FeatureStatus {
-    get {return _storage._features ?? Bloombox_Schema_Partner_Settings_FeatureStatus()}
+  public var features: Bloombox_Partner_Settings_FeatureStatus {
+    get {return _storage._features ?? Bloombox_Partner_Settings_FeatureStatus()}
     set {_uniqueStorage()._features = newValue}
   }
   /// Returns true if `features` has been explicitly set.
@@ -229,8 +229,8 @@ public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
   public mutating func clearFeatures() {_uniqueStorage()._features = nil}
 
   /// Search settings.
-  public var search: Bloombox_Schema_Partner_Settings_SearchSettings {
-    get {return _storage._search ?? Bloombox_Schema_Partner_Settings_SearchSettings()}
+  public var search: Bloombox_Partner_Settings_SearchSettings {
+    get {return _storage._search ?? Bloombox_Partner_Settings_SearchSettings()}
     set {_uniqueStorage()._search = newValue}
   }
   /// Returns true if `search` has been explicitly set.
@@ -239,8 +239,8 @@ public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
   public mutating func clearSearch() {_uniqueStorage()._search = nil}
 
   /// Integration settings for this location.
-  public var integration: Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings {
-    get {return _storage._integration ?? Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings()}
+  public var integration: Bloombox_Partner_Integrations_PartnerIntegrationSettings {
+    get {return _storage._integration ?? Bloombox_Partner_Integrations_PartnerIntegrationSettings()}
     set {_uniqueStorage()._integration = newValue}
   }
   /// Returns true if `integration` has been explicitly set.
@@ -257,9 +257,9 @@ public struct Bloombox_Schema_Partner_Settings_PartnerSettings {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.partner.settings"
+fileprivate let _protobuf_package = "bloombox.partner.settings"
 
-extension Bloombox_Schema_Partner_Settings_PartnerNotificationTarget: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_PartnerNotificationTarget: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerNotificationTarget"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "disabled"),
@@ -269,7 +269,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerNotificationTarget: SwiftProto
 
   fileprivate class _StorageClass {
     var _disabled: Bool = false
-    var _contact: Bloombox_Schema_Partner_Settings_PartnerNotificationTarget.OneOf_Contact?
+    var _contact: Bloombox_Partner_Settings_PartnerNotificationTarget.OneOf_Contact?
 
     static let defaultInstance = _StorageClass()
 
@@ -332,7 +332,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerNotificationTarget: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_PartnerNotificationTarget, rhs: Bloombox_Schema_Partner_Settings_PartnerNotificationTarget) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_PartnerNotificationTarget, rhs: Bloombox_Partner_Settings_PartnerNotificationTarget) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -348,7 +348,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerNotificationTarget: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_PartnerEventAlertingSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerEventAlertingSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "promo"),
@@ -380,7 +380,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings: SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings, rhs: Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_PartnerEventAlertingSettings, rhs: Bloombox_Partner_Settings_PartnerEventAlertingSettings) -> Bool {
     if lhs.promo != rhs.promo {return false}
     if lhs.security != rhs.security {return false}
     if lhs.volume != rhs.volume {return false}
@@ -389,7 +389,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings: SwiftPr
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_PartnerAlertSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_PartnerAlertSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerAlertSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "events"),
@@ -397,8 +397,8 @@ extension Bloombox_Schema_Partner_Settings_PartnerAlertSettings: SwiftProtobuf.M
   ]
 
   fileprivate class _StorageClass {
-    var _events: Bloombox_Schema_Partner_Settings_PartnerEventAlertingSettings? = nil
-    var _recipients: [Bloombox_Schema_Partner_Settings_PartnerNotificationTarget] = []
+    var _events: Bloombox_Partner_Settings_PartnerEventAlertingSettings? = nil
+    var _recipients: [Bloombox_Partner_Settings_PartnerNotificationTarget] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -442,7 +442,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerAlertSettings: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_PartnerAlertSettings, rhs: Bloombox_Schema_Partner_Settings_PartnerAlertSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_PartnerAlertSettings, rhs: Bloombox_Partner_Settings_PartnerAlertSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -458,7 +458,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerAlertSettings: SwiftProtobuf.M
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_BetaSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_BetaSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".BetaSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "enable"),
@@ -485,7 +485,7 @@ extension Bloombox_Schema_Partner_Settings_BetaSettings: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_BetaSettings, rhs: Bloombox_Schema_Partner_Settings_BetaSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_BetaSettings, rhs: Bloombox_Partner_Settings_BetaSettings) -> Bool {
     if lhs.enable != rhs.enable {return false}
     if lhs.sandbox != rhs.sandbox {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -493,7 +493,7 @@ extension Bloombox_Schema_Partner_Settings_BetaSettings: SwiftProtobuf.Message, 
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_FeatureStatus: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_FeatureStatus: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FeatureStatus"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "analytics"),
@@ -535,7 +535,7 @@ extension Bloombox_Schema_Partner_Settings_FeatureStatus: SwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_FeatureStatus, rhs: Bloombox_Schema_Partner_Settings_FeatureStatus) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_FeatureStatus, rhs: Bloombox_Partner_Settings_FeatureStatus) -> Bool {
     if lhs.analytics != rhs.analytics {return false}
     if lhs.beta != rhs.beta {return false}
     if lhs.offline != rhs.offline {return false}
@@ -546,7 +546,7 @@ extension Bloombox_Schema_Partner_Settings_FeatureStatus: SwiftProtobuf.Message,
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_SearchSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_SearchSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SearchSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "enabled"),
@@ -573,7 +573,7 @@ extension Bloombox_Schema_Partner_Settings_SearchSettings: SwiftProtobuf.Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_SearchSettings, rhs: Bloombox_Schema_Partner_Settings_SearchSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_SearchSettings, rhs: Bloombox_Partner_Settings_SearchSettings) -> Bool {
     if lhs.enabled != rhs.enabled {return false}
     if lhs.media != rhs.media {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -581,7 +581,7 @@ extension Bloombox_Schema_Partner_Settings_SearchSettings: SwiftProtobuf.Message
   }
 }
 
-extension Bloombox_Schema_Partner_Settings_PartnerSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Settings_PartnerSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PartnerSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "alerts"),
@@ -592,11 +592,11 @@ extension Bloombox_Schema_Partner_Settings_PartnerSettings: SwiftProtobuf.Messag
   ]
 
   fileprivate class _StorageClass {
-    var _alerts: Bloombox_Schema_Partner_Settings_PartnerAlertSettings? = nil
-    var _beta: Bloombox_Schema_Partner_Settings_BetaSettings? = nil
-    var _features: Bloombox_Schema_Partner_Settings_FeatureStatus? = nil
-    var _search: Bloombox_Schema_Partner_Settings_SearchSettings? = nil
-    var _integration: Bloombox_Schema_Partner_Integrations_PartnerIntegrationSettings? = nil
+    var _alerts: Bloombox_Partner_Settings_PartnerAlertSettings? = nil
+    var _beta: Bloombox_Partner_Settings_BetaSettings? = nil
+    var _features: Bloombox_Partner_Settings_FeatureStatus? = nil
+    var _search: Bloombox_Partner_Settings_SearchSettings? = nil
+    var _integration: Bloombox_Partner_Integrations_PartnerIntegrationSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -655,7 +655,7 @@ extension Bloombox_Schema_Partner_Settings_PartnerSettings: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Settings_PartnerSettings, rhs: Bloombox_Schema_Partner_Settings_PartnerSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Settings_PartnerSettings, rhs: Bloombox_Partner_Settings_PartnerSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies a staff user, logged in via POS authorization.
-public struct Bloombox_Schema_Identity_StaffUser {
+public struct Bloombox_Identity_StaffUser {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -49,8 +49,8 @@ public struct Bloombox_Schema_Identity_StaffUser {
   public mutating func clearPortrait() {_uniqueStorage()._portrait = nil}
 
   /// Identity account used to authorize access to the point-of-sale.
-  public var identity: Bloombox_Schema_Identity_UserIdentity {
-    get {return _storage._identity ?? Bloombox_Schema_Identity_UserIdentity()}
+  public var identity: Bloombox_Identity_UserIdentity {
+    get {return _storage._identity ?? Bloombox_Identity_UserIdentity()}
     set {_uniqueStorage()._identity = newValue}
   }
   /// Returns true if `identity` has been explicitly set.
@@ -73,9 +73,9 @@ public struct Bloombox_Schema_Identity_StaffUser {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity"
+fileprivate let _protobuf_package = "bloombox.identity"
 
-extension Bloombox_Schema_Identity_StaffUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_StaffUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".StaffUser"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .same(proto: "name"),
@@ -87,7 +87,7 @@ extension Bloombox_Schema_Identity_StaffUser: SwiftProtobuf.Message, SwiftProtob
   fileprivate class _StorageClass {
     var _name: Opencannabis_Person_Name? = nil
     var _portrait: Opencannabis_Media_MediaKey? = nil
-    var _identity: Bloombox_Schema_Identity_UserIdentity? = nil
+    var _identity: Bloombox_Identity_UserIdentity? = nil
     var _setup: Bool = false
 
     static let defaultInstance = _StorageClass()
@@ -142,7 +142,7 @@ extension Bloombox_Schema_Identity_StaffUser: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_StaffUser, rhs: Bloombox_Schema_Identity_StaffUser) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_StaffUser, rhs: Bloombox_Identity_StaffUser) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

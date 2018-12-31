@@ -490,35 +490,11 @@ public struct Opencannabis_Commerce_PurchaseCustomer {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Specifies the full identifying document the user presented for this transaction.
-  public var identification: Bloombox_Schema_Identity_ID {
-    get {return _storage._identification ?? Bloombox_Schema_Identity_ID()}
-    set {_uniqueStorage()._identification = newValue}
+  /// Unique and opaque ID, representing this customer's accounting of interactions.
+  public var uniqueID: String {
+    get {return _storage._uniqueID}
+    set {_uniqueStorage()._uniqueID = newValue}
   }
-  /// Returns true if `identification` has been explicitly set.
-  public var hasIdentification: Bool {return _storage._identification != nil}
-  /// Clears the value of `identification`. Subsequent reads from it will return its default value.
-  public mutating func clearIdentification() {_uniqueStorage()._identification = nil}
-
-  /// Specifies the key to a digital pass the user presented during this transaction, if any.
-  public var pass: Bloombox_Schema_Identity_Pass_PassKey {
-    get {return _storage._pass ?? Bloombox_Schema_Identity_Pass_PassKey()}
-    set {_uniqueStorage()._pass = newValue}
-  }
-  /// Returns true if `pass` has been explicitly set.
-  public var hasPass: Bool {return _storage._pass != nil}
-  /// Clears the value of `pass`. Subsequent reads from it will return its default value.
-  public mutating func clearPass() {_uniqueStorage()._pass = nil}
-
-  /// Specifies the user that made the purchase (i.e. the customer).
-  public var membership: Bloombox_Schema_Identity_MembershipKey {
-    get {return _storage._membership ?? Bloombox_Schema_Identity_MembershipKey()}
-    set {_uniqueStorage()._membership = newValue}
-  }
-  /// Returns true if `membership` has been explicitly set.
-  public var hasMembership: Bool {return _storage._membership != nil}
-  /// Clears the value of `membership`. Subsequent reads from it will return its default value.
-  public mutating func clearMembership() {_uniqueStorage()._membership = nil}
 
   /// Digital signature provided by the customer, if applicable and supported.
   public var signature: Opencannabis_Commerce_PurchaseSignature {
@@ -551,25 +527,17 @@ public struct Opencannabis_Commerce_PurchaseFacilitator {
     set {_uniqueStorage()._authority = newValue}
   }
 
-  /// Specifies the user that conducted the purchase (i.e. the sales agent or budtender).
-  public var agent: Bloombox_Schema_Identity_UserKey {
-    get {return _storage._agent ?? Bloombox_Schema_Identity_UserKey()}
+  /// Specifies the opaque ID for the user that conducted the purchase (i.e. the sales agent or budtender).
+  public var agent: String {
+    get {return _storage._agent}
     set {_uniqueStorage()._agent = newValue}
   }
-  /// Returns true if `agent` has been explicitly set.
-  public var hasAgent: Bool {return _storage._agent != nil}
-  /// Clears the value of `agent`. Subsequent reads from it will return its default value.
-  public mutating func clearAgent() {_uniqueStorage()._agent = nil}
 
-  /// Reference to the partner co-located point-of-sale device that facilitated this transaction.
-  public var device: Bloombox_Schema_Partner_PartnerDeviceKey {
-    get {return _storage._device ?? Bloombox_Schema_Partner_PartnerDeviceKey()}
+  /// Unique/opaque reference to the partner co-located point-of-sale device that facilitated this transaction.
+  public var device: String {
+    get {return _storage._device}
     set {_uniqueStorage()._device = newValue}
   }
-  /// Returns true if `device` has been explicitly set.
-  public var hasDevice: Bool {return _storage._device != nil}
-  /// Clears the value of `device`. Subsequent reads from it will return its default value.
-  public mutating func clearDevice() {_uniqueStorage()._device = nil}
 
   /// Digital signature provided by the facilitator, if applicable and supported.
   public var signature: Opencannabis_Commerce_PurchaseSignature {
@@ -834,107 +802,6 @@ public struct Opencannabis_Commerce_Payment {
 
     public init() {}
   }
-
-  public init() {}
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
-/// Specifies a record of a purchase made by a consumer at a retail cannabis location. Purchases are like orders, in that
-/// they are both consumer interactions with retailers in a commercial setting, but purchases are always made in-person
-/// using a point-of-sale device, and never online or from remote.
-public struct Opencannabis_Commerce_PurchaseTicket {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// Unique key generated to address this purchase. Usually consists of a string UUID.
-  public var key: Opencannabis_Commerce_PurchaseKey {
-    get {return _storage._key ?? Opencannabis_Commerce_PurchaseKey()}
-    set {_uniqueStorage()._key = newValue}
-  }
-  /// Returns true if `key` has been explicitly set.
-  public var hasKey: Bool {return _storage._key != nil}
-  /// Clears the value of `key`. Subsequent reads from it will return its default value.
-  public mutating func clearKey() {_uniqueStorage()._key = nil}
-
-  /// Version or revision number for this purchase ticket.
-  public var version: UInt32 {
-    get {return _storage._version}
-    set {_uniqueStorage()._version = newValue}
-  }
-
-  /// Specifies the current status of this individual purchase transaction.
-  public var status: Opencannabis_Commerce_PurchaseStatus {
-    get {return _storage._status}
-    set {_uniqueStorage()._status = newValue}
-  }
-
-  /// Point-of-sale session that is currently claiming this ticket, or last claimed this ticket.
-  public var claim: String {
-    get {return _storage._claim}
-    set {_uniqueStorage()._claim = newValue}
-  }
-
-  /// Partner organization, location, device, and staff member that facilitated this transaction.
-  public var facilitator: Opencannabis_Commerce_PurchaseFacilitator {
-    get {return _storage._facilitator ?? Opencannabis_Commerce_PurchaseFacilitator()}
-    set {_uniqueStorage()._facilitator = newValue}
-  }
-  /// Returns true if `facilitator` has been explicitly set.
-  public var hasFacilitator: Bool {return _storage._facilitator != nil}
-  /// Clears the value of `facilitator`. Subsequent reads from it will return its default value.
-  public mutating func clearFacilitator() {_uniqueStorage()._facilitator = nil}
-
-  /// Specifies information regarding the customer that made this purchase.
-  public var customer: Opencannabis_Commerce_PurchaseCustomer {
-    get {return _storage._customer ?? Opencannabis_Commerce_PurchaseCustomer()}
-    set {_uniqueStorage()._customer = newValue}
-  }
-  /// Returns true if `customer` has been explicitly set.
-  public var hasCustomer: Bool {return _storage._customer != nil}
-  /// Clears the value of `customer`. Subsequent reads from it will return its default value.
-  public mutating func clearCustomer() {_uniqueStorage()._customer = nil}
-
-  /// Line-item bill of charges, or purchase sums. Includes taxes and discounts.
-  public var bill: Opencannabis_Commerce_BillOfCharges {
-    get {return _storage._bill ?? Opencannabis_Commerce_BillOfCharges()}
-    set {_uniqueStorage()._bill = newValue}
-  }
-  /// Returns true if `bill` has been explicitly set.
-  public var hasBill: Bool {return _storage._bill != nil}
-  /// Clears the value of `bill`. Subsequent reads from it will return its default value.
-  public mutating func clearBill() {_uniqueStorage()._bill = nil}
-
-  /// Constituent items purchased as part of this commercial purchase ticket.
-  public var item: [Opencannabis_Commerce_TicketItem] {
-    get {return _storage._item}
-    set {_uniqueStorage()._item = newValue}
-  }
-
-  /// Specifies how this order was paid for, if applicable at this point in the ticket lifecycle.
-  public var payment: [Opencannabis_Commerce_Payment] {
-    get {return _storage._payment}
-    set {_uniqueStorage()._payment = newValue}
-  }
-
-  /// Actions taken on this order.
-  public var action: [Opencannabis_Commerce_PurchaseLogEntry] {
-    get {return _storage._action}
-    set {_uniqueStorage()._action = newValue}
-  }
-
-  /// Timestamps that record the temporal position of individual purchase lifecycle events.
-  public var ts: Opencannabis_Commerce_PurchaseTimestamps {
-    get {return _storage._ts ?? Opencannabis_Commerce_PurchaseTimestamps()}
-    set {_uniqueStorage()._ts = newValue}
-  }
-  /// Returns true if `ts` has been explicitly set.
-  public var hasTs: Bool {return _storage._ts != nil}
-  /// Clears the value of `ts`. Subsequent reads from it will return its default value.
-  public mutating func clearTs() {_uniqueStorage()._ts = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 
@@ -1430,16 +1297,12 @@ extension Opencannabis_Commerce_PurchaseSignature: SwiftProtobuf.Message, SwiftP
 extension Opencannabis_Commerce_PurchaseCustomer: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".PurchaseCustomer"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "identification"),
-    2: .same(proto: "pass"),
-    3: .same(proto: "membership"),
-    4: .same(proto: "signature"),
+    1: .standard(proto: "unique_id"),
+    2: .same(proto: "signature"),
   ]
 
   fileprivate class _StorageClass {
-    var _identification: Bloombox_Schema_Identity_ID? = nil
-    var _pass: Bloombox_Schema_Identity_Pass_PassKey? = nil
-    var _membership: Bloombox_Schema_Identity_MembershipKey? = nil
+    var _uniqueID: String = String()
     var _signature: Opencannabis_Commerce_PurchaseSignature? = nil
 
     static let defaultInstance = _StorageClass()
@@ -1447,9 +1310,7 @@ extension Opencannabis_Commerce_PurchaseCustomer: SwiftProtobuf.Message, SwiftPr
     private init() {}
 
     init(copying source: _StorageClass) {
-      _identification = source._identification
-      _pass = source._pass
-      _membership = source._membership
+      _uniqueID = source._uniqueID
       _signature = source._signature
     }
   }
@@ -1466,10 +1327,8 @@ extension Opencannabis_Commerce_PurchaseCustomer: SwiftProtobuf.Message, SwiftPr
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._identification)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._pass)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._membership)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._signature)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._uniqueID)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._signature)
         default: break
         }
       }
@@ -1478,17 +1337,11 @@ extension Opencannabis_Commerce_PurchaseCustomer: SwiftProtobuf.Message, SwiftPr
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._identification {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._pass {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._membership {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      if !_storage._uniqueID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uniqueID, fieldNumber: 1)
       }
       if let v = _storage._signature {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -1499,9 +1352,7 @@ extension Opencannabis_Commerce_PurchaseCustomer: SwiftProtobuf.Message, SwiftPr
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._identification != rhs_storage._identification {return false}
-        if _storage._pass != rhs_storage._pass {return false}
-        if _storage._membership != rhs_storage._membership {return false}
+        if _storage._uniqueID != rhs_storage._uniqueID {return false}
         if _storage._signature != rhs_storage._signature {return false}
         return true
       }
@@ -1523,8 +1374,8 @@ extension Opencannabis_Commerce_PurchaseFacilitator: SwiftProtobuf.Message, Swif
 
   fileprivate class _StorageClass {
     var _authority: Opencannabis_Commerce_PurchaseAuthority = .standard
-    var _agent: Bloombox_Schema_Identity_UserKey? = nil
-    var _device: Bloombox_Schema_Partner_PartnerDeviceKey? = nil
+    var _agent: String = String()
+    var _device: String = String()
     var _signature: Opencannabis_Commerce_PurchaseSignature? = nil
 
     static let defaultInstance = _StorageClass()
@@ -1552,8 +1403,8 @@ extension Opencannabis_Commerce_PurchaseFacilitator: SwiftProtobuf.Message, Swif
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1: try decoder.decodeSingularEnumField(value: &_storage._authority)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._agent)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._device)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._agent)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._device)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._signature)
         default: break
         }
@@ -1566,11 +1417,11 @@ extension Opencannabis_Commerce_PurchaseFacilitator: SwiftProtobuf.Message, Swif
       if _storage._authority != .standard {
         try visitor.visitSingularEnumField(value: _storage._authority, fieldNumber: 1)
       }
-      if let v = _storage._agent {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      if !_storage._agent.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._agent, fieldNumber: 2)
       }
-      if let v = _storage._device {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      if !_storage._device.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._device, fieldNumber: 3)
       }
       if let v = _storage._signature {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
@@ -2008,147 +1859,6 @@ extension Opencannabis_Commerce_Payment.DigitalPayment: SwiftProtobuf.Message, S
     if lhs.network != rhs.network {return false}
     if lhs.username != rhs.username {return false}
     if lhs.reference != rhs.reference {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Opencannabis_Commerce_PurchaseTicket: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".PurchaseTicket"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "key"),
-    2: .same(proto: "version"),
-    3: .same(proto: "status"),
-    4: .same(proto: "claim"),
-    5: .same(proto: "facilitator"),
-    6: .same(proto: "customer"),
-    7: .same(proto: "bill"),
-    8: .same(proto: "item"),
-    9: .same(proto: "payment"),
-    10: .same(proto: "action"),
-    11: .same(proto: "ts"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _key: Opencannabis_Commerce_PurchaseKey? = nil
-    var _version: UInt32 = 0
-    var _status: Opencannabis_Commerce_PurchaseStatus = .fresh
-    var _claim: String = String()
-    var _facilitator: Opencannabis_Commerce_PurchaseFacilitator? = nil
-    var _customer: Opencannabis_Commerce_PurchaseCustomer? = nil
-    var _bill: Opencannabis_Commerce_BillOfCharges? = nil
-    var _item: [Opencannabis_Commerce_TicketItem] = []
-    var _payment: [Opencannabis_Commerce_Payment] = []
-    var _action: [Opencannabis_Commerce_PurchaseLogEntry] = []
-    var _ts: Opencannabis_Commerce_PurchaseTimestamps? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _key = source._key
-      _version = source._version
-      _status = source._status
-      _claim = source._claim
-      _facilitator = source._facilitator
-      _customer = source._customer
-      _bill = source._bill
-      _item = source._item
-      _payment = source._payment
-      _action = source._action
-      _ts = source._ts
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
-        case 2: try decoder.decodeSingularUInt32Field(value: &_storage._version)
-        case 3: try decoder.decodeSingularEnumField(value: &_storage._status)
-        case 4: try decoder.decodeSingularStringField(value: &_storage._claim)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._facilitator)
-        case 6: try decoder.decodeSingularMessageField(value: &_storage._customer)
-        case 7: try decoder.decodeSingularMessageField(value: &_storage._bill)
-        case 8: try decoder.decodeRepeatedMessageField(value: &_storage._item)
-        case 9: try decoder.decodeRepeatedMessageField(value: &_storage._payment)
-        case 10: try decoder.decodeRepeatedMessageField(value: &_storage._action)
-        case 11: try decoder.decodeSingularMessageField(value: &_storage._ts)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._key {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if _storage._version != 0 {
-        try visitor.visitSingularUInt32Field(value: _storage._version, fieldNumber: 2)
-      }
-      if _storage._status != .fresh {
-        try visitor.visitSingularEnumField(value: _storage._status, fieldNumber: 3)
-      }
-      if !_storage._claim.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._claim, fieldNumber: 4)
-      }
-      if let v = _storage._facilitator {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._customer {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if let v = _storage._bill {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
-      if !_storage._item.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._item, fieldNumber: 8)
-      }
-      if !_storage._payment.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._payment, fieldNumber: 9)
-      }
-      if !_storage._action.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._action, fieldNumber: 10)
-      }
-      if let v = _storage._ts {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Opencannabis_Commerce_PurchaseTicket, rhs: Opencannabis_Commerce_PurchaseTicket) -> Bool {
-    if lhs._storage !== rhs._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let rhs_storage = _args.1
-        if _storage._key != rhs_storage._key {return false}
-        if _storage._version != rhs_storage._version {return false}
-        if _storage._status != rhs_storage._status {return false}
-        if _storage._claim != rhs_storage._claim {return false}
-        if _storage._facilitator != rhs_storage._facilitator {return false}
-        if _storage._customer != rhs_storage._customer {return false}
-        if _storage._bill != rhs_storage._bill {return false}
-        if _storage._item != rhs_storage._item {return false}
-        if _storage._payment != rhs_storage._payment {return false}
-        if _storage._action != rhs_storage._action {return false}
-        if _storage._ts != rhs_storage._ts {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies SMS content for a given ad group.
-public struct Bloombox_Schema_Comms_SMSContent {
+public struct Bloombox_Comms_SMSContent {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -44,7 +44,7 @@ public struct Bloombox_Schema_Comms_SMSContent {
 }
 
 /// Specifies the structure of an individual SMS message.
-public struct Bloombox_Schema_Comms_SMSMessage {
+public struct Bloombox_Comms_SMSMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -70,8 +70,8 @@ public struct Bloombox_Schema_Comms_SMSMessage {
   public mutating func clearRecipient() {_uniqueStorage()._recipient = nil}
 
   /// Content for the SMS message.
-  public var content: Bloombox_Schema_Comms_SMSContent {
-    get {return _storage._content ?? Bloombox_Schema_Comms_SMSContent()}
+  public var content: Bloombox_Comms_SMSContent {
+    get {return _storage._content ?? Bloombox_Comms_SMSContent()}
     set {_uniqueStorage()._content = newValue}
   }
   /// Returns true if `content` has been explicitly set.
@@ -87,14 +87,14 @@ public struct Bloombox_Schema_Comms_SMSMessage {
 }
 
 /// Specifies the structure of a transmission operation for an individual SMS message.
-public struct Bloombox_Schema_Comms_SMSTransmission {
+public struct Bloombox_Comms_SMSTransmission {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Message payload to transmit in this operation.
-  public var message: Bloombox_Schema_Comms_SMSMessage {
-    get {return _storage._message ?? Bloombox_Schema_Comms_SMSMessage()}
+  public var message: Bloombox_Comms_SMSMessage {
+    get {return _storage._message ?? Bloombox_Comms_SMSMessage()}
     set {_uniqueStorage()._message = newValue}
   }
   /// Returns true if `message` has been explicitly set.
@@ -110,13 +110,13 @@ public struct Bloombox_Schema_Comms_SMSTransmission {
 }
 
 /// Specifies the structure of a batch of SMS transmission operations.
-public struct Bloombox_Schema_Comms_SMSBatch {
+public struct Bloombox_Comms_SMSBatch {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Transmission operations for this batch.
-  public var op: [Bloombox_Schema_Comms_SMSTransmission] = []
+  public var op: [Bloombox_Comms_SMSTransmission] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -124,7 +124,7 @@ public struct Bloombox_Schema_Comms_SMSBatch {
 }
 
 /// SMS-specific settings.
-public struct Bloombox_Schema_Comms_SMSSettings {
+public struct Bloombox_Comms_SMSSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -148,9 +148,9 @@ public struct Bloombox_Schema_Comms_SMSSettings {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.comms"
+fileprivate let _protobuf_package = "bloombox.comms"
 
-extension Bloombox_Schema_Comms_SMSContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_SMSContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SMSContent"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "subject"),
@@ -182,7 +182,7 @@ extension Bloombox_Schema_Comms_SMSContent: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_SMSContent, rhs: Bloombox_Schema_Comms_SMSContent) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_SMSContent, rhs: Bloombox_Comms_SMSContent) -> Bool {
     if lhs.subject != rhs.subject {return false}
     if lhs.content != rhs.content {return false}
     if lhs.media != rhs.media {return false}
@@ -191,7 +191,7 @@ extension Bloombox_Schema_Comms_SMSContent: SwiftProtobuf.Message, SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Comms_SMSMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_SMSMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SMSMessage"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "sender"),
@@ -202,7 +202,7 @@ extension Bloombox_Schema_Comms_SMSMessage: SwiftProtobuf.Message, SwiftProtobuf
   fileprivate class _StorageClass {
     var _sender: Opencannabis_Contact_PhoneNumber? = nil
     var _recipient: Opencannabis_Contact_PhoneNumber? = nil
-    var _content: Bloombox_Schema_Comms_SMSContent? = nil
+    var _content: Bloombox_Comms_SMSContent? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -251,7 +251,7 @@ extension Bloombox_Schema_Comms_SMSMessage: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_SMSMessage, rhs: Bloombox_Schema_Comms_SMSMessage) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_SMSMessage, rhs: Bloombox_Comms_SMSMessage) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -268,14 +268,14 @@ extension Bloombox_Schema_Comms_SMSMessage: SwiftProtobuf.Message, SwiftProtobuf
   }
 }
 
-extension Bloombox_Schema_Comms_SMSTransmission: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_SMSTransmission: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SMSTransmission"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
   ]
 
   fileprivate class _StorageClass {
-    var _message: Bloombox_Schema_Comms_SMSMessage? = nil
+    var _message: Bloombox_Comms_SMSMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -314,7 +314,7 @@ extension Bloombox_Schema_Comms_SMSTransmission: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_SMSTransmission, rhs: Bloombox_Schema_Comms_SMSTransmission) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_SMSTransmission, rhs: Bloombox_Comms_SMSTransmission) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -329,7 +329,7 @@ extension Bloombox_Schema_Comms_SMSTransmission: SwiftProtobuf.Message, SwiftPro
   }
 }
 
-extension Bloombox_Schema_Comms_SMSBatch: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_SMSBatch: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SMSBatch"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "op"),
@@ -351,14 +351,14 @@ extension Bloombox_Schema_Comms_SMSBatch: SwiftProtobuf.Message, SwiftProtobuf._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_SMSBatch, rhs: Bloombox_Schema_Comms_SMSBatch) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_SMSBatch, rhs: Bloombox_Comms_SMSBatch) -> Bool {
     if lhs.op != rhs.op {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Comms_SMSSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Comms_SMSSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SMSSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "sender"),
@@ -404,7 +404,7 @@ extension Bloombox_Schema_Comms_SMSSettings: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Comms_SMSSettings, rhs: Bloombox_Schema_Comms_SMSSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Comms_SMSSettings, rhs: Bloombox_Comms_SMSSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

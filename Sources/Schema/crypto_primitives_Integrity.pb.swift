@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates hash algorithms supported or known by the runtime for shared use.
-public enum Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm: SwiftProtobuf.Enum {
+public enum Opencannabis_Crypto_HashAlgorithm: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Secure Hash Algorithm v2.
@@ -77,9 +77,9 @@ public enum Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm: SwiftProtobu
 
 #if swift(>=4.2)
 
-extension Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm: CaseIterable {
+extension Opencannabis_Crypto_HashAlgorithm: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm] = [
+  public static var allCases: [Opencannabis_Crypto_HashAlgorithm] = [
     .sha1,
     .md5,
     .sha256,
@@ -93,16 +93,16 @@ extension Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm: CaseIterable {
 
 /// Specifies the hash portion of hashed data, along with the algorithm used to calculate the digest enclosed. This
 /// particular container does not specify or otherwise contain the original referenced data.
-public struct Opencannabis_Crypto_Primitives_Integrity_Hash {
+public struct Opencannabis_Crypto_Hash {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Specifies the algorithm in use.
-  public var algorithm: Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm = .sha1
+  public var algorithm: Opencannabis_Crypto_HashAlgorithm = .sha1
 
   /// Carries the actual data of the calculated digest value.
-  public var digest: Opencannabis_Crypto_Primitives_Integrity_Hash.OneOf_Digest? = nil
+  public var digest: Opencannabis_Crypto_Hash.OneOf_Digest? = nil
 
   /// Raw binary output of the hash algorithm.
   public var raw: Data {
@@ -143,7 +143,7 @@ public struct Opencannabis_Crypto_Primitives_Integrity_Hash {
     case b64(String)
 
   #if !swift(>=4.1)
-    public static func ==(lhs: Opencannabis_Crypto_Primitives_Integrity_Hash.OneOf_Digest, rhs: Opencannabis_Crypto_Primitives_Integrity_Hash.OneOf_Digest) -> Bool {
+    public static func ==(lhs: Opencannabis_Crypto_Hash.OneOf_Digest, rhs: Opencannabis_Crypto_Hash.OneOf_Digest) -> Bool {
       switch (lhs, rhs) {
       case (.raw(let l), .raw(let r)): return l == r
       case (.hex(let l), .hex(let r)): return l == r
@@ -159,7 +159,7 @@ public struct Opencannabis_Crypto_Primitives_Integrity_Hash {
 
 /// Specifies a set of raw data, of some kind, and an attached digest/hash value, along with the algorithm used to
 /// calculate the digest.
-public struct Opencannabis_Crypto_Primitives_Integrity_HashedData {
+public struct Opencannabis_Crypto_HashedData {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -171,8 +171,8 @@ public struct Opencannabis_Crypto_Primitives_Integrity_HashedData {
   }
 
   /// Hash for the raw data in this payload.
-  public var hash: Opencannabis_Crypto_Primitives_Integrity_Hash {
-    get {return _storage._hash ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+  public var hash: Opencannabis_Crypto_Hash {
+    get {return _storage._hash ?? Opencannabis_Crypto_Hash()}
     set {_uniqueStorage()._hash = newValue}
   }
   /// Returns true if `hash` has been explicitly set.
@@ -189,9 +189,9 @@ public struct Opencannabis_Crypto_Primitives_Integrity_HashedData {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "opencannabis.crypto.primitives.integrity"
+fileprivate let _protobuf_package = "opencannabis.crypto"
 
-extension Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Crypto_HashAlgorithm: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "SHA1"),
     1: .same(proto: "MD5"),
@@ -202,7 +202,7 @@ extension Opencannabis_Crypto_Primitives_Integrity_HashAlgorithm: SwiftProtobuf.
   ]
 }
 
-extension Opencannabis_Crypto_Primitives_Integrity_Hash: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Crypto_Hash: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Hash"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "algorithm"),
@@ -251,7 +251,7 @@ extension Opencannabis_Crypto_Primitives_Integrity_Hash: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Opencannabis_Crypto_Primitives_Integrity_Hash, rhs: Opencannabis_Crypto_Primitives_Integrity_Hash) -> Bool {
+  public static func ==(lhs: Opencannabis_Crypto_Hash, rhs: Opencannabis_Crypto_Hash) -> Bool {
     if lhs.algorithm != rhs.algorithm {return false}
     if lhs.digest != rhs.digest {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -259,7 +259,7 @@ extension Opencannabis_Crypto_Primitives_Integrity_Hash: SwiftProtobuf.Message, 
   }
 }
 
-extension Opencannabis_Crypto_Primitives_Integrity_HashedData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Crypto_HashedData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".HashedData"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "data"),
@@ -268,7 +268,7 @@ extension Opencannabis_Crypto_Primitives_Integrity_HashedData: SwiftProtobuf.Mes
 
   fileprivate class _StorageClass {
     var _data: Data = SwiftProtobuf.Internal.emptyData
-    var _hash: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
+    var _hash: Opencannabis_Crypto_Hash? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -312,7 +312,7 @@ extension Opencannabis_Crypto_Primitives_Integrity_HashedData: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Opencannabis_Crypto_Primitives_Integrity_HashedData, rhs: Opencannabis_Crypto_Primitives_Integrity_HashedData) -> Bool {
+  public static func ==(lhs: Opencannabis_Crypto_HashedData, rhs: Opencannabis_Crypto_HashedData) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

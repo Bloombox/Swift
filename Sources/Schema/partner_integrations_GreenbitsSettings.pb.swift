@@ -23,7 +23,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies Greenbits features that may be enabled or disabled.
-public struct Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures {
+public struct Bloombox_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -40,7 +40,7 @@ public struct Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegratio
 }
 
 /// Specifies settings related to Greenbits integration with Bloombox.
-public struct Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings {
+public struct Bloombox_Partner_Integrations_Greenbits_GreenbitsSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -64,8 +64,8 @@ public struct Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings {
   }
 
   /// Flags indicating features that should be enabled or disabled.
-  public var features: Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures {
-    get {return _storage._features ?? Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures()}
+  public var features: Bloombox_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures {
+    get {return _storage._features ?? Bloombox_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures()}
     set {_uniqueStorage()._features = newValue}
   }
   /// Returns true if `features` has been explicitly set.
@@ -82,9 +82,9 @@ public struct Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.partner.integrations.greenbits"
+fileprivate let _protobuf_package = "bloombox.partner.integrations.greenbits"
 
-extension Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GreenbitsIntegrationFeatures"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "customers"),
@@ -111,7 +111,7 @@ extension Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFea
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures, rhs: Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures, rhs: Bloombox_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures) -> Bool {
     if lhs.customers != rhs.customers {return false}
     if lhs.checkin != rhs.checkin {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -119,7 +119,7 @@ extension Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFea
   }
 }
 
-extension Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Partner_Integrations_Greenbits_GreenbitsSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GreenbitsSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "organization"),
@@ -132,7 +132,7 @@ extension Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings: Swif
     var _organization: String = String()
     var _apiKey: String = String()
     var _authToken: String = String()
-    var _features: Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures? = nil
+    var _features: Bloombox_Partner_Integrations_Greenbits_GreenbitsIntegrationFeatures? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -186,7 +186,7 @@ extension Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings, rhs: Bloombox_Schema_Partner_Integrations_Greenbits_GreenbitsSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Integrations_Greenbits_GreenbitsSettings, rhs: Bloombox_Partner_Integrations_Greenbits_GreenbitsSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -24,7 +24,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Enumerates known errors that may be thrown by menu operations.
-public enum Bloombox_Schema_Services_Menu_V1beta1_MenuError: SwiftProtobuf.Enum {
+public enum Bloombox_Services_Menu_V1beta1_MenuError: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// No error was encountered.
@@ -113,9 +113,9 @@ public enum Bloombox_Schema_Services_Menu_V1beta1_MenuError: SwiftProtobuf.Enum 
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Services_Menu_V1beta1_MenuError: CaseIterable {
+extension Bloombox_Services_Menu_V1beta1_MenuError: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Services_Menu_V1beta1_MenuError] = [
+  public static var allCases: [Bloombox_Services_Menu_V1beta1_MenuError] = [
     .noError,
     .partnerInvalid,
     .locationInvalid,
@@ -135,7 +135,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_MenuError: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies an RPC operation to retrieve status information for the Menu API.
-public struct Bloombox_Schema_Services_Menu_V1beta1_Ping {
+public struct Bloombox_Services_Menu_V1beta1_Ping {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -160,7 +160,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_Ping {
     // methods supported on all messages.
 
     /// Current service status.
-    public var status: Bloombox_Schema_Services_ServiceStatus = .unknown
+    public var status: Bloombox_Services_ServiceStatus = .unknown
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -172,7 +172,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_Ping {
 
 /// Specifies an RPC operation to retrieve menu data, either in full (i.e. the entire menu, compose of all sections), or
 /// for a given set of specified sections.
-public struct Bloombox_Schema_Services_Menu_V1beta1_GetMenu {
+public struct Bloombox_Services_Menu_V1beta1_GetMenu {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -246,7 +246,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_GetMenu {
 
 /// Specifies an RPC operation to retrieve the set of keys, if any, of products currently featured, for the whole menu
 /// or a section thereof.
-public struct Bloombox_Schema_Services_Menu_V1beta1_GetFeatured {
+public struct Bloombox_Services_Menu_V1beta1_GetFeatured {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -291,7 +291,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_GetFeatured {
 }
 
 /// Specifies a set of keys.
-public struct Bloombox_Schema_Services_Menu_V1beta1_ProductKeyset {
+public struct Bloombox_Services_Menu_V1beta1_ProductKeyset {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -305,7 +305,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_ProductKeyset {
 }
 
 /// Specifies an RPC operation to retrieve menu product data via a reference to its key.
-public struct Bloombox_Schema_Services_Menu_V1beta1_GetProduct {
+public struct Bloombox_Services_Menu_V1beta1_GetProduct {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -379,7 +379,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_GetProduct {
 }
 
 /// Specifies an RPC operation to create a product.
-public struct Bloombox_Schema_Services_Menu_V1beta1_CreateProduct {
+public struct Bloombox_Services_Menu_V1beta1_CreateProduct {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -442,7 +442,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_CreateProduct {
 }
 
 /// Specifies an RPC operation to update product data by key.
-public struct Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct {
+public struct Bloombox_Services_Menu_V1beta1_UpdateProduct {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -482,7 +482,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct {
 }
 
 /// Specifies an RPC operation to search menu catalog data and return matching product results.
-public struct Bloombox_Schema_Services_Menu_V1beta1_SearchMenu {
+public struct Bloombox_Services_Menu_V1beta1_SearchMenu {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -496,8 +496,8 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_SearchMenu {
     // methods supported on all messages.
 
     /// Manifest describing desired search parameters, including search terms.
-    public var search: Bloombox_Schema_Search_SearchSpec {
-      get {return _storage._search ?? Bloombox_Schema_Search_SearchSpec()}
+    public var search: Bloombox_Search_SearchSpec {
+      get {return _storage._search ?? Bloombox_Search_SearchSpec()}
       set {_uniqueStorage()._search = newValue}
     }
     /// Returns true if `search` has been explicitly set.
@@ -519,8 +519,8 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_SearchMenu {
     // methods supported on all messages.
 
     /// Corresponding items for each of the keys that matched the specified query.
-    public var resulset: Bloombox_Schema_Search_SearchResultset {
-      get {return _storage._resulset ?? Bloombox_Schema_Search_SearchResultset()}
+    public var resulset: Bloombox_Search_SearchResultset {
+      get {return _storage._resulset ?? Bloombox_Search_SearchResultset()}
       set {_uniqueStorage()._resulset = newValue}
     }
     /// Returns true if `resulset` has been explicitly set.
@@ -540,7 +540,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_SearchMenu {
 
 /// Specifies an RPC operation to modify product stock status, either marking it as in-stock (currently offered for
 /// purchase), or out-of-stock (not currently offered for purchase).
-public struct Bloombox_Schema_Services_Menu_V1beta1_ProductStock {
+public struct Bloombox_Services_Menu_V1beta1_ProductStock {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -580,7 +580,7 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_ProductStock {
 }
 
 /// Specifies an RPC operation to mark a product as deleted, by its key.
-public struct Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct {
+public struct Bloombox_Services_Menu_V1beta1_DeleteProduct {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -621,9 +621,9 @@ public struct Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.services.menu.v1beta1"
+fileprivate let _protobuf_package = "bloombox.services.menu.v1beta1"
 
-extension Bloombox_Schema_Services_Menu_V1beta1_MenuError: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Menu_V1beta1_MenuError: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_ERROR"),
     1: .same(proto: "PARTNER_INVALID"),
@@ -641,7 +641,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_MenuError: SwiftProtobuf._ProtoN
   ]
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_Ping: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Menu_V1beta1_Ping: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Ping"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -654,14 +654,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_Ping: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_Ping, rhs: Bloombox_Schema_Services_Menu_V1beta1_Ping) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_Ping, rhs: Bloombox_Services_Menu_V1beta1_Ping) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_Ping.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_Ping.protoMessageName + ".Request"
+extension Bloombox_Services_Menu_V1beta1_Ping.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_Ping.protoMessageName + ".Request"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -673,14 +673,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_Ping.Request: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_Ping.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_Ping.Request, rhs: Bloombox_Services_Menu_V1beta1_Ping.Request) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_Ping.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_Ping.protoMessageName + ".Response"
+extension Bloombox_Services_Menu_V1beta1_Ping.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_Ping.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
   ]
@@ -701,14 +701,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_Ping.Response: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_Ping.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_Ping.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_Ping.Response, rhs: Bloombox_Services_Menu_V1beta1_Ping.Response) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetMenu"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -721,14 +721,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu: SwiftProtobuf.Message, 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetMenu, rhs: Bloombox_Services_Menu_V1beta1_GetMenu) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_GetMenu.protoMessageName + ".Request"
+extension Bloombox_Services_Menu_V1beta1_GetMenu.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetMenu.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "full"),
@@ -779,7 +779,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request: SwiftProtobuf.M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetMenu.Request, rhs: Bloombox_Services_Menu_V1beta1_GetMenu.Request) -> Bool {
     if lhs.scope != rhs.scope {return false}
     if lhs.full != rhs.full {return false}
     if lhs.keysOnly != rhs.keysOnly {return false}
@@ -792,8 +792,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Request: SwiftProtobuf.M
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_GetMenu.protoMessageName + ".Response"
+extension Bloombox_Services_Menu_V1beta1_GetMenu.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetMenu.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "catalog"),
     2: .same(proto: "cached"),
@@ -845,7 +845,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response: SwiftProtobuf.
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetMenu.Response, rhs: Bloombox_Services_Menu_V1beta1_GetMenu.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -861,7 +861,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetMenu.Response: SwiftProtobuf.
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_GetFeatured: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Menu_V1beta1_GetFeatured: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetFeatured"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -874,14 +874,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetFeatured: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetFeatured, rhs: Bloombox_Services_Menu_V1beta1_GetFeatured) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.protoMessageName + ".Request"
+extension Bloombox_Services_Menu_V1beta1_GetFeatured.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetFeatured.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .standard(proto: "keys_only"),
@@ -912,7 +912,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetFeatured.Request, rhs: Bloombox_Services_Menu_V1beta1_GetFeatured.Request) -> Bool {
     if lhs.scope != rhs.scope {return false}
     if lhs.keysOnly != rhs.keysOnly {return false}
     if lhs.section != rhs.section {return false}
@@ -921,8 +921,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Request: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.protoMessageName + ".Response"
+extension Bloombox_Services_Menu_V1beta1_GetFeatured.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetFeatured.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "featured"),
   ]
@@ -943,14 +943,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetFeatured.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetFeatured.Response, rhs: Bloombox_Services_Menu_V1beta1_GetFeatured.Response) -> Bool {
     if lhs.featured != rhs.featured {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_ProductKeyset: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Menu_V1beta1_ProductKeyset: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ProductKeyset"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
@@ -972,14 +972,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_ProductKeyset: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_ProductKeyset, rhs: Bloombox_Schema_Services_Menu_V1beta1_ProductKeyset) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_ProductKeyset, rhs: Bloombox_Services_Menu_V1beta1_ProductKeyset) -> Bool {
     if lhs.key != rhs.key {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_GetProduct: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Menu_V1beta1_GetProduct: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetProduct"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -992,14 +992,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetProduct: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetProduct, rhs: Bloombox_Services_Menu_V1beta1_GetProduct) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_GetProduct.protoMessageName + ".Request"
+extension Bloombox_Services_Menu_V1beta1_GetProduct.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetProduct.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "key"),
@@ -1065,7 +1065,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetProduct.Request, rhs: Bloombox_Services_Menu_V1beta1_GetProduct.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1083,8 +1083,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Request: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_GetProduct.protoMessageName + ".Response"
+extension Bloombox_Services_Menu_V1beta1_GetProduct.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetProduct.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "product"),
     2: .same(proto: "cached"),
@@ -1115,7 +1115,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetProduct.Response, rhs: Bloombox_Services_Menu_V1beta1_GetProduct.Response) -> Bool {
     if lhs.product != rhs.product {return false}
     if lhs.cached != rhs.cached {return false}
     if lhs.unchanged != rhs.unchanged {return false}
@@ -1124,7 +1124,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_GetProduct.Response: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_CreateProduct: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Menu_V1beta1_CreateProduct: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CreateProduct"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1137,14 +1137,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_CreateProduct: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct, rhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_CreateProduct, rhs: Bloombox_Services_Menu_V1beta1_CreateProduct) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.protoMessageName + ".Request"
+extension Bloombox_Services_Menu_V1beta1_CreateProduct.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_CreateProduct.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "product"),
@@ -1196,7 +1196,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_CreateProduct.Request, rhs: Bloombox_Services_Menu_V1beta1_CreateProduct.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1212,8 +1212,8 @@ extension Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Request: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.protoMessageName + ".Response"
+extension Bloombox_Services_Menu_V1beta1_CreateProduct.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_CreateProduct.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
   ]
@@ -1258,7 +1258,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response: SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_CreateProduct.Response, rhs: Bloombox_Services_Menu_V1beta1_CreateProduct.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1273,7 +1273,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_CreateProduct.Response: SwiftPro
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Menu_V1beta1_UpdateProduct: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UpdateProduct"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1286,14 +1286,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct, rhs: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_UpdateProduct, rhs: Bloombox_Services_Menu_V1beta1_UpdateProduct) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.protoMessageName + ".Request"
+extension Bloombox_Services_Menu_V1beta1_UpdateProduct.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_UpdateProduct.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "product"),
@@ -1345,7 +1345,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_UpdateProduct.Request, rhs: Bloombox_Services_Menu_V1beta1_UpdateProduct.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1361,7 +1361,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_UpdateProduct.Request: SwiftProt
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_SearchMenu: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Menu_V1beta1_SearchMenu: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SearchMenu"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1374,20 +1374,20 @@ extension Bloombox_Schema_Services_Menu_V1beta1_SearchMenu: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu, rhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_SearchMenu, rhs: Bloombox_Services_Menu_V1beta1_SearchMenu) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.protoMessageName + ".Request"
+extension Bloombox_Services_Menu_V1beta1_SearchMenu.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_SearchMenu.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "search"),
   ]
 
   fileprivate class _StorageClass {
-    var _search: Bloombox_Schema_Search_SearchSpec? = nil
+    var _search: Bloombox_Search_SearchSpec? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1426,7 +1426,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request: SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_SearchMenu.Request, rhs: Bloombox_Services_Menu_V1beta1_SearchMenu.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1441,14 +1441,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Request: SwiftProtobu
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.protoMessageName + ".Response"
+extension Bloombox_Services_Menu_V1beta1_SearchMenu.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_SearchMenu.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "resulset"),
   ]
 
   fileprivate class _StorageClass {
-    var _resulset: Bloombox_Schema_Search_SearchResultset? = nil
+    var _resulset: Bloombox_Search_SearchResultset? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1487,7 +1487,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response, rhs: Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_SearchMenu.Response, rhs: Bloombox_Services_Menu_V1beta1_SearchMenu.Response) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1502,7 +1502,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_SearchMenu.Response: SwiftProtob
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_ProductStock: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Menu_V1beta1_ProductStock: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ProductStock"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1515,14 +1515,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_ProductStock: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_ProductStock, rhs: Bloombox_Schema_Services_Menu_V1beta1_ProductStock) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_ProductStock, rhs: Bloombox_Services_Menu_V1beta1_ProductStock) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_ProductStock.protoMessageName + ".Request"
+extension Bloombox_Services_Menu_V1beta1_ProductStock.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_ProductStock.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "key"),
@@ -1574,7 +1574,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request: SwiftProto
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_ProductStock.Request, rhs: Bloombox_Services_Menu_V1beta1_ProductStock.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -1590,7 +1590,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_ProductStock.Request: SwiftProto
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Services_Menu_V1beta1_DeleteProduct: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DeleteProduct"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -1603,14 +1603,14 @@ extension Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct: SwiftProtobuf.Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct, rhs: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_DeleteProduct, rhs: Bloombox_Services_Menu_V1beta1_DeleteProduct) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.protoMessageName + ".Request"
+extension Bloombox_Services_Menu_V1beta1_DeleteProduct.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_DeleteProduct.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
     2: .same(proto: "key"),
@@ -1662,7 +1662,7 @@ extension Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request: SwiftProt
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request, rhs: Bloombox_Schema_Services_Menu_V1beta1_DeleteProduct.Request) -> Bool {
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_DeleteProduct.Request, rhs: Bloombox_Services_Menu_V1beta1_DeleteProduct.Request) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

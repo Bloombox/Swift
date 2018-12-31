@@ -32,7 +32,7 @@ internal struct ModelTool {
         product.brand = Brand.with { brand in
           brand.name = Name.with { $0.primary = "Speciale" }
           brand.summary = Content.with { content in
-            content.encoding = Content.Encoding.utf8
+            content.encoding = Encoding.utf8
             content.language = Language.english
             content.content = "We focus on quality above all else"
           }
@@ -40,7 +40,7 @@ internal struct ModelTool {
 
         // Content: Summary
         product.summary = Content.with { summary in
-          summary.encoding = Content.Encoding.utf8
+          summary.encoding = Encoding.utf8
           summary.language = Language.english
           summary.content = ("This strain provides a nice, comfortable high, with very little anxiety or other " +
                              "negative effects. Combined with a morning coffee, it is a treat.")
@@ -48,7 +48,7 @@ internal struct ModelTool {
 
         // Content: Dosage
         product.dosage = Content.with { dosage in
-          dosage.encoding = Content.Encoding.b64
+          dosage.encoding = Encoding.b64
           dosage.language = Language.english
           dosage.content = ("Only a few bowls should do you fine. Mostly we're trying to test b64 content here."
             .data(using: .utf8)!.base64EncodedString())
@@ -96,7 +96,7 @@ internal struct ModelTool {
             subj.description_p = Content.with { subjDesc in
               subjDesc.content = "Calm, alert high, with minimal anxiety but just a little bit of brain fuzz."
               subjDesc.language = Language.english
-              subjDesc.encoding = Content.Encoding.utf8
+              subjDesc.encoding = Encoding.utf8
             }
           }
 

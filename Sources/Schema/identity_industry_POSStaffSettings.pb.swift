@@ -25,15 +25,15 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Settings for point-of-sale devices, when this user is the active authorized user and establishes a valid, authorized
 /// point-of-sale session.
-public struct Bloombox_Schema_Identity_Industry_POSStaffSettings {
+public struct Bloombox_Identity_Industry_POSStaffSettings {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// Point-of-sale authentication challenge. Stores a hashed and salted pre-image with which to compute a match or
   /// rejection of the user's point-of-sale passcode.
-  public var challenge: Opencannabis_Crypto_Primitives_Integrity_Hash {
-    get {return _storage._challenge ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+  public var challenge: Opencannabis_Crypto_Hash {
+    get {return _storage._challenge ?? Opencannabis_Crypto_Hash()}
     set {_uniqueStorage()._challenge = newValue}
   }
   /// Returns true if `challenge` has been explicitly set.
@@ -43,8 +43,8 @@ public struct Bloombox_Schema_Identity_Industry_POSStaffSettings {
 
   /// Point-of-sale keycard challenge hash. Stores a hashed and salted pre-image with which to compute a match or
   /// rejection of a keycard scan operation designed to log the user in quickly.
-  public var keycard: Opencannabis_Crypto_Primitives_Integrity_Hash {
-    get {return _storage._keycard ?? Opencannabis_Crypto_Primitives_Integrity_Hash()}
+  public var keycard: Opencannabis_Crypto_Hash {
+    get {return _storage._keycard ?? Opencannabis_Crypto_Hash()}
     set {_uniqueStorage()._keycard = newValue}
   }
   /// Returns true if `keycard` has been explicitly set.
@@ -61,9 +61,9 @@ public struct Bloombox_Schema_Identity_Industry_POSStaffSettings {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.identity.industry"
+fileprivate let _protobuf_package = "bloombox.identity.industry"
 
-extension Bloombox_Schema_Identity_Industry_POSStaffSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Identity_Industry_POSStaffSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".POSStaffSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "challenge"),
@@ -71,8 +71,8 @@ extension Bloombox_Schema_Identity_Industry_POSStaffSettings: SwiftProtobuf.Mess
   ]
 
   fileprivate class _StorageClass {
-    var _challenge: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
-    var _keycard: Opencannabis_Crypto_Primitives_Integrity_Hash? = nil
+    var _challenge: Opencannabis_Crypto_Hash? = nil
+    var _keycard: Opencannabis_Crypto_Hash? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -116,7 +116,7 @@ extension Bloombox_Schema_Identity_Industry_POSStaffSettings: SwiftProtobuf.Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Identity_Industry_POSStaffSettings, rhs: Bloombox_Schema_Identity_Industry_POSStaffSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Identity_Industry_POSStaffSettings, rhs: Bloombox_Identity_Industry_POSStaffSettings) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

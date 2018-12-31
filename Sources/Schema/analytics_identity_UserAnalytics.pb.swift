@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies actions that may be taken by a user. See also: `ShopAction`.
-public enum Bloombox_Schema_Analytics_Identity_UserAction: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Identity_UserAction: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The user engaged in some manner, either anonymously, or with an identified user key.
@@ -101,9 +101,9 @@ public enum Bloombox_Schema_Analytics_Identity_UserAction: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Identity_UserAction: CaseIterable {
+extension Bloombox_Analytics_Identity_UserAction: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Identity_UserAction] = [
+  public static var allCases: [Bloombox_Analytics_Identity_UserAction] = [
     .engage,
     .enroll,
     .activate,
@@ -122,7 +122,7 @@ extension Bloombox_Schema_Analytics_Identity_UserAction: CaseIterable {
 
 /// Specifies a user action event, wherein a user has taken some affirmative action related to themselves, their identity
 /// with regards to a particular system, or their account or preferences.
-public struct Bloombox_Schema_Analytics_Identity_Action {
+public struct Bloombox_Analytics_Identity_Action {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -134,7 +134,7 @@ public struct Bloombox_Schema_Analytics_Identity_Action {
   }
 
   /// Action that was taken upon or regarding the order.
-  public var verb: Bloombox_Schema_Analytics_Identity_UserAction {
+  public var verb: Bloombox_Analytics_Identity_UserAction {
     get {return _storage._verb}
     set {_uniqueStorage()._verb = newValue}
   }
@@ -158,9 +158,9 @@ public struct Bloombox_Schema_Analytics_Identity_Action {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.identity"
+fileprivate let _protobuf_package = "bloombox.analytics.identity"
 
-extension Bloombox_Schema_Analytics_Identity_UserAction: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Identity_UserAction: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ENGAGE"),
     10: .same(proto: "ENROLL"),
@@ -176,7 +176,7 @@ extension Bloombox_Schema_Analytics_Identity_UserAction: SwiftProtobuf._ProtoNam
   ]
 }
 
-extension Bloombox_Schema_Analytics_Identity_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Identity_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Action"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "identity"),
@@ -186,7 +186,7 @@ extension Bloombox_Schema_Analytics_Identity_Action: SwiftProtobuf.Message, Swif
 
   fileprivate class _StorageClass {
     var _identity: String = String()
-    var _verb: Bloombox_Schema_Analytics_Identity_UserAction = .engage
+    var _verb: Bloombox_Analytics_Identity_UserAction = .engage
     var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
@@ -236,7 +236,7 @@ extension Bloombox_Schema_Analytics_Identity_Action: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Identity_Action, rhs: Bloombox_Schema_Analytics_Identity_Action) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Identity_Action, rhs: Bloombox_Analytics_Identity_Action) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

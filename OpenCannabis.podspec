@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name          = "OpenCannabis"
   s.swift_version = "4.2"
-  s.version       = "0.1.8"
+  s.version       = "0.1.9"
   s.summary       = "OpenCannabis for Swift"
   s.description   = <<-DESC
 Native Swift codegen and bindings for OpenCannabis
@@ -21,7 +21,7 @@ Native Swift codegen and bindings for OpenCannabis
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.9"
+  #s.osx.deployment_target = "10.9"
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 

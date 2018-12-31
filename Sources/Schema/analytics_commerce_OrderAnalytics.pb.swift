@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies actions that may be taken on an order.
-public enum Bloombox_Schema_Analytics_Order_OrderAction: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Order_OrderAction: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The user added to their cart.
@@ -104,9 +104,9 @@ public enum Bloombox_Schema_Analytics_Order_OrderAction: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Order_OrderAction: CaseIterable {
+extension Bloombox_Analytics_Order_OrderAction: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Order_OrderAction] = [
+  public static var allCases: [Bloombox_Analytics_Order_OrderAction] = [
     .addToCart,
     .removeFromCart,
     .restoreCart,
@@ -126,7 +126,7 @@ extension Bloombox_Schema_Analytics_Order_OrderAction: CaseIterable {
 
 /// Specifies an order action event, wherein a user or backoffice admin has affirmatively taken some action upon or
 /// regarding a commercial order to be submitted or previously submitted by an end user.
-public struct Bloombox_Schema_Analytics_Order_Action {
+public struct Bloombox_Analytics_Order_Action {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -142,7 +142,7 @@ public struct Bloombox_Schema_Analytics_Order_Action {
   public mutating func clearOrderKey() {_uniqueStorage()._orderKey = nil}
 
   /// Action that was taken upon or regarding the order.
-  public var verb: Bloombox_Schema_Analytics_Order_OrderAction {
+  public var verb: Bloombox_Analytics_Order_OrderAction {
     get {return _storage._verb}
     set {_uniqueStorage()._verb = newValue}
   }
@@ -176,9 +176,9 @@ public struct Bloombox_Schema_Analytics_Order_Action {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.order"
+fileprivate let _protobuf_package = "bloombox.analytics.order"
 
-extension Bloombox_Schema_Analytics_Order_OrderAction: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Order_OrderAction: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "ADD_TO_CART"),
     1: .same(proto: "REMOVE_FROM_CART"),
@@ -195,7 +195,7 @@ extension Bloombox_Schema_Analytics_Order_OrderAction: SwiftProtobuf._ProtoNameP
   ]
 }
 
-extension Bloombox_Schema_Analytics_Order_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Order_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Action"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "order_key"),
@@ -206,7 +206,7 @@ extension Bloombox_Schema_Analytics_Order_Action: SwiftProtobuf.Message, SwiftPr
 
   fileprivate class _StorageClass {
     var _orderKey: Opencannabis_Commerce_OrderKey? = nil
-    var _verb: Bloombox_Schema_Analytics_Order_OrderAction = .addToCart
+    var _verb: Bloombox_Analytics_Order_OrderAction = .addToCart
     var _customer: Opencannabis_Commerce_Customer? = nil
     var _occurred: Opencannabis_Temporal_Instant? = nil
 
@@ -262,7 +262,7 @@ extension Bloombox_Schema_Analytics_Order_Action: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Order_Action, rhs: Bloombox_Schema_Analytics_Order_Action) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Order_Action, rhs: Bloombox_Analytics_Order_Action) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -20,7 +20,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Specifies actions that may be taken within a menu section.
-public enum Bloombox_Schema_Analytics_Section_SectionAction: SwiftProtobuf.Enum {
+public enum Bloombox_Analytics_Section_SectionAction: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// The section was viewed. Section views are implemented under-the-hood as actions of type VIEW.
@@ -59,9 +59,9 @@ public enum Bloombox_Schema_Analytics_Section_SectionAction: SwiftProtobuf.Enum 
 
 #if swift(>=4.2)
 
-extension Bloombox_Schema_Analytics_Section_SectionAction: CaseIterable {
+extension Bloombox_Analytics_Section_SectionAction: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Schema_Analytics_Section_SectionAction] = [
+  public static var allCases: [Bloombox_Analytics_Section_SectionAction] = [
     .view,
     .sort,
     .filter,
@@ -71,7 +71,7 @@ extension Bloombox_Schema_Analytics_Section_SectionAction: CaseIterable {
 #endif  // swift(>=4.2)
 
 /// Specifies a section impression event, wherein a user has been presented a particular menu section.
-public struct Bloombox_Schema_Analytics_Section_Impression {
+public struct Bloombox_Analytics_Section_Impression {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -104,7 +104,7 @@ public struct Bloombox_Schema_Analytics_Section_Impression {
 }
 
 /// Specifies a section view event, wherein a user has navigated to a particular menu section.
-public struct Bloombox_Schema_Analytics_Section_View {
+public struct Bloombox_Analytics_Section_View {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -144,7 +144,7 @@ public struct Bloombox_Schema_Analytics_Section_View {
 
 /// Specifies a section action event, wherein a user has affirmatively elected to take some action while within a master
 /// view of a particular menu section.
-public struct Bloombox_Schema_Analytics_Section_Action {
+public struct Bloombox_Analytics_Section_Action {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -160,7 +160,7 @@ public struct Bloombox_Schema_Analytics_Section_Action {
   public mutating func clearSpec() {_uniqueStorage()._spec = nil}
 
   /// Action that was taken within the section.
-  public var verb: Bloombox_Schema_Analytics_Section_SectionAction {
+  public var verb: Bloombox_Analytics_Section_SectionAction {
     get {return _storage._verb}
     set {_uniqueStorage()._verb = newValue}
   }
@@ -184,9 +184,9 @@ public struct Bloombox_Schema_Analytics_Section_Action {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "bloombox.schema.analytics.section"
+fileprivate let _protobuf_package = "bloombox.analytics.section"
 
-extension Bloombox_Schema_Analytics_Section_SectionAction: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Section_SectionAction: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "VIEW"),
     1: .same(proto: "SORT"),
@@ -194,7 +194,7 @@ extension Bloombox_Schema_Analytics_Section_SectionAction: SwiftProtobuf._ProtoN
   ]
 }
 
-extension Bloombox_Schema_Analytics_Section_Impression: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Section_Impression: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Impression"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "spec"),
@@ -247,7 +247,7 @@ extension Bloombox_Schema_Analytics_Section_Impression: SwiftProtobuf.Message, S
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Section_Impression, rhs: Bloombox_Schema_Analytics_Section_Impression) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Section_Impression, rhs: Bloombox_Analytics_Section_Impression) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -263,7 +263,7 @@ extension Bloombox_Schema_Analytics_Section_Impression: SwiftProtobuf.Message, S
   }
 }
 
-extension Bloombox_Schema_Analytics_Section_View: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Section_View: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".View"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "spec"),
@@ -323,7 +323,7 @@ extension Bloombox_Schema_Analytics_Section_View: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Section_View, rhs: Bloombox_Schema_Analytics_Section_View) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Section_View, rhs: Bloombox_Analytics_Section_View) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
@@ -340,7 +340,7 @@ extension Bloombox_Schema_Analytics_Section_View: SwiftProtobuf.Message, SwiftPr
   }
 }
 
-extension Bloombox_Schema_Analytics_Section_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Analytics_Section_Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Action"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "spec"),
@@ -350,7 +350,7 @@ extension Bloombox_Schema_Analytics_Section_Action: SwiftProtobuf.Message, Swift
 
   fileprivate class _StorageClass {
     var _spec: Opencannabis_Products_Menu_Section_SectionSpec? = nil
-    var _verb: Bloombox_Schema_Analytics_Section_SectionAction = .view
+    var _verb: Bloombox_Analytics_Section_SectionAction = .view
     var _occurred: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
@@ -400,7 +400,7 @@ extension Bloombox_Schema_Analytics_Section_Action: SwiftProtobuf.Message, Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Schema_Analytics_Section_Action, rhs: Bloombox_Schema_Analytics_Section_Action) -> Bool {
+  public static func ==(lhs: Bloombox_Analytics_Section_Action, rhs: Bloombox_Analytics_Section_Action) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
