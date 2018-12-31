@@ -21,7 +21,7 @@ Native Swift codegen and bindings for OpenCannabis
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.9"
+  #s.osx.deployment_target = "10.9"
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 
