@@ -130,12 +130,17 @@ internal enum TransportEnvironment {
   }
 }
 
+
+/// Global specifying the main API hostname.
+internal let apiHostname = "rpc.bloombox.cloud"
+
+
 /// Production identity service settings.
 internal struct ProductionIdentity: RPCServiceSettings {
     let secure = true
-    let host = "api.bloombox.cloud"
+    let host = apiHostname
     let port = 443
-    let hostname: String? = "api.bloombox.cloud"
+    let hostname: String? = apiHostname
     let chain: String? = authorityChain
     let cert: String? = nil
     let key: String? = nil
@@ -144,9 +149,9 @@ internal struct ProductionIdentity: RPCServiceSettings {
 /// Production devices service settings.
 internal struct ProductionDevices: RPCServiceSettings {
   let secure = true
-  let host = "api.bloombox.cloud"
+  let host = apiHostname
   let port = 443
-  let hostname: String? = "api.bloombox.cloud"
+  let hostname: String? = apiHostname
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -155,9 +160,9 @@ internal struct ProductionDevices: RPCServiceSettings {
 /// Production shop settings.
 internal struct ProductionShop: RPCServiceSettings {
   let secure = true
-  let host = "api.bloombox.cloud"
+  let host = apiHostname
   let port = 443
-  let hostname: String? = "api.bloombox.cloud"
+  let hostname: String? = apiHostname
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -166,9 +171,9 @@ internal struct ProductionShop: RPCServiceSettings {
 /// Production telemetry settings.
 internal struct ProductionTelemetry: RPCServiceSettings {
   let secure = true
-  let host = "api.bloombox.cloud"
+  let host = apiHostname
   let port = 443
-  let hostname: String? = "api.bloombox.cloud"
+  let hostname: String? = apiHostname
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -177,9 +182,9 @@ internal struct ProductionTelemetry: RPCServiceSettings {
 /// Production media settings.
 internal struct ProductionMedia: RPCServiceSettings {
   let secure = true
-  let host = "api.bloombox.cloud"
+  let host = apiHostname
   let port = 443
-  let hostname: String? = "api.bloombox.cloud"
+  let hostname: String? = apiHostname
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -188,9 +193,9 @@ internal struct ProductionMedia: RPCServiceSettings {
 /// Production menu settings.
 internal struct ProductionMenu: RPCServiceSettings {
   let secure = true
-  let host = "api.bloombox.cloud"
+  let host = apiHostname
   let port = 443
-  let hostname: String? = "api.bloombox.cloud"
+  let hostname: String? = apiHostname
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -199,9 +204,9 @@ internal struct ProductionMenu: RPCServiceSettings {
 /// Production POS settings.
 internal struct ProductionPOS: RPCServiceSettings {
   let secure = true
-  let host = "api.bloombox.cloud"
+  let host = apiHostname
   let port = 443
-  let hostname: String? = "api.bloombox.cloud"
+  let hostname: String? = apiHostname
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -210,9 +215,9 @@ internal struct ProductionPOS: RPCServiceSettings {
 /// Production auth settings.
 internal struct ProductionAuth: RPCServiceSettings {
   let secure = true
-  let host = "api.bloombox.cloud"
+  let host = apiHostname
   let port = 443
-  let hostname: String? = "api.bloombox.cloud"
+  let hostname: String? = apiHostname
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -221,9 +226,9 @@ internal struct ProductionAuth: RPCServiceSettings {
 /// Production checkin settings.
 internal struct ProductionCheckin: RPCServiceSettings {
   let secure = true
-  let host = "api.bloombox.cloud"
+  let host = apiHostname
   let port = 443
-  let hostname: String? = "api.bloombox.cloud"
+  let hostname: String? = apiHostname
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil
@@ -232,9 +237,9 @@ internal struct ProductionCheckin: RPCServiceSettings {
 /// Production platform API settings.
 internal struct ProductionPlatform: RPCServiceSettings {
   let secure = true
-  let host = "api.bloombox.cloud"
+  let host = apiHostname
   let port = 443
-  let hostname: String? = "api.bloombox.cloud"
+  let hostname: String? = apiHostname
   let chain: String? = authorityChain
   let cert: String? = nil
   let key: String? = nil

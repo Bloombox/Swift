@@ -194,7 +194,10 @@ internal final class ShopClientTests: XCTestCase {
     let expectation = XCTestExpectation(description: "Fetch member verification: known bad")
 
     try client.shop.verifyMember(email: "does-not-exist@nosuchdomain.com") { result, resp in
-      assert(!resp!.verified, "invalid customer should not verify")
+      assert(resp != nil, "should get a response no matter what")
+      if resp != nil {
+        assert(!resp!.verified, "invalid customer should not verify")
+      }
       expectation.fulfill()
     }
 
@@ -284,8 +287,8 @@ internal final class ShopClientTests: XCTestCase {
 
     try ClientTools.client.shop.getOrder(id: "abc123") { result, response in
       XCTAssertNotNil(response, "should get a response when fetching an order")
-      XCTAssertTrue(response!.success, "get-order for known order should be successful")
-      XCTAssertTrue(response!.hasOrder, "get-order should contain order data")
+      XCTAssertTrue(response?.success ?? false, "get-order for known order should be successful")
+      XCTAssertTrue(response?.hasOrder ?? false, "get-order should contain order data")
       expectation.fulfill()
     }
 
