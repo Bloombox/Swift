@@ -8,8 +8,8 @@
 import XCTest
 @testable import Bloombox
 
-let testPartner = "caliva"
-let testLocation = "sjc"
+let testPartner = "abatin"
+let testLocation = "sacramento"
 let testAccount = "sam@bloombox.io"
 let testApiKey = "AIzaSyBC4ZQVM3JnnS4P-wu6MHKi5oc0NcEuWxE"
 let testOrigin = "abatin.menu:443"

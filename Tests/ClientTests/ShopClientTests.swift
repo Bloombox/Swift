@@ -248,14 +248,22 @@ internal final class ShopClientTests: XCTestCase {
   }
 
   func testZipcheckKnownEligible() throws {
-    let result = try ClientTools.client.shop.checkZipcode(zipcode: testZipcode)
+    let result = try ClientTools.client.shop.checkZipcode(
+      zipcode: testZipcode,
+      partner: "caliva",
+      location: "sjc",
+      apiKey: nil)
     XCTAssertTrue(result.supported, "known-eligible zipcode should report 'supported' as true")
   }
 
   func testZipcheckKnownEligibleAsync() throws {
     let expectation = XCTestExpectation(description: "Check known-eligible zipcode")
 
-    try ClientTools.client.shop.checkZipcode(zipcode: testZipcode) { result, response in
+    try ClientTools.client.shop.checkZipcode(
+      zipcode: testZipcode,
+      partner: "caliva",
+      location: "sjc",
+      apiKey: nil) { result, response in
       XCTAssertNotNil(response, "response should not be nil for supported zipcode")
       XCTAssertTrue(response?.supported ?? false, "known-eligible zipcode should report 'supported' as true")
       expectation.fulfill()
@@ -265,13 +273,21 @@ internal final class ShopClientTests: XCTestCase {
   }
 
   func testZipcheckKnownMinimum() throws {
-    let result = try ClientTools.client.shop.checkZipcode(zipcode: testZipcode)
+    let result = try ClientTools.client.shop.checkZipcode(
+      zipcode: testZipcode,
+      partner: "caliva",
+      location: "sjc",
+      apiKey: nil)
     XCTAssertTrue(result.supported, "known-eligible zipcode should report 'supported' as true")
     XCTAssertEqual(result.deliveryMinimum, 50.0, "known-delivery-minimum should match")
   }
 
   func testZipcheckKnownIneligible() throws {
-    let result = try ClientTools.client.shop.checkZipcode(zipcode: "12345")
+    let result = try ClientTools.client.shop.checkZipcode(
+      zipcode: "12345",
+      partner: "caliva",
+      location: "sjc",
+      apiKey: nil)
     XCTAssertFalse(result.supported, "should indicate unsupported zipcode is unsupported")
   }
 

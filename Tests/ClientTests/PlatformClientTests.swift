@@ -155,8 +155,12 @@ internal final class PlatformClientTests: XCTestCase {
   }
 
   func testDomainInfoKnownValid() throws {
-    let domains = try ClientTools.client.platform.domains()
-    XCTAssertNotNil(domains.menu)
+    do {
+      let domains = try ClientTools.client.platform.domains()
+      XCTAssertNotNil(domains.menu)
+    } catch {
+      XCTAssertTrue(false, "got error: \(error)")
+    }
   }
 
   func testDomainInfoKnownValidAsync() throws {
