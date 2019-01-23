@@ -76,8 +76,8 @@ internal final class PlatformClientTests: XCTestCase {
 
   func testResolveDomainKnownValid() throws {
     let manifest = try ClientTools.client.platform.resolve(domain: testOrigin)
-    XCTAssertEqual(manifest.partner, testPartner, "should be able to resolve known-good domain partner")
-    XCTAssertEqual(manifest.location, testLocation, "should be able to resolve known-good domain location")
+    XCTAssertEqual(manifest.partner, "abatin", "should be able to resolve known-good domain partner")
+    XCTAssertEqual(manifest.location, "sacramento", "should be able to resolve known-good domain location")
   }
 
   func testResolveDomainKnownValidAsync() throws {
@@ -85,8 +85,8 @@ internal final class PlatformClientTests: XCTestCase {
 
     try ClientTools.client.platform.resolve(domain: testOrigin) { (result, response) in
       XCTAssertNotNil(response, "should get response for valid domain resolve")
-      XCTAssertEqual(response?.partner, testPartner, "partner resolved for test origin should match")
-      XCTAssertEqual(response?.location, testLocation, "location resolved for test origin should match")
+      XCTAssertEqual(response?.partner, "abatin", "partner resolved for test origin should match")
+      XCTAssertEqual(response?.location, "sacramento", "location resolved for test origin should match")
       expectation.fulfill()
     }
 
