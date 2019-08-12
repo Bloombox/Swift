@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Enumerates the "shelf" of a product. Indicates the quality of an entry.
+
 import Foundation
 import SwiftProtobuf
 

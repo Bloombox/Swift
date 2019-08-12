@@ -104,6 +104,12 @@ public enum Bloombox_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf.Enum {
 
   /// The device should act as a point-of-sale unit.
   case pos // = 4
+
+  /// The device should act as an edge compute device.
+  case edge // = 5
+
+  /// The device should act as an RFID reader or controller device.
+  case rfid // = 6
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -117,6 +123,8 @@ public enum Bloombox_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf.Enum {
     case 2: self = .checkin
     case 3: self = .beacon
     case 4: self = .pos
+    case 5: self = .edge
+    case 6: self = .rfid
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -128,6 +136,8 @@ public enum Bloombox_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf.Enum {
     case .checkin: return 2
     case .beacon: return 3
     case .pos: return 4
+    case .edge: return 5
+    case .rfid: return 6
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -144,6 +154,8 @@ extension Bloombox_Services_Devices_V1beta1_DeviceRole: CaseIterable {
     .checkin,
     .beacon,
     .pos,
+    .edge,
+    .rfid,
   ]
 }
 
@@ -584,6 +596,8 @@ extension Bloombox_Services_Devices_V1beta1_DeviceRole: SwiftProtobuf._ProtoName
     2: .same(proto: "CHECKIN"),
     3: .same(proto: "BEACON"),
     4: .same(proto: "POS"),
+    5: .same(proto: "EDGE"),
+    6: .same(proto: "RFID"),
   ]
 }
 

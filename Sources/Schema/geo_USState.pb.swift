@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Enumerates the various States of the United States of America
+
 import Foundation
 import SwiftProtobuf
 

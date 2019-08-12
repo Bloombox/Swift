@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure to facilitate telemetry events with arbitrary payload structure.
+
 import Foundation
 import SwiftProtobuf
 
@@ -152,6 +155,15 @@ public struct Bloombox_Services_Telemetry_V1beta4_TelemetryEvent {
     set {_uniqueStorage()._event = .searchResult(newValue)}
   }
 
+  /// Inventory: Event.
+  public var inventoryEvent: Bloombox_Services_Telemetry_V1beta4_InventoryEvent {
+    get {
+      if case .inventoryEvent(let v)? = _storage._event {return v}
+      return Bloombox_Services_Telemetry_V1beta4_InventoryEvent()
+    }
+    set {_uniqueStorage()._event = .inventoryEvent(newValue)}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Event data payload.
@@ -172,6 +184,8 @@ public struct Bloombox_Services_Telemetry_V1beta4_TelemetryEvent {
     case searchQuery(Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query)
     /// Search: Result.
     case searchResult(Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result)
+    /// Inventory: Event.
+    case inventoryEvent(Bloombox_Services_Telemetry_V1beta4_InventoryEvent)
 
   #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event, rhs: Bloombox_Services_Telemetry_V1beta4_TelemetryEvent.OneOf_Event) -> Bool {
@@ -184,6 +198,7 @@ public struct Bloombox_Services_Telemetry_V1beta4_TelemetryEvent {
       case (.userAction(let l), .userAction(let r)): return l == r
       case (.searchQuery(let l), .searchQuery(let r)): return l == r
       case (.searchResult(let l), .searchResult(let r)): return l == r
+      case (.inventoryEvent(let l), .inventoryEvent(let r)): return l == r
       default: return false
       }
     }
@@ -216,6 +231,7 @@ extension Bloombox_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtobuf.Mess
     30: .standard(proto: "user_action"),
     31: .standard(proto: "search_query"),
     32: .standard(proto: "search_result"),
+    33: .standard(proto: "inventory_event"),
   ]
 
   fileprivate class _StorageClass {
@@ -324,6 +340,14 @@ extension Bloombox_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtobuf.Mess
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._event = .searchResult(v)}
+        case 33:
+          var v: Bloombox_Services_Telemetry_V1beta4_InventoryEvent?
+          if let current = _storage._event {
+            try decoder.handleConflictingOneOf()
+            if case .inventoryEvent(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._event = .inventoryEvent(v)}
         default: break
         }
       }
@@ -367,6 +391,8 @@ extension Bloombox_Services_Telemetry_V1beta4_TelemetryEvent: SwiftProtobuf.Mess
         try visitor.visitSingularMessageField(value: v, fieldNumber: 31)
       case .searchResult(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 32)
+      case .inventoryEvent(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 33)
       case nil: break
       }
     }

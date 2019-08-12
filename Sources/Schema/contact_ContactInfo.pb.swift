@@ -75,6 +75,166 @@ public struct Opencannabis_Contact_ContactInfo {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+/// Specifies social profile URLs for a given entity, person, or organization.
+public struct Opencannabis_Contact_SocialInfo {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Profile listings for a given entity or person.
+  public var profile: [Opencannabis_Contact_SocialInfo.SocialProfile] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Enumerates known social providers.
+  public enum SocialProvider: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Indicates an un-enumerated social provider.
+    case unspecifiedSocialProvider // = 0
+
+    /// Social profile on Facebook.
+    case facebook // = 1
+
+    /// Social profile on Twitter.
+    case twitter // = 2
+
+    /// Social profile on Instagram.
+    case instagram // = 3
+
+    /// Social profile on YouTube.
+    case youtube // = 4
+
+    /// Social profile on Leafly.
+    case leafly // = 5
+
+    /// Social profile on WeedMaps.
+    case weedmaps // = 6
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .unspecifiedSocialProvider
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .unspecifiedSocialProvider
+      case 1: self = .facebook
+      case 2: self = .twitter
+      case 3: self = .instagram
+      case 4: self = .youtube
+      case 5: self = .leafly
+      case 6: self = .weedmaps
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .unspecifiedSocialProvider: return 0
+      case .facebook: return 1
+      case .twitter: return 2
+      case .instagram: return 3
+      case .youtube: return 4
+      case .leafly: return 5
+      case .weedmaps: return 6
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  /// Specifies the notion of an individual social profile, for a given provider.
+  public struct SocialProfile {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Specifies the provider context for the profile.
+    public var provider: OneOf_Provider? {
+      get {return _storage._provider}
+      set {_uniqueStorage()._provider = newValue}
+    }
+
+    /// Known social account provider.
+    public var known: Opencannabis_Contact_SocialInfo.SocialProvider {
+      get {
+        if case .known(let v)? = _storage._provider {return v}
+        return .unspecifiedSocialProvider
+      }
+      set {_uniqueStorage()._provider = .known(newValue)}
+    }
+
+    /// Custom social account provider.
+    public var custom: String {
+      get {
+        if case .custom(let v)? = _storage._provider {return v}
+        return String()
+      }
+      set {_uniqueStorage()._provider = .custom(newValue)}
+    }
+
+    /// Profile ID/username.
+    public var username: String {
+      get {return _storage._username}
+      set {_uniqueStorage()._username = newValue}
+    }
+
+    /// Full URL to the profile.
+    public var url: Opencannabis_Contact_Website {
+      get {return _storage._url ?? Opencannabis_Contact_Website()}
+      set {_uniqueStorage()._url = newValue}
+    }
+    /// Returns true if `url` has been explicitly set.
+    public var hasURL: Bool {return _storage._url != nil}
+    /// Clears the value of `url`. Subsequent reads from it will return its default value.
+    public mutating func clearURL() {_uniqueStorage()._url = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    /// Specifies the provider context for the profile.
+    public enum OneOf_Provider: Equatable {
+      /// Known social account provider.
+      case known(Opencannabis_Contact_SocialInfo.SocialProvider)
+      /// Custom social account provider.
+      case custom(String)
+
+    #if !swift(>=4.1)
+      public static func ==(lhs: Opencannabis_Contact_SocialInfo.SocialProfile.OneOf_Provider, rhs: Opencannabis_Contact_SocialInfo.SocialProfile.OneOf_Provider) -> Bool {
+        switch (lhs, rhs) {
+        case (.known(let l), .known(let r)): return l == r
+        case (.custom(let l), .custom(let r)): return l == r
+        default: return false
+        }
+      }
+    #endif
+    }
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  public init() {}
+}
+
+#if swift(>=4.2)
+
+extension Opencannabis_Contact_SocialInfo.SocialProvider: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Contact_SocialInfo.SocialProvider] = [
+    .unspecifiedSocialProvider,
+    .facebook,
+    .twitter,
+    .instagram,
+    .youtube,
+    .leafly,
+    .weedmaps,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.contact"
@@ -155,6 +315,138 @@ extension Opencannabis_Contact_ContactInfo: SwiftProtobuf.Message, SwiftProtobuf
         if _storage._phone != rhs_storage._phone {return false}
         if _storage._email != rhs_storage._email {return false}
         if _storage._website != rhs_storage._website {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Contact_SocialInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SocialInfo"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "profile"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.profile)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.profile.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.profile, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Contact_SocialInfo, rhs: Opencannabis_Contact_SocialInfo) -> Bool {
+    if lhs.profile != rhs.profile {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Contact_SocialInfo.SocialProvider: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNSPECIFIED_SOCIAL_PROVIDER"),
+    1: .same(proto: "FACEBOOK"),
+    2: .same(proto: "TWITTER"),
+    3: .same(proto: "INSTAGRAM"),
+    4: .same(proto: "YOUTUBE"),
+    5: .same(proto: "LEAFLY"),
+    6: .same(proto: "WEEDMAPS"),
+  ]
+}
+
+extension Opencannabis_Contact_SocialInfo.SocialProfile: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Opencannabis_Contact_SocialInfo.protoMessageName + ".SocialProfile"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    10: .same(proto: "known"),
+    11: .same(proto: "custom"),
+    1: .same(proto: "username"),
+    2: .same(proto: "url"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _provider: Opencannabis_Contact_SocialInfo.SocialProfile.OneOf_Provider?
+    var _username: String = String()
+    var _url: Opencannabis_Contact_Website? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _provider = source._provider
+      _username = source._username
+      _url = source._url
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._username)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._url)
+        case 10:
+          if _storage._provider != nil {try decoder.handleConflictingOneOf()}
+          var v: Opencannabis_Contact_SocialInfo.SocialProvider?
+          try decoder.decodeSingularEnumField(value: &v)
+          if let v = v {_storage._provider = .known(v)}
+        case 11:
+          if _storage._provider != nil {try decoder.handleConflictingOneOf()}
+          var v: String?
+          try decoder.decodeSingularStringField(value: &v)
+          if let v = v {_storage._provider = .custom(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._username.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._username, fieldNumber: 1)
+      }
+      if let v = _storage._url {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      switch _storage._provider {
+      case .known(let v)?:
+        try visitor.visitSingularEnumField(value: v, fieldNumber: 10)
+      case .custom(let v)?:
+        try visitor.visitSingularStringField(value: v, fieldNumber: 11)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Contact_SocialInfo.SocialProfile, rhs: Opencannabis_Contact_SocialInfo.SocialProfile) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._provider != rhs_storage._provider {return false}
+        if _storage._username != rhs_storage._username {return false}
+        if _storage._url != rhs_storage._url {return false}
         return true
       }
       if !storagesAreEqual {return false}

@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure to specify the scope of the purchase/customer. Can be applied at a partner-location level, or
+/// just a partner level.
+
 import Foundation
 import SwiftProtobuf
 

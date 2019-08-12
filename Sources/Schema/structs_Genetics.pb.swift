@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides genetic lineage structures.
+
 import Foundation
 import SwiftProtobuf
 

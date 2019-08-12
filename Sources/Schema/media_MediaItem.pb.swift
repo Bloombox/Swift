@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides structures for specifying the subject of a media image as well as the structure to specify a specific media
+/// item. Enumerates various media stages and privacy.
+
 import Foundation
 import SwiftProtobuf
 

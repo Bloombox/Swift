@@ -208,6 +208,24 @@ public struct Bloombox_Ledger_ActorKey {
     set {_uniqueStorage()._actor = .location(newValue)}
   }
 
+  /// Specifies a partner co-located device as the identify behind a particular ledger account.
+  public var device: Bloombox_Partner_PartnerDeviceKey {
+    get {
+      if case .device(let v)? = _storage._actor {return v}
+      return Bloombox_Partner_PartnerDeviceKey()
+    }
+    set {_uniqueStorage()._actor = .device(newValue)}
+  }
+
+  /// Specifies a data node as the identity behind a particular ledger account.
+  public var node: Bloombox_Ledger_Node {
+    get {
+      if case .node(let v)? = _storage._actor {return v}
+      return Bloombox_Ledger_Node()
+    }
+    set {_uniqueStorage()._actor = .node(newValue)}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public enum OneOf_Actor: Equatable {
@@ -219,6 +237,10 @@ public struct Bloombox_Ledger_ActorKey {
     case partner(Bloombox_Partner_PartnerKey)
     /// Specifies a partner location as the identity behind a particular ledger account.
     case location(Bloombox_Partner_LocationKey)
+    /// Specifies a partner co-located device as the identify behind a particular ledger account.
+    case device(Bloombox_Partner_PartnerDeviceKey)
+    /// Specifies a data node as the identity behind a particular ledger account.
+    case node(Bloombox_Ledger_Node)
 
   #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Ledger_ActorKey.OneOf_Actor, rhs: Bloombox_Ledger_ActorKey.OneOf_Actor) -> Bool {
@@ -227,6 +249,8 @@ public struct Bloombox_Ledger_ActorKey {
       case (.user(let l), .user(let r)): return l == r
       case (.partner(let l), .partner(let r)): return l == r
       case (.location(let l), .location(let r)): return l == r
+      case (.device(let l), .device(let r)): return l == r
+      case (.node(let l), .node(let r)): return l == r
       default: return false
       }
     }
@@ -246,14 +270,14 @@ public struct Bloombox_Ledger_AccountKey {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// The account key ID is the computed result of UPPER(SHA3-B58(public_key)).
+  /// The account key ID is the computed result of UPPER(B58(SHA3-512(B64(raw_public_key) + chain + salt)))[0:-32].
   public var id: String {
     get {return _storage._id}
     set {_uniqueStorage()._id = newValue}
   }
 
   /// Reference to the public/private keypair for this ledger account. In rare cases, the private key may be included
-  /// here (the structure supports it), but usually, it's used for the onboard cryptographic hash of the public key.
+  /// here (the structure supports it), but usually, it's used for the on-board cryptographic hash of the public key.
   public var pair: Opencannabis_Crypto_Keypair {
     get {return _storage._pair ?? Opencannabis_Crypto_Keypair()}
     set {_uniqueStorage()._pair = newValue}
@@ -576,6 +600,8 @@ extension Bloombox_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf._Messag
     10: .same(proto: "user"),
     20: .same(proto: "partner"),
     30: .same(proto: "location"),
+    40: .same(proto: "device"),
+    50: .same(proto: "node"),
   ]
 
   fileprivate class _StorageClass {
@@ -631,6 +657,22 @@ extension Bloombox_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf._Messag
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._actor = .location(v)}
+        case 40:
+          var v: Bloombox_Partner_PartnerDeviceKey?
+          if let current = _storage._actor {
+            try decoder.handleConflictingOneOf()
+            if case .device(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._actor = .device(v)}
+        case 50:
+          var v: Bloombox_Ledger_Node?
+          if let current = _storage._actor {
+            try decoder.handleConflictingOneOf()
+            if case .node(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._actor = .node(v)}
         default: break
         }
       }
@@ -648,6 +690,10 @@ extension Bloombox_Ledger_ActorKey: SwiftProtobuf.Message, SwiftProtobuf._Messag
         try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
       case .location(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 30)
+      case .device(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 40)
+      case .node(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 50)
       case nil: break
       }
     }

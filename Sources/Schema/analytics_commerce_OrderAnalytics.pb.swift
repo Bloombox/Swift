@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for specifying actions made during an order. Enumerates actions that can be made during an
+/// order.
+
 import Foundation
 import SwiftProtobuf
 
@@ -51,7 +55,7 @@ public enum Bloombox_Analytics_Order_OrderAction: SwiftProtobuf.Enum {
   case orderRejected // = 8
 
   /// An order was set to in-progress by a back-office user.
-  case orderInProgerss // = 9
+  case orderInProgress // = 9
 
   /// An order left for delivery.
   case orderOutForDelivery // = 10
@@ -75,7 +79,7 @@ public enum Bloombox_Analytics_Order_OrderAction: SwiftProtobuf.Enum {
     case 6: self = .orderCancel
     case 7: self = .orderAccepted
     case 8: self = .orderRejected
-    case 9: self = .orderInProgerss
+    case 9: self = .orderInProgress
     case 10: self = .orderOutForDelivery
     case 11: self = .orderFulfilled
     default: self = .UNRECOGNIZED(rawValue)
@@ -93,7 +97,7 @@ public enum Bloombox_Analytics_Order_OrderAction: SwiftProtobuf.Enum {
     case .orderCancel: return 6
     case .orderAccepted: return 7
     case .orderRejected: return 8
-    case .orderInProgerss: return 9
+    case .orderInProgress: return 9
     case .orderOutForDelivery: return 10
     case .orderFulfilled: return 11
     case .UNRECOGNIZED(let i): return i
@@ -116,7 +120,7 @@ extension Bloombox_Analytics_Order_OrderAction: CaseIterable {
     .orderCancel,
     .orderAccepted,
     .orderRejected,
-    .orderInProgerss,
+    .orderInProgress,
     .orderOutForDelivery,
     .orderFulfilled,
   ]
@@ -189,7 +193,7 @@ extension Bloombox_Analytics_Order_OrderAction: SwiftProtobuf._ProtoNameProvidin
     6: .same(proto: "ORDER_CANCEL"),
     7: .same(proto: "ORDER_ACCEPTED"),
     8: .same(proto: "ORDER_REJECTED"),
-    9: .same(proto: "ORDER_IN_PROGERSS"),
+    9: .same(proto: "ORDER_IN_PROGRESS"),
     10: .same(proto: "ORDER_OUT_FOR_DELIVERY"),
     11: .same(proto: "ORDER_FULFILLED"),
   ]

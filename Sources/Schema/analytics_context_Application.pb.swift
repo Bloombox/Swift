@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for specifying which application is reporting information to our internal telemetry service.
+/// Enumerates application types.
+
 import Foundation
 import SwiftProtobuf
 

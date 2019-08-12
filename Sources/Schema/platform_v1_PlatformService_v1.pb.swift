@@ -181,7 +181,7 @@ public struct Bloombox_Services_Platform_V1_Healthcheck {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  /// Specifies a healthcheck request.
+  /// Specifies a health-check request.
   public struct Request {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -194,6 +194,24 @@ public struct Bloombox_Services_Platform_V1_Healthcheck {
 
     public init() {}
   }
+
+  public init() {}
+}
+
+/// Specifies the notion of a "referenced" location, which is a foreign object representing an "other" location when
+/// operating from the perspective of a given partner location.
+public struct Bloombox_Services_Platform_V1_ReferencedLocation {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Specifies the ID for a given reference location.
+  public var id: String = String()
+
+  /// Specifies a string name for a given reference location.
+  public var name: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
@@ -237,6 +255,9 @@ public struct Bloombox_Services_Platform_V1_DomainResolve {
 
     /// OAuth2 client ID assigned to the property.
     public var clientID: String = String()
+
+    /// Describes locations considered "other" locations from this context, under this same partner.
+    public var referencedLocation: [Bloombox_Services_Platform_V1_ReferencedLocation] = []
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -491,6 +512,41 @@ extension Bloombox_Services_Platform_V1_Healthcheck.Request: SwiftProtobuf.Messa
   }
 }
 
+extension Bloombox_Services_Platform_V1_ReferencedLocation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ReferencedLocation"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.name)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Platform_V1_ReferencedLocation, rhs: Bloombox_Services_Platform_V1_ReferencedLocation) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Bloombox_Services_Platform_V1_DomainResolve: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DomainResolve"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
@@ -546,6 +602,7 @@ extension Bloombox_Services_Platform_V1_DomainResolve.Response: SwiftProtobuf.Me
     2: .same(proto: "location"),
     3: .same(proto: "apikey"),
     4: .standard(proto: "client_id"),
+    7: .standard(proto: "referenced_location"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -555,6 +612,7 @@ extension Bloombox_Services_Platform_V1_DomainResolve.Response: SwiftProtobuf.Me
       case 2: try decoder.decodeSingularStringField(value: &self.location)
       case 3: try decoder.decodeSingularStringField(value: &self.apikey)
       case 4: try decoder.decodeSingularStringField(value: &self.clientID)
+      case 7: try decoder.decodeRepeatedMessageField(value: &self.referencedLocation)
       default: break
       }
     }
@@ -573,6 +631,9 @@ extension Bloombox_Services_Platform_V1_DomainResolve.Response: SwiftProtobuf.Me
     if !self.clientID.isEmpty {
       try visitor.visitSingularStringField(value: self.clientID, fieldNumber: 4)
     }
+    if !self.referencedLocation.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.referencedLocation, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -581,6 +642,7 @@ extension Bloombox_Services_Platform_V1_DomainResolve.Response: SwiftProtobuf.Me
     if lhs.location != rhs.location {return false}
     if lhs.apikey != rhs.apikey {return false}
     if lhs.clientID != rhs.clientID {return false}
+    if lhs.referencedLocation != rhs.referencedLocation {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

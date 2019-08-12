@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for specifying various shop impression events. Enumerates actions that can be made in the shop.
+
 import Foundation
 import SwiftProtobuf
 

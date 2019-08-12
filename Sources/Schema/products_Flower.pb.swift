@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides structures relating to flowers and enumerates various flower flags, and types.
+
 import Foundation
 import SwiftProtobuf
 

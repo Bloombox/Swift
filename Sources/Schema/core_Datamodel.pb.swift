@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies structures that relate to data modeling and the structure of the data. Enumerates collection mode and field
+/// type.
+
 import Foundation
 import SwiftProtobuf
 

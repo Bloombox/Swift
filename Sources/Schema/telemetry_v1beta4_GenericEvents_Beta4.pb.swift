@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a generic structure to facilitate GRPC telemetry events.
+
 import Foundation
 import SwiftProtobuf
 

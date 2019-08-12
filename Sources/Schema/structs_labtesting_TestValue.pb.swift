@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides structures related to the testing process and results in regards to the cannabis plant. Enumerates value
+/// types and testing types.
+
 import Foundation
 import SwiftProtobuf
 
@@ -22,8 +26,14 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 /// -- Testing: Base (Shared) Protocol
 public enum Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
+
+  /// Represents a test value in milligrams (mg).
   case milligrams // = 0
+
+  /// Represents a test value in percent of volume (%).
   case percentage // = 1
+
+  /// Represents a cannabinoid type is present at all (BOOLEAN).
   case presence // = 2
   case UNRECOGNIZED(Int)
 
@@ -68,8 +78,14 @@ extension Opencannabis_Structs_Labtesting_TestValueType: CaseIterable {
 /// relative error.
 public enum Opencannabis_Structs_Labtesting_TestErrorType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
+
+  /// Represents a percent error type.
   case percent // = 0
+
+  /// Represents an absolute error type.
   case absolute // = 1
+
+  /// Represents a relative error type.
   case relative // = 2
   case UNRECOGNIZED(Int)
 
@@ -110,10 +126,17 @@ extension Opencannabis_Structs_Labtesting_TestErrorType: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+/// Specifies the different types of testing media that may be generated to act as verification of testing.
 public enum Opencannabis_Structs_Labtesting_TestMediaType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
+
+  /// Represents a Certificate of Authenticity.
   case certificate // = 0
+
+  /// Represents a set of results from a test.
   case results // = 1
+
+  /// Represents a product image.
   case productImage // = 2
   case UNRECOGNIZED(Int)
 
@@ -154,16 +177,19 @@ extension Opencannabis_Structs_Labtesting_TestMediaType: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+///Specifies the value of the test, its type of measurement, and the error value and type if applicable.
 public struct Opencannabis_Structs_Labtesting_TestValue {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Represents the type of value of the test.
   public var type: Opencannabis_Structs_Labtesting_TestValueType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
+  /// Represents the error information.
   public var error: Opencannabis_Structs_Labtesting_TestValue.TestError {
     get {return _storage._error ?? Opencannabis_Structs_Labtesting_TestValue.TestError()}
     set {_uniqueStorage()._error = newValue}
@@ -173,11 +199,13 @@ public struct Opencannabis_Structs_Labtesting_TestValue {
   /// Clears the value of `error`. Subsequent reads from it will return its default value.
   public mutating func clearError() {_uniqueStorage()._error = nil}
 
+  /// Specifies the lab certified measurement of the test. This would be the value that the dispensaries care about.
   public var value: OneOf_Value? {
     get {return _storage._value}
     set {_uniqueStorage()._value = newValue}
   }
 
+  /// Represents the value of the test.
   public var measurement: Double {
     get {
       if case .measurement(let v)? = _storage._value {return v}
@@ -186,6 +214,7 @@ public struct Opencannabis_Structs_Labtesting_TestValue {
     set {_uniqueStorage()._value = .measurement(newValue)}
   }
 
+  /// Represents if a value is present in the test or not.
   public var present: Bool {
     get {
       if case .present(let v)? = _storage._value {return v}
@@ -196,8 +225,11 @@ public struct Opencannabis_Structs_Labtesting_TestValue {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  /// Specifies the lab certified measurement of the test. This would be the value that the dispensaries care about.
   public enum OneOf_Value: Equatable {
+    /// Represents the value of the test.
     case measurement(Double)
+    /// Represents if a value is present in the test or not.
     case present(Bool)
 
   #if !swift(>=4.1)
@@ -211,7 +243,7 @@ public struct Opencannabis_Structs_Labtesting_TestValue {
   #endif
   }
 
-  /// Represents the degree of uncertainty that arises during testing and consists of the type of error being reported
+  /// Specifies the degree of uncertainty that arises during testing and consists of the type of error being reported
   /// along with the error value.  See more information at: 
   /// https://www.nde-ed.org/GeneralResources/ErrorAnalysis/UncertaintyTerms.htm
   public struct TestError {
@@ -219,8 +251,10 @@ public struct Opencannabis_Structs_Labtesting_TestValue {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
+    /// Represents the type of error, if it is measurable.
     public var type: Opencannabis_Structs_Labtesting_TestErrorType = .percent
 
+    /// Represents the value of the error, if it is measurable.
     public var value: Double = 0
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -233,16 +267,19 @@ public struct Opencannabis_Structs_Labtesting_TestValue {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+/// Specifies media acting as verification for testing.
 public struct Opencannabis_Structs_Labtesting_TestMedia {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Represents the testing media type.
   public var type: Opencannabis_Structs_Labtesting_TestMediaType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
+  /// Represents the location of the test media.
   public var mediaItem: Opencannabis_Media_MediaItem {
     get {return _storage._mediaItem ?? Opencannabis_Media_MediaItem()}
     set {_uniqueStorage()._mediaItem = newValue}

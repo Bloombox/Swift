@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides structures relating to apothacary and enumerates various apothacary flags, and types.
+
 import Foundation
 import SwiftProtobuf
 

@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for gathering data about applications running on native devices. Includes native telemetry.
+
 import Foundation
 import SwiftProtobuf
 

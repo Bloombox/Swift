@@ -31,6 +31,12 @@ public enum Bloombox_Services_Identity_V1beta1_IdentityError: SwiftProtobuf.Enum
   /// The subject public key could not be located at the provided fingerprint or key ID.
   case keyNotFound // = 1
 
+  /// The subject public key reference was found to be invalid.
+  case keyIDInvalid // = 2
+
+  /// The subject public key registration conflicts with a previous one.
+  case keyConflict // = 3
+
   /// An unidentified internal error occurred.
   case internalError // = 99
   case UNRECOGNIZED(Int)
@@ -43,6 +49,8 @@ public enum Bloombox_Services_Identity_V1beta1_IdentityError: SwiftProtobuf.Enum
     switch rawValue {
     case 0: self = .noError
     case 1: self = .keyNotFound
+    case 2: self = .keyIDInvalid
+    case 3: self = .keyConflict
     case 99: self = .internalError
     default: self = .UNRECOGNIZED(rawValue)
     }
@@ -52,6 +60,8 @@ public enum Bloombox_Services_Identity_V1beta1_IdentityError: SwiftProtobuf.Enum
     switch self {
     case .noError: return 0
     case .keyNotFound: return 1
+    case .keyIDInvalid: return 2
+    case .keyConflict: return 3
     case .internalError: return 99
     case .UNRECOGNIZED(let i): return i
     }
@@ -66,6 +76,8 @@ extension Bloombox_Services_Identity_V1beta1_IdentityError: CaseIterable {
   public static var allCases: [Bloombox_Services_Identity_V1beta1_IdentityError] = [
     .noError,
     .keyNotFound,
+    .keyIDInvalid,
+    .keyConflict,
     .internalError,
   ]
 }
@@ -108,6 +120,33 @@ public struct Bloombox_Services_Identity_V1beta1_KeyOwnership {
     set {_uniqueStorage()._subject = .user(newValue)}
   }
 
+  /// Specifies a key for a given partner organization.
+  public var partner: Bloombox_Partner_PartnerKey {
+    get {
+      if case .partner(let v)? = _storage._subject {return v}
+      return Bloombox_Partner_PartnerKey()
+    }
+    set {_uniqueStorage()._subject = .partner(newValue)}
+  }
+
+  /// Specifies a key for a given partner location.
+  public var location: Bloombox_Partner_LocationKey {
+    get {
+      if case .location(let v)? = _storage._subject {return v}
+      return Bloombox_Partner_LocationKey()
+    }
+    set {_uniqueStorage()._subject = .location(newValue)}
+  }
+
+  /// Specifies details about an operating node.
+  public var node: Bloombox_Ledger_Node {
+    get {
+      if case .node(let v)? = _storage._subject {return v}
+      return Bloombox_Ledger_Node()
+    }
+    set {_uniqueStorage()._subject = .node(newValue)}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// Specifies detailed information about the owner of the key.
@@ -116,12 +155,21 @@ public struct Bloombox_Services_Identity_V1beta1_KeyOwnership {
     case device(Bloombox_Partner_PartnerDeviceKey)
     /// Specifies a key for a user account.
     case user(Bloombox_Identity_UserKey)
+    /// Specifies a key for a given partner organization.
+    case partner(Bloombox_Partner_PartnerKey)
+    /// Specifies a key for a given partner location.
+    case location(Bloombox_Partner_LocationKey)
+    /// Specifies details about an operating node.
+    case node(Bloombox_Ledger_Node)
 
   #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Services_Identity_V1beta1_KeyOwnership.OneOf_Subject, rhs: Bloombox_Services_Identity_V1beta1_KeyOwnership.OneOf_Subject) -> Bool {
       switch (lhs, rhs) {
       case (.device(let l), .device(let r)): return l == r
       case (.user(let l), .user(let r)): return l == r
+      case (.partner(let l), .partner(let r)): return l == r
+      case (.location(let l), .location(let r)): return l == r
+      case (.node(let l), .node(let r)): return l == r
       default: return false
       }
     }
@@ -132,7 +180,7 @@ public struct Bloombox_Services_Identity_V1beta1_KeyOwnership {
   public enum OwnerType: SwiftProtobuf.Enum {
     public typealias RawValue = Int
 
-    /// Specifies asymmetric keypairs that identify user devices.
+    /// Specifies asymmetric keypairs that identify devices.
     case device // = 0
 
     /// Specifies asymmetric keypairs that identify compute nodes.
@@ -143,6 +191,12 @@ public struct Bloombox_Services_Identity_V1beta1_KeyOwnership {
 
     /// Specifies asymmetric keypairs that identify actual persons.
     case user // = 3
+
+    /// Specifies asymmetric keypairs that identify partner organizations.
+    case partner // = 4
+
+    /// Specifies asymmetric keypairs that identify partner locations.
+    case location // = 5
     case UNRECOGNIZED(Int)
 
     public init() {
@@ -155,6 +209,8 @@ public struct Bloombox_Services_Identity_V1beta1_KeyOwnership {
       case 1: self = .node
       case 2: self = .service
       case 3: self = .user
+      case 4: self = .partner
+      case 5: self = .location
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
@@ -165,6 +221,8 @@ public struct Bloombox_Services_Identity_V1beta1_KeyOwnership {
       case .node: return 1
       case .service: return 2
       case .user: return 3
+      case .partner: return 4
+      case .location: return 5
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -185,6 +243,8 @@ extension Bloombox_Services_Identity_V1beta1_KeyOwnership.OwnerType: CaseIterabl
     .node,
     .service,
     .user,
+    .partner,
+    .location,
   ]
 }
 
@@ -207,7 +267,7 @@ public struct Bloombox_Services_Identity_V1beta1_ResolveKey {
     /// Specifies a key ID to resolve.
     public var keyID: String = String()
 
-    /// Fingerprint of the public key being requested.
+    /// Fingerprint to compare with the encoded key. Optional.
     public var fingerprint: Bloombox_Services_Identity_V1beta1_ResolveKey.Request.OneOf_Fingerprint? = nil
 
     /// MD5 algorithm.
@@ -230,7 +290,7 @@ public struct Bloombox_Services_Identity_V1beta1_ResolveKey {
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-    /// Fingerprint of the public key being requested.
+    /// Fingerprint to compare with the encoded key. Optional.
     public enum OneOf_Fingerprint: Equatable {
       /// MD5 algorithm.
       case md5(String)
@@ -295,6 +355,8 @@ extension Bloombox_Services_Identity_V1beta1_IdentityError: SwiftProtobuf._Proto
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "NO_ERROR"),
     1: .same(proto: "KEY_NOT_FOUND"),
+    2: .same(proto: "KEY_ID_INVALID"),
+    3: .same(proto: "KEY_CONFLICT"),
     99: .same(proto: "INTERNAL_ERROR"),
   ]
 }
@@ -305,6 +367,9 @@ extension Bloombox_Services_Identity_V1beta1_KeyOwnership: SwiftProtobuf.Message
     1: .same(proto: "type"),
     10: .same(proto: "device"),
     11: .same(proto: "user"),
+    12: .same(proto: "partner"),
+    13: .same(proto: "location"),
+    14: .same(proto: "node"),
   ]
 
   fileprivate class _StorageClass {
@@ -350,6 +415,30 @@ extension Bloombox_Services_Identity_V1beta1_KeyOwnership: SwiftProtobuf.Message
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._subject = .user(v)}
+        case 12:
+          var v: Bloombox_Partner_PartnerKey?
+          if let current = _storage._subject {
+            try decoder.handleConflictingOneOf()
+            if case .partner(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._subject = .partner(v)}
+        case 13:
+          var v: Bloombox_Partner_LocationKey?
+          if let current = _storage._subject {
+            try decoder.handleConflictingOneOf()
+            if case .location(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._subject = .location(v)}
+        case 14:
+          var v: Bloombox_Ledger_Node?
+          if let current = _storage._subject {
+            try decoder.handleConflictingOneOf()
+            if case .node(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._subject = .node(v)}
         default: break
         }
       }
@@ -366,6 +455,12 @@ extension Bloombox_Services_Identity_V1beta1_KeyOwnership: SwiftProtobuf.Message
         try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
       case .user(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      case .partner(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+      case .location(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 13)
+      case .node(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
       case nil: break
       }
     }
@@ -394,6 +489,8 @@ extension Bloombox_Services_Identity_V1beta1_KeyOwnership.OwnerType: SwiftProtob
     1: .same(proto: "NODE"),
     2: .same(proto: "SERVICE"),
     3: .same(proto: "USER"),
+    4: .same(proto: "PARTNER"),
+    5: .same(proto: "LOCATION"),
   ]
 }
 

@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides structures relating to merchandise and enumerates various merchandise flags, and types.
+
 import Foundation
 import SwiftProtobuf
 
@@ -37,6 +40,15 @@ public enum Opencannabis_Products_MerchandiseType: SwiftProtobuf.Enum {
 
   /// Tools to produce fire to consume cannabis.
   case lighter // = 4
+
+  /// Specific clothing value for t-shirts.
+  case tshirt // = 5
+
+  /// Specific clothing value for sweatshirts.
+  case hoodie // = 6
+
+  /// Specific clothing value for hats.
+  case hat // = 7
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -50,6 +62,9 @@ public enum Opencannabis_Products_MerchandiseType: SwiftProtobuf.Enum {
     case 2: self = .glassware
     case 3: self = .container
     case 4: self = .lighter
+    case 5: self = .tshirt
+    case 6: self = .hoodie
+    case 7: self = .hat
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -61,6 +76,9 @@ public enum Opencannabis_Products_MerchandiseType: SwiftProtobuf.Enum {
     case .glassware: return 2
     case .container: return 3
     case .lighter: return 4
+    case .tshirt: return 5
+    case .hoodie: return 6
+    case .hat: return 7
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -77,6 +95,9 @@ extension Opencannabis_Products_MerchandiseType: CaseIterable {
     .glassware,
     .container,
     .lighter,
+    .tshirt,
+    .hoodie,
+    .hat,
   ]
 }
 
@@ -190,6 +211,9 @@ extension Opencannabis_Products_MerchandiseType: SwiftProtobuf._ProtoNameProvidi
     2: .same(proto: "GLASSWARE"),
     3: .same(proto: "CONTAINER"),
     4: .same(proto: "LIGHTER"),
+    5: .same(proto: "TSHIRT"),
+    6: .same(proto: "HOODIE"),
+    7: .same(proto: "HAT"),
   ]
 }
 

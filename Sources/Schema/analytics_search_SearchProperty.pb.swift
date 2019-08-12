@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides enumerations for generating statistics based on what type of device preformed a full text search.
+
 import Foundation
 import SwiftProtobuf
 

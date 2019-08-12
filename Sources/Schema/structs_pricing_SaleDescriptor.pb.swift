@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure and definitions for a "sale" (Discounted Purchase). Enumerates types of sales.
+
 import Foundation
 import SwiftProtobuf
 
@@ -19,11 +22,20 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Enumerates the various types of "sales" I.E. a retail purchase made with a discount of some amount applied.
 public enum Opencannabis_Structs_Pricing_SaleType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
+
+  /// A reduction of an item or the total by a percentage. I.E. "20% off".
   case percentageReduction // = 0
+
+  /// The reduction of an item or total by a flat value. I.E. "$5 off".
   case valueReduction // = 1
+
+  /// A buy-one-get-one discount. Some discounted amount, applicable to the second item bought.
   case bogo // = 2
+
+  /// A discount for being a frequent or returning customer.
   case loyalty // = 3
   case UNRECOGNIZED(Int)
 
@@ -67,11 +79,13 @@ extension Opencannabis_Structs_Pricing_SaleType: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+/// A discount of a percentage. I.E, "20% off".
 public struct Opencannabis_Structs_Pricing_PercentageDiscount {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Represents the discount percentage.
   public var discount: UInt32 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -79,13 +93,18 @@ public struct Opencannabis_Structs_Pricing_PercentageDiscount {
   public init() {}
 }
 
+/// A buy-one-get-one discount. Some discounted amount, applicable to the second item bought. First item is usually full
+/// price. Can be applied in various ways. I.E. a customer purchases two items for full price and the third is discounted
+/// .
 public struct Opencannabis_Structs_Pricing_BOGODiscount {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// The discount code used to trigger the discount.
   public var trigger: UInt32 = 0
 
+  /// The value for the discount.
   public var reward: UInt32 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -93,13 +112,17 @@ public struct Opencannabis_Structs_Pricing_BOGODiscount {
   public init() {}
 }
 
+/// A discount for returning to a partner or partner location multiple times or for having been a member for a certain
+/// amount of time or having displayed a certain amount of buying power at a partner or partner location.
 public struct Opencannabis_Structs_Pricing_LoyaltyDiscount {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// The discount code used to trigger the discount.
   public var trigger: UInt32 = 0
 
+  /// The value for the discount.
   public var reward: UInt32 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -107,17 +130,19 @@ public struct Opencannabis_Structs_Pricing_LoyaltyDiscount {
   public init() {}
 }
 
+/// A description of the sale, the parameters to invoke the sale, its valid dates, and its type.
 public struct Opencannabis_Structs_Pricing_SaleDescriptor {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// sale metadata
+  /// Sale metadata.
   public var type: Opencannabis_Structs_Pricing_SaleType {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
+  /// Represents the date that the discount can be applied.
   public var effective: Opencannabis_Temporal_Instant {
     get {return _storage._effective ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._effective = newValue}
@@ -127,6 +152,7 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor {
   /// Clears the value of `effective`. Subsequent reads from it will return its default value.
   public mutating func clearEffective() {_uniqueStorage()._effective = nil}
 
+  /// Represents the final date that the discount can be applied.
   public var expiration: Opencannabis_Temporal_Instant {
     get {return _storage._expiration ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._expiration = newValue}
@@ -136,12 +162,13 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor {
   /// Clears the value of `expiration`. Subsequent reads from it will return its default value.
   public mutating func clearExpiration() {_uniqueStorage()._expiration = nil}
 
-  /// sale amount and trigger properties
+  /// Sale amount and trigger properties.
   public var sale: OneOf_Sale? {
     get {return _storage._sale}
     set {_uniqueStorage()._sale = newValue}
   }
 
+  /// Represents the percentage value to be discounted.
   public var percentageOff: Opencannabis_Structs_Pricing_PercentageDiscount {
     get {
       if case .percentageOff(let v)? = _storage._sale {return v}
@@ -150,6 +177,7 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor {
     set {_uniqueStorage()._sale = .percentageOff(newValue)}
   }
 
+  /// Represents that the discount is buy one get one.
   public var bogo: Opencannabis_Structs_Pricing_BOGODiscount {
     get {
       if case .bogo(let v)? = _storage._sale {return v}
@@ -158,6 +186,7 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor {
     set {_uniqueStorage()._sale = .bogo(newValue)}
   }
 
+  /// Represents that the discount is using accrued loyalty rewards.
   public var loyalty: Opencannabis_Structs_Pricing_LoyaltyDiscount {
     get {
       if case .loyalty(let v)? = _storage._sale {return v}
@@ -168,10 +197,13 @@ public struct Opencannabis_Structs_Pricing_SaleDescriptor {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  /// sale amount and trigger properties
+  /// Sale amount and trigger properties.
   public enum OneOf_Sale: Equatable {
+    /// Represents the percentage value to be discounted.
     case percentageOff(Opencannabis_Structs_Pricing_PercentageDiscount)
+    /// Represents that the discount is buy one get one.
     case bogo(Opencannabis_Structs_Pricing_BOGODiscount)
+    /// Represents that the discount is using accrued loyalty rewards.
     case loyalty(Opencannabis_Structs_Pricing_LoyaltyDiscount)
 
   #if !swift(>=4.1)

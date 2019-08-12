@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for for describing the OS of a system, including version and type. Enumerates various OS types.
+
 import Foundation
 import SwiftProtobuf
 
