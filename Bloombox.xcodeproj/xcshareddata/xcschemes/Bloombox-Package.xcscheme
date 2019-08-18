@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::BloomboxServices"
-               BuildableName = "BloomboxServices.framework"
-               BlueprintName = "BloomboxServices"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "Bloombox::Bloombox"
                BuildableName = "Bloombox.framework"
                BlueprintName = "Bloombox"
@@ -48,6 +34,20 @@
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Bloombox::BloomboxServices"
+               BuildableName = "BloomboxServices.framework"
+               BlueprintName = "BloomboxServices"
+               ReferencedContainer = "container:Bloombox.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -60,9 +60,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::SchemaTests"
-               BuildableName = "SchemaTests.xctest"
-               BlueprintName = "SchemaTests"
+               BlueprintIdentifier = "Bloombox::ClientTests"
+               BuildableName = "ClientTests.xctest"
+               BlueprintName = "ClientTests"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -70,9 +70,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::ClientTests"
-               BuildableName = "ClientTests.xctest"
-               BlueprintName = "ClientTests"
+               BlueprintIdentifier = "Bloombox::SchemaTests"
+               BuildableName = "SchemaTests.xctest"
+               BlueprintName = "SchemaTests"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -93,9 +93,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Bloombox::BloomboxServices"
-            BuildableName = "BloomboxServices.framework"
-            BlueprintName = "BloomboxServices"
+            BlueprintIdentifier = "Bloombox::Bloombox"
+            BuildableName = "Bloombox.framework"
+            BlueprintName = "Bloombox"
             ReferencedContainer = "container:Bloombox.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
