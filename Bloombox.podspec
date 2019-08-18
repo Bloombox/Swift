@@ -30,8 +30,8 @@ Native Swift client for accessing Bloombox Cloud APIs
   s.source_files = 'Sources/Client/*.swift'
 
   # ――― Dependencies ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.dependency 'OpenCannabis', '~> 0.1.2'
-  s.dependency 'BloomboxServices', '~> 0.1.2'
+  s.dependency 'OpenCannabis', '~> 0.1.3'
+  s.dependency 'BloomboxServices', '~> 0.1.3'
   s.dependency 'SwiftProtobuf'
   s.dependency 'SwiftGRPC'
 

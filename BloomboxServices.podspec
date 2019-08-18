@@ -31,7 +31,7 @@ the Bloombox client library for Swift.
   s.source_files = 'Sources/Services/*.swift'
 
   # ――― Dependencies ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.dependency 'OpenCannabis', '~> 0.1.2'
+  s.dependency 'OpenCannabis', '~> 0.1.3'
   s.dependency 'SwiftProtobuf'
   s.dependency 'SwiftGRPC'
 
