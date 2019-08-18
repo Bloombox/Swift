@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides structures relating to prerolls and enumerates various preroll flags and types.
+
 import Foundation
 import SwiftProtobuf
 

@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for generating statistics based on a single user session.
+
 import Foundation
 import SwiftProtobuf
 

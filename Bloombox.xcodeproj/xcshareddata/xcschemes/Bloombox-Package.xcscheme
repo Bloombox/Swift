@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Bloombox::Bloombox"
-               BuildableName = "Bloombox.framework"
-               BlueprintName = "Bloombox"
-               ReferencedContainer = "container:Bloombox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "Bloombox::OpenCannabis"
                BuildableName = "OpenCannabis.framework"
                BlueprintName = "OpenCannabis"
@@ -45,6 +31,20 @@
                BlueprintIdentifier = "Bloombox::BloomboxServices"
                BuildableName = "BloomboxServices.framework"
                BlueprintName = "BloomboxServices"
+               ReferencedContainer = "container:Bloombox.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Bloombox::Bloombox"
+               BuildableName = "Bloombox.framework"
+               BlueprintName = "Bloombox"
                ReferencedContainer = "container:Bloombox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -93,9 +93,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Bloombox::Bloombox"
-            BuildableName = "Bloombox.framework"
-            BlueprintName = "Bloombox"
+            BlueprintIdentifier = "Bloombox::OpenCannabis"
+            BuildableName = "OpenCannabis.framework"
+            BlueprintName = "OpenCannabis"
             ReferencedContainer = "container:Bloombox.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

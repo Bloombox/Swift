@@ -34,7 +34,7 @@ public enum Bloombox_Identity_Ids_USDLField: SwiftProtobuf.Enum {
   /// Person's family name, or last name.
   case familyName // = 1
 
-  /// Person's first anme, or given name.
+  /// Person's first name, or given name.
   case givenName // = 2
 
   /// Person's middle name.

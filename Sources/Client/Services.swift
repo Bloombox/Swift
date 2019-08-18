@@ -30,7 +30,6 @@ public final class Services: ClientLogic {
     self.shop = ShopClient(settings: settings)
     self.telemetry = TelemetryClient(settings: settings)
     self.menu = MenuClient(settings: settings)
-    self.pos = PointOfSaleClient(settings: settings)
     self.platform = PlatformClient(settings: settings)
     self.identity = IdentityClient(settings: settings)
   }
@@ -42,10 +41,8 @@ public final class Services: ClientLogic {
       shop,
       telemetry,
       menu,
-      pos,
       devices,
       platform,
-      identity
     ]
   }
 
@@ -75,10 +72,6 @@ public final class Services: ClientLogic {
   /// Menu service. Provides the ability to download menu data, update product inventory or content, and filter and sort
   /// items.
   public let menu: MenuClient
-
-  /// Point-of-Sale service. Provides supporting logic for physical, in-person purchases at brick and mortar retailer
-  /// locations.
-  public let pos: PointOfSaleClient
 
   /// Devices service. Provides methods that deal with partner co-located, or 2nd party, hardware devices, including
   /// pings, activations, and so on.

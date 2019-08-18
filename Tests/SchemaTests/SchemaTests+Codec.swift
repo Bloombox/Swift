@@ -47,16 +47,16 @@ extension SchemaTests {
     XCTAssertEqual(inventory2, decodedI2, "two complex models trees that are identical should be considered identical")
   }
 
-  func testBinaryPerformance() throws {
-    // package it in a big ol' inventory response
-    let response = POSInventoryQuery.Response.with { resp in
-      resp.item = ModelTool.generateInventory(SchemaTests.itemPerformanceTestCount)
-    }
-
-    self.measure {
-      let _ = try! response.serializedData()
-    }
-  }
+//  func testBinaryPerformance() throws {
+//    // package it in a big ol' inventory response
+//    let response = POSInventoryQuery.Response.with { resp in
+//      resp.item = ModelTool.generateInventory(SchemaTests.itemPerformanceTestCount)
+//    }
+//
+//    self.measure {
+//      let _ = try! response.serializedData()
+//    }
+//  }
 
   // MARK: JSON
   func testEncodeDecodeJSON() throws {
@@ -103,27 +103,27 @@ extension SchemaTests {
     XCTAssertEqual(inventory2, decodedI2, "two complex models trees that are identical should be considered identical")
   }
 
-  func testJSONStringPerformance() throws {
-    // package it in a big ol' inventory response
-    let response = POSInventoryQuery.Response.with { resp in
-      resp.item = ModelTool.generateFullInventorySuite()
-    }
-
-    self.measure {
-      let _ = try! response.jsonString()
-    }
-  }
-
-  func testJSONDataPerformance() throws {
-    // package it in a big ol' inventory response
-    let response = POSInventoryQuery.Response.with { resp in
-      resp.item = ModelTool.generateInventory(SchemaTests.itemPerformanceTestCount)
-    }
-
-    self.measure {
-      let _ = try! response.jsonUTF8Data()
-    }
-  }
+//  func testJSONStringPerformance() throws {
+//    // package it in a big ol' inventory response
+//    let response = POSInventoryQuery.Response.with { resp in
+//      resp.item = ModelTool.generateFullInventorySuite()
+//    }
+//
+//    self.measure {
+//      let _ = try! response.jsonString()
+//    }
+//  }
+//
+//  func testJSONDataPerformance() throws {
+//    // package it in a big ol' inventory response
+//    let response = POSInventoryQuery.Response.with { resp in
+//      resp.item = ModelTool.generateInventory(SchemaTests.itemPerformanceTestCount)
+//    }
+//
+//    self.measure {
+//      let _ = try! response.jsonUTF8Data()
+//    }
+//  }
 
   // MARK: Text Format
   func testEncodeDecodeText() throws {

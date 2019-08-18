@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Enumerates potential media orientation.
+
 import Foundation
 import SwiftProtobuf
 

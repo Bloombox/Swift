@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides structures for specifying a provincial area of a country.
+
 import Foundation
 import SwiftProtobuf
 

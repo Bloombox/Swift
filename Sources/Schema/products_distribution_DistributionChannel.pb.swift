@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides structures for different channels from which a different distribution policy can be applied and enumerates
+/// channels and their types.
+
 import Foundation
 import SwiftProtobuf
 

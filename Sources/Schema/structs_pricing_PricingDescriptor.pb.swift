@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure and definitions for pricing, with a weighted or unit pricing model, and for availability.
+/// Enumerates weight tier and pricing types.
+
 import Foundation
 import SwiftProtobuf
 
@@ -101,17 +105,23 @@ public enum Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf.Enum {
   /// Pricing for 'ONCE OUNCE' of subject material or merchandise. Usually defined as 28 grams.
   case ounce // = 8
 
+  /// Pricing for 'QUARTER POUND' of subject material or merchandise.
+  case quarterpound // = 9
+
+  /// Pricing for 'HALF POUND' of subject material or merchandise.
+  case halfpound // = 10
+
   /// Pricing for 'ONE POUND' of subject material or merchandise.
-  case pound // = 9
+  case pound // = 11
 
   /// Pricing for 'ONE KILO' of subject material or merchandise.
-  case kilo // = 10
+  case kilo // = 12
 
   /// Pricing for 'ONE TON' of subject material or merchandise.
-  case ton // = 11
+  case ton // = 13
 
   /// 'Other,' or custom weighted pricing.
-  case other // = 12
+  case other // = 99
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -129,10 +139,12 @@ public enum Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf.Enum {
     case 6: self = .quarter
     case 7: self = .half
     case 8: self = .ounce
-    case 9: self = .pound
-    case 10: self = .kilo
-    case 11: self = .ton
-    case 12: self = .other
+    case 9: self = .quarterpound
+    case 10: self = .halfpound
+    case 11: self = .pound
+    case 12: self = .kilo
+    case 13: self = .ton
+    case 99: self = .other
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -148,10 +160,12 @@ public enum Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf.Enum {
     case .quarter: return 6
     case .half: return 7
     case .ounce: return 8
-    case .pound: return 9
-    case .kilo: return 10
-    case .ton: return 11
-    case .other: return 12
+    case .quarterpound: return 9
+    case .halfpound: return 10
+    case .pound: return 11
+    case .kilo: return 12
+    case .ton: return 13
+    case .other: return 99
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -172,6 +186,8 @@ extension Opencannabis_Structs_Pricing_PricingWeightTier: CaseIterable {
     .quarter,
     .half,
     .ounce,
+    .quarterpound,
+    .halfpound,
     .pound,
     .kilo,
     .ton,
@@ -378,10 +394,12 @@ extension Opencannabis_Structs_Pricing_PricingWeightTier: SwiftProtobuf._ProtoNa
     6: .same(proto: "QUARTER"),
     7: .same(proto: "HALF"),
     8: .same(proto: "OUNCE"),
-    9: .same(proto: "POUND"),
-    10: .same(proto: "KILO"),
-    11: .same(proto: "TON"),
-    12: .same(proto: "OTHER"),
+    9: .same(proto: "QUARTERPOUND"),
+    10: .same(proto: "HALFPOUND"),
+    11: .same(proto: "POUND"),
+    12: .same(proto: "KILO"),
+    13: .same(proto: "TON"),
+    99: .same(proto: "OTHER"),
   ]
 }
 

@@ -50,6 +50,12 @@ fileprivate final class Bloombox_Services_Menu_V1beta1_MenuProductsCallBase: Cli
   override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/Products" }
 }
 
+public protocol Bloombox_Services_Menu_V1beta1_MenuCatalogCall: ClientCallUnary {}
+
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuCatalogCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_GetCatalog.Request, Google_Api_HttpBody>, Bloombox_Services_Menu_V1beta1_MenuCatalogCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.Menu/Catalog" }
+}
+
 public protocol Bloombox_Services_Menu_V1beta1_MenuSearchCall: ClientCallUnary {}
 
 fileprivate final class Bloombox_Services_Menu_V1beta1_MenuSearchCallBase: ClientCallUnaryBase<Bloombox_Services_Menu_V1beta1_SearchMenu.Request, Bloombox_Services_Menu_V1beta1_SearchMenu.Response>, Bloombox_Services_Menu_V1beta1_MenuSearchCall {
@@ -114,6 +120,11 @@ public protocol Bloombox_Services_Menu_V1beta1_MenuService: ServiceClient {
   func products(_ request: Bloombox_Services_Menu_V1beta1_GetProduct.Request) throws -> Bloombox_Services_Menu_V1beta1_GetProduct.Response
   /// Asynchronous. Unary.
   func products(_ request: Bloombox_Services_Menu_V1beta1_GetProduct.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_GetProduct.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuProductsCall
+
+  /// Synchronous. Unary.
+  func catalog(_ request: Bloombox_Services_Menu_V1beta1_GetCatalog.Request) throws -> Google_Api_HttpBody
+  /// Asynchronous. Unary.
+  func catalog(_ request: Bloombox_Services_Menu_V1beta1_GetCatalog.Request, completion: @escaping (Google_Api_HttpBody?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuCatalogCall
 
   /// Synchronous. Unary.
   func search(_ request: Bloombox_Services_Menu_V1beta1_SearchMenu.Request) throws -> Bloombox_Services_Menu_V1beta1_SearchMenu.Response
@@ -194,6 +205,17 @@ public final class Bloombox_Services_Menu_V1beta1_MenuServiceClient: ServiceClie
   /// Asynchronous. Unary.
   public func products(_ request: Bloombox_Services_Menu_V1beta1_GetProduct.Request, completion: @escaping (Bloombox_Services_Menu_V1beta1_GetProduct.Response?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuProductsCall {
     return try Bloombox_Services_Menu_V1beta1_MenuProductsCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  public func catalog(_ request: Bloombox_Services_Menu_V1beta1_GetCatalog.Request) throws -> Google_Api_HttpBody {
+    return try Bloombox_Services_Menu_V1beta1_MenuCatalogCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  public func catalog(_ request: Bloombox_Services_Menu_V1beta1_GetCatalog.Request, completion: @escaping (Google_Api_HttpBody?, CallResult) -> Void) throws -> Bloombox_Services_Menu_V1beta1_MenuCatalogCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuCatalogCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 

@@ -68,12 +68,6 @@ fileprivate final class Bloombox_Services_Shop_V1_ShopGetOrderCallBase: ClientCa
   override class var method: String { return "/bloombox.services.shop.v1.Shop/GetOrder" }
 }
 
-public protocol Bloombox_Services_Shop_V1_ShopShareOrderCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Shop_V1_ShopShareOrderCallBase: ClientCallUnaryBase<Bloombox_Services_Shop_V1_ShareOrder.Request, Bloombox_Services_Shop_V1_ShareOrder.Response>, Bloombox_Services_Shop_V1_ShopShareOrderCall {
-  override class var method: String { return "/bloombox.services.shop.v1.Shop/ShareOrder" }
-}
-
 
 /// Instantiate Bloombox_Services_Shop_V1_ShopServiceClient, then call methods of this protocol to make API calls.
 public protocol Bloombox_Services_Shop_V1_ShopService: ServiceClient {
@@ -111,11 +105,6 @@ public protocol Bloombox_Services_Shop_V1_ShopService: ServiceClient {
   func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request) throws -> Bloombox_Services_Shop_V1_GetOrder.Response
   /// Asynchronous. Unary.
   func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_GetOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopGetOrderCall
-
-  /// Synchronous. Unary.
-  func shareOrder(_ request: Bloombox_Services_Shop_V1_ShareOrder.Request) throws -> Bloombox_Services_Shop_V1_ShareOrder.Response
-  /// Asynchronous. Unary.
-  func shareOrder(_ request: Bloombox_Services_Shop_V1_ShareOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_ShareOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopShareOrderCall
 
 }
 
@@ -194,17 +183,6 @@ public final class Bloombox_Services_Shop_V1_ShopServiceClient: ServiceClientBas
   /// Asynchronous. Unary.
   public func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_GetOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopGetOrderCall {
     return try Bloombox_Services_Shop_V1_ShopGetOrderCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  public func shareOrder(_ request: Bloombox_Services_Shop_V1_ShareOrder.Request) throws -> Bloombox_Services_Shop_V1_ShareOrder.Response {
-    return try Bloombox_Services_Shop_V1_ShopShareOrderCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func shareOrder(_ request: Bloombox_Services_Shop_V1_ShareOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_ShareOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopShareOrderCall {
-    return try Bloombox_Services_Shop_V1_ShopShareOrderCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 

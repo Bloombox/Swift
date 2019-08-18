@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Enumerates the flags a product entry can have applied.
+
 import Foundation
 import SwiftProtobuf
 

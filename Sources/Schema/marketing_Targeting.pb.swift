@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Specifies the concept of targeting a marketing campaign based on specified parameters. Enumerates policy for
+/// targeting by age.
+
 import Foundation
 import SwiftProtobuf
 

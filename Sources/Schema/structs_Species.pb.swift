@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Enumerates the species of a flower.
+
 import Foundation
 import SwiftProtobuf
 

@@ -166,11 +166,6 @@ public final class Bloombox {
     return _services.menu
   }
 
-  /// Public access to the Point-of-Sale service client.
-  public var pos: PointOfSaleClient {
-    return _services.pos
-  }
-
   /// Public access to the Platform service client.
   public var platform: PlatformClient {
     return _services.platform

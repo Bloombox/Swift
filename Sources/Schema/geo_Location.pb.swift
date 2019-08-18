@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides structures for determining distance and accuracy, enumerates various units of measurement to express
+/// distance.
+
 import Foundation
 import SwiftProtobuf
 

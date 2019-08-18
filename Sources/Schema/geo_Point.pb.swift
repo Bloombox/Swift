@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for specifying a specific point on the earth.
+
 import Foundation
 import SwiftProtobuf
 

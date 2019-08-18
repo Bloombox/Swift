@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for specifying an impression in a specific section/view. Enumerates section actions.
+
 import Foundation
 import SwiftProtobuf
 

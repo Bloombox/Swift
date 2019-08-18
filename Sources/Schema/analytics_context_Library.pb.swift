@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for specifying a library for a device. Enumerates the various API clients.
+
 import Foundation
 import SwiftProtobuf
 

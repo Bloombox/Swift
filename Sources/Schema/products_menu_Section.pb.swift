@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides structures relating to a menu section and enumerates section flags, and section types as well as enumerating
+/// filters.
+
 import Foundation
 import SwiftProtobuf
 

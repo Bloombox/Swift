@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for specifying individual product impression. Enumerates individual actions that can be made on
+/// a product.
+
 import Foundation
 import SwiftProtobuf
 

@@ -13,6 +13,7 @@
 /// e-commerce experience for cannabis.
 
 import Foundation
+import OpenCannabis
 import SwiftProtobuf
 
 // If the compiler emits an error on this type, it is because this file
@@ -381,6 +382,7 @@ public struct Bloombox_Services_Shop_V1_Ping {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  /// Represents a request to ping the shop API.
   public struct Request {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -391,6 +393,7 @@ public struct Bloombox_Services_Shop_V1_Ping {
     public init() {}
   }
 
+  /// Represents a service status response to a ping request.
   public struct Response {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -404,6 +407,7 @@ public struct Bloombox_Services_Shop_V1_Ping {
     public init() {}
   }
 
+  /// Specifies an entire RPC operation to ping the shop API.
   public struct Operation {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -439,6 +443,29 @@ public struct Bloombox_Services_Shop_V1_Ping {
   public init() {}
 }
 
+/// Branding information for a given web shop, including a color scheme and link to brand assets.
+public struct Bloombox_Services_Shop_V1_ShopBranding {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Color set and scheme for the digital shop in question.
+  public var colorScheme: Opencannabis_Content_ColorScheme {
+    get {return _storage._colorScheme ?? Opencannabis_Content_ColorScheme()}
+    set {_uniqueStorage()._colorScheme = newValue}
+  }
+  /// Returns true if `colorScheme` has been explicitly set.
+  public var hasColorScheme: Bool {return _storage._colorScheme != nil}
+  /// Clears the value of `colorScheme`. Subsequent reads from it will return its default value.
+  public mutating func clearColorScheme() {_uniqueStorage()._colorScheme = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 /// Specifies an RPC operation to check the status of an online store, for availability/hours status, etc.
 public struct Bloombox_Services_Shop_V1_ShopInfo {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -447,20 +474,120 @@ public struct Bloombox_Services_Shop_V1_ShopInfo {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  /// Request info about a digital shop via the API.
   public struct Request {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
+    public var scope: OneOf_Scope? {
+      get {return _storage._scope}
+      set {_uniqueStorage()._scope = newValue}
+    }
+
     /// Location key.
     public var location: Bloombox_Partner_LocationKey {
-      get {return _storage._location ?? Bloombox_Partner_LocationKey()}
-      set {_uniqueStorage()._location = newValue}
+      get {
+        if case .location(let v)? = _storage._scope {return v}
+        return Bloombox_Partner_LocationKey()
+      }
+      set {_uniqueStorage()._scope = .location(newValue)}
     }
-    /// Returns true if `location` has been explicitly set.
-    public var hasLocation: Bool {return _storage._location != nil}
-    /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_uniqueStorage()._location = nil}
+
+    /// Partner key, if requesting partner-level scope.
+    public var partner: Bloombox_Partner_PartnerKey {
+      get {
+        if case .partner(let v)? = _storage._scope {return v}
+        return Bloombox_Partner_PartnerKey()
+      }
+      set {_uniqueStorage()._scope = .partner(newValue)}
+    }
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public enum OneOf_Scope: Equatable {
+      /// Location key.
+      case location(Bloombox_Partner_LocationKey)
+      /// Partner key, if requesting partner-level scope.
+      case partner(Bloombox_Partner_PartnerKey)
+
+    #if !swift(>=4.1)
+      public static func ==(lhs: Bloombox_Services_Shop_V1_ShopInfo.Request.OneOf_Scope, rhs: Bloombox_Services_Shop_V1_ShopInfo.Request.OneOf_Scope) -> Bool {
+        switch (lhs, rhs) {
+        case (.location(let l), .location(let r)): return l == r
+        case (.partner(let l), .partner(let r)): return l == r
+        default: return false
+        }
+      }
+    #endif
+    }
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  /// Response to a request for info about a digital shop via the API.
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Indicates the current status of the online shop in question.
+    public var shopStatus: Bloombox_Partner_Settings_ShopStatus {
+      get {return _storage._shopStatus}
+      set {_uniqueStorage()._shopStatus = newValue}
+    }
+
+    /// Indicates support/settings for a given digital shop context.
+    public var settings: Bloombox_Partner_Settings_ShopServiceSettings {
+      get {return _storage._settings ?? Bloombox_Partner_Settings_ShopServiceSettings()}
+      set {_uniqueStorage()._settings = newValue}
+    }
+    /// Returns true if `settings` has been explicitly set.
+    public var hasSettings: Bool {return _storage._settings != nil}
+    /// Clears the value of `settings`. Subsequent reads from it will return its default value.
+    public mutating func clearSettings() {_uniqueStorage()._settings = nil}
+
+    /// Indicates regular and special hours that apply for a given digital shop context.
+    public var hours: Bloombox_Partner_Settings_ShopHoursSettings {
+      get {return _storage._hours ?? Bloombox_Partner_Settings_ShopHoursSettings()}
+      set {_uniqueStorage()._hours = newValue}
+    }
+    /// Returns true if `hours` has been explicitly set.
+    public var hasHours: Bool {return _storage._hours != nil}
+    /// Clears the value of `hours`. Subsequent reads from it will return its default value.
+    public mutating func clearHours() {_uniqueStorage()._hours = nil}
+
+    /// Indicates contact info for a given partner location.
+    public var contact: Opencannabis_Contact_ContactInfo {
+      get {return _storage._contact ?? Opencannabis_Contact_ContactInfo()}
+      set {_uniqueStorage()._contact = newValue}
+    }
+    /// Returns true if `contact` has been explicitly set.
+    public var hasContact: Bool {return _storage._contact != nil}
+    /// Clears the value of `contact`. Subsequent reads from it will return its default value.
+    public mutating func clearContact() {_uniqueStorage()._contact = nil}
+
+    /// Social account listings.
+    public var social: Opencannabis_Contact_SocialInfo {
+      get {return _storage._social ?? Opencannabis_Contact_SocialInfo()}
+      set {_uniqueStorage()._social = newValue}
+    }
+    /// Returns true if `social` has been explicitly set.
+    public var hasSocial: Bool {return _storage._social != nil}
+    /// Clears the value of `social`. Subsequent reads from it will return its default value.
+    public mutating func clearSocial() {_uniqueStorage()._social = nil}
+
+    /// Branding information for the digital shop in question.
+    public var branding: Bloombox_Services_Shop_V1_ShopBranding {
+      get {return _storage._branding ?? Bloombox_Services_Shop_V1_ShopBranding()}
+      set {_uniqueStorage()._branding = newValue}
+    }
+    /// Returns true if `branding` has been explicitly set.
+    public var hasBranding: Bool {return _storage._branding != nil}
+    /// Clears the value of `branding`. Subsequent reads from it will return its default value.
+    public mutating func clearBranding() {_uniqueStorage()._branding = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -469,19 +596,7 @@ public struct Bloombox_Services_Shop_V1_ShopInfo {
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    /// Indicates the current status of the online shop in question.
-    public var shopStatus: Bloombox_Partner_Settings_ShopStatus = .open
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-  }
-
+  /// Specifies an entire operation to query information about one or more digital shops.
   public struct Operation {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -517,7 +632,7 @@ public struct Bloombox_Services_Shop_V1_ShopInfo {
   public init() {}
 }
 
-/// Specifies an RPC operation to enroll/onboard a new user as a member of a retail dispensary.
+/// Specifies an RPC operation to enroll/on-board a new user as a member of a retail dispensary.
 public struct Bloombox_Services_Shop_V1_EnrollMember {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -583,7 +698,7 @@ public struct Bloombox_Services_Shop_V1_EnrollMember {
     public mutating func clearLocation() {_uniqueStorage()._location = nil}
 
     /// Base64-encoded password. This is for transmission ONLY - do NOT store this value without first either encrypting
-    /// it strongly, or perfoming a subsequent salt-and-SHA routine.
+    /// it strongly, or performing a subsequent salt-and-SHA routine.
     public var password: String {
       get {return _storage._password}
       set {_uniqueStorage()._password = newValue}
@@ -899,114 +1014,6 @@ public struct Bloombox_Services_Shop_V1_CheckZipcode {
     /// Response to a request for zipcode eligibility verification.
     public var response: Bloombox_Services_Shop_V1_CheckZipcode.Response {
       get {return _storage._response ?? Bloombox_Services_Shop_V1_CheckZipcode.Response()}
-      set {_uniqueStorage()._response = newValue}
-    }
-    /// Returns true if `response` has been explicitly set.
-    public var hasResponse: Bool {return _storage._response != nil}
-    /// Clears the value of `response`. Subsequent reads from it will return its default value.
-    public mutating func clearResponse() {_uniqueStorage()._response = nil}
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-
-    fileprivate var _storage = _StorageClass.defaultInstance
-  }
-
-  public init() {}
-}
-
-/// Specifies a request and response cycle to share a cart or receipt with a given email address or phone number.
-public struct Bloombox_Services_Shop_V1_ShareOrder {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    /// Email Address string. 
-    public var emailAddress: Opencannabis_Contact_EmailAddress {
-      get {return _storage._emailAddress ?? Opencannabis_Contact_EmailAddress()}
-      set {_uniqueStorage()._emailAddress = newValue}
-    }
-    /// Returns true if `emailAddress` has been explicitly set.
-    public var hasEmailAddress: Bool {return _storage._emailAddress != nil}
-    /// Clears the value of `emailAddress`. Subsequent reads from it will return its default value.
-    public mutating func clearEmailAddress() {_uniqueStorage()._emailAddress = nil}
-
-    /// Phone Number string.
-    public var phoneNumber: Opencannabis_Contact_PhoneNumber {
-      get {return _storage._phoneNumber ?? Opencannabis_Contact_PhoneNumber()}
-      set {_uniqueStorage()._phoneNumber = newValue}
-    }
-    /// Returns true if `phoneNumber` has been explicitly set.
-    public var hasPhoneNumber: Bool {return _storage._phoneNumber != nil}
-    /// Clears the value of `phoneNumber`. Subsequent reads from it will return its default value.
-    public mutating func clearPhoneNumber() {_uniqueStorage()._phoneNumber = nil}
-
-    /// Order to submit. 
-    public var order: Opencannabis_Commerce_Order {
-      get {return _storage._order ?? Opencannabis_Commerce_Order()}
-      set {_uniqueStorage()._order = newValue}
-    }
-    /// Returns true if `order` has been explicitly set.
-    public var hasOrder: Bool {return _storage._order != nil}
-    /// Clears the value of `order`. Subsequent reads from it will return its default value.
-    public mutating func clearOrder() {_uniqueStorage()._order = nil}
-
-    /// Location to check.
-    public var location: Bloombox_Partner_LocationKey {
-      get {return _storage._location ?? Bloombox_Partner_LocationKey()}
-      set {_uniqueStorage()._location = newValue}
-    }
-    /// Returns true if `location` has been explicitly set.
-    public var hasLocation: Bool {return _storage._location != nil}
-    /// Clears the value of `location`. Subsequent reads from it will return its default value.
-    public mutating func clearLocation() {_uniqueStorage()._location = nil}
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-
-    fileprivate var _storage = _StorageClass.defaultInstance
-  }
-
-  public struct Response {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    /// Error code, if any.
-    public var error: Bloombox_Services_Shop_V1_ShareError = .noShareError
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-  }
-
-  public struct Operation {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    /// Request for share submit.
-    public var request: Bloombox_Services_Shop_V1_ShareOrder.Request {
-      get {return _storage._request ?? Bloombox_Services_Shop_V1_ShareOrder.Request()}
-      set {_uniqueStorage()._request = newValue}
-    }
-    /// Returns true if `request` has been explicitly set.
-    public var hasRequest: Bool {return _storage._request != nil}
-    /// Clears the value of `request`. Subsequent reads from it will return its default value.
-    public mutating func clearRequest() {_uniqueStorage()._request = nil}
-
-    /// Response for share submit.
-    public var response: Bloombox_Services_Shop_V1_ShareOrder.Response {
-      get {return _storage._response ?? Bloombox_Services_Shop_V1_ShareOrder.Response()}
       set {_uniqueStorage()._response = newValue}
     }
     /// Returns true if `response` has been explicitly set.
@@ -1416,6 +1423,67 @@ extension Bloombox_Services_Shop_V1_Ping.Operation: SwiftProtobuf.Message, Swift
   }
 }
 
+extension Bloombox_Services_Shop_V1_ShopBranding: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ShopBranding"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "color_scheme"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _colorScheme: Opencannabis_Content_ColorScheme? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _colorScheme = source._colorScheme
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._colorScheme)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._colorScheme {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Shop_V1_ShopBranding, rhs: Bloombox_Services_Shop_V1_ShopBranding) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._colorScheme != rhs_storage._colorScheme {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Bloombox_Services_Shop_V1_ShopInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ShopInfo"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
@@ -1439,17 +1507,18 @@ extension Bloombox_Services_Shop_V1_ShopInfo.Request: SwiftProtobuf.Message, Swi
   public static let protoMessageName: String = Bloombox_Services_Shop_V1_ShopInfo.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "location"),
+    2: .same(proto: "partner"),
   ]
 
   fileprivate class _StorageClass {
-    var _location: Bloombox_Partner_LocationKey? = nil
+    var _scope: Bloombox_Services_Shop_V1_ShopInfo.Request.OneOf_Scope?
 
     static let defaultInstance = _StorageClass()
 
     private init() {}
 
     init(copying source: _StorageClass) {
-      _location = source._location
+      _scope = source._scope
     }
   }
 
@@ -1465,7 +1534,22 @@ extension Bloombox_Services_Shop_V1_ShopInfo.Request: SwiftProtobuf.Message, Swi
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._location)
+        case 1:
+          var v: Bloombox_Partner_LocationKey?
+          if let current = _storage._scope {
+            try decoder.handleConflictingOneOf()
+            if case .location(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._scope = .location(v)}
+        case 2:
+          var v: Bloombox_Partner_PartnerKey?
+          if let current = _storage._scope {
+            try decoder.handleConflictingOneOf()
+            if case .partner(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._scope = .partner(v)}
         default: break
         }
       }
@@ -1474,8 +1558,12 @@ extension Bloombox_Services_Shop_V1_ShopInfo.Request: SwiftProtobuf.Message, Swi
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._location {
+      switch _storage._scope {
+      case .location(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      case .partner(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case nil: break
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -1486,7 +1574,7 @@ extension Bloombox_Services_Shop_V1_ShopInfo.Request: SwiftProtobuf.Message, Swi
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._location != rhs_storage._location {return false}
+        if _storage._scope != rhs_storage._scope {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -1500,26 +1588,98 @@ extension Bloombox_Services_Shop_V1_ShopInfo.Response: SwiftProtobuf.Message, Sw
   public static let protoMessageName: String = Bloombox_Services_Shop_V1_ShopInfo.protoMessageName + ".Response"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "shop_status"),
+    2: .same(proto: "settings"),
+    3: .same(proto: "hours"),
+    4: .same(proto: "contact"),
+    5: .same(proto: "social"),
+    6: .same(proto: "branding"),
   ]
 
+  fileprivate class _StorageClass {
+    var _shopStatus: Bloombox_Partner_Settings_ShopStatus = .open
+    var _settings: Bloombox_Partner_Settings_ShopServiceSettings? = nil
+    var _hours: Bloombox_Partner_Settings_ShopHoursSettings? = nil
+    var _contact: Opencannabis_Contact_ContactInfo? = nil
+    var _social: Opencannabis_Contact_SocialInfo? = nil
+    var _branding: Bloombox_Services_Shop_V1_ShopBranding? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _shopStatus = source._shopStatus
+      _settings = source._settings
+      _hours = source._hours
+      _contact = source._contact
+      _social = source._social
+      _branding = source._branding
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.shopStatus)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._shopStatus)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._settings)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._hours)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._contact)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._social)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._branding)
+        default: break
+        }
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.shopStatus != .open {
-      try visitor.visitSingularEnumField(value: self.shopStatus, fieldNumber: 1)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._shopStatus != .open {
+        try visitor.visitSingularEnumField(value: _storage._shopStatus, fieldNumber: 1)
+      }
+      if let v = _storage._settings {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._hours {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._contact {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._social {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._branding {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Bloombox_Services_Shop_V1_ShopInfo.Response, rhs: Bloombox_Services_Shop_V1_ShopInfo.Response) -> Bool {
-    if lhs.shopStatus != rhs.shopStatus {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._shopStatus != rhs_storage._shopStatus {return false}
+        if _storage._settings != rhs_storage._settings {return false}
+        if _storage._hours != rhs_storage._hours {return false}
+        if _storage._contact != rhs_storage._contact {return false}
+        if _storage._social != rhs_storage._social {return false}
+        if _storage._branding != rhs_storage._branding {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -2276,208 +2436,6 @@ extension Bloombox_Services_Shop_V1_CheckZipcode.Operation: SwiftProtobuf.Messag
   }
 
   public static func ==(lhs: Bloombox_Services_Shop_V1_CheckZipcode.Operation, rhs: Bloombox_Services_Shop_V1_CheckZipcode.Operation) -> Bool {
-    if lhs._storage !== rhs._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let rhs_storage = _args.1
-        if _storage._request != rhs_storage._request {return false}
-        if _storage._response != rhs_storage._response {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Services_Shop_V1_ShareOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ShareOrder"
-  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Bloombox_Services_Shop_V1_ShareOrder, rhs: Bloombox_Services_Shop_V1_ShareOrder) -> Bool {
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Services_Shop_V1_ShareOrder.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Services_Shop_V1_ShareOrder.protoMessageName + ".Request"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "email_address"),
-    2: .standard(proto: "phone_number"),
-    3: .same(proto: "order"),
-    4: .same(proto: "location"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _emailAddress: Opencannabis_Contact_EmailAddress? = nil
-    var _phoneNumber: Opencannabis_Contact_PhoneNumber? = nil
-    var _order: Opencannabis_Commerce_Order? = nil
-    var _location: Bloombox_Partner_LocationKey? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _emailAddress = source._emailAddress
-      _phoneNumber = source._phoneNumber
-      _order = source._order
-      _location = source._location
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._emailAddress)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._phoneNumber)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._order)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._location)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._emailAddress {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._phoneNumber {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._order {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._location {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Bloombox_Services_Shop_V1_ShareOrder.Request, rhs: Bloombox_Services_Shop_V1_ShareOrder.Request) -> Bool {
-    if lhs._storage !== rhs._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let rhs_storage = _args.1
-        if _storage._emailAddress != rhs_storage._emailAddress {return false}
-        if _storage._phoneNumber != rhs_storage._phoneNumber {return false}
-        if _storage._order != rhs_storage._order {return false}
-        if _storage._location != rhs_storage._location {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Services_Shop_V1_ShareOrder.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Services_Shop_V1_ShareOrder.protoMessageName + ".Response"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "error"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularEnumField(value: &self.error)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.error != .noShareError {
-      try visitor.visitSingularEnumField(value: self.error, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Bloombox_Services_Shop_V1_ShareOrder.Response, rhs: Bloombox_Services_Shop_V1_ShareOrder.Response) -> Bool {
-    if lhs.error != rhs.error {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Services_Shop_V1_ShareOrder.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Services_Shop_V1_ShareOrder.protoMessageName + ".Operation"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "request"),
-    2: .same(proto: "response"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _request: Bloombox_Services_Shop_V1_ShareOrder.Request? = nil
-    var _response: Bloombox_Services_Shop_V1_ShareOrder.Response? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _request = source._request
-      _response = source._response
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._request)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._response)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._request {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._response {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Bloombox_Services_Shop_V1_ShareOrder.Operation, rhs: Bloombox_Services_Shop_V1_ShareOrder.Operation) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0

@@ -22,10 +22,10 @@ class SchemaTests: XCTestCase {
 
     // Codec Tests
     ("testEncodeDecodeBinary", testEncodeDecodeBinary),
-    ("testBinaryPerformance", testBinaryPerformance),
+//    ("testBinaryPerformance", testBinaryPerformance),
     ("testEncodeDecodeJSON", testEncodeDecodeJSON),
-    ("testJSONStringPerformance", testJSONStringPerformance),
-    ("testJSONDataPerformance", testJSONDataPerformance),
+//    ("testJSONStringPerformance", testJSONStringPerformance),
+//    ("testJSONDataPerformance", testJSONDataPerformance),
     ("testEncodeDecodeText", testEncodeDecodeText)
   ]
 

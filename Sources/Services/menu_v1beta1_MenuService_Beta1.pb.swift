@@ -11,6 +11,7 @@
 /// This interface is specifically designed to showcase products that are currently available for sale.
 
 import Foundation
+import OpenCannabis
 import SwiftProtobuf
 
 // If the compiler emits an error on this type, it is because this file
@@ -129,6 +130,58 @@ extension Bloombox_Services_Menu_V1beta1_MenuError: CaseIterable {
     .updateInvalid,
     .conflict,
     .internalError,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+/// Specifies known providers of product catalog data, who might be requesting to sync product catalogs from a given CSV-
+/// compatible endpoint.
+public enum Bloombox_Services_Menu_V1beta1_CatalogProvider: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// The catalog provided is not specified or is unrecognized.
+  case unspecifiedCatalogProvider // = 0
+
+  /// The catalog provider is Google.
+  case google // = 1
+
+  /// The catalog provider is Facebook.
+  case facebook // = 2
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .unspecifiedCatalogProvider
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .unspecifiedCatalogProvider
+    case 1: self = .google
+    case 2: self = .facebook
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .unspecifiedCatalogProvider: return 0
+    case .google: return 1
+    case .facebook: return 2
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Bloombox_Services_Menu_V1beta1_CatalogProvider: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Services_Menu_V1beta1_CatalogProvider] = [
+    .unspecifiedCatalogProvider,
+    .google,
+    .facebook,
   ]
 }
 
@@ -369,6 +422,49 @@ public struct Bloombox_Services_Menu_V1beta1_GetProduct {
     /// Flag set when a request-given fingerprint still matches the underlying object data being requested, enabling the
     /// server to respond with a 304 Not Modified-style answer.
     public var unchanged: Bool = false
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  public init() {}
+}
+
+/// Specifies an RPC operation, wherein a set of product data is returned in universal product catalog format, which uses
+/// Comma Separated Values (CSV) in a particular arrangement to supply standards-compliant providers with basic product
+/// information (including Facebook, Google, and others).
+public struct Bloombox_Services_Menu_V1beta1_GetCatalog {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Request for catalog information, to include the partner, location, and any automatic filters the invoking code
+  /// desires to apply to products before returning them.
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Partner and location scope for the catalog request. Indicates the partner organization that owns the location for
+    /// which we are fetching catalog data.
+    public var scope: String = String()
+
+    /// Only include featured products in the output of this response.
+    public var featured: Bool = false
+
+    /// Filter the menu by menu section. This flag can be specified multiple times, in which case it is interpreted to be
+    /// joined between `AND` conjunctions, to produce an inclusive filter of products from all specified sections.
+    public var section: [Opencannabis_Products_Menu_Section_Section] = []
+
+    /// Consume the full menu, including products that are not currently available for sale (due to being out of stock,
+    /// or not being moved into active inventory yet).
+    public var full: Bool = false
+
+    /// Specifies the source catalog provider, if known.
+    public var provider: Bloombox_Services_Menu_V1beta1_CatalogProvider = .unspecifiedCatalogProvider
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -638,6 +734,14 @@ extension Bloombox_Services_Menu_V1beta1_MenuError: SwiftProtobuf._ProtoNameProv
     10: .same(proto: "UPDATE_INVALID"),
     11: .same(proto: "CONFLICT"),
     99: .same(proto: "INTERNAL_ERROR"),
+  ]
+}
+
+extension Bloombox_Services_Menu_V1beta1_CatalogProvider: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNSPECIFIED_CATALOG_PROVIDER"),
+    1: .same(proto: "GOOGLE"),
+    2: .same(proto: "FACEBOOK"),
   ]
 }
 
@@ -1119,6 +1223,78 @@ extension Bloombox_Services_Menu_V1beta1_GetProduct.Response: SwiftProtobuf.Mess
     if lhs.product != rhs.product {return false}
     if lhs.cached != rhs.cached {return false}
     if lhs.unchanged != rhs.unchanged {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Menu_V1beta1_GetCatalog: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".GetCatalog"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetCatalog, rhs: Bloombox_Services_Menu_V1beta1_GetCatalog) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Menu_V1beta1_GetCatalog.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetCatalog.protoMessageName + ".Request"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "scope"),
+    2: .same(proto: "featured"),
+    3: .same(proto: "section"),
+    4: .same(proto: "full"),
+    5: .same(proto: "provider"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.scope)
+      case 2: try decoder.decodeSingularBoolField(value: &self.featured)
+      case 3: try decoder.decodeRepeatedEnumField(value: &self.section)
+      case 4: try decoder.decodeSingularBoolField(value: &self.full)
+      case 5: try decoder.decodeSingularEnumField(value: &self.provider)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.scope.isEmpty {
+      try visitor.visitSingularStringField(value: self.scope, fieldNumber: 1)
+    }
+    if self.featured != false {
+      try visitor.visitSingularBoolField(value: self.featured, fieldNumber: 2)
+    }
+    if !self.section.isEmpty {
+      try visitor.visitPackedEnumField(value: self.section, fieldNumber: 3)
+    }
+    if self.full != false {
+      try visitor.visitSingularBoolField(value: self.full, fieldNumber: 4)
+    }
+    if self.provider != .unspecifiedCatalogProvider {
+      try visitor.visitSingularEnumField(value: self.provider, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetCatalog.Request, rhs: Bloombox_Services_Menu_V1beta1_GetCatalog.Request) -> Bool {
+    if lhs.scope != rhs.scope {return false}
+    if lhs.featured != rhs.featured {return false}
+    if lhs.section != rhs.section {return false}
+    if lhs.full != rhs.full {return false}
+    if lhs.provider != rhs.provider {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for device types and credentials and enumerates device types.
+
 import Foundation
 import SwiftProtobuf
 
@@ -37,6 +40,12 @@ public enum Opencannabis_Device_DeviceType: SwiftProtobuf.Enum {
 
   /// The end-device is a TV of some kind.
   case tv // = 4
+
+  /// Small or embedded compute units.
+  case embedded // = 5
+
+  /// Server units.
+  case server // = 6
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -50,6 +59,8 @@ public enum Opencannabis_Device_DeviceType: SwiftProtobuf.Enum {
     case 2: self = .phone
     case 3: self = .tablet
     case 4: self = .tv
+    case 5: self = .embedded
+    case 6: self = .server
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -61,6 +72,8 @@ public enum Opencannabis_Device_DeviceType: SwiftProtobuf.Enum {
     case .phone: return 2
     case .tablet: return 3
     case .tv: return 4
+    case .embedded: return 5
+    case .server: return 6
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -77,6 +90,8 @@ extension Opencannabis_Device_DeviceType: CaseIterable {
     .phone,
     .tablet,
     .tv,
+    .embedded,
+    .server,
   ]
 }
 
@@ -181,6 +196,8 @@ extension Opencannabis_Device_DeviceType: SwiftProtobuf._ProtoNameProviding {
     2: .same(proto: "PHONE"),
     3: .same(proto: "TABLET"),
     4: .same(proto: "TV"),
+    5: .same(proto: "EMBEDDED"),
+    6: .same(proto: "SERVER"),
   ]
 }
 

@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for media type. Enumerates various types of media file types.
+
 import Foundation
 import SwiftProtobuf
 

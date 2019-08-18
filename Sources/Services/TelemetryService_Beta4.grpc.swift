@@ -274,4 +274,199 @@ public final class Bloombox_Services_Telemetry_V1beta4_SearchTelemetryServiceCli
   }
 
 }
+public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCall: ClientCallUnary {}
+
+fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.Encounter, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCall {
+  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Encounter" }
+}
+
+public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCall: ClientCallUnary {}
+
+fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCall {
+  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Intake" }
+}
+
+public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCall: ClientCallUnary {}
+
+fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCall {
+  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Update" }
+}
+
+public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCall: ClientCallUnary {}
+
+fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockTransfer, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCall {
+  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Transfer" }
+}
+
+public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCall: ClientCallUnary {}
+
+fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockReserve, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCall {
+  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Reserve" }
+}
+
+public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCall: ClientCallUnary {}
+
+fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.ReservationCancel, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCall {
+  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Cancel" }
+}
+
+public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCall: ClientCallUnary {}
+
+fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockConsume, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCall {
+  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Consume" }
+}
+
+public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCall: ClientCallClientStreaming {
+  /// Send a message to the stream. Nonblocking.
+  func send(_ message: Bloombox_Services_Telemetry_V1beta4_InventoryEvent, completion: @escaping (Error?) -> Void) throws
+  /// Do not call this directly, call `send()` in the protocol extension below instead.
+  func _send(_ message: Bloombox_Services_Telemetry_V1beta4_InventoryEvent, timeout: DispatchTime) throws
+
+  /// Call this to close the connection and wait for a response. Blocking.
+  func closeAndReceive() throws -> SwiftProtobuf.Google_Protobuf_Empty
+  /// Call this to close the connection and wait for a response. Nonblocking.
+  func closeAndReceive(completion: @escaping (ResultOrRPCError<SwiftProtobuf.Google_Protobuf_Empty>) -> Void) throws
+}
+
+public extension Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCall {
+  /// Send a message to the stream and wait for the send operation to finish. Blocking.
+  func send(_ message: Bloombox_Services_Telemetry_V1beta4_InventoryEvent, timeout: DispatchTime = .distantFuture) throws { try self._send(message, timeout: timeout) }
+}
+
+fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCallBase: ClientCallClientStreamingBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCall {
+  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Live" }
+}
+
+
+/// Instantiate Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryServiceClient, then call methods of this protocol to make API calls.
+public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryService: ServiceClient {
+  /// Synchronous. Unary.
+  func encounter(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.Encounter) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  /// Asynchronous. Unary.
+  func encounter(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.Encounter, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCall
+
+  /// Synchronous. Unary.
+  func intake(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  /// Asynchronous. Unary.
+  func intake(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCall
+
+  /// Synchronous. Unary.
+  func update(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  /// Asynchronous. Unary.
+  func update(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCall
+
+  /// Synchronous. Unary.
+  func transfer(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockTransfer) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  /// Asynchronous. Unary.
+  func transfer(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockTransfer, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCall
+
+  /// Synchronous. Unary.
+  func reserve(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockReserve) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  /// Asynchronous. Unary.
+  func reserve(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockReserve, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCall
+
+  /// Synchronous. Unary.
+  func cancel(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.ReservationCancel) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  /// Asynchronous. Unary.
+  func cancel(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.ReservationCancel, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCall
+
+  /// Synchronous. Unary.
+  func consume(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockConsume) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  /// Asynchronous. Unary.
+  func consume(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockConsume, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCall
+
+  /// Asynchronous. Client-streaming.
+  /// Use methods on the returned object to stream messages and
+  /// to close the connection and wait for a final response.
+  func live(completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCall
+
+}
+
+public final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryServiceClient: ServiceClientBase, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryService {
+  /// Synchronous. Unary.
+  public func encounter(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.Encounter) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  public func encounter(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.Encounter, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCall {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  public func intake(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  public func intake(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCall {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  public func update(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  public func update(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCall {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  public func transfer(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockTransfer) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  public func transfer(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockTransfer, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCall {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  public func reserve(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockReserve) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  public func reserve(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockReserve, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCall {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  public func cancel(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.ReservationCancel) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  public func cancel(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.ReservationCancel, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCall {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  public func consume(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockConsume) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  public func consume(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockConsume, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCall {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Asynchronous. Client-streaming.
+  /// Use methods on the returned object to stream messages and
+  /// to close the connection and wait for a final response.
+  public func live(completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCall {
+    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCallBase(channel)
+      .start(metadata: metadata, completion: completion)
+  }
+
+}
 

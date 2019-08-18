@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for specifying an analytics collection. Enumerates analytics event types.
+
 import Foundation
 import SwiftProtobuf
 
@@ -37,6 +40,9 @@ public enum Bloombox_Analytics_Context_EventType: SwiftProtobuf.Enum {
 
   /// Operational analytics, like memory usage, network traffic, etc.
   case operational // = 4
+
+  /// Events from RFID, BCR, or other inventory infrastructure.
+  case inventory // = 5
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -50,6 +56,7 @@ public enum Bloombox_Analytics_Context_EventType: SwiftProtobuf.Enum {
     case 2: self = .identity
     case 3: self = .experience
     case 4: self = .operational
+    case 5: self = .inventory
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -61,6 +68,7 @@ public enum Bloombox_Analytics_Context_EventType: SwiftProtobuf.Enum {
     case .identity: return 2
     case .experience: return 3
     case .operational: return 4
+    case .inventory: return 5
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -77,6 +85,7 @@ extension Bloombox_Analytics_Context_EventType: CaseIterable {
     .identity,
     .experience,
     .operational,
+    .inventory,
   ]
 }
 
@@ -88,7 +97,7 @@ public struct Bloombox_Analytics_Context_Collection {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Specifies an unenumerated collection by name.
+  /// Specifies an un-enumerated collection by name.
   public var name: String = String()
 
   /// Specifies a specific collection as internal. Backend-only flag.
@@ -113,6 +122,7 @@ extension Bloombox_Analytics_Context_EventType: SwiftProtobuf._ProtoNameProvidin
     2: .same(proto: "IDENTITY"),
     3: .same(proto: "EXPERIENCE"),
     4: .same(proto: "OPERATIONAL"),
+    5: .same(proto: "INVENTORY"),
   ]
 }
 

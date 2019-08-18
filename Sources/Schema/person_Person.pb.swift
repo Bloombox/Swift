@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides structures related to a person and all their characteristics. As well as enumerating gender.
+
 import Foundation
 import SwiftProtobuf
 

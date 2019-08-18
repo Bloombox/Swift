@@ -6,6 +6,9 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for the scope of authorization.
+
 import Foundation
 import SwiftProtobuf
 

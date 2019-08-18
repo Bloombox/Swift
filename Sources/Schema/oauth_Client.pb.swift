@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for the Oauth Client and tools for creating a permission based identity and enumerates grant
+/// types.
+
 import Foundation
 import SwiftProtobuf
 

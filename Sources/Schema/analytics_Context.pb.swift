@@ -6,6 +6,10 @@
 // For information on using the generated types, please see the documenation:
 //   https://github.com/apple/swift-protobuf/
 
+///*
+/// Provides a structure for the context of telemetry events, including, the time, location, partner, device, and event,
+/// and application details.
+
 import Foundation
 import SwiftProtobuf
 
