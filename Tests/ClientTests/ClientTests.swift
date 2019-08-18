@@ -96,7 +96,6 @@ class ClientTests: XCTestCase {
     XCTAssertNotNil(empty.devices, "devices service on empty client should not be nil")
     XCTAssertNotNil(empty.menu, "menu service on empty client should not be nil")
     XCTAssertNotNil(empty.platform, "platform service on empty client should not be nil")
-    XCTAssertNotNil(empty.pos, "POS service on empty client should not be nil")
     XCTAssertNotNil(empty.shop, "shop service on empty client should not be nil")
     XCTAssertNotNil(empty.telemetry, "telemetry service on empty client should not be nil")
   }
