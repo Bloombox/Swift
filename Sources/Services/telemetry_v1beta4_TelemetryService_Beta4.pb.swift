@@ -12,6 +12,7 @@
 /// also enumerated explicitly for easier analytics calculations and more efficient event transmission.
 
 import Foundation
+import OpenCannabis
 import SwiftProtobuf
 
 // If the compiler emits an error on this type, it is because this file

@@ -174,6 +174,7 @@ public typealias MenuService = Bloombox_Services_Menu_V1beta1_MenuServiceClient
 
 /// Method: `retrieve`.
 public typealias GetMenu = Bloombox_Services_Menu_V1beta1_GetMenu
+public typealias GetCatalog = Bloombox_Services_Menu_V1beta1_GetCatalog
 public typealias GetMenuCall = Bloombox_Services_Menu_V1beta1_MenuRetrieveCall
 
 
@@ -280,14 +281,12 @@ public typealias InventoryCoordinates = Opencannabis_Inventory_InventoryCoordina
 public typealias InventoryLocationKey = Opencannabis_Inventory_InventoryLocationKey
 public typealias InventoryLocationType = Opencannabis_Inventory_InventoryLocationType
 public typealias PurchaseKey = Opencannabis_Commerce_PurchaseKey
-public typealias PurchaseTicket = Bloombox_Pos_PurchaseTicket
 public typealias PurchaseStatus = Opencannabis_Commerce_PurchaseStatus
 public typealias PurchaseTimestamps = Opencannabis_Commerce_PurchaseTimestamps
 public typealias PurchaseFacilitator = Opencannabis_Commerce_PurchaseFacilitator
 public typealias PurchaseCustomer = Opencannabis_Commerce_PurchaseCustomer
 public typealias BillOfCharges = Opencannabis_Commerce_BillOfCharges
 public typealias StaffUser = Bloombox_Identity_StaffUser
-public typealias MessagingAuth = Bloombox_Services_Pos_V1beta1_MessagingAuth
 public typealias PricingWeightTier = Opencannabis_Structs_Pricing_PricingWeightTier
 public typealias PricingTierAvailability = Opencannabis_Structs_Pricing_PricingTierAvailability
 public typealias PricingType = Opencannabis_Structs_Pricing_PricingType

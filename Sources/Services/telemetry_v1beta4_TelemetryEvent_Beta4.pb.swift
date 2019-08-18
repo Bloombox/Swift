@@ -10,6 +10,7 @@
 /// Provides a structure to facilitate telemetry events with arbitrary payload structure.
 
 import Foundation
+import OpenCannabis
 import SwiftProtobuf
 
 // If the compiler emits an error on this type, it is because this file
