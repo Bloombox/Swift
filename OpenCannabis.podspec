@@ -33,7 +33,7 @@ Native Swift codegen and bindings for OpenCannabis
   s.source_files = 'Sources/Schema/*.swift'
 
   # --- Dependencies -----------------―――――――――――――――――――――――――――――――――――――――――――- #
-  s.dependency 'SwiftProtobuf'
+  s.dependency 'SwiftProtobuf', '~> 1.5.0'
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.libraries   = "z"
