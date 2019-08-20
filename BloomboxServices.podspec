@@ -33,7 +33,7 @@ the Bloombox client library for Swift.
   # ――― Dependencies ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.dependency 'OpenCannabis', '= 0.2.0-beta4'
   s.dependency 'SwiftProtobuf', '~> 1.5.0'
-  s.dependency 'SwiftGRPC', '~> 0.9.0'
+  s.dependency 'SwiftGRPC', '~> 0.9.1'
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.libraries   = "z"
