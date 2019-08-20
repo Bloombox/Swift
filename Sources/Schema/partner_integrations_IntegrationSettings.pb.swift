@@ -55,6 +55,12 @@ public enum Bloombox_Partner_Integrations_IntegrationPartner: SwiftProtobuf.Enum
 
   /// Treez IO - https://www.treez.io
   case treez // = 9
+
+  /// LeafLogix - https://leaflogix.com
+  case leafLogix // = 10
+
+  /// Open web-hooks, with JSON, msgpack or protobuf support (text/binary).
+  case webHooks // = 11
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -73,6 +79,8 @@ public enum Bloombox_Partner_Integrations_IntegrationPartner: SwiftProtobuf.Enum
     case 7: self = .onfleet
     case 8: self = .gsuite
     case 9: self = .treez
+    case 10: self = .leafLogix
+    case 11: self = .webHooks
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -89,6 +97,8 @@ public enum Bloombox_Partner_Integrations_IntegrationPartner: SwiftProtobuf.Enum
     case .onfleet: return 7
     case .gsuite: return 8
     case .treez: return 9
+    case .leafLogix: return 10
+    case .webHooks: return 11
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -110,6 +120,191 @@ extension Bloombox_Partner_Integrations_IntegrationPartner: CaseIterable {
     .onfleet,
     .gsuite,
     .treez,
+    .leafLogix,
+    .webHooks,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+/// Enumerates supported event types for web-hooks. Each of these events can be configured for a given hook, which will
+/// be dispatched by backend systems when the specified event is called. Each hook may have a different event
+/// notification schema, which is modeled separately in this module.
+public enum Bloombox_Partner_Integrations_WebhookEvent: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// Unknown web-hook type, when we can't interpret the underlying value. Also works as a default-stop.
+  case unknownWebhook // = 0
+
+  /// Catalog Events: Product Changed or Added.
+  case catalogProductUpsert // = 1000
+
+  /// Catalog Events: Product became In-Stock.
+  case catalogProductInStock // = 1001
+
+  /// Catalog Events: Product became Out-of-Stock.
+  case catalogProductOutOfStock // = 1002
+
+  /// Catalog Events: Product Deleted.
+  case catalogProductDeleted // = 1003
+
+  /// Membership Events: New Member Enrolled.
+  case memberEnrolled // = 2000
+
+  /// Membership Events: Member Signed-In.
+  case memberSignedIn // = 2001
+
+  /// Digital Shop: Settings Changed.
+  case shopSettingsChanged // = 3000
+
+  /// Digital Shop: Online Order Received.
+  case shopOrderRecieved // = 3001
+
+  /// Digital Shop: Online Order Changed.
+  case shopOrderChanged // = 3002
+
+  /// Digital Shop: Online Order Accepted.
+  case shopOrderAccepted // = 3003
+
+  /// Digital Shop: Online Order Rejected.
+  case shopOrderRejected // = 3004
+
+  /// On-site: User Checked In.
+  case storefrontCheckin // = 4000
+
+  /// On-site: User Checked Out.
+  case storefrontCheckout // = 4001
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .unknownWebhook
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .unknownWebhook
+    case 1000: self = .catalogProductUpsert
+    case 1001: self = .catalogProductInStock
+    case 1002: self = .catalogProductOutOfStock
+    case 1003: self = .catalogProductDeleted
+    case 2000: self = .memberEnrolled
+    case 2001: self = .memberSignedIn
+    case 3000: self = .shopSettingsChanged
+    case 3001: self = .shopOrderRecieved
+    case 3002: self = .shopOrderChanged
+    case 3003: self = .shopOrderAccepted
+    case 3004: self = .shopOrderRejected
+    case 4000: self = .storefrontCheckin
+    case 4001: self = .storefrontCheckout
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .unknownWebhook: return 0
+    case .catalogProductUpsert: return 1000
+    case .catalogProductInStock: return 1001
+    case .catalogProductOutOfStock: return 1002
+    case .catalogProductDeleted: return 1003
+    case .memberEnrolled: return 2000
+    case .memberSignedIn: return 2001
+    case .shopSettingsChanged: return 3000
+    case .shopOrderRecieved: return 3001
+    case .shopOrderChanged: return 3002
+    case .shopOrderAccepted: return 3003
+    case .shopOrderRejected: return 3004
+    case .storefrontCheckin: return 4000
+    case .storefrontCheckout: return 4001
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Bloombox_Partner_Integrations_WebhookEvent: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Partner_Integrations_WebhookEvent] = [
+    .unknownWebhook,
+    .catalogProductUpsert,
+    .catalogProductInStock,
+    .catalogProductOutOfStock,
+    .catalogProductDeleted,
+    .memberEnrolled,
+    .memberSignedIn,
+    .shopSettingsChanged,
+    .shopOrderRecieved,
+    .shopOrderChanged,
+    .shopOrderAccepted,
+    .shopOrderRejected,
+    .storefrontCheckin,
+    .storefrontCheckout,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+/// Formats supported by the web-hook system. JSON uses proto-json encoding, with msgpack supporting similar structural
+/// encoding but in a length-prefixed format. Proto formats include binary, b64-wrapped-binary, and proto-text.
+public enum Bloombox_Partner_Integrations_WebhookFormat: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// JavaScript Object Notation format for web-hook payloads.
+  case json // = 0
+
+  /// `msgpack` notation format for web-hook payloads.
+  case msgpack // = 1
+
+  /// Protobuf-raw-binary format for web-hook payloads.
+  case protoBinary // = 2
+
+  /// Base64-wrapped-protobuf-binary format for web-hook payloads.
+  case protoB64 // = 3
+
+  /// Proto-text format for web-hook payloads.
+  case protoText // = 4
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .json
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .json
+    case 1: self = .msgpack
+    case 2: self = .protoBinary
+    case 3: self = .protoB64
+    case 4: self = .protoText
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .json: return 0
+    case .msgpack: return 1
+    case .protoBinary: return 2
+    case .protoB64: return 3
+    case .protoText: return 4
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Bloombox_Partner_Integrations_WebhookFormat: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Partner_Integrations_WebhookFormat] = [
+    .json,
+    .msgpack,
+    .protoBinary,
+    .protoB64,
+    .protoText,
   ]
 }
 
@@ -122,24 +317,267 @@ public struct Bloombox_Partner_Integrations_GenericIntegrationSettings {
   // methods supported on all messages.
 
   /// Specifies the integration partner to which these settings apply for a given location.
-  public var partner: Bloombox_Partner_Integrations_IntegrationPartner {
-    get {return _storage._partner}
-    set {_uniqueStorage()._partner = newValue}
-  }
+  public var partner: Bloombox_Partner_Integrations_IntegrationPartner = .internal
 
   /// Whether this integration is currently enabled.
+  public var enabled: Bool = false
+
+  /// Whether this integration has been fully setup.
+  public var fullySetup: Bool = false
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// Integration settings for generic/open-spec web-hooks. Any HTTPS URL can be provided, and hooks will be invoked as
+/// selected events occur within the system. Notifications can be delivered in a variety of formats.
+public struct Bloombox_Partner_Integrations_WebhookIntegrationSettings {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Hash of the URL, uniquely describing this hook.
+  public var hookID: String = String()
+
+  /// Configured web-hooks to invoke.
+  public var webhook: [Bloombox_Partner_Integrations_WebhookIntegrationSettings.Webhook] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Describes configurable request headers for a given web-hook.
+  public enum WebhookHeader: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Default-stop and unidentified-header placeholder.
+    case unknownWebhookHeader // = 0
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .unknownWebhookHeader
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .unknownWebhookHeader
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .unknownWebhookHeader: return 0
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  /// Special values that can be applied in a web-hook header.
+  public enum WebhookSpecialValue: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Default-stop and unidentified-special-value placeholder.
+    case unknownSpecialValue // = 0
+
+    /// Pass the operation's trace-ID as a header.
+    case traceID // = 1
+
+    /// Pass the current/active partner ID as a header.
+    case partnerID // = 2
+
+    /// Pass the current/active location ID as a header.
+    case locationID // = 3
+
+    /// Pass a pre-composed partnership scope ID for the currently-active scope.
+    case partnerScope // = 4
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .unknownSpecialValue
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .unknownSpecialValue
+      case 1: self = .traceID
+      case 2: self = .partnerID
+      case 3: self = .locationID
+      case 4: self = .partnerScope
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .unknownSpecialValue: return 0
+      case .traceID: return 1
+      case .partnerID: return 2
+      case .locationID: return 3
+      case .partnerScope: return 4
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  /// Describes a configured request-header for a web-hook.
+  public struct WebhookRequestHeader {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Header selected for configuration.
+    public var header: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookRequestHeader.OneOf_Header? = nil
+
+    /// Specifies an enumerated, known header.
+    public var knownHeader: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookHeader {
+      get {
+        if case .knownHeader(let v)? = header {return v}
+        return .unknownWebhookHeader
+      }
+      set {header = .knownHeader(newValue)}
+    }
+
+    /// Specifies a custom HTTP header.
+    public var customHeader: String {
+      get {
+        if case .customHeader(let v)? = header {return v}
+        return String()
+      }
+      set {header = .customHeader(newValue)}
+    }
+
+    /// Describes the value that should be set for the header.
+    public var value: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookRequestHeader.OneOf_Value? = nil
+
+    /// Specifies a custom value for the header.
+    public var customValue: String {
+      get {
+        if case .customValue(let v)? = value {return v}
+        return String()
+      }
+      set {value = .customValue(newValue)}
+    }
+
+    /// Specifies a special known value for the header.
+    public var special: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookSpecialValue {
+      get {
+        if case .special(let v)? = value {return v}
+        return .unknownSpecialValue
+      }
+      set {value = .special(newValue)}
+    }
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    /// Header selected for configuration.
+    public enum OneOf_Header: Equatable {
+      /// Specifies an enumerated, known header.
+      case knownHeader(Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookHeader)
+      /// Specifies a custom HTTP header.
+      case customHeader(String)
+
+    #if !swift(>=4.1)
+      public static func ==(lhs: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookRequestHeader.OneOf_Header, rhs: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookRequestHeader.OneOf_Header) -> Bool {
+        switch (lhs, rhs) {
+        case (.knownHeader(let l), .knownHeader(let r)): return l == r
+        case (.customHeader(let l), .customHeader(let r)): return l == r
+        default: return false
+        }
+      }
+    #endif
+    }
+
+    /// Describes the value that should be set for the header.
+    public enum OneOf_Value: Equatable {
+      /// Specifies a custom value for the header.
+      case customValue(String)
+      /// Specifies a special known value for the header.
+      case special(Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookSpecialValue)
+
+    #if !swift(>=4.1)
+      public static func ==(lhs: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookRequestHeader.OneOf_Value, rhs: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookRequestHeader.OneOf_Value) -> Bool {
+        switch (lhs, rhs) {
+        case (.customValue(let l), .customValue(let r)): return l == r
+        case (.special(let l), .special(let r)): return l == r
+        default: return false
+        }
+      }
+    #endif
+    }
+
+    public init() {}
+  }
+
+  /// Configured web-hook with a set of subscribed system events.
+  public struct Webhook {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Whether to enable this specific web-hook.
+    public var enabled: Bool = false
+
+    /// Events that this web-hook endpoint should be subscribed to.
+    public var event: [Bloombox_Partner_Integrations_WebhookEvent] = []
+
+    /// Format to use when invoking this web-hook.
+    public var format: Bloombox_Partner_Integrations_WebhookFormat = .json
+
+    /// Extra headers to apply to the request, at the user's option.
+    public var header: [Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookRequestHeader] = []
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  public init() {}
+}
+
+#if swift(>=4.2)
+
+extension Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookHeader: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookHeader] = [
+    .unknownWebhookHeader,
+  ]
+}
+
+extension Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookSpecialValue: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookSpecialValue] = [
+    .unknownSpecialValue,
+    .traceID,
+    .partnerID,
+    .locationID,
+    .partnerScope,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+/// Describes the general state of a given partner-level, or location-level, integration. Things like the timestamp for
+/// the last-experienced error, the current enabled/disabled state, and so on, are stored here.
+public struct Bloombox_Partner_Integrations_IntegrationState {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Whether to enable web-hooks at all.
   public var enabled: Bool {
     get {return _storage._enabled}
     set {_uniqueStorage()._enabled = newValue}
   }
 
-  /// Whether this integration has been fully setup.
+  /// Whether web-hooks are fully setup and ready.
   public var fullySetup: Bool {
     get {return _storage._fullySetup}
     set {_uniqueStorage()._fullySetup = newValue}
   }
 
-  /// Timestamp for when this integration was last tested.
+  /// The last time web-hooks were tested by the user.
   public var lastTested: Opencannabis_Temporal_Instant {
     get {return _storage._lastTested ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._lastTested = newValue}
@@ -148,6 +586,26 @@ public struct Bloombox_Partner_Integrations_GenericIntegrationSettings {
   public var hasLastTested: Bool {return _storage._lastTested != nil}
   /// Clears the value of `lastTested`. Subsequent reads from it will return its default value.
   public mutating func clearLastTested() {_uniqueStorage()._lastTested = nil}
+
+  /// The last time web-hooks experienced an error.
+  public var lastError: Opencannabis_Temporal_Instant {
+    get {return _storage._lastError ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._lastError = newValue}
+  }
+  /// Returns true if `lastError` has been explicitly set.
+  public var hasLastError: Bool {return _storage._lastError != nil}
+  /// Clears the value of `lastError`. Subsequent reads from it will return its default value.
+  public mutating func clearLastError() {_uniqueStorage()._lastError = nil}
+
+  /// The last time web-hooks succeeded.
+  public var lastSuccess: Opencannabis_Temporal_Instant {
+    get {return _storage._lastSuccess ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._lastSuccess = newValue}
+  }
+  /// Returns true if `lastSuccess` has been explicitly set.
+  public var hasLastSuccess: Bool {return _storage._lastSuccess != nil}
+  /// Clears the value of `lastSuccess`. Subsequent reads from it will return its default value.
+  public mutating func clearLastSuccess() {_uniqueStorage()._lastSuccess = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -172,6 +630,12 @@ public struct Bloombox_Partner_Integrations_LocationIntegrationSettings {
   public var generic: Dictionary<String,Bloombox_Partner_Integrations_GenericIntegrationSettings> {
     get {return _storage._generic}
     set {_uniqueStorage()._generic = newValue}
+  }
+
+  /// State data describing the status of each configured integration.
+  public var state: Dictionary<String,Bloombox_Partner_Integrations_IntegrationState> {
+    get {return _storage._state}
+    set {_uniqueStorage()._state = newValue}
   }
 
   /// Specifies location-specific integration settings with Greenbits.
@@ -234,6 +698,26 @@ public struct Bloombox_Partner_Integrations_LocationIntegrationSettings {
   /// Clears the value of `treez`. Subsequent reads from it will return its default value.
   public mutating func clearTreez() {_uniqueStorage()._treez = nil}
 
+  /// Specifies location-specific integration settings with LeafLogix.
+  public var leafLogix: Bloombox_Partner_Integrations_Leaflogix_LeafLogixSettings {
+    get {return _storage._leafLogix ?? Bloombox_Partner_Integrations_Leaflogix_LeafLogixSettings()}
+    set {_uniqueStorage()._leafLogix = newValue}
+  }
+  /// Returns true if `leafLogix` has been explicitly set.
+  public var hasLeafLogix: Bool {return _storage._leafLogix != nil}
+  /// Clears the value of `leafLogix`. Subsequent reads from it will return its default value.
+  public mutating func clearLeafLogix() {_uniqueStorage()._leafLogix = nil}
+
+  /// Generic web-hook integration settings, for location-level events.
+  public var webHooks: Bloombox_Partner_Integrations_WebhookIntegrationSettings {
+    get {return _storage._webHooks ?? Bloombox_Partner_Integrations_WebhookIntegrationSettings()}
+    set {_uniqueStorage()._webHooks = newValue}
+  }
+  /// Returns true if `webHooks` has been explicitly set.
+  public var hasWebHooks: Bool {return _storage._webHooks != nil}
+  /// Clears the value of `webHooks`. Subsequent reads from it will return its default value.
+  public mutating func clearWebHooks() {_uniqueStorage()._webHooks = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -259,15 +743,41 @@ public struct Bloombox_Partner_Integrations_PartnerIntegrationSettings {
     set {_uniqueStorage()._generic = newValue}
   }
 
-  /// Specifies location-specific integration settings with GSuite.
-  public var gsuite: Bloombox_Partner_Integrations_Gsuite_GSuiteSettings {
-    get {return _storage._gsuite ?? Bloombox_Partner_Integrations_Gsuite_GSuiteSettings()}
-    set {_uniqueStorage()._gsuite = newValue}
+  /// State data describing the status of each configured integration.
+  public var state: Dictionary<String,Bloombox_Partner_Integrations_IntegrationState> {
+    get {return _storage._state}
+    set {_uniqueStorage()._state = newValue}
   }
-  /// Returns true if `gsuite` has been explicitly set.
-  public var hasGsuite: Bool {return _storage._gsuite != nil}
-  /// Clears the value of `gsuite`. Subsequent reads from it will return its default value.
-  public mutating func clearGsuite() {_uniqueStorage()._gsuite = nil}
+
+  /// Specifies location-specific integration settings with GSuite.
+  public var google: Bloombox_Partner_Integrations_Gsuite_GSuiteSettings {
+    get {return _storage._google ?? Bloombox_Partner_Integrations_Gsuite_GSuiteSettings()}
+    set {_uniqueStorage()._google = newValue}
+  }
+  /// Returns true if `google` has been explicitly set.
+  public var hasGoogle: Bool {return _storage._google != nil}
+  /// Clears the value of `google`. Subsequent reads from it will return its default value.
+  public mutating func clearGoogle() {_uniqueStorage()._google = nil}
+
+  /// Specifies Microsoft-specific integration settings.
+  public var microsoft: Bloombox_Partner_Integrations_Office365_Office365Settings {
+    get {return _storage._microsoft ?? Bloombox_Partner_Integrations_Office365_Office365Settings()}
+    set {_uniqueStorage()._microsoft = newValue}
+  }
+  /// Returns true if `microsoft` has been explicitly set.
+  public var hasMicrosoft: Bool {return _storage._microsoft != nil}
+  /// Clears the value of `microsoft`. Subsequent reads from it will return its default value.
+  public mutating func clearMicrosoft() {_uniqueStorage()._microsoft = nil}
+
+  /// Generic web-hook integration settings, for location-level events.
+  public var webHooks: Bloombox_Partner_Integrations_WebhookIntegrationSettings {
+    get {return _storage._webHooks ?? Bloombox_Partner_Integrations_WebhookIntegrationSettings()}
+    set {_uniqueStorage()._webHooks = newValue}
+  }
+  /// Returns true if `webHooks` has been explicitly set.
+  public var hasWebHooks: Bool {return _storage._webHooks != nil}
+  /// Clears the value of `webHooks`. Subsequent reads from it will return its default value.
+  public mutating func clearWebHooks() {_uniqueStorage()._webHooks = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -292,6 +802,37 @@ extension Bloombox_Partner_Integrations_IntegrationPartner: SwiftProtobuf._Proto
     7: .same(proto: "ONFLEET"),
     8: .same(proto: "GSUITE"),
     9: .same(proto: "TREEZ"),
+    10: .same(proto: "LEAF_LOGIX"),
+    11: .same(proto: "WEB_HOOKS"),
+  ]
+}
+
+extension Bloombox_Partner_Integrations_WebhookEvent: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNKNOWN_WEBHOOK"),
+    1000: .same(proto: "CATALOG_PRODUCT_UPSERT"),
+    1001: .same(proto: "CATALOG_PRODUCT_IN_STOCK"),
+    1002: .same(proto: "CATALOG_PRODUCT_OUT_OF_STOCK"),
+    1003: .same(proto: "CATALOG_PRODUCT_DELETED"),
+    2000: .same(proto: "MEMBER_ENROLLED"),
+    2001: .same(proto: "MEMBER_SIGNED_IN"),
+    3000: .same(proto: "SHOP_SETTINGS_CHANGED"),
+    3001: .same(proto: "SHOP_ORDER_RECIEVED"),
+    3002: .same(proto: "SHOP_ORDER_CHANGED"),
+    3003: .same(proto: "SHOP_ORDER_ACCEPTED"),
+    3004: .same(proto: "SHOP_ORDER_REJECTED"),
+    4000: .same(proto: "STOREFRONT_CHECKIN"),
+    4001: .same(proto: "STOREFRONT_CHECKOUT"),
+  ]
+}
+
+extension Bloombox_Partner_Integrations_WebhookFormat: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "JSON"),
+    1: .same(proto: "MSGPACK"),
+    2: .same(proto: "PROTO_BINARY"),
+    3: .same(proto: "PROTO_B64"),
+    4: .same(proto: "PROTO_TEXT"),
   ]
 }
 
@@ -301,24 +842,229 @@ extension Bloombox_Partner_Integrations_GenericIntegrationSettings: SwiftProtobu
     1: .same(proto: "partner"),
     2: .same(proto: "enabled"),
     3: .standard(proto: "fully_setup"),
-    4: .standard(proto: "last_tested"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.partner)
+      case 2: try decoder.decodeSingularBoolField(value: &self.enabled)
+      case 3: try decoder.decodeSingularBoolField(value: &self.fullySetup)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.partner != .internal {
+      try visitor.visitSingularEnumField(value: self.partner, fieldNumber: 1)
+    }
+    if self.enabled != false {
+      try visitor.visitSingularBoolField(value: self.enabled, fieldNumber: 2)
+    }
+    if self.fullySetup != false {
+      try visitor.visitSingularBoolField(value: self.fullySetup, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Partner_Integrations_GenericIntegrationSettings, rhs: Bloombox_Partner_Integrations_GenericIntegrationSettings) -> Bool {
+    if lhs.partner != rhs.partner {return false}
+    if lhs.enabled != rhs.enabled {return false}
+    if lhs.fullySetup != rhs.fullySetup {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Partner_Integrations_WebhookIntegrationSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".WebhookIntegrationSettings"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "hook_id"),
+    2: .same(proto: "webhook"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.hookID)
+      case 2: try decoder.decodeRepeatedMessageField(value: &self.webhook)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.hookID.isEmpty {
+      try visitor.visitSingularStringField(value: self.hookID, fieldNumber: 1)
+    }
+    if !self.webhook.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.webhook, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Partner_Integrations_WebhookIntegrationSettings, rhs: Bloombox_Partner_Integrations_WebhookIntegrationSettings) -> Bool {
+    if lhs.hookID != rhs.hookID {return false}
+    if lhs.webhook != rhs.webhook {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookHeader: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNKNOWN_WEBHOOK_HEADER"),
+  ]
+}
+
+extension Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookSpecialValue: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNKNOWN_SPECIAL_VALUE"),
+    1: .same(proto: "TRACE_ID"),
+    2: .same(proto: "PARTNER_ID"),
+    3: .same(proto: "LOCATION_ID"),
+    4: .same(proto: "PARTNER_SCOPE"),
+  ]
+}
+
+extension Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookRequestHeader: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Partner_Integrations_WebhookIntegrationSettings.protoMessageName + ".WebhookRequestHeader"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "known_header"),
+    3: .standard(proto: "custom_header"),
+    4: .standard(proto: "custom_value"),
+    5: .same(proto: "special"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1:
+        if self.header != nil {try decoder.handleConflictingOneOf()}
+        var v: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookHeader?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.header = .knownHeader(v)}
+      case 3:
+        if self.header != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.header = .customHeader(v)}
+      case 4:
+        if self.value != nil {try decoder.handleConflictingOneOf()}
+        var v: String?
+        try decoder.decodeSingularStringField(value: &v)
+        if let v = v {self.value = .customValue(v)}
+      case 5:
+        if self.value != nil {try decoder.handleConflictingOneOf()}
+        var v: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookSpecialValue?
+        try decoder.decodeSingularEnumField(value: &v)
+        if let v = v {self.value = .special(v)}
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    switch self.header {
+    case .knownHeader(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 1)
+    case .customHeader(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 3)
+    case nil: break
+    }
+    switch self.value {
+    case .customValue(let v)?:
+      try visitor.visitSingularStringField(value: v, fieldNumber: 4)
+    case .special(let v)?:
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 5)
+    case nil: break
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookRequestHeader, rhs: Bloombox_Partner_Integrations_WebhookIntegrationSettings.WebhookRequestHeader) -> Bool {
+    if lhs.header != rhs.header {return false}
+    if lhs.value != rhs.value {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Partner_Integrations_WebhookIntegrationSettings.Webhook: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Partner_Integrations_WebhookIntegrationSettings.protoMessageName + ".Webhook"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "enabled"),
+    2: .same(proto: "event"),
+    3: .same(proto: "format"),
+    4: .same(proto: "header"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.enabled)
+      case 2: try decoder.decodeRepeatedEnumField(value: &self.event)
+      case 3: try decoder.decodeSingularEnumField(value: &self.format)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.header)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.enabled != false {
+      try visitor.visitSingularBoolField(value: self.enabled, fieldNumber: 1)
+    }
+    if !self.event.isEmpty {
+      try visitor.visitPackedEnumField(value: self.event, fieldNumber: 2)
+    }
+    if self.format != .json {
+      try visitor.visitSingularEnumField(value: self.format, fieldNumber: 3)
+    }
+    if !self.header.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.header, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Partner_Integrations_WebhookIntegrationSettings.Webhook, rhs: Bloombox_Partner_Integrations_WebhookIntegrationSettings.Webhook) -> Bool {
+    if lhs.enabled != rhs.enabled {return false}
+    if lhs.event != rhs.event {return false}
+    if lhs.format != rhs.format {return false}
+    if lhs.header != rhs.header {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Partner_Integrations_IntegrationState: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".IntegrationState"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "enabled"),
+    2: .standard(proto: "fully_setup"),
+    3: .standard(proto: "last_tested"),
+    4: .standard(proto: "last_error"),
+    5: .standard(proto: "last_success"),
   ]
 
   fileprivate class _StorageClass {
-    var _partner: Bloombox_Partner_Integrations_IntegrationPartner = .internal
     var _enabled: Bool = false
     var _fullySetup: Bool = false
     var _lastTested: Opencannabis_Temporal_Instant? = nil
+    var _lastError: Opencannabis_Temporal_Instant? = nil
+    var _lastSuccess: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
     private init() {}
 
     init(copying source: _StorageClass) {
-      _partner = source._partner
       _enabled = source._enabled
       _fullySetup = source._fullySetup
       _lastTested = source._lastTested
+      _lastError = source._lastError
+      _lastSuccess = source._lastSuccess
     }
   }
 
@@ -334,10 +1080,11 @@ extension Bloombox_Partner_Integrations_GenericIntegrationSettings: SwiftProtobu
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._partner)
-        case 2: try decoder.decodeSingularBoolField(value: &_storage._enabled)
-        case 3: try decoder.decodeSingularBoolField(value: &_storage._fullySetup)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._lastTested)
+        case 1: try decoder.decodeSingularBoolField(value: &_storage._enabled)
+        case 2: try decoder.decodeSingularBoolField(value: &_storage._fullySetup)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._lastTested)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._lastError)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._lastSuccess)
         default: break
         }
       }
@@ -346,31 +1093,35 @@ extension Bloombox_Partner_Integrations_GenericIntegrationSettings: SwiftProtobu
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._partner != .internal {
-        try visitor.visitSingularEnumField(value: _storage._partner, fieldNumber: 1)
-      }
       if _storage._enabled != false {
-        try visitor.visitSingularBoolField(value: _storage._enabled, fieldNumber: 2)
+        try visitor.visitSingularBoolField(value: _storage._enabled, fieldNumber: 1)
       }
       if _storage._fullySetup != false {
-        try visitor.visitSingularBoolField(value: _storage._fullySetup, fieldNumber: 3)
+        try visitor.visitSingularBoolField(value: _storage._fullySetup, fieldNumber: 2)
       }
       if let v = _storage._lastTested {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._lastError {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._lastSuccess {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Bloombox_Partner_Integrations_GenericIntegrationSettings, rhs: Bloombox_Partner_Integrations_GenericIntegrationSettings) -> Bool {
+  public static func ==(lhs: Bloombox_Partner_Integrations_IntegrationState, rhs: Bloombox_Partner_Integrations_IntegrationState) -> Bool {
     if lhs._storage !== rhs._storage {
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._partner != rhs_storage._partner {return false}
         if _storage._enabled != rhs_storage._enabled {return false}
         if _storage._fullySetup != rhs_storage._fullySetup {return false}
         if _storage._lastTested != rhs_storage._lastTested {return false}
+        if _storage._lastError != rhs_storage._lastError {return false}
+        if _storage._lastSuccess != rhs_storage._lastSuccess {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -385,23 +1136,29 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "integrations"),
     2: .same(proto: "generic"),
+    3: .same(proto: "state"),
     10: .same(proto: "greenbits"),
     11: .same(proto: "mailchimp"),
     12: .same(proto: "sendgrid"),
     13: .same(proto: "twilio"),
     14: .same(proto: "onfleet"),
     15: .same(proto: "treez"),
+    16: .standard(proto: "leaf_logix"),
+    17: .standard(proto: "web_hooks"),
   ]
 
   fileprivate class _StorageClass {
     var _integrations: [Bloombox_Partner_Integrations_IntegrationPartner] = []
     var _generic: Dictionary<String,Bloombox_Partner_Integrations_GenericIntegrationSettings> = [:]
+    var _state: Dictionary<String,Bloombox_Partner_Integrations_IntegrationState> = [:]
     var _greenbits: Bloombox_Partner_Integrations_Greenbits_GreenbitsSettings? = nil
     var _mailchimp: Bloombox_Partner_Integrations_Mailchimp_MailchimpSettings? = nil
     var _sendgrid: Bloombox_Partner_Integrations_Sendgrid_SendgridSettings? = nil
     var _twilio: Bloombox_Partner_Integrations_Twilio_TwilioSettings? = nil
     var _onfleet: Bloombox_Partner_Integrations_Onfleet_OnFleetSettings? = nil
     var _treez: Bloombox_Partner_Integrations_Treez_TreezSettings? = nil
+    var _leafLogix: Bloombox_Partner_Integrations_Leaflogix_LeafLogixSettings? = nil
+    var _webHooks: Bloombox_Partner_Integrations_WebhookIntegrationSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -410,12 +1167,15 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
     init(copying source: _StorageClass) {
       _integrations = source._integrations
       _generic = source._generic
+      _state = source._state
       _greenbits = source._greenbits
       _mailchimp = source._mailchimp
       _sendgrid = source._sendgrid
       _twilio = source._twilio
       _onfleet = source._onfleet
       _treez = source._treez
+      _leafLogix = source._leafLogix
+      _webHooks = source._webHooks
     }
   }
 
@@ -433,12 +1193,15 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
         switch fieldNumber {
         case 1: try decoder.decodeRepeatedEnumField(value: &_storage._integrations)
         case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Integrations_GenericIntegrationSettings>.self, value: &_storage._generic)
+        case 3: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Integrations_IntegrationState>.self, value: &_storage._state)
         case 10: try decoder.decodeSingularMessageField(value: &_storage._greenbits)
         case 11: try decoder.decodeSingularMessageField(value: &_storage._mailchimp)
         case 12: try decoder.decodeSingularMessageField(value: &_storage._sendgrid)
         case 13: try decoder.decodeSingularMessageField(value: &_storage._twilio)
         case 14: try decoder.decodeSingularMessageField(value: &_storage._onfleet)
         case 15: try decoder.decodeSingularMessageField(value: &_storage._treez)
+        case 16: try decoder.decodeSingularMessageField(value: &_storage._leafLogix)
+        case 17: try decoder.decodeSingularMessageField(value: &_storage._webHooks)
         default: break
         }
       }
@@ -452,6 +1215,9 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
       }
       if !_storage._generic.isEmpty {
         try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Integrations_GenericIntegrationSettings>.self, value: _storage._generic, fieldNumber: 2)
+      }
+      if !_storage._state.isEmpty {
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Integrations_IntegrationState>.self, value: _storage._state, fieldNumber: 3)
       }
       if let v = _storage._greenbits {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
@@ -471,6 +1237,12 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
       if let v = _storage._treez {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
       }
+      if let v = _storage._leafLogix {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+      }
+      if let v = _storage._webHooks {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -482,12 +1254,15 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
         let rhs_storage = _args.1
         if _storage._integrations != rhs_storage._integrations {return false}
         if _storage._generic != rhs_storage._generic {return false}
+        if _storage._state != rhs_storage._state {return false}
         if _storage._greenbits != rhs_storage._greenbits {return false}
         if _storage._mailchimp != rhs_storage._mailchimp {return false}
         if _storage._sendgrid != rhs_storage._sendgrid {return false}
         if _storage._twilio != rhs_storage._twilio {return false}
         if _storage._onfleet != rhs_storage._onfleet {return false}
         if _storage._treez != rhs_storage._treez {return false}
+        if _storage._leafLogix != rhs_storage._leafLogix {return false}
+        if _storage._webHooks != rhs_storage._webHooks {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -502,13 +1277,19 @@ extension Bloombox_Partner_Integrations_PartnerIntegrationSettings: SwiftProtobu
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "integrations"),
     2: .same(proto: "generic"),
-    10: .same(proto: "gsuite"),
+    3: .same(proto: "state"),
+    10: .same(proto: "google"),
+    11: .same(proto: "microsoft"),
+    12: .standard(proto: "web_hooks"),
   ]
 
   fileprivate class _StorageClass {
     var _integrations: [Bloombox_Partner_Integrations_IntegrationPartner] = []
     var _generic: Dictionary<String,Bloombox_Partner_Integrations_GenericIntegrationSettings> = [:]
-    var _gsuite: Bloombox_Partner_Integrations_Gsuite_GSuiteSettings? = nil
+    var _state: Dictionary<String,Bloombox_Partner_Integrations_IntegrationState> = [:]
+    var _google: Bloombox_Partner_Integrations_Gsuite_GSuiteSettings? = nil
+    var _microsoft: Bloombox_Partner_Integrations_Office365_Office365Settings? = nil
+    var _webHooks: Bloombox_Partner_Integrations_WebhookIntegrationSettings? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -517,7 +1298,10 @@ extension Bloombox_Partner_Integrations_PartnerIntegrationSettings: SwiftProtobu
     init(copying source: _StorageClass) {
       _integrations = source._integrations
       _generic = source._generic
-      _gsuite = source._gsuite
+      _state = source._state
+      _google = source._google
+      _microsoft = source._microsoft
+      _webHooks = source._webHooks
     }
   }
 
@@ -535,7 +1319,10 @@ extension Bloombox_Partner_Integrations_PartnerIntegrationSettings: SwiftProtobu
         switch fieldNumber {
         case 1: try decoder.decodeRepeatedEnumField(value: &_storage._integrations)
         case 2: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Integrations_GenericIntegrationSettings>.self, value: &_storage._generic)
-        case 10: try decoder.decodeSingularMessageField(value: &_storage._gsuite)
+        case 3: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Integrations_IntegrationState>.self, value: &_storage._state)
+        case 10: try decoder.decodeSingularMessageField(value: &_storage._google)
+        case 11: try decoder.decodeSingularMessageField(value: &_storage._microsoft)
+        case 12: try decoder.decodeSingularMessageField(value: &_storage._webHooks)
         default: break
         }
       }
@@ -550,8 +1337,17 @@ extension Bloombox_Partner_Integrations_PartnerIntegrationSettings: SwiftProtobu
       if !_storage._generic.isEmpty {
         try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Integrations_GenericIntegrationSettings>.self, value: _storage._generic, fieldNumber: 2)
       }
-      if let v = _storage._gsuite {
+      if !_storage._state.isEmpty {
+        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Partner_Integrations_IntegrationState>.self, value: _storage._state, fieldNumber: 3)
+      }
+      if let v = _storage._google {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+      if let v = _storage._microsoft {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      }
+      if let v = _storage._webHooks {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -564,7 +1360,10 @@ extension Bloombox_Partner_Integrations_PartnerIntegrationSettings: SwiftProtobu
         let rhs_storage = _args.1
         if _storage._integrations != rhs_storage._integrations {return false}
         if _storage._generic != rhs_storage._generic {return false}
-        if _storage._gsuite != rhs_storage._gsuite {return false}
+        if _storage._state != rhs_storage._state {return false}
+        if _storage._google != rhs_storage._google {return false}
+        if _storage._microsoft != rhs_storage._microsoft {return false}
+        if _storage._webHooks != rhs_storage._webHooks {return false}
         return true
       }
       if !storagesAreEqual {return false}

@@ -22,69 +22,6 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// Specifies types of apothecary items that may be expressed.
-public enum Opencannabis_Products_ApothecaryType: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// Specifies an unidentified, or unspecified, apothecary item.
-  case unspecifiedApothecary // = 0
-
-  /// Specifies a topical material, such as an ointment or oil, meant for application to the skin.
-  case topical // = 1
-
-  /// Specifies a liquid that may be added to other liquids or foods. Often used with tea.
-  case tincture // = 2
-
-  /// Specifies a capsule containing cannabinoids, similar to a dietary supplement.
-  case capsule // = 3
-
-  /// Specifies an injector or injection style system.
-  case injector // = 4
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .unspecifiedApothecary
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .unspecifiedApothecary
-    case 1: self = .topical
-    case 2: self = .tincture
-    case 3: self = .capsule
-    case 4: self = .injector
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .unspecifiedApothecary: return 0
-    case .topical: return 1
-    case .tincture: return 2
-    case .capsule: return 3
-    case .injector: return 4
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension Opencannabis_Products_ApothecaryType: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Products_ApothecaryType] = [
-    .unspecifiedApothecary,
-    .topical,
-    .tincture,
-    .capsule,
-    .injector,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
 /// Specifies an apothecary item for sale. Apothecary items are described as drugstore-style items, like capsules, oils,
 /// injectors, and other edge-case applications.
 public struct Opencannabis_Products_Apothecary {
@@ -103,7 +40,7 @@ public struct Opencannabis_Products_Apothecary {
   public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Specific type of apothecary item being described.
-  public var type: Opencannabis_Products_ApothecaryType {
+  public var type: Opencannabis_Products_Apothecary.TypeEnum {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
@@ -130,24 +67,113 @@ public struct Opencannabis_Products_Apothecary {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  /// Specifies types of apothecary items that may be expressed.
+  public enum TypeEnum: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Specifies an unidentified, or unspecified, apothecary item.
+    case unspecifiedApothecary // = 0
+
+    /// Specifies a topical material, such as an ointment or oil, meant for application to the skin.
+    case topical // = 1
+
+    /// Specifies a liquid that may be added to other liquids or foods. Often used with tea.
+    case tincture // = 2
+
+    /// Specifies a capsule containing cannabinoids, similar to a dietary supplement.
+    case capsule // = 3
+
+    /// Specifies an injector or injection style system.
+    case injector // = 4
+
+    /// Specifies a spray-style tool or bottle.
+    case spray // = 5
+
+    /// Specifies a sublingual strip or dropper-style applicator.
+    case sublingual // = 6
+
+    /// Specifies an anally-administered dose or applicator.
+    case suppository // = 7
+
+    /// Specifies a patch or substance that works via a transdermal mechanism (i.e. via skin).
+    case transdermal // = 8
+
+    /// Bath bombs, soaps, and so on.
+    case bathAndBody // = 9
+
+    /// Lotions, creams, and balms.
+    case lotion // = 10
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .unspecifiedApothecary
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .unspecifiedApothecary
+      case 1: self = .topical
+      case 2: self = .tincture
+      case 3: self = .capsule
+      case 4: self = .injector
+      case 5: self = .spray
+      case 6: self = .sublingual
+      case 7: self = .suppository
+      case 8: self = .transdermal
+      case 9: self = .bathAndBody
+      case 10: self = .lotion
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .unspecifiedApothecary: return 0
+      case .topical: return 1
+      case .tincture: return 2
+      case .capsule: return 3
+      case .injector: return 4
+      case .spray: return 5
+      case .sublingual: return 6
+      case .suppository: return 7
+      case .transdermal: return 8
+      case .bathAndBody: return 9
+      case .lotion: return 10
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Apothecary.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Apothecary.TypeEnum] = [
+    .unspecifiedApothecary,
+    .topical,
+    .tincture,
+    .capsule,
+    .injector,
+    .spray,
+    .sublingual,
+    .suppository,
+    .transdermal,
+    .bathAndBody,
+    .lotion,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.products"
-
-extension Opencannabis_Products_ApothecaryType: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "UNSPECIFIED_APOTHECARY"),
-    1: .same(proto: "TOPICAL"),
-    2: .same(proto: "TINCTURE"),
-    3: .same(proto: "CAPSULE"),
-    4: .same(proto: "INJECTOR"),
-  ]
-}
 
 extension Opencannabis_Products_Apothecary: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Apothecary"
@@ -160,7 +186,7 @@ extension Opencannabis_Products_Apothecary: SwiftProtobuf.Message, SwiftProtobuf
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
-    var _type: Opencannabis_Products_ApothecaryType = .unspecifiedApothecary
+    var _type: Opencannabis_Products_Apothecary.TypeEnum = .unspecifiedApothecary
     var _product: Opencannabis_Content_ProductContent? = nil
     var _material: Opencannabis_Content_MaterialsData? = nil
 
@@ -232,4 +258,20 @@ extension Opencannabis_Products_Apothecary: SwiftProtobuf.Message, SwiftProtobuf
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Opencannabis_Products_Apothecary.TypeEnum: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNSPECIFIED_APOTHECARY"),
+    1: .same(proto: "TOPICAL"),
+    2: .same(proto: "TINCTURE"),
+    3: .same(proto: "CAPSULE"),
+    4: .same(proto: "INJECTOR"),
+    5: .same(proto: "SPRAY"),
+    6: .same(proto: "SUBLINGUAL"),
+    7: .same(proto: "SUPPOSITORY"),
+    8: .same(proto: "TRANSDERMAL"),
+    9: .same(proto: "BATH_AND_BODY"),
+    10: .same(proto: "LOTION"),
+  ]
 }

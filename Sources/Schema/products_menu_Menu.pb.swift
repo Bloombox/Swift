@@ -244,11 +244,20 @@ public struct Opencannabis_Products_Menu_ProductTag {
   /// ID for the tag. Usually a shortened version of the display name.
   public var id: String = String()
 
+  /// Partner ID for the account that owns this tag.
+  public var partner: String = String()
+
+  /// Location ID for the account that owns this tag.
+  public var location: String = String()
+
   /// Display text for the tag.
   public var display: String = String()
 
   /// Color code, in hex, for the tag.
   public var color: String = String()
+
+  /// Optional description for this product tag.
+  public var description_p: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -262,11 +271,30 @@ public struct Opencannabis_Products_Menu_ForeignReference {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  /// Generated ID for this unique foreign reference. Ideally, should be based on the formula MD5(domain + key), to allow
+  /// de-duplication and presence detection with keys-only queries.
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
+
   /// Foreign key value for a reference between an in-network product and an out-of-network representation of that same
   /// product in a different computer system.
   public var key: String {
     get {return _storage._key}
     set {_uniqueStorage()._key = newValue}
+  }
+
+  /// Partner ID for the account that owns this foreign reference.
+  public var partner: String {
+    get {return _storage._partner}
+    set {_uniqueStorage()._partner = newValue}
+  }
+
+  /// Location ID for the account that owns this foreign reference.
+  public var location: String {
+    get {return _storage._location}
+    set {_uniqueStorage()._location = newValue}
   }
 
   /// Domain for the integrating system. This is usually set to a unique domain value that corresponds to the foreign
@@ -344,6 +372,30 @@ public struct Opencannabis_Products_Menu_MenuProduct {
     get {return _storage._ref}
     set {_uniqueStorage()._ref = newValue}
   }
+
+  /// Specifies media references for this product. These are gathered from all applicable sub-objects, for instance,
+  /// product content media and laboratory test result attached media.
+  public var media: [Opencannabis_Media_MediaReference] {
+    get {return _storage._media}
+    set {_uniqueStorage()._media = newValue}
+  }
+
+  /// Specifies Stock-Keeping-Units (SKUs) mapped to this product in foreign systems. This is distinguished from foreign
+  /// references by the ability to address specific product variants over multiple opaque IDs.
+  public var sku: [Opencannabis_Products_Sku_MappedSKU] {
+    get {return _storage._sku}
+    set {_uniqueStorage()._sku = newValue}
+  }
+
+  /// Describes the location scope that owns this product key, and the underlying data associated with it.
+  public var owner: Bloombox_Partner_LocationKey {
+    get {return _storage._owner ?? Bloombox_Partner_LocationKey()}
+    set {_uniqueStorage()._owner = newValue}
+  }
+  /// Returns true if `owner` has been explicitly set.
+  public var hasOwner: Bool {return _storage._owner != nil}
+  /// Clears the value of `owner`. Subsequent reads from it will return its default value.
+  public mutating func clearOwner() {_uniqueStorage()._owner = nil}
 
   /// Content and materials data for this menu product.
   public var product: OneOf_Product? {
@@ -845,16 +897,22 @@ extension Opencannabis_Products_Menu_ProductTag: SwiftProtobuf.Message, SwiftPro
   public static let protoMessageName: String = _protobuf_package + ".ProductTag"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
-    2: .same(proto: "display"),
-    3: .same(proto: "color"),
+    2: .same(proto: "partner"),
+    3: .same(proto: "location"),
+    4: .same(proto: "display"),
+    5: .same(proto: "color"),
+    6: .same(proto: "description"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.id)
-      case 2: try decoder.decodeSingularStringField(value: &self.display)
-      case 3: try decoder.decodeSingularStringField(value: &self.color)
+      case 2: try decoder.decodeSingularStringField(value: &self.partner)
+      case 3: try decoder.decodeSingularStringField(value: &self.location)
+      case 4: try decoder.decodeSingularStringField(value: &self.display)
+      case 5: try decoder.decodeSingularStringField(value: &self.color)
+      case 6: try decoder.decodeSingularStringField(value: &self.description_p)
       default: break
       }
     }
@@ -864,19 +922,31 @@ extension Opencannabis_Products_Menu_ProductTag: SwiftProtobuf.Message, SwiftPro
     if !self.id.isEmpty {
       try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
     }
+    if !self.partner.isEmpty {
+      try visitor.visitSingularStringField(value: self.partner, fieldNumber: 2)
+    }
+    if !self.location.isEmpty {
+      try visitor.visitSingularStringField(value: self.location, fieldNumber: 3)
+    }
     if !self.display.isEmpty {
-      try visitor.visitSingularStringField(value: self.display, fieldNumber: 2)
+      try visitor.visitSingularStringField(value: self.display, fieldNumber: 4)
     }
     if !self.color.isEmpty {
-      try visitor.visitSingularStringField(value: self.color, fieldNumber: 3)
+      try visitor.visitSingularStringField(value: self.color, fieldNumber: 5)
+    }
+    if !self.description_p.isEmpty {
+      try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 6)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Opencannabis_Products_Menu_ProductTag, rhs: Opencannabis_Products_Menu_ProductTag) -> Bool {
     if lhs.id != rhs.id {return false}
+    if lhs.partner != rhs.partner {return false}
+    if lhs.location != rhs.location {return false}
     if lhs.display != rhs.display {return false}
     if lhs.color != rhs.color {return false}
+    if lhs.description_p != rhs.description_p {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -885,15 +955,21 @@ extension Opencannabis_Products_Menu_ProductTag: SwiftProtobuf.Message, SwiftPro
 extension Opencannabis_Products_Menu_ForeignReference: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ForeignReference"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "key"),
-    2: .same(proto: "domain"),
-    3: .same(proto: "link"),
-    4: .same(proto: "attached"),
-    5: .same(proto: "validated"),
+    1: .same(proto: "id"),
+    2: .same(proto: "key"),
+    3: .same(proto: "partner"),
+    4: .same(proto: "location"),
+    5: .same(proto: "domain"),
+    6: .same(proto: "link"),
+    7: .same(proto: "attached"),
+    8: .same(proto: "validated"),
   ]
 
   fileprivate class _StorageClass {
+    var _id: String = String()
     var _key: String = String()
+    var _partner: String = String()
+    var _location: String = String()
     var _domain: String = String()
     var _link: String = String()
     var _attached: Opencannabis_Temporal_Instant? = nil
@@ -904,7 +980,10 @@ extension Opencannabis_Products_Menu_ForeignReference: SwiftProtobuf.Message, Sw
     private init() {}
 
     init(copying source: _StorageClass) {
+      _id = source._id
       _key = source._key
+      _partner = source._partner
+      _location = source._location
       _domain = source._domain
       _link = source._link
       _attached = source._attached
@@ -924,11 +1003,14 @@ extension Opencannabis_Products_Menu_ForeignReference: SwiftProtobuf.Message, Sw
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._key)
-        case 2: try decoder.decodeSingularStringField(value: &_storage._domain)
-        case 3: try decoder.decodeSingularStringField(value: &_storage._link)
-        case 4: try decoder.decodeSingularMessageField(value: &_storage._attached)
-        case 5: try decoder.decodeSingularMessageField(value: &_storage._validated)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._key)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._partner)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._location)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._domain)
+        case 6: try decoder.decodeSingularStringField(value: &_storage._link)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._attached)
+        case 8: try decoder.decodeSingularMessageField(value: &_storage._validated)
         default: break
         }
       }
@@ -937,20 +1019,29 @@ extension Opencannabis_Products_Menu_ForeignReference: SwiftProtobuf.Message, Sw
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
       if !_storage._key.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._key, fieldNumber: 1)
+        try visitor.visitSingularStringField(value: _storage._key, fieldNumber: 2)
+      }
+      if !_storage._partner.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._partner, fieldNumber: 3)
+      }
+      if !_storage._location.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._location, fieldNumber: 4)
       }
       if !_storage._domain.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._domain, fieldNumber: 2)
+        try visitor.visitSingularStringField(value: _storage._domain, fieldNumber: 5)
       }
       if !_storage._link.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._link, fieldNumber: 3)
+        try visitor.visitSingularStringField(value: _storage._link, fieldNumber: 6)
       }
       if let v = _storage._attached {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
       }
       if let v = _storage._validated {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -961,7 +1052,10 @@ extension Opencannabis_Products_Menu_ForeignReference: SwiftProtobuf.Message, Sw
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
         if _storage._key != rhs_storage._key {return false}
+        if _storage._partner != rhs_storage._partner {return false}
+        if _storage._location != rhs_storage._location {return false}
         if _storage._domain != rhs_storage._domain {return false}
         if _storage._link != rhs_storage._link {return false}
         if _storage._attached != rhs_storage._attached {return false}
@@ -981,6 +1075,9 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
     1: .same(proto: "key"),
     2: .same(proto: "tag"),
     3: .same(proto: "ref"),
+    4: .same(proto: "media"),
+    5: .same(proto: "sku"),
+    6: .same(proto: "owner"),
     10: .same(proto: "apothecary"),
     11: .same(proto: "cartridge"),
     12: .same(proto: "edible"),
@@ -995,6 +1092,9 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
     var _key: Opencannabis_Base_ProductKey? = nil
     var _tag: [Opencannabis_Products_Menu_ProductTag] = []
     var _ref: [Opencannabis_Products_Menu_ForeignReference] = []
+    var _media: [Opencannabis_Media_MediaReference] = []
+    var _sku: [Opencannabis_Products_Sku_MappedSKU] = []
+    var _owner: Bloombox_Partner_LocationKey? = nil
     var _product: Opencannabis_Products_Menu_MenuProduct.OneOf_Product?
 
     static let defaultInstance = _StorageClass()
@@ -1005,6 +1105,9 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
       _key = source._key
       _tag = source._tag
       _ref = source._ref
+      _media = source._media
+      _sku = source._sku
+      _owner = source._owner
       _product = source._product
     }
   }
@@ -1024,6 +1127,9 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
         case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
         case 2: try decoder.decodeRepeatedMessageField(value: &_storage._tag)
         case 3: try decoder.decodeRepeatedMessageField(value: &_storage._ref)
+        case 4: try decoder.decodeRepeatedMessageField(value: &_storage._media)
+        case 5: try decoder.decodeRepeatedMessageField(value: &_storage._sku)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._owner)
         case 10:
           var v: Opencannabis_Products_Apothecary?
           if let current = _storage._product {
@@ -1105,6 +1211,15 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
       if !_storage._ref.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._ref, fieldNumber: 3)
       }
+      if !_storage._media.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._media, fieldNumber: 4)
+      }
+      if !_storage._sku.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._sku, fieldNumber: 5)
+      }
+      if let v = _storage._owner {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
       switch _storage._product {
       case .apothecary(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
@@ -1136,6 +1251,9 @@ extension Opencannabis_Products_Menu_MenuProduct: SwiftProtobuf.Message, SwiftPr
         if _storage._key != rhs_storage._key {return false}
         if _storage._tag != rhs_storage._tag {return false}
         if _storage._ref != rhs_storage._ref {return false}
+        if _storage._media != rhs_storage._media {return false}
+        if _storage._sku != rhs_storage._sku {return false}
+        if _storage._owner != rhs_storage._owner {return false}
         if _storage._product != rhs_storage._product {return false}
         return true
       }

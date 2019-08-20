@@ -68,49 +68,6 @@ public struct Bloombox_Analytics_EventPosition {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-/// Specifies full, inflated data records for contextually-related objects, w.r.t. the current event.
-public struct Bloombox_Analytics_EventActors {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  /// User account that was logged in when the event was submitted.
-  public var user: Bloombox_Identity_User {
-    get {return _storage._user ?? Bloombox_Identity_User()}
-    set {_uniqueStorage()._user = newValue}
-  }
-  /// Returns true if `user` has been explicitly set.
-  public var hasUser: Bool {return _storage._user != nil}
-  /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  public mutating func clearUser() {_uniqueStorage()._user = nil}
-
-  /// Partner account under which the event was submitted.
-  public var partner: Bloombox_Partner_Partner {
-    get {return _storage._partner ?? Bloombox_Partner_Partner()}
-    set {_uniqueStorage()._partner = newValue}
-  }
-  /// Returns true if `partner` has been explicitly set.
-  public var hasPartner: Bool {return _storage._partner != nil}
-  /// Clears the value of `partner`. Subsequent reads from it will return its default value.
-  public mutating func clearPartner() {_uniqueStorage()._partner = nil}
-
-  /// Location account under which this event was submitted.
-  public var location: Bloombox_Partner_PartnerLocation {
-    get {return _storage._location ?? Bloombox_Partner_PartnerLocation()}
-    set {_uniqueStorage()._location = newValue}
-  }
-  /// Returns true if `location` has been explicitly set.
-  public var hasLocation: Bool {return _storage._location != nil}
-  /// Clears the value of `location`. Subsequent reads from it will return its default value.
-  public mutating func clearLocation() {_uniqueStorage()._location = nil}
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  fileprivate var _storage = _StorageClass.defaultInstance
-}
-
 /// Specifies contextual metadata to include with events or exceptions recorded via analytics/telemetry ingest.
 public struct Bloombox_Analytics_Context {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -310,83 +267,6 @@ extension Bloombox_Analytics_EventPosition: SwiftProtobuf.Message, SwiftProtobuf
         if _storage._occurred != rhs_storage._occurred {return false}
         if _storage._processed != rhs_storage._processed {return false}
         if _storage._enriched != rhs_storage._enriched {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Analytics_EventActors: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".EventActors"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "user"),
-    2: .same(proto: "partner"),
-    3: .same(proto: "location"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _user: Bloombox_Identity_User? = nil
-    var _partner: Bloombox_Partner_Partner? = nil
-    var _location: Bloombox_Partner_PartnerLocation? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _user = source._user
-      _partner = source._partner
-      _location = source._location
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._user)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._partner)
-        case 3: try decoder.decodeSingularMessageField(value: &_storage._location)
-        default: break
-        }
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._user {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._partner {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._location {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Bloombox_Analytics_EventActors, rhs: Bloombox_Analytics_EventActors) -> Bool {
-    if lhs._storage !== rhs._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let rhs_storage = _args.1
-        if _storage._user != rhs_storage._user {return false}
-        if _storage._partner != rhs_storage._partner {return false}
-        if _storage._location != rhs_storage._location {return false}
         return true
       }
       if !storagesAreEqual {return false}

@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name          = "BloomboxServices"
   s.swift_version = "4.2"
-  s.version       = "0.2.0-beta3"
+  s.version       = "0.2.0-beta4"
   s.summary       = "Service definitions for Bloombox Cloud APIs"
   s.description   = <<-DESC
 Compiled low-level service definitions for Bloombox Cloud APIs. Usually usable with
@@ -22,7 +22,7 @@ the Bloombox client library for Swift.
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.ios.deployment_target = "8.0"
-  #s.osx.deployment_target = "10.10"
+  s.osx.deployment_target = "10.10"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.source       = { :git => "https://github.com/bloombox/Swift.git", :tag => "#{s.version}" }
@@ -31,7 +31,7 @@ the Bloombox client library for Swift.
   s.source_files = 'Sources/Services/*.swift'
 
   # ――― Dependencies ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.dependency 'OpenCannabis', '= 0.2.0-beta3'
+  s.dependency 'OpenCannabis', '= 0.2.0-beta4'
   s.dependency 'SwiftProtobuf', '~> 1.5.0'
   s.dependency 'SwiftGRPC', '~> 0.9.0'
 

@@ -294,6 +294,245 @@ public struct Bloombox_Services_Menu_V1beta1_GetMenu {
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
+  /// Respond to a menu stream with an initial response, or an event payload, describing some occurrence or change in
+  /// menu data to be processed by the listening client.
+  public struct StreamEvent {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// New fingerprint for the entire menu catalog.
+    public var fingerprint: String {
+      get {return _storage._fingerprint}
+      set {_uniqueStorage()._fingerprint = newValue}
+    }
+
+    /// Timestamp indicating when this change occurred, in millisecond-level resolution.
+    public var modified: Opencannabis_Temporal_Instant {
+      get {return _storage._modified ?? Opencannabis_Temporal_Instant()}
+      set {_uniqueStorage()._modified = newValue}
+    }
+    /// Returns true if `modified` has been explicitly set.
+    public var hasModified: Bool {return _storage._modified != nil}
+    /// Clears the value of `modified`. Subsequent reads from it will return its default value.
+    public mutating func clearModified() {_uniqueStorage()._modified = nil}
+
+    /// Describes the payload encapsulated by this stream event.
+    public var payload: OneOf_Payload? {
+      get {return _storage._payload}
+      set {_uniqueStorage()._payload = newValue}
+    }
+
+    /// Specifies a full menu catalog, which is usually communicated as the initial response payload.
+    public var catalog: Opencannabis_Products_Menu_Menu {
+      get {
+        if case .catalog(let v)? = _storage._payload {return v}
+        return Opencannabis_Products_Menu_Menu()
+      }
+      set {_uniqueStorage()._payload = .catalog(newValue)}
+    }
+
+    /// Delta payload, describing a menu change.
+    public var delta: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.MenuChanges {
+      get {
+        if case .delta(let v)? = _storage._payload {return v}
+        return Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.MenuChanges()
+      }
+      set {_uniqueStorage()._payload = .delta(newValue)}
+    }
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    /// Describes the payload encapsulated by this stream event.
+    public enum OneOf_Payload: Equatable {
+      /// Specifies a full menu catalog, which is usually communicated as the initial response payload.
+      case catalog(Opencannabis_Products_Menu_Menu)
+      /// Delta payload, describing a menu change.
+      case delta(Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.MenuChanges)
+
+    #if !swift(>=4.1)
+      public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.OneOf_Payload, rhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.OneOf_Payload) -> Bool {
+        switch (lhs, rhs) {
+        case (.catalog(let l), .catalog(let r)): return l == r
+        case (.delta(let l), .delta(let r)): return l == r
+        default: return false
+        }
+      }
+    #endif
+    }
+
+    /// Enumerates the types of menu changes that can take place, and be used to notify the client. Changes may include
+    /// menu item data, section membership for a given product, and more.
+    public enum ChangeType: SwiftProtobuf.Enum {
+      public typealias RawValue = Int
+
+      /// Some change occurred that requires a menu refresh. In this case, no details are provided, so the whole menu is
+      /// invalidated for re-fetch.
+      case genericChange // = 0
+
+      /// Settings for the menu changed, and so, the entire menu should be refreshed.
+      case settings // = 1
+
+      /// A product was added to the menu. The product's key should be listed in the subject product keys.
+      case productAdd // = 2
+
+      /// A product was changed on the menu. The product's key should be listed in the subject product keys.
+      case productChange // = 3
+
+      /// A product was deleted entirely from the menu. The product's key should be listed in the subject product keys.
+      case productDelete // = 4
+      case UNRECOGNIZED(Int)
+
+      public init() {
+        self = .genericChange
+      }
+
+      public init?(rawValue: Int) {
+        switch rawValue {
+        case 0: self = .genericChange
+        case 1: self = .settings
+        case 2: self = .productAdd
+        case 3: self = .productChange
+        case 4: self = .productDelete
+        default: self = .UNRECOGNIZED(rawValue)
+        }
+      }
+
+      public var rawValue: Int {
+        switch self {
+        case .genericChange: return 0
+        case .settings: return 1
+        case .productAdd: return 2
+        case .productChange: return 3
+        case .productDelete: return 4
+        case .UNRECOGNIZED(let i): return i
+        }
+      }
+
+    }
+
+    /// Describes the product that was changed, and how it was changed, depending on the configuration passed into the
+    /// stream request. If only product keys are requested, only product keys are returned.
+    public struct ProductChange {
+      // SwiftProtobuf.Message conformance is added in an extension below. See the
+      // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+      // methods supported on all messages.
+
+      /// Payload for this individual product that was changed, and emitted, over a menu change stream. The property
+      /// selected here to indicate the underlying product is governed by request settings.
+      public var payload: OneOf_Payload? {
+        get {return _storage._payload}
+        set {_uniqueStorage()._payload = newValue}
+      }
+
+      /// Specifies a product by its key, which uniquely addresses it within a given partnership scope.
+      public var key: Opencannabis_Base_ProductKey {
+        get {
+          if case .key(let v)? = _storage._payload {return v}
+          return Opencannabis_Base_ProductKey()
+        }
+        set {_uniqueStorage()._payload = .key(newValue)}
+      }
+
+      /// Specifies product data, either in full (if requested in settings), or as a delta (if keys only was not
+      /// requested in settings).
+      public var product: Opencannabis_Products_Menu_MenuProduct {
+        get {
+          if case .product(let v)? = _storage._payload {return v}
+          return Opencannabis_Products_Menu_MenuProduct()
+        }
+        set {_uniqueStorage()._payload = .product(newValue)}
+      }
+
+      /// Field mask describing the properties that were touched or otherwise mutated in the specified change payload.
+      public var mask: SwiftProtobuf.Google_Protobuf_FieldMask {
+        get {return _storage._mask ?? SwiftProtobuf.Google_Protobuf_FieldMask()}
+        set {_uniqueStorage()._mask = newValue}
+      }
+      /// Returns true if `mask` has been explicitly set.
+      public var hasMask: Bool {return _storage._mask != nil}
+      /// Clears the value of `mask`. Subsequent reads from it will return its default value.
+      public mutating func clearMask() {_uniqueStorage()._mask = nil}
+
+      public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+      /// Payload for this individual product that was changed, and emitted, over a menu change stream. The property
+      /// selected here to indicate the underlying product is governed by request settings.
+      public enum OneOf_Payload: Equatable {
+        /// Specifies a product by its key, which uniquely addresses it within a given partnership scope.
+        case key(Opencannabis_Base_ProductKey)
+        /// Specifies product data, either in full (if requested in settings), or as a delta (if keys only was not
+        /// requested in settings).
+        case product(Opencannabis_Products_Menu_MenuProduct)
+
+      #if !swift(>=4.1)
+        public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.ProductChange.OneOf_Payload, rhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.ProductChange.OneOf_Payload) -> Bool {
+          switch (lhs, rhs) {
+          case (.key(let l), .key(let r)): return l == r
+          case (.product(let l), .product(let r)): return l == r
+          default: return false
+          }
+        }
+      #endif
+      }
+
+      public init() {}
+
+      fileprivate var _storage = _StorageClass.defaultInstance
+    }
+
+    /// Describes a change occurring in the menu catalog system, which is being communicated out to listening clients, on
+    /// a live menu change stream.
+    public struct MenuDeltaEntry {
+      // SwiftProtobuf.Message conformance is added in an extension below. See the
+      // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+      // methods supported on all messages.
+
+      /// Specifies the type of change being communicated.
+      public var type: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.ChangeType = .genericChange
+
+      /// Sections mentioned in this delta payload. Left unset for full catalog responses.
+      public var section: [Opencannabis_Products_Menu_Section_Section] = []
+
+      /// List of object that each specify either the key, or product payload, that changed in a given delta entry.
+      public var change: [Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.ProductChange] = []
+
+      public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+      public init() {}
+    }
+
+    /// Event that describes a set of changes to a given menu catalog, within a specified partnership/location scope. The
+    /// changes communicated via this payload are deltas.
+    public struct MenuChanges {
+      // SwiftProtobuf.Message conformance is added in an extension below. See the
+      // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+      // methods supported on all messages.
+
+      /// Specifies the types of changes being communicated.
+      public var type: [Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.ChangeType] = []
+
+      /// Sections mentioned in this entire delta payload. Specifies each section with changes, that might be considered
+      /// "invalidated" in client-side caching.
+      public var section: [Opencannabis_Products_Menu_Section_Section] = []
+
+      /// Specifies delta entries, one for each type of change listed in `type`.
+      public var entry: [Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.MenuDeltaEntry] = []
+
+      /// Count of changes that constitute this entire delta update. The count of changes across all delta entries should
+      /// add up to this value.
+      public var count: UInt32 = 0
+
+      public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+      public init() {}
+    }
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
   public init() {}
 }
 
@@ -511,7 +750,7 @@ public struct Bloombox_Services_Menu_V1beta1_CreateProduct {
     fileprivate var _storage = _StorageClass.defaultInstance
   }
 
-  /// Specifies a reponse to a request to create a new product record.
+  /// Specifies a response to a request to create a new product record.
   public struct Response {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -656,20 +895,37 @@ public struct Bloombox_Services_Menu_V1beta1_ProductStock {
     }
 
     /// Specifies keys included in this key set.
-    public var key: Opencannabis_Base_ProductKey {
-      get {return _storage._key ?? Opencannabis_Base_ProductKey()}
-      set {_uniqueStorage()._key = newValue}
+    public var product: Opencannabis_Base_ProductKey {
+      get {return _storage._product ?? Opencannabis_Base_ProductKey()}
+      set {_uniqueStorage()._product = newValue}
     }
-    /// Returns true if `key` has been explicitly set.
-    public var hasKey: Bool {return _storage._key != nil}
-    /// Clears the value of `key`. Subsequent reads from it will return its default value.
-    public mutating func clearKey() {_uniqueStorage()._key = nil}
+    /// Returns true if `product` has been explicitly set.
+    public var hasProduct: Bool {return _storage._product != nil}
+    /// Clears the value of `product`. Subsequent reads from it will return its default value.
+    public mutating func clearProduct() {_uniqueStorage()._product = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
 
     fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  /// Specifies the stock status for an individual product.
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Whether the item is in stock. `True` if so.
+    public var inStock: Bool = false
+
+    /// Number of this item that this location has on-hand, if known.
+    public var onHand: UInt32 = 0
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
   }
 
   public init() {}
@@ -696,14 +952,14 @@ public struct Bloombox_Services_Menu_V1beta1_DeleteProduct {
     }
 
     /// Key for the item being deleted.
-    public var key: Opencannabis_Base_ProductKey {
-      get {return _storage._key ?? Opencannabis_Base_ProductKey()}
-      set {_uniqueStorage()._key = newValue}
+    public var product: Opencannabis_Base_ProductKey {
+      get {return _storage._product ?? Opencannabis_Base_ProductKey()}
+      set {_uniqueStorage()._product = newValue}
     }
-    /// Returns true if `key` has been explicitly set.
-    public var hasKey: Bool {return _storage._key != nil}
-    /// Clears the value of `key`. Subsequent reads from it will return its default value.
-    public mutating func clearKey() {_uniqueStorage()._key = nil}
+    /// Returns true if `product` has been explicitly set.
+    public var hasProduct: Bool {return _storage._product != nil}
+    /// Clears the value of `product`. Subsequent reads from it will return its default value.
+    public mutating func clearProduct() {_uniqueStorage()._product = nil}
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -960,6 +1216,290 @@ extension Bloombox_Services_Menu_V1beta1_GetMenu.Response: SwiftProtobuf.Message
       }
       if !storagesAreEqual {return false}
     }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetMenu.protoMessageName + ".StreamEvent"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "fingerprint"),
+    2: .same(proto: "modified"),
+    10: .same(proto: "catalog"),
+    11: .same(proto: "delta"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _fingerprint: String = String()
+    var _modified: Opencannabis_Temporal_Instant? = nil
+    var _payload: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.OneOf_Payload?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _fingerprint = source._fingerprint
+      _modified = source._modified
+      _payload = source._payload
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._fingerprint)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        case 10:
+          var v: Opencannabis_Products_Menu_Menu?
+          if let current = _storage._payload {
+            try decoder.handleConflictingOneOf()
+            if case .catalog(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._payload = .catalog(v)}
+        case 11:
+          var v: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.MenuChanges?
+          if let current = _storage._payload {
+            try decoder.handleConflictingOneOf()
+            if case .delta(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._payload = .delta(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._fingerprint.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._fingerprint, fieldNumber: 1)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      switch _storage._payload {
+      case .catalog(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      case .delta(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent, rhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._fingerprint != rhs_storage._fingerprint {return false}
+        if _storage._modified != rhs_storage._modified {return false}
+        if _storage._payload != rhs_storage._payload {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.ChangeType: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "GENERIC_CHANGE"),
+    1: .same(proto: "SETTINGS"),
+    2: .same(proto: "PRODUCT_ADD"),
+    3: .same(proto: "PRODUCT_CHANGE"),
+    4: .same(proto: "PRODUCT_DELETE"),
+  ]
+}
+
+extension Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.ProductChange: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.protoMessageName + ".ProductChange"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "key"),
+    2: .same(proto: "product"),
+    3: .same(proto: "mask"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _payload: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.ProductChange.OneOf_Payload?
+    var _mask: SwiftProtobuf.Google_Protobuf_FieldMask? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _payload = source._payload
+      _mask = source._mask
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1:
+          var v: Opencannabis_Base_ProductKey?
+          if let current = _storage._payload {
+            try decoder.handleConflictingOneOf()
+            if case .key(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._payload = .key(v)}
+        case 2:
+          var v: Opencannabis_Products_Menu_MenuProduct?
+          if let current = _storage._payload {
+            try decoder.handleConflictingOneOf()
+            if case .product(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._payload = .product(v)}
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._mask)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      switch _storage._payload {
+      case .key(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      case .product(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case nil: break
+      }
+      if let v = _storage._mask {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.ProductChange, rhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.ProductChange) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._payload != rhs_storage._payload {return false}
+        if _storage._mask != rhs_storage._mask {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.MenuDeltaEntry: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.protoMessageName + ".MenuDeltaEntry"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "type"),
+    2: .same(proto: "section"),
+    3: .same(proto: "change"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.type)
+      case 2: try decoder.decodeRepeatedEnumField(value: &self.section)
+      case 3: try decoder.decodeRepeatedMessageField(value: &self.change)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.type != .genericChange {
+      try visitor.visitSingularEnumField(value: self.type, fieldNumber: 1)
+    }
+    if !self.section.isEmpty {
+      try visitor.visitPackedEnumField(value: self.section, fieldNumber: 2)
+    }
+    if !self.change.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.change, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.MenuDeltaEntry, rhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.MenuDeltaEntry) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.section != rhs.section {return false}
+    if lhs.change != rhs.change {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.MenuChanges: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.protoMessageName + ".MenuChanges"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "type"),
+    2: .same(proto: "section"),
+    3: .same(proto: "entry"),
+    4: .same(proto: "count"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedEnumField(value: &self.type)
+      case 2: try decoder.decodeRepeatedEnumField(value: &self.section)
+      case 3: try decoder.decodeRepeatedMessageField(value: &self.entry)
+      case 4: try decoder.decodeSingularUInt32Field(value: &self.count)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.type.isEmpty {
+      try visitor.visitPackedEnumField(value: self.type, fieldNumber: 1)
+    }
+    if !self.section.isEmpty {
+      try visitor.visitPackedEnumField(value: self.section, fieldNumber: 2)
+    }
+    if !self.entry.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.entry, fieldNumber: 3)
+    }
+    if self.count != 0 {
+      try visitor.visitSingularUInt32Field(value: self.count, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.MenuChanges, rhs: Bloombox_Services_Menu_V1beta1_GetMenu.StreamEvent.MenuChanges) -> Bool {
+    if lhs.type != rhs.type {return false}
+    if lhs.section != rhs.section {return false}
+    if lhs.entry != rhs.entry {return false}
+    if lhs.count != rhs.count {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -1701,12 +2241,12 @@ extension Bloombox_Services_Menu_V1beta1_ProductStock.Request: SwiftProtobuf.Mes
   public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_ProductStock.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
-    2: .same(proto: "key"),
+    2: .same(proto: "product"),
   ]
 
   fileprivate class _StorageClass {
     var _scope: String = String()
-    var _key: Opencannabis_Base_ProductKey? = nil
+    var _product: Opencannabis_Base_ProductKey? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1714,7 +2254,7 @@ extension Bloombox_Services_Menu_V1beta1_ProductStock.Request: SwiftProtobuf.Mes
 
     init(copying source: _StorageClass) {
       _scope = source._scope
-      _key = source._key
+      _product = source._product
     }
   }
 
@@ -1731,7 +2271,7 @@ extension Bloombox_Services_Menu_V1beta1_ProductStock.Request: SwiftProtobuf.Mes
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1: try decoder.decodeSingularStringField(value: &_storage._scope)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._product)
         default: break
         }
       }
@@ -1743,7 +2283,7 @@ extension Bloombox_Services_Menu_V1beta1_ProductStock.Request: SwiftProtobuf.Mes
       if !_storage._scope.isEmpty {
         try visitor.visitSingularStringField(value: _storage._scope, fieldNumber: 1)
       }
-      if let v = _storage._key {
+      if let v = _storage._product {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
     }
@@ -1756,11 +2296,46 @@ extension Bloombox_Services_Menu_V1beta1_ProductStock.Request: SwiftProtobuf.Mes
         let _storage = _args.0
         let rhs_storage = _args.1
         if _storage._scope != rhs_storage._scope {return false}
-        if _storage._key != rhs_storage._key {return false}
+        if _storage._product != rhs_storage._product {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Menu_V1beta1_ProductStock.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_ProductStock.protoMessageName + ".Response"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "in_stock"),
+    2: .standard(proto: "on_hand"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.inStock)
+      case 2: try decoder.decodeSingularUInt32Field(value: &self.onHand)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.inStock != false {
+      try visitor.visitSingularBoolField(value: self.inStock, fieldNumber: 1)
+    }
+    if self.onHand != 0 {
+      try visitor.visitSingularUInt32Field(value: self.onHand, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_ProductStock.Response, rhs: Bloombox_Services_Menu_V1beta1_ProductStock.Response) -> Bool {
+    if lhs.inStock != rhs.inStock {return false}
+    if lhs.onHand != rhs.onHand {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -1789,12 +2364,12 @@ extension Bloombox_Services_Menu_V1beta1_DeleteProduct.Request: SwiftProtobuf.Me
   public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_DeleteProduct.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "scope"),
-    2: .same(proto: "key"),
+    2: .same(proto: "product"),
   ]
 
   fileprivate class _StorageClass {
     var _scope: String = String()
-    var _key: Opencannabis_Base_ProductKey? = nil
+    var _product: Opencannabis_Base_ProductKey? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -1802,7 +2377,7 @@ extension Bloombox_Services_Menu_V1beta1_DeleteProduct.Request: SwiftProtobuf.Me
 
     init(copying source: _StorageClass) {
       _scope = source._scope
-      _key = source._key
+      _product = source._product
     }
   }
 
@@ -1819,7 +2394,7 @@ extension Bloombox_Services_Menu_V1beta1_DeleteProduct.Request: SwiftProtobuf.Me
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1: try decoder.decodeSingularStringField(value: &_storage._scope)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._product)
         default: break
         }
       }
@@ -1831,7 +2406,7 @@ extension Bloombox_Services_Menu_V1beta1_DeleteProduct.Request: SwiftProtobuf.Me
       if !_storage._scope.isEmpty {
         try visitor.visitSingularStringField(value: _storage._scope, fieldNumber: 1)
       }
-      if let v = _storage._key {
+      if let v = _storage._product {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
     }
@@ -1844,7 +2419,7 @@ extension Bloombox_Services_Menu_V1beta1_DeleteProduct.Request: SwiftProtobuf.Me
         let _storage = _args.0
         let rhs_storage = _args.1
         if _storage._scope != rhs_storage._scope {return false}
-        if _storage._key != rhs_storage._key {return false}
+        if _storage._product != rhs_storage._product {return false}
         return true
       }
       if !storagesAreEqual {return false}

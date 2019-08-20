@@ -23,6 +23,71 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
+/// Sets the visibility of a given object and its constituent properties, in circumstances where the object is served to
+/// a frontend client/agent. Depending on the visibility of a given property, it may or may not be emitted by an API
+/// service, or made available (or not) in the JS context.
+public enum Core_Visibility: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// Default visibility: the property or item is public.
+  case `public` // = 0
+
+  /// Private visibility: only usable and addressable by itself, or associated items.
+  case `private` // = 1
+
+  /// Protected visibility: children and other associated objects can access or address this item.
+  case protected // = 2
+
+  /// Package visibility: items or objects in the same package can access and address this item.
+  case package // = 3
+
+  /// Export visibility: expose this item to the outer invoking context.
+  case export // = 4
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .public
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .public
+    case 1: self = .private
+    case 2: self = .protected
+    case 3: self = .package
+    case 4: self = .export
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .public: return 0
+    case .private: return 1
+    case .protected: return 2
+    case .package: return 3
+    case .export: return 4
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Core_Visibility: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Core_Visibility] = [
+    .public,
+    .private,
+    .protected,
+    .package,
+    .export,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies how a sub-object in a particular message should be persisted.
 public enum Core_CollectionMode: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -30,7 +95,7 @@ public enum Core_CollectionMode: SwiftProtobuf.Enum {
   /// `NESTED` mode stores the specified collection within the parent document.
   case nested // = 0
 
-  /// `COLLECTION` mode stores the specified collection as a subcollection under the parent document.
+  /// `COLLECTION` mode stores the specified collection as a sub-collection under the parent document.
   case collection // = 1
 
   /// `GROUP` mode stores the specified collection at the root of the data system.
@@ -82,7 +147,7 @@ public enum Core_FieldType: SwiftProtobuf.Enum {
   /// This is a standard field (default value).
   case standard // = 0
 
-  /// This is a key field (a primary key submessage) for a GROUP or COLLECTION-moded message.
+  /// This is a key field (a primary key submessage) for a GROUP or COLLECTION-mode message.
   case key // = 1
 
   /// This is an ID field that should be used as the final name of this document.
@@ -93,6 +158,15 @@ public enum Core_FieldType: SwiftProtobuf.Enum {
 
   /// Store this object as a special flags-style mapping.
   case flags // = 4
+
+  /// This key is a foreign reference.
+  case reference // = 5
+
+  /// This item is a timestamp.
+  case timestamp // = 6
+
+  /// This field represents a key for this item's parent.
+  case parent // = 7
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -106,6 +180,9 @@ public enum Core_FieldType: SwiftProtobuf.Enum {
     case 2: self = .id
     case 3: self = .tags
     case 4: self = .flags
+    case 5: self = .reference
+    case 6: self = .timestamp
+    case 7: self = .parent
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -117,6 +194,9 @@ public enum Core_FieldType: SwiftProtobuf.Enum {
     case .id: return 2
     case .tags: return 3
     case .flags: return 4
+    case .reference: return 5
+    case .timestamp: return 6
+    case .parent: return 7
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -133,10 +213,106 @@ extension Core_FieldType: CaseIterable {
     .id,
     .tags,
     .flags,
+    .reference,
+    .timestamp,
+    .parent,
   ]
 }
 
 #endif  // swift(>=4.2)
+
+/// Describes the visibility options for a given field.
+public enum Core_FieldVisibility: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// Default visibility level. No change to default behavior.
+  case defaultVisibility // = 0
+
+  /// Denotes data that is fine to expose publicly.
+  case `open` // = 1
+
+  /// Denotes data that should only be exposed to authorized users.
+  case authorized // = 2
+
+  /// Denotes data that should only be exposed to users authorized by the owner.
+  case owner // = 3
+
+  /// Denotes data that should only be exposed internally.
+  case `internal` // = 4
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .defaultVisibility
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .defaultVisibility
+    case 1: self = .open
+    case 2: self = .authorized
+    case 3: self = .owner
+    case 4: self = .internal
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .defaultVisibility: return 0
+    case .open: return 1
+    case .authorized: return 2
+    case .owner: return 3
+    case .internal: return 4
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Core_FieldVisibility: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Core_FieldVisibility] = [
+    .defaultVisibility,
+    .open,
+    .authorized,
+    .owner,
+    .internal,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+/// Options specified for a given datamodel point (which can be a message, a field, an enum, and so on), which describe
+/// how the object or field may be validated in various circumstances, and how it should be handled with regard to
+/// exposure visibility to invoking code.
+public struct Core_DatapointOptions {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Sets the visibility options for this data point. Depending on these options, a property or model may be exposed to
+  /// invoking code, protected from rewriting, and so on.
+  public var visibility: Core_Visibility = .public
+
+  /// Whether this data point (model or field or enum, etc) should be considered "required" for this model to be valid.
+  /// This setting is applied in various circumstances, usually when data crosses API boundaries.
+  public var required: Bool = false
+
+  /// Whether this property contains a "concrete" sub-message, in which case, its properties are lifted to the parent
+  /// entity. During decoding, a property is added to indicate the concrete selection made. This is usually combined with
+  /// generic types in a one-of field, for instance, in `MenuProduct`.
+  public var concrete: Bool = false
+
+  /// Indicate to the data storage engine that a given field is ephemeral, and should not be stored, but rather held with
+  /// a calculated value for use in systems upstream from the data storage layer.
+  public var ephemeral: Bool = false
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
 
 /// Specifies options related to persistence of underlying model data associated with this particular message type. This
 /// includes settings related to Firestore and other data engines.
@@ -150,6 +326,9 @@ public struct Core_PersistenceOptions {
 
   /// Data path for a given message, with items in the URL corresponding to parameters in the item's key path.
   public var path: String = String()
+
+  /// Name of this item's parent collection, if applicable.
+  public var parent: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -183,8 +362,15 @@ public struct Core_SubmessageOptions {
   /// Collection storage mode for the given sub-message field.
   public var mode: Core_CollectionMode = .nested
 
+  /// Concrete type name for this sub-message type.
+  public var concrete: String = String()
+
   /// Data path for the given sub-message field.
   public var path: String = String()
+
+  /// If the persistence node is in `COLLECTION` mode, this flag will embed it in the parent entity anyway. Useful in
+  /// some circumstances where sub-listed data is for indexing, and fetching it repeatedly would be inefficient.
+  public var embed: Bool = false
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -202,6 +388,35 @@ public struct Core_FieldPersistenceOptions {
 
   /// String description of this field included in schemas.
   public var description_p: String = String()
+
+  /// Summary for this field, which provides a narrative description. It should be suitable for use in external
+  /// circumstances, like documentation.
+  public var summary: String = String()
+
+  /// This item is a timestamp, and we would like it to be automatically updated each time the model that contains it is
+  /// modified in underlying storage. The field should be read-only.
+  public var stampUpdate: Bool = false
+
+  /// This item is a timestamp, and we would like it to be automatically set when the model is created. After that point,
+  /// we would like this field to be read-only.
+  public var stampCreate: Bool = false
+
+  /// This field should not allow writes, but rather produce its value dynamically. Fields marked in this manner cannot
+  /// be set by external code at any point in time.
+  public var readOnly: Bool = false
+
+  /// This field should allow writes when the model that contains it is written, but then, henceforth, the model should
+  /// not allow this field to be mutated.
+  public var immutable: Bool = false
+
+  /// This field should always be explicitly listed with a value, even if it is set to the default value. This function
+  /// is especially useful for enums with default values, when there is a desire to have consistent indexes.
+  public var explicit: Bool = false
+
+  /// Describes the visibility level of a given field in a tree of fields. This value applies recursively under message
+  /// fields on which it is applied. Depending on the visibility level active when data is deserialized or serialized,
+  /// certain data may be withheld corresponding to the invoking user or system's access level.
+  public var visibility: Core_FieldVisibility = .defaultVisibility
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -244,6 +459,25 @@ public struct Core_ObjectMapping {
 
 // MARK: - Extension support defined in Datamodel.proto.
 
+extension Google_Protobuf_EnumOptions {
+
+  /// Settings that specify state for this enum value, including validation settings, as applicable.
+  public var Core_enumeration: Core_DatapointOptions {
+    get {return getExtensionValue(ext: Core_Extensions_enumeration) ?? Core_DatapointOptions()}
+    set {setExtensionValue(ext: Core_Extensions_enumeration, value: newValue)}
+  }
+  /// Returns true if extension `Core_Extensions_enumeration`
+  /// has been explicitly set.
+  public var hasCore_enumeration: Bool {
+    return hasExtensionValue(ext: Core_Extensions_enumeration)
+  }
+  /// Clears the value of extension `Core_Extensions_enumeration`.
+  /// Subsequent reads from it will return its default value.
+  public mutating func clearCore_enumeration() {
+    clearExtensionValue(ext: Core_Extensions_enumeration)
+  }
+}
+
 extension Google_Protobuf_EnumValueOptions {
 
   /// Human-readable label for a given enumeration value state. Optional, can be used by invoking code to generate labels
@@ -263,20 +497,20 @@ extension Google_Protobuf_EnumValueOptions {
     clearExtensionValue(ext: Core_Extensions_label)
   }
 
-  /// Color code value for a given enumerated value state. Optional, can be used by invoking code to generate UI schemes.
-  public var Core_color: Opencannabis_Content_Color {
-    get {return getExtensionValue(ext: Core_Extensions_color) ?? Opencannabis_Content_Color()}
-    set {setExtensionValue(ext: Core_Extensions_color, value: newValue)}
+  /// Settings that specify state for this enum value, including validation settings, as applicable.
+  public var Core_value: Core_DatapointOptions {
+    get {return getExtensionValue(ext: Core_Extensions_value) ?? Core_DatapointOptions()}
+    set {setExtensionValue(ext: Core_Extensions_value, value: newValue)}
   }
-  /// Returns true if extension `Core_Extensions_color`
+  /// Returns true if extension `Core_Extensions_value`
   /// has been explicitly set.
-  public var hasCore_color: Bool {
-    return hasExtensionValue(ext: Core_Extensions_color)
+  public var hasCore_value: Bool {
+    return hasExtensionValue(ext: Core_Extensions_value)
   }
-  /// Clears the value of extension `Core_Extensions_color`.
+  /// Clears the value of extension `Core_Extensions_value`.
   /// Subsequent reads from it will return its default value.
-  public mutating func clearCore_color() {
-    clearExtensionValue(ext: Core_Extensions_color)
+  public mutating func clearCore_value() {
+    clearExtensionValue(ext: Core_Extensions_value)
   }
 }
 
@@ -328,6 +562,22 @@ extension Google_Protobuf_FieldOptions {
   /// Subsequent reads from it will return its default value.
   public mutating func clearCore_collection() {
     clearExtensionValue(ext: Core_Extensions_collection)
+  }
+
+  /// Settings that specify state for this field, including validation settings, as applicable.
+  public var Core_opts: Core_DatapointOptions {
+    get {return getExtensionValue(ext: Core_Extensions_opts) ?? Core_DatapointOptions()}
+    set {setExtensionValue(ext: Core_Extensions_opts, value: newValue)}
+  }
+  /// Returns true if extension `Core_Extensions_opts`
+  /// has been explicitly set.
+  public var hasCore_opts: Bool {
+    return hasExtensionValue(ext: Core_Extensions_opts)
+  }
+  /// Clears the value of extension `Core_Extensions_opts`.
+  /// Subsequent reads from it will return its default value.
+  public mutating func clearCore_opts() {
+    clearExtensionValue(ext: Core_Extensions_opts)
   }
 }
 
@@ -384,6 +634,23 @@ extension Google_Protobuf_MessageOptions {
     clearExtensionValue(ext: Core_Extensions_map)
   }
 
+  /// Settings that specify state for this message, which may include settings related to visibility or handling, and
+  /// validation of this object in various circumstances.
+  public var Core_msg: Core_DatapointOptions {
+    get {return getExtensionValue(ext: Core_Extensions_msg) ?? Core_DatapointOptions()}
+    set {setExtensionValue(ext: Core_Extensions_msg, value: newValue)}
+  }
+  /// Returns true if extension `Core_Extensions_msg`
+  /// has been explicitly set.
+  public var hasCore_msg: Bool {
+    return hasExtensionValue(ext: Core_Extensions_msg)
+  }
+  /// Clears the value of extension `Core_Extensions_msg`.
+  /// Subsequent reads from it will return its default value.
+  public mutating func clearCore_msg() {
+    clearExtensionValue(ext: Core_Extensions_msg)
+  }
+
 }
 
 /// A `SwiftProtobuf.SimpleExtensionMap` that includes all of the extensions defined by
@@ -394,11 +661,14 @@ public let Core_Datamodel_Extensions: SwiftProtobuf.SimpleExtensionMap = [
   Core_Extensions_db,
   Core_Extensions_table,
   Core_Extensions_map,
+  Core_Extensions_msg,
   Core_Extensions_field,
   Core_Extensions_column,
   Core_Extensions_collection,
+  Core_Extensions_opts,
   Core_Extensions_label,
-  Core_Extensions_color
+  Core_Extensions_value,
+  Core_Extensions_enumeration
 ]
 
 /// Settings specific to how a particular message entity is stored in the underlying persistence engine. For Bloombox,
@@ -422,6 +692,13 @@ let Core_Extensions_map = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalM
   fieldName: "core.map"
 )
 
+/// Settings that specify state for this message, which may include settings related to visibility or handling, and
+/// validation of this object in various circumstances.
+let Core_Extensions_msg = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalMessageExtensionField<Core_DatapointOptions>, Google_Protobuf_MessageOptions>(
+  _protobuf_fieldNumber: 6003,
+  fieldName: "core.msg"
+)
+
 /// Database engine persistence options specific to an individual document field.
 let Core_Extensions_field = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalMessageExtensionField<Core_FieldPersistenceOptions>, Google_Protobuf_FieldOptions>(
   _protobuf_fieldNumber: 7000,
@@ -440,6 +717,12 @@ let Core_Extensions_collection = SwiftProtobuf.MessageExtension<SwiftProtobuf.Op
   fieldName: "core.collection"
 )
 
+/// Settings that specify state for this field, including validation settings, as applicable.
+let Core_Extensions_opts = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalMessageExtensionField<Core_DatapointOptions>, Google_Protobuf_FieldOptions>(
+  _protobuf_fieldNumber: 7003,
+  fieldName: "core.opts"
+)
+
 /// Human-readable label for a given enumeration value state. Optional, can be used by invoking code to generate labels
 /// for states in forms or other UI.
 let Core_Extensions_label = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalExtensionField<SwiftProtobuf.ProtobufString>, Google_Protobuf_EnumValueOptions>(
@@ -447,15 +730,31 @@ let Core_Extensions_label = SwiftProtobuf.MessageExtension<SwiftProtobuf.Optiona
   fieldName: "core.label"
 )
 
-/// Color code value for a given enumerated value state. Optional, can be used by invoking code to generate UI schemes.
-let Core_Extensions_color = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalMessageExtensionField<Opencannabis_Content_Color>, Google_Protobuf_EnumValueOptions>(
-  _protobuf_fieldNumber: 8004,
-  fieldName: "core.color"
+/// Settings that specify state for this enum value, including validation settings, as applicable.
+let Core_Extensions_value = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalMessageExtensionField<Core_DatapointOptions>, Google_Protobuf_EnumValueOptions>(
+  _protobuf_fieldNumber: 8007,
+  fieldName: "core.value"
+)
+
+/// Settings that specify state for this enum value, including validation settings, as applicable.
+let Core_Extensions_enumeration = SwiftProtobuf.MessageExtension<SwiftProtobuf.OptionalMessageExtensionField<Core_DatapointOptions>, Google_Protobuf_EnumOptions>(
+  _protobuf_fieldNumber: 9001,
+  fieldName: "core.enumeration"
 )
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "core"
+
+extension Core_Visibility: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "PUBLIC"),
+    1: .same(proto: "PRIVATE"),
+    2: .same(proto: "PROTECTED"),
+    3: .same(proto: "PACKAGE"),
+    4: .same(proto: "EXPORT"),
+  ]
+}
 
 extension Core_CollectionMode: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -472,7 +771,67 @@ extension Core_FieldType: SwiftProtobuf._ProtoNameProviding {
     2: .same(proto: "ID"),
     3: .same(proto: "TAGS"),
     4: .same(proto: "FLAGS"),
+    5: .same(proto: "REFERENCE"),
+    6: .same(proto: "TIMESTAMP"),
+    7: .same(proto: "PARENT"),
   ]
+}
+
+extension Core_FieldVisibility: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "DEFAULT_VISIBILITY"),
+    1: .same(proto: "OPEN"),
+    2: .same(proto: "AUTHORIZED"),
+    3: .same(proto: "OWNER"),
+    4: .same(proto: "INTERNAL"),
+  ]
+}
+
+extension Core_DatapointOptions: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DatapointOptions"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "visibility"),
+    2: .same(proto: "required"),
+    3: .same(proto: "concrete"),
+    4: .same(proto: "ephemeral"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularEnumField(value: &self.visibility)
+      case 2: try decoder.decodeSingularBoolField(value: &self.required)
+      case 3: try decoder.decodeSingularBoolField(value: &self.concrete)
+      case 4: try decoder.decodeSingularBoolField(value: &self.ephemeral)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.visibility != .public {
+      try visitor.visitSingularEnumField(value: self.visibility, fieldNumber: 1)
+    }
+    if self.required != false {
+      try visitor.visitSingularBoolField(value: self.required, fieldNumber: 2)
+    }
+    if self.concrete != false {
+      try visitor.visitSingularBoolField(value: self.concrete, fieldNumber: 3)
+    }
+    if self.ephemeral != false {
+      try visitor.visitSingularBoolField(value: self.ephemeral, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Core_DatapointOptions, rhs: Core_DatapointOptions) -> Bool {
+    if lhs.visibility != rhs.visibility {return false}
+    if lhs.required != rhs.required {return false}
+    if lhs.concrete != rhs.concrete {return false}
+    if lhs.ephemeral != rhs.ephemeral {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
 }
 
 extension Core_PersistenceOptions: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -480,6 +839,7 @@ extension Core_PersistenceOptions: SwiftProtobuf.Message, SwiftProtobuf._Message
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "mode"),
     2: .same(proto: "path"),
+    3: .same(proto: "parent"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -487,6 +847,7 @@ extension Core_PersistenceOptions: SwiftProtobuf.Message, SwiftProtobuf._Message
       switch fieldNumber {
       case 1: try decoder.decodeSingularEnumField(value: &self.mode)
       case 2: try decoder.decodeSingularStringField(value: &self.path)
+      case 3: try decoder.decodeSingularStringField(value: &self.parent)
       default: break
       }
     }
@@ -499,12 +860,16 @@ extension Core_PersistenceOptions: SwiftProtobuf.Message, SwiftProtobuf._Message
     if !self.path.isEmpty {
       try visitor.visitSingularStringField(value: self.path, fieldNumber: 2)
     }
+    if !self.parent.isEmpty {
+      try visitor.visitSingularStringField(value: self.parent, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Core_PersistenceOptions, rhs: Core_PersistenceOptions) -> Bool {
     if lhs.mode != rhs.mode {return false}
     if lhs.path != rhs.path {return false}
+    if lhs.parent != rhs.parent {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -549,14 +914,18 @@ extension Core_SubmessageOptions: SwiftProtobuf.Message, SwiftProtobuf._MessageI
   public static let protoMessageName: String = _protobuf_package + ".SubmessageOptions"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "mode"),
+    2: .same(proto: "concrete"),
     3: .same(proto: "path"),
+    4: .same(proto: "embed"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularEnumField(value: &self.mode)
+      case 2: try decoder.decodeSingularStringField(value: &self.concrete)
       case 3: try decoder.decodeSingularStringField(value: &self.path)
+      case 4: try decoder.decodeSingularBoolField(value: &self.embed)
       default: break
       }
     }
@@ -566,15 +935,23 @@ extension Core_SubmessageOptions: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     if self.mode != .nested {
       try visitor.visitSingularEnumField(value: self.mode, fieldNumber: 1)
     }
+    if !self.concrete.isEmpty {
+      try visitor.visitSingularStringField(value: self.concrete, fieldNumber: 2)
+    }
     if !self.path.isEmpty {
       try visitor.visitSingularStringField(value: self.path, fieldNumber: 3)
+    }
+    if self.embed != false {
+      try visitor.visitSingularBoolField(value: self.embed, fieldNumber: 4)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Core_SubmessageOptions, rhs: Core_SubmessageOptions) -> Bool {
     if lhs.mode != rhs.mode {return false}
+    if lhs.concrete != rhs.concrete {return false}
     if lhs.path != rhs.path {return false}
+    if lhs.embed != rhs.embed {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -585,6 +962,13 @@ extension Core_FieldPersistenceOptions: SwiftProtobuf.Message, SwiftProtobuf._Me
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "type"),
     2: .same(proto: "description"),
+    3: .same(proto: "summary"),
+    5: .standard(proto: "stamp_update"),
+    6: .standard(proto: "stamp_create"),
+    7: .standard(proto: "read_only"),
+    8: .same(proto: "immutable"),
+    9: .same(proto: "explicit"),
+    10: .same(proto: "visibility"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -592,6 +976,13 @@ extension Core_FieldPersistenceOptions: SwiftProtobuf.Message, SwiftProtobuf._Me
       switch fieldNumber {
       case 1: try decoder.decodeSingularEnumField(value: &self.type)
       case 2: try decoder.decodeSingularStringField(value: &self.description_p)
+      case 3: try decoder.decodeSingularStringField(value: &self.summary)
+      case 5: try decoder.decodeSingularBoolField(value: &self.stampUpdate)
+      case 6: try decoder.decodeSingularBoolField(value: &self.stampCreate)
+      case 7: try decoder.decodeSingularBoolField(value: &self.readOnly)
+      case 8: try decoder.decodeSingularBoolField(value: &self.immutable)
+      case 9: try decoder.decodeSingularBoolField(value: &self.explicit)
+      case 10: try decoder.decodeSingularEnumField(value: &self.visibility)
       default: break
       }
     }
@@ -604,12 +995,40 @@ extension Core_FieldPersistenceOptions: SwiftProtobuf.Message, SwiftProtobuf._Me
     if !self.description_p.isEmpty {
       try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 2)
     }
+    if !self.summary.isEmpty {
+      try visitor.visitSingularStringField(value: self.summary, fieldNumber: 3)
+    }
+    if self.stampUpdate != false {
+      try visitor.visitSingularBoolField(value: self.stampUpdate, fieldNumber: 5)
+    }
+    if self.stampCreate != false {
+      try visitor.visitSingularBoolField(value: self.stampCreate, fieldNumber: 6)
+    }
+    if self.readOnly != false {
+      try visitor.visitSingularBoolField(value: self.readOnly, fieldNumber: 7)
+    }
+    if self.immutable != false {
+      try visitor.visitSingularBoolField(value: self.immutable, fieldNumber: 8)
+    }
+    if self.explicit != false {
+      try visitor.visitSingularBoolField(value: self.explicit, fieldNumber: 9)
+    }
+    if self.visibility != .defaultVisibility {
+      try visitor.visitSingularEnumField(value: self.visibility, fieldNumber: 10)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Core_FieldPersistenceOptions, rhs: Core_FieldPersistenceOptions) -> Bool {
     if lhs.type != rhs.type {return false}
     if lhs.description_p != rhs.description_p {return false}
+    if lhs.summary != rhs.summary {return false}
+    if lhs.stampUpdate != rhs.stampUpdate {return false}
+    if lhs.stampCreate != rhs.stampCreate {return false}
+    if lhs.readOnly != rhs.readOnly {return false}
+    if lhs.immutable != rhs.immutable {return false}
+    if lhs.explicit != rhs.explicit {return false}
+    if lhs.visibility != rhs.visibility {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

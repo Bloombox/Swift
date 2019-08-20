@@ -35,6 +35,9 @@ public enum Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
 
   /// Represents a cannabinoid type is present at all (BOOLEAN).
   case presence // = 2
+
+  /// Represents a test value in milligrams-per-gram (mg/g).
+  case milligramsPerGram // = 3
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -46,6 +49,7 @@ public enum Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
     case 0: self = .milligrams
     case 1: self = .percentage
     case 2: self = .presence
+    case 3: self = .milligramsPerGram
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -55,6 +59,7 @@ public enum Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf.Enum {
     case .milligrams: return 0
     case .percentage: return 1
     case .presence: return 2
+    case .milligramsPerGram: return 3
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -69,6 +74,7 @@ extension Opencannabis_Structs_Labtesting_TestValueType: CaseIterable {
     .milligrams,
     .percentage,
     .presence,
+    .milligramsPerGram,
   ]
 }
 
@@ -305,6 +311,7 @@ extension Opencannabis_Structs_Labtesting_TestValueType: SwiftProtobuf._ProtoNam
     0: .same(proto: "MILLIGRAMS"),
     1: .same(proto: "PERCENTAGE"),
     2: .same(proto: "PRESENCE"),
+    3: .same(proto: "MILLIGRAMS_PER_GRAM"),
   ]
 }
 

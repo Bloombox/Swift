@@ -20,11 +20,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Foundation
 import Dispatch
+import OpenCannabis
+import Foundation
 import SwiftGRPC
 import SwiftProtobuf
-import OpenCannabis
 
 public protocol Bloombox_Services_Devices_V1beta1_DevicesPingCall: ClientCallUnary {}
 
@@ -42,38 +42,65 @@ fileprivate final class Bloombox_Services_Devices_V1beta1_DevicesActivateCallBas
 /// Instantiate Bloombox_Services_Devices_V1beta1_DevicesServiceClient, then call methods of this protocol to make API calls.
 public protocol Bloombox_Services_Devices_V1beta1_DevicesService: ServiceClient {
   /// Synchronous. Unary.
-  func ping(_ request: Bloombox_Services_Devices_V1beta1_Ping.Request) throws -> Bloombox_Services_Devices_V1beta1_Ping.Response
+  func ping(_ request: Bloombox_Services_Devices_V1beta1_Ping.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Devices_V1beta1_Ping.Response
   /// Asynchronous. Unary.
-  func ping(_ request: Bloombox_Services_Devices_V1beta1_Ping.Request, completion: @escaping (Bloombox_Services_Devices_V1beta1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Devices_V1beta1_DevicesPingCall
+  @discardableResult
+  func ping(_ request: Bloombox_Services_Devices_V1beta1_Ping.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Devices_V1beta1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Devices_V1beta1_DevicesPingCall
 
   /// Synchronous. Unary.
-  func activate(_ request: Bloombox_Services_Devices_V1beta1_Activation.Request) throws -> Bloombox_Services_Devices_V1beta1_Activation.Response
+  func activate(_ request: Bloombox_Services_Devices_V1beta1_Activation.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Devices_V1beta1_Activation.Response
   /// Asynchronous. Unary.
-  func activate(_ request: Bloombox_Services_Devices_V1beta1_Activation.Request, completion: @escaping (Bloombox_Services_Devices_V1beta1_Activation.Response?, CallResult) -> Void) throws -> Bloombox_Services_Devices_V1beta1_DevicesActivateCall
+  @discardableResult
+  func activate(_ request: Bloombox_Services_Devices_V1beta1_Activation.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Devices_V1beta1_Activation.Response?, CallResult) -> Void) throws -> Bloombox_Services_Devices_V1beta1_DevicesActivateCall
+
+}
+
+public extension Bloombox_Services_Devices_V1beta1_DevicesService {
+  /// Synchronous. Unary.
+  func ping(_ request: Bloombox_Services_Devices_V1beta1_Ping.Request) throws -> Bloombox_Services_Devices_V1beta1_Ping.Response {
+    return try self.ping(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func ping(_ request: Bloombox_Services_Devices_V1beta1_Ping.Request, completion: @escaping (Bloombox_Services_Devices_V1beta1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Devices_V1beta1_DevicesPingCall {
+    return try self.ping(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func activate(_ request: Bloombox_Services_Devices_V1beta1_Activation.Request) throws -> Bloombox_Services_Devices_V1beta1_Activation.Response {
+    return try self.activate(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func activate(_ request: Bloombox_Services_Devices_V1beta1_Activation.Request, completion: @escaping (Bloombox_Services_Devices_V1beta1_Activation.Response?, CallResult) -> Void) throws -> Bloombox_Services_Devices_V1beta1_DevicesActivateCall {
+    return try self.activate(request, metadata: self.metadata, completion: completion)
+  }
 
 }
 
 public final class Bloombox_Services_Devices_V1beta1_DevicesServiceClient: ServiceClientBase, Bloombox_Services_Devices_V1beta1_DevicesService {
   /// Synchronous. Unary.
-  public func ping(_ request: Bloombox_Services_Devices_V1beta1_Ping.Request) throws -> Bloombox_Services_Devices_V1beta1_Ping.Response {
+  public func ping(_ request: Bloombox_Services_Devices_V1beta1_Ping.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Devices_V1beta1_Ping.Response {
     return try Bloombox_Services_Devices_V1beta1_DevicesPingCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func ping(_ request: Bloombox_Services_Devices_V1beta1_Ping.Request, completion: @escaping (Bloombox_Services_Devices_V1beta1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Devices_V1beta1_DevicesPingCall {
+  @discardableResult
+  public func ping(_ request: Bloombox_Services_Devices_V1beta1_Ping.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Devices_V1beta1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Devices_V1beta1_DevicesPingCall {
     return try Bloombox_Services_Devices_V1beta1_DevicesPingCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func activate(_ request: Bloombox_Services_Devices_V1beta1_Activation.Request) throws -> Bloombox_Services_Devices_V1beta1_Activation.Response {
+  public func activate(_ request: Bloombox_Services_Devices_V1beta1_Activation.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Devices_V1beta1_Activation.Response {
     return try Bloombox_Services_Devices_V1beta1_DevicesActivateCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func activate(_ request: Bloombox_Services_Devices_V1beta1_Activation.Request, completion: @escaping (Bloombox_Services_Devices_V1beta1_Activation.Response?, CallResult) -> Void) throws -> Bloombox_Services_Devices_V1beta1_DevicesActivateCall {
+  @discardableResult
+  public func activate(_ request: Bloombox_Services_Devices_V1beta1_Activation.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Devices_V1beta1_Activation.Response?, CallResult) -> Void) throws -> Bloombox_Services_Devices_V1beta1_DevicesActivateCall {
     return try Bloombox_Services_Devices_V1beta1_DevicesActivateCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
 }

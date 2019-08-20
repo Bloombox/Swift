@@ -62,6 +62,10 @@ public enum Opencannabis_Structs_ProductFlag: SwiftProtobuf.Enum {
   /// Indicates that a particular product is produced locally. In retail contexts, this may trigger extra promotional UI.
   case local // = 8
 
+  /// Indicates that this product was deleted and subsequently tombstoned. Items "soft deleted" in this manner can be
+  /// restored by removing this flag.
+  case deleted // = 9
+
   /// Designates, in general, that a product is 'ON-SALE.' This designation SHOULD be propagated-to by implementing
   /// servers, from a product's weighted pricing sale flags. This means, if ANY product weight or variant is marked on
   /// sale, the 'ON-SALE' flag SHOULD be sent along with the top-level product information.
@@ -83,6 +87,7 @@ public enum Opencannabis_Structs_ProductFlag: SwiftProtobuf.Enum {
     case 6: self = .lastChance
     case 7: self = .limitedTime
     case 8: self = .local
+    case 9: self = .deleted
     case 20: self = .onSale
     default: self = .UNRECOGNIZED(rawValue)
     }
@@ -99,6 +104,7 @@ public enum Opencannabis_Structs_ProductFlag: SwiftProtobuf.Enum {
     case .lastChance: return 6
     case .limitedTime: return 7
     case .local: return 8
+    case .deleted: return 9
     case .onSale: return 20
     case .UNRECOGNIZED(let i): return i
     }
@@ -120,6 +126,7 @@ extension Opencannabis_Structs_ProductFlag: CaseIterable {
     .lastChance,
     .limitedTime,
     .local,
+    .deleted,
     .onSale,
   ]
 }
@@ -139,6 +146,7 @@ extension Opencannabis_Structs_ProductFlag: SwiftProtobuf._ProtoNameProviding {
     6: .same(proto: "LAST_CHANCE"),
     7: .same(proto: "LIMITED_TIME"),
     8: .same(proto: "LOCAL"),
+    9: .same(proto: "DELETED"),
     20: .same(proto: "ON_SALE"),
   ]
 }

@@ -31,17 +31,6 @@ public struct Bloombox_Identity_Industry_StaffSettings {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Point-of-sale device settings. Includes the user's authorization code hash, public key hash, and other settings or
-  /// security details. User preferences on the point-of-sale device are also stored here.
-  public var pos: Bloombox_Identity_Industry_POSStaffSettings {
-    get {return _storage._pos ?? Bloombox_Identity_Industry_POSStaffSettings()}
-    set {_uniqueStorage()._pos = newValue}
-  }
-  /// Returns true if `pos` has been explicitly set.
-  public var hasPos: Bool {return _storage._pos != nil}
-  /// Clears the value of `pos`. Subsequent reads from it will return its default value.
-  public mutating func clearPos() {_uniqueStorage()._pos = nil}
-
   /// Settings specific to the web dashboard when this user signs in. Personalization and preference options expressed
   /// for update by the user in the dashboard are stored here. These are distinguished from organization settings in that
   /// they are not shared between users and generally only apply cosmetically.
@@ -68,12 +57,10 @@ fileprivate let _protobuf_package = "bloombox.identity.industry"
 extension Bloombox_Identity_Industry_StaffSettings: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".StaffSettings"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "pos"),
-    2: .same(proto: "dashboard"),
+    1: .same(proto: "dashboard"),
   ]
 
   fileprivate class _StorageClass {
-    var _pos: Bloombox_Identity_Industry_POSStaffSettings? = nil
     var _dashboard: Bloombox_Identity_Industry_DashboardStaffSettings? = nil
 
     static let defaultInstance = _StorageClass()
@@ -81,7 +68,6 @@ extension Bloombox_Identity_Industry_StaffSettings: SwiftProtobuf.Message, Swift
     private init() {}
 
     init(copying source: _StorageClass) {
-      _pos = source._pos
       _dashboard = source._dashboard
     }
   }
@@ -98,8 +84,7 @@ extension Bloombox_Identity_Industry_StaffSettings: SwiftProtobuf.Message, Swift
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._pos)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._dashboard)
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._dashboard)
         default: break
         }
       }
@@ -108,11 +93,8 @@ extension Bloombox_Identity_Industry_StaffSettings: SwiftProtobuf.Message, Swift
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._pos {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
       if let v = _storage._dashboard {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -123,7 +105,6 @@ extension Bloombox_Identity_Industry_StaffSettings: SwiftProtobuf.Message, Swift
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._pos != rhs_storage._pos {return false}
         if _storage._dashboard != rhs_storage._dashboard {return false}
         return true
       }

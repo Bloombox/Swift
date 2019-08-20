@@ -112,6 +112,9 @@ public enum Bloombox_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum {
   /// The signature did not pass verification.
   case signatureMismatch // = 27
 
+  /// The account only has email-based identity, and has not verified their email address.
+  case accountNotVerified // = 28
+
   /// An internal error was encountered.
   case internalError // = 99
   case UNRECOGNIZED(Int)
@@ -150,6 +153,7 @@ public enum Bloombox_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum {
     case 25: self = .signatureRequired
     case 26: self = .signatureInvalid
     case 27: self = .signatureMismatch
+    case 28: self = .accountNotVerified
     case 99: self = .internalError
     default: self = .UNRECOGNIZED(rawValue)
     }
@@ -185,6 +189,7 @@ public enum Bloombox_Services_Auth_V1beta1_AuthError: SwiftProtobuf.Enum {
     case .signatureRequired: return 25
     case .signatureInvalid: return 26
     case .signatureMismatch: return 27
+    case .accountNotVerified: return 28
     case .internalError: return 99
     case .UNRECOGNIZED(let i): return i
     }
@@ -225,7 +230,60 @@ extension Bloombox_Services_Auth_V1beta1_AuthError: CaseIterable {
     .signatureRequired,
     .signatureInvalid,
     .signatureMismatch,
+    .accountNotVerified,
     .internalError,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+/// Specifies known web properties that can request authentication in trusted circumstances. These include the Bloombox
+/// management dashboard, web shop (e-com) experiences, and so on.
+public enum Bloombox_Services_Auth_V1beta1_KnownProperty: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// Unspecified or unknown property.
+  case unspecifiedProperty // = 0
+
+  /// Dashboard.
+  case dash // = 1
+
+  /// Web shop.
+  case shop // = 2
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .unspecifiedProperty
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .unspecifiedProperty
+    case 1: self = .dash
+    case 2: self = .shop
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .unspecifiedProperty: return 0
+    case .dash: return 1
+    case .shop: return 2
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Bloombox_Services_Auth_V1beta1_KnownProperty: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Services_Auth_V1beta1_KnownProperty] = [
+    .unspecifiedProperty,
+    .dash,
+    .shop,
   ]
 }
 
@@ -336,12 +394,6 @@ public struct Bloombox_Services_Auth_V1beta1_AuthenticateUser {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
-    /// Provider the user would like to login with.
-    public var provider: Bloombox_Identity_IdentityProvider {
-      get {return _storage._provider}
-      set {_uniqueStorage()._provider = newValue}
-    }
-
     /// Login credentials provided by the user or Firebase.
     public var assertion: Bloombox_Services_Auth_V1beta1_AccountAssertion {
       get {return _storage._assertion ?? Bloombox_Services_Auth_V1beta1_AccountAssertion()}
@@ -351,6 +403,24 @@ public struct Bloombox_Services_Auth_V1beta1_AuthenticateUser {
     public var hasAssertion: Bool {return _storage._assertion != nil}
     /// Clears the value of `assertion`. Subsequent reads from it will return its default value.
     public mutating func clearAssertion() {_uniqueStorage()._assertion = nil}
+
+    /// Nonce allocated via the Auth API for use in this request flow.
+    public var nonce: String {
+      get {return _storage._nonce}
+      set {_uniqueStorage()._nonce = newValue}
+    }
+
+    /// Web origin that is requesting login verification.
+    public var origin: String {
+      get {return _storage._origin}
+      set {_uniqueStorage()._origin = newValue}
+    }
+
+    /// Known web property, if applicable.
+    public var property: Bloombox_Services_Auth_V1beta1_KnownProperty {
+      get {return _storage._property}
+      set {_uniqueStorage()._property = newValue}
+    }
 
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -930,7 +1000,16 @@ extension Bloombox_Services_Auth_V1beta1_AuthError: SwiftProtobuf._ProtoNameProv
     25: .same(proto: "SIGNATURE_REQUIRED"),
     26: .same(proto: "SIGNATURE_INVALID"),
     27: .same(proto: "SIGNATURE_MISMATCH"),
+    28: .same(proto: "ACCOUNT_NOT_VERIFIED"),
     99: .same(proto: "INTERNAL_ERROR"),
+  ]
+}
+
+extension Bloombox_Services_Auth_V1beta1_KnownProperty: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNSPECIFIED_PROPERTY"),
+    1: .same(proto: "DASH"),
+    2: .same(proto: "SHOP"),
   ]
 }
 
@@ -1107,21 +1186,27 @@ extension Bloombox_Services_Auth_V1beta1_AuthenticateUser: SwiftProtobuf.Message
 extension Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = Bloombox_Services_Auth_V1beta1_AuthenticateUser.protoMessageName + ".Request"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "provider"),
-    2: .same(proto: "assertion"),
+    1: .same(proto: "assertion"),
+    2: .same(proto: "nonce"),
+    3: .same(proto: "origin"),
+    4: .same(proto: "property"),
   ]
 
   fileprivate class _StorageClass {
-    var _provider: Bloombox_Identity_IdentityProvider = .email
     var _assertion: Bloombox_Services_Auth_V1beta1_AccountAssertion? = nil
+    var _nonce: String = String()
+    var _origin: String = String()
+    var _property: Bloombox_Services_Auth_V1beta1_KnownProperty = .unspecifiedProperty
 
     static let defaultInstance = _StorageClass()
 
     private init() {}
 
     init(copying source: _StorageClass) {
-      _provider = source._provider
       _assertion = source._assertion
+      _nonce = source._nonce
+      _origin = source._origin
+      _property = source._property
     }
   }
 
@@ -1137,8 +1222,10 @@ extension Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftProtobuf
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularEnumField(value: &_storage._provider)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._assertion)
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._assertion)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._nonce)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._origin)
+        case 4: try decoder.decodeSingularEnumField(value: &_storage._property)
         default: break
         }
       }
@@ -1147,11 +1234,17 @@ extension Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftProtobuf
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if _storage._provider != .email {
-        try visitor.visitSingularEnumField(value: _storage._provider, fieldNumber: 1)
-      }
       if let v = _storage._assertion {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if !_storage._nonce.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._nonce, fieldNumber: 2)
+      }
+      if !_storage._origin.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._origin, fieldNumber: 3)
+      }
+      if _storage._property != .unspecifiedProperty {
+        try visitor.visitSingularEnumField(value: _storage._property, fieldNumber: 4)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -1162,8 +1255,10 @@ extension Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request: SwiftProtobuf
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
-        if _storage._provider != rhs_storage._provider {return false}
         if _storage._assertion != rhs_storage._assertion {return false}
+        if _storage._nonce != rhs_storage._nonce {return false}
+        if _storage._origin != rhs_storage._origin {return false}
+        if _storage._property != rhs_storage._property {return false}
         return true
       }
       if !storagesAreEqual {return false}
