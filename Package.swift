@@ -1,4 +1,4 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.0
 
 import PackageDescription
 
@@ -33,6 +33,6 @@ let package = Package(
         .testTarget(name: "SchemaTests", dependencies: ["OpenCannabis", "BloomboxServices", "Bloombox"]),
         .testTarget(name: "ClientTests", dependencies: ["Bloombox"])],
 
-    swiftLanguageVersions: [4],
+    swiftLanguageVersions: [5],
     cLanguageStandard: .c11,
     cxxLanguageStandard: .cxx11)
