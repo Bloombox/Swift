@@ -22,76 +22,6 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// Specifies flags that may be specifically applied to pre-rolled cannabis products.
-public enum Opencannabis_Products_PrerollFlag: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// Specifies that no flags are set.
-  case noPrerollFlags // = 0
-
-  /// Specifies that this pre-rolled item is hash-infused.
-  case hashInfused // = 1
-
-  /// Specifies that this pre-rolled item is kief-infused.
-  case kiefInfused // = 2
-
-  /// Specifies that this pre-rolled item is fortified with extracted cannabis products in some manner.
-  case fortified // = 3
-
-  /// Specifies that this pre-rolled item is rolled with "full flower" buds, rather than trimmings, or other discarded
-  /// cannabis from other production processes.
-  case fullFlower // = 4
-
-  /// Specifies that this product contains tobacco.
-  case containsTobacco // = 5
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .noPrerollFlags
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .noPrerollFlags
-    case 1: self = .hashInfused
-    case 2: self = .kiefInfused
-    case 3: self = .fortified
-    case 4: self = .fullFlower
-    case 5: self = .containsTobacco
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .noPrerollFlags: return 0
-    case .hashInfused: return 1
-    case .kiefInfused: return 2
-    case .fortified: return 3
-    case .fullFlower: return 4
-    case .containsTobacco: return 5
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension Opencannabis_Products_PrerollFlag: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Products_PrerollFlag] = [
-    .noPrerollFlags,
-    .hashInfused,
-    .kiefInfused,
-    .fortified,
-    .fullFlower,
-    .containsTobacco,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
 /// Specifies a pre-rolled cannabis product, where a production process consumes cannabis plant material and produces
 /// end-products that are already rolled into joints, marijuana cigarettes, blunts, and so on.
 public struct Opencannabis_Products_Preroll {
@@ -132,7 +62,7 @@ public struct Opencannabis_Products_Preroll {
   }
 
   /// Specifies flags that may be applied specifically to this prerolled item.
-  public var flags: [Opencannabis_Products_PrerollFlag] {
+  public var flags: [Opencannabis_Products_Preroll.Flag] {
     get {return _storage._flags}
     set {_uniqueStorage()._flags = newValue}
   }
@@ -159,25 +89,84 @@ public struct Opencannabis_Products_Preroll {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  /// Specifies flags that may be specifically applied to pre-rolled cannabis products.
+  public enum Flag: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Specifies that no flags are set.
+    case noPrerollFlags // = 0
+
+    /// Specifies that this pre-rolled item is hash-infused.
+    case hashInfused // = 1
+
+    /// Specifies that this pre-rolled item is kief-infused.
+    case kiefInfused // = 2
+
+    /// Specifies that this pre-rolled item is fortified with extracted cannabis products in some manner.
+    case fortified // = 3
+
+    /// Specifies that this pre-rolled item is rolled with "full flower" buds, rather than trimmings, or other discarded
+    /// cannabis from other production processes.
+    case fullFlower // = 4
+
+    /// Specifies that this product contains tobacco.
+    case containsTobacco // = 5
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .noPrerollFlags
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .noPrerollFlags
+      case 1: self = .hashInfused
+      case 2: self = .kiefInfused
+      case 3: self = .fortified
+      case 4: self = .fullFlower
+      case 5: self = .containsTobacco
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .noPrerollFlags: return 0
+      case .hashInfused: return 1
+      case .kiefInfused: return 2
+      case .fortified: return 3
+      case .fullFlower: return 4
+      case .containsTobacco: return 5
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Preroll.Flag: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Preroll.Flag] = [
+    .noPrerollFlags,
+    .hashInfused,
+    .kiefInfused,
+    .fortified,
+    .fullFlower,
+    .containsTobacco,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.products"
-
-extension Opencannabis_Products_PrerollFlag: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "NO_PREROLL_FLAGS"),
-    1: .same(proto: "HASH_INFUSED"),
-    2: .same(proto: "KIEF_INFUSED"),
-    3: .same(proto: "FORTIFIED"),
-    4: .same(proto: "FULL_FLOWER"),
-    5: .same(proto: "CONTAINS_TOBACCO"),
-  ]
-}
 
 extension Opencannabis_Products_Preroll: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Preroll"
@@ -196,7 +185,7 @@ extension Opencannabis_Products_Preroll: SwiftProtobuf.Message, SwiftProtobuf._M
     var _flower: Opencannabis_Base_ProductReference? = nil
     var _length: Double = 0
     var _thickness: Double = 0
-    var _flags: [Opencannabis_Products_PrerollFlag] = []
+    var _flags: [Opencannabis_Products_Preroll.Flag] = []
     var _product: Opencannabis_Content_ProductContent? = nil
     var _material: Opencannabis_Content_MaterialsData? = nil
 
@@ -286,4 +275,15 @@ extension Opencannabis_Products_Preroll: SwiftProtobuf.Message, SwiftProtobuf._M
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Opencannabis_Products_Preroll.Flag: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "NO_PREROLL_FLAGS"),
+    1: .same(proto: "HASH_INFUSED"),
+    2: .same(proto: "KIEF_INFUSED"),
+    3: .same(proto: "FORTIFIED"),
+    4: .same(proto: "FULL_FLOWER"),
+    5: .same(proto: "CONTAINS_TOBACCO"),
+  ]
 }

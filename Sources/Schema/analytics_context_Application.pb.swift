@@ -30,7 +30,7 @@ public enum Bloombox_Analytics_Context_ApplicationType: SwiftProtobuf.Enum {
   /// The application is internally produced and managed.
   case `internal` // = 0
 
-  /// The application is partner colocated, hosted, or managed.
+  /// The application is partner co-located, hosted, or managed.
   case partner // = 1
   case UNRECOGNIZED(Int)
 

@@ -20,11 +20,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Foundation
 import Dispatch
+import OpenCannabis
+import Foundation
 import SwiftGRPC
 import SwiftProtobuf
-import OpenCannabis
 
 public protocol Bloombox_Services_Shop_V1_ShopPingCall: ClientCallUnary {}
 
@@ -72,118 +72,205 @@ fileprivate final class Bloombox_Services_Shop_V1_ShopGetOrderCallBase: ClientCa
 /// Instantiate Bloombox_Services_Shop_V1_ShopServiceClient, then call methods of this protocol to make API calls.
 public protocol Bloombox_Services_Shop_V1_ShopService: ServiceClient {
   /// Synchronous. Unary.
-  func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request) throws -> Bloombox_Services_Shop_V1_Ping.Response
+  func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_Ping.Response
   /// Asynchronous. Unary.
-  func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request, completion: @escaping (Bloombox_Services_Shop_V1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopPingCall
+  @discardableResult
+  func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopPingCall
 
   /// Synchronous. Unary.
-  func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request) throws -> Bloombox_Services_Shop_V1_ShopInfo.Response
+  func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_ShopInfo.Response
   /// Asynchronous. Unary.
-  func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request, completion: @escaping (Bloombox_Services_Shop_V1_ShopInfo.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopShopInfoCall
+  @discardableResult
+  func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_ShopInfo.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopShopInfoCall
 
   /// Synchronous. Unary.
-  func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request) throws -> Bloombox_Services_Shop_V1_EnrollMember.Response
+  func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_EnrollMember.Response
   /// Asynchronous. Unary.
-  func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request, completion: @escaping (Bloombox_Services_Shop_V1_EnrollMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopEnrollMemberCall
+  @discardableResult
+  func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_EnrollMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopEnrollMemberCall
 
   /// Synchronous. Unary.
-  func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request) throws -> Bloombox_Services_Shop_V1_CheckZipcode.Response
+  func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_CheckZipcode.Response
   /// Asynchronous. Unary.
-  func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request, completion: @escaping (Bloombox_Services_Shop_V1_CheckZipcode.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopCheckZipcodeCall
+  @discardableResult
+  func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_CheckZipcode.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopCheckZipcodeCall
 
   /// Synchronous. Unary.
-  func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request) throws -> Bloombox_Services_Shop_V1_VerifyMember.Response
+  func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_VerifyMember.Response
   /// Asynchronous. Unary.
-  func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request, completion: @escaping (Bloombox_Services_Shop_V1_VerifyMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopVerifyMemberCall
+  @discardableResult
+  func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_VerifyMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopVerifyMemberCall
 
   /// Synchronous. Unary.
-  func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request) throws -> Bloombox_Services_Shop_V1_SubmitOrder.Response
+  func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_SubmitOrder.Response
   /// Asynchronous. Unary.
-  func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_SubmitOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopSubmitOrderCall
+  @discardableResult
+  func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_SubmitOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopSubmitOrderCall
 
   /// Synchronous. Unary.
-  func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request) throws -> Bloombox_Services_Shop_V1_GetOrder.Response
+  func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_GetOrder.Response
   /// Asynchronous. Unary.
-  func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_GetOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopGetOrderCall
+  @discardableResult
+  func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_GetOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopGetOrderCall
+
+}
+
+public extension Bloombox_Services_Shop_V1_ShopService {
+  /// Synchronous. Unary.
+  func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request) throws -> Bloombox_Services_Shop_V1_Ping.Response {
+    return try self.ping(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request, completion: @escaping (Bloombox_Services_Shop_V1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopPingCall {
+    return try self.ping(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request) throws -> Bloombox_Services_Shop_V1_ShopInfo.Response {
+    return try self.shopInfo(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request, completion: @escaping (Bloombox_Services_Shop_V1_ShopInfo.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopShopInfoCall {
+    return try self.shopInfo(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request) throws -> Bloombox_Services_Shop_V1_EnrollMember.Response {
+    return try self.enrollMember(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request, completion: @escaping (Bloombox_Services_Shop_V1_EnrollMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopEnrollMemberCall {
+    return try self.enrollMember(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request) throws -> Bloombox_Services_Shop_V1_CheckZipcode.Response {
+    return try self.checkZipcode(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request, completion: @escaping (Bloombox_Services_Shop_V1_CheckZipcode.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopCheckZipcodeCall {
+    return try self.checkZipcode(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request) throws -> Bloombox_Services_Shop_V1_VerifyMember.Response {
+    return try self.verifyMember(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request, completion: @escaping (Bloombox_Services_Shop_V1_VerifyMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopVerifyMemberCall {
+    return try self.verifyMember(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request) throws -> Bloombox_Services_Shop_V1_SubmitOrder.Response {
+    return try self.submitOrder(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_SubmitOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopSubmitOrderCall {
+    return try self.submitOrder(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request) throws -> Bloombox_Services_Shop_V1_GetOrder.Response {
+    return try self.getOrder(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_GetOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopGetOrderCall {
+    return try self.getOrder(request, metadata: self.metadata, completion: completion)
+  }
 
 }
 
 public final class Bloombox_Services_Shop_V1_ShopServiceClient: ServiceClientBase, Bloombox_Services_Shop_V1_ShopService {
   /// Synchronous. Unary.
-  public func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request) throws -> Bloombox_Services_Shop_V1_Ping.Response {
+  public func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_Ping.Response {
     return try Bloombox_Services_Shop_V1_ShopPingCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request, completion: @escaping (Bloombox_Services_Shop_V1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopPingCall {
+  @discardableResult
+  public func ping(_ request: Bloombox_Services_Shop_V1_Ping.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_Ping.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopPingCall {
     return try Bloombox_Services_Shop_V1_ShopPingCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request) throws -> Bloombox_Services_Shop_V1_ShopInfo.Response {
+  public func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_ShopInfo.Response {
     return try Bloombox_Services_Shop_V1_ShopShopInfoCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request, completion: @escaping (Bloombox_Services_Shop_V1_ShopInfo.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopShopInfoCall {
+  @discardableResult
+  public func shopInfo(_ request: Bloombox_Services_Shop_V1_ShopInfo.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_ShopInfo.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopShopInfoCall {
     return try Bloombox_Services_Shop_V1_ShopShopInfoCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request) throws -> Bloombox_Services_Shop_V1_EnrollMember.Response {
+  public func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_EnrollMember.Response {
     return try Bloombox_Services_Shop_V1_ShopEnrollMemberCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request, completion: @escaping (Bloombox_Services_Shop_V1_EnrollMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopEnrollMemberCall {
+  @discardableResult
+  public func enrollMember(_ request: Bloombox_Services_Shop_V1_EnrollMember.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_EnrollMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopEnrollMemberCall {
     return try Bloombox_Services_Shop_V1_ShopEnrollMemberCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request) throws -> Bloombox_Services_Shop_V1_CheckZipcode.Response {
+  public func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_CheckZipcode.Response {
     return try Bloombox_Services_Shop_V1_ShopCheckZipcodeCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request, completion: @escaping (Bloombox_Services_Shop_V1_CheckZipcode.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopCheckZipcodeCall {
+  @discardableResult
+  public func checkZipcode(_ request: Bloombox_Services_Shop_V1_CheckZipcode.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_CheckZipcode.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopCheckZipcodeCall {
     return try Bloombox_Services_Shop_V1_ShopCheckZipcodeCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request) throws -> Bloombox_Services_Shop_V1_VerifyMember.Response {
+  public func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_VerifyMember.Response {
     return try Bloombox_Services_Shop_V1_ShopVerifyMemberCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request, completion: @escaping (Bloombox_Services_Shop_V1_VerifyMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopVerifyMemberCall {
+  @discardableResult
+  public func verifyMember(_ request: Bloombox_Services_Shop_V1_VerifyMember.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_VerifyMember.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopVerifyMemberCall {
     return try Bloombox_Services_Shop_V1_ShopVerifyMemberCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request) throws -> Bloombox_Services_Shop_V1_SubmitOrder.Response {
+  public func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_SubmitOrder.Response {
     return try Bloombox_Services_Shop_V1_ShopSubmitOrderCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_SubmitOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopSubmitOrderCall {
+  @discardableResult
+  public func submitOrder(_ request: Bloombox_Services_Shop_V1_SubmitOrder.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_SubmitOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopSubmitOrderCall {
     return try Bloombox_Services_Shop_V1_ShopSubmitOrderCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request) throws -> Bloombox_Services_Shop_V1_GetOrder.Response {
+  public func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Shop_V1_GetOrder.Response {
     return try Bloombox_Services_Shop_V1_ShopGetOrderCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request, completion: @escaping (Bloombox_Services_Shop_V1_GetOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopGetOrderCall {
+  @discardableResult
+  public func getOrder(_ request: Bloombox_Services_Shop_V1_GetOrder.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Shop_V1_GetOrder.Response?, CallResult) -> Void) throws -> Bloombox_Services_Shop_V1_ShopGetOrderCall {
     return try Bloombox_Services_Shop_V1_ShopGetOrderCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
 }

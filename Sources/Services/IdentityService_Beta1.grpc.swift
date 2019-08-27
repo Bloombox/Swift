@@ -20,11 +20,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Foundation
 import Dispatch
+import OpenCannabis
+import Foundation
 import SwiftGRPC
 import SwiftProtobuf
-import OpenCannabis
 
 public protocol Bloombox_Services_Identity_V1beta1_IdentityKeyResolveCall: ClientCallUnary {}
 
@@ -36,22 +36,37 @@ fileprivate final class Bloombox_Services_Identity_V1beta1_IdentityKeyResolveCal
 /// Instantiate Bloombox_Services_Identity_V1beta1_IdentityServiceClient, then call methods of this protocol to make API calls.
 public protocol Bloombox_Services_Identity_V1beta1_IdentityService: ServiceClient {
   /// Synchronous. Unary.
-  func keyResolve(_ request: Bloombox_Services_Identity_V1beta1_ResolveKey.Request) throws -> Bloombox_Services_Identity_V1beta1_ResolveKey.Response
+  func keyResolve(_ request: Bloombox_Services_Identity_V1beta1_ResolveKey.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Identity_V1beta1_ResolveKey.Response
   /// Asynchronous. Unary.
-  func keyResolve(_ request: Bloombox_Services_Identity_V1beta1_ResolveKey.Request, completion: @escaping (Bloombox_Services_Identity_V1beta1_ResolveKey.Response?, CallResult) -> Void) throws -> Bloombox_Services_Identity_V1beta1_IdentityKeyResolveCall
+  @discardableResult
+  func keyResolve(_ request: Bloombox_Services_Identity_V1beta1_ResolveKey.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Identity_V1beta1_ResolveKey.Response?, CallResult) -> Void) throws -> Bloombox_Services_Identity_V1beta1_IdentityKeyResolveCall
+
+}
+
+public extension Bloombox_Services_Identity_V1beta1_IdentityService {
+  /// Synchronous. Unary.
+  func keyResolve(_ request: Bloombox_Services_Identity_V1beta1_ResolveKey.Request) throws -> Bloombox_Services_Identity_V1beta1_ResolveKey.Response {
+    return try self.keyResolve(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func keyResolve(_ request: Bloombox_Services_Identity_V1beta1_ResolveKey.Request, completion: @escaping (Bloombox_Services_Identity_V1beta1_ResolveKey.Response?, CallResult) -> Void) throws -> Bloombox_Services_Identity_V1beta1_IdentityKeyResolveCall {
+    return try self.keyResolve(request, metadata: self.metadata, completion: completion)
+  }
 
 }
 
 public final class Bloombox_Services_Identity_V1beta1_IdentityServiceClient: ServiceClientBase, Bloombox_Services_Identity_V1beta1_IdentityService {
   /// Synchronous. Unary.
-  public func keyResolve(_ request: Bloombox_Services_Identity_V1beta1_ResolveKey.Request) throws -> Bloombox_Services_Identity_V1beta1_ResolveKey.Response {
+  public func keyResolve(_ request: Bloombox_Services_Identity_V1beta1_ResolveKey.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Identity_V1beta1_ResolveKey.Response {
     return try Bloombox_Services_Identity_V1beta1_IdentityKeyResolveCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func keyResolve(_ request: Bloombox_Services_Identity_V1beta1_ResolveKey.Request, completion: @escaping (Bloombox_Services_Identity_V1beta1_ResolveKey.Response?, CallResult) -> Void) throws -> Bloombox_Services_Identity_V1beta1_IdentityKeyResolveCall {
+  @discardableResult
+  public func keyResolve(_ request: Bloombox_Services_Identity_V1beta1_ResolveKey.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Identity_V1beta1_ResolveKey.Response?, CallResult) -> Void) throws -> Bloombox_Services_Identity_V1beta1_IdentityKeyResolveCall {
     return try Bloombox_Services_Identity_V1beta1_IdentityKeyResolveCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
 }

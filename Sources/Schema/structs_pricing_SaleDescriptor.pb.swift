@@ -29,7 +29,7 @@ public enum Opencannabis_Structs_Pricing_SaleType: SwiftProtobuf.Enum {
   /// A reduction of an item or the total by a percentage. I.E. "20% off".
   case percentageReduction // = 0
 
-  /// The reduction of an item or total by a flat value. I.E. "$5 off".
+  /// The reduction of an item or total by a flat value. I.E. "5 dollars off".
   case valueReduction // = 1
 
   /// A buy-one-get-one discount. Some discounted amount, applicable to the second item bought.
@@ -94,8 +94,7 @@ public struct Opencannabis_Structs_Pricing_PercentageDiscount {
 }
 
 /// A buy-one-get-one discount. Some discounted amount, applicable to the second item bought. First item is usually full
-/// price. Can be applied in various ways. I.E. a customer purchases two items for full price and the third is discounted
-/// .
+/// price. Can be applied in various ways. I.E. a customer purchases two items at full price and the third is discounted.
 public struct Opencannabis_Structs_Pricing_BOGODiscount {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for

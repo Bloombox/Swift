@@ -22,13 +22,13 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// Specifies a Blutooth beacon signal, detected or emitted by a BLE device.
+/// Specifies a Bluetooth beacon signal, detected or emitted by a BLE device.
 public struct Opencannabis_Proximity_BluetoothBeacon {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// UUID for the device, as observed or broadcasted.
+  /// UUID for the device, as observed or emitted.
   public var uuid: String {
     get {return _storage._uuid}
     set {_uniqueStorage()._uuid = newValue}

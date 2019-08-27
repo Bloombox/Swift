@@ -59,12 +59,76 @@ public struct Opencannabis_Products_Flower {
   /// Clears the value of `material`. Subsequent reads from it will return its default value.
   public mutating func clearMaterial() {_uniqueStorage()._material = nil}
 
+  /// Specifies the specialized type of flower.
+  public var type: Opencannabis_Products_Flower.TypeEnum {
+    get {return _storage._type}
+    set {_uniqueStorage()._type = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Specifies a main "flower type," which acts as a specialized sub-type to a flower record. Flower types roughly
+  /// denote different major categories of flower.
+  public enum TypeEnum: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// The flower is trimmed bud, or standard cannabis flower.
+    case trimmed // = 0
+
+    /// The flower is "shake," or, by-product from trim processing.
+    case shake // = 1
+
+    /// The flower from this entry is composed of small nugs.
+    case smallNugs // = 2
+
+    /// The flower from this entry is composed only of premium nugs.
+    case premiumNugs // = 3
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .trimmed
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .trimmed
+      case 1: self = .shake
+      case 2: self = .smallNugs
+      case 3: self = .premiumNugs
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .trimmed: return 0
+      case .shake: return 1
+      case .smallNugs: return 2
+      case .premiumNugs: return 3
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
 
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
+
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Flower.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Flower.TypeEnum] = [
+    .trimmed,
+    .shake,
+    .smallNugs,
+    .premiumNugs,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
@@ -76,12 +140,14 @@ extension Opencannabis_Products_Flower: SwiftProtobuf.Message, SwiftProtobuf._Me
     1: .same(proto: "key"),
     2: .same(proto: "product"),
     3: .same(proto: "material"),
+    4: .same(proto: "type"),
   ]
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
     var _product: Opencannabis_Content_ProductContent? = nil
     var _material: Opencannabis_Content_MaterialsData? = nil
+    var _type: Opencannabis_Products_Flower.TypeEnum = .trimmed
 
     static let defaultInstance = _StorageClass()
 
@@ -91,6 +157,7 @@ extension Opencannabis_Products_Flower: SwiftProtobuf.Message, SwiftProtobuf._Me
       _key = source._key
       _product = source._product
       _material = source._material
+      _type = source._type
     }
   }
 
@@ -109,6 +176,7 @@ extension Opencannabis_Products_Flower: SwiftProtobuf.Message, SwiftProtobuf._Me
         case 1: try decoder.decodeSingularMessageField(value: &_storage._key)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._product)
         case 3: try decoder.decodeSingularMessageField(value: &_storage._material)
+        case 4: try decoder.decodeSingularEnumField(value: &_storage._type)
         default: break
         }
       }
@@ -126,6 +194,9 @@ extension Opencannabis_Products_Flower: SwiftProtobuf.Message, SwiftProtobuf._Me
       if let v = _storage._material {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
       }
+      if _storage._type != .trimmed {
+        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 4)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -138,6 +209,7 @@ extension Opencannabis_Products_Flower: SwiftProtobuf.Message, SwiftProtobuf._Me
         if _storage._key != rhs_storage._key {return false}
         if _storage._product != rhs_storage._product {return false}
         if _storage._material != rhs_storage._material {return false}
+        if _storage._type != rhs_storage._type {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -145,4 +217,13 @@ extension Opencannabis_Products_Flower: SwiftProtobuf.Message, SwiftProtobuf._Me
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Opencannabis_Products_Flower.TypeEnum: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "TRIMMED"),
+    1: .same(proto: "SHAKE"),
+    2: .same(proto: "SMALL_NUGS"),
+    3: .same(proto: "PREMIUM_NUGS"),
+  ]
 }

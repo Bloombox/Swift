@@ -22,180 +22,6 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// Specifies types of edible products that are known and considered sub-categories of the full 'edibles' menu section.
-public enum Opencannabis_Products_EdibleType: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// Unknown, unrecognized, or otherwise unspecified edible type.
-  case unspecifiedEdible // = 0
-
-  /// Specifies chocolate products, including truffles, chocolate bars, and so on.
-  case chocolate // = 1
-
-  /// Specifies a baked good, such as a cookie, doughnut, brownie, pie, and so on.
-  case bakedGood // = 2
-
-  /// Specifies generic candy items not otherwise specified.
-  case candy // = 3
-
-  /// Beverage/drink products.
-  case beverage // = 4
-
-  /// Lozenge (hardened candy) products.
-  case lozenge // = 5
-
-  /// Sub-lingual, i.e. under-the-tongue, products.
-  case sublingual // = 6
-
-  /// Soft candies made of congealed sugar product.
-  case gummy // = 7
-
-  /// Medicated butter pdocuts.
-  case butter // = 8
-
-  /// Cooking oil and other edible oils.
-  case oils // = 9
-
-  /// Cereals and related breakfast products.
-  case cereal // = 10
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .unspecifiedEdible
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .unspecifiedEdible
-    case 1: self = .chocolate
-    case 2: self = .bakedGood
-    case 3: self = .candy
-    case 4: self = .beverage
-    case 5: self = .lozenge
-    case 6: self = .sublingual
-    case 7: self = .gummy
-    case 8: self = .butter
-    case 9: self = .oils
-    case 10: self = .cereal
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .unspecifiedEdible: return 0
-    case .chocolate: return 1
-    case .bakedGood: return 2
-    case .candy: return 3
-    case .beverage: return 4
-    case .lozenge: return 5
-    case .sublingual: return 6
-    case .gummy: return 7
-    case .butter: return 8
-    case .oils: return 9
-    case .cereal: return 10
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension Opencannabis_Products_EdibleType: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Products_EdibleType] = [
-    .unspecifiedEdible,
-    .chocolate,
-    .bakedGood,
-    .candy,
-    .beverage,
-    .lozenge,
-    .sublingual,
-    .gummy,
-    .butter,
-    .oils,
-    .cereal,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
-/// Flags that may be applied specifically to an edible product.
-public enum Opencannabis_Products_EdibleFlag: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// Special default flag indicating no flags.
-  case noEdibleFlag // = 0
-
-  /// Flag indicating this edible product is vegan.
-  case vegan // = 1
-
-  /// Flag indicating this edible product is gluten free.
-  case glutenFree // = 2
-
-  /// Flag indicating this edible product is sugar free.
-  case sugarFree // = 3
-
-  /// Flag indicating this edible product is compliant with fair trade practices.
-  case fairTrade // = 4
-
-  /// Flag indicating this edible product is considered organic.
-  case organic // = 5
-
-  /// Flag indicating this edible product was grown or cultivated or prepared locally.
-  case local // = 6
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .noEdibleFlag
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .noEdibleFlag
-    case 1: self = .vegan
-    case 2: self = .glutenFree
-    case 3: self = .sugarFree
-    case 4: self = .fairTrade
-    case 5: self = .organic
-    case 6: self = .local
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .noEdibleFlag: return 0
-    case .vegan: return 1
-    case .glutenFree: return 2
-    case .sugarFree: return 3
-    case .fairTrade: return 4
-    case .organic: return 5
-    case .local: return 6
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension Opencannabis_Products_EdibleFlag: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Products_EdibleFlag] = [
-    .noEdibleFlag,
-    .vegan,
-    .glutenFree,
-    .sugarFree,
-    .fairTrade,
-    .organic,
-    .local,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
 /// Specifies an ingredient included in an edible.
 public struct Opencannabis_Products_EdibleIngredient {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -231,13 +57,13 @@ public struct Opencannabis_Products_Edible {
   public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Specifies the subcategory of this edible product, if known and applicable.
-  public var type: Opencannabis_Products_EdibleType {
+  public var type: Opencannabis_Products_Edible.TypeEnum {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Specifies flags attached to this edible product.
-  public var flags: [Opencannabis_Products_EdibleFlag] {
+  public var flags: [Opencannabis_Products_Edible.Flag] {
     get {return _storage._flags}
     set {_uniqueStorage()._flags = newValue}
   }
@@ -270,42 +96,190 @@ public struct Opencannabis_Products_Edible {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  /// Specifies types of edible products that are known and considered sub-categories of the full 'edibles' menu section.
+  public enum TypeEnum: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Unknown, unrecognized, or otherwise unspecified edible type.
+    case unspecifiedEdible // = 0
+
+    /// Specifies chocolate products, including truffles, chocolate bars, and so on.
+    case chocolate // = 1
+
+    /// Specifies a baked good, such as a cookie, doughnut, brownie, pie, and so on.
+    case bakedGood // = 2
+
+    /// Specifies generic candy items not otherwise specified.
+    case candy // = 3
+
+    /// Beverage/drink products.
+    case beverage // = 4
+
+    /// Lozenge (hardened candy) products.
+    case lozenge // = 5
+
+    /// Sub-lingual, i.e. under-the-tongue, products.
+    case sublingual // = 6
+
+    /// Soft candies made of congealed sugar product.
+    case gummy // = 7
+
+    /// Medicated butter products.
+    case butter // = 8
+
+    /// Cooking oil and other edible oils.
+    case oils // = 9
+
+    /// Cereals and related breakfast products.
+    case cereal // = 10
+
+    /// Capsules, which may also be listed in the "Apothecary" section.
+    case capsule // = 11
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .unspecifiedEdible
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .unspecifiedEdible
+      case 1: self = .chocolate
+      case 2: self = .bakedGood
+      case 3: self = .candy
+      case 4: self = .beverage
+      case 5: self = .lozenge
+      case 6: self = .sublingual
+      case 7: self = .gummy
+      case 8: self = .butter
+      case 9: self = .oils
+      case 10: self = .cereal
+      case 11: self = .capsule
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .unspecifiedEdible: return 0
+      case .chocolate: return 1
+      case .bakedGood: return 2
+      case .candy: return 3
+      case .beverage: return 4
+      case .lozenge: return 5
+      case .sublingual: return 6
+      case .gummy: return 7
+      case .butter: return 8
+      case .oils: return 9
+      case .cereal: return 10
+      case .capsule: return 11
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  /// Flags that may be applied specifically to an edible product.
+  public enum Flag: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Special default flag indicating no flags.
+    case noEdibleFlag // = 0
+
+    /// Flag indicating this edible product is vegan.
+    case vegan // = 1
+
+    /// Flag indicating this edible product is gluten free.
+    case glutenFree // = 2
+
+    /// Flag indicating this edible product is sugar free.
+    case sugarFree // = 3
+
+    /// Flag indicating this edible product is compliant with fair trade practices.
+    case fairTrade // = 4
+
+    /// Flag indicating this edible product is considered organic.
+    case organic // = 5
+
+    /// Flag indicating this edible product was grown or cultivated or prepared locally.
+    case local // = 6
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .noEdibleFlag
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .noEdibleFlag
+      case 1: self = .vegan
+      case 2: self = .glutenFree
+      case 3: self = .sugarFree
+      case 4: self = .fairTrade
+      case 5: self = .organic
+      case 6: self = .local
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .noEdibleFlag: return 0
+      case .vegan: return 1
+      case .glutenFree: return 2
+      case .sugarFree: return 3
+      case .fairTrade: return 4
+      case .organic: return 5
+      case .local: return 6
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Edible.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Edible.TypeEnum] = [
+    .unspecifiedEdible,
+    .chocolate,
+    .bakedGood,
+    .candy,
+    .beverage,
+    .lozenge,
+    .sublingual,
+    .gummy,
+    .butter,
+    .oils,
+    .cereal,
+    .capsule,
+  ]
+}
+
+extension Opencannabis_Products_Edible.Flag: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Edible.Flag] = [
+    .noEdibleFlag,
+    .vegan,
+    .glutenFree,
+    .sugarFree,
+    .fairTrade,
+    .organic,
+    .local,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.products"
-
-extension Opencannabis_Products_EdibleType: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "UNSPECIFIED_EDIBLE"),
-    1: .same(proto: "CHOCOLATE"),
-    2: .same(proto: "BAKED_GOOD"),
-    3: .same(proto: "CANDY"),
-    4: .same(proto: "BEVERAGE"),
-    5: .same(proto: "LOZENGE"),
-    6: .same(proto: "SUBLINGUAL"),
-    7: .same(proto: "GUMMY"),
-    8: .same(proto: "BUTTER"),
-    9: .same(proto: "OILS"),
-    10: .same(proto: "CEREAL"),
-  ]
-}
-
-extension Opencannabis_Products_EdibleFlag: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "NO_EDIBLE_FLAG"),
-    1: .same(proto: "VEGAN"),
-    2: .same(proto: "GLUTEN_FREE"),
-    3: .same(proto: "SUGAR_FREE"),
-    4: .same(proto: "FAIR_TRADE"),
-    5: .same(proto: "ORGANIC"),
-    6: .same(proto: "LOCAL"),
-  ]
-}
 
 extension Opencannabis_Products_EdibleIngredient: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EdibleIngredient"
@@ -355,8 +329,8 @@ extension Opencannabis_Products_Edible: SwiftProtobuf.Message, SwiftProtobuf._Me
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
-    var _type: Opencannabis_Products_EdibleType = .unspecifiedEdible
-    var _flags: [Opencannabis_Products_EdibleFlag] = []
+    var _type: Opencannabis_Products_Edible.TypeEnum = .unspecifiedEdible
+    var _flags: [Opencannabis_Products_Edible.Flag] = []
     var _product: Opencannabis_Content_ProductContent? = nil
     var _material: Opencannabis_Content_MaterialsData? = nil
     var _ingredients: [Opencannabis_Products_EdibleIngredient] = []
@@ -441,4 +415,33 @@ extension Opencannabis_Products_Edible: SwiftProtobuf.Message, SwiftProtobuf._Me
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Opencannabis_Products_Edible.TypeEnum: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNSPECIFIED_EDIBLE"),
+    1: .same(proto: "CHOCOLATE"),
+    2: .same(proto: "BAKED_GOOD"),
+    3: .same(proto: "CANDY"),
+    4: .same(proto: "BEVERAGE"),
+    5: .same(proto: "LOZENGE"),
+    6: .same(proto: "SUBLINGUAL"),
+    7: .same(proto: "GUMMY"),
+    8: .same(proto: "BUTTER"),
+    9: .same(proto: "OILS"),
+    10: .same(proto: "CEREAL"),
+    11: .same(proto: "CAPSULE"),
+  ]
+}
+
+extension Opencannabis_Products_Edible.Flag: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "NO_EDIBLE_FLAG"),
+    1: .same(proto: "VEGAN"),
+    2: .same(proto: "GLUTEN_FREE"),
+    3: .same(proto: "SUGAR_FREE"),
+    4: .same(proto: "FAIR_TRADE"),
+    5: .same(proto: "ORGANIC"),
+    6: .same(proto: "LOCAL"),
+  ]
 }

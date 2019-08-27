@@ -22,64 +22,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// Specifies types of cartridge products that may be expressed.
-public enum Opencannabis_Products_CartridgeType: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// Unknown, unrecognized, or otherwise unspecified cartridge type.
-  case unspecifiedCartridge // = 0
-
-  /// Specifies a lone cartridge product with no battery or other accompanying items.
-  case cartridge // = 1
-
-  /// Specifies a battery unit with no cartridge.
-  case battery // = 2
-
-  /// Specifies a full kit with a battery and cartridge unit.
-  case kit // = 3
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .unspecifiedCartridge
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .unspecifiedCartridge
-    case 1: self = .cartridge
-    case 2: self = .battery
-    case 3: self = .kit
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .unspecifiedCartridge: return 0
-    case .cartridge: return 1
-    case .battery: return 2
-    case .kit: return 3
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension Opencannabis_Products_CartridgeType: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Products_CartridgeType] = [
-    .unspecifiedCartridge,
-    .cartridge,
-    .battery,
-    .kit,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
-/// Specifies a vaporizor or cartridge-style product, for instance, vaporizor pens and table units. Vaporizors are
+/// Specifies a vaporizor or cartridge-style product, for instance, vaporizor pens and table units. Vaporizers are
 /// composed of two elements: a battery, or the bottom power unit, and a cartridge, or the top fuel unit, that contains
 /// cannabinoids and is disposable or refillable.
 public struct Opencannabis_Products_Cartridge {
@@ -98,7 +41,7 @@ public struct Opencannabis_Products_Cartridge {
   public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Type of cartridge product being described.
-  public var type: Opencannabis_Products_CartridgeType {
+  public var type: Opencannabis_Products_Cartridge.TypeEnum {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
@@ -125,23 +68,83 @@ public struct Opencannabis_Products_Cartridge {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  /// Specifies types of cartridge products that may be expressed.
+  public enum TypeEnum: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Unknown, unrecognized, or otherwise unspecified cartridge type.
+    case unspecifiedCartridge // = 0
+
+    /// Specifies a lone cartridge product with no battery or other accompanying items.
+    case cartridge // = 1
+
+    /// Specifies a battery unit with no cartridge.
+    case battery // = 2
+
+    /// Specifies a full kit with a battery and cartridge unit.
+    case kit // = 3
+
+    /// Disposable pen and cartridge pair.
+    case disposable // = 4
+
+    /// E-liquid for purchase in raw or bulk form.
+    case eLiquid // = 5
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .unspecifiedCartridge
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .unspecifiedCartridge
+      case 1: self = .cartridge
+      case 2: self = .battery
+      case 3: self = .kit
+      case 4: self = .disposable
+      case 5: self = .eLiquid
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .unspecifiedCartridge: return 0
+      case .cartridge: return 1
+      case .battery: return 2
+      case .kit: return 3
+      case .disposable: return 4
+      case .eLiquid: return 5
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Cartridge.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Cartridge.TypeEnum] = [
+    .unspecifiedCartridge,
+    .cartridge,
+    .battery,
+    .kit,
+    .disposable,
+    .eLiquid,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.products"
-
-extension Opencannabis_Products_CartridgeType: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "UNSPECIFIED_CARTRIDGE"),
-    1: .same(proto: "CARTRIDGE"),
-    2: .same(proto: "BATTERY"),
-    3: .same(proto: "KIT"),
-  ]
-}
 
 extension Opencannabis_Products_Cartridge: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Cartridge"
@@ -154,7 +157,7 @@ extension Opencannabis_Products_Cartridge: SwiftProtobuf.Message, SwiftProtobuf.
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
-    var _type: Opencannabis_Products_CartridgeType = .unspecifiedCartridge
+    var _type: Opencannabis_Products_Cartridge.TypeEnum = .unspecifiedCartridge
     var _product: Opencannabis_Content_ProductContent? = nil
     var _material: Opencannabis_Content_MaterialsData? = nil
 
@@ -226,4 +229,15 @@ extension Opencannabis_Products_Cartridge: SwiftProtobuf.Message, SwiftProtobuf.
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Opencannabis_Products_Cartridge.TypeEnum: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNSPECIFIED_CARTRIDGE"),
+    1: .same(proto: "CARTRIDGE"),
+    2: .same(proto: "BATTERY"),
+    3: .same(proto: "KIT"),
+    4: .same(proto: "DISPOSABLE"),
+    5: .same(proto: "E_LIQUID"),
+  ]
 }

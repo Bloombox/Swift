@@ -22,87 +22,6 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// Specifies types of generic merchandise that may be carried on a dispensary menu.
-public enum Opencannabis_Products_MerchandiseType: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// Unknown, unrecognized, or otherwise unspecified merchandise subcategory.
-  case unspecifiedMerchandise // = 0
-
-  /// Clothing - i.e. shirts, pants, hoodies, and other wearable textiles.
-  case clothing // = 1
-
-  /// Cups, mugs, on up to pipes and bongs.
-  case glassware // = 2
-
-  /// Containers for cannabis.
-  case container // = 3
-
-  /// Tools to produce fire to consume cannabis.
-  case lighter // = 4
-
-  /// Specific clothing value for t-shirts.
-  case tshirt // = 5
-
-  /// Specific clothing value for sweatshirts.
-  case hoodie // = 6
-
-  /// Specific clothing value for hats.
-  case hat // = 7
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .unspecifiedMerchandise
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .unspecifiedMerchandise
-    case 1: self = .clothing
-    case 2: self = .glassware
-    case 3: self = .container
-    case 4: self = .lighter
-    case 5: self = .tshirt
-    case 6: self = .hoodie
-    case 7: self = .hat
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .unspecifiedMerchandise: return 0
-    case .clothing: return 1
-    case .glassware: return 2
-    case .container: return 3
-    case .lighter: return 4
-    case .tshirt: return 5
-    case .hoodie: return 6
-    case .hat: return 7
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension Opencannabis_Products_MerchandiseType: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Products_MerchandiseType] = [
-    .unspecifiedMerchandise,
-    .clothing,
-    .glassware,
-    .container,
-    .lighter,
-    .tshirt,
-    .hoodie,
-    .hat,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
 /// Flags that may be applied specifically to merchandise items.
 public enum Opencannabis_Products_MerchandiseFlag: SwiftProtobuf.Enum {
   public typealias RawValue = Int
@@ -172,7 +91,7 @@ public struct Opencannabis_Products_Merchandise {
   public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Sub-category for this merchandise item, if known.
-  public var type: Opencannabis_Products_MerchandiseType {
+  public var type: Opencannabis_Products_Merchandise.TypeEnum {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
@@ -195,27 +114,107 @@ public struct Opencannabis_Products_Merchandise {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  /// Specifies types of generic merchandise that may be carried on a dispensary menu.
+  public enum TypeEnum: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Unknown, unrecognized, or otherwise unspecified merchandise subcategory.
+    case unspecifiedMerchandise // = 0
+
+    /// Clothing - i.e. shirts, pants, hoodies, and other wearable textiles.
+    case clothing // = 1
+
+    /// Cups, mugs, on up to pipes and bongs.
+    case glassware // = 2
+
+    /// Containers for cannabis.
+    case container // = 3
+
+    /// Tools to produce fire to consume cannabis.
+    case lighter // = 4
+
+    /// Specific clothing value for t-shirts.
+    case tshirt // = 5
+
+    /// Specific clothing value for sweatshirts.
+    case hoodie // = 6
+
+    /// Specific clothing value for hats.
+    case hat // = 7
+
+    /// Accessories for other products. Deprecated.
+    case accessories // = 8
+
+    /// Rolling papers.
+    case papers // = 9
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .unspecifiedMerchandise
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .unspecifiedMerchandise
+      case 1: self = .clothing
+      case 2: self = .glassware
+      case 3: self = .container
+      case 4: self = .lighter
+      case 5: self = .tshirt
+      case 6: self = .hoodie
+      case 7: self = .hat
+      case 8: self = .accessories
+      case 9: self = .papers
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .unspecifiedMerchandise: return 0
+      case .clothing: return 1
+      case .glassware: return 2
+      case .container: return 3
+      case .lighter: return 4
+      case .tshirt: return 5
+      case .hoodie: return 6
+      case .hat: return 7
+      case .accessories: return 8
+      case .papers: return 9
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Merchandise.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Merchandise.TypeEnum] = [
+    .unspecifiedMerchandise,
+    .clothing,
+    .glassware,
+    .container,
+    .lighter,
+    .tshirt,
+    .hoodie,
+    .hat,
+    .accessories,
+    .papers,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.products"
-
-extension Opencannabis_Products_MerchandiseType: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "UNSPECIFIED_MERCHANDISE"),
-    1: .same(proto: "CLOTHING"),
-    2: .same(proto: "GLASSWARE"),
-    3: .same(proto: "CONTAINER"),
-    4: .same(proto: "LIGHTER"),
-    5: .same(proto: "TSHIRT"),
-    6: .same(proto: "HOODIE"),
-    7: .same(proto: "HAT"),
-  ]
-}
 
 extension Opencannabis_Products_MerchandiseFlag: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -236,7 +235,7 @@ extension Opencannabis_Products_Merchandise: SwiftProtobuf.Message, SwiftProtobu
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
-    var _type: Opencannabis_Products_MerchandiseType = .unspecifiedMerchandise
+    var _type: Opencannabis_Products_Merchandise.TypeEnum = .unspecifiedMerchandise
     var _flags: [Opencannabis_Products_MerchandiseFlag] = []
     var _product: Opencannabis_Content_ProductContent? = nil
 
@@ -308,4 +307,19 @@ extension Opencannabis_Products_Merchandise: SwiftProtobuf.Message, SwiftProtobu
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Opencannabis_Products_Merchandise.TypeEnum: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNSPECIFIED_MERCHANDISE"),
+    1: .same(proto: "CLOTHING"),
+    2: .same(proto: "GLASSWARE"),
+    3: .same(proto: "CONTAINER"),
+    4: .same(proto: "LIGHTER"),
+    5: .same(proto: "TSHIRT"),
+    6: .same(proto: "HOODIE"),
+    7: .same(proto: "HAT"),
+    8: .same(proto: "ACCESSORIES"),
+    9: .same(proto: "PAPERS"),
+  ]
 }

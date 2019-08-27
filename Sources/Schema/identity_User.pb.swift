@@ -94,6 +94,12 @@ public enum Bloombox_Identity_IdentityProvider: SwiftProtobuf.Enum {
 
   /// Phone-based authentication.
   case phone // = 4
+
+  /// GitHub-based authentication.
+  case github // = 5
+
+  /// Microsoft-based authentication.
+  case microsoft // = 6
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -107,6 +113,8 @@ public enum Bloombox_Identity_IdentityProvider: SwiftProtobuf.Enum {
     case 2: self = .facebook
     case 3: self = .twitter
     case 4: self = .phone
+    case 5: self = .github
+    case 6: self = .microsoft
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -118,6 +126,8 @@ public enum Bloombox_Identity_IdentityProvider: SwiftProtobuf.Enum {
     case .facebook: return 2
     case .twitter: return 3
     case .phone: return 4
+    case .github: return 5
+    case .microsoft: return 6
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -134,6 +144,8 @@ extension Bloombox_Identity_IdentityProvider: CaseIterable {
     .facebook,
     .twitter,
     .phone,
+    .github,
+    .microsoft,
   ]
 }
 
@@ -390,13 +402,13 @@ public struct Bloombox_Identity_User {
   public mutating func clearSignup() {_uniqueStorage()._signup = nil}
 
   /// Identities associated with this user.
-  public var identities: Dictionary<String,Bloombox_Identity_UserIdentity> {
-    get {return _storage._identities}
-    set {_uniqueStorage()._identities = newValue}
+  public var identity: [Bloombox_Identity_UserIdentity] {
+    get {return _storage._identity}
+    set {_uniqueStorage()._identity = newValue}
   }
 
   /// Media associated with this user.
-  public var media: Dictionary<String,Opencannabis_Media_MediaItem> {
+  public var media: [Opencannabis_Media_MediaReference] {
     get {return _storage._media}
     set {_uniqueStorage()._media = newValue}
   }
@@ -420,6 +432,26 @@ public struct Bloombox_Identity_User {
   public var hasIndustry: Bool {return _storage._industry != nil}
   /// Clears the value of `industry`. Subsequent reads from it will return its default value.
   public mutating func clearIndustry() {_uniqueStorage()._industry = nil}
+
+  /// Timestamp for when this record was last modified.
+  public var modified: Opencannabis_Temporal_Instant {
+    get {return _storage._modified ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._modified = newValue}
+  }
+  /// Returns true if `modified` has been explicitly set.
+  public var hasModified: Bool {return _storage._modified != nil}
+  /// Clears the value of `modified`. Subsequent reads from it will return its default value.
+  public mutating func clearModified() {_uniqueStorage()._modified = nil}
+
+  /// Timestamp for when this record was created.
+  public var created: Opencannabis_Temporal_Instant {
+    get {return _storage._created ?? Opencannabis_Temporal_Instant()}
+    set {_uniqueStorage()._created = newValue}
+  }
+  /// Returns true if `created` has been explicitly set.
+  public var hasCreated: Bool {return _storage._created != nil}
+  /// Clears the value of `created`. Subsequent reads from it will return its default value.
+  public mutating func clearCreated() {_uniqueStorage()._created = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -599,7 +631,7 @@ public struct Bloombox_Identity_ProductTypePreference {
   public var minor: Bloombox_Identity_ProductTypePreference.OneOf_Minor? = nil
 
   /// Declares a specific sub-type for a major type of 'Apothecary'.
-  public var apothecary: Opencannabis_Products_ApothecaryType {
+  public var apothecary: Opencannabis_Products_Apothecary.TypeEnum {
     get {
       if case .apothecary(let v)? = minor {return v}
       return .unspecifiedApothecary
@@ -608,7 +640,7 @@ public struct Bloombox_Identity_ProductTypePreference {
   }
 
   /// Declares a specific sub-type for a major type of 'Cartridge'.
-  public var cartridge: Opencannabis_Products_CartridgeType {
+  public var cartridge: Opencannabis_Products_Cartridge.TypeEnum {
     get {
       if case .cartridge(let v)? = minor {return v}
       return .unspecifiedCartridge
@@ -617,7 +649,7 @@ public struct Bloombox_Identity_ProductTypePreference {
   }
 
   /// Declares a specific sub-type for a major type of 'Edible'.
-  public var edible: Opencannabis_Products_EdibleType {
+  public var edible: Opencannabis_Products_Edible.TypeEnum {
     get {
       if case .edible(let v)? = minor {return v}
       return .unspecifiedEdible
@@ -626,7 +658,7 @@ public struct Bloombox_Identity_ProductTypePreference {
   }
 
   /// Declares a specific sub-type for a major type of 'Extract'.
-  public var extract: Opencannabis_Products_ExtractType {
+  public var extract: Opencannabis_Products_Extract.TypeEnum {
     get {
       if case .extract(let v)? = minor {return v}
       return .unspecifiedExtract
@@ -635,7 +667,7 @@ public struct Bloombox_Identity_ProductTypePreference {
   }
 
   /// Declares a specific sub-type for a major type of 'Plant'.
-  public var plant: Opencannabis_Products_PlantType {
+  public var plant: Opencannabis_Products_Plant.TypeEnum {
     get {
       if case .plant(let v)? = minor {return v}
       return .unspecifiedPlant
@@ -648,15 +680,15 @@ public struct Bloombox_Identity_ProductTypePreference {
   /// Specifies, if applicable, a sub-category within the major category.
   public enum OneOf_Minor: Equatable {
     /// Declares a specific sub-type for a major type of 'Apothecary'.
-    case apothecary(Opencannabis_Products_ApothecaryType)
+    case apothecary(Opencannabis_Products_Apothecary.TypeEnum)
     /// Declares a specific sub-type for a major type of 'Cartridge'.
-    case cartridge(Opencannabis_Products_CartridgeType)
+    case cartridge(Opencannabis_Products_Cartridge.TypeEnum)
     /// Declares a specific sub-type for a major type of 'Edible'.
-    case edible(Opencannabis_Products_EdibleType)
+    case edible(Opencannabis_Products_Edible.TypeEnum)
     /// Declares a specific sub-type for a major type of 'Extract'.
-    case extract(Opencannabis_Products_ExtractType)
+    case extract(Opencannabis_Products_Extract.TypeEnum)
     /// Declares a specific sub-type for a major type of 'Plant'.
-    case plant(Opencannabis_Products_PlantType)
+    case plant(Opencannabis_Products_Plant.TypeEnum)
 
   #if !swift(>=4.1)
     public static func ==(lhs: Bloombox_Identity_ProductTypePreference.OneOf_Minor, rhs: Bloombox_Identity_ProductTypePreference.OneOf_Minor) -> Bool {
@@ -722,7 +754,7 @@ public struct Bloombox_Identity_ConsumerMembership {
     set {_uniqueStorage()._referralSource = newValue}
   }
 
-  /// Referral channel token - an artbirary, end-system provided value.
+  /// Referral channel token - an arbitrary, end-system provided value.
   public var referralChannel: String {
     get {return _storage._referralChannel}
     set {_uniqueStorage()._referralChannel = newValue}
@@ -748,7 +780,7 @@ public struct Bloombox_Identity_ConsumerMembership {
   /// Clears the value of `seen`. Subsequent reads from it will return its default value.
   public mutating func clearSeen() {_uniqueStorage()._seen = nil}
 
-  /// Foreign ID for this membership, in the partner-colocated membership system.
+  /// Foreign ID for this membership, in the partner-co-located membership system.
   public var foreignID: String {
     get {return _storage._foreignID}
     set {_uniqueStorage()._foreignID = newValue}
@@ -825,6 +857,8 @@ extension Bloombox_Identity_IdentityProvider: SwiftProtobuf._ProtoNameProviding 
     2: .same(proto: "FACEBOOK"),
     3: .same(proto: "TWITTER"),
     4: .same(proto: "PHONE"),
+    5: .same(proto: "GITHUB"),
+    6: .same(proto: "MICROSOFT"),
   ]
 }
 
@@ -867,10 +901,12 @@ extension Bloombox_Identity_User: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     21: .standard(proto: "doctor_rec"),
     30: .same(proto: "seen"),
     31: .same(proto: "signup"),
-    40: .same(proto: "identities"),
+    40: .same(proto: "identity"),
     41: .same(proto: "media"),
     100: .same(proto: "consumer"),
     101: .same(proto: "industry"),
+    102: .same(proto: "modified"),
+    103: .same(proto: "created"),
   ]
 
   fileprivate class _StorageClass {
@@ -881,10 +917,12 @@ extension Bloombox_Identity_User: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     var _doctorRec: [Bloombox_Identity_Ids_UserDoctorRec] = []
     var _seen: Opencannabis_Temporal_Instant? = nil
     var _signup: Opencannabis_Temporal_Instant? = nil
-    var _identities: Dictionary<String,Bloombox_Identity_UserIdentity> = [:]
-    var _media: Dictionary<String,Opencannabis_Media_MediaItem> = [:]
+    var _identity: [Bloombox_Identity_UserIdentity] = []
+    var _media: [Opencannabis_Media_MediaReference] = []
     var _consumer: Bloombox_Identity_ConsumerProfile? = nil
     var _industry: Bloombox_Identity_IndustryProfile? = nil
+    var _modified: Opencannabis_Temporal_Instant? = nil
+    var _created: Opencannabis_Temporal_Instant? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -898,10 +936,12 @@ extension Bloombox_Identity_User: SwiftProtobuf.Message, SwiftProtobuf._MessageI
       _doctorRec = source._doctorRec
       _seen = source._seen
       _signup = source._signup
-      _identities = source._identities
+      _identity = source._identity
       _media = source._media
       _consumer = source._consumer
       _industry = source._industry
+      _modified = source._modified
+      _created = source._created
     }
   }
 
@@ -924,10 +964,12 @@ extension Bloombox_Identity_User: SwiftProtobuf.Message, SwiftProtobuf._MessageI
         case 21: try decoder.decodeRepeatedMessageField(value: &_storage._doctorRec)
         case 30: try decoder.decodeSingularMessageField(value: &_storage._seen)
         case 31: try decoder.decodeSingularMessageField(value: &_storage._signup)
-        case 40: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Identity_UserIdentity>.self, value: &_storage._identities)
-        case 41: try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Media_MediaItem>.self, value: &_storage._media)
+        case 40: try decoder.decodeRepeatedMessageField(value: &_storage._identity)
+        case 41: try decoder.decodeRepeatedMessageField(value: &_storage._media)
         case 100: try decoder.decodeSingularMessageField(value: &_storage._consumer)
         case 101: try decoder.decodeSingularMessageField(value: &_storage._industry)
+        case 102: try decoder.decodeSingularMessageField(value: &_storage._modified)
+        case 103: try decoder.decodeSingularMessageField(value: &_storage._created)
         default: break
         }
       }
@@ -957,17 +999,23 @@ extension Bloombox_Identity_User: SwiftProtobuf.Message, SwiftProtobuf._MessageI
       if let v = _storage._signup {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 31)
       }
-      if !_storage._identities.isEmpty {
-        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Bloombox_Identity_UserIdentity>.self, value: _storage._identities, fieldNumber: 40)
+      if !_storage._identity.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._identity, fieldNumber: 40)
       }
       if !_storage._media.isEmpty {
-        try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufString,Opencannabis_Media_MediaItem>.self, value: _storage._media, fieldNumber: 41)
+        try visitor.visitRepeatedMessageField(value: _storage._media, fieldNumber: 41)
       }
       if let v = _storage._consumer {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 100)
       }
       if let v = _storage._industry {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 101)
+      }
+      if let v = _storage._modified {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 102)
+      }
+      if let v = _storage._created {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 103)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -985,10 +1033,12 @@ extension Bloombox_Identity_User: SwiftProtobuf.Message, SwiftProtobuf._MessageI
         if _storage._doctorRec != rhs_storage._doctorRec {return false}
         if _storage._seen != rhs_storage._seen {return false}
         if _storage._signup != rhs_storage._signup {return false}
-        if _storage._identities != rhs_storage._identities {return false}
+        if _storage._identity != rhs_storage._identity {return false}
         if _storage._media != rhs_storage._media {return false}
         if _storage._consumer != rhs_storage._consumer {return false}
         if _storage._industry != rhs_storage._industry {return false}
+        if _storage._modified != rhs_storage._modified {return false}
+        if _storage._created != rhs_storage._created {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -1327,27 +1377,27 @@ extension Bloombox_Identity_ProductTypePreference: SwiftProtobuf.Message, SwiftP
       case 1: try decoder.decodeSingularEnumField(value: &self.major)
       case 10:
         if self.minor != nil {try decoder.handleConflictingOneOf()}
-        var v: Opencannabis_Products_ApothecaryType?
+        var v: Opencannabis_Products_Apothecary.TypeEnum?
         try decoder.decodeSingularEnumField(value: &v)
         if let v = v {self.minor = .apothecary(v)}
       case 11:
         if self.minor != nil {try decoder.handleConflictingOneOf()}
-        var v: Opencannabis_Products_CartridgeType?
+        var v: Opencannabis_Products_Cartridge.TypeEnum?
         try decoder.decodeSingularEnumField(value: &v)
         if let v = v {self.minor = .cartridge(v)}
       case 12:
         if self.minor != nil {try decoder.handleConflictingOneOf()}
-        var v: Opencannabis_Products_EdibleType?
+        var v: Opencannabis_Products_Edible.TypeEnum?
         try decoder.decodeSingularEnumField(value: &v)
         if let v = v {self.minor = .edible(v)}
       case 13:
         if self.minor != nil {try decoder.handleConflictingOneOf()}
-        var v: Opencannabis_Products_ExtractType?
+        var v: Opencannabis_Products_Extract.TypeEnum?
         try decoder.decodeSingularEnumField(value: &v)
         if let v = v {self.minor = .extract(v)}
       case 14:
         if self.minor != nil {try decoder.handleConflictingOneOf()}
-        var v: Opencannabis_Products_PlantType?
+        var v: Opencannabis_Products_Plant.TypeEnum?
         try decoder.decodeSingularEnumField(value: &v)
         if let v = v {self.minor = .plant(v)}
       default: break

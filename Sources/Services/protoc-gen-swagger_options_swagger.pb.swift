@@ -7,6 +7,7 @@
 //   https://github.com/apple/swift-protobuf/
 
 import Foundation
+import OpenCannabis
 import SwiftProtobuf
 
 // If the compiler emits an error on this type, it is because this file

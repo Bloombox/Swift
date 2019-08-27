@@ -26,29 +26,32 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 
 /// Enumerates roles that may be granted, on behalf of a partner or partner location account, to an end-user account, by
 /// a location or partner admin.
-public enum Bloombox_Security_Access_PartnerRole: SwiftProtobuf.Enum {
+public enum Bloombox_Security_Access_AccessRole: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Read-only permission for the specified scope.
   case readonly // = 0
 
+  /// Employee rights. Can manage data but not settings.
+  case employee // = 1
+
   /// Supervisor (edit, but not admin) permission for the specified scope.
-  case supervisor // = 1
+  case supervisor // = 2
 
   /// Billing administration rights. Can edit payment methods and see/manage invoices.
-  case billing // = 2
+  case billing // = 3
 
   /// Audit rights. Allows outside auditors to see account data in a read-only manner.
-  case audit // = 3
-
-  /// Employee rights. Can manage data but not settings.
-  case employee // = 4
+  case audit // = 4
 
   /// Software-level access, with ability to manage API keys and technical settings.
   case developer // = 5
 
   /// Administrator account, with full access to user and account-level settings.
   case admin // = 6
+
+  /// Creator/owner role for a partner account.
+  case owner // = 7
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -58,12 +61,13 @@ public enum Bloombox_Security_Access_PartnerRole: SwiftProtobuf.Enum {
   public init?(rawValue: Int) {
     switch rawValue {
     case 0: self = .readonly
-    case 1: self = .supervisor
-    case 2: self = .billing
-    case 3: self = .audit
-    case 4: self = .employee
+    case 1: self = .employee
+    case 2: self = .supervisor
+    case 3: self = .billing
+    case 4: self = .audit
     case 5: self = .developer
     case 6: self = .admin
+    case 7: self = .owner
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -71,12 +75,13 @@ public enum Bloombox_Security_Access_PartnerRole: SwiftProtobuf.Enum {
   public var rawValue: Int {
     switch self {
     case .readonly: return 0
-    case .supervisor: return 1
-    case .billing: return 2
-    case .audit: return 3
-    case .employee: return 4
+    case .employee: return 1
+    case .supervisor: return 2
+    case .billing: return 3
+    case .audit: return 4
     case .developer: return 5
     case .admin: return 6
+    case .owner: return 7
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -85,16 +90,17 @@ public enum Bloombox_Security_Access_PartnerRole: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Bloombox_Security_Access_PartnerRole: CaseIterable {
+extension Bloombox_Security_Access_AccessRole: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Bloombox_Security_Access_PartnerRole] = [
+  public static var allCases: [Bloombox_Security_Access_AccessRole] = [
     .readonly,
+    .employee,
     .supervisor,
     .billing,
     .audit,
-    .employee,
     .developer,
     .admin,
+    .owner,
   ]
 }
 
@@ -180,7 +186,7 @@ public struct Bloombox_Security_Access_AccessPolicy {
   public mutating func clearSubject() {_uniqueStorage()._subject = nil}
 
   /// Roles granted as part of this policy.
-  public var privilege: [Bloombox_Security_Access_PartnerRole] {
+  public var privilege: [Bloombox_Security_Access_AccessRole] {
     get {return _storage._privilege}
     set {_uniqueStorage()._privilege = newValue}
   }
@@ -195,7 +201,7 @@ public struct Bloombox_Security_Access_AccessPolicy {
   /// Clears the value of `user`. Subsequent reads from it will return its default value.
   public mutating func clearUser() {_uniqueStorage()._user = nil}
 
-  /// Permissions grantor.
+  /// User who granted these permissions.
   public var grantor: Bloombox_Identity_UserKey {
     get {return _storage._grantor ?? Bloombox_Identity_UserKey()}
     set {_uniqueStorage()._grantor = newValue}
@@ -215,7 +221,7 @@ public struct Bloombox_Security_Access_AccessPolicy {
   /// Clears the value of `modified`. Subsequent reads from it will return its default value.
   public mutating func clearModified() {_uniqueStorage()._modified = nil}
 
-  /// Created timestmap for this record.
+  /// Created timestamp for this record.
   public var created: Opencannabis_Temporal_Instant {
     get {return _storage._created ?? Opencannabis_Temporal_Instant()}
     set {_uniqueStorage()._created = newValue}
@@ -236,15 +242,16 @@ public struct Bloombox_Security_Access_AccessPolicy {
 
 fileprivate let _protobuf_package = "bloombox.security.access"
 
-extension Bloombox_Security_Access_PartnerRole: SwiftProtobuf._ProtoNameProviding {
+extension Bloombox_Security_Access_AccessRole: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "READONLY"),
-    1: .same(proto: "SUPERVISOR"),
-    2: .same(proto: "BILLING"),
-    3: .same(proto: "AUDIT"),
-    4: .same(proto: "EMPLOYEE"),
+    1: .same(proto: "EMPLOYEE"),
+    2: .same(proto: "SUPERVISOR"),
+    3: .same(proto: "BILLING"),
+    4: .same(proto: "AUDIT"),
     5: .same(proto: "DEVELOPER"),
     6: .same(proto: "ADMIN"),
+    7: .same(proto: "OWNER"),
   ]
 }
 
@@ -344,7 +351,7 @@ extension Bloombox_Security_Access_AccessPolicy: SwiftProtobuf.Message, SwiftPro
   fileprivate class _StorageClass {
     var _uuid: String = String()
     var _subject: Bloombox_Security_Access_AccessSubject? = nil
-    var _privilege: [Bloombox_Security_Access_PartnerRole] = []
+    var _privilege: [Bloombox_Security_Access_AccessRole] = []
     var _user: Bloombox_Identity_UserKey? = nil
     var _grantor: Bloombox_Identity_UserKey? = nil
     var _modified: Opencannabis_Temporal_Instant? = nil

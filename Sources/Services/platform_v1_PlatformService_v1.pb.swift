@@ -325,6 +325,58 @@ public struct Bloombox_Services_Platform_V1_DomainInfo {
   public init() {}
 }
 
+/// Describes website information for a given partner location's web presence. 
+/// Included in web pages via regular meta tags and OpenGraph tags.
+public struct Bloombox_Services_Platform_V1_SiteInfo {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Specifies a request to retrieve web presence info for a partner location.
+  public struct Request {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Partner ID to fetch metadata for.
+    public var partnerID: String = String()
+
+    /// Location ID to fetch metadata for.
+    public var locationID: String = String()
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+  }
+
+  /// Response for a request of site information.
+  public struct Response {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    /// Metadata for a given partner location's web presence.
+    public var metadata: Bloombox_Page_Context.Metadata {
+      get {return _storage._metadata ?? Bloombox_Page_Context.Metadata()}
+      set {_uniqueStorage()._metadata = newValue}
+    }
+    /// Returns true if `metadata` has been explicitly set.
+    public var hasMetadata: Bool {return _storage._metadata != nil}
+    /// Clears the value of `metadata`. Subsequent reads from it will return its default value.
+    public mutating func clearMetadata() {_uniqueStorage()._metadata = nil}
+
+    public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    public init() {}
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+  }
+
+  public init() {}
+}
+
 /// Specifies an operation to retrieve brand information for a given partner location.
 public struct Bloombox_Services_Platform_V1_BrandInfo {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -757,6 +809,121 @@ extension Bloombox_Services_Platform_V1_DomainInfo.Response: SwiftProtobuf.Messa
     if lhs.tv != rhs.tv {return false}
     if lhs.link != rhs.link {return false}
     if lhs.website != rhs.website {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Platform_V1_SiteInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SiteInfo"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Platform_V1_SiteInfo, rhs: Bloombox_Services_Platform_V1_SiteInfo) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Platform_V1_SiteInfo.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Platform_V1_SiteInfo.protoMessageName + ".Request"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "partner_id"),
+    2: .standard(proto: "location_id"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.partnerID)
+      case 2: try decoder.decodeSingularStringField(value: &self.locationID)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.partnerID.isEmpty {
+      try visitor.visitSingularStringField(value: self.partnerID, fieldNumber: 1)
+    }
+    if !self.locationID.isEmpty {
+      try visitor.visitSingularStringField(value: self.locationID, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Platform_V1_SiteInfo.Request, rhs: Bloombox_Services_Platform_V1_SiteInfo.Request) -> Bool {
+    if lhs.partnerID != rhs.partnerID {return false}
+    if lhs.locationID != rhs.locationID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Bloombox_Services_Platform_V1_SiteInfo.Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = Bloombox_Services_Platform_V1_SiteInfo.protoMessageName + ".Response"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "Metadata"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _metadata: Bloombox_Page_Context.Metadata? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _metadata = source._metadata
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._metadata)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._metadata {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Bloombox_Services_Platform_V1_SiteInfo.Response, rhs: Bloombox_Services_Platform_V1_SiteInfo.Response) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._metadata != rhs_storage._metadata {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

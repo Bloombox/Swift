@@ -39,6 +39,12 @@ public struct Opencannabis_Contact_PhoneNumber {
   /// Display text for this phone number, if applicable.
   public var display: String = String()
 
+  /// Whether the phone number in question is known to be capable of receiving or sending SMS messages.
+  public var textCapable: Bool = false
+
+  /// Whether the phone number in question is known to be capable of receiving or sending voice calls.
+  public var voiceCapable: Bool = false
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -54,6 +60,8 @@ extension Opencannabis_Contact_PhoneNumber: SwiftProtobuf.Message, SwiftProtobuf
     1: .same(proto: "e164"),
     2: .same(proto: "validated"),
     3: .same(proto: "display"),
+    4: .standard(proto: "text_capable"),
+    5: .standard(proto: "voice_capable"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -62,6 +70,8 @@ extension Opencannabis_Contact_PhoneNumber: SwiftProtobuf.Message, SwiftProtobuf
       case 1: try decoder.decodeSingularStringField(value: &self.e164)
       case 2: try decoder.decodeSingularBoolField(value: &self.validated)
       case 3: try decoder.decodeSingularStringField(value: &self.display)
+      case 4: try decoder.decodeSingularBoolField(value: &self.textCapable)
+      case 5: try decoder.decodeSingularBoolField(value: &self.voiceCapable)
       default: break
       }
     }
@@ -77,6 +87,12 @@ extension Opencannabis_Contact_PhoneNumber: SwiftProtobuf.Message, SwiftProtobuf
     if !self.display.isEmpty {
       try visitor.visitSingularStringField(value: self.display, fieldNumber: 3)
     }
+    if self.textCapable != false {
+      try visitor.visitSingularBoolField(value: self.textCapable, fieldNumber: 4)
+    }
+    if self.voiceCapable != false {
+      try visitor.visitSingularBoolField(value: self.voiceCapable, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -84,6 +100,8 @@ extension Opencannabis_Contact_PhoneNumber: SwiftProtobuf.Message, SwiftProtobuf
     if lhs.e164 != rhs.e164 {return false}
     if lhs.validated != rhs.validated {return false}
     if lhs.display != rhs.display {return false}
+    if lhs.textCapable != rhs.textCapable {return false}
+    if lhs.voiceCapable != rhs.voiceCapable {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -20,11 +20,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Foundation
 import Dispatch
+import OpenCannabis
+import Foundation
 import SwiftGRPC
 import SwiftProtobuf
-import OpenCannabis
 
 public protocol Bloombox_Services_Telemetry_V1beta4_EventTelemetryPingCall: ClientCallUnary {}
 
@@ -54,418 +54,121 @@ fileprivate final class Bloombox_Services_Telemetry_V1beta4_EventTelemetryErrorC
 /// Instantiate Bloombox_Services_Telemetry_V1beta4_EventTelemetryServiceClient, then call methods of this protocol to make API calls.
 public protocol Bloombox_Services_Telemetry_V1beta4_EventTelemetryService: ServiceClient {
   /// Synchronous. Unary.
-  func ping(_ request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request) throws -> Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response
+  func ping(_ request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response
   /// Asynchronous. Unary.
-  func ping(_ request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request, completion: @escaping (Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryPingCall
+  @discardableResult
+  func ping(_ request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryPingCall
 
   /// Synchronous. Unary.
-  func event(_ request: Bloombox_Services_Telemetry_V1beta4_Event.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func event(_ request: Bloombox_Services_Telemetry_V1beta4_Event.Request, metadata customMetadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func event(_ request: Bloombox_Services_Telemetry_V1beta4_Event.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryEventCall
+  @discardableResult
+  func event(_ request: Bloombox_Services_Telemetry_V1beta4_Event.Request, metadata customMetadata: Metadata, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryEventCall
 
   /// Synchronous. Unary.
-  func batch(_ request: Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest) throws -> Bloombox_Services_Telemetry_V1beta4_TelemetryResponse
+  func batch(_ request: Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest, metadata customMetadata: Metadata) throws -> Bloombox_Services_Telemetry_V1beta4_TelemetryResponse
   /// Asynchronous. Unary.
-  func batch(_ request: Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest, completion: @escaping (Bloombox_Services_Telemetry_V1beta4_TelemetryResponse?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryBatchCall
+  @discardableResult
+  func batch(_ request: Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Telemetry_V1beta4_TelemetryResponse?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryBatchCall
 
   /// Synchronous. Unary.
-  func error(_ request: Bloombox_Services_Telemetry_V1beta4_Exception) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func error(_ request: Bloombox_Services_Telemetry_V1beta4_Exception, metadata customMetadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func error(_ request: Bloombox_Services_Telemetry_V1beta4_Exception, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryErrorCall
+  @discardableResult
+  func error(_ request: Bloombox_Services_Telemetry_V1beta4_Exception, metadata customMetadata: Metadata, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryErrorCall
+
+}
+
+public extension Bloombox_Services_Telemetry_V1beta4_EventTelemetryService {
+  /// Synchronous. Unary.
+  func ping(_ request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request) throws -> Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response {
+    return try self.ping(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func ping(_ request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request, completion: @escaping (Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryPingCall {
+    return try self.ping(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func event(_ request: Bloombox_Services_Telemetry_V1beta4_Event.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try self.event(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func event(_ request: Bloombox_Services_Telemetry_V1beta4_Event.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryEventCall {
+    return try self.event(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func batch(_ request: Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest) throws -> Bloombox_Services_Telemetry_V1beta4_TelemetryResponse {
+    return try self.batch(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func batch(_ request: Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest, completion: @escaping (Bloombox_Services_Telemetry_V1beta4_TelemetryResponse?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryBatchCall {
+    return try self.batch(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func error(_ request: Bloombox_Services_Telemetry_V1beta4_Exception) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try self.error(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func error(_ request: Bloombox_Services_Telemetry_V1beta4_Exception, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryErrorCall {
+    return try self.error(request, metadata: self.metadata, completion: completion)
+  }
 
 }
 
 public final class Bloombox_Services_Telemetry_V1beta4_EventTelemetryServiceClient: ServiceClientBase, Bloombox_Services_Telemetry_V1beta4_EventTelemetryService {
   /// Synchronous. Unary.
-  public func ping(_ request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request) throws -> Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response {
+  public func ping(_ request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response {
     return try Bloombox_Services_Telemetry_V1beta4_EventTelemetryPingCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func ping(_ request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request, completion: @escaping (Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryPingCall {
+  @discardableResult
+  public func ping(_ request: Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Telemetry_V1beta4_TelemetryPing.Response?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryPingCall {
     return try Bloombox_Services_Telemetry_V1beta4_EventTelemetryPingCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func event(_ request: Bloombox_Services_Telemetry_V1beta4_Event.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+  public func event(_ request: Bloombox_Services_Telemetry_V1beta4_Event.Request, metadata customMetadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try Bloombox_Services_Telemetry_V1beta4_EventTelemetryEventCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func event(_ request: Bloombox_Services_Telemetry_V1beta4_Event.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryEventCall {
+  @discardableResult
+  public func event(_ request: Bloombox_Services_Telemetry_V1beta4_Event.Request, metadata customMetadata: Metadata, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryEventCall {
     return try Bloombox_Services_Telemetry_V1beta4_EventTelemetryEventCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func batch(_ request: Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest) throws -> Bloombox_Services_Telemetry_V1beta4_TelemetryResponse {
+  public func batch(_ request: Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest, metadata customMetadata: Metadata) throws -> Bloombox_Services_Telemetry_V1beta4_TelemetryResponse {
     return try Bloombox_Services_Telemetry_V1beta4_EventTelemetryBatchCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func batch(_ request: Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest, completion: @escaping (Bloombox_Services_Telemetry_V1beta4_TelemetryResponse?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryBatchCall {
+  @discardableResult
+  public func batch(_ request: Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Telemetry_V1beta4_TelemetryResponse?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryBatchCall {
     return try Bloombox_Services_Telemetry_V1beta4_EventTelemetryBatchCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func error(_ request: Bloombox_Services_Telemetry_V1beta4_Exception) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+  public func error(_ request: Bloombox_Services_Telemetry_V1beta4_Exception, metadata customMetadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try Bloombox_Services_Telemetry_V1beta4_EventTelemetryErrorCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func error(_ request: Bloombox_Services_Telemetry_V1beta4_Exception, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryErrorCall {
+  @discardableResult
+  public func error(_ request: Bloombox_Services_Telemetry_V1beta4_Exception, metadata customMetadata: Metadata, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_EventTelemetryErrorCall {
     return try Bloombox_Services_Telemetry_V1beta4_EventTelemetryErrorCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-}
-public protocol Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryImpressionCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryImpressionCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryImpressionCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.CommercialTelemetry/Impression" }
-}
-
-public protocol Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryViewCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryViewCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryViewCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.CommercialTelemetry/View" }
-}
-
-public protocol Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryActionCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryActionCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryActionCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.CommercialTelemetry/Action" }
-}
-
-
-/// Instantiate Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryServiceClient, then call methods of this protocol to make API calls.
-public protocol Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryService: ServiceClient {
-  /// Synchronous. Unary.
-  func impression(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func impression(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryImpressionCall
-
-  /// Synchronous. Unary.
-  func view(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func view(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryViewCall
-
-  /// Synchronous. Unary.
-  func action(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func action(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryActionCall
-
-}
-
-public final class Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryServiceClient: ServiceClientBase, Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryService {
-  /// Synchronous. Unary.
-  public func impression(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryImpressionCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func impression(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryImpressionCall {
-    return try Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryImpressionCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  public func view(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryViewCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func view(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryViewCall {
-    return try Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryViewCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  public func action(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryActionCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func action(_ request: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryActionCall {
-    return try Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryActionCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-}
-public protocol Bloombox_Services_Telemetry_V1beta4_IdentityTelemetryActionCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_IdentityTelemetryActionCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_IdentityTelemetryActionCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.IdentityTelemetry/Action" }
-}
-
-
-/// Instantiate Bloombox_Services_Telemetry_V1beta4_IdentityTelemetryServiceClient, then call methods of this protocol to make API calls.
-public protocol Bloombox_Services_Telemetry_V1beta4_IdentityTelemetryService: ServiceClient {
-  /// Synchronous. Unary.
-  func action(_ request: Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func action(_ request: Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_IdentityTelemetryActionCall
-
-}
-
-public final class Bloombox_Services_Telemetry_V1beta4_IdentityTelemetryServiceClient: ServiceClientBase, Bloombox_Services_Telemetry_V1beta4_IdentityTelemetryService {
-  /// Synchronous. Unary.
-  public func action(_ request: Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_IdentityTelemetryActionCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func action(_ request: Bloombox_Services_Telemetry_V1beta4_IdentityEvent.Action, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_IdentityTelemetryActionCall {
-    return try Bloombox_Services_Telemetry_V1beta4_IdentityTelemetryActionCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-}
-public protocol Bloombox_Services_Telemetry_V1beta4_SearchTelemetryQueryCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_SearchTelemetryQueryCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_SearchTelemetryQueryCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.SearchTelemetry/Query" }
-}
-
-public protocol Bloombox_Services_Telemetry_V1beta4_SearchTelemetryResultCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_SearchTelemetryResultCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_SearchTelemetryResultCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.SearchTelemetry/Result" }
-}
-
-
-/// Instantiate Bloombox_Services_Telemetry_V1beta4_SearchTelemetryServiceClient, then call methods of this protocol to make API calls.
-public protocol Bloombox_Services_Telemetry_V1beta4_SearchTelemetryService: ServiceClient {
-  /// Synchronous. Unary.
-  func query(_ request: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func query(_ request: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_SearchTelemetryQueryCall
-
-  /// Synchronous. Unary.
-  func result(_ request: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func result(_ request: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_SearchTelemetryResultCall
-
-}
-
-public final class Bloombox_Services_Telemetry_V1beta4_SearchTelemetryServiceClient: ServiceClientBase, Bloombox_Services_Telemetry_V1beta4_SearchTelemetryService {
-  /// Synchronous. Unary.
-  public func query(_ request: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_SearchTelemetryQueryCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func query(_ request: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_SearchTelemetryQueryCall {
-    return try Bloombox_Services_Telemetry_V1beta4_SearchTelemetryQueryCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  public func result(_ request: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_SearchTelemetryResultCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func result(_ request: Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_SearchTelemetryResultCall {
-    return try Bloombox_Services_Telemetry_V1beta4_SearchTelemetryResultCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-}
-public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.Encounter, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Encounter" }
-}
-
-public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Intake" }
-}
-
-public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Update" }
-}
-
-public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockTransfer, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Transfer" }
-}
-
-public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockReserve, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Reserve" }
-}
-
-public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.ReservationCancel, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Cancel" }
-}
-
-public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCall: ClientCallUnary {}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCallBase: ClientCallUnaryBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockConsume, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Consume" }
-}
-
-public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCall: ClientCallClientStreaming {
-  /// Send a message to the stream. Nonblocking.
-  func send(_ message: Bloombox_Services_Telemetry_V1beta4_InventoryEvent, completion: @escaping (Error?) -> Void) throws
-  /// Do not call this directly, call `send()` in the protocol extension below instead.
-  func _send(_ message: Bloombox_Services_Telemetry_V1beta4_InventoryEvent, timeout: DispatchTime) throws
-
-  /// Call this to close the connection and wait for a response. Blocking.
-  func closeAndReceive() throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Call this to close the connection and wait for a response. Nonblocking.
-  func closeAndReceive(completion: @escaping (ResultOrRPCError<SwiftProtobuf.Google_Protobuf_Empty>) -> Void) throws
-}
-
-public extension Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCall {
-  /// Send a message to the stream and wait for the send operation to finish. Blocking.
-  func send(_ message: Bloombox_Services_Telemetry_V1beta4_InventoryEvent, timeout: DispatchTime = .distantFuture) throws { try self._send(message, timeout: timeout) }
-}
-
-fileprivate final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCallBase: ClientCallClientStreamingBase<Bloombox_Services_Telemetry_V1beta4_InventoryEvent, SwiftProtobuf.Google_Protobuf_Empty>, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCall {
-  override class var method: String { return "/bloombox.services.telemetry.v1beta4.InventoryTelemetry/Live" }
-}
-
-
-/// Instantiate Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryServiceClient, then call methods of this protocol to make API calls.
-public protocol Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryService: ServiceClient {
-  /// Synchronous. Unary.
-  func encounter(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.Encounter) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func encounter(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.Encounter, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCall
-
-  /// Synchronous. Unary.
-  func intake(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func intake(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCall
-
-  /// Synchronous. Unary.
-  func update(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func update(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCall
-
-  /// Synchronous. Unary.
-  func transfer(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockTransfer) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func transfer(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockTransfer, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCall
-
-  /// Synchronous. Unary.
-  func reserve(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockReserve) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func reserve(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockReserve, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCall
-
-  /// Synchronous. Unary.
-  func cancel(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.ReservationCancel) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func cancel(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.ReservationCancel, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCall
-
-  /// Synchronous. Unary.
-  func consume(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockConsume) throws -> SwiftProtobuf.Google_Protobuf_Empty
-  /// Asynchronous. Unary.
-  func consume(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockConsume, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCall
-
-  /// Asynchronous. Client-streaming.
-  /// Use methods on the returned object to stream messages and
-  /// to close the connection and wait for a final response.
-  func live(completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCall
-
-}
-
-public final class Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryServiceClient: ServiceClientBase, Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryService {
-  /// Synchronous. Unary.
-  public func encounter(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.Encounter) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func encounter(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.Encounter, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCall {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryEncounterCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  public func intake(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func intake(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCall {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryIntakeCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  public func update(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func update(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockIntake, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCall {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryUpdateCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  public func transfer(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockTransfer) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func transfer(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockTransfer, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCall {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryTransferCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  public func reserve(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockReserve) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func reserve(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockReserve, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCall {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryReserveCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  public func cancel(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.ReservationCancel) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func cancel(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.ReservationCancel, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCall {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryCancelCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  public func consume(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockConsume) throws -> SwiftProtobuf.Google_Protobuf_Empty {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  public func consume(_ request: Bloombox_Services_Telemetry_V1beta4_InventoryEvent.StockConsume, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCall {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryConsumeCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Asynchronous. Client-streaming.
-  /// Use methods on the returned object to stream messages and
-  /// to close the connection and wait for a final response.
-  public func live(completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCall {
-    return try Bloombox_Services_Telemetry_V1beta4_InventoryTelemetryLiveCallBase(channel)
-      .start(metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
 }

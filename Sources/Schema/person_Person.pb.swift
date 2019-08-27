@@ -23,20 +23,44 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 }
 
 /// Genders that a user may be.
-public enum Opencannabis_Person_Gender: SwiftProtobuf.Enum {
+public enum Opencannabis_Person_GenderCategory: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Unspecified gender.
   case unspecified // = 0
 
-  /// Male.
+  /// Cis-male (alias for backwards compatibility).
   case male // = 1
 
-  /// Female.
+  /// Cis-male.
+  public static let cisMale = male
+
+  /// Cis-female (alias for backwards compatibility).
   case female // = 2
 
+  /// Cis-female.
+  public static let cisFemale = female
+
+  /// Trans-gender male.
+  case transMale // = 3
+
+  /// Trans-gender female.
+  case transFemale // = 4
+
+  /// Non-binary.
+  case nonBinary // = 5
+
+  /// Gender-fluid.
+  case genderFluid // = 6
+
+  /// Bi-gender.
+  case biGender // = 7
+
+  /// Pan-gender.
+  case panGender // = 8
+
   /// Other.
-  case other // = 3
+  case declineToState // = 99
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -48,7 +72,13 @@ public enum Opencannabis_Person_Gender: SwiftProtobuf.Enum {
     case 0: self = .unspecified
     case 1: self = .male
     case 2: self = .female
-    case 3: self = .other
+    case 3: self = .transMale
+    case 4: self = .transFemale
+    case 5: self = .nonBinary
+    case 6: self = .genderFluid
+    case 7: self = .biGender
+    case 8: self = .panGender
+    case 99: self = .declineToState
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -58,7 +88,13 @@ public enum Opencannabis_Person_Gender: SwiftProtobuf.Enum {
     case .unspecified: return 0
     case .male: return 1
     case .female: return 2
-    case .other: return 3
+    case .transMale: return 3
+    case .transFemale: return 4
+    case .nonBinary: return 5
+    case .genderFluid: return 6
+    case .biGender: return 7
+    case .panGender: return 8
+    case .declineToState: return 99
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -67,19 +103,205 @@ public enum Opencannabis_Person_Gender: SwiftProtobuf.Enum {
 
 #if swift(>=4.2)
 
-extension Opencannabis_Person_Gender: CaseIterable {
+extension Opencannabis_Person_GenderCategory: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Person_Gender] = [
+  public static var allCases: [Opencannabis_Person_GenderCategory] = [
     .unspecified,
     .male,
     .female,
-    .other,
+    .transMale,
+    .transFemale,
+    .nonBinary,
+    .genderFluid,
+    .biGender,
+    .panGender,
+    .declineToState,
   ]
 }
 
 #endif  // swift(>=4.2)
 
-/// A person/patint and their name, legal name, nickname, etc.
+/// Enumerates known pronoun sets to the system.
+public enum Opencannabis_Person_KnownPronouns: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// The user does not have a non-normative pronoun selection.
+  case normative // = 0
+
+  /// The user prefers to be addressed as 'he/him'.
+  case he // = 1
+
+  /// The user prefers to be addressed as 'she/her'.
+  case she // = 2
+
+  /// The user prefers to be addressed as 'it'.
+  case it // = 3
+
+  /// The user prefers to be addressed as 'they'.
+  case they // = 4
+
+  /// The user prefers to be addressed as 'ne/nir'.
+  case ne // = 5
+
+  /// The user prefers to be addressed as 've/ver'.
+  case ve // = 6
+
+  /// The user prefers to be addressed as 'ey/em'.
+  case spivak // = 7
+
+  /// The user prefers to be addressed as 'ze/zir'.
+  case ze // = 8
+
+  /// The user prefers to be addressed as 'xe/xem'.
+  case xe // = 9
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .normative
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .normative
+    case 1: self = .he
+    case 2: self = .she
+    case 3: self = .it
+    case 4: self = .they
+    case 5: self = .ne
+    case 6: self = .ve
+    case 7: self = .spivak
+    case 8: self = .ze
+    case 9: self = .xe
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .normative: return 0
+    case .he: return 1
+    case .she: return 2
+    case .it: return 3
+    case .they: return 4
+    case .ne: return 5
+    case .ve: return 6
+    case .spivak: return 7
+    case .ze: return 8
+    case .xe: return 9
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Opencannabis_Person_KnownPronouns: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Person_KnownPronouns] = [
+    .normative,
+    .he,
+    .she,
+    .it,
+    .they,
+    .ne,
+    .ve,
+    .spivak,
+    .ze,
+    .xe,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
+/// Describes a set of custom pronouns, detailing how to address the user.
+public struct Opencannabis_Person_CustomPronouns {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Describes the 'nominative' (subject) form of this pronoun, in lowercase.
+  public var nominative: String = String()
+
+  /// Describes the 'objective' (object) form of this pronoun, in lowercase.
+  public var objective: String = String()
+
+  /// Describes the 'possessive determiner' form of this pronoun, in lowercase.
+  public var determiner: String = String()
+
+  /// Describes the 'possessive pronoun' form of this pronoun, in lowercase.
+  public var pronoun: String = String()
+
+  /// Describes the 'reflexive' form of this pronoun.
+  public var reflexive: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// Describes the pronouns that should be used when addressing a person.
+public struct Opencannabis_Person_Gender {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Describes the gender this person was assigned at birth, as applicable.
+  public var gender: Opencannabis_Person_GenderCategory {
+    get {return _storage._gender}
+    set {_uniqueStorage()._gender = newValue}
+  }
+
+  /// Describes this person's pronouns selection.
+  public var pronouns: OneOf_Pronouns? {
+    get {return _storage._pronouns}
+    set {_uniqueStorage()._pronouns = newValue}
+  }
+
+  /// The user has made a selection from the known list of pronouns.
+  public var known: Opencannabis_Person_KnownPronouns {
+    get {
+      if case .known(let v)? = _storage._pronouns {return v}
+      return .normative
+    }
+    set {_uniqueStorage()._pronouns = .known(newValue)}
+  }
+
+  /// The user has specified custom pronouns.
+  public var custom: Opencannabis_Person_CustomPronouns {
+    get {
+      if case .custom(let v)? = _storage._pronouns {return v}
+      return Opencannabis_Person_CustomPronouns()
+    }
+    set {_uniqueStorage()._pronouns = .custom(newValue)}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  /// Describes this person's pronouns selection.
+  public enum OneOf_Pronouns: Equatable {
+    /// The user has made a selection from the known list of pronouns.
+    case known(Opencannabis_Person_KnownPronouns)
+    /// The user has specified custom pronouns.
+    case custom(Opencannabis_Person_CustomPronouns)
+
+  #if !swift(>=4.1)
+    public static func ==(lhs: Opencannabis_Person_Gender.OneOf_Pronouns, rhs: Opencannabis_Person_Gender.OneOf_Pronouns) -> Bool {
+      switch (lhs, rhs) {
+      case (.known(let l), .known(let r)): return l == r
+      case (.custom(let l), .custom(let r)): return l == r
+      default: return false
+      }
+    }
+  #endif
+  }
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// A person/patient and their name, legal name, nickname, etc.
 public struct Opencannabis_Person_Person {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -135,10 +357,15 @@ public struct Opencannabis_Person_Person {
   /// Clears the value of `dateOfBirth`. Subsequent reads from it will return its default value.
   public mutating func clearDateOfBirth() {_uniqueStorage()._dateOfBirth = nil}
 
+  /// User's selected or described gender information.
   public var gender: Opencannabis_Person_Gender {
-    get {return _storage._gender}
+    get {return _storage._gender ?? Opencannabis_Person_Gender()}
     set {_uniqueStorage()._gender = newValue}
   }
+  /// Returns true if `gender` has been explicitly set.
+  public var hasGender: Bool {return _storage._gender != nil}
+  /// Clears the value of `gender`. Subsequent reads from it will return its default value.
+  public mutating func clearGender() {_uniqueStorage()._gender = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -151,13 +378,173 @@ public struct Opencannabis_Person_Person {
 
 fileprivate let _protobuf_package = "opencannabis.person"
 
-extension Opencannabis_Person_Gender: SwiftProtobuf._ProtoNameProviding {
+extension Opencannabis_Person_GenderCategory: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "UNSPECIFIED"),
-    1: .same(proto: "MALE"),
-    2: .same(proto: "FEMALE"),
-    3: .same(proto: "OTHER"),
+    1: .aliased(proto: "MALE", aliases: ["CIS_MALE"]),
+    2: .aliased(proto: "FEMALE", aliases: ["CIS_FEMALE"]),
+    3: .same(proto: "TRANS_MALE"),
+    4: .same(proto: "TRANS_FEMALE"),
+    5: .same(proto: "NON_BINARY"),
+    6: .same(proto: "GENDER_FLUID"),
+    7: .same(proto: "BI_GENDER"),
+    8: .same(proto: "PAN_GENDER"),
+    99: .same(proto: "DECLINE_TO_STATE"),
   ]
+}
+
+extension Opencannabis_Person_KnownPronouns: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "NORMATIVE"),
+    1: .same(proto: "HE"),
+    2: .same(proto: "SHE"),
+    3: .same(proto: "IT"),
+    4: .same(proto: "THEY"),
+    5: .same(proto: "NE"),
+    6: .same(proto: "VE"),
+    7: .same(proto: "SPIVAK"),
+    8: .same(proto: "ZE"),
+    9: .same(proto: "XE"),
+  ]
+}
+
+extension Opencannabis_Person_CustomPronouns: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CustomPronouns"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "nominative"),
+    2: .same(proto: "objective"),
+    3: .same(proto: "determiner"),
+    4: .same(proto: "pronoun"),
+    5: .same(proto: "reflexive"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.nominative)
+      case 2: try decoder.decodeSingularStringField(value: &self.objective)
+      case 3: try decoder.decodeSingularStringField(value: &self.determiner)
+      case 4: try decoder.decodeSingularStringField(value: &self.pronoun)
+      case 5: try decoder.decodeSingularStringField(value: &self.reflexive)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.nominative.isEmpty {
+      try visitor.visitSingularStringField(value: self.nominative, fieldNumber: 1)
+    }
+    if !self.objective.isEmpty {
+      try visitor.visitSingularStringField(value: self.objective, fieldNumber: 2)
+    }
+    if !self.determiner.isEmpty {
+      try visitor.visitSingularStringField(value: self.determiner, fieldNumber: 3)
+    }
+    if !self.pronoun.isEmpty {
+      try visitor.visitSingularStringField(value: self.pronoun, fieldNumber: 4)
+    }
+    if !self.reflexive.isEmpty {
+      try visitor.visitSingularStringField(value: self.reflexive, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Person_CustomPronouns, rhs: Opencannabis_Person_CustomPronouns) -> Bool {
+    if lhs.nominative != rhs.nominative {return false}
+    if lhs.objective != rhs.objective {return false}
+    if lhs.determiner != rhs.determiner {return false}
+    if lhs.pronoun != rhs.pronoun {return false}
+    if lhs.reflexive != rhs.reflexive {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Person_Gender: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Gender"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "gender"),
+    10: .same(proto: "known"),
+    11: .same(proto: "custom"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _gender: Opencannabis_Person_GenderCategory = .unspecified
+    var _pronouns: Opencannabis_Person_Gender.OneOf_Pronouns?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _gender = source._gender
+      _pronouns = source._pronouns
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularEnumField(value: &_storage._gender)
+        case 10:
+          if _storage._pronouns != nil {try decoder.handleConflictingOneOf()}
+          var v: Opencannabis_Person_KnownPronouns?
+          try decoder.decodeSingularEnumField(value: &v)
+          if let v = v {_storage._pronouns = .known(v)}
+        case 11:
+          var v: Opencannabis_Person_CustomPronouns?
+          if let current = _storage._pronouns {
+            try decoder.handleConflictingOneOf()
+            if case .custom(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._pronouns = .custom(v)}
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._gender != .unspecified {
+        try visitor.visitSingularEnumField(value: _storage._gender, fieldNumber: 1)
+      }
+      switch _storage._pronouns {
+      case .known(let v)?:
+        try visitor.visitSingularEnumField(value: v, fieldNumber: 10)
+      case .custom(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      case nil: break
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Person_Gender, rhs: Opencannabis_Person_Gender) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._gender != rhs_storage._gender {return false}
+        if _storage._pronouns != rhs_storage._pronouns {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
 }
 
 extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -177,7 +564,7 @@ extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._Mess
     var _alternateName: Opencannabis_Person_Name? = nil
     var _contact: Opencannabis_Contact_ContactInfo? = nil
     var _dateOfBirth: Opencannabis_Temporal_Date? = nil
-    var _gender: Opencannabis_Person_Gender = .unspecified
+    var _gender: Opencannabis_Person_Gender? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -210,7 +597,7 @@ extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._Mess
         case 3: try decoder.decodeSingularMessageField(value: &_storage._alternateName)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._contact)
         case 5: try decoder.decodeSingularMessageField(value: &_storage._dateOfBirth)
-        case 6: try decoder.decodeSingularEnumField(value: &_storage._gender)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._gender)
         default: break
         }
       }
@@ -234,8 +621,8 @@ extension Opencannabis_Person_Person: SwiftProtobuf.Message, SwiftProtobuf._Mess
       if let v = _storage._dateOfBirth {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
       }
-      if _storage._gender != .unspecified {
-        try visitor.visitSingularEnumField(value: _storage._gender, fieldNumber: 6)
+      if let v = _storage._gender {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
       }
     }
     try unknownFields.traverse(visitor: &visitor)

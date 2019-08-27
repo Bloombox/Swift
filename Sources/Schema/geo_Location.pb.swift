@@ -49,7 +49,7 @@ public struct Opencannabis_Geo_Location {
   /// Clears the value of `address`. Subsequent reads from it will return its default value.
   public mutating func clearAddress() {_uniqueStorage()._address = nil}
 
-  /// Geopoint (latitude/longitude) for this location.
+  /// Geo-point (latitude/longitude) for this location.
   public var point: Opencannabis_Geo_Point {
     get {return _storage._point ?? Opencannabis_Geo_Point()}
     set {_uniqueStorage()._point = newValue}

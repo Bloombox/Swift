@@ -22,57 +22,6 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// Enumerates types or subcategories of plants that may be sold.
-public enum Opencannabis_Products_PlantType: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// Unknown, unrecognized, or otherwise unspecified plant type.
-  case unspecifiedPlant // = 0
-
-  /// Specifies a pack of seeds, or an individual seed.
-  case seed // = 1
-
-  /// Specifies a cloned plant that is grown to some point and then sold.
-  case clone // = 2
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .unspecifiedPlant
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .unspecifiedPlant
-    case 1: self = .seed
-    case 2: self = .clone
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .unspecifiedPlant: return 0
-    case .seed: return 1
-    case .clone: return 2
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension Opencannabis_Products_PlantType: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Products_PlantType] = [
-    .unspecifiedPlant,
-    .seed,
-    .clone,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
 /// Specifies a plant product, such as seeds, or clones, that are designed to be cultivated by the end user.
 public struct Opencannabis_Products_Plant {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -90,7 +39,7 @@ public struct Opencannabis_Products_Plant {
   public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Specific subcategory for this plant item.
-  public var type: Opencannabis_Products_PlantType {
+  public var type: Opencannabis_Products_Plant.TypeEnum {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
@@ -123,22 +72,65 @@ public struct Opencannabis_Products_Plant {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  /// Enumerates types or subcategories of plants that may be sold.
+  public enum TypeEnum: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Unknown, unrecognized, or otherwise unspecified plant type.
+    case unspecifiedPlant // = 0
+
+    /// Specifies a pack of seeds, or an individual seed.
+    case seed // = 1
+
+    /// Specifies a cloned plant that is grown to some point and then sold.
+    case clone // = 2
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .unspecifiedPlant
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .unspecifiedPlant
+      case 1: self = .seed
+      case 2: self = .clone
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .unspecifiedPlant: return 0
+      case .seed: return 1
+      case .clone: return 2
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Plant.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Plant.TypeEnum] = [
+    .unspecifiedPlant,
+    .seed,
+    .clone,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.products"
-
-extension Opencannabis_Products_PlantType: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "UNSPECIFIED_PLANT"),
-    1: .same(proto: "SEED"),
-    2: .same(proto: "CLONE"),
-  ]
-}
 
 extension Opencannabis_Products_Plant: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Plant"
@@ -152,7 +144,7 @@ extension Opencannabis_Products_Plant: SwiftProtobuf.Message, SwiftProtobuf._Mes
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
-    var _type: Opencannabis_Products_PlantType = .unspecifiedPlant
+    var _type: Opencannabis_Products_Plant.TypeEnum = .unspecifiedPlant
     var _origin: [Opencannabis_Base_ProductReference] = []
     var _product: Opencannabis_Content_ProductContent? = nil
     var _material: Opencannabis_Content_MaterialsData? = nil
@@ -231,4 +223,12 @@ extension Opencannabis_Products_Plant: SwiftProtobuf.Message, SwiftProtobuf._Mes
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Opencannabis_Products_Plant.TypeEnum: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNSPECIFIED_PLANT"),
+    1: .same(proto: "SEED"),
+    2: .same(proto: "CLONE"),
+  ]
 }

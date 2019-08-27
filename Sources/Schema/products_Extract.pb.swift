@@ -22,150 +22,6 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// Enumerates types of extracted oleoresin cannabis products that have known/specified subcategories.
-public enum Opencannabis_Products_ExtractType: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// Uknown, unrecognized, or otherwise unspecified extract type.
-  case unspecifiedExtract // = 0
-
-  /// Cannabis oil, usually in liquid form.
-  case oil // = 1
-
-  /// Cannabis wax - viscous semisolid forms of cannabis oil.
-  case wax // = 2
-
-  /// Clear, amber solid cannabis wax.
-  case shatter // = 3
-
-  /// Particulate discharge from cannabis flowers that contains THC or other cannabinoids.
-  case kief // = 4
-
-  /// Fully extracted and concentrated cannabis resin.
-  case hash // = 5
-
-  /// Extracted cannabis that is kept at freezing temperatures, rather than dried.
-  case liveResin // = 6
-
-  /// Heated and terpene-vaporized live resin.
-  case rosin // = 7
-
-  /// Similar process to shatter, but with higher-terpene output and a softer, cheese-like consistency.
-  case crumble // = 8
-
-  /// THC distillate, often with extracted terpene content added.
-  case sauce // = 9
-
-  /// Raw THC or terpene distillate, in dust or powder form.
-  case sugar // = 10
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .unspecifiedExtract
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .unspecifiedExtract
-    case 1: self = .oil
-    case 2: self = .wax
-    case 3: self = .shatter
-    case 4: self = .kief
-    case 5: self = .hash
-    case 6: self = .liveResin
-    case 7: self = .rosin
-    case 8: self = .crumble
-    case 9: self = .sauce
-    case 10: self = .sugar
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .unspecifiedExtract: return 0
-    case .oil: return 1
-    case .wax: return 2
-    case .shatter: return 3
-    case .kief: return 4
-    case .hash: return 5
-    case .liveResin: return 6
-    case .rosin: return 7
-    case .crumble: return 8
-    case .sauce: return 9
-    case .sugar: return 10
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension Opencannabis_Products_ExtractType: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Products_ExtractType] = [
-    .unspecifiedExtract,
-    .oil,
-    .wax,
-    .shatter,
-    .kief,
-    .hash,
-    .liveResin,
-    .rosin,
-    .crumble,
-    .sauce,
-    .sugar,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
-/// Specifies flags that may specifically be applied to an extracted cannabis product.
-public enum Opencannabis_Products_ExtractFlag: SwiftProtobuf.Enum {
-  public typealias RawValue = Int
-
-  /// Specifies that no flags are set.
-  case noExtractFlags // = 0
-
-  /// Specifies that this extract was made with a solventless process.
-  case solventless // = 1
-  case UNRECOGNIZED(Int)
-
-  public init() {
-    self = .noExtractFlags
-  }
-
-  public init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .noExtractFlags
-    case 1: self = .solventless
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  public var rawValue: Int {
-    switch self {
-    case .noExtractFlags: return 0
-    case .solventless: return 1
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension Opencannabis_Products_ExtractFlag: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Opencannabis_Products_ExtractFlag] = [
-    .noExtractFlags,
-    .solventless,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
 /// Specifies an extracted cannabis product, whereby cannabis plant material has been reduced to a more potent and
 /// concentrated form by some process.
 public struct Opencannabis_Products_Extract {
@@ -184,13 +40,13 @@ public struct Opencannabis_Products_Extract {
   public mutating func clearKey() {_uniqueStorage()._key = nil}
 
   /// Specific type of extract being described.
-  public var type: Opencannabis_Products_ExtractType {
+  public var type: Opencannabis_Products_Extract.TypeEnum {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
 
   /// Specifies flags that may specifically be applied to this extracted cannabis item.
-  public var flag: [Opencannabis_Products_ExtractFlag] {
+  public var flag: [Opencannabis_Products_Extract.Flag] {
     get {return _storage._flag}
     set {_uniqueStorage()._flag = newValue}
   }
@@ -227,37 +83,154 @@ public struct Opencannabis_Products_Extract {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  /// Specifies flags that may specifically be applied to an extracted cannabis product.
+  public enum Flag: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Specifies that no flags are set.
+    case noExtractFlags // = 0
+
+    /// Specifies that this extract was made with a solventless process.
+    case solventless // = 1
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .noExtractFlags
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .noExtractFlags
+      case 1: self = .solventless
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .noExtractFlags: return 0
+      case .solventless: return 1
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  /// Enumerates types of extracted oleoresin cannabis products that have known/specified subcategories.
+  public enum TypeEnum: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+
+    /// Unknown, unrecognized, or otherwise unspecified extract type.
+    case unspecifiedExtract // = 0
+
+    /// Cannabis oil, usually in liquid form.
+    case oil // = 1
+
+    /// Cannabis wax - viscous semisolid forms of cannabis oil.
+    case wax // = 2
+
+    /// Clear, amber solid cannabis wax.
+    case shatter // = 3
+
+    /// Particulate discharge from cannabis flowers that contains THC or other cannabinoids.
+    case kief // = 4
+
+    /// Fully extracted and concentrated cannabis resin.
+    case hash // = 5
+
+    /// Extracted cannabis that is kept at freezing temperatures, rather than dried.
+    case liveResin // = 6
+
+    /// Heated and terpene-vaporized live resin.
+    case rosin // = 7
+
+    /// Similar process to shatter, but with higher-terpene output and a softer, cheese-like consistency.
+    case crumble // = 8
+
+    /// THC distillate, often with extracted terpene content added.
+    case sauce // = 9
+
+    /// Raw THC or terpene distillate, in dust or powder form.
+    case sugar // = 10
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .unspecifiedExtract
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .unspecifiedExtract
+      case 1: self = .oil
+      case 2: self = .wax
+      case 3: self = .shatter
+      case 4: self = .kief
+      case 5: self = .hash
+      case 6: self = .liveResin
+      case 7: self = .rosin
+      case 8: self = .crumble
+      case 9: self = .sauce
+      case 10: self = .sugar
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .unspecifiedExtract: return 0
+      case .oil: return 1
+      case .wax: return 2
+      case .shatter: return 3
+      case .kief: return 4
+      case .hash: return 5
+      case .liveResin: return 6
+      case .rosin: return 7
+      case .crumble: return 8
+      case .sauce: return 9
+      case .sugar: return 10
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=4.2)
+
+extension Opencannabis_Products_Extract.Flag: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Extract.Flag] = [
+    .noExtractFlags,
+    .solventless,
+  ]
+}
+
+extension Opencannabis_Products_Extract.TypeEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Opencannabis_Products_Extract.TypeEnum] = [
+    .unspecifiedExtract,
+    .oil,
+    .wax,
+    .shatter,
+    .kief,
+    .hash,
+    .liveResin,
+    .rosin,
+    .crumble,
+    .sauce,
+    .sugar,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.products"
-
-extension Opencannabis_Products_ExtractType: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "UNSPECIFIED_EXTRACT"),
-    1: .same(proto: "OIL"),
-    2: .same(proto: "WAX"),
-    3: .same(proto: "SHATTER"),
-    4: .same(proto: "KIEF"),
-    5: .same(proto: "HASH"),
-    6: .same(proto: "LIVE_RESIN"),
-    7: .same(proto: "ROSIN"),
-    8: .same(proto: "CRUMBLE"),
-    9: .same(proto: "SAUCE"),
-    10: .same(proto: "SUGAR"),
-  ]
-}
-
-extension Opencannabis_Products_ExtractFlag: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "NO_EXTRACT_FLAGS"),
-    1: .same(proto: "SOLVENTLESS"),
-  ]
-}
 
 extension Opencannabis_Products_Extract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Extract"
@@ -272,8 +245,8 @@ extension Opencannabis_Products_Extract: SwiftProtobuf.Message, SwiftProtobuf._M
 
   fileprivate class _StorageClass {
     var _key: Opencannabis_Base_ProductKey? = nil
-    var _type: Opencannabis_Products_ExtractType = .unspecifiedExtract
-    var _flag: [Opencannabis_Products_ExtractFlag] = []
+    var _type: Opencannabis_Products_Extract.TypeEnum = .unspecifiedExtract
+    var _flag: [Opencannabis_Products_Extract.Flag] = []
     var _flower: Opencannabis_Base_ProductReference? = nil
     var _product: Opencannabis_Content_ProductContent? = nil
     var _material: Opencannabis_Content_MaterialsData? = nil
@@ -358,4 +331,27 @@ extension Opencannabis_Products_Extract: SwiftProtobuf.Message, SwiftProtobuf._M
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Opencannabis_Products_Extract.Flag: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "NO_EXTRACT_FLAGS"),
+    1: .same(proto: "SOLVENTLESS"),
+  ]
+}
+
+extension Opencannabis_Products_Extract.TypeEnum: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNSPECIFIED_EXTRACT"),
+    1: .same(proto: "OIL"),
+    2: .same(proto: "WAX"),
+    3: .same(proto: "SHATTER"),
+    4: .same(proto: "KIEF"),
+    5: .same(proto: "HASH"),
+    6: .same(proto: "LIVE_RESIN"),
+    7: .same(proto: "ROSIN"),
+    8: .same(proto: "CRUMBLE"),
+    9: .same(proto: "SAUCE"),
+    10: .same(proto: "SUGAR"),
+  ]
 }

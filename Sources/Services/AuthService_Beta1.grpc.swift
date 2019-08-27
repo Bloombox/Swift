@@ -20,11 +20,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-import Foundation
 import Dispatch
+import OpenCannabis
+import Foundation
 import SwiftGRPC
 import SwiftProtobuf
-import OpenCannabis
 
 public protocol Bloombox_Services_Auth_V1beta1_AuthNonceCall: ClientCallUnary {}
 
@@ -90,166 +90,289 @@ fileprivate final class Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCallBase
 /// Instantiate Bloombox_Services_Auth_V1beta1_AuthServiceClient, then call methods of this protocol to make API calls.
 public protocol Bloombox_Services_Auth_V1beta1_AuthService: ServiceClient {
   /// Synchronous. Unary.
-  func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty) throws -> Bloombox_Services_Auth_V1beta1_AuthNonce
+  func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_AuthNonce
   /// Asynchronous. Unary.
-  func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthNonce?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthNonceCall
+  @discardableResult
+  func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthNonce?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthNonceCall
 
   /// Synchronous. Unary.
-  func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request) throws -> Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response
+  func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response
   /// Asynchronous. Unary.
-  func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAuthenticateCall
+  @discardableResult
+  func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAuthenticateCall
 
   /// Synchronous. Unary.
-  func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request) throws -> Bloombox_Services_Auth_V1beta1_ConsentFlow.Response
+  func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_ConsentFlow.Response
   /// Asynchronous. Unary.
-  func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_ConsentFlow.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConsentCall
+  @discardableResult
+  func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_ConsentFlow.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConsentCall
 
   /// Synchronous. Unary.
-  func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request) throws -> Bloombox_Services_Auth_V1beta1_ResolveToken.Response
+  func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_ResolveToken.Response
   /// Asynchronous. Unary.
-  func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_ResolveToken.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthTokenCall
+  @discardableResult
+  func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_ResolveToken.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthTokenCall
 
   /// Synchronous. Unary.
-  func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept, metadata customMetadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAcceptCall
+  @discardableResult
+  func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept, metadata customMetadata: Metadata, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAcceptCall
 
   /// Synchronous. Unary.
-  func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject, metadata customMetadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthRejectCall
+  @discardableResult
+  func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject, metadata customMetadata: Metadata, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthRejectCall
 
   /// Synchronous. Unary.
-  func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request) throws -> Bloombox_Services_Auth_V1beta1_IdentityConnect.Response
+  func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_IdentityConnect.Response
   /// Asynchronous. Unary.
-  func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_IdentityConnect.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConnectCall
+  @discardableResult
+  func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_IdentityConnect.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConnectCall
 
   /// Synchronous. Unary.
-  func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request) throws -> Bloombox_Services_Auth_V1beta1_UserContext.Response
+  func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_UserContext.Response
   /// Asynchronous. Unary.
-  func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_UserContext.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthContextCall
+  @discardableResult
+  func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_UserContext.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthContextCall
 
   /// Synchronous. Unary.
-  func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request) throws -> Bloombox_Services_Auth_V1beta1_GetProfile.Response
+  func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_GetProfile.Response
   /// Asynchronous. Unary.
-  func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_GetProfile.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthProfileCall
+  @discardableResult
+  func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_GetProfile.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthProfileCall
 
   /// Synchronous. Unary.
-  func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty
+  func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request, metadata customMetadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty
   /// Asynchronous. Unary.
-  func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCall
+  @discardableResult
+  func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request, metadata customMetadata: Metadata, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCall
+
+}
+
+public extension Bloombox_Services_Auth_V1beta1_AuthService {
+  /// Synchronous. Unary.
+  func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty) throws -> Bloombox_Services_Auth_V1beta1_AuthNonce {
+    return try self.nonce(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthNonce?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthNonceCall {
+    return try self.nonce(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request) throws -> Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response {
+    return try self.authenticate(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAuthenticateCall {
+    return try self.authenticate(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request) throws -> Bloombox_Services_Auth_V1beta1_ConsentFlow.Response {
+    return try self.consent(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_ConsentFlow.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConsentCall {
+    return try self.consent(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request) throws -> Bloombox_Services_Auth_V1beta1_ResolveToken.Response {
+    return try self.token(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_ResolveToken.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthTokenCall {
+    return try self.token(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try self.accept(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAcceptCall {
+    return try self.accept(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try self.reject(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthRejectCall {
+    return try self.reject(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request) throws -> Bloombox_Services_Auth_V1beta1_IdentityConnect.Response {
+    return try self.connect(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_IdentityConnect.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConnectCall {
+    return try self.connect(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request) throws -> Bloombox_Services_Auth_V1beta1_UserContext.Response {
+    return try self.context(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_UserContext.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthContextCall {
+    return try self.context(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request) throws -> Bloombox_Services_Auth_V1beta1_GetProfile.Response {
+    return try self.profile(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_GetProfile.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthProfileCall {
+    return try self.profile(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+    return try self.updateProfile(request, metadata: self.metadata)
+  }
+  /// Asynchronous. Unary.
+  @discardableResult
+  func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCall {
+    return try self.updateProfile(request, metadata: self.metadata, completion: completion)
+  }
 
 }
 
 public final class Bloombox_Services_Auth_V1beta1_AuthServiceClient: ServiceClientBase, Bloombox_Services_Auth_V1beta1_AuthService {
   /// Synchronous. Unary.
-  public func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty) throws -> Bloombox_Services_Auth_V1beta1_AuthNonce {
+  public func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_AuthNonce {
     return try Bloombox_Services_Auth_V1beta1_AuthNonceCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthNonce?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthNonceCall {
+  @discardableResult
+  public func nonce(_ request: SwiftProtobuf.Google_Protobuf_Empty, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthNonce?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthNonceCall {
     return try Bloombox_Services_Auth_V1beta1_AuthNonceCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request) throws -> Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response {
+  public func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response {
     return try Bloombox_Services_Auth_V1beta1_AuthAuthenticateCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAuthenticateCall {
+  @discardableResult
+  public func authenticate(_ request: Bloombox_Services_Auth_V1beta1_AuthenticateUser.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_AuthenticateUser.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAuthenticateCall {
     return try Bloombox_Services_Auth_V1beta1_AuthAuthenticateCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request) throws -> Bloombox_Services_Auth_V1beta1_ConsentFlow.Response {
+  public func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_ConsentFlow.Response {
     return try Bloombox_Services_Auth_V1beta1_AuthConsentCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_ConsentFlow.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConsentCall {
+  @discardableResult
+  public func consent(_ request: Bloombox_Services_Auth_V1beta1_ConsentFlow.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_ConsentFlow.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConsentCall {
     return try Bloombox_Services_Auth_V1beta1_AuthConsentCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request) throws -> Bloombox_Services_Auth_V1beta1_ResolveToken.Response {
+  public func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_ResolveToken.Response {
     return try Bloombox_Services_Auth_V1beta1_AuthTokenCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_ResolveToken.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthTokenCall {
+  @discardableResult
+  public func token(_ request: Bloombox_Services_Auth_V1beta1_ResolveToken.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_ResolveToken.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthTokenCall {
     return try Bloombox_Services_Auth_V1beta1_AuthTokenCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+  public func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept, metadata customMetadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try Bloombox_Services_Auth_V1beta1_AuthAcceptCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAcceptCall {
+  @discardableResult
+  public func accept(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Accept, metadata customMetadata: Metadata, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthAcceptCall {
     return try Bloombox_Services_Auth_V1beta1_AuthAcceptCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+  public func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject, metadata customMetadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try Bloombox_Services_Auth_V1beta1_AuthRejectCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthRejectCall {
+  @discardableResult
+  public func reject(_ request: Bloombox_Services_Auth_V1beta1_ConsentDecision.Reject, metadata customMetadata: Metadata, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthRejectCall {
     return try Bloombox_Services_Auth_V1beta1_AuthRejectCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request) throws -> Bloombox_Services_Auth_V1beta1_IdentityConnect.Response {
+  public func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_IdentityConnect.Response {
     return try Bloombox_Services_Auth_V1beta1_AuthConnectCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_IdentityConnect.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConnectCall {
+  @discardableResult
+  public func connect(_ request: Bloombox_Services_Auth_V1beta1_IdentityConnect.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_IdentityConnect.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthConnectCall {
     return try Bloombox_Services_Auth_V1beta1_AuthConnectCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request) throws -> Bloombox_Services_Auth_V1beta1_UserContext.Response {
+  public func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_UserContext.Response {
     return try Bloombox_Services_Auth_V1beta1_AuthContextCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_UserContext.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthContextCall {
+  @discardableResult
+  public func context(_ request: Bloombox_Services_Auth_V1beta1_UserContext.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_UserContext.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthContextCall {
     return try Bloombox_Services_Auth_V1beta1_AuthContextCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request) throws -> Bloombox_Services_Auth_V1beta1_GetProfile.Response {
+  public func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request, metadata customMetadata: Metadata) throws -> Bloombox_Services_Auth_V1beta1_GetProfile.Response {
     return try Bloombox_Services_Auth_V1beta1_AuthProfileCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request, completion: @escaping (Bloombox_Services_Auth_V1beta1_GetProfile.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthProfileCall {
+  @discardableResult
+  public func profile(_ request: Bloombox_Services_Auth_V1beta1_GetProfile.Request, metadata customMetadata: Metadata, completion: @escaping (Bloombox_Services_Auth_V1beta1_GetProfile.Response?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthProfileCall {
     return try Bloombox_Services_Auth_V1beta1_AuthProfileCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  public func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request) throws -> SwiftProtobuf.Google_Protobuf_Empty {
+  public func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request, metadata customMetadata: Metadata) throws -> SwiftProtobuf.Google_Protobuf_Empty {
     return try Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCallBase(channel)
-      .run(request: request, metadata: metadata)
+      .run(request: request, metadata: customMetadata)
   }
   /// Asynchronous. Unary.
-  public func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCall {
+  @discardableResult
+  public func updateProfile(_ request: Bloombox_Services_Auth_V1beta1_ProfileUpdate.Request, metadata customMetadata: Metadata, completion: @escaping (SwiftProtobuf.Google_Protobuf_Empty?, CallResult) -> Void) throws -> Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCall {
     return try Bloombox_Services_Auth_V1beta1_AuthUpdateProfileCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
+      .start(request: request, metadata: customMetadata, completion: completion)
   }
 
 }
