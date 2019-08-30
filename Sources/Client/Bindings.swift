@@ -174,7 +174,6 @@ public typealias MenuService = Bloombox_Services_Menu_V1beta1_MenuServiceClient
 
 /// Method: `retrieve`.
 public typealias GetMenu = Bloombox_Services_Menu_V1beta1_GetMenu
-public typealias GetCatalog = Bloombox_Services_Menu_V1beta1_GetCatalog
 public typealias GetMenuCall = Bloombox_Services_Menu_V1beta1_MenuRetrieveCall
 
 

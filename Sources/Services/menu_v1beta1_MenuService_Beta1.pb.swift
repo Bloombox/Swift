@@ -670,49 +670,6 @@ public struct Bloombox_Services_Menu_V1beta1_GetProduct {
   public init() {}
 }
 
-/// Specifies an RPC operation, wherein a set of product data is returned in universal product catalog format, which uses
-/// Comma Separated Values (CSV) in a particular arrangement to supply standards-compliant providers with basic product
-/// information (including Facebook, Google, and others).
-public struct Bloombox_Services_Menu_V1beta1_GetCatalog {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  /// Request for catalog information, to include the partner, location, and any automatic filters the invoking code
-  /// desires to apply to products before returning them.
-  public struct Request {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    /// Partner and location scope for the catalog request. Indicates the partner organization that owns the location for
-    /// which we are fetching catalog data.
-    public var scope: String = String()
-
-    /// Only include featured products in the output of this response.
-    public var featured: Bool = false
-
-    /// Filter the menu by menu section. This flag can be specified multiple times, in which case it is interpreted to be
-    /// joined between `AND` conjunctions, to produce an inclusive filter of products from all specified sections.
-    public var section: [Opencannabis_Products_Menu_Section_Section] = []
-
-    /// Consume the full menu, including products that are not currently available for sale (due to being out of stock,
-    /// or not being moved into active inventory yet).
-    public var full: Bool = false
-
-    /// Specifies the source catalog provider, if known.
-    public var provider: Bloombox_Services_Menu_V1beta1_CatalogProvider = .unspecifiedCatalogProvider
-
-    public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    public init() {}
-  }
-
-  public init() {}
-}
-
 /// Specifies an RPC operation to create a product.
 public struct Bloombox_Services_Menu_V1beta1_CreateProduct {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -1763,78 +1720,6 @@ extension Bloombox_Services_Menu_V1beta1_GetProduct.Response: SwiftProtobuf.Mess
     if lhs.product != rhs.product {return false}
     if lhs.cached != rhs.cached {return false}
     if lhs.unchanged != rhs.unchanged {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Services_Menu_V1beta1_GetCatalog: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".GetCatalog"
-  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetCatalog, rhs: Bloombox_Services_Menu_V1beta1_GetCatalog) -> Bool {
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Bloombox_Services_Menu_V1beta1_GetCatalog.Request: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = Bloombox_Services_Menu_V1beta1_GetCatalog.protoMessageName + ".Request"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "scope"),
-    2: .same(proto: "featured"),
-    3: .same(proto: "section"),
-    4: .same(proto: "full"),
-    5: .same(proto: "provider"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.scope)
-      case 2: try decoder.decodeSingularBoolField(value: &self.featured)
-      case 3: try decoder.decodeRepeatedEnumField(value: &self.section)
-      case 4: try decoder.decodeSingularBoolField(value: &self.full)
-      case 5: try decoder.decodeSingularEnumField(value: &self.provider)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.scope.isEmpty {
-      try visitor.visitSingularStringField(value: self.scope, fieldNumber: 1)
-    }
-    if self.featured != false {
-      try visitor.visitSingularBoolField(value: self.featured, fieldNumber: 2)
-    }
-    if !self.section.isEmpty {
-      try visitor.visitPackedEnumField(value: self.section, fieldNumber: 3)
-    }
-    if self.full != false {
-      try visitor.visitSingularBoolField(value: self.full, fieldNumber: 4)
-    }
-    if self.provider != .unspecifiedCatalogProvider {
-      try visitor.visitSingularEnumField(value: self.provider, fieldNumber: 5)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Bloombox_Services_Menu_V1beta1_GetCatalog.Request, rhs: Bloombox_Services_Menu_V1beta1_GetCatalog.Request) -> Bool {
-    if lhs.scope != rhs.scope {return false}
-    if lhs.featured != rhs.featured {return false}
-    if lhs.section != rhs.section {return false}
-    if lhs.full != rhs.full {return false}
-    if lhs.provider != rhs.provider {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

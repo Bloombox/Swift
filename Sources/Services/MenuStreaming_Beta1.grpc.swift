@@ -42,6 +42,37 @@ fileprivate final class Bloombox_Services_Menu_V1beta1_MenuStreamLiveCallBase: C
   override class var method: String { return "/bloombox.services.menu.v1beta1.MenuStream/Live" }
 }
 
+public protocol Bloombox_Services_Menu_V1beta1_MenuStreamRealtimeCall: ClientCallBidirectionalStreaming {
+  /// Do not call this directly, call `receive()` in the protocol extension below instead.
+  func _receive(timeout: DispatchTime) throws -> Bloombox_Services_Menu_V1beta1_RealtimeMenu.StreamEvent?
+  /// Call this to wait for a result. Nonblocking.
+  func receive(completion: @escaping (ResultOrRPCError<Bloombox_Services_Menu_V1beta1_RealtimeMenu.StreamEvent?>) -> Void) throws
+
+  /// Send a message to the stream. Nonblocking.
+  func send(_ message: Bloombox_Services_Menu_V1beta1_RealtimeMenu.Request, completion: @escaping (Error?) -> Void) throws
+  /// Do not call this directly, call `send()` in the protocol extension below instead.
+  func _send(_ message: Bloombox_Services_Menu_V1beta1_RealtimeMenu.Request, timeout: DispatchTime) throws
+
+  /// Call this to close the sending connection. Blocking.
+  func closeSend() throws
+  /// Call this to close the sending connection. Nonblocking.
+  func closeSend(completion: (() -> Void)?) throws
+}
+
+public extension Bloombox_Services_Menu_V1beta1_MenuStreamRealtimeCall {
+  /// Call this to wait for a result. Blocking.
+  func receive(timeout: DispatchTime = .distantFuture) throws -> Bloombox_Services_Menu_V1beta1_RealtimeMenu.StreamEvent? { return try self._receive(timeout: timeout) }
+}
+
+public extension Bloombox_Services_Menu_V1beta1_MenuStreamRealtimeCall {
+  /// Send a message to the stream and wait for the send operation to finish. Blocking.
+  func send(_ message: Bloombox_Services_Menu_V1beta1_RealtimeMenu.Request, timeout: DispatchTime = .distantFuture) throws { try self._send(message, timeout: timeout) }
+}
+
+fileprivate final class Bloombox_Services_Menu_V1beta1_MenuStreamRealtimeCallBase: ClientCallBidirectionalStreamingBase<Bloombox_Services_Menu_V1beta1_RealtimeMenu.Request, Bloombox_Services_Menu_V1beta1_RealtimeMenu.StreamEvent>, Bloombox_Services_Menu_V1beta1_MenuStreamRealtimeCall {
+  override class var method: String { return "/bloombox.services.menu.v1beta1.MenuStream/Realtime" }
+}
+
 
 /// Instantiate Bloombox_Services_Menu_V1beta1_MenuStreamServiceClient, then call methods of this protocol to make API calls.
 public protocol Bloombox_Services_Menu_V1beta1_MenuStreamService: ServiceClient {
@@ -50,12 +81,22 @@ public protocol Bloombox_Services_Menu_V1beta1_MenuStreamService: ServiceClient 
   /// Use methods on the returned object to get streamed responses.
   func live(_ request: Bloombox_Services_Menu_V1beta1_GetMenu.Request, metadata customMetadata: Metadata, completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Menu_V1beta1_MenuStreamLiveCall
 
+  /// Asynchronous. Bidirectional-streaming.
+  /// Use methods on the returned object to stream messages,
+  /// to wait for replies, and to close the connection.
+  func realtime(metadata customMetadata: Metadata, completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Menu_V1beta1_MenuStreamRealtimeCall
+
 }
 
 public extension Bloombox_Services_Menu_V1beta1_MenuStreamService {
   /// Asynchronous. Server-streaming.
   func live(_ request: Bloombox_Services_Menu_V1beta1_GetMenu.Request, completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Menu_V1beta1_MenuStreamLiveCall {
     return try self.live(request, metadata: self.metadata, completion: completion)
+  }
+
+  /// Asynchronous. Bidirectional-streaming.
+  func realtime(completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Menu_V1beta1_MenuStreamRealtimeCall {
+    return try self.realtime(metadata: self.metadata, completion: completion)
   }
 
 }
@@ -67,6 +108,14 @@ public final class Bloombox_Services_Menu_V1beta1_MenuStreamServiceClient: Servi
   public func live(_ request: Bloombox_Services_Menu_V1beta1_GetMenu.Request, metadata customMetadata: Metadata, completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Menu_V1beta1_MenuStreamLiveCall {
     return try Bloombox_Services_Menu_V1beta1_MenuStreamLiveCallBase(channel)
       .start(request: request, metadata: customMetadata, completion: completion)
+  }
+
+  /// Asynchronous. Bidirectional-streaming.
+  /// Use methods on the returned object to stream messages,
+  /// to wait for replies, and to close the connection.
+  public func realtime(metadata customMetadata: Metadata, completion: ((CallResult) -> Void)?) throws -> Bloombox_Services_Menu_V1beta1_MenuStreamRealtimeCall {
+    return try Bloombox_Services_Menu_V1beta1_MenuStreamRealtimeCallBase(channel)
+      .start(metadata: customMetadata, completion: completion)
   }
 
 }
