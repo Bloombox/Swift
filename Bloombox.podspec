@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name          = "Bloombox"
   s.swift_version = "4.2"
-  s.version       = "0.2.0-beta4"
+  s.version       = "0.4.0-beta1"
   s.summary       = "Client for Bloombox Cloud APIs"
   s.description   = <<-DESC
 Native Swift client for accessing Bloombox Cloud APIs
@@ -30,8 +30,8 @@ Native Swift client for accessing Bloombox Cloud APIs
   s.source_files = 'Sources/Client/*.swift'
 
   # ――― Dependencies ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.dependency 'OpenCannabis', '= 0.2.0-beta4'
-  s.dependency 'BloomboxServices', '= 0.2.0-beta4'
+  s.dependency 'OpenCannabis', '= 0.4.0-beta1'
+  s.dependency 'BloomboxServices', '= 0.4.0-beta1'
   s.dependency 'SwiftProtobuf', '~> 1.5.0'
   s.dependency 'SwiftGRPC', '~> 0.9.0'
 
