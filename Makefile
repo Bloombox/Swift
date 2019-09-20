@@ -143,7 +143,12 @@ sync-schema: $(SCHEMA)languages/swift
 	@rm -f Sources/Client/*.grpc.swift
 	@rm -f Sources/Client/*.pb.swift
 	@rm -f Sources/Schema/bq*
-	@rm -f rm -fv Sources/Services/{CheckinService*,DashService*,LedgerService*,MarketingService*,PartnersService*}
+	@rm -r Sources/Schema/comms_* Sources/Schema/analytics_stream_Filter* Sources/Schema/dash_AccessManifest* Sources/Schema/dash_Notifications* \
+		Sources/Schema/identity_bio* Sources/Schema/integration_* Sources/Services/GoogleCloud* Sources/Schema/marketing_*
+	@rm -f Sources/{Schema,Services}/*{WalletService*,DashService*,LedgerService*,MarketingService*,PartnersService*,MediaService*,InventoryTelemetry*}
+	@mv -f Sources/Schema/*Service_* Sources/Schema/*Streaming_* Sources/Schema/google_api_* Sources/Schema/protoc-gen-swagger* \
+		Sources/Schema/telemetry_*TelemetryEvent_* \
+		Sources/Services/
 	@echo "Sync complete."
 
 swift-grpc: $(SWIFT_GRPC)/.build
