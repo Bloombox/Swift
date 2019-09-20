@@ -169,10 +169,9 @@ extension TelemetryClient {
       context: context)
 
     return try self.commercial.impression(CommercialTelemetryEvent.Impression.with { builder in
-//      @TODO ID support
-//      if let id = uuid {
-//        builder.uuid = id.uuidString.uppercased()
-//      }
+      if let id = uuid {
+        builder.uuid = id.uuidString.uppercased()
+      }
       builder.context = eventContext
       builder.section = SectionImpression.with { builder in
         builder.spec = SectionSpec.with { builder in
@@ -224,7 +223,20 @@ extension TelemetryClient {
       apiKey: apiKey,
       context: context)
 
-    fatalError("not yet implemented")
+    return try self.commercial.view(CommercialTelemetryEvent.View.with { builder in
+      if let id = uuid {
+        builder.uuid = id.uuidString.uppercased()
+      }
+      builder.context = eventContext
+      builder.section = SectionView.with { builder in
+        builder.spec = SectionSpec.with { builder in
+          builder.section = section
+        }
+        builder.occurred = TemporalInstant.now()
+      }
+    }) { (response, callResult) in
+      callback?(callResult)
+    }
   }
 
   /// Submit an *Action* event for a menu section, describing an occurrence where a user
@@ -246,7 +258,7 @@ extension TelemetryClient {
   /// - Returns: gRPC call, which can be used to observe or cancel the in-flight operation.
   @discardableResult
   public func sectionAction(section: MenuSection,
-                            action: SectionAction,
+                            action: SectionActionType,
                             uuid: UUID? = nil,
                             activeUser: UserKey? = nil,
                             activeOrder: OrderID? = nil,
@@ -267,7 +279,21 @@ extension TelemetryClient {
       apiKey: apiKey,
       context: context)
 
-    fatalError("not yet implemented")
+    return try self.commercial.action(CommercialTelemetryEvent.Action.with { builder in
+      if let id = uuid {
+        builder.uuid = id.uuidString.uppercased()
+      }
+      builder.context = eventContext
+      builder.section = SectionAction.with { builder in
+        builder.verb = action
+        builder.spec = SectionSpec.with { builder in
+          builder.section = section
+        }
+        builder.occurred = TemporalInstant.now()
+      }
+    }) { (response, callResult) in
+      callback?(callResult)
+    }
   }
 
   // MARK: - Product Events
@@ -310,7 +336,18 @@ extension TelemetryClient {
       apiKey: apiKey,
       context: context)
 
-    fatalError("not yet implemented")
+    return try self.commercial.impression(CommercialTelemetryEvent.Impression.with { builder in
+      if let id = uuid {
+        builder.uuid = id.uuidString.uppercased()
+      }
+      builder.context = eventContext
+      builder.product = ProductImpression.with { builder in
+        builder.key = product
+        builder.occurred = TemporalInstant.now()
+      }
+    }) { (response, callResult) in
+      callback?(callResult)
+    }
   }
 
   /// Submit a *View* event for an individual product, describing an occurrence where a user chose
@@ -352,7 +389,19 @@ extension TelemetryClient {
       apiKey: apiKey,
       context: context)
 
-    fatalError("not yet implemented")
+    return try self.commercial.view(CommercialTelemetryEvent.View.with { builder in
+      if let id = uuid {
+        builder.uuid = id.uuidString.uppercased()
+      }
+      builder.context = eventContext
+      builder.product = ProductView.with { builder in
+        builder.key = product
+        builder.interactive = true
+        builder.occurred = TemporalInstant.now()
+      }
+    }) { (response, callResult) in
+      callback?(callResult)
+    }
   }
 
   /// Submit an *Action* event for an individual product, describing an occurrence where a user
@@ -378,7 +427,7 @@ extension TelemetryClient {
   /// - Returns: gRPC call, which can be used to observe or cancel the in-flight operation.
   @discardableResult
   public func productAction(product: ProductKey,
-                            action: ProductAction,
+                            action: ProductActionType,
                             uuid: UUID? = nil,
                             activeUser: UserKey? = nil,
                             activeOrder: OrderID? = nil,
@@ -399,7 +448,19 @@ extension TelemetryClient {
       apiKey: apiKey,
       context: context)
 
-    fatalError("not yet implemented")
+    return try self.commercial.action(CommercialTelemetryEvent.Action.with { builder in
+      if let id = uuid {
+        builder.uuid = id.uuidString.uppercased()
+      }
+      builder.context = eventContext
+      builder.product = ProductAction.with { builder in
+        builder.key = product
+        builder.verb = action
+        builder.occurred = TemporalInstant.now()
+      }
+    }) { (response, callResult) in
+      callback?(callResult)
+    }
   }
 
   // MARK: - Order Events
@@ -412,7 +473,7 @@ extension TelemetryClient {
   /// *conversion* events, which, for the purposes of analytics and metering calculations, count as
   /// events that drive revenue.
   ///
-  /// - Parameter order: Order ID upon which action was taken.
+  /// - Parameter order: Order object upon which action was taken.
   /// - Parameter uuid: Explicit event UUID to affix before transmission.
   /// - Parameter action: Action that was taken on the order by the user.
   /// - Parameter activeUser: Active user at the time the action was taken.
@@ -425,8 +486,8 @@ extension TelemetryClient {
   /// - Throws: Client-side errors for missing data (see: `CommercialEventError`).
   /// - Returns: gRPC call, which can be used to observe or cancel the in-flight operation.
   @discardableResult
-  public func orderAction(order: OrderID,
-                          action: OrderAction,
+  public func orderAction(order: Order,
+                          action: OrderActionType,
                           uuid: UUID? = nil,
                           activeUser: UserKey? = nil,
                           partner: PartnerCode? = nil,
@@ -438,14 +499,29 @@ extension TelemetryClient {
     let eventContext = try self.resolveCommercialContext(
       type: .action(.product),
       activeUser: activeUser,
-      activeOrder: order,
+      activeOrder: order.id,
       partner: partner,
       location: location,
       deviceName: deviceName,
       apiKey: apiKey,
       context: context)
 
-    fatalError("not yet implemented")
+    return try self.commercial.action(CommercialTelemetryEvent.Action.with { builder in
+      if let id = uuid {
+        builder.uuid = id.uuidString.uppercased()
+      }
+      builder.context = eventContext
+      builder.order = OrderAction.with { builder in
+        builder.verb = action
+        builder.occurred = TemporalInstant.now()
+        builder.orderKey = OrderKey.with { builder in
+          builder.id = order.id
+        }
+        builder.customer = order.customer
+      }
+    }) { (response, callResult) in
+      callback?(callResult)
+    }
   }
 
 }

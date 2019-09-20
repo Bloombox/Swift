@@ -191,12 +191,17 @@ public typealias ProductImpression = Bloombox_Analytics_Product_Impression
 
 /// Method: `commercial.view`
 public typealias TelemetryViewCall = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryViewCall
+public typealias SectionView = Bloombox_Analytics_Section_View
+public typealias ProductView = Bloombox_Analytics_Product_View
 
 /// Method: `commercial.action`
 public typealias TelemetryActionCall = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryActionCall
-public typealias SectionAction = Bloombox_Analytics_Section_SectionAction
-public typealias ProductAction = Bloombox_Analytics_Product_ProductAction
-public typealias OrderAction = Bloombox_Analytics_Order_OrderAction
+public typealias SectionActionType = Bloombox_Analytics_Section_SectionAction
+public typealias SectionAction = Bloombox_Analytics_Section_Action
+public typealias ProductActionType = Bloombox_Analytics_Product_ProductAction
+public typealias ProductAction = Bloombox_Analytics_Product_Action
+public typealias OrderActionType = Bloombox_Analytics_Order_OrderAction
+public typealias OrderAction = Bloombox_Analytics_Order_Action
 
 /// Method: `search.query`
 public typealias SearchTelemetryQueryCall = Bloombox_Services_Telemetry_V1beta4_SearchTelemetryQueryCall
@@ -402,6 +407,7 @@ public typealias USDLField = Bloombox_Identity_Ids_USDLField
 public typealias TemporalDate = Opencannabis_Temporal_Date
 public typealias USDLFieldValue = Bloombox_Identity_Ids_USDLFieldValue
 public typealias EnrollmentSource = Bloombox_Identity_EnrollmentSource
+public typealias Customer = Opencannabis_Commerce_Customer
 
 @available(*, deprecated)
 public typealias PartnerLocationKey = Bloombox_Partner_LocationKey

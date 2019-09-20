@@ -137,11 +137,9 @@ extension TelemetryClient {
       builder.totalResults = total
       builder.context = eventContext
       builder.property = .tablet
-//      @TODO: explicit UUIDs
-//      if let u = uuid {
-        // explicit UUID is specified
-//        builder.uuid = u.uuidString
-//      }
+      if let id = uuid {
+        builder.uuid = id.uuidString.uppercased()
+      }
     }) { (response, callResult) in
       callback?(callResult)
     }
@@ -166,6 +164,7 @@ extension TelemetryClient {
   /// - Parameter total: Total count of results returned for the provided *search term*.
   /// - Parameter selected: Index of the selected item within the *search result-set*.
   /// - Parameter product: Product key uniquely identifying the selected product.
+  /// - Parameter uuid: Explicit client-assigned UUID for this search-result-select event.
   /// - Parameter properties: Set of dot-path addressed generalized properties which
   ///   matched for the subject product (for example: `product.summary.content`).
   /// - Parameter activeUser: User that was active and selected this item.
@@ -182,6 +181,7 @@ extension TelemetryClient {
                            total: UInt32,
                            selected: UInt32,
                            product: ProductKey,
+                           uuid: UUID? = nil,
                            properties: Set<String>? = nil,
                            activeUser: UserKey? = nil,
                            activeOrder: OrderID? = nil,
@@ -208,11 +208,9 @@ extension TelemetryClient {
       builder.key = product
       builder.context = eventContext
       builder.property = .tablet
-//      @TODO: explicit UUIDs
-//      if let u = uuid {
-        // explicit UUID is specified
-//        builder.uuid = u.uuidString
-//      }
+      if let id = uuid {
+        builder.uuid = id.uuidString.uppercased()
+      }
     }) { (response, callResult) in
       callback?(callResult)
     }
