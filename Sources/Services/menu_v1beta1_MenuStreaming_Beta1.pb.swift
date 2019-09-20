@@ -20,7 +20,7 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-**/
+*/
 
 ///*
 /// Specifies streaming features/methods for menu catalog data. Provided as an independent API to facilitate dispatch or

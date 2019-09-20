@@ -186,6 +186,8 @@ public typealias TelemetryException = Bloombox_Services_Telemetry_V1beta4_Except
 
 /// Method: `commercial.impression`
 public typealias TelemetryImpressionCall = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryImpressionCall
+public typealias SectionImpression = Bloombox_Analytics_Section_Impression
+public typealias ProductImpression = Bloombox_Analytics_Product_Impression
 
 /// Method: `commercial.view`
 public typealias TelemetryViewCall = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryViewCall

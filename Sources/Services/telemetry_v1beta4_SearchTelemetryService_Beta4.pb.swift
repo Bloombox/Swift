@@ -20,7 +20,7 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-**/
+*/
 
 ///*
 /// Provides specialized telemetry services tailored for search operations. Searches and search result-sets can be

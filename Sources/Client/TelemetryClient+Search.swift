@@ -50,6 +50,39 @@ public enum SearchEventError: Error {
 /// - `searchResult`: Submit an event describing an item a user selected from a search
 ///   term and result-set pair.
 extension TelemetryClient {
+  fileprivate func resolveSearchContext(method: SearchEvent,
+                                        activeUser: UserKey? = nil,
+                                        activeOrder: OrderID? = nil,
+                                        partner: PartnerCode? = nil,
+                                        location: LocationCode? = nil,
+                                        deviceName: DeviceCode? = nil,
+                                        apiKey: APIKey? = nil,
+                                        context: EventContext? = nil) throws -> AnalyticsContext {
+    let (partnerCode, locationCode, deviceCode, _) = try self.resolveContext(
+      partner, location, deviceName, apiKey)
+
+    // merge/resolve event context
+    var merged: AnalyticsContext
+    if let c = context {
+      var exported = c.export()
+      let globalContext = settings.export()
+      let serialized = try globalContext.serializedData()
+      try exported.merge(serializedData: serialized)
+      merged = exported
+    } else {
+      merged = settings.export()
+    }
+    merged.collection = EventCollection.search(method).export()
+    if let user = activeUser {
+      merged.userKey = user
+    }
+    if let order = activeOrder {
+      merged.scope.order = order
+    }
+    merged.scope.partner = "partner/\(partnerCode)/location/\(locationCode)/device/\(deviceCode)"
+    return merged
+  }
+
   // MARK: - Search Queries
 
   /// Submit an event describing a *search term* and *search result-set* pair. These, together,
@@ -66,23 +99,52 @@ extension TelemetryClient {
   ///
   /// - Parameter term: *Search term*, as described herein.
   /// - Parameter total: Total count of results returned for the provided *search term*.
+  /// - Parameter uuid: Explicit UUID for this event.
   /// - Parameter activeUser: User that was active and who submitted this search.
+  /// - Parameter activeOrder: Order record that was active, as applicable.
   /// - Parameter partner: Partner code under which to count this search query.
   /// - Parameter location: Location code at which this query is considered relevant.
   /// - Parameter deviceName: Name, or serial number, of the reporting device.
   /// - Parameter apiKey: API key to use for this operation.
+  /// - Parameter context: Explicit event context to merge with global and apply.
   /// - Parameter callback: Callback to dispatch once transmission completes or errs.
   /// - Throws: Client-side errors encountered (see: `SearchEventError`).
   /// - Returns: gRPC call object, which may be used to observe or cancel the in-flight call.
-  func searchQuery(term: String,
-                   total: UInt32,
-                   activeUser: UserKey? = nil,
-                   partner: PartnerCode? = nil,
-                   location: LocationCode? = nil,
-                   deviceName: DeviceCode? = nil,
-                   apiKey: APIKey? = nil,
-                   callback: GenericEventCallback? = nil) throws -> SearchTelemetryQueryCall {
-    fatalError("not yet implemented")
+  @discardableResult
+  public func searchQuery(term: String,
+                          total: UInt32,
+                          uuid: UUID? = nil,
+                          activeUser: UserKey? = nil,
+                          activeOrder: OrderID? = nil,
+                          partner: PartnerCode? = nil,
+                          location: LocationCode? = nil,
+                          deviceName: DeviceCode? = nil,
+                          apiKey: APIKey? = nil,
+                          context: EventContext? = nil,
+                          callback: GenericEventCallback? = nil) throws -> SearchTelemetryQueryCall {
+    let eventContext = try self.resolveSearchContext(
+      method: .query,
+      activeUser: activeUser,
+      activeOrder: activeOrder,
+      partner: partner,
+      location: location,
+      deviceName: deviceName,
+      apiKey: apiKey,
+      context: context)
+
+    return try self.search.query(SearchTelemetryEvent.Query.with { builder in
+      builder.term = term
+      builder.totalResults = total
+      builder.context = eventContext
+      builder.property = .tablet
+//      @TODO: explicit UUIDs
+//      if let u = uuid {
+        // explicit UUID is specified
+//        builder.uuid = u.uuidString
+//      }
+    }) { (response, callResult) in
+      callback?(callResult)
+    }
   }
 
   // MARK: - Search Results
@@ -107,25 +169,53 @@ extension TelemetryClient {
   /// - Parameter properties: Set of dot-path addressed generalized properties which
   ///   matched for the subject product (for example: `product.summary.content`).
   /// - Parameter activeUser: User that was active and selected this item.
+  /// - Parameter activeOrder: Order record that was active, as applicable.
   /// - Parameter partner: Partner code under which to count this result event.
   /// - Parameter location: Location code at which this query is considered relevant.
   /// - Parameter deviceName: Name, or serial number, of the reporting device.
   /// - Parameter apiKey: API key to use for this operation.
+  /// - Parameter context: Explicit event context to merge with global and apply.
   /// - Parameter callback: Callback to dispatch once transmission completes or errs.
   /// - Throws: Client-side errors encountered (see: `SearchEventError`).
   /// - Returns: gRPC call object, which may be used to observe or cancel the in-flight call.
-  func searchResult(term: String,
-                    total: UInt32,
-                    selected: UInt32,
-                    product: ProductKey,
-                    properties: Set<String>? = nil,
-                    activeUser: UserKey? = nil,
-                    partner: PartnerCode? = nil,
-                    location: LocationCode? = nil,
-                    deviceName: DeviceCode? = nil,
-                    apiKey: APIKey? = nil,
-                    callback: GenericEventCallback? = nil) throws -> SearchTelemetryResultCall {
-    fatalError("not yet implemented")
+  public func searchResult(term: String,
+                           total: UInt32,
+                           selected: UInt32,
+                           product: ProductKey,
+                           properties: Set<String>? = nil,
+                           activeUser: UserKey? = nil,
+                           activeOrder: OrderID? = nil,
+                           partner: PartnerCode? = nil,
+                           location: LocationCode? = nil,
+                           deviceName: DeviceCode? = nil,
+                           apiKey: APIKey? = nil,
+                           context: EventContext? = nil,
+                           callback: GenericEventCallback? = nil) throws -> SearchTelemetryResultCall {
+    let eventContext = try self.resolveSearchContext(
+      method: .result,
+      activeUser: activeUser,
+      activeOrder: activeOrder,
+      partner: partner,
+      location: location,
+      deviceName: deviceName,
+      apiKey: apiKey,
+      context: context)
+
+    return try self.search.result(SearchTelemetryEvent.Result.with { builder in
+      builder.term = term
+      builder.totalResults = total
+      builder.selectedResult = selected
+      builder.key = product
+      builder.context = eventContext
+      builder.property = .tablet
+//      @TODO: explicit UUIDs
+//      if let u = uuid {
+        // explicit UUID is specified
+//        builder.uuid = u.uuidString
+//      }
+    }) { (response, callResult) in
+      callback?(callResult)
+    }
   }
 
 }

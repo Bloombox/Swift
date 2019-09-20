@@ -21,6 +21,9 @@ import Foundation
 public enum CommercialEventError: Error {
   /// An unspecified internal error occurred.
   case internalError
+
+  /// The specified section did not match the specified product type.
+  case sectionMismatch
 }
 
 
@@ -78,6 +81,53 @@ public enum CommercialEventError: Error {
 /// #### Order Events
 /// - `orderAction`: Record an action taken by a user on an order.
 extension TelemetryClient {
+  fileprivate func resolveCommercialContext(type: CommercialEvent,
+                                            section: MenuSection? = nil,
+                                            product: ProductKey? = nil,
+                                            activeUser: UserKey? = nil,
+                                            activeOrder: OrderID? = nil,
+                                            partner: PartnerCode? = nil,
+                                            location: LocationCode? = nil,
+                                            deviceName: DeviceCode? = nil,
+                                            apiKey: APIKey? = nil,
+                                            context: EventContext? = nil) throws -> AnalyticsContext {
+    let (partnerCode, locationCode, deviceCode, _) = try self.resolveContext(
+      partner, location, deviceName, apiKey)
+
+    // merge/resolve event context
+    var merged: AnalyticsContext
+    if let c = context {
+      var exported = c.export()
+      let globalContext = settings.export()
+      let serialized = try globalContext.serializedData()
+      try exported.merge(serializedData: serialized)
+      merged = exported
+    } else {
+      merged = settings.export()
+    }
+    merged.collection = EventCollection.commercial(type).export()
+    if let user = activeUser {
+      merged.userKey = user
+    }
+    if let order = activeOrder {
+      merged.scope.order = order
+    }
+    if let s = section?.name {
+      if let p = product, let ps = p.type.section?.name {
+        if ps != s {
+          throw CommercialEventError.sectionMismatch
+        }
+        merged.scope.commercial = "section/\(ps)/product/\(p.id)"
+      } else {
+        merged.scope.commercial = "section/\(s)"
+      }
+    } else if let p = product, let ps = p.type.section?.name {
+      merged.scope.commercial = "section/\(ps)/product/\(p.id)"
+    }
+    merged.scope.partner = "partner/\(partnerCode)/location/\(locationCode)/device/\(deviceCode)"
+    return merged
+  }
+
   // MARK: - Section Events
 
   /// Submit an *Impression* event for a menu section, describing an occurrence where a menu
@@ -85,22 +135,54 @@ extension TelemetryClient {
   /// perform any affirmative action to trigger this event.
   ///
   /// - Parameter section: Section that was shown to the user.
+  /// - Parameter uuid: Explicit event UUID to affix before transmission.
   /// - Parameter activeUser: Active user at the time the section was shown.
+  /// - Parameter activeOrder: Active order at the time the section was shown.
   /// - Parameter partner: Code for the partner under which this event occurred.
   /// - Parameter location: Code for the location at, or under, which this event occurred.
   /// - Parameter deviceName: Name or serial number of the reporting device.
   /// - Parameter apiKey: API key to use for this event submission operation.
+  /// - Parameter context: Explicit context to merge and apply to the event.
   /// - Parameter callback: Callback to dispatch after we're done, or encounter an error.
   /// - Throws: Client-side errors for missing data (see: `CommercialEventError`).
   /// - Returns: gRPC call, which can be used to observe or cancel the in-flight operation.
-  func sectionImpression(section: MenuSection,
-                         activeUser: UserKey? = nil,
-                         partner: PartnerCode? = nil,
-                         location: LocationCode? = nil,
-                         deviceName: DeviceCode? = nil,
-                         apiKey: APIKey? = nil,
-                         callback: GenericEventCallback? = nil) throws -> TelemetryImpressionCall {
-    fatalError("not yet implemented")
+  @discardableResult
+  public func sectionImpression(section: MenuSection,
+                                uuid: UUID? = nil,
+                                activeUser: UserKey? = nil,
+                                activeOrder: OrderID? = nil,
+                                partner: PartnerCode? = nil,
+                                location: LocationCode? = nil,
+                                deviceName: DeviceCode? = nil,
+                                apiKey: APIKey? = nil,
+                                context: EventContext? = nil,
+                                callback: GenericEventCallback? = nil) throws -> TelemetryImpressionCall {
+    let eventContext = try self.resolveCommercialContext(
+      type: .impression(.section),
+      section: section,
+      activeUser: activeUser,
+      activeOrder: activeOrder,
+      partner: partner,
+      location: location,
+      deviceName: deviceName,
+      apiKey: apiKey,
+      context: context)
+
+    return try self.commercial.impression(CommercialTelemetryEvent.Impression.with { builder in
+//      @TODO ID support
+//      if let id = uuid {
+//        builder.uuid = id.uuidString.uppercased()
+//      }
+      builder.context = eventContext
+      builder.section = SectionImpression.with { builder in
+        builder.spec = SectionSpec.with { builder in
+          builder.section = section
+        }
+        builder.occurred = TemporalInstant.now()
+      }
+    }) { (response, callResult) in
+      callback?(callResult)
+    }
   }
 
   /// Submit a *View* event for a menu section, describing an occurrence where a user chose
@@ -109,21 +191,39 @@ extension TelemetryClient {
   /// sent for sections shown by default.
   ///
   /// - Parameter section: Section that was navigated to by the user.
+  /// - Parameter uuid: Explicit event UUID to affix before transmission.
   /// - Parameter activeUser: Active user at the time the section was chosen.
+  /// - Parameter activeOrder: Active order at the time the section was chosen.
   /// - Parameter partner: Code for the partner under which this event occurred.
   /// - Parameter location: Code for the location at, or under, which this event occurred.
   /// - Parameter deviceName: Name or serial number of the reporting device.
   /// - Parameter apiKey: API key to use for this event submission operation.
+  /// - Parameter context: Explicit context to merge and apply to the event.
   /// - Parameter callback: Callback to dispatch after we're done, or encounter an error.
   /// - Throws: Client-side errors for missing data (see: `CommercialEventError`).
   /// - Returns: gRPC call, which can be used to observe or cancel the in-flight operation.
-  func sectionView(section: MenuSection,
-                   activeUser: UserKey? = nil,
-                   partner: PartnerCode? = nil,
-                   location: LocationCode? = nil,
-                   deviceName: DeviceCode? = nil,
-                   apiKey: APIKey? = nil,
-                   callback: GenericEventCallback? = nil) throws -> TelemetryViewCall {
+  @discardableResult
+  public func sectionView(section: MenuSection,
+                          uuid: UUID? = nil,
+                          activeUser: UserKey? = nil,
+                          activeOrder: OrderID? = nil,
+                          partner: PartnerCode? = nil,
+                          location: LocationCode? = nil,
+                          deviceName: DeviceCode? = nil,
+                          apiKey: APIKey? = nil,
+                          context: EventContext? = nil,
+                          callback: GenericEventCallback? = nil) throws -> TelemetryViewCall {
+    let eventContext = try self.resolveCommercialContext(
+      type: .view(.section),
+      section: section,
+      activeUser: activeUser,
+      activeOrder: activeOrder,
+      partner: partner,
+      location: location,
+      deviceName: deviceName,
+      apiKey: apiKey,
+      context: context)
+
     fatalError("not yet implemented")
   }
 
@@ -132,23 +232,41 @@ extension TelemetryClient {
   /// is necessarily after a section *View*, and always involves affirmative user action.
   ///
   /// - Parameter section: Section that was acted upon to by the user.
+  /// - Parameter uuid: Explicit event UUID to affix before transmission.
   /// - Parameter action: Action that was taken on the section by the user.
   /// - Parameter activeUser: Active user at the time the section was acted upon.
+  /// - Parameter activeOrder: Active order at the time the section was acted upon.
   /// - Parameter partner: Code for the partner under which this event occurred.
   /// - Parameter location: Code for the location at, or under, which this event occurred.
   /// - Parameter deviceName: Name or serial number of the reporting device.
   /// - Parameter apiKey: API key to use for this event submission operation.
+  /// - Parameter context: Explicit context to merge and apply to the event.
   /// - Parameter callback: Callback to dispatch after we're done, or encounter an error.
   /// - Throws: Client-side errors for missing data (see: `CommercialEventError`).
   /// - Returns: gRPC call, which can be used to observe or cancel the in-flight operation.
-  func sectionAction(section: MenuSection,
-                     action: SectionAction,
-                     activeUser: UserKey? = nil,
-                     partner: PartnerCode? = nil,
-                     location: LocationCode? = nil,
-                     deviceName: DeviceCode? = nil,
-                     apiKey: APIKey? = nil,
-                     callback: GenericEventCallback? = nil) throws -> TelemetryActionCall {
+  @discardableResult
+  public func sectionAction(section: MenuSection,
+                            action: SectionAction,
+                            uuid: UUID? = nil,
+                            activeUser: UserKey? = nil,
+                            activeOrder: OrderID? = nil,
+                            partner: PartnerCode? = nil,
+                            location: LocationCode? = nil,
+                            deviceName: DeviceCode? = nil,
+                            apiKey: APIKey? = nil,
+                            context: EventContext? = nil,
+                            callback: GenericEventCallback? = nil) throws -> TelemetryActionCall {
+    let eventContext = try self.resolveCommercialContext(
+      type: .action(.section),
+      section: section,
+      activeUser: activeUser,
+      activeOrder: activeOrder,
+      partner: partner,
+      location: location,
+      deviceName: deviceName,
+      apiKey: apiKey,
+      context: context)
+
     fatalError("not yet implemented")
   }
 
@@ -159,21 +277,39 @@ extension TelemetryClient {
   /// multiple options. The user does not have to perform any affirmative action to trigger this event.
   ///
   /// - Parameter product: Product that was shown to the user.
+  /// - Parameter uuid: Explicit event UUID to affix before transmission.
   /// - Parameter activeUser: Active user at the time the product was shown.
+  /// - Parameter activeOrder: Active order at the time the product was shown.
   /// - Parameter partner: Code for the partner under which this event occurred.
   /// - Parameter location: Code for the location at, or under, which this event occurred.
   /// - Parameter deviceName: Name or serial number of the reporting device.
   /// - Parameter apiKey: API key to use for this event submission operation.
+  /// - Parameter context: Explicit context to merge and apply to the event.
   /// - Parameter callback: Callback to dispatch after we're done, or encounter an error.
   /// - Throws: Client-side errors for missing data (see: `CommercialEventError`).
   /// - Returns: gRPC call, which can be used to observe or cancel the in-flight operation.
-  func productImpression(product: ProductKey,
-                         activeUser: UserKey? = nil,
-                         partner: PartnerCode? = nil,
-                         location: LocationCode? = nil,
-                         deviceName: DeviceCode? = nil,
-                         apiKey: APIKey? = nil,
-                         callback: GenericEventCallback? = nil) throws -> TelemetryImpressionCall {
+  @discardableResult
+  public func productImpression(product: ProductKey,
+                                uuid: UUID? = nil,
+                                activeUser: UserKey? = nil,
+                                activeOrder: OrderID? = nil,
+                                partner: PartnerCode? = nil,
+                                location: LocationCode? = nil,
+                                deviceName: DeviceCode? = nil,
+                                apiKey: APIKey? = nil,
+                                context: EventContext? = nil,
+                                callback: GenericEventCallback? = nil) throws -> TelemetryImpressionCall {
+    let eventContext = try self.resolveCommercialContext(
+      type: .impression(.product),
+      product: product,
+      activeUser: activeUser,
+      activeOrder: activeOrder,
+      partner: partner,
+      location: location,
+      deviceName: deviceName,
+      apiKey: apiKey,
+      context: context)
+
     fatalError("not yet implemented")
   }
 
@@ -183,21 +319,39 @@ extension TelemetryClient {
   /// navigating to a given menu section. It should not be sent for products shown by default.
   ///
   /// - Parameter product: Product that the user chose to navigate to.
+  /// - Parameter uuid: Explicit event UUID to affix before transmission.
   /// - Parameter activeUser: Active user at the time the product was chosen.
+  /// - Parameter activeOrder: Active order at the time the product was chosen.
   /// - Parameter partner: Code for the partner under which this event occurred.
   /// - Parameter location: Code for the location at, or under, which this event occurred.
   /// - Parameter deviceName: Name or serial number of the reporting device.
   /// - Parameter apiKey: API key to use for this event submission operation.
+  /// - Parameter context: Explicit context to merge and apply to the event.
   /// - Parameter callback: Callback to dispatch after we're done, or encounter an error.
   /// - Throws: Client-side errors for missing data (see: `CommercialEventError`).
   /// - Returns: gRPC call, which can be used to observe or cancel the in-flight operation.
-  func productView(product: ProductKey,
-                   activeUser: UserKey? = nil,
-                   partner: PartnerCode? = nil,
-                   location: LocationCode? = nil,
-                   deviceName: DeviceCode? = nil,
-                   apiKey: APIKey? = nil,
-                   callback: GenericEventCallback? = nil) throws -> TelemetryViewCall {
+  @discardableResult
+  public func productView(product: ProductKey,
+                          uuid: UUID? = nil,
+                          activeUser: UserKey? = nil,
+                          activeOrder: OrderID? = nil,
+                          partner: PartnerCode? = nil,
+                          location: LocationCode? = nil,
+                          deviceName: DeviceCode? = nil,
+                          apiKey: APIKey? = nil,
+                          context: EventContext? = nil,
+                          callback: GenericEventCallback? = nil) throws -> TelemetryViewCall {
+    let eventContext = try self.resolveCommercialContext(
+      type: .view(.product),
+      product: product,
+      activeUser: activeUser,
+      activeOrder: activeOrder,
+      partner: partner,
+      location: location,
+      deviceName: deviceName,
+      apiKey: apiKey,
+      context: context)
+
     fatalError("not yet implemented")
   }
 
@@ -210,23 +364,41 @@ extension TelemetryClient {
   /// drive revenue.
   ///
   /// - Parameter section: Product that the user took action on.
+  /// - Parameter uuid: Explicit event UUID to affix before transmission.
   /// - Parameter action: Action that was taken on the product by the user.
   /// - Parameter activeUser: Active user at the time the action was taken.
+  /// - Parameter activeOrder: Active order at the time the product was acted upon.
   /// - Parameter partner: Code for the partner under which this event occurred.
   /// - Parameter location: Code for the location at, or under, which this event occurred.
   /// - Parameter deviceName: Name or serial number of the reporting device.
   /// - Parameter apiKey: API key to use for this event submission operation.
+  /// - Parameter context: Explicit context to merge and apply to the event.
   /// - Parameter callback: Callback to dispatch after we're done, or encounter an error.
   /// - Throws: Client-side errors for missing data (see: `CommercialEventError`).
   /// - Returns: gRPC call, which can be used to observe or cancel the in-flight operation.
-  func productAction(product: ProductKey,
-                     action: ProductAction,
-                     activeUser: UserKey? = nil,
-                     partner: PartnerCode? = nil,
-                     location: LocationCode? = nil,
-                     deviceName: DeviceCode? = nil,
-                     apiKey: APIKey? = nil,
-                     callback: GenericEventCallback? = nil) throws -> TelemetryActionCall {
+  @discardableResult
+  public func productAction(product: ProductKey,
+                            action: ProductAction,
+                            uuid: UUID? = nil,
+                            activeUser: UserKey? = nil,
+                            activeOrder: OrderID? = nil,
+                            partner: PartnerCode? = nil,
+                            location: LocationCode? = nil,
+                            deviceName: DeviceCode? = nil,
+                            apiKey: APIKey? = nil,
+                            context: EventContext? = nil,
+                            callback: GenericEventCallback? = nil) throws -> TelemetryActionCall {
+    let eventContext = try self.resolveCommercialContext(
+      type: .action(.product),
+      product: product,
+      activeUser: activeUser,
+      activeOrder: activeOrder,
+      partner: partner,
+      location: location,
+      deviceName: deviceName,
+      apiKey: apiKey,
+      context: context)
+
     fatalError("not yet implemented")
   }
 
@@ -241,23 +413,38 @@ extension TelemetryClient {
   /// events that drive revenue.
   ///
   /// - Parameter order: Order ID upon which action was taken.
+  /// - Parameter uuid: Explicit event UUID to affix before transmission.
   /// - Parameter action: Action that was taken on the order by the user.
   /// - Parameter activeUser: Active user at the time the action was taken.
   /// - Parameter partner: Code for the partner under which this event occurred.
   /// - Parameter location: Code for the location at, or under, which this event occurred.
   /// - Parameter deviceName: Name or serial number of the reporting device.
   /// - Parameter apiKey: API key to use for this event submission operation.
+  /// - Parameter context: Explicit context to merge and apply to the event.
   /// - Parameter callback: Callback to dispatch after we're done, or encounter an error.
   /// - Throws: Client-side errors for missing data (see: `CommercialEventError`).
   /// - Returns: gRPC call, which can be used to observe or cancel the in-flight operation.
-  func orderAction(order: OrderID,
-                   action: OrderAction,
-                   activeUser: UserKey? = nil,
-                   partner: PartnerCode? = nil,
-                   location: LocationCode? = nil,
-                   deviceName: DeviceCode? = nil,
-                   apiKey: APIKey? = nil,
-                   callback: GenericEventCallback? = nil) throws -> TelemetryActionCall {
+  @discardableResult
+  public func orderAction(order: OrderID,
+                          action: OrderAction,
+                          uuid: UUID? = nil,
+                          activeUser: UserKey? = nil,
+                          partner: PartnerCode? = nil,
+                          location: LocationCode? = nil,
+                          deviceName: DeviceCode? = nil,
+                          apiKey: APIKey? = nil,
+                          context: EventContext? = nil,
+                          callback: GenericEventCallback? = nil) throws -> TelemetryActionCall {
+    let eventContext = try self.resolveCommercialContext(
+      type: .action(.product),
+      activeUser: activeUser,
+      activeOrder: order,
+      partner: partner,
+      location: location,
+      deviceName: deviceName,
+      apiKey: apiKey,
+      context: context)
+
     fatalError("not yet implemented")
   }
 

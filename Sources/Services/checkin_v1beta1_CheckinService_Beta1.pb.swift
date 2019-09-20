@@ -20,7 +20,7 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-**/
+*/
 
 ///*
 /// Specifies the Checkin API, which provides features for checking customers in to a retail dispensary, usually from the

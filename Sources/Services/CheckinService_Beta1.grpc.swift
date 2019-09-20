@@ -19,11 +19,12 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-**/
+*/
 import Dispatch
 import Foundation
 import SwiftGRPC
 import SwiftProtobuf
+import OpenCannabis
 
 public protocol Bloombox_Services_Checkin_V1beta1_CheckinPingCall: ClientCallUnary {}
 
