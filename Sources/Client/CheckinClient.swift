@@ -20,7 +20,7 @@ import SwiftGRPC
 
 // Type Aliases
 public typealias CheckinCallback = (CallResult, CheckinResponse?) -> ()
-public typealias CheckinAPIContext = (partner: PartnerCode, location: LocationCode, deviceName: String, apiKey: APIKey)
+public typealias CheckinAPIContext = (partner: PartnerCode, location: LocationCode, deviceName: DeviceCode, apiKey: APIKey)
 
 // Callback Types
 
@@ -108,7 +108,7 @@ public final class CheckinClient: RemoteService {
   /// - Parameter apiKey: API key to use with the service.
   /// - Returns: Tuple of partner, location, and API key to use.
   /// - Throws: `CheckinClientError` codes if items cannot be resolved.
-  private func resolveContext(_ deviceName: String? = nil,
+  private func resolveContext(_ deviceName: DeviceCode? = nil,
                               _ partner: PartnerCode? = nil,
                               _ location: LocationCode? = nil,
                               _ apiKey: APIKey? = nil) throws -> CheckinAPIContext {
@@ -165,7 +165,7 @@ public final class CheckinClient: RemoteService {
   public func checkinByID(scan: String,
                           partner: PartnerCode? = nil,
                           location: LocationCode? = nil,
-                          deviceName: String? = nil,
+                          deviceName: DeviceCode? = nil,
                           fingerprint: String? = nil,
                           apiKey: APIKey? = nil) throws -> CheckinResponse {
     let (partnerCode, locationCode, deviceName, apiKey) = try resolveContext(partner, location, deviceName, apiKey)
@@ -202,7 +202,7 @@ public final class CheckinClient: RemoteService {
   public func checkinByID(scan: String,
                           partner: PartnerCode? = nil,
                           location: LocationCode? = nil,
-                          deviceName: String? = nil,
+                          deviceName: DeviceCode? = nil,
                           fingerprint: String? = nil,
                           apiKey: APIKey? = nil,
                           callback: @escaping CheckinCallback) throws -> CheckinByIDCall {
@@ -244,7 +244,7 @@ public final class CheckinClient: RemoteService {
                             signature: String? = nil,
                             partner: PartnerCode? = nil,
                             location: LocationCode? = nil,
-                            deviceName: String? = nil,
+                            deviceName: DeviceCode? = nil,
                             apiKey: APIKey? = nil) throws -> CheckinResponse {
     let (partnerCode, locationCode, deviceName, apiKey) = try resolveContext(partner, location, deviceName, apiKey)
     let service = try self.service(apiKey)
@@ -282,7 +282,7 @@ public final class CheckinClient: RemoteService {
                             signature: String? = nil,
                             partner: PartnerCode? = nil,
                             location: LocationCode? = nil,
-                            deviceName: String? = nil,
+                            deviceName: DeviceCode? = nil,
                             apiKey: APIKey? = nil,
                             callback: @escaping CheckinCallback) throws -> CheckinByCardCall {
     let (partnerCode, locationCode, deviceName, apiKey) = try resolveContext(partner, location, deviceName, apiKey)

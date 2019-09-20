@@ -188,12 +188,12 @@ public final class ShopClient: RemoteService {
   /// - Returns: Tuple of the `(partner, location, apiKey)` that should be used.
   private func resolveContext(_ partner: PartnerCode? = nil,
                               _ location: LocationCode? = nil,
-                              _ deviceName: String? = nil,
+                              _ deviceName: DeviceCode? = nil,
                               _ apiKey: APIKey? = nil) throws -> (
-          partner: PartnerCode, location: LocationCode, apiKey: APIKey, deviceName: String) {
+          partner: PartnerCode, location: LocationCode, apiKey: APIKey, deviceName: DeviceCode) {
     let partnerCode: PartnerCode? = partner ?? settings.partner
     let locationCode: LocationCode? = location ?? settings.location
-    let deviceName: String? = deviceName ?? settings.deviceUUID
+    let deviceName: DeviceCode? = deviceName ?? settings.deviceUUID
     let apiKey: APIKey? = apiKey ?? settings.apiKey
 
     // must have an API key
@@ -482,7 +482,7 @@ public final class ShopClient: RemoteService {
                               preOrder: Bool = false,
                               partner: PartnerCode? = nil,
                               location: LocationCode? = nil,
-                              deviceName: String? = nil,
+                              deviceName: DeviceCode? = nil,
                               apiKey: APIKey? = nil) throws -> EnrollMember.Response {
     let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
 
@@ -535,7 +535,7 @@ public final class ShopClient: RemoteService {
                               preOrder: Bool = false,
                               partner: PartnerCode? = nil,
                               location: LocationCode? = nil,
-                              deviceName: String? = nil,
+                              deviceName: DeviceCode? = nil,
                               apiKey: APIKey? = nil,
                               callback: @escaping EnrollMemberCallback) throws -> EnrollMemberCall {
     let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
@@ -659,7 +659,7 @@ public final class ShopClient: RemoteService {
   public func submitOrder(order: Order,
                           partner: PartnerCode? = nil,
                           location: LocationCode? = nil,
-                          deviceName: String? = nil,
+                          deviceName: DeviceCode? = nil,
                           apiKey: APIKey? = nil) throws -> SubmitOrder.Response {
     let (partnerCode, locationCode, apiKey, deviceName) = try resolveContext(partner, location, deviceName, apiKey)
 
@@ -699,7 +699,7 @@ public final class ShopClient: RemoteService {
   public func submitOrder(order: Order,
                           partner: PartnerCode? = nil,
                           location: LocationCode? = nil,
-                          deviceName: String? = nil,
+                          deviceName: DeviceCode? = nil,
                           apiKey: APIKey? = nil,
                           callback: @escaping SubmitOrderCallback) throws -> SubmitOrderCall {
     let (partnerCode, locationCode, apiKey, deviceName) = try resolveContext(partner, location, deviceName, apiKey)

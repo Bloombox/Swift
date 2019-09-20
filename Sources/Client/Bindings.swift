@@ -37,6 +37,9 @@ public typealias PartnerCode = String
 /// Location account code. Accessible via the Bloombox Dashboard.
 public typealias LocationCode = String
 
+/// Managed device code. Accessible via device configuration.
+public typealias DeviceCode = String
+
 
 //// Auth Service
 
