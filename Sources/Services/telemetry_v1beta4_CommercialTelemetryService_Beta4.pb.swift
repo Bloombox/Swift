@@ -55,6 +55,12 @@ public struct Bloombox_Services_Telemetry_V1beta4_CommercialEvent {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
+    /// Explicit event UUID.
+    public var uuid: String {
+      get {return _storage._uuid}
+      set {_uniqueStorage()._uuid = newValue}
+    }
+
     /// Event context to specify for this event.
     public var context: Bloombox_Analytics_Context {
       get {return _storage._context ?? Bloombox_Analytics_Context()}
@@ -132,6 +138,12 @@ public struct Bloombox_Services_Telemetry_V1beta4_CommercialEvent {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
+    /// Explicit event UUID.
+    public var uuid: String {
+      get {return _storage._uuid}
+      set {_uniqueStorage()._uuid = newValue}
+    }
+
     /// Event context to specify for this event.
     public var context: Bloombox_Analytics_Context {
       get {return _storage._context ?? Bloombox_Analytics_Context()}
@@ -208,6 +220,12 @@ public struct Bloombox_Services_Telemetry_V1beta4_CommercialEvent {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
+
+    /// Explicit event UUID.
+    public var uuid: String {
+      get {return _storage._uuid}
+      set {_uniqueStorage()._uuid = newValue}
+    }
 
     /// Name for the action being transmitted. This is the string enum name for whatever event type is in use.
     public var name: String {
@@ -327,13 +345,15 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent: SwiftProtobuf.Mes
 extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_CommercialEvent.protoMessageName + ".Impression"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "context"),
+    1: .same(proto: "uuid"),
+    2: .same(proto: "context"),
     10: .same(proto: "section"),
     11: .same(proto: "product"),
     12: .same(proto: "shop"),
   ]
 
   fileprivate class _StorageClass {
+    var _uuid: String = String()
     var _context: Bloombox_Analytics_Context? = nil
     var _event: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression.OneOf_Event?
 
@@ -342,6 +362,7 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression: SwiftP
     private init() {}
 
     init(copying source: _StorageClass) {
+      _uuid = source._uuid
       _context = source._context
       _event = source._event
     }
@@ -359,7 +380,8 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression: SwiftP
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._context)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._context)
         case 10:
           var v: Bloombox_Analytics_Section_Impression?
           if let current = _storage._event {
@@ -392,8 +414,11 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression: SwiftP
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
+      }
       if let v = _storage._context {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
       switch _storage._event {
       case .section(let v)?:
@@ -413,6 +438,7 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression: SwiftP
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
         if _storage._context != rhs_storage._context {return false}
         if _storage._event != rhs_storage._event {return false}
         return true
@@ -427,13 +453,15 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Impression: SwiftP
 extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_CommercialEvent.protoMessageName + ".View"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "context"),
+    1: .same(proto: "uuid"),
+    2: .same(proto: "context"),
     10: .same(proto: "section"),
     11: .same(proto: "product"),
     12: .same(proto: "shop"),
   ]
 
   fileprivate class _StorageClass {
+    var _uuid: String = String()
     var _context: Bloombox_Analytics_Context? = nil
     var _event: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View.OneOf_Event?
 
@@ -442,6 +470,7 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View: SwiftProtobu
     private init() {}
 
     init(copying source: _StorageClass) {
+      _uuid = source._uuid
       _context = source._context
       _event = source._event
     }
@@ -459,7 +488,8 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View: SwiftProtobu
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._context)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._context)
         case 10:
           var v: Bloombox_Analytics_Section_View?
           if let current = _storage._event {
@@ -492,8 +522,11 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View: SwiftProtobu
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
+      }
       if let v = _storage._context {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
       switch _storage._event {
       case .section(let v)?:
@@ -513,6 +546,7 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View: SwiftProtobu
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
         if _storage._context != rhs_storage._context {return false}
         if _storage._event != rhs_storage._event {return false}
         return true
@@ -527,8 +561,9 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.View: SwiftProtobu
 extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = Bloombox_Services_Telemetry_V1beta4_CommercialEvent.protoMessageName + ".Action"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "name"),
-    2: .same(proto: "context"),
+    1: .same(proto: "uuid"),
+    2: .same(proto: "name"),
+    3: .same(proto: "context"),
     10: .same(proto: "section"),
     11: .same(proto: "product"),
     12: .same(proto: "shop"),
@@ -536,6 +571,7 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action: SwiftProto
   ]
 
   fileprivate class _StorageClass {
+    var _uuid: String = String()
     var _name: String = String()
     var _context: Bloombox_Analytics_Context? = nil
     var _event: Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action.OneOf_Event?
@@ -545,6 +581,7 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action: SwiftProto
     private init() {}
 
     init(copying source: _StorageClass) {
+      _uuid = source._uuid
       _name = source._name
       _context = source._context
       _event = source._event
@@ -563,8 +600,9 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action: SwiftProto
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
-        case 1: try decoder.decodeSingularStringField(value: &_storage._name)
-        case 2: try decoder.decodeSingularMessageField(value: &_storage._context)
+        case 1: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._context)
         case 10:
           var v: Bloombox_Analytics_Section_Action?
           if let current = _storage._event {
@@ -605,11 +643,14 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action: SwiftProto
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 1)
+      }
       if !_storage._name.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 1)
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
       }
       if let v = _storage._context {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
       }
       switch _storage._event {
       case .section(let v)?:
@@ -631,6 +672,7 @@ extension Bloombox_Services_Telemetry_V1beta4_CommercialEvent.Action: SwiftProto
       let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
         let rhs_storage = _args.1
+        if _storage._uuid != rhs_storage._uuid {return false}
         if _storage._name != rhs_storage._name {return false}
         if _storage._context != rhs_storage._context {return false}
         if _storage._event != rhs_storage._event {return false}

@@ -83,6 +83,12 @@ public struct Bloombox_Services_Telemetry_V1beta4_SearchEvent {
       set {_uniqueStorage()._totalResults = newValue}
     }
 
+    /// Explicit event UUID.
+    public var uuid: String {
+      get {return _storage._uuid}
+      set {_uniqueStorage()._uuid = newValue}
+    }
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
@@ -140,6 +146,18 @@ public struct Bloombox_Services_Telemetry_V1beta4_SearchEvent {
     /// Clears the value of `key`. Subsequent reads from it will return its default value.
     public mutating func clearKey() {_uniqueStorage()._key = nil}
 
+    /// Explicit event UUID.
+    public var uuid: String {
+      get {return _storage._uuid}
+      set {_uniqueStorage()._uuid = newValue}
+    }
+
+    /// Lists each field that matched the search, as a dotted-generic-path.
+    public var field: [String] {
+      get {return _storage._field}
+      set {_uniqueStorage()._field = newValue}
+    }
+
     public var unknownFields = SwiftProtobuf.UnknownStorage()
 
     public init() {}
@@ -180,6 +198,7 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftProtobuf.M
     2: .same(proto: "context"),
     3: .same(proto: "property"),
     4: .standard(proto: "total_results"),
+    5: .same(proto: "uuid"),
   ]
 
   fileprivate class _StorageClass {
@@ -187,6 +206,7 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftProtobuf.M
     var _context: Bloombox_Analytics_Context? = nil
     var _property: Bloombox_Analytics_Search_SearchProperty = .propertyUnspecified
     var _totalResults: UInt32 = 0
+    var _uuid: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -197,6 +217,7 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftProtobuf.M
       _context = source._context
       _property = source._property
       _totalResults = source._totalResults
+      _uuid = source._uuid
     }
   }
 
@@ -216,6 +237,7 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftProtobuf.M
         case 2: try decoder.decodeSingularMessageField(value: &_storage._context)
         case 3: try decoder.decodeSingularEnumField(value: &_storage._property)
         case 4: try decoder.decodeSingularUInt32Field(value: &_storage._totalResults)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._uuid)
         default: break
         }
       }
@@ -236,6 +258,9 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftProtobuf.M
       if _storage._totalResults != 0 {
         try visitor.visitSingularUInt32Field(value: _storage._totalResults, fieldNumber: 4)
       }
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 5)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -249,6 +274,7 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Query: SwiftProtobuf.M
         if _storage._context != rhs_storage._context {return false}
         if _storage._property != rhs_storage._property {return false}
         if _storage._totalResults != rhs_storage._totalResults {return false}
+        if _storage._uuid != rhs_storage._uuid {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -267,6 +293,8 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result: SwiftProtobuf.
     4: .standard(proto: "total_results"),
     5: .standard(proto: "selected_result"),
     6: .same(proto: "key"),
+    7: .same(proto: "uuid"),
+    8: .same(proto: "field"),
   ]
 
   fileprivate class _StorageClass {
@@ -276,6 +304,8 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result: SwiftProtobuf.
     var _totalResults: UInt32 = 0
     var _selectedResult: UInt32 = 0
     var _key: Opencannabis_Base_ProductKey? = nil
+    var _uuid: String = String()
+    var _field: [String] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -288,6 +318,8 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result: SwiftProtobuf.
       _totalResults = source._totalResults
       _selectedResult = source._selectedResult
       _key = source._key
+      _uuid = source._uuid
+      _field = source._field
     }
   }
 
@@ -309,6 +341,8 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result: SwiftProtobuf.
         case 4: try decoder.decodeSingularUInt32Field(value: &_storage._totalResults)
         case 5: try decoder.decodeSingularUInt32Field(value: &_storage._selectedResult)
         case 6: try decoder.decodeSingularMessageField(value: &_storage._key)
+        case 7: try decoder.decodeSingularStringField(value: &_storage._uuid)
+        case 8: try decoder.decodeRepeatedStringField(value: &_storage._field)
         default: break
         }
       }
@@ -335,6 +369,12 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result: SwiftProtobuf.
       if let v = _storage._key {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
       }
+      if !_storage._uuid.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._uuid, fieldNumber: 7)
+      }
+      if !_storage._field.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._field, fieldNumber: 8)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -350,6 +390,8 @@ extension Bloombox_Services_Telemetry_V1beta4_SearchEvent.Result: SwiftProtobuf.
         if _storage._totalResults != rhs_storage._totalResults {return false}
         if _storage._selectedResult != rhs_storage._selectedResult {return false}
         if _storage._key != rhs_storage._key {return false}
+        if _storage._uuid != rhs_storage._uuid {return false}
+        if _storage._field != rhs_storage._field {return false}
         return true
       }
       if !storagesAreEqual {return false}
