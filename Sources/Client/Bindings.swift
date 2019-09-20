@@ -177,6 +177,25 @@ public typealias GetMenu = Bloombox_Services_Menu_V1beta1_GetMenu
 public typealias GetMenuCall = Bloombox_Services_Menu_V1beta1_MenuRetrieveCall
 
 
+//// Checkin Service
+
+/// Binding to the active CheckinService.
+public typealias CheckinService = Bloombox_Services_Checkin_V1beta1_CheckinServiceClient
+public typealias CheckinResponse = Bloombox_Services_Checkin_V1beta1_CheckinResponse
+
+/// Method: `ping`
+public typealias CheckinPing = Bloombox_Services_Checkin_V1beta1_Ping
+public typealias CheckinPingCall = Bloombox_Services_Checkin_V1beta1_CheckinPingCall
+
+/// Method: `identification`
+public typealias CheckinByID = Bloombox_Services_Checkin_V1beta1_IDCheckin
+public typealias CheckinByIDCall = Bloombox_Services_Checkin_V1beta1_CheckinIdentificationCall
+
+/// Method: `card`
+public typealias CheckinByCard = Bloombox_Services_Checkin_V1beta1_CardCheckin
+public typealias CheckinByCardCall = Bloombox_Services_Checkin_V1beta1_CheckinCardCall
+
+
 //// Generic
 
 //// Objects
