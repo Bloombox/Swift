@@ -11,8 +11,8 @@ let package = Package(
             targets: ["Bloombox"])],
 
     dependencies: [
-        .package(url: "https://github.com/apple/swift-protobuf.git", .upToNextMinor(from: "1.6.0")),
-        .package(url: "https://github.com/grpc/grpc-swift.git", .upToNextMinor(from: "0.9.1"))],
+        .package(url: "https://github.com/apple/swift-protobuf.git", .upToNextMinor(from: "1.5.0")),
+        .package(url: "https://github.com/grpc/grpc-swift.git", .upToNextMinor(from: "0.9.0"))],
 
     targets: [
         .target(
