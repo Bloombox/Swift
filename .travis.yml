@@ -1,5 +1,5 @@
 os: osx
-osx_image: xcode10
+osx_image: xcode11
 env:
   global:
     - CODECOV_TOKEN=5f05c93b-cde4-421b-b1a7-7da0b91d9c67
