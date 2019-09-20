@@ -27,7 +27,7 @@ docs/:
 		--readme README.md \
 		--podspec Bloombox.podspec \
 		--min-acl public \
-		--swift-version 4.2 \
+		--swift-version 5 \
 		--github_url https://github.com/bloombox/swift \
 		--theme 'apple' \
 		--include "Sources/Client/*";
