@@ -148,8 +148,7 @@ extension TelemetryClient {
   /// - Throws: Client-side errors for missing data (see `GenericEventError`).
   /// - Returns: gRPC call object, which can be used to observe or cancel the in-flight call.
   @discardableResult
-  func event(collection: EventCollection,
-             payload: [String: Any]) throws -> TelemetryEventCall {
+  public func event(collection: EventCollection, payload: [String: Any]) throws -> TelemetryEventCall {
     return try self.event(
       collection: collection,
       uuid: nil,
@@ -171,12 +170,12 @@ extension TelemetryClient {
   /// - Throws: Client-side errors for missing data (see `GenericEventError`).
   /// - Returns: gRPC call object, which can be used to observe or cancel the in-flight call.
   @discardableResult
-  func event(collection: EventCollection,
-             uuid: String? = nil,
-             payload: [String: Any]? = nil,
-             occurred: Double? = nil,
-             context: EventContext? = nil,
-             callback: GenericEventCallback? = nil) throws -> TelemetryEventCall {
+  public func event(collection: EventCollection,
+                    uuid: String? = nil,
+                    payload: [String: Any]? = nil,
+                    occurred: Double? = nil,
+                    context: EventContext? = nil,
+                    callback: GenericEventCallback? = nil) throws -> TelemetryEventCall {
     // merge/resolve event context
     var merged: AnalyticsContext
     if let c = context {
