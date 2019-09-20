@@ -5,21 +5,21 @@
 // Source: shop/v1/ShopService_v1.proto
 //
 
-//
-// Copyright 2018, gRPC Authors All rights reserved.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
+/**
+* Copyright 2019, Momentum Ideas, Co. All rights reserved.
+* Source and object computer code contained herein is the private intellectual
+* property of Momentum Ideas Co., a Delaware Corporation. Use of this
+* code in source form requires permission in writing before use or the
+* assembly, distribution, or publishing of derivative works, for commercial
+* purposes or any other purpose, from a duly authorized officer of Momentum
+* Ideas Co.
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
 import Dispatch
 import Foundation
 import SwiftGRPC
