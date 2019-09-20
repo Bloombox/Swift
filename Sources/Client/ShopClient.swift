@@ -12,6 +12,10 @@ import OpenCannabis
 
 // Callback Types
 
+/// A `MemberID` is an opaque string which references a user's membership to a given retailer, via a
+/// specific partner/location scope pair.
+public typealias MemberID = String
+
 /// Callback type definition for shop info, where the current shop status (`OPEN`/`CLOSED`) is returned
 /// to invoking code. In some cases, a shop may express its open status as `DELIVERY_ONLY` or
 /// `PICKUP_ONLY` if it does not accept a certain kind of orders at this time (but usually does).
@@ -82,6 +86,9 @@ public enum ShopClientError: Error {
 
   /// No location code could be resolved, or the given location code was invalid.
   case invalidLocationCode
+
+  /// Failed to resolve a valid device name/UUID/serial number.
+  case invalidDeviceName
 
   /// An unspecified internal error occurred.
   case internalError
@@ -158,6 +165,48 @@ public final class ShopClient: RemoteService {
       throw ShopClientError.invalidLocationCode
     }
     return (partner: partnerCode!, location: locationCode!, apiKey: apiKey!)
+  }
+
+  /// Resolve partner and location context, throwing an error if it cannot be figured out, this time
+  /// including a device name, where required.
+  ///
+  /// - Parameter partner: Partner code under which we should conduct an operation.
+  /// - Parameter location: Location code under which we should conduct an operation.
+  /// - Parameter deviceName: Name of the device, or serial number of the device, submitting
+  ///   the retail shop operation to the server.
+  /// - Parameter apiKey: API key under which we should conduct an operation.
+  /// - Throws: If required information cannot be resolved. See `ShopClientError`.
+  /// - Returns: Tuple of the `(partner, location, apiKey)` that should be used.
+  private func resolveContext(_ partner: PartnerCode? = nil,
+                              _ location: LocationCode? = nil,
+                              _ deviceName: String? = nil,
+                              _ apiKey: APIKey? = nil) throws -> (
+          partner: PartnerCode, location: LocationCode, apiKey: APIKey, deviceName: String) {
+    let partnerCode: PartnerCode? = partner ?? settings.partner
+    let locationCode: LocationCode? = location ?? settings.location
+    let deviceName: String? = deviceName ?? settings.deviceUUID
+    let apiKey: APIKey? = apiKey ?? settings.apiKey
+
+    // must have an API key
+    guard apiKey != nil else {
+      throw ShopClientError.invalidApiKey
+    }
+
+    // validate partner and location codes
+    guard partnerCode != nil, locationCode != nil else {
+      // throw error: we require a partner or location code from somewhere
+      if partnerCode == nil {
+        throw ShopClientError.invalidPartnerCode
+      }
+      throw ShopClientError.invalidLocationCode
+    }
+
+    // validate device name
+    guard deviceName != nil else {
+      throw ShopClientError.invalidDeviceName
+    }
+
+    return (partner: partnerCode!, location: locationCode!, apiKey: apiKey!, deviceName: deviceName!)
   }
 
   //
@@ -397,6 +446,114 @@ public final class ShopClient: RemoteService {
     }
   }
 
+  // MARK: - Enroll Member
+
+  /// Begin an enrollment flow for a new user account. In this flow, the user is only prompted for contact info and
+  /// a first-name with which to address them. The enrollment proceeds, optionally, at the user's discretion,
+  /// resumed by a tap on a texted link to their phone.
+  ///
+  /// If the user opts to proceed with enrollment, they are issued a digital card under their name to use for future
+  /// checkins at supporting retail locations.
+  ///
+  /// - Parameter phone: Phone number to begin enrollment with.
+  /// - Parameter name: Person's name, to address them with.
+  /// - Parameter source: Source for this enrollment activity.
+  /// - Parameter channel: Origin channel to assign to this enrollment record.
+  /// - Parameter preOrder: Indicate that this enrollment is happening before an order.
+  /// - Parameter partner: Partner code we should use for this enrollment record.
+  /// - Parameter location: Location code we should use for this enrollment record.
+  /// - Parameter deviceName: Name of the device that is signing up this user.
+  /// - Parameter apiKey: API key to use for this operation.
+  /// - Throws: Errors that occur client-side, see `ShopClientError`.
+  /// - Returns: Result of the begin-enrollment call, as a synchronous response from the server.
+  public func beginEnrollment(phone: PhoneNumber,
+                              name: PersonName,
+                              source: EnrollmentSource,
+                              channel: String? = nil,
+                              preOrder: Bool = false,
+                              partner: PartnerCode? = nil,
+                              location: LocationCode? = nil,
+                              deviceName: String? = nil,
+                              apiKey: APIKey? = nil) throws -> EnrollMember.Response {
+    let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
+
+    return try self.service(apiKey).enrollMember(EnrollMember.Request.with { builder in
+      builder.early = true
+      builder.preOrder = preOrder
+      builder.source = source
+      if let c = channel {
+        builder.channel = c
+      }
+      if let device = deviceName {
+        builder.deviceID = device
+      }
+      builder.person = Person.with { builder in
+        builder.name = name
+      }
+      builder.location = LocationKey.with { builder in
+        builder.code = locationCode
+        builder.partner = PartnerKey.with { builder in
+          builder.code = partnerCode
+        }
+      }
+    })
+  }
+
+  /// Begin an enrollment flow for a new user account. In this flow, the user is only prompted for contact info and
+  /// a first-name with which to address them. The enrollment proceeds, optionally, at the user's discretion,
+  /// resumed by a tap on a texted link to their phone.
+  ///
+  /// If the user opts to proceed with enrollment, they are issued a digital card under their name to use for future
+  /// checkins at supporting retail locations.
+  ///
+  /// - Parameter phone: Phone number to begin enrollment with.
+  /// - Parameter name: Person's name, to address them with.
+  /// - Parameter source: Source for this enrollment activity.
+  /// - Parameter channel: Origin channel to assign to this enrollment record.
+  /// - Parameter preOrder: Indicate that this enrollment is happening before an order.
+  /// - Parameter partner: Partner code we should use for this enrollment record.
+  /// - Parameter location: Location code we should use for this enrollment record.
+  /// - Parameter deviceName: Name of the device that is signing up this user.
+  /// - Parameter apiKey: API key to use for this operation.
+  /// - Parameter callback: Callback to dispatch once the operation is complete, or errors.
+  /// - Throws: Errors that occur client-side, see `ShopClientError`.
+  /// - Returns: RPC call operation, which can be observed or used to cancel the call.
+  @discardableResult
+  public func beginEnrollment(phone: PhoneNumber,
+                              name: PersonName,
+                              source: EnrollmentSource,
+                              channel: String? = nil,
+                              preOrder: Bool = false,
+                              partner: PartnerCode? = nil,
+                              location: LocationCode? = nil,
+                              deviceName: String? = nil,
+                              apiKey: APIKey? = nil,
+                              callback: @escaping EnrollMemberCallback) throws -> EnrollMemberCall {
+    let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
+    return try self.service(apiKey).enrollMember(EnrollMember.Request.with { builder in
+      builder.early = true
+      builder.preOrder = preOrder
+      builder.source = source
+      if let c = channel {
+        builder.channel = c
+      }
+      if let device = deviceName {
+        builder.deviceID = device
+      }
+      builder.person = Person.with { builder in
+        builder.name = name
+      }
+      builder.location = LocationKey.with { builder in
+        builder.code = locationCode
+        builder.partner = PartnerKey.with { builder in
+          builder.code = partnerCode
+        }
+      }
+    }) { (callResult, response) in
+
+    }
+  }
+
   // MARK: - Get Order
 
   /// Retrieve information about a previously-submitted pickup or delivery order. Includes status information and an
@@ -437,7 +594,7 @@ public final class ShopClient: RemoteService {
   /// - Parameter apiKey: API key we should use for this operation. Uses settings if unspecified.
   /// - Parameter callback: Callback to dispatch with the resulting information, or error.
   /// - Throws: If any required information is missing and cannot be resolved from settings.
-  /// - Returns: Order result, as a synchronous response.
+  /// - Returns: RPC call operation, which can be observed or used to cancel the call.
   @discardableResult
   public func getOrder(id: OrderID,
                        isLocal: Bool = false,
@@ -460,4 +617,87 @@ public final class ShopClient: RemoteService {
     }
   }
 
+  // MARK: - Submit Order
+
+  /// Submit a prepared order to the server for consideration for fulfillment. Order submitted via this
+  /// endpoint are retail-commercial orders for a physically-present or digitally-present customer. The
+  /// order is directed to the appropriate retail location, and the staff at that location are notified, via
+  /// email/SMS/Web Dashboard. In some cases, order tickets may also print from on-site receipt
+  /// printers, via Blomobox's integration with Google Cloud Print.
+  ///
+  /// In order to submit an order, a user must be enrolled and active, with a membership record
+  /// present at the retail location at which the order is being submitted. At the time of order
+  /// submission, the user must not have an expired ID or medical recommendation (if they are a
+  /// medical patient), otherwise the order is rejected.
+  ///
+  /// - Parameter order: Digital order specification to submit on behalf of this user.
+  /// - Parameter partner: Partner code under which to submit this digital order. If left
+  ///   unspecified, settings are consulted.
+  /// - Parameter location: Location code under which to submit this digital order. If left
+  ///   unspecifeid, settings are consulted.
+  /// - Parameter deviceName: Name or serial number of the device submitting the order.
+  /// - Parameter apiKey: API key to use for this operation.
+  /// - Throws: Client-side errors, if encountered (see `ShopClientError`).
+  /// - Returns: Result of the order submission call, as a synchronous response.
+  public func submitOrder(order: Order,
+                          partner: PartnerCode? = nil,
+                          location: LocationCode? = nil,
+                          deviceName: String? = nil,
+                          apiKey: APIKey? = nil) throws -> SubmitOrder.Response {
+    let (partnerCode, locationCode, apiKey, deviceName) = try resolveContext(partner, location, deviceName, apiKey)
+
+    return try self.service(apiKey).submitOrder(SubmitOrder.Request.with { builder in
+      builder.order = order
+      builder.device = deviceName
+      builder.location = LocationKey.with { builder in
+        builder.code = locationCode
+        builder.partner = PartnerKey.with { builder in
+          builder.code = partnerCode
+        }
+      }
+    })
+  }
+
+  /// Submit a prepared order to the server for consideration for fulfillment. Order submitted via this
+  /// endpoint are retail-commercial orders for a physically-present or digitally-present customer. The
+  /// order is directed to the appropriate retail location, and the staff at that location are notified, via
+  /// email/SMS/Web Dashboard. In some cases, order tickets may also print from on-site receipt
+  /// printers, via Blomobox's integration with Google Cloud Print.
+  ///
+  /// In order to submit an order, a user must be enrolled and active, with a membership record
+  /// present at the retail location at which the order is being submitted. At the time of order
+  /// submission, the user must not have an expired ID or medical recommendation (if they are a
+  /// medical patient), otherwise the order is rejected.
+  ///
+  /// - Parameter order: Digital order specification to submit on behalf of this user.
+  /// - Parameter partner: Partner code under which to submit this digital order. If left
+  ///   unspecified, settings are consulted.
+  /// - Parameter location: Location code under which to submit this digital order. If left
+  ///   unspecifeid, settings are consulted.
+  /// - Parameter deviceName: Name or serial number of the device submitting the order.
+  /// - Parameter apiKey: API key to use for this operation.
+  /// - Throws: Client-side errors, if encountered (see `ShopClientError`).
+  /// - Returns: RPC call operation, which can be observed or used to cancel the call.
+  @discardableResult
+  public func submitOrder(order: Order,
+                          partner: PartnerCode? = nil,
+                          location: LocationCode? = nil,
+                          deviceName: String? = nil,
+                          apiKey: APIKey? = nil,
+                          callback: @escaping SubmitOrderCallback) throws -> SubmitOrderCall {
+    let (partnerCode, locationCode, apiKey, deviceName) = try resolveContext(partner, location, deviceName, apiKey)
+
+    return try self.service(apiKey).submitOrder(SubmitOrder.Request.with { builder in
+      builder.order = order
+      builder.device = deviceName
+      builder.location = LocationKey.with { builder in
+        builder.code = locationCode
+        builder.partner = PartnerKey.with { builder in
+          builder.code = partnerCode
+        }
+      }
+    }) { (response, callResult) in
+      callback(callResult, response)
+    }
+  }
 }

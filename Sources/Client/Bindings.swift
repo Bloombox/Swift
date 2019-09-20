@@ -350,6 +350,9 @@ public typealias MediaPrivacy = Opencannabis_Media_MediaPrivacy
 public typealias MediaSubject = Opencannabis_Media_MediaSubject
 public typealias MediaReference = Opencannabis_Media_MediaReference
 public typealias MediaOrientation = Opencannabis_Media_MediaOrientation
+public typealias Person = Opencannabis_Person_Person
+public typealias Gender = Opencannabis_Person_Gender
+public typealias GenderCategory = Opencannabis_Person_GenderCategory
 public typealias PersonName = Opencannabis_Person_Name
 public typealias PhoneNumber = Opencannabis_Contact_PhoneNumber
 public typealias EmailAddress = Opencannabis_Contact_EmailAddress
@@ -360,6 +363,7 @@ public typealias USDL = Bloombox_Identity_Ids_USDL
 public typealias USDLField = Bloombox_Identity_Ids_USDLField
 public typealias TemporalDate = Opencannabis_Temporal_Date
 public typealias USDLFieldValue = Bloombox_Identity_Ids_USDLFieldValue
+public typealias EnrollmentSource = Bloombox_Identity_EnrollmentSource
 
 @available(*, deprecated)
 public typealias PartnerLocationKey = Bloombox_Partner_LocationKey
