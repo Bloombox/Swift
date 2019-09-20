@@ -160,23 +160,47 @@ public typealias SubmitOrderCall = Bloombox_Services_Shop_V1_ShopSubmitOrderCall
 
 //// Telemetry Service
 
-/// Binding to the active EventTelemetryService.
+/// Binding to the active telemetry services.
 public typealias EventTelemetry = Bloombox_Services_Telemetry_V1beta4_EventTelemetryServiceClient
+public typealias CommercialTelemetry = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryServiceClient
+public typealias SearchTelemetry = Bloombox_Services_Telemetry_V1beta4_SearchTelemetryServiceClient
 
-/// Method: `ping`.
+/// Event interfaces.
+public typealias TelemetryEvent = Bloombox_Services_Telemetry_V1beta4_Event
+public typealias CommercialTelemetryEvent = Bloombox_Services_Telemetry_V1beta4_CommercialEvent
+public typealias SearchTelemetryEvent = Bloombox_Services_Telemetry_V1beta4_SearchEvent
+
+/// Method: `generic.ping`.
 public typealias TelemetryPing = Bloombox_Services_Telemetry_V1beta4_TelemetryPing
 public typealias TelemetryPingCall = Bloombox_Services_Telemetry_V1beta4_EventTelemetryPingCall
 
-/// Method: `event`.
-public typealias TelemetryEvent = Bloombox_Services_Telemetry_V1beta4_Event
+/// Method: `generic.event`.
 public typealias TelemetryEventCall = Bloombox_Services_Telemetry_V1beta4_EventTelemetryEventCall
 
-/// Method: `batch`.
+/// Method: `generic.batch`.
 public typealias TelemetryEventBatch = Bloombox_Services_Telemetry_V1beta4_Event.Batch
 public typealias TelemetryEventBatchRequest = Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest
 
-/// Method: `error`.
+/// Method: `generic.error`.
 public typealias TelemetryException = Bloombox_Services_Telemetry_V1beta4_Exception
+
+/// Method: `commercial.impression`
+public typealias TelemetryImpressionCall = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryImpressionCall
+
+/// Method: `commercial.view`
+public typealias TelemetryViewCall = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryViewCall
+
+/// Method: `commercial.action`
+public typealias TelemetryActionCall = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryActionCall
+public typealias SectionAction = Bloombox_Analytics_Section_SectionAction
+public typealias ProductAction = Bloombox_Analytics_Product_ProductAction
+public typealias OrderAction = Bloombox_Analytics_Order_OrderAction
+
+/// Method: `search.query`
+public typealias SearchTelemetryQueryCall = Bloombox_Services_Telemetry_V1beta4_SearchTelemetryQueryCall
+public typealias SearchTelemetryResultCall = Bloombox_Services_Telemetry_V1beta4_SearchTelemetryResultCall
+
+/// Method: `search.result`
 
 
 //// Menu Service

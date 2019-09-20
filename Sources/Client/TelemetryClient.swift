@@ -45,6 +45,12 @@ public class TelemetryClient: RemoteService {
   /// Generic event telemetry service.
   internal let events: EventTelemetry
 
+  /// Commercial event telemetry service.
+  internal let commercial: CommercialTelemetry
+
+  /// Search event telemetry service.
+  internal let search: SearchTelemetry
+
   /// Client-wide settings.
   internal let settings: Bloombox.Settings
 
@@ -54,6 +60,11 @@ public class TelemetryClient: RemoteService {
 
     // initialize events service
     events = RPCServiceFactory<EventTelemetry>.factory(
+      forService: Transport.config.services.telemetry,
+      withSettings: self.settings)
+
+    // initialize commercial events service
+    commercial = RPCServiceFactory<CommercialTelemetry>.factory(
       forService: Transport.config.services.telemetry,
       withSettings: self.settings)
   }
