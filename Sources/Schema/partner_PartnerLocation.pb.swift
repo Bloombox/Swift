@@ -104,7 +104,7 @@ public struct Bloombox_Partner_PartnerLocation {
   public mutating func clearPartner() {_uniqueStorage()._partner = nil}
 
   /// Type of this partner location.
-  public var type: Bloombox_Partner_LocationType {
+  public var type: [Bloombox_Partner_LocationType] {
     get {return _storage._type}
     set {_uniqueStorage()._type = newValue}
   }
@@ -173,6 +173,16 @@ public struct Bloombox_Partner_PartnerLocation {
     set {_uniqueStorage()._accessRequest = newValue}
   }
 
+  /// Describes the retail storefront operated by this partner, as applicable.
+  public var storefront: Bloombox_Partner_RetailStorefront {
+    get {return _storage._storefront ?? Bloombox_Partner_RetailStorefront()}
+    set {_uniqueStorage()._storefront = newValue}
+  }
+  /// Returns true if `storefront` has been explicitly set.
+  public var hasStorefront: Bool {return _storage._storefront != nil}
+  /// Clears the value of `storefront`. Subsequent reads from it will return its default value.
+  public mutating func clearStorefront() {_uniqueStorage()._storefront = nil}
+
   /// Timestamp for when this record was created.
   public var created: Opencannabis_Temporal_Instant {
     get {return _storage._created ?? Opencannabis_Temporal_Instant()}
@@ -227,6 +237,7 @@ extension Bloombox_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf
     9: .same(proto: "settings"),
     10: .same(proto: "policy"),
     11: .standard(proto: "access_request"),
+    12: .same(proto: "storefront"),
     100: .same(proto: "created"),
     101: .same(proto: "modified"),
   ]
@@ -234,7 +245,7 @@ extension Bloombox_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf
   fileprivate class _StorageClass {
     var _code: String = String()
     var _partner: Bloombox_Partner_PartnerKey? = nil
-    var _type: Bloombox_Partner_LocationType = .genericLocation
+    var _type: [Bloombox_Partner_LocationType] = []
     var _name: String = String()
     var _label: String = String()
     var _flags: Bloombox_Partner_PartnerFlags? = nil
@@ -243,6 +254,7 @@ extension Bloombox_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf
     var _settings: Bloombox_Partner_Settings_PartnerLocationSettings? = nil
     var _policy: [Bloombox_Security_Access_AccessPolicy] = []
     var _accessRequest: [Bloombox_Security_Access_AccessRequest] = []
+    var _storefront: Bloombox_Partner_RetailStorefront? = nil
     var _created: Opencannabis_Temporal_Instant? = nil
     var _modified: Opencannabis_Temporal_Instant? = nil
 
@@ -262,6 +274,7 @@ extension Bloombox_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf
       _settings = source._settings
       _policy = source._policy
       _accessRequest = source._accessRequest
+      _storefront = source._storefront
       _created = source._created
       _modified = source._modified
     }
@@ -281,7 +294,7 @@ extension Bloombox_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf
         switch fieldNumber {
         case 1: try decoder.decodeSingularStringField(value: &_storage._code)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._partner)
-        case 3: try decoder.decodeSingularEnumField(value: &_storage._type)
+        case 3: try decoder.decodeRepeatedEnumField(value: &_storage._type)
         case 4: try decoder.decodeSingularStringField(value: &_storage._name)
         case 5: try decoder.decodeSingularStringField(value: &_storage._label)
         case 6: try decoder.decodeSingularMessageField(value: &_storage._flags)
@@ -290,6 +303,7 @@ extension Bloombox_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf
         case 9: try decoder.decodeSingularMessageField(value: &_storage._settings)
         case 10: try decoder.decodeRepeatedMessageField(value: &_storage._policy)
         case 11: try decoder.decodeRepeatedMessageField(value: &_storage._accessRequest)
+        case 12: try decoder.decodeSingularMessageField(value: &_storage._storefront)
         case 100: try decoder.decodeSingularMessageField(value: &_storage._created)
         case 101: try decoder.decodeSingularMessageField(value: &_storage._modified)
         default: break
@@ -306,8 +320,8 @@ extension Bloombox_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf
       if let v = _storage._partner {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
-      if _storage._type != .genericLocation {
-        try visitor.visitSingularEnumField(value: _storage._type, fieldNumber: 3)
+      if !_storage._type.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._type, fieldNumber: 3)
       }
       if !_storage._name.isEmpty {
         try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 4)
@@ -332,6 +346,9 @@ extension Bloombox_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf
       }
       if !_storage._accessRequest.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._accessRequest, fieldNumber: 11)
+      }
+      if let v = _storage._storefront {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
       }
       if let v = _storage._created {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 100)
@@ -359,6 +376,7 @@ extension Bloombox_Partner_PartnerLocation: SwiftProtobuf.Message, SwiftProtobuf
         if _storage._settings != rhs_storage._settings {return false}
         if _storage._policy != rhs_storage._policy {return false}
         if _storage._accessRequest != rhs_storage._accessRequest {return false}
+        if _storage._storefront != rhs_storage._storefront {return false}
         if _storage._created != rhs_storage._created {return false}
         if _storage._modified != rhs_storage._modified {return false}
         return true

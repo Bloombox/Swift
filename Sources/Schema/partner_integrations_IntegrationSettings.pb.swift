@@ -61,6 +61,9 @@ public enum Bloombox_Partner_Integrations_IntegrationPartner: SwiftProtobuf.Enum
 
   /// Open web-hooks, with JSON, msgpack or protobuf support (text/binary).
   case webHooks // = 11
+
+  /// Integration with Google Cloud Print.
+  case cloudPrint // = 12
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -81,6 +84,7 @@ public enum Bloombox_Partner_Integrations_IntegrationPartner: SwiftProtobuf.Enum
     case 9: self = .treez
     case 10: self = .leafLogix
     case 11: self = .webHooks
+    case 12: self = .cloudPrint
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -99,6 +103,7 @@ public enum Bloombox_Partner_Integrations_IntegrationPartner: SwiftProtobuf.Enum
     case .treez: return 9
     case .leafLogix: return 10
     case .webHooks: return 11
+    case .cloudPrint: return 12
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -122,6 +127,7 @@ extension Bloombox_Partner_Integrations_IntegrationPartner: CaseIterable {
     .treez,
     .leafLogix,
     .webHooks,
+    .cloudPrint,
   ]
 }
 
@@ -708,6 +714,16 @@ public struct Bloombox_Partner_Integrations_LocationIntegrationSettings {
   /// Clears the value of `leafLogix`. Subsequent reads from it will return its default value.
   public mutating func clearLeafLogix() {_uniqueStorage()._leafLogix = nil}
 
+  /// Specifies location-specific integration settings with Google Cloud Print.
+  public var cloudprint: Bloombox_Partner_Integrations_Cloudprint_CloudPrintSettings {
+    get {return _storage._cloudprint ?? Bloombox_Partner_Integrations_Cloudprint_CloudPrintSettings()}
+    set {_uniqueStorage()._cloudprint = newValue}
+  }
+  /// Returns true if `cloudprint` has been explicitly set.
+  public var hasCloudprint: Bool {return _storage._cloudprint != nil}
+  /// Clears the value of `cloudprint`. Subsequent reads from it will return its default value.
+  public mutating func clearCloudprint() {_uniqueStorage()._cloudprint = nil}
+
   /// Generic web-hook integration settings, for location-level events.
   public var webHooks: Bloombox_Partner_Integrations_WebhookIntegrationSettings {
     get {return _storage._webHooks ?? Bloombox_Partner_Integrations_WebhookIntegrationSettings()}
@@ -804,6 +820,7 @@ extension Bloombox_Partner_Integrations_IntegrationPartner: SwiftProtobuf._Proto
     9: .same(proto: "TREEZ"),
     10: .same(proto: "LEAF_LOGIX"),
     11: .same(proto: "WEB_HOOKS"),
+    12: .same(proto: "CLOUD_PRINT"),
   ]
 }
 
@@ -1144,7 +1161,8 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
     14: .same(proto: "onfleet"),
     15: .same(proto: "treez"),
     16: .standard(proto: "leaf_logix"),
-    17: .standard(proto: "web_hooks"),
+    17: .same(proto: "cloudprint"),
+    99: .standard(proto: "web_hooks"),
   ]
 
   fileprivate class _StorageClass {
@@ -1158,6 +1176,7 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
     var _onfleet: Bloombox_Partner_Integrations_Onfleet_OnFleetSettings? = nil
     var _treez: Bloombox_Partner_Integrations_Treez_TreezSettings? = nil
     var _leafLogix: Bloombox_Partner_Integrations_Leaflogix_LeafLogixSettings? = nil
+    var _cloudprint: Bloombox_Partner_Integrations_Cloudprint_CloudPrintSettings? = nil
     var _webHooks: Bloombox_Partner_Integrations_WebhookIntegrationSettings? = nil
 
     static let defaultInstance = _StorageClass()
@@ -1175,6 +1194,7 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
       _onfleet = source._onfleet
       _treez = source._treez
       _leafLogix = source._leafLogix
+      _cloudprint = source._cloudprint
       _webHooks = source._webHooks
     }
   }
@@ -1201,7 +1221,8 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
         case 14: try decoder.decodeSingularMessageField(value: &_storage._onfleet)
         case 15: try decoder.decodeSingularMessageField(value: &_storage._treez)
         case 16: try decoder.decodeSingularMessageField(value: &_storage._leafLogix)
-        case 17: try decoder.decodeSingularMessageField(value: &_storage._webHooks)
+        case 17: try decoder.decodeSingularMessageField(value: &_storage._cloudprint)
+        case 99: try decoder.decodeSingularMessageField(value: &_storage._webHooks)
         default: break
         }
       }
@@ -1240,8 +1261,11 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
       if let v = _storage._leafLogix {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
       }
-      if let v = _storage._webHooks {
+      if let v = _storage._cloudprint {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
+      }
+      if let v = _storage._webHooks {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 99)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -1262,6 +1286,7 @@ extension Bloombox_Partner_Integrations_LocationIntegrationSettings: SwiftProtob
         if _storage._onfleet != rhs_storage._onfleet {return false}
         if _storage._treez != rhs_storage._treez {return false}
         if _storage._leafLogix != rhs_storage._leafLogix {return false}
+        if _storage._cloudprint != rhs_storage._cloudprint {return false}
         if _storage._webHooks != rhs_storage._webHooks {return false}
         return true
       }

@@ -21,10 +21,10 @@
 // limitations under the License.
 //
 import Dispatch
-import OpenCannabis
 import Foundation
 import SwiftGRPC
 import SwiftProtobuf
+import OpenCannabis
 
 public protocol Bloombox_Services_Telemetry_V1beta4_TelemetryStreamEventsCall: ClientCallClientStreaming {
   /// Send a message to the stream. Nonblocking.

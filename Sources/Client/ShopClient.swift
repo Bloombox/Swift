@@ -181,6 +181,27 @@ public final class ShopClient: RemoteService {
 
   // MARK: - Verify Member
 
+  /// Verify a member account by their phone number. "Verify" in this context checks that they have a valid account,
+  /// membership with the partner/location in question, and have no expired documents, like medical recommendations and
+  /// IDs.
+  ///
+  public func verifyMember(phone: PhoneNumber,
+                           partner: PartnerCode? = nil,
+                           location: LocationCode? = nil,
+                           apiKey: APIKey? = nil) throws -> VerifyMember.Response {
+    let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
+
+    return try self.service(apiKey).verifyMember(VerifyMember.Request.with { builder in
+      builder.phone = phone
+      builder.location = LocationKey.with { builder in
+        builder.code = locationCode
+        builder.partner = PartnerKey.with { builder in
+          builder.code = partnerCode
+        }
+      }
+    })
+  }
+
   /// Verify a member account by their email address. "Verify" in this context checks that they have a valid account,
   /// membership with the partner/location in question, and have no expired documents, like medical recommendations and
   /// IDs.
@@ -201,6 +222,31 @@ public final class ShopClient: RemoteService {
         }
       }
     })
+  }
+
+  /// Verify a member account, asynchronously, by their phone number. "Verify" in this context checks that they have a
+  /// valid account, membership with the partner/location in question, and have no expired documents, like medical
+  /// recommendations and IDs.
+  ///
+  @discardableResult
+  public func verifyMember(phone: PhoneNumber,
+                           partner: PartnerCode? = nil,
+                           location: LocationCode? = nil,
+                           apiKey: APIKey? = nil,
+                           callback: @escaping VerifyMemberCallback) throws -> VerifyMemberCall {
+    let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
+
+    return try self.service(apiKey).verifyMember(VerifyMember.Request.with { builder in
+      builder.phone = phone
+      builder.location = LocationKey.with { builder in
+        builder.code = locationCode
+        builder.partner = PartnerKey.with { builder in
+          builder.code = partnerCode
+        }
+      }
+    }) { (response, callResult) in
+      callback(callResult, response)
+    }
   }
 
   /// Verify a member account, asynchronously, by their email address. "Verify" in this context checks that they have a

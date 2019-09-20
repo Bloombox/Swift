@@ -6,4 +6,5 @@
 [submodule "Schema"]
 	path = Schema
 	url = git@github.com:bloombox/Schema.git
-	branch = auth/connect
+	branch = feature/retail-space
+	ignore = dirty

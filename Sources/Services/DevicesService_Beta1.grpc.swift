@@ -21,10 +21,10 @@
 // limitations under the License.
 //
 import Dispatch
-import OpenCannabis
 import Foundation
 import SwiftGRPC
 import SwiftProtobuf
+import OpenCannabis
 
 public protocol Bloombox_Services_Devices_V1beta1_DevicesPingCall: ClientCallUnary {}
 
