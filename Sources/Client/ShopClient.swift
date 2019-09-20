@@ -574,7 +574,11 @@ public final class ShopClient: RemoteService {
     let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
 
     return try self.service(apiKey).getOrder(GetOrder.Request.with { builder in
-      builder.orderID = id
+      if isLocal {
+        builder.orderNumber = id
+      } else {
+        builder.orderID = id
+      }
       builder.location = LocationKey.with { builder in
         builder.code = locationCode
         builder.partner = PartnerKey.with { builder in
@@ -605,7 +609,11 @@ public final class ShopClient: RemoteService {
     let (partnerCode, locationCode, apiKey) = try resolveContext(partner, location, apiKey)
 
     return try self.service(apiKey).getOrder(GetOrder.Request.with { builder in
-      builder.orderID = id
+      if isLocal {
+        builder.orderNumber = id
+      } else {
+        builder.orderID = id
+      }
       builder.location = LocationKey.with { builder in
         builder.code = locationCode
         builder.partner = PartnerKey.with { builder in
