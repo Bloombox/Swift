@@ -5,10 +5,14 @@ import PackageDescription
 let package = Package(
     name: "Bloombox",
 
+    platforms: [
+       .macOS(.v10_10), .iOS(.v8), .tvOS(.v9), .watchOS(.v2)
+    ],
+
     products: [
-        .library(
-            name: "Bloombox",
-            targets: ["Bloombox"])],
+        .library(name: "Bloombox", targets: ["Bloombox"]),
+        .library(name: "BloomboxServices", targets: ["BloomboxServices", "OpenCannabis"]),
+        .library(name: "OpenCannabis", targets: ["OpenCannabis"])],
 
     dependencies: [
         .package(url: "https://github.com/apple/swift-protobuf.git", .upToNextMinor(from: "1.5.0")),
@@ -34,5 +38,7 @@ let package = Package(
         .testTarget(name: "ClientTests", dependencies: ["Bloombox"])],
 
     swiftLanguageVersions: [.version("4"), .version("4.2"), .version("5")],
+
     cLanguageStandard: .c11,
     cxxLanguageStandard: .cxx11)
+
