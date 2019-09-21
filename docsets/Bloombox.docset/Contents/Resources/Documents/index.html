@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bloombox  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="Bloombox  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">Bloombox 0.5.0-beta3 Docs</a> (0% documented)</p>
+        <p class="header-right"><a href="https://github.com/bloombox/swift"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">Bloombox Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Bloombox  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='bloombox-for-swift' class='heading'>Bloombox for Swift</h1>
+
+<p><img src="https://travis-ci.org/Bloombox/Swift.svg?branch=master" alt="Build"> <a href="https://codeclimate.com/github/Bloombox/Swift/maintainability"><img src="https://api.codeclimate.com/v1/badges/726f360df7dbf653931f/maintainability" alt="Maintainability"></a> <img src="https://img.shields.io/codecov/c/github/bloombox/swift.svg?style=flat-square" alt="Coverage"> <img src="https://img.shields.io/cocoapods/v/Bloombox.svg?style=flat-square" alt="Version"> <img src="https://img.shields.io/cocoapods/p/Bloombox.svg?style=flat-square" alt="Support"> <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/carthage-compatible-green.svg?style=flat-square" alt="Carthage"></a> <img src="https://img.shields.io/github/license/bloombox/swift.svg?style=flat-square" alt="License"></p>
+
+<p>This Swift package provides an API client for <a href="https://bloombox.io">Bloombox</a> Cloud APIs. Bloombox APIs are built and served using <a href="https://grpc.io">gRPC</a> and exposed in client libraries like this one with a more fluid interface to work with. Bloombox systems are <a href="https://rfc.opencannabis.info">OpenCannabis</a>-compliant, and expose, for instance, an <code>OpenCannabis</code> pod that can be used independent of the API client.</p>
+
+<p>You can always opt to use the lower level APIs instead of the client libraries, either via <a href="https://console.api.bloombox.cloud">gRPC+protobuf or JSON-REST</a>.</p>
+
+<p>In terms of iOS land, this library client is built in native Swift, and packaged as a Cocoapod and Swift Package. It is built on <a href="https://github.com/apple/swift-protobuf">Apple&rsquo;s Protobuf for Swift</a> and the new native <a href="https://github.com/grpc/grpc-swift">gRPC for Swift</a>. It is tested on macOS 11, and iOS 11, although the underlying tools are still under active development, and so YMMV.</p>
+<h3 id='using-the-code' class='heading'>Using the code</h3>
+
+<p>Via <strong>CocoaPods</strong>:</p>
+<pre class="highlight ruby"><code><span class="n">project</span> <span class="s1">'YourProject.xcodeproj/'</span>
+
+<span class="n">source</span> <span class="s1">'https://github.com/CocoaPods/Specs.git'</span>
+
+<span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s1">'8.0'</span>
+<span class="n">inhibit_all_warnings!</span>
+
+<span class="n">target</span> <span class="s1">'YourProject'</span> <span class="k">do</span>
+  <span class="n">use_frameworks!</span>
+
+  <span class="n">pod</span> <span class="s1">'OpenCannabis'</span><span class="p">,</span> <span class="s1">'~&gt; 0.5.0'</span>
+  <span class="n">pod</span> <span class="s1">'Bloombox'</span><span class="p">,</span> <span class="s1">'~&gt; 0.5.0'</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Via <strong>Swift Package Manager</strong>:</p>
+<pre class="highlight swift"><code><span class="c1">// swift-tools-version:5.0</span>
+
+<span class="kd">import</span> <span class="kt">PackageDescription</span>
+
+<span class="k">let</span> <span class="nv">package</span> <span class="o">=</span> <span class="kt">Package</span><span class="p">(</span>
+    <span class="nv">name</span><span class="p">:</span> <span class="s">"YourProject"</span><span class="p">,</span>
+
+    <span class="c1">/// ...</span>
+
+    <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/bloombox/swift"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMinor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"0.5.0"</span><span class="p">))])</span>
+</code></pre>
+
+<p>Via <strong>Carthage</strong>:</p>
+<pre class="highlight plaintext"><code>github "bloombox/swift" ~&gt; 0.5.0
+</code></pre>
+<h3 id='schema-pods' class='heading'>Schema Pods</h3>
+
+<p>The Bloombox Swift SDK is broken into three pods, to make lower-level structures usable directly with a hand-rolled gRPC implementation. They are laid out like so (roughly in reverse-abstraction-order):</p>
+
+<table><thead>
+<tr>
+<th>Pod</th>
+<th>Version</th>
+<th>Platforms</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>Bloombox</code></td>
+<td><img src="https://img.shields.io/cocoapods/v/Bloombox.svg?style=flat-square" alt="Version"></td>
+<td><img src="https://img.shields.io/cocoapods/p/Bloombox.svg?style=flat-square" alt="Platforms"></td>
+<td>Full client-library facade, example apps, documentation and guides.</td>
+</tr>
+<tr>
+<td><code>BloomboxServices</code></td>
+<td><img src="https://img.shields.io/cocoapods/v/BloomboxServices.svg?style=flat-square" alt="Version"></td>
+<td><img src="https://img.shields.io/cocoapods/p/BloomboxServices.svg?style=flat-square" alt="Platforms"></td>
+<td>Low-level gRPC services for interacting with Bloombox APIs.</td>
+</tr>
+<tr>
+<td><code>OpenCannabis</code></td>
+<td><img src="https://img.shields.io/cocoapods/v/OpenCannabis.svg?style=flat-square" alt="Version"></td>
+<td><img src="https://img.shields.io/cocoapods/p/OpenCannabis.svg?style=flat-square" alt="Platforms"></td>
+<td><a href="https://rfc.opencannabis.info">OpenCannabis</a>-compatible object tree in Swift.</td>
+</tr>
+</tbody></table>
+<h3 id='building-the-code' class='heading'>Building the code</h3>
+
+<p>Building the code is easy and follows standard Swift packaging conventions. There is also a <code>Makefile</code> packaged with various useful routines - you&rsquo;ll use <code>make</code> if you are developing on the code.</p>
+
+<p><strong>Tooling:</strong></p>
+
+<ul>
+<li>Xcode 10/Swift 4.2 (for version <code>0.1.5</code> and above, previously Xcode 9 / Swift 3.2)</li>
+<li><code>make</code> and other CLI tools for XCode</li>
+<li>Code access to private schema repos for Bloombox</li>
+</ul>
+<h2 id='services' class='heading'>Services</h2>
+
+<p>To get started with API services, setup an API client somewhere in your app:</p>
+<pre class="highlight swift"><code>    <span class="k">let</span> <span class="nv">client</span><span class="p">:</span> <span class="kt">Bloombox</span> <span class="o">=</span> <span class="kt">Bloombox</span><span class="p">(</span><span class="nv">settings</span><span class="p">:</span> <span class="kt">Bloombox</span><span class="o">.</span><span class="kt">Settings</span><span class="p">(</span>
+      <span class="nv">apiKey</span><span class="p">:</span> <span class="s">"[your-api-key]"</span><span class="p">,</span>
+      <span class="nv">partner</span><span class="p">:</span> <span class="s">"[your-partner-id]"</span><span class="p">,</span>
+      <span class="nv">location</span><span class="p">:</span> <span class="s">"[your-location-id]"</span><span class="p">))</span>
+
+</code></pre>
+
+<p>Information about these settings, in detail:</p>
+
+<ul>
+<li><em>API Key</em>: Identifies your app/project to the Bloombox API. You can provision these from your Bloombox Dashboard.</li>
+<li><em>Partner ID</em>: Identifies your partner account by a short string code. Can be found in your Bloombox Dashboard.</li>
+<li><em>Location ID</em>: Identifies the partner location for which you want to transact/interact. Can also be found in your Bloombox Dashboard, under the location you wish to use.</li>
+</ul>
+
+<p><em>NOTE:</em> Make sure you retain the <code>Bloombox</code> client instance somewhere, or you risk the client (and associated callbacks, etc) getting de-allocated in the middle of a request:</p>
+<h4 id='architecture' class='heading'>Architecture</h4>
+
+<p>For nearly every method in the SDK, there is both a sync variant which returns its response directly, and an async variant that responds via callback rather than returning a response directly. When using the synchronous API, errors are thrown, whether they are encountered on the client-side (for instance, a missing API key), or on the server-side (e.g. an authorization failure). The async API, by comparison, only throws client-side errors, and reports server-side errors via the provided callback.</p>
+
+<p>Each service has an accompanying client-side error enumeration, which provides each error that may be thrown for a request before it leaves for the server.</p>
+
+<p>To make cross-location usage easy, most, if not all, methods support overriding the partner, location, or API key on a per-call basis. If you choose not to provide these override values, they&rsquo;re gathered from the <code>Bloombox.Settings</code> object instead.</p>
+<h3 id='shop-api' class='heading'>Shop API</h3>
+
+<blockquote>
+<p><a href="https://console.api.bloombox.cloud/docs/shop.api.bloombox.cloud/g/introduction">Try this API or browse the docs in the API console</a></p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Service</td>
+<td><code>shop</code></td>
+</tr>
+<tr>
+<td>Version</td>
+<td><code>v1</code></td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td><code>api.bloombox.cloud</code></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td><code>shop.rpc.bloombox.cloud</code></td>
+</tr>
+</tbody></table>
+
+<p>Bloombox Shop services allow interaction with ordering, user enrollment and verification, and more. The included sample checks a shop&rsquo;s <q>info,</q> which includes its open/closed status, and a few other top-of-the-fold details. The full set of available shop methods includes:</p>
+
+<ul>
+<li><code>info</code>: Retrieve <code>OPEN</code>/<code>CLOSED</code> status and other top-of-the-fold details.</li>
+<li><code>verifyMember</code>: Perform membership verification on a given user account.</li>
+<li><code>enrollMember</code>: Enroll a user as a member of a dispensary location, and potentially for a new account.</li>
+<li><code>zipcheck</code>: Check a given USPS zipcode for delivery eligibility (and applicable minimums).</li>
+<li><code>submitOrder</code>: Submit an online/commercial order, for <code>PICKUP</code> or <code>DELIVERY</code>.</li>
+<li><code>getOrder</code>: Retrieve an existing online/commercial order.</li>
+</ul>
+
+<p>Synchronous:</p>
+<pre class="highlight swift"><code>  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">info</span><span class="p">:</span> <span class="kt">ShopInfo</span><span class="o">.</span><span class="kt">Response</span> <span class="o">=</span> <span class="k">try</span> <span class="n">client</span><span class="o">.</span><span class="n">shop</span><span class="o">.</span><span class="nf">info</span><span class="p">()</span>
+
+    <span class="k">switch</span> <span class="n">status</span><span class="o">.</span><span class="n">shopStatus</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">open</span><span class="p">:</span>
+      <span class="c1">// the shop is open</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">closed</span><span class="p">:</span>
+      <span class="c1">// the shop is entirely closed</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">deliveryOnly</span><span class="p">:</span>
+      <span class="c1">// the shop is only open for delivery</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nv">pickupOnly</span><span class="p">:</span>
+      <span class="c1">// the shop is only open for pickup</span>
+    <span class="k">default</span><span class="p">:</span> <span class="nf">fatalError</span><span class="p">(</span><span class="s">"unrecognized shop status"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">fatalError</span><span class="p">(</span><span class="s">"some error occurred: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre>
+<h3 id='platform-api' class='heading'>Platform API</h3>
+
+<blockquote>
+<p><a href="https://console.api.bloombox.cloud/docs/platform.api.bloombox.cloud/g/introduction">Try this API or browse the docs in the API console</a></p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Service</td>
+<td><code>platform</code></td>
+</tr>
+<tr>
+<td>Version</td>
+<td><code>v1</code></td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td><code>api.bloombox.cloud</code></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td><code>platform.rpc.bloombox.cloud</code></td>
+</tr>
+</tbody></table>
+
+<p>The Platform API provides basic account and domain lookup methods, in addition to miscellaneous methods unrelated to any specific partner or location account. This includes health checks, system pings, domain resolution, and domain info fetching:</p>
+
+<ul>
+<li><code>ping</code>: Send a simple message to the server asking it to respond.</li>
+<li><code>healthcheck</code>: Ask the system to report its current status.</li>
+<li><code>resolve</code>: Resolve a partner account code and location code for a given domain.</li>
+<li><code>domains</code>: Resolve a set of domains for a given partner account code and location code.</li>
+<li><code>brand</code>: Retrieve branding information for a given partner account code and location code.</li>
+</ul>
+
+<p>Synchronous:</p>
+<pre class="highlight swift"><code>  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">assignment</span><span class="p">:</span> <span class="kt">ResolveDomains</span><span class="o">.</span><span class="kt">Response</span> <span class="o">=</span> <span class="k">try</span> <span class="n">client</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="nf">resolve</span><span class="p">(</span><span class="s">"domain.com:443"</span><span class="p">)</span>
+
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">fatalError</span><span class="p">(</span><span class="s">"some client-side or server-side error occurred: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre>
+
+<p>Asynchronous:</p>
+<pre class="highlight swift"><code>  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="n">client</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="nf">resolve</span><span class="p">(</span><span class="s">"domain.com:443"</span><span class="p">)</span> <span class="p">{</span> <span class="n">result</span><span class="p">,</span> <span class="n">response</span> <span class="k">in</span>
+      <span class="c1">// result is the call result from gRPC, response is the RPC response, if available</span>
+      <span class="k">if</span> <span class="k">let</span> <span class="nv">assignment</span> <span class="o">=</span> <span class="n">response</span> <span class="p">{</span>
+        <span class="c1">// assignment.partner and assignment.location</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// do something about the error state</span>
+        <span class="nf">fatalError</span><span class="p">(</span><span class="s">"some error happened: </span><span class="se">\(</span><span class="n">result</span><span class="o">.</span><span class="n">statusCode</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="c1">// only client-side errors will show up here (i.e. missing API key, or unresolved partner ID)</span>
+    <span class="nf">fatalError</span><span class="p">(</span><span class="s">"client-side error"</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre>
+<h3 id='devices-api-img-src-https-img-shields-io-badge-beta-yellow-svg-style-flat-square-alt-beta' class='heading'>Devices API  <img src="https://img.shields.io/badge/BETA-yellow.svg?style=flat-square" alt="Beta"></h3>
+
+<blockquote>
+<p><a href="https://console.api.bloombox.cloud/docs/devices.api.bloombox.cloud/g/introduction">Try this API or browse the docs in the API console</a></p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Service</td>
+<td><code>devices</code></td>
+</tr>
+<tr>
+<td>Version</td>
+<td><code>v1beta1</code></td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td><code>api.bloombox.cloud</code></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td><code>devices.rpc.bloombox.cloud</code></td>
+</tr>
+</tbody></table>
+
+<p>Performs activation of partner-side devices. For menu tablets and other items, the Devices API provides tools to reach out and discover any assignment and role information bound to the invoking device.</p>
+
+<p>In some circumstances (usually goverened by the assigned device role), a <code>fingerprint</code> or <code>publicKey</code> value may be required. Device activation may be restricted based on the value of these properties, or, they may need to match the first activation that ever took place for the device in question. Other restrictions may apply to device activation, again, by role, such as enforcement of client-side certificates, IP restrictions, and more.</p>
+
+<p>Synchronous:</p>
+<pre class="highlight swift"><code>  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">manifest</span><span class="p">:</span> <span class="kt">DeviceActivation</span><span class="o">.</span><span class="kt">Response</span> <span class="o">=</span> <span class="k">try</span> <span class="n">client</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="nf">activate</span><span class="p">(</span>
+        <span class="nv">deviceSerial</span><span class="p">:</span> <span class="s">"ABC-123"</span><span class="p">,</span>
+        <span class="nv">withFingerprint</span><span class="p">:</span> <span class="s">"[device-hardware-fingerprint]"</span><span class="p">,</span>
+        <span class="nv">withPublicKey</span><span class="p">:</span> <span class="s">"[device-public-key]"</span><span class="p">)</span>
+
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">fatalError</span><span class="p">(</span><span class="s">"some client-side or server-side error occurred: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre>
+
+<p>Asynchronous:</p>
+<pre class="highlight swift"><code>  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="n">client</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="nf">activate</span><span class="p">(</span>
+        <span class="nv">deviceSerial</span><span class="p">:</span> <span class="s">"ABC-123"</span><span class="p">,</span>
+        <span class="nv">withFingerprint</span><span class="p">:</span> <span class="s">"[device-hardware-fingerprint]"</span><span class="p">,</span>
+        <span class="nv">withPublicKey</span><span class="p">:</span> <span class="s">"[device-public-key]"</span><span class="p">)</span> <span class="p">{</span> <span class="n">callResult</span><span class="p">,</span> <span class="n">response</span> <span class="k">in</span>
+
+      <span class="c1">// handle the call result and response</span>
+      <span class="k">if</span> <span class="k">let</span> <span class="nv">manifest</span> <span class="o">=</span> <span class="n">response</span> <span class="p">{</span>
+        <span class="c1">// the device was able to activate</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">fatalError</span><span class="p">(</span><span class="s">"the device was not able to activate: </span><span class="se">\(</span><span class="n">call</span><span class="o">.</span><span class="n">statusCode</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span> 
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">fatalError</span><span class="p">(</span><span class="s">"some client-side error occurred: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre>
+<h3 id='menu-api-img-src-https-img-shields-io-badge-beta-yellow-svg-style-flat-square-alt-beta' class='heading'>Menu API  <img src="https://img.shields.io/badge/BETA-yellow.svg?style=flat-square" alt="Beta"></h3>
+
+<blockquote>
+<p><a href="https://console.api.bloombox.cloud/docs/menu.api.bloombox.cloud/g/introduction">Try this API or browse the docs in the API console</a></p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Service</td>
+<td><code>menu</code></td>
+</tr>
+<tr>
+<td>Version</td>
+<td><code>v1beta1</code></td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td><code>api.bloombox.cloud</code></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td><code>menu.rpc.bloombox.cloud</code></td>
+</tr>
+</tbody></table>
+
+<p>The Menu API provides tools for interacting with product data, in a read-only manner, with an eye towards showcasing/selling products. This is distinguished from more detailed product catalog solutions and Bloombox APIs, in that:</p>
+
+<ul>
+<li>Items that are out-of-stock or currently not-offered at a given location are withheld by default</li>
+<li>Items without pricing, or marked as not-fit-for-sale, are withheld by default</li>
+<li>Items marked for suppressed distribution on retail channels are withheld by default</li>
+</ul>
+
+<p>Some Menu API methods provide flags for overriding the above behavior, but, by and large, the Menu API is designed to provide product catalog data that is then showcased to a potential retail customer.</p>
+
+<p>The simplest example (shown below) of using the Menu API is retrieving an entire menu for a given partner location. The full set of methods includs:</p>
+
+<ul>
+<li><code>retrieve</code>: Retrieve the entire menu catalog for a given partner location.</li>
+<li><code>section</code>: Retrieve a single section of a given location&rsquo;s menu. Menus are sectioned by <code>ProductKind</code>.</li>
+<li><code>featured</code>: Retrieve the current set of featured products on a given location&rsquo;s menu.</li>
+<li><code>products</code>: Retrieve one or more product data records.</li>
+<li><code>search</code>: Perform a fulltext search over products currently listed on a given location&rsquo;s menu.</li>
+<li><code>create</code>: Create a new product record from scratch.</li>
+<li><code>update</code>: Update an existing product record with new data.</li>
+<li><code>remove</code>: Remove an existing product record from a location&rsquo;s menu.</li>
+<li><code>productStatus</code>: Retrieve the current status of a given product record on a location&rsquo;s menu.</li>
+<li><code>inStock</code>: Mark an existing product record as currently-in-stock on a given location&rsquo;s menu.</li>
+<li><code>outOfStock</code>: Mark an existing product record as currently-out-of-stock on a given location&rsquo;s menu.</li>
+</ul>
+
+<p>Synchronous:</p>
+<pre class="highlight swift"><code>  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">menu</span><span class="p">:</span> <span class="kt">GetMenu</span><span class="o">.</span><span class="kt">Response</span> <span class="o">=</span> <span class="k">try</span> <span class="n">client</span><span class="o">.</span><span class="n">menu</span><span class="o">.</span><span class="nf">retrieve</span><span class="p">()</span>
+
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">fatalError</span><span class="p">(</span><span class="s">"some client-side or server-side error occurred: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre>
+
+<p>Asynchronous:</p>
+<pre class="highlight swift"><code>  <span class="k">do</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="n">client</span><span class="o">.</span><span class="n">menu</span><span class="o">.</span><span class="nf">retrieve</span><span class="p">()</span> <span class="p">{</span> <span class="n">callResult</span><span class="p">,</span> <span class="n">response</span> <span class="k">in</span>
+      <span class="c1">// handle the call result and response</span>
+      <span class="k">if</span> <span class="k">let</span> <span class="nv">menu</span> <span class="o">=</span> <span class="n">response</span> <span class="p">{</span>
+        <span class="c1">// the catalog will be at `menu.catalog`</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">fatalError</span><span class="p">(</span><span class="s">"unable to fetch the menu: </span><span class="se">\(</span><span class="n">call</span><span class="o">.</span><span class="n">statusCode</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="nf">fatalError</span><span class="p">(</span><span class="s">"some client-side error occurred: </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre>
+<h3 id='telemetry-api-img-src-https-img-shields-io-badge-beta-yellow-svg-style-flat-square-alt-beta' class='heading'>Telemetry API  <img src="https://img.shields.io/badge/BETA-yellow.svg?style=flat-square" alt="Beta"></h3>
+
+<blockquote>
+<p><a href="https://console.api.bloombox.cloud/docs/telemetry.api.bloombox.cloud/g/introduction">Try this API or browse the docs in the API console</a></p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Service</td>
+<td><code>telemetry</code></td>
+</tr>
+<tr>
+<td>Version</td>
+<td><code>v1beta4</code></td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td><code>api.bloombox.cloud</code></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td><code>telemetry.rpc.bloombox.cloud</code></td>
+</tr>
+</tbody></table>
+
+<p>The Telemetry API allows you to relay events as they happen, so they may be attributed in user flows and other Bloombox-provided metrics. Bloombox partners may also record arbitrary events with their own meaning, and optionally have these included in built-in event flows.</p>
+
+<p>Bloombox telemetry systems distinguish events by category, with three major categories supported for external use:</p>
+
+<ul>
+<li><code>EventTelemetry</code>: Generic event-based telemetry, with arbitrary event payloads.</li>
+<li><code>CommercialTelemetry</code>: Retail-style funnel-compatible telemetry, broken into <em>impressions</em>, <em>views</em>, and <em>actions</em>.</li>
+<li><code>IdentityTelemetry</code>: User-identity-related telemetry events. Not directly usable by partners, but consumable in analytics flows.</li>
+</ul>
+
+<p><em>Full enumeration and guide for use of these methods is coming soon.</em></p>
+<h3 id='auth-api-img-src-https-img-shields-io-badge-coming-20soon-lightgray-svg-style-flat-square-alt-coming-soon' class='heading'>Auth API  <img src="https://img.shields.io/badge/Coming%20Soon-lightgray.svg?style=flat-square" alt="Coming Soon"></h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Service</td>
+<td><code>auth</code></td>
+</tr>
+<tr>
+<td>Version</td>
+<td><code>v1beta1</code></td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td><code>api.bloombox.cloud</code></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td><code>auth.rpc.bloombox.cloud</code></td>
+</tr>
+</tbody></table>
+
+<p><em>Full docs and guide coming soon.</em></p>
+<h3 id='checkin-api-img-src-https-img-shields-io-badge-coming-20soon-lightgray-svg-style-flat-square-alt-coming-soon' class='heading'>Checkin API  <img src="https://img.shields.io/badge/Coming%20Soon-lightgray.svg?style=flat-square" alt="Coming Soon"></h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Service</td>
+<td><code>checkin</code></td>
+</tr>
+<tr>
+<td>Version</td>
+<td><code>v1beta1</code></td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td><code>api.bloombox.cloud</code></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td><code>checkin.rpc.bloombox.cloud</code></td>
+</tr>
+</tbody></table>
+
+<p><em>Full docs and guide coming soon.</em></p>
+<h3 id='media-api-img-src-https-img-shields-io-badge-coming-20soon-lightgray-svg-style-flat-square-alt-coming-soon' class='heading'>Media API  <img src="https://img.shields.io/badge/Coming%20Soon-lightgray.svg?style=flat-square" alt="Coming Soon"></h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Service</td>
+<td><code>media</code></td>
+</tr>
+<tr>
+<td>Version</td>
+<td><code>v1beta1</code></td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td><code>api.bloombox.cloud</code></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td><code>media.rpc.bloombox.cloud</code></td>
+</tr>
+</tbody></table>
+
+<p><em>Full docs and guide coming soon.</em></p>
+<h2 id='licensing' class='heading'>Licensing</h2>
+
+<p>Copyright © 2018 Momentum Ideas Co.</p>
+
+<p>A copy of the Apache 2.0 license is enclosed at <code>LICENSE.txt</code>, along with additional notices in <code>NOTICE.txt</code>. Licensed under the Apache License, Version 2.0 (the <q>License</q>); you may not use this file except in compliance with the License. You may obtain a copy of the License at</p>
+
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an <q>AS IS</q> BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the license.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016-2018, Momentum Ideas Co.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
