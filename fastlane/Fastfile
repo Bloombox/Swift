@@ -17,14 +17,14 @@ platform :ios do
   desc "Test the client"
   lane :testsuite do
     scan(project: "Bloombox.xcodeproj",
-         scheme: "Client",
+         scheme: "Bloombox",
          code_coverage: true,
          skip_build: true,
          devices: ["iPhone X"],
          output_directory: "./tests-out")
 
     slather(proj: "Bloombox.xcodeproj",
-            scheme: "Client",
+            scheme: "Bloombox",
             cobertura_xml: true,
             output_directory: "./coverage-out")
   end
