@@ -1330,7 +1330,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		"Bloombox::Bloombox::Product" /* Bloombox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bloombox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Bloombox::Bloombox::Product" /* Bloombox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bloombox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Bloombox::BloomboxServices::Product" /* BloomboxServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BloomboxServices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Bloombox::ClientTests::Product" /* ClientTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = ClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Bloombox::OpenCannabis::Product" /* OpenCannabis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenCannabis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4161,7 +4161,7 @@
 			path = x509;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -4183,7 +4183,6 @@
 				OBJ_1387 /* LICENSE.txt */,
 				OBJ_1388 /* Bloombox.podspec */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_549 /* x509v3 */ = {
@@ -5535,7 +5534,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_1366 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -6876,14 +6875,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-I/usr/local/Cellar/nghttp2/1.35.0_1/include",
-				);
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-L/usr/local/Cellar/nghttp2/1.35.0_1/lib",
-					"-lnghttp2",
 					"-lz",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -I/usr/local/Cellar/nghttp2/1.35.0_1/include -Xcc -fmodule-map-file=$(SRCROOT)/.build/checkouts/grpc-swift/Sources/CgRPC/include/module.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/Bloombox.xcodeproj/GeneratedModuleMap/BoringSSL/module.modulemap";
@@ -6919,14 +6913,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					"-I/usr/local/Cellar/nghttp2/1.35.0_1/include",
-				);
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-L/usr/local/Cellar/nghttp2/1.35.0_1/lib",
-					"-lnghttp2",
 					"-lz",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -I/usr/local/Cellar/nghttp2/1.35.0_1/include -Xcc -fmodule-map-file=$(SRCROOT)/.build/checkouts/grpc-swift/Sources/CgRPC/include/module.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/Bloombox.xcodeproj/GeneratedModuleMap/BoringSSL/module.modulemap";
