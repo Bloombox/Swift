@@ -5,7 +5,7 @@ env:
     - CODECOV_TOKEN=5f05c93b-cde4-421b-b1a7-7da0b91d9c67
 language: swift
 xcode_project: Bloombox.xcodeproj
-xcode_scheme: Client
+xcode_scheme: Bloombox
 git:
   submodules: false
 before_script:
