@@ -31,6 +31,7 @@ the Bloombox client library for Swift.
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.source_files = 'Sources/Services/*.swift'
+  s.swift_versions = ['3.2', '4.0', '4.2', '5.0']
 
   # ――― Dependencies ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.dependency 'OpenCannabis', '= 0.5.0-beta3'
