@@ -33,10 +33,10 @@ Native Swift client for accessing Bloombox Cloud APIs
   s.swift_versions = ['3.2', '4.0', '4.2', '5.0']
 
   # ――― Dependencies ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.dependency 'OpenCannabis', '= 0.5.0-beta3'
-  s.dependency 'BloomboxServices', '= 0.5.0-beta3'
-  s.dependency 'SwiftProtobuf', '~> 1.5.0'
-  s.dependency 'SwiftGRPC', '= 0.9.1'
+  s.dependency 'OpenCannabis', '= 0.5.0-beta5'
+  s.dependency 'BloomboxServices', '= 0.5.0-beta5'
+  s.dependency 'SwiftProtobuf', '~> 1.7.1'
+  s.dependency 'SwiftGRPC', '= 0.9.2'
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.frameworks  = "CoreLocation", "CoreBluetooth"

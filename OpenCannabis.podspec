@@ -34,7 +34,7 @@ Native Swift codegen and bindings for OpenCannabis
   s.swift_versions = ['3.2', '4.0', '4.2', '5.0']
 
   # --- Dependencies -----------------―――――――――――――――――――――――――――――――――――――――――――- #
-  s.dependency 'SwiftProtobuf', '~> 1.5.0'
+  s.dependency 'SwiftProtobuf', '~> 1.7.1'
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.libraries   = "z"
