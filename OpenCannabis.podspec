@@ -3,8 +3,7 @@ Pod::Spec.new do |s|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name          = "OpenCannabis"
-  s.swift_version = "5.0"
-  s.version       = "0.5.0-beta3"
+  s.version       = "0.5.0-beta5"
   s.summary       = "OpenCannabis for Swift"
   s.description   = <<-DESC
 Native Swift codegen and bindings for OpenCannabis
