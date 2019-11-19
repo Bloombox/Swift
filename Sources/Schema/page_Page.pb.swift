@@ -118,7 +118,7 @@ public struct Bloombox_Page_Context {
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  /// Defines the structure of well known page-level metadata, including the page title, description,
+  /// Defines the structure of well-known page-level metadata, including the page title, description,
   /// keywords, and so on.
   public struct Metadata {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -177,7 +177,7 @@ public struct Bloombox_Page_Context {
       set {_uniqueStorage()._touchIcon = newValue}
     }
 
-    /// Defines an image to use in iOS circumstances, when launching as an app shorcut.
+    /// Defines an image to use in iOS circumstances, when launching as an app shortcut.
     public var startupImage: String {
       get {return _storage._startupImage}
       set {_uniqueStorage()._startupImage = newValue}

@@ -68,6 +68,123 @@ public struct Opencannabis_Geo_Point {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+/// Specifies a world coordinate structure, which implements the Mercator Projection for use with Google Maps.
+public struct Opencannabis_Geo_WorldCoordinate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// 'Right' value for a world coordinate.
+  public var right: Double {
+    get {return _storage._right}
+    set {_uniqueStorage()._right = newValue}
+  }
+
+  /// 'Down' value for a world coordinate.
+  public var down: Double {
+    get {return _storage._down}
+    set {_uniqueStorage()._down = newValue}
+  }
+
+  /// Elevation of this point, if any.
+  public var elevation: Opencannabis_Geo_Distance {
+    get {return _storage._elevation ?? Opencannabis_Geo_Distance()}
+    set {_uniqueStorage()._elevation = newValue}
+  }
+  /// Returns true if `elevation` has been explicitly set.
+  public var hasElevation: Bool {return _storage._elevation != nil}
+  /// Clears the value of `elevation`. Subsequent reads from it will return its default value.
+  public mutating func clearElevation() {_uniqueStorage()._elevation = nil}
+
+  /// Accuracy rating attached to this point, if any.
+  public var accuracy: Opencannabis_Geo_Distance {
+    get {return _storage._accuracy ?? Opencannabis_Geo_Distance()}
+    set {_uniqueStorage()._accuracy = newValue}
+  }
+  /// Returns true if `accuracy` has been explicitly set.
+  public var hasAccuracy: Bool {return _storage._accuracy != nil}
+  /// Clears the value of `accuracy`. Subsequent reads from it will return its default value.
+  public mutating func clearAccuracy() {_uniqueStorage()._accuracy = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// Specifies a map coordinate by tile and pixel locations.
+public struct Opencannabis_Geo_MapCoordinate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// `x` value for a map coordinate.
+  public var x: UInt32 = 0
+
+  /// `y` value for a map coordinate.
+  public var y: UInt32 = 0
+
+  /// `right` value for a map coordinate (tile `x`).
+  public var right: UInt32 = 0
+
+  /// `down` value for a map coordinate (tile `y`).
+  public var down: UInt32 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+/// Specifies a full map position, with space for all available points/coordinates.
+public struct Opencannabis_Geo_MapPosition {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Geo-point (latitude/longitude) for the retail location.
+  public var point: Opencannabis_Geo_Point {
+    get {return _storage._point ?? Opencannabis_Geo_Point()}
+    set {_uniqueStorage()._point = newValue}
+  }
+  /// Returns true if `point` has been explicitly set.
+  public var hasPoint: Bool {return _storage._point != nil}
+  /// Clears the value of `point`. Subsequent reads from it will return its default value.
+  public mutating func clearPoint() {_uniqueStorage()._point = nil}
+
+  /// Tile/pixel coordinate for this location, using coordinates.
+  public var tile: Opencannabis_Geo_MapCoordinate {
+    get {return _storage._tile ?? Opencannabis_Geo_MapCoordinate()}
+    set {_uniqueStorage()._tile = newValue}
+  }
+  /// Returns true if `tile` has been explicitly set.
+  public var hasTile: Bool {return _storage._tile != nil}
+  /// Clears the value of `tile`. Subsequent reads from it will return its default value.
+  public mutating func clearTile() {_uniqueStorage()._tile = nil}
+
+  /// Geo-coordinate (as a "world coordinate") for use with Google Maps.
+  public var coordinate: Opencannabis_Geo_WorldCoordinate {
+    get {return _storage._coordinate ?? Opencannabis_Geo_WorldCoordinate()}
+    set {_uniqueStorage()._coordinate = newValue}
+  }
+  /// Returns true if `coordinate` has been explicitly set.
+  public var hasCoordinate: Bool {return _storage._coordinate != nil}
+  /// Clears the value of `coordinate`. Subsequent reads from it will return its default value.
+  public mutating func clearCoordinate() {_uniqueStorage()._coordinate = nil}
+
+  /// Zoom level for the map.
+  public var zoom: UInt32 {
+    get {return _storage._zoom}
+    set {_uniqueStorage()._zoom = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "opencannabis.geo"
@@ -148,6 +265,223 @@ extension Opencannabis_Geo_Point: SwiftProtobuf.Message, SwiftProtobuf._MessageI
         if _storage._longitude != rhs_storage._longitude {return false}
         if _storage._elevation != rhs_storage._elevation {return false}
         if _storage._accuracy != rhs_storage._accuracy {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Geo_WorldCoordinate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".WorldCoordinate"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "right"),
+    2: .same(proto: "down"),
+    3: .same(proto: "elevation"),
+    4: .same(proto: "accuracy"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _right: Double = 0
+    var _down: Double = 0
+    var _elevation: Opencannabis_Geo_Distance? = nil
+    var _accuracy: Opencannabis_Geo_Distance? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _right = source._right
+      _down = source._down
+      _elevation = source._elevation
+      _accuracy = source._accuracy
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularDoubleField(value: &_storage._right)
+        case 2: try decoder.decodeSingularDoubleField(value: &_storage._down)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._elevation)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._accuracy)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._right != 0 {
+        try visitor.visitSingularDoubleField(value: _storage._right, fieldNumber: 1)
+      }
+      if _storage._down != 0 {
+        try visitor.visitSingularDoubleField(value: _storage._down, fieldNumber: 2)
+      }
+      if let v = _storage._elevation {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._accuracy {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Geo_WorldCoordinate, rhs: Opencannabis_Geo_WorldCoordinate) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._right != rhs_storage._right {return false}
+        if _storage._down != rhs_storage._down {return false}
+        if _storage._elevation != rhs_storage._elevation {return false}
+        if _storage._accuracy != rhs_storage._accuracy {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Geo_MapCoordinate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MapCoordinate"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "x"),
+    2: .same(proto: "y"),
+    3: .same(proto: "right"),
+    4: .same(proto: "down"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularUInt32Field(value: &self.x)
+      case 2: try decoder.decodeSingularUInt32Field(value: &self.y)
+      case 3: try decoder.decodeSingularUInt32Field(value: &self.right)
+      case 4: try decoder.decodeSingularUInt32Field(value: &self.down)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.x != 0 {
+      try visitor.visitSingularUInt32Field(value: self.x, fieldNumber: 1)
+    }
+    if self.y != 0 {
+      try visitor.visitSingularUInt32Field(value: self.y, fieldNumber: 2)
+    }
+    if self.right != 0 {
+      try visitor.visitSingularUInt32Field(value: self.right, fieldNumber: 3)
+    }
+    if self.down != 0 {
+      try visitor.visitSingularUInt32Field(value: self.down, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Geo_MapCoordinate, rhs: Opencannabis_Geo_MapCoordinate) -> Bool {
+    if lhs.x != rhs.x {return false}
+    if lhs.y != rhs.y {return false}
+    if lhs.right != rhs.right {return false}
+    if lhs.down != rhs.down {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Opencannabis_Geo_MapPosition: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MapPosition"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "point"),
+    2: .same(proto: "tile"),
+    3: .same(proto: "coordinate"),
+    4: .same(proto: "zoom"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _point: Opencannabis_Geo_Point? = nil
+    var _tile: Opencannabis_Geo_MapCoordinate? = nil
+    var _coordinate: Opencannabis_Geo_WorldCoordinate? = nil
+    var _zoom: UInt32 = 0
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _point = source._point
+      _tile = source._tile
+      _coordinate = source._coordinate
+      _zoom = source._zoom
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._point)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._tile)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._coordinate)
+        case 4: try decoder.decodeSingularUInt32Field(value: &_storage._zoom)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._point {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._tile {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._coordinate {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if _storage._zoom != 0 {
+        try visitor.visitSingularUInt32Field(value: _storage._zoom, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Opencannabis_Geo_MapPosition, rhs: Opencannabis_Geo_MapPosition) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._point != rhs_storage._point {return false}
+        if _storage._tile != rhs_storage._tile {return false}
+        if _storage._coordinate != rhs_storage._coordinate {return false}
+        if _storage._zoom != rhs_storage._zoom {return false}
         return true
       }
       if !storagesAreEqual {return false}

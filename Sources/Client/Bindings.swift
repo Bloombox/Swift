@@ -1,9 +1,18 @@
-//
-//  Bindings.swift
-//  Client
-//
-//  Created by James Clark on 12/12/17.
-//
+/**
+* Copyright 2019, Momentum Ideas, Co. All rights reserved.
+* Source and object computer code contained herein is the private intellectual
+* property of Momentum Ideas Co., a Delaware Corporation. Use of this
+* code in source form requires permission in writing before use or the
+* assembly, distribution, or publishing of derivative works, for commercial
+* purposes or any other purpose, from a duly authorized officer of Momentum
+* Ideas Co.
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
 
 import Foundation
 import SwiftProtobuf
@@ -27,6 +36,9 @@ public typealias PartnerCode = String
 
 /// Location account code. Accessible via the Bloombox Dashboard.
 public typealias LocationCode = String
+
+/// Managed device code. Accessible via device configuration.
+public typealias DeviceCode = String
 
 
 //// Auth Service
@@ -148,23 +160,54 @@ public typealias SubmitOrderCall = Bloombox_Services_Shop_V1_ShopSubmitOrderCall
 
 //// Telemetry Service
 
-/// Binding to the active EventTelemetryService.
+/// Binding to the active telemetry services.
 public typealias EventTelemetry = Bloombox_Services_Telemetry_V1beta4_EventTelemetryServiceClient
+public typealias CommercialTelemetry = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryServiceClient
+public typealias SearchTelemetry = Bloombox_Services_Telemetry_V1beta4_SearchTelemetryServiceClient
 
-/// Method: `ping`.
+/// Event interfaces.
+public typealias TelemetryEvent = Bloombox_Services_Telemetry_V1beta4_Event
+public typealias CommercialTelemetryEvent = Bloombox_Services_Telemetry_V1beta4_CommercialEvent
+public typealias SearchTelemetryEvent = Bloombox_Services_Telemetry_V1beta4_SearchEvent
+
+/// Method: `generic.ping`.
 public typealias TelemetryPing = Bloombox_Services_Telemetry_V1beta4_TelemetryPing
 public typealias TelemetryPingCall = Bloombox_Services_Telemetry_V1beta4_EventTelemetryPingCall
 
-/// Method: `event`.
-public typealias TelemetryEvent = Bloombox_Services_Telemetry_V1beta4_Event
+/// Method: `generic.event`.
 public typealias TelemetryEventCall = Bloombox_Services_Telemetry_V1beta4_EventTelemetryEventCall
 
-/// Method: `batch`.
+/// Method: `generic.batch`.
 public typealias TelemetryEventBatch = Bloombox_Services_Telemetry_V1beta4_Event.Batch
 public typealias TelemetryEventBatchRequest = Bloombox_Services_Telemetry_V1beta4_Event.BatchRequest
 
-/// Method: `error`.
+/// Method: `generic.error`.
 public typealias TelemetryException = Bloombox_Services_Telemetry_V1beta4_Exception
+
+/// Method: `commercial.impression`
+public typealias TelemetryImpressionCall = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryImpressionCall
+public typealias SectionImpression = Bloombox_Analytics_Section_Impression
+public typealias ProductImpression = Bloombox_Analytics_Product_Impression
+
+/// Method: `commercial.view`
+public typealias TelemetryViewCall = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryViewCall
+public typealias SectionView = Bloombox_Analytics_Section_View
+public typealias ProductView = Bloombox_Analytics_Product_View
+
+/// Method: `commercial.action`
+public typealias TelemetryActionCall = Bloombox_Services_Telemetry_V1beta4_CommercialTelemetryActionCall
+public typealias SectionActionType = Bloombox_Analytics_Section_SectionAction
+public typealias SectionAction = Bloombox_Analytics_Section_Action
+public typealias ProductActionType = Bloombox_Analytics_Product_ProductAction
+public typealias ProductAction = Bloombox_Analytics_Product_Action
+public typealias OrderActionType = Bloombox_Analytics_Order_OrderAction
+public typealias OrderAction = Bloombox_Analytics_Order_Action
+
+/// Method: `search.query`
+public typealias SearchTelemetryQueryCall = Bloombox_Services_Telemetry_V1beta4_SearchTelemetryQueryCall
+public typealias SearchTelemetryResultCall = Bloombox_Services_Telemetry_V1beta4_SearchTelemetryResultCall
+
+/// Method: `search.result`
 
 
 //// Menu Service
@@ -175,6 +218,25 @@ public typealias MenuService = Bloombox_Services_Menu_V1beta1_MenuServiceClient
 /// Method: `retrieve`.
 public typealias GetMenu = Bloombox_Services_Menu_V1beta1_GetMenu
 public typealias GetMenuCall = Bloombox_Services_Menu_V1beta1_MenuRetrieveCall
+
+
+//// Checkin Service
+
+/// Binding to the active CheckinService.
+public typealias CheckinService = Bloombox_Services_Checkin_V1beta1_CheckinServiceClient
+public typealias CheckinResponse = Bloombox_Services_Checkin_V1beta1_CheckinResponse
+
+/// Method: `ping`
+public typealias CheckinPing = Bloombox_Services_Checkin_V1beta1_Ping
+public typealias CheckinPingCall = Bloombox_Services_Checkin_V1beta1_CheckinPingCall
+
+/// Method: `identification`
+public typealias CheckinByID = Bloombox_Services_Checkin_V1beta1_IDCheckin
+public typealias CheckinByIDCall = Bloombox_Services_Checkin_V1beta1_CheckinIdentificationCall
+
+/// Method: `card`
+public typealias CheckinByCard = Bloombox_Services_Checkin_V1beta1_CardCheckin
+public typealias CheckinByCardCall = Bloombox_Services_Checkin_V1beta1_CheckinCardCall
 
 
 //// Generic
@@ -331,6 +393,9 @@ public typealias MediaPrivacy = Opencannabis_Media_MediaPrivacy
 public typealias MediaSubject = Opencannabis_Media_MediaSubject
 public typealias MediaReference = Opencannabis_Media_MediaReference
 public typealias MediaOrientation = Opencannabis_Media_MediaOrientation
+public typealias Person = Opencannabis_Person_Person
+public typealias Gender = Opencannabis_Person_Gender
+public typealias GenderCategory = Opencannabis_Person_GenderCategory
 public typealias PersonName = Opencannabis_Person_Name
 public typealias PhoneNumber = Opencannabis_Contact_PhoneNumber
 public typealias EmailAddress = Opencannabis_Contact_EmailAddress
@@ -341,6 +406,8 @@ public typealias USDL = Bloombox_Identity_Ids_USDL
 public typealias USDLField = Bloombox_Identity_Ids_USDLField
 public typealias TemporalDate = Opencannabis_Temporal_Date
 public typealias USDLFieldValue = Bloombox_Identity_Ids_USDLFieldValue
+public typealias EnrollmentSource = Bloombox_Identity_EnrollmentSource
+public typealias Customer = Opencannabis_Commerce_Customer
 
 @available(*, deprecated)
 public typealias PartnerLocationKey = Bloombox_Partner_LocationKey

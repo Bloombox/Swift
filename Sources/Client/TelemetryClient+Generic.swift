@@ -1,15 +1,24 @@
-//
-//  TelemetryService+Generic.swift
-//  Client
-//
-//  Created by James Clark on 12/13/17.
-//
+/**
+* Copyright 2019, Momentum Ideas, Co. All rights reserved.
+* Source and object computer code contained herein is the private intellectual
+* property of Momentum Ideas Co., a Delaware Corporation. Use of this
+* code in source form requires permission in writing before use or the
+* assembly, distribution, or publishing of derivative works, for commercial
+* purposes or any other purpose, from a duly authorized officer of Momentum
+* Ideas Co.
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
 
 import Foundation
 import SwiftProtobuf
 
 
-//// Protobuf Types
+/// Protobuf Types
 typealias BoolValue = Google_Protobuf_BoolValue
 typealias NullValue = Google_Protobuf_NullValue
 typealias StringValue = Google_Protobuf_StringValue
@@ -99,17 +108,47 @@ fileprivate func convertToStruct(dict: [String: Any]) throws -> ProtobufStruct {
 }
 
 
+/// Extends the base `TelemetryClient` with so-called *Generic Telemetry* features. With generic telemetry,
+/// arbitrary event payloads can be sent and correlated back and forth with other structured event streams. It's
+/// generally easiest to start with some stream of generic events, then specialize as needed into task-optimized
+/// event structures in their own streams, where appropriate.
 ///
+/// ### Event Collections
+/// *Generic Telemetry* events contain an arbitrary payload, and tie themselves together with other similar events
+/// via the `collection` context property. This property assigns either an enumerated (well-known) or named
+/// collection to each event, which is used later to query them as a set.
 ///
+/// ### Event Context
+/// Every event, regardless of type, supports a standard set of properties called "event context." These properties
+/// describe things like the app/site/system that sent the event, when the event occurred, the user account active
+/// when the event was sent, and so on. These payloads are assembled automatically with overlayed data provided
+/// by invoking code. Some methods on these APIs support explicit event context.
+///
+/// ### Explicit UUIDs
+/// Explicit event UUIDs allow the telemetry data originator to assign unique IDs to events before they are ingested.
+/// This feature enables de-duplication of events server-side, making event submission an idempotent activity. If IDs
+/// are not assigned by the client, the server assigns IDs during event ingest.
+///
+/// ### API Reference
+/// Methods provided:
+/// - `event`: Record a generic event, with some arbitrary JSON-style object payload, along with the standard
+///   set of event context data. This event is recorded with an occurrence timestamp when it is prepared, unless
+///   otherwise specified. At some point later on, the event is sent to the server for processing.
 extension TelemetryClient {
   // MARK: Event Telemetry
 
   /// Method `event`. Submit a generic event to the Telemetry service. Can be used for any visibility instrumentation
   /// desired and supports arbitrary JSON payloads. This variant offers a simpler interface for simpler events.
   ///
+  /// This method variant presents an intentionally-simple interface, offering just a `collection` and `payload`.
+  /// For more customization options, see other methods by the same name on this API.
+  ///
+  /// - Parameter collection: Event collection to add this event to.
+  /// - Parameter payload: Event payload to send.
+  /// - Throws: Client-side errors for missing data (see `GenericEventError`).
+  /// - Returns: gRPC call object, which can be used to observe or cancel the in-flight call.
   @discardableResult
-  func event(collection: EventCollection,
-             payload: [String: Any]) throws -> TelemetryEventCall {
+  public func event(collection: EventCollection, payload: [String: Any]) throws -> TelemetryEventCall {
     return try self.event(
       collection: collection,
       uuid: nil,
@@ -119,15 +158,24 @@ extension TelemetryClient {
   }
 
   /// Method `event`. Submit a generic event to the Telemetry service asynchronously. Can be used for any visibility
-  /// instrumentation desired and supports arbitrary JSON payloads. This method variant supports a callback.
+  /// instrumentation desired and supports arbitrary JSON payloads. This method variant supports a callback, along with
+  /// the ability to send an explicit event UUID, occurrence timestamp, or context payload.
   ///
+  /// - Parameter collection: Event collection to add this event to.
+  /// - Parameter uuid: Explicit UUID to use for this event. If left as `nil`, one will be assigned server-side.
+  /// - Parameter payload: JSON-like payload for the event. Items must eventually be serializable/primitive types.
+  /// - Parameter occurred: Explicit occurrence timestamp for this event. If left unset, one will be set immediately.
+  /// - Parameter context: Explicit event context for this event. If left unset, a payload is calculated before send.
+  /// - Parameter callback: Callback to dispatch once the event has been transmitted, or an error occurs.
+  /// - Throws: Client-side errors for missing data (see `GenericEventError`).
+  /// - Returns: gRPC call object, which can be used to observe or cancel the in-flight call.
   @discardableResult
-  func event(collection: EventCollection,
-             uuid: String? = nil,
-             payload: [String: Any]? = nil,
-             occurred: Double? = nil,
-             context: EventContext? = nil,
-             callback: GenericEventCallback? = nil) throws -> TelemetryEventCall {
+  public func event(collection: EventCollection,
+                    uuid: String? = nil,
+                    payload: [String: Any]? = nil,
+                    occurred: Double? = nil,
+                    context: EventContext? = nil,
+                    callback: GenericEventCallback? = nil) throws -> TelemetryEventCall {
     // merge/resolve event context
     var merged: AnalyticsContext
     if let c = context {

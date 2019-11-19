@@ -1,9 +1,18 @@
-//
-//  Services.swift
-//  Client
-//
-//  Created by James Clark on 12/12/17.
-//
+/**
+* Copyright 2019, Momentum Ideas, Co. All rights reserved.
+* Source and object computer code contained herein is the private intellectual
+* property of Momentum Ideas Co., a Delaware Corporation. Use of this
+* code in source form requires permission in writing before use or the
+* assembly, distribution, or publishing of derivative works, for commercial
+* purposes or any other purpose, from a duly authorized officer of Momentum
+* Ideas Co.
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+**/
 
 import Foundation
 
@@ -26,6 +35,7 @@ public final class Services: ClientLogic {
     self.rpc = RPCLogic(settings: self.settings)
 
     self.auth = AuthClient(settings: settings)
+    self.checkin = CheckinClient(settings: settings)
     self.devices = DevicesClient(settings: settings)
     self.shop = ShopClient(settings: settings)
     self.telemetry = TelemetryClient(settings: settings)
@@ -38,6 +48,7 @@ public final class Services: ClientLogic {
   fileprivate var all: [RemoteService] {
     return [
       auth,
+      checkin,
       shop,
       telemetry,
       menu,
@@ -60,6 +71,10 @@ public final class Services: ClientLogic {
   /// Auth services. Authenticates user credentials, authorizes permissions, conducts consent operations, and provides
   /// write/read access to user profiles.
   public let auth: AuthClient
+
+  /// Checkin services. For use when a user is a physically present at a brick-and-mortar retail location. Checks a user
+  /// into a retail location for access to personalized service and features.
+  public let checkin: CheckinClient
 
   /// Shop service. Provides information about a dispensary, and the ability to verify/enroll members. Also provides
   /// order submission and status methods.

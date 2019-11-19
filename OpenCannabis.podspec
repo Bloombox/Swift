@@ -3,8 +3,7 @@ Pod::Spec.new do |s|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name          = "OpenCannabis"
-  s.swift_version = "5.0"
-  s.version       = "0.5.0-beta2"
+  s.version       = "0.5.0-beta5"
   s.summary       = "OpenCannabis for Swift"
   s.description   = <<-DESC
 Native Swift codegen and bindings for OpenCannabis
@@ -31,9 +30,10 @@ Native Swift codegen and bindings for OpenCannabis
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.module_name = "OpenCannabis"
   s.source_files = 'Sources/Schema/*.swift'
+  s.swift_versions = ['3.2', '4.0', '4.2', '5.0']
 
   # --- Dependencies -----------------―――――――――――――――――――――――――――――――――――――――――――- #
-  s.dependency 'SwiftProtobuf', '~> 1.5.0'
+  s.dependency 'SwiftProtobuf', '~> 1.7.1'
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.libraries   = "z"

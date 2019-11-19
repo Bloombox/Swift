@@ -34,6 +34,21 @@ public struct Bloombox_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures {
   /// Whether to force authentication via Google.
   public var force: Bool = false
 
+  /// Connect with Google Cloud Print.
+  public var cloudprint: Bool = false
+
+  /// Connect with Google Drive.
+  public var drive: Bool = false
+
+  /// Enable integration with Google Sheets.
+  public var sheets: Bool = false
+
+  /// Deliver events to BigQuery.
+  public var bigquery: Bool = false
+
+  /// Deliver events to Pub/Sub.
+  public var pubsub: Bool = false
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -77,6 +92,11 @@ extension Bloombox_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures: SwiftP
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "auth"),
     2: .same(proto: "force"),
+    3: .same(proto: "cloudprint"),
+    4: .same(proto: "drive"),
+    5: .same(proto: "sheets"),
+    6: .same(proto: "bigquery"),
+    7: .same(proto: "pubsub"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -84,6 +104,11 @@ extension Bloombox_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures: SwiftP
       switch fieldNumber {
       case 1: try decoder.decodeSingularBoolField(value: &self.auth)
       case 2: try decoder.decodeSingularBoolField(value: &self.force)
+      case 3: try decoder.decodeSingularBoolField(value: &self.cloudprint)
+      case 4: try decoder.decodeSingularBoolField(value: &self.drive)
+      case 5: try decoder.decodeSingularBoolField(value: &self.sheets)
+      case 6: try decoder.decodeSingularBoolField(value: &self.bigquery)
+      case 7: try decoder.decodeSingularBoolField(value: &self.pubsub)
       default: break
       }
     }
@@ -96,12 +121,32 @@ extension Bloombox_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures: SwiftP
     if self.force != false {
       try visitor.visitSingularBoolField(value: self.force, fieldNumber: 2)
     }
+    if self.cloudprint != false {
+      try visitor.visitSingularBoolField(value: self.cloudprint, fieldNumber: 3)
+    }
+    if self.drive != false {
+      try visitor.visitSingularBoolField(value: self.drive, fieldNumber: 4)
+    }
+    if self.sheets != false {
+      try visitor.visitSingularBoolField(value: self.sheets, fieldNumber: 5)
+    }
+    if self.bigquery != false {
+      try visitor.visitSingularBoolField(value: self.bigquery, fieldNumber: 6)
+    }
+    if self.pubsub != false {
+      try visitor.visitSingularBoolField(value: self.pubsub, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Bloombox_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures, rhs: Bloombox_Partner_Integrations_Gsuite_GSuiteIntegrationFeatures) -> Bool {
     if lhs.auth != rhs.auth {return false}
     if lhs.force != rhs.force {return false}
+    if lhs.cloudprint != rhs.cloudprint {return false}
+    if lhs.drive != rhs.drive {return false}
+    if lhs.sheets != rhs.sheets {return false}
+    if lhs.bigquery != rhs.bigquery {return false}
+    if lhs.pubsub != rhs.pubsub {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

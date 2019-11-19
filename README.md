@@ -23,14 +23,14 @@ inhibit_all_warnings!
 target 'YourProject' do
   use_frameworks!
 
-  pod 'OpenCannabis', '~> 0.1.8'
-  pod 'Bloombox', '~> 0.1.8'
+  pod 'OpenCannabis', '~> 0.5.0'
+  pod 'Bloombox', '~> 0.5.0'
 end
 ```
 
 Via **Swift Package Manager**:
 ```swift
-// swift-tools-version:4.0
+// swift-tools-version:5.0
   
 import PackageDescription
 
@@ -40,12 +40,12 @@ let package = Package(
     /// ...
 
     dependencies: [
-        .package(url: "https://github.com/bloombox/swift", .upToNextMinor(from: "0.1.8"))])
+        .package(url: "https://github.com/bloombox/swift", .upToNextMinor(from: "0.5.0"))])
 ```
 
 Via **Carthage**:
 ```
-github "bloombox/swift" ~> 0.1.8
+github "bloombox/swift" ~> 0.5.0
 ```
 
 

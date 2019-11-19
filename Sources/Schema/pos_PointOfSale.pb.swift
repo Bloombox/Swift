@@ -136,6 +136,81 @@ extension Bloombox_Pos_POSDeviceStatus: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+/// Specifies common types of Point of Sale software encountered in the cannabis industry.
+public enum Bloombox_Pos_POSSoftware: SwiftProtobuf.Enum {
+  public typealias RawValue = Int
+
+  /// Unknown POS software.
+  case unknownPosSoftware // = 0
+
+  /// Bloombox POS.
+  case bloombox // = 1
+
+  /// LeafLogix POS.
+  case leaflogix // = 2
+
+  /// Greenbits POS.
+  case greenbits // = 3
+
+  /// FlowHub POS.
+  case flowhub // = 4
+
+  /// IndicaOnline POS.
+  case indicaOnline // = 5
+
+  /// QuickBooks POS.
+  case quickbooks // = 6
+  case UNRECOGNIZED(Int)
+
+  public init() {
+    self = .unknownPosSoftware
+  }
+
+  public init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .unknownPosSoftware
+    case 1: self = .bloombox
+    case 2: self = .leaflogix
+    case 3: self = .greenbits
+    case 4: self = .flowhub
+    case 5: self = .indicaOnline
+    case 6: self = .quickbooks
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  public var rawValue: Int {
+    switch self {
+    case .unknownPosSoftware: return 0
+    case .bloombox: return 1
+    case .leaflogix: return 2
+    case .greenbits: return 3
+    case .flowhub: return 4
+    case .indicaOnline: return 5
+    case .quickbooks: return 6
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
+#if swift(>=4.2)
+
+extension Bloombox_Pos_POSSoftware: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Bloombox_Pos_POSSoftware] = [
+    .unknownPosSoftware,
+    .bloombox,
+    .leaflogix,
+    .greenbits,
+    .flowhub,
+    .indicaOnline,
+    .quickbooks,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 /// Specifies information about the hardware powering a point-of-sale device.
 public struct Bloombox_Pos_POSHardware {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -720,6 +795,18 @@ extension Bloombox_Pos_POSDeviceStatus: SwiftProtobuf._ProtoNameProviding {
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     0: .same(proto: "IDLE"),
     1: .same(proto: "CLAIMED"),
+  ]
+}
+
+extension Bloombox_Pos_POSSoftware: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNKNOWN_POS_SOFTWARE"),
+    1: .same(proto: "BLOOMBOX"),
+    2: .same(proto: "LEAFLOGIX"),
+    3: .same(proto: "GREENBITS"),
+    4: .same(proto: "FLOWHUB"),
+    5: .same(proto: "INDICA_ONLINE"),
+    6: .same(proto: "QUICKBOOKS"),
   ]
 }
 
